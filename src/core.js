@@ -1,7 +1,8 @@
   var hilo          // Public API
     , dom           // DOM Manipulation Methods
     , feature = {}  // Feature Detection
-    , htmlCode;     // HTMLCode for an element
+    , htmlCode      // HTMLCode for an element
+    , createEl;     // Create an Element
 
   hilo = function (input, root) {
     var els, c, rt;
