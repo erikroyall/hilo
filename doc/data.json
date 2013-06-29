@@ -1,0 +1,38 @@
+{
+    "project": {
+        "name": "Hilo",
+        "description": "An ultra-fast JavaScript Framework",
+        "version": "0.1.0",
+        "url": ""
+    },
+    "files": {
+        "src\\start.js": {
+            "name": "src\\start.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {},
+    "classes": {},
+    "classitems": [
+        {
+            "file": "src\\start.js",
+            "line": 1,
+            "version": "0.1.0",
+            "author": "Erik Royall <erikroyall@hotmail.com>",
+            "class": ""
+        }
+    ],
+    "warnings": [
+        {
+            "message": "unknown tag: version",
+            "line": " src\\start.js:1"
+        },
+        {
+            "message": "Missing item type",
+            "line": " src\\start.js:1"
+        }
+    ]
+}

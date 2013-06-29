@@ -1,0 +1,5 @@
+
+  window.$ = hilo;
+
+  return hilo;
+}());
