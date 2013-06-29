@@ -1,4 +1,3 @@
-
   var hilo          // Public API
     , dom           // DOM Manipulation Methods
     , feature = {}  // Feature Detection
