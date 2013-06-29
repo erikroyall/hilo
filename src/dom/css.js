@@ -2,11 +2,17 @@
   // CSS
 
   dom.prototype.css = function (prop, value) {
-    this.each(function (el) {
-      el.style[prop] = value;
-    });
+    if (value) {
+      this.each(function (el) {
+        el.style[prop] = value;
+      });
 
-    return new dom(this);
+      return new dom(this);
+    } else {
+      this.one(function (el) {
+        return el.style[prop];
+      });
+    }
   };
   
   dom.prototype.width = function (width) {
