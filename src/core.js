@@ -13,7 +13,7 @@
       c = sel.slice(0,1);
       switch(c) {
         case "#":
-          els = [rt.getElementById(sel.substr
+          els = [rt.getElementById(sel.substr(0,1))];
           break;
         case ".":
           els = rt.getElementsByClassName(sel);
@@ -27,6 +27,7 @@
       }
     } else {
       els = document.querySelectorAll(sel);
+      console.log('Used querySelectorAll');
     }
 
     return els;
