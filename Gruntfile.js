@@ -7,9 +7,9 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     banner: '/*! <%= pkg.title %> - v0.1.0 - ' +
       '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
-      ' * http://erikroyall.github.com/hilo/\n' +
-      ' * Copyright (c) 2013 Erik Royall\n' +
-      ' * Licensed under <%= pkg.license %> (see LICENSE-MIT) \n */\n',
+      ' *  http://erikroyall.github.com/hilo/\n' +
+      ' *  Copyright (c) 2013 Erik Royall and Hilo contributors\n' +
+      ' *  Licensed under <%= pkg.license %> (see LICENSE-MIT) \n */\n\n',
     // Task configuration.
     concat: {
       options: {
@@ -71,6 +71,10 @@ module.exports = function(grunt) {
       gruntfile: {
         files: '<%= jshint.gruntfile.src %>',
         tasks: ['jshint:gruntfile']
+      },
+      hilo: {
+        files: '<%= concat.dist.src %>',
+        tasks: ['concat', 'jshint:hilo']
       }
     },
     yuidoc: {
@@ -96,6 +100,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-devtools');
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'yuidoc', 'watch']);
+  grunt.registerTask('default', ['jshint', 'concat', 'yuidoc', 'watch']);
 
 };
