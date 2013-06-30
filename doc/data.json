@@ -6,6 +6,15 @@
         "url": ""
     },
     "files": {
+        "src\\core.js": {
+            "name": "src\\core.js",
+            "modules": {},
+            "classes": {
+                "hilo": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "src\\start.js": {
             "name": "src\\start.js",
             "modules": {},
@@ -15,11 +24,53 @@
         }
     },
     "modules": {},
-    "classes": {},
+    "classes": {
+        "hilo": {
+            "name": "hilo",
+            "shortname": "hilo",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "src\\core.js",
+            "line": 44,
+            "description": "The Main Class",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "input",
+                    "description": "MAGICal input",
+                    "type": "String|Function|Object|Array|HTMLElement"
+                }
+            ],
+            "root": "HTMLElement Where to start searching from"
+        }
+    },
     "classitems": [
+        {
+            "file": "src\\core.js",
+            "line": 7,
+            "description": "Selects and returns elements based on selector given",
+            "params": [
+                {
+                    "name": "String",
+                    "description": "sel selector"
+                },
+                {
+                    "name": "HTMLElement",
+                    "description": "root root element"
+                }
+            ],
+            "return": {
+                "description": "NodeList Array of HTMLElements"
+            },
+            "class": "hilo"
+        },
         {
             "file": "src\\start.js",
             "line": 1,
+            "package": "hilo",
             "version": "0.1.0",
             "author": "Erik Royall <erikroyall@hotmail.com>",
             "class": ""
@@ -27,8 +78,20 @@
     ],
     "warnings": [
         {
+            "message": "unknown tag: root",
+            "line": " src\\core.js:44"
+        },
+        {
+            "message": "unknown tag: package",
+            "line": " src\\start.js:1"
+        },
+        {
             "message": "unknown tag: version",
             "line": " src\\start.js:1"
+        },
+        {
+            "message": "Missing item type\nSelects and returns elements based on selector given",
+            "line": " src\\core.js:7"
         },
         {
             "message": "Missing item type",
