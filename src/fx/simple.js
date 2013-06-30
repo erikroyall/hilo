@@ -1,24 +1,24 @@
 
   // Effects
 
-  dom.prototype.show = function (display) {
+  Dom.prototype.show = function (display) {
     display = display || '';
     this.each(function (el) {
       el.style.display = display;
     });
 
-    return new dom(this);
+    return new Dom(this);
   };
 
-  dom.prototype.hide = function () {
+  Dom.prototype.hide = function () {
     this.each(function (el) {
       el.style.display = 'none';
     });
 
-    return new dom(this);
+    return new Dom(this);
   };
 
-  dom.prototype.toggle = function (display) {
+  Dom.prototype.toggle = function (display) {
     this.each(function (el) {
       if (el.style.display === 'none') {
         el.style.display = display ? display : '';
@@ -27,27 +27,27 @@
       }
     });
 
-    return new dom(this);
+    return new Dom(this);
   };
 
-  dom.prototype.appear = function () {
+  Dom.prototype.appear = function () {
     this.each(function (el) {
       el.style.opacity = "1";
     });
 
-    return new dom(this);
+    return new Dom(this);
   };
 
-  dom.prototype.disappear = function () {
+  Dom.prototype.disappear = function () {
     this.each(function (el) {
       el.style.opacity = "0";
       el.style.cusor = "default";
     });
 
-    return new dom(this);
+    return new Dom(this);
   };
 
-  dom.prototype.toggleVisibility = function () {
+  Dom.prototype.toggleVisibility = function () {
     this.each(function (el) {
       if (el.style.opacity === "0") {
         el.style.opacity = "1";
@@ -57,5 +57,5 @@
       }
     });
 
-    return new dom(this);
+    return new Dom(this);
   };

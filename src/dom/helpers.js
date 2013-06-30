@@ -1,19 +1,19 @@
   // Helper Functions
 
-  dom.prototype.each = function (fn) {
+  Dom.prototype.each = function (fn) {
     this.map(fn);
     return this;
   };
 
-  dom.prototype.map = function () {
+  Dom.prototype.map = function (fn) {
     var results = [], _i;
     for (_i = 0; _i < this.length; _i++) {
-      results.push(callback.call(this, this[_i], _i));
+      results.push(fn.call(this, this[_i], _i));
     }
     return results;
-  }
+  };
   
-  dom.prototype.one = function (fn) {
-    var m = this.map(callback);
+  Dom.prototype.one = function (fn) {
+    var m = this.map(fn);
     return m.length > 1 ? m : m[0];
   };

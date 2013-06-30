@@ -1,7 +1,7 @@
   
   // Events
 
-  dom.prototype.on = (function () {
+  Dom.prototype.on = (function () {
     if (document.addEventListener) {
       return function (evt, fn) {
         return this.forEach(function (el) {
@@ -23,7 +23,7 @@
     }
   }());
 
-  dom.prototype.off = (function () {
+  Dom.prototype.off = (function () {
     if (document.removeEventListener) {
       return function (evt, fn) {
         return this.forEach(function (el) {
@@ -37,7 +37,7 @@
         });
       };
     } else {
-      return function (evt, fn) {
+      return function (evt) {
         return this.forEach(function (el) {
           el["on" + evt] = null;
         });

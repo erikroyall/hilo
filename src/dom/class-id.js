@@ -1,13 +1,13 @@
 
   // Classes and IDs
 
-  dom.prototype.id = function (id) {
+  Dom.prototype.id = function (id) {
     if(id) {
       this.each(function(el) {
         el.id = id;
       });
 
-      return new dom(this);
+      return new Dom(this);
     } else {
       this.one(function (el) {
         return el.id;
@@ -15,7 +15,7 @@
     }
   };
 
-  dom.prototype.addClass = function (className) {
+  Dom.prototype.addClass = function (className) {
     this.each(function (el) {
       var _i, parts  = className.split(" ");
 

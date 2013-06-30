@@ -1,4 +1,4 @@
-  dom = function (els) {
+  Dom = function (els) {
     var _i, _l;
 
     for (_i = 0, _l = els.length; _i < _l; _i+=1) {
@@ -9,11 +9,11 @@
   };
 
   createEl = function (tagName, attrs) {
-    var elm = new dom([document.createElement(tagName)]), key;
+    var el = new Dom([document.createElement(tagName)]), key;
 
     if (attrs) {
       if (attrs.className) {
-        el.addClass(className);
+        el.addClass(attrs.className);
         delete attrs.className;
       }
 
@@ -24,13 +24,12 @@
 
       for (key in attrs) {
         if(attrs.hasOwnProperty(key)) {
-          el.attr(key, attr['key']);
+          el.attr(key, attrs['key']);
         }
       }
     }
 
-    return elm;
+    return el;
   };
 
   hilo.create = createEl;
-  

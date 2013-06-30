@@ -1,10 +1,10 @@
 
-  dom.prototype.get = function () {
+  Dom.prototype.get = function () {
     var els = [];
 
     this.each(function (el) {
       console.dir(els);
-      els = new Array().push(el);
+      els = [].push(el);
     });
 
     return els;

@@ -1,7 +1,6 @@
   var hilo          // Public API
-    , dom           // DOM Manipulation Methods
+    , Dom           // DOM Manipulation Methods
     , feature = {}  // Feature Detection
-    , htmlCode      // HTMLCode for an element
     , createEl;     // Create an Element
 
   hilo = function (input, root) {
@@ -27,17 +26,17 @@
         els = rt.querySelectorAll(input);
       }
 
-      return new dom(els);
+      return new Dom(els);
     } else if (typeof input === 'function') { // Function
       document.onreadystatechange = function () {
         if (document.readyState === 'complete') {
           input();
         }
-      }
+      };
     } else if (input.length) { // DOM Node List
-      return new dom(input);
+      return new Dom(input);
     } else { // DOM Node
       input = [input];
-      return new dom(input);
+      return new Dom(input);
     }
   };
