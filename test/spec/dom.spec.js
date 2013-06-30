@@ -20,6 +20,9 @@ describe("Hilo DOM", function () {
 
     expect(elmArr).toEqual(dElmArr);
   });
+  it('should treat * same as document.all', function () {
+    expect($('*')).toEqual($(document.all));
+  });
 });
 
 describe("DOM fx", function () {
