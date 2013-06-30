@@ -74,7 +74,7 @@ module.exports = function(grunt) {
       },
       hilo: {
         files: '<%= concat.dist.src %>',
-        tasks: ['concat', 'jshint:hilo']
+        tasks: ['concat', 'jshint:hilo', 'yuidoc']
       }
     },
     yuidoc: {
@@ -85,7 +85,8 @@ module.exports = function(grunt) {
       url: '<%= pkg.homepage %>',
       options: {
         paths: 'src/',
-        outdir: 'doc/'
+        outdir: 'doc/',
+        theme: 'simple'
       }
     }
   }

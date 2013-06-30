@@ -14,6 +14,14 @@ window.hilo = (function () {
     , feature = {}  // Feature Detection
     , createEl;     // Create an Element
 
+  /**
+   * Selects and returns elements based on selector given
+   *
+   * @param String sel selector
+   * @param HTMLElement root root element
+   * @return NodeList Array of HTMLElements
+   */
+
   select = function (sel, root) {
     var els, c, rt;
 
@@ -43,6 +51,16 @@ window.hilo = (function () {
     return els;
   };
 
+  /**
+   * The Main Class
+   *
+   * @class hilo
+   * @constructor
+   * 
+   * @param {String|Function|Object|Array|HTMLElement} input MAGICal input
+   * @root HTMLElement Where to start searching from
+   */
+
   hilo = function (input, root) {
     if (typeof input === 'string') {
       return new Dom(select(input, root));
@@ -52,7 +70,7 @@ window.hilo = (function () {
           input();
         }
       };
-    } else if (input.length) { // DOM Node List
+    } else if (input.length) { // DOM Node List / Hilo DOM Object
       return new Dom(input);
     } else { // DOM Node
       input = [input];

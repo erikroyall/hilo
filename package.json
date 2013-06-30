@@ -19,7 +19,7 @@
     "options": {
       "paths": "src/",
       "outdir": "doc/",
-      "theme": "yuidoc-dana"
+      "theme": "node_modules/grunt-contrib-yuidoc/node_modules/yuidocjs/themes/simple"
     }
   }
 }
