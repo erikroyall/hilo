@@ -2,7 +2,8 @@
     , Dom           // DOM Manipulation Methods
     , select        
     , feature = {}  // Feature Detection
-    , createEl;     // Create an Element
+    , createEl      // Create an Element
+    , Test;
 
   /**
    * Selects and returns elements based on selector given

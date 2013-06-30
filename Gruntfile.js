@@ -20,6 +20,9 @@ module.exports = function(grunt) {
         src: [
           'src/start.js',
           'src/core.js',
+          'src/test/main.js',
+          'src/test/not.js',
+          'src/test/comp.js',
           'src/dom/main.js',
           'src/dom/helpers.js',
           'src/dom/els.js',
@@ -32,7 +35,7 @@ module.exports = function(grunt) {
           'src/feat/all.js',
           'src/end.js'
           ],
-        dest: 'build/<%= pkg.name %>.js'
+        dest: 'build/<%= pkg.name %>-dev.js'
       }
     },
     uglify: {
@@ -64,7 +67,7 @@ module.exports = function(grunt) {
         src: 'Gruntfile.js'
       },
       hilo: {
-        src: 'build/<%= pkg.name %>.js'
+        src: 'build/<%= pkg.name %>-dev.js'
       }
     },
     watch: {
@@ -101,6 +104,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-devtools');
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'concat', 'yuidoc', 'watch']);
+  grunt.registerTask('default', ['concat', 'jshint', 'yuidoc', 'watch']);
+  grunt.registerTask('release', ['concat']);
 
 };
