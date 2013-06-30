@@ -1,4 +1,4 @@
-/*! Hilo - v0.1.0 - 2013-06-29
+/*! Hilo - v0.1.0 - 2013-06-30
  * http://erikroyall.github.com/hilo/
  * Copyright (c) 2013 Erik Royall
  * Licensed under MIT (see LICENSE-MIT) 
@@ -7,11 +7,10 @@ window.hilo = (function () {
 
   "use strict";
   
-
   var hilo          // Public API
-    , dom           // DOM Manipulation Methods
+    , Dom           // DOM Manipulation Methods
     , feature = {}  // Feature Detection
-    , htmlCode;     // HTMLCode for an element
+    , createEl;     // Create an Element
 
   hilo = function (input, root) {
     var els, c, rt;
@@ -36,107 +35,153 @@ window.hilo = (function () {
         els = rt.querySelectorAll(input);
       }
 
-      return new dom(els);
+      return new Dom(els);
     } else if (typeof input === 'function') { // Function
       document.onreadystatechange = function () {
         if (document.readyState === 'complete') {
           input();
         }
-      }
+      };
     } else if (input.length) { // DOM Node List
-      return new dom(input);
+      return new Dom(input);
     } else { // DOM Node
       input = [input];
-      return new dom(input);
+      return new Dom(input);
     }
   };
 
-  dom = function (els) {
-    var _i;
+  Dom = function (els) {
+    var _i, _l;
 
-    for (_i = 0; _i < els.length; _i+=1) {
+    for (_i = 0, _l = els.length; _i < _l; _i+=1) {
       this[_i] = els[_i];
     }
 
     this.length = els.length;
   };
 
+  createEl = function (tagName, attrs) {
+    var el = new Dom([document.createElement(tagName)]), key;
+
+    if (attrs) {
+      if (attrs.className) {
+        el.addClass(attrs.className);
+        delete attrs.className;
+      }
+
+      if (attrs.text) {
+        el.text(attrs.text);
+        delete attrs.text;
+      }
+
+      for (key in attrs) {
+        if(attrs.hasOwnProperty(key)) {
+          el.attr(key, attrs['key']);
+        }
+      }
+    }
+
+    return el;
+  };
+
+  hilo.create = createEl;
+
   // Helper Functions
 
-  dom.prototype.each = function (fn) {
-    var _i, _t;
+  Dom.prototype.each = function (fn) {
+    this.map(fn);
+    return this;
+  };
 
-    for (_i = 0, _t = this.length; _i < _t; _i+=1) {
-      fn(this[_i]);
+  Dom.prototype.map = function (fn) {
+    var results = [], _i;
+    for (_i = 0; _i < this.length; _i++) {
+      results.push(fn.call(this, this[_i], _i));
     }
+    return results;
   };
   
-  dom.prototype.one = function (fn) {
-    fn(this[0]);
+  Dom.prototype.one = function (fn) {
+    var m = this.map(fn);
+    return m.length > 1 ? m : m[0];
   };
 
 
   // Element Selections
 
-  dom.prototype.first = function () {
+  Dom.prototype.first = function () {
     return this[0];
   };
   
-  dom.prototype.last = function () {
+  Dom.prototype.last = function () {
     return this[this.length - 1];
   };
   
-  dom.prototype.el = function (place) {
+  Dom.prototype.el = function (place) {
     return this[place];
   };
   
-  dom.prototype.children = function (sel) {
+  Dom.prototype.children = function (sel) {
     var els = [];
 
     this.each(function (el) {
       els = els.concat(el.querySelectorAll(sel)[0]);
     });
 
-    return new dom(els);
+    return new Dom(els);
   };
+
 
   // Manipulation
 
-  dom.prototype.html = function (htmlCode) {
+  Dom.prototype.html = function (htmlCode) {
     if (htmlCode) {
       this.each(function(el) {
         el.innerHTML = htmlCode;
       });
-      return new dom(this);
+      return new Dom(this);
     } else {
       this.one(function(el) {
         return el.innerHTML;
       });
     }
   };
-  dom.prototype.text = function (text) {
+
+  Dom.prototype.text = function (text) {
     if (text) {
       this.each(function(el) {
         el.innerText = text;
       });
-      return new dom(this);
+      return new Dom(this);
     } else {
       this.one(function(el) {
         return el.innerText;
       });
     }
-  }
+  };
+  
+  Dom.prototype.append = function (html) {
+    this.each(function (el) {
+      el.innerHTML += html;
+    });
+  };
+  
+  Dom.prototype.appendText = function (text) {
+    this.each(function (el) {
+      el.innerText += text;
+    });
+  };
   
 
   // Classes and IDs
 
-  dom.prototype.id = function (id) {
+  Dom.prototype.id = function (id) {
     if(id) {
       this.each(function(el) {
         el.id = id;
       });
 
-      return new dom(this);
+      return new Dom(this);
     } else {
       this.one(function (el) {
         return el.id;
@@ -144,7 +189,7 @@ window.hilo = (function () {
     }
   };
 
-  dom.prototype.addClass = function (className) {
+  Dom.prototype.addClass = function (className) {
     this.each(function (el) {
       var _i, parts  = className.split(" ");
 
@@ -167,20 +212,26 @@ window.hilo = (function () {
 
   // CSS
 
-  dom.prototype.css = function (prop, value) {
-    this.each(function (el) {
-      el.style[prop] = value;
-    });
+  Dom.prototype.css = function (prop, value) {
+    if (value) {
+      this.each(function (el) {
+        el.style[prop] = value;
+      });
 
-    return new dom(this);
+      return new Dom(this);
+    } else {
+      this.one(function (el) {
+        return el.style[prop];
+      });
+    }
   };
   
-  dom.prototype.width = function (width) {
+  Dom.prototype.width = function (width) {
     if (width) {
       this.each(function (el) {
         el.style.width = width;
 
-        return new dom(this);
+        return new Dom(this);
       });
     } else {
       this.one(function (el) {
@@ -189,12 +240,12 @@ window.hilo = (function () {
     }
   };
   
-  dom.prototype.height = function (height) {
+  Dom.prototype.height = function (height) {
     if (height) {
       this.each(function (el) {
         el.style.height = height;
 
-        return new dom(this);
+        return new Dom(this);
       });
     } else {
       this.one(function (el) {
@@ -203,11 +254,11 @@ window.hilo = (function () {
     }
   };
   
-  dom.prototype.color = function (color) {
+  Dom.prototype.color = function (color) {
     if (color) {
       this.style('color', color);
 
-      return new dom(this);
+      return new Dom(this);
     } else {
       this.one(function (el) {
         return el.style['color'];
@@ -215,11 +266,11 @@ window.hilo = (function () {
     }
   };
   
-  dom.prototype.backgroundColor = function (backgroundColor) {
+  Dom.prototype.backgroundColor = function (backgroundColor) {
     if (backgroundColor) {
       this.style('background-color', backgroundColor);
 
-      return new dom(this);
+      return new Dom(this);
     } else {
       this.one(function (el) {
         return el.style['background-color'];
@@ -227,11 +278,11 @@ window.hilo = (function () {
     }
   };
   
-  dom.prototype.background = function (background) {
+  Dom.prototype.background = function (background) {
     if (background) {
       this.style('background', background);
 
-      return new dom(this);
+      return new Dom(this);
     } else {
       this.one(function (el) {
         return el.style['background'];
@@ -239,11 +290,11 @@ window.hilo = (function () {
     }
   };
   
-  dom.prototype.margin = function (margin) {
+  Dom.prototype.margin = function (margin) {
     if (margin) {
       this.style('margin', margin);
 
-      return new dom(this);
+      return new Dom(this);
     } else {
       this.one(function (el) {
         return el.style['margin'];
@@ -251,11 +302,11 @@ window.hilo = (function () {
     }
   };
   
-  dom.prototype.padding = function (padding) {
+  Dom.prototype.padding = function (padding) {
     if (padding) {
       this.style('padding', padding);
 
-      return new dom(this);
+      return new Dom(this);
     } else {
       this.one(function (el) {
         return el.style['padding'];
@@ -263,11 +314,11 @@ window.hilo = (function () {
     }
   };
   
-  dom.prototype.fontSize = function (fontSize) {
+  Dom.prototype.fontSize = function (fontSize) {
     if (fontSize) {
       this.style('font-size', fontSize);
 
-      return new dom(this);
+      return new Dom(this);
     } else {
       this.one(function (el) {
         return el.style['font-size'];
@@ -276,12 +327,12 @@ window.hilo = (function () {
   };
 
 
-  dom.prototype.get = function () {
+  Dom.prototype.get = function () {
     var els = [];
 
     this.each(function (el) {
       console.dir(els);
-      els = new Array().push(el);
+      els = [].push(el);
     });
 
     return els;
@@ -289,51 +340,71 @@ window.hilo = (function () {
   
   // Events
 
-  dom.prototype.on = function (evt, fn) {
-    this.each(function(el) {
-      try {
-        el.addEventListener(evt, fn);
-      } catch (e) {
-        try {
-          el.addEvent(evt, fn);
-        } catch (e) {
-          el['on' + evt] = fn;
-        }
-      }
-    });
+  Dom.prototype.on = (function () {
+    if (document.addEventListener) {
+      return function (evt, fn) {
+        return this.forEach(function (el) {
+          el.addEventListener(evt, fn, false);
+        });
+      };
+    } else if (document.attachEvent)  {
+      return function (evt, fn) {
+        return this.forEach(function (el) {
+          el.attachEvent("on" + evt, fn);
+        });
+      };
+    } else {
+      return function (evt, fn) {
+        return this.forEach(function (el) {
+          el["on" + evt] = fn;
+        });
+      };
+    }
+  }());
 
-    return new dom(this);
-  };
-
-  dom.prototype.off = function (evt) {
-    this.each(function(el) {
-      el.removeEventListener(evt);
-    });
-
-    return new dom(this);
-  };
+  Dom.prototype.off = (function () {
+    if (document.removeEventListener) {
+      return function (evt, fn) {
+        return this.forEach(function (el) {
+          el.removeEventListener(evt, fn, false);
+        });
+      };
+    } else if (document.detachEvent)  {
+      return function (evt, fn) {
+        return this.forEach(function (el) {
+          el.detachEvent("on" + evt, fn);
+        });
+      };
+    } else {
+      return function (evt) {
+        return this.forEach(function (el) {
+          el["on" + evt] = null;
+        });
+      };
+    }
+  }());
 
 
   // Effects
 
-  dom.prototype.show = function (display) {
+  Dom.prototype.show = function (display) {
     display = display || '';
     this.each(function (el) {
       el.style.display = display;
     });
 
-    return new dom(this);
+    return new Dom(this);
   };
 
-  dom.prototype.hide = function () {
+  Dom.prototype.hide = function () {
     this.each(function (el) {
       el.style.display = 'none';
     });
 
-    return new dom(this);
+    return new Dom(this);
   };
 
-  dom.prototype.toggle = function (display) {
+  Dom.prototype.toggle = function (display) {
     this.each(function (el) {
       if (el.style.display === 'none') {
         el.style.display = display ? display : '';
@@ -342,27 +413,27 @@ window.hilo = (function () {
       }
     });
 
-    return new dom(this);
+    return new Dom(this);
   };
 
-  dom.prototype.appear = function () {
+  Dom.prototype.appear = function () {
     this.each(function (el) {
       el.style.opacity = "1";
     });
 
-    return new dom(this);
+    return new Dom(this);
   };
 
-  dom.prototype.disappear = function () {
+  Dom.prototype.disappear = function () {
     this.each(function (el) {
       el.style.opacity = "0";
       el.style.cusor = "default";
     });
 
-    return new dom(this);
+    return new Dom(this);
   };
 
-  dom.prototype.toggleVisibility = function () {
+  Dom.prototype.toggleVisibility = function () {
     this.each(function (el) {
       if (el.style.opacity === "0") {
         el.style.opacity = "1";
@@ -372,7 +443,7 @@ window.hilo = (function () {
       }
     });
 
-    return new dom(this);
+    return new Dom(this);
   };
 
 

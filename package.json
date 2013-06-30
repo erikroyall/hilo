@@ -2,7 +2,7 @@
   "name": "hilo",
   "title": "Hilo",
   "description": "An ultra-fast JavaScript Framework",
-  "version": "0.1.0",
+  "version": "0.1.0 pre-dev beta",
   "license": "MIT",
   "devDependencies": {
     "grunt": "~0.4.1",
