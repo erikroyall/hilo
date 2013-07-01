@@ -1,4 +1,11 @@
 
+  /**
+   * Returns a DOM NodeList of selected elements
+   *
+   * @method get
+   * @return Array the DOM NodeList
+   */
+
   Dom.prototype.get = function () {
     var els = [];
 
@@ -9,3 +16,4 @@
 
     return els;
   };
+  

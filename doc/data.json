@@ -6,6 +6,43 @@
         "url": ""
     },
     "files": {
+        "src\\dom\\class-id.js": {
+            "name": "src\\dom\\class-id.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "src\\dom\\css.js": {
+            "name": "src\\dom\\css.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "src\\dom\\main.js": {
+            "name": "src\\dom\\main.js",
+            "modules": {},
+            "classes": {
+                "Dom": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src\\dom\\manp.js": {
+            "name": "src\\dom\\manp.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "src\\dom\\misc.js": {
+            "name": "src\\dom\\misc.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
         "src\\test\\comp.js": {
             "name": "src\\test\\comp.js",
             "modules": {},
@@ -19,6 +56,13 @@
             "classes": {
                 "Test": 1
             },
+            "fors": {},
+            "namespaces": {}
+        },
+        "src\\test\\not.js": {
+            "name": "src\\test\\not.js",
+            "modules": {},
+            "classes": {},
             "fors": {},
             "namespaces": {}
         },
@@ -41,6 +85,30 @@
     },
     "modules": {},
     "classes": {
+        "Dom": {
+            "name": "Dom",
+            "shortname": "Dom",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "file": "src\\dom\\main.js",
+            "line": 1,
+            "description": "Main DOM class",
+            "access": "private",
+            "tagname": "",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "Array",
+                    "description": "els A DOMNodeList"
+                }
+            ],
+            "return": {
+                "description": "void"
+            }
+        },
         "Test": {
             "name": "Test",
             "shortname": "Test",
@@ -52,6 +120,8 @@
             "file": "src\\test\\main.js",
             "line": 13,
             "description": "Main Test Class",
+            "access": "private",
+            "tagname": "",
             "is_constructor": 1,
             "params": [
                 {
@@ -90,6 +160,290 @@
         }
     },
     "classitems": [
+        {
+            "file": "src\\dom\\class-id.js",
+            "line": 1,
+            "description": "Changes id of selected els",
+            "itemtype": "method",
+            "name": "id",
+            "params": [
+                {
+                    "name": "string",
+                    "description": "id The id to be set"
+                }
+            ],
+            "return": {
+                "description": "object"
+            },
+            "class": "Dom"
+        },
+        {
+            "file": "src\\dom\\class-id.js",
+            "line": 23,
+            "description": "Adds a class of selected els",
+            "itemtype": "method",
+            "name": "addClass",
+            "params": [
+                {
+                    "name": "className",
+                    "description": "The class name of list of class names",
+                    "type": "String|Array"
+                }
+            ],
+            "return": {
+                "description": "object"
+            },
+            "class": "Dom"
+        },
+        {
+            "file": "src\\dom\\css.js",
+            "line": 1,
+            "description": "Set or return CSS Property of selected el(s)",
+            "itemtype": "method",
+            "name": "css",
+            "params": [
+                {
+                    "name": "string",
+                    "description": "prop property to be set or returned"
+                },
+                {
+                    "name": "string",
+                    "description": "value value to be set"
+                }
+            ],
+            "return": {
+                "description": "object"
+            },
+            "class": "Dom"
+        },
+        {
+            "file": "src\\dom\\css.js",
+            "line": 24,
+            "description": "Set or return width of selected el(s)",
+            "itemtype": "method",
+            "name": "width",
+            "params": [
+                {
+                    "name": "prop",
+                    "description": "width",
+                    "type": "String|Number"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Object|String"
+            },
+            "class": "Dom"
+        },
+        {
+            "file": "src\\dom\\css.js",
+            "line": 46,
+            "description": "Set or return height of selected el(s)",
+            "itemtype": "method",
+            "name": "height",
+            "params": [
+                {
+                    "name": "height",
+                    "description": "height",
+                    "type": "String|Number"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Object|String"
+            },
+            "class": "Dom"
+        },
+        {
+            "file": "src\\dom\\css.js",
+            "line": 68,
+            "description": "Set or return color of selected el(s)",
+            "itemtype": "method",
+            "name": "color",
+            "params": [
+                {
+                    "name": "String",
+                    "description": "color color"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Object|String"
+            },
+            "class": "Dom"
+        },
+        {
+            "file": "src\\dom\\css.js",
+            "line": 88,
+            "description": "Set or return background color of selected el(s)",
+            "itemtype": "method",
+            "name": "backgroundColor",
+            "params": [
+                {
+                    "name": "String",
+                    "description": "backgroundColor background color"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Object|String"
+            },
+            "class": "Dom"
+        },
+        {
+            "file": "src\\dom\\css.js",
+            "line": 108,
+            "description": "Set or return background prop of selected el(s)",
+            "itemtype": "method",
+            "name": "background",
+            "params": [
+                {
+                    "name": "String",
+                    "description": "background background"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Object|String"
+            },
+            "class": "Dom"
+        },
+        {
+            "file": "src\\dom\\css.js",
+            "line": 128,
+            "description": "Set or return margin of selected el(s)",
+            "itemtype": "method",
+            "name": "margin",
+            "params": [
+                {
+                    "name": "margin",
+                    "description": "margin",
+                    "type": "String|Number"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Object|String"
+            },
+            "class": "Dom"
+        },
+        {
+            "file": "src\\dom\\css.js",
+            "line": 148,
+            "description": "Set or return padding of selected el(s)",
+            "itemtype": "method",
+            "name": "padding",
+            "params": [
+                {
+                    "name": "padding",
+                    "description": "padding",
+                    "type": "String|Number"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Object|String"
+            },
+            "class": "Dom"
+        },
+        {
+            "file": "src\\dom\\css.js",
+            "line": 168,
+            "description": "Set or return font size of selected el(s)",
+            "itemtype": "method",
+            "name": "fontSize",
+            "params": [
+                {
+                    "name": "fontSize",
+                    "description": "font size",
+                    "type": "String|Number"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Object|String"
+            },
+            "class": "Dom"
+        },
+        {
+            "file": "src\\dom\\manp.js",
+            "line": 2,
+            "description": "Changes innerHTML of selected els",
+            "itemtype": "method",
+            "name": "html",
+            "params": [
+                {
+                    "name": "String",
+                    "description": "htmlCode The HTML Code to be set"
+                }
+            ],
+            "return": {
+                "description": "object"
+            },
+            "class": "Test"
+        },
+        {
+            "file": "src\\dom\\manp.js",
+            "line": 25,
+            "description": "Changes innerText of selected els",
+            "itemtype": "method",
+            "name": "text",
+            "params": [
+                {
+                    "name": "string",
+                    "description": "texy The text Code to be set"
+                }
+            ],
+            "return": {
+                "description": "object"
+            },
+            "class": "Test"
+        },
+        {
+            "file": "src\\dom\\manp.js",
+            "line": 46,
+            "description": "Appends to innerHTML of selected els",
+            "itemtype": "method",
+            "name": "append",
+            "params": [
+                {
+                    "name": "string",
+                    "description": "html The HTML Code to be appended"
+                }
+            ],
+            "return": {
+                "description": "object"
+            },
+            "class": "Test"
+        },
+        {
+            "file": "src\\dom\\manp.js",
+            "line": 60,
+            "description": "Appends to innerText if selected els",
+            "itemtype": "method",
+            "name": "appendText",
+            "params": [
+                {
+                    "name": "string",
+                    "description": "text The test to be appended"
+                }
+            ],
+            "return": {
+                "description": "object"
+            },
+            "class": "Test"
+        },
+        {
+            "file": "src\\dom\\misc.js",
+            "line": 2,
+            "description": "Returns a DOM NodeList of selected elements",
+            "itemtype": "method",
+            "name": "get",
+            "return": {
+                "description": "Array the DOM NodeList"
+            },
+            "class": "Test"
+        },
         {
             "file": "src\\test\\comp.js",
             "line": 1,
@@ -157,6 +511,17 @@
                 "description": "object"
             },
             "class": "Test"
+        },
+        {
+            "file": "src\\test\\not.js",
+            "line": 1,
+            "description": "Negates a test",
+            "itemtype": "property",
+            "name": "not",
+            "return": {
+                "description": "object The test object, negated"
+            },
+            "class": "hilo"
         },
         {
             "file": "src\\core.js",

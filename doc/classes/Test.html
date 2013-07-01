@@ -40,6 +40,8 @@
     <div class="bd">
         <ul>
             
+                <li><a href="../classes/Dom.html">Dom</a></li>
+            
                 <li><a href="../classes/hilo.html">hilo</a></li>
             
                 <li><a href="../classes/Test.html">Test</a></li>
@@ -56,6 +58,14 @@
     <div class="bd">
         <ul>
             
+                <li><a href="#methods_append">append</a></li>
+            
+                <li><a href="#methods_appendText">appendText</a></li>
+            
+                <li><a href="#methods_get">get</a></li>
+            
+                <li><a href="#methods_html">html</a></li>
+            
                 <li><a href="#methods_ifContains">ifContains</a></li>
             
                 <li><a href="#methods_ifEquals">ifEquals</a></li>
@@ -63,6 +73,8 @@
                 <li><a href="#methods_ifIs">ifIs</a></li>
             
                 <li><a href="#methods_test">test</a></li>
+            
+                <li><a href="#methods_text">text</a></li>
             
         </ul>
     </div>
@@ -81,7 +93,7 @@
         <h2 class="no-toc">Files</h2>
     </div>
     <div class="bd">
-        <ul><li>src\core.js/<ul></ul></li><li>src\start.js/<ul></ul></li><li>src\test\comp.js/<ul></ul></li><li>src\test\main.js/<ul></ul></li></ul>
+        <ul><li>src\core.js/<ul></ul></li><li>src\dom\class-id.js/<ul></ul></li><li>src\dom\css.js/<ul></ul></li><li>src\dom\main.js/<ul></ul></li><li>src\dom\manp.js/<ul></ul></li><li>src\dom\misc.js/<ul></ul></li><li>src\start.js/<ul></ul></li><li>src\test\comp.js/<ul></ul></li><li>src\test\main.js/<ul></ul></li><li>src\test\not.js/<ul></ul></li></ul>
     </div>
 </div>
 
@@ -100,8 +112,8 @@
 
     
     <a name="methods_Test"></a>
-<div class="method item">
-    <strong class="name"><code>Test</code></strong>( <code>any, boolean </code> ) 
+<div class="method item private">
+    <strong class="name"><code>Test</code></strong>( <code>any, boolean </code> ) <em><code>&#x2F;* private method *&#x2F;</code></em>
     <br>
     <span class="foundat">
     
@@ -157,6 +169,132 @@
     <div>
         
             <div id="methods">
+            
+                <a name="methods_append"></a>
+<div class="method item">
+    <strong class="name"><code>append</code></strong>( <code>string </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../../files/src_dom_manp.js.html#l46"><code>src\dom\manp.js:46</code></a>
+    </span><br>
+    <p>Appends to innerHTML of selected els</p>
+    
+    <strong>Parameters:</strong>
+    <ul class="params">
+    
+        <li>
+        
+            <code>string</code> <strong>&lt;Object&gt;</strong>
+        
+        
+        <p>html The HTML Code to be appended</p>
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+    <br><div class="returns"><strong>Returns:</strong> object</div>
+    
+    
+    
+</div>
+
+            
+                <a name="methods_appendText"></a>
+<div class="method item">
+    <strong class="name"><code>appendText</code></strong>( <code>string </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../../files/src_dom_manp.js.html#l60"><code>src\dom\manp.js:60</code></a>
+    </span><br>
+    <p>Appends to innerText if selected els</p>
+    
+    <strong>Parameters:</strong>
+    <ul class="params">
+    
+        <li>
+        
+            <code>string</code> <strong>&lt;Object&gt;</strong>
+        
+        
+        <p>text The test to be appended</p>
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+    <br><div class="returns"><strong>Returns:</strong> object</div>
+    
+    
+    
+</div>
+
+            
+                <a name="methods_get"></a>
+<div class="method item">
+    <strong class="name"><code>get</code></strong>( <code>  </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../../files/src_dom_misc.js.html#l2"><code>src\dom\misc.js:2</code></a>
+    </span><br>
+    <p>Returns a DOM NodeList of selected elements</p>
+    
+    
+    
+    <br><div class="returns"><strong>Returns:</strong> Array the DOM NodeList</div>
+    
+    
+    
+</div>
+
+            
+                <a name="methods_html"></a>
+<div class="method item">
+    <strong class="name"><code>html</code></strong>( <code>String </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../../files/src_dom_manp.js.html#l2"><code>src\dom\manp.js:2</code></a>
+    </span><br>
+    <p>Changes innerHTML of selected els</p>
+    
+    <strong>Parameters:</strong>
+    <ul class="params">
+    
+        <li>
+        
+            <code>String</code> <strong>&lt;Object&gt;</strong>
+        
+        
+        <p>htmlCode The HTML Code to be set</p>
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+    <br><div class="returns"><strong>Returns:</strong> object</div>
+    
+    
+    
+</div>
+
             
                 <a name="methods_ifContains"></a>
 <div class="method item">
@@ -284,6 +422,41 @@
         
         
         <p>con The whatever to be testes</p>
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+    <br><div class="returns"><strong>Returns:</strong> object</div>
+    
+    
+    
+</div>
+
+            
+                <a name="methods_text"></a>
+<div class="method item">
+    <strong class="name"><code>text</code></strong>( <code>string </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../../files/src_dom_manp.js.html#l25"><code>src\dom\manp.js:25</code></a>
+    </span><br>
+    <p>Changes innerText of selected els</p>
+    
+    <strong>Parameters:</strong>
+    <ul class="params">
+    
+        <li>
+        
+            <code>string</code> <strong>&lt;Object&gt;</strong>
+        
+        
+        <p>texy The text Code to be set</p>
             
         </li>
     

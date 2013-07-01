@@ -14,6 +14,7 @@
    * Main Test Class
    *
    * @class Test
+   * @private
    * @constructor
    * @param any con The whatever to be tested
    * @param boolean neg To negate

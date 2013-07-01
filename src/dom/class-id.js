@@ -1,5 +1,10 @@
-
-  // Classes and IDs
+  /**
+   * Changes id of selected els
+   *
+   * @method id
+   * @param string id The id to be set
+   * @return object
+   */
 
   Dom.prototype.id = function (id) {
     if(id) {
@@ -14,6 +19,14 @@
       });
     }
   };
+
+  /**
+   * Adds a class of selected els
+   *
+   * @method addClass
+   * @param {String|Array} className The class name of list of class names
+   * @return object
+   */
 
   Dom.prototype.addClass = function (className) {
     this.each(function (el) {

@@ -87,6 +87,7 @@ hilo.test = function (con) {
    * Main Test Class
    *
    * @class Test
+   * @private
    * @constructor
    * @param any con The whatever to be tested
    * @param boolean neg To negate
@@ -100,9 +101,10 @@ hilo.test = function (con) {
     }
   };
 
-  Test.prototype.not = (function () {
-    return new Test(this.con, true);
-  }());
+// Test.prototype.not = (function () {
+  //   var con = this.con;
+  //   return new Test(con, true);
+  // }());
   
 Test.prototype.ifEquals = function (tw) {
     var val = this.con === tw;
@@ -139,7 +141,7 @@ Test.prototype.ifEquals = function (tw) {
     return this.neg ? !val : val;
   };
 
-  Dom = function (els) {
+Dom = function (els) {
     var _i, _l;
 
     for (_i = 0, _l = els.length; _i < _l; _i+=1) {
@@ -220,10 +222,7 @@ Test.prototype.ifEquals = function (tw) {
     return new Dom(els);
   };
 
-
-  // Manipulation
-
-  Dom.prototype.html = function (htmlCode) {
+Dom.prototype.html = function (htmlCode) {
     if (htmlCode) {
       this.each(function(el) {
         el.innerHTML = htmlCode;
@@ -234,7 +233,17 @@ Test.prototype.ifEquals = function (tw) {
         return el.innerHTML;
       });
     }
+
+    return new Dom(this);
   };
+
+  /**
+   * Changes innerText of selected els
+   *
+   * @method text
+   * @param string texy The text Code to be set
+   * @return object
+   */
 
   Dom.prototype.text = function (text) {
     if (text) {
@@ -249,22 +258,35 @@ Test.prototype.ifEquals = function (tw) {
     }
   };
   
+  /**
+   * Appends to innerHTML of selected els
+   *
+   * @method append
+   * @param string html The HTML Code to be appended
+   * @return object
+   */
+
   Dom.prototype.append = function (html) {
     this.each(function (el) {
       el.innerHTML += html;
     });
   };
   
+  /**
+   * Appends to innerText if selected els
+   *
+   * @method appendText
+   * @param string text The test to be appended
+   * @return object
+   */
+
   Dom.prototype.appendText = function (text) {
     this.each(function (el) {
       el.innerText += text;
     });
   };
   
-
-  // Classes and IDs
-
-  Dom.prototype.id = function (id) {
+Dom.prototype.id = function (id) {
     if(id) {
       this.each(function(el) {
         el.id = id;
@@ -277,6 +299,14 @@ Test.prototype.ifEquals = function (tw) {
       });
     }
   };
+
+  /**
+   * Adds a class of selected els
+   *
+   * @method addClass
+   * @param {String|Array} className The class name of list of class names
+   * @return object
+   */
 
   Dom.prototype.addClass = function (className) {
     this.each(function (el) {
@@ -298,10 +328,7 @@ Test.prototype.ifEquals = function (tw) {
     });
   };
   
-
-  // CSS
-
-  Dom.prototype.css = function (prop, value) {
+Dom.prototype.css = function (prop, value) {
     if (value) {
       this.each(function (el) {
         el.style[prop] = value;
@@ -315,6 +342,14 @@ Test.prototype.ifEquals = function (tw) {
     }
   };
   
+  /**
+   * Set or return width of selected el(s)
+   *
+   * @method width
+   * @param {String|Number} prop width
+   * @return {object|String}
+   */
+
   Dom.prototype.width = function (width) {
     if (width) {
       this.each(function (el) {
@@ -329,6 +364,14 @@ Test.prototype.ifEquals = function (tw) {
     }
   };
   
+  /**
+   * Set or return height of selected el(s)
+   *
+   * @method height
+   * @param {String|Number} height height
+   * @return {object|String}
+   */
+
   Dom.prototype.height = function (height) {
     if (height) {
       this.each(function (el) {
@@ -343,6 +386,14 @@ Test.prototype.ifEquals = function (tw) {
     }
   };
   
+  /**
+   * Set or return color of selected el(s)
+   *
+   * @method color
+   * @param String color color
+   * @return {object|String}
+   */
+
   Dom.prototype.color = function (color) {
     if (color) {
       this.style('color', color);
@@ -355,6 +406,14 @@ Test.prototype.ifEquals = function (tw) {
     }
   };
   
+  /**
+   * Set or return background color of selected el(s)
+   *
+   * @method backgroundColor
+   * @param String backgroundColor background color
+   * @return {object|String}
+   */
+
   Dom.prototype.backgroundColor = function (backgroundColor) {
     if (backgroundColor) {
       this.style('background-color', backgroundColor);
@@ -367,6 +426,14 @@ Test.prototype.ifEquals = function (tw) {
     }
   };
   
+  /**
+   * Set or return background prop of selected el(s)
+   *
+   * @method background
+   * @param String background background
+   * @return {object|String}
+   */
+
   Dom.prototype.background = function (background) {
     if (background) {
       this.style('background', background);
@@ -379,6 +446,14 @@ Test.prototype.ifEquals = function (tw) {
     }
   };
   
+  /**
+   * Set or return margin of selected el(s)
+   *
+   * @method margin
+   * @param {String|Number} margin margin
+   * @return {object|String}
+   */
+
   Dom.prototype.margin = function (margin) {
     if (margin) {
       this.style('margin', margin);
@@ -391,6 +466,14 @@ Test.prototype.ifEquals = function (tw) {
     }
   };
   
+  /**
+   * Set or return padding of selected el(s)
+   *
+   * @method padding
+   * @param {String|Number} padding padding
+   * @return {object|String}
+   */
+
   Dom.prototype.padding = function (padding) {
     if (padding) {
       this.style('padding', padding);
@@ -403,6 +486,14 @@ Test.prototype.ifEquals = function (tw) {
     }
   };
   
+  /**
+   * Set or return font size of selected el(s)
+   *
+   * @method fontSize
+   * @param {String|Number} fontSize font size
+   * @return {object|String}
+   */
+
   Dom.prototype.fontSize = function (fontSize) {
     if (fontSize) {
       this.style('font-size', fontSize);
@@ -415,8 +506,7 @@ Test.prototype.ifEquals = function (tw) {
     }
   };
 
-
-  Dom.prototype.get = function () {
+Dom.prototype.get = function () {
     var els = [];
 
     this.each(function (el) {
@@ -426,6 +516,7 @@ Test.prototype.ifEquals = function (tw) {
 
     return els;
   };
+  
   
   // Events
 
