@@ -107,7 +107,7 @@ hilo.test = function (con) {
   // }());
   
 Test.prototype.ifEquals = function (tw) {
-    var val = this.con === tw;
+    var val = this.con == tw;
     return this.neg ? !val : val;
   };
 
