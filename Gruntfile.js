@@ -23,6 +23,7 @@ module.exports = function(grunt) {
           'src/test/main.js',
           'src/test/not.js',
           'src/test/comp.js',
+          'src/ajax/main.js',
           'src/dom/main.js',
           'src/dom/helpers.js',
           'src/dom/els.js',
@@ -31,8 +32,10 @@ module.exports = function(grunt) {
           'src/dom/css.js',
           'src/dom/misc.js',
           'src/evt/helpers.js',
+          'src/evt/simple.js',
           'src/fx/simple.js',
           'src/feat/all.js',
+          'src/util/core.js',
           'src/end.js'
           ],
         dest: 'build/<%= pkg.name %>-dev.js'

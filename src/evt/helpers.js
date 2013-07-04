@@ -1,6 +1,4 @@
   
-  // Events
-
   Dom.prototype.on = (function () {
     if (document.addEventListener) {
       return function (evt, fn) {

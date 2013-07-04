@@ -6,6 +6,13 @@
         "url": ""
     },
     "files": {
+        "src\\ajax\\main.js": {
+            "name": "src\\ajax\\main.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
         "src\\dom\\class-id.js": {
             "name": "src\\dom\\class-id.js",
             "modules": {},
@@ -56,13 +63,6 @@
             "classes": {
                 "Test": 1
             },
-            "fors": {},
-            "namespaces": {}
-        },
-        "src\\test\\not.js": {
-            "name": "src\\test\\not.js",
-            "modules": {},
-            "classes": {},
             "fors": {},
             "namespaces": {}
         },
@@ -118,7 +118,7 @@
             "plugin_for": [],
             "extension_for": [],
             "file": "src\\test\\main.js",
-            "line": 13,
+            "line": 14,
             "description": "Main Test Class",
             "access": "private",
             "tagname": "",
@@ -146,7 +146,7 @@
             "plugin_for": [],
             "extension_for": [],
             "file": "src\\core.js",
-            "line": 45,
+            "line": 48,
             "description": "The Main Class",
             "is_constructor": 1,
             "params": [
@@ -160,6 +160,12 @@
         }
     },
     "classitems": [
+        {
+            "file": "src\\ajax\\main.js",
+            "line": 1,
+            "description": "config:\n    - method: HTTP Method \"GET\" or \"POST\" (default: \"POST\")\n    - url: The file to send request\n    - async: Whether to perform an asynchronous request (default: true)\n    - response: Response type \"text\" or \"XML\"\n    - Event functions\n      - callback: The function to be executed each time onreadystatechange event is triggered\n      - completed\n      - error\n      - abort\n      - success\n      - progress\n      - load\n      - loadStart\n      - loadEnd\n    - username\n    - password\n    - contentType",
+            "class": "Dom"
+        },
         {
             "file": "src\\dom\\class-id.js",
             "line": 1,
@@ -497,7 +503,7 @@
         },
         {
             "file": "src\\test\\main.js",
-            "line": 1,
+            "line": 2,
             "description": "Test API",
             "itemtype": "method",
             "name": "test",
@@ -513,20 +519,13 @@
             "class": "Test"
         },
         {
-            "file": "src\\test\\not.js",
-            "line": 1,
-            "description": "Negates a test",
-            "itemtype": "property",
-            "name": "not",
-            "return": {
-                "description": "object The test object, negated"
-            },
-            "class": "hilo"
-        },
-        {
             "file": "src\\core.js",
-            "line": 8,
+            "line": 9,
             "description": "Selects and returns elements based on selector given",
+            "itemtype": "method",
+            "name": "select",
+            "access": "private",
+            "tagname": "",
             "params": [
                 {
                     "name": "String",
@@ -545,7 +544,7 @@
         {
             "file": "src\\start.js",
             "line": 1,
-            "package": "hilo",
+            "package": "Hilo",
             "version": "0.1.0",
             "author": "Erik Royall <erikroyall@hotmail.com>",
             "class": ""
@@ -554,7 +553,7 @@
     "warnings": [
         {
             "message": "unknown tag: root",
-            "line": " src\\core.js:45"
+            "line": " src\\core.js:48"
         },
         {
             "message": "unknown tag: package",
@@ -565,8 +564,8 @@
             "line": " src\\start.js:1"
         },
         {
-            "message": "Missing item type\nSelects and returns elements based on selector given",
-            "line": " src\\core.js:8"
+            "message": "Missing item type\nconfig:\n    - method: HTTP Method \"GET\" or \"POST\" (default: \"POST\")\n    - url: The file to send request\n    - async: Whether to perform an asynchronous request (default: true)\n    - response: Response type \"text\" or \"XML\"\n    - Event functions\n      - callback: The function to be executed each time onreadystatechange event is triggered\n      - completed\n      - error\n      - abort\n      - success\n      - progress\n      - load\n      - loadStart\n      - loadEnd\n    - username\n    - password\n    - contentType",
+            "line": " src\\ajax\\main.js:1"
         },
         {
             "message": "Missing item type",

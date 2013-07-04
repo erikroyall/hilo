@@ -69,5 +69,20 @@
     this.each(function (el) {
       el.innerText += text;
     });
+
+    return new Dom(this);
   };
   
+  Dom.prototype.value = function (val) {
+    if (val) {
+      this.each(function (el) {
+        el.value = val;
+      });
+
+      return new Dom(this);
+    } else {
+      this.one(function (el) {
+        return el.value;
+      });
+    }
+  };

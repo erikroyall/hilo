@@ -2,12 +2,15 @@
     , Dom           // DOM Manipulation Methods
     , select        
     , feature = {}  // Feature Detection
+    , hiloAjax      // AJAX Func.
     , createEl      // Create an Element
     , Test;
 
   /**
    * Selects and returns elements based on selector given
    *
+   * @method select
+   * @private
    * @param String sel selector
    * @param HTMLElement root root element
    * @return NodeList Array of HTMLElements

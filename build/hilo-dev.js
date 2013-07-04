@@ -1,10 +1,10 @@
-/*! Hilo - v0.1.0 - 2013-07-01
+/*! Hilo - v0.1.0 - 2013-07-05
  *  http://erikroyall.github.com/hilo/
  *  Copyright (c) 2013 Erik Royall and Hilo contributors
  *  Licensed under MIT (see LICENSE-MIT) 
  */
 
-window.hilo = (function () {
+window.Hilo = (function () {
 
   "use strict";
   
@@ -12,12 +12,15 @@ window.hilo = (function () {
     , Dom           // DOM Manipulation Methods
     , select        
     , feature = {}  // Feature Detection
+    , hiloAjax      // AJAX Func.
     , createEl      // Create an Element
     , Test;
 
   /**
    * Selects and returns elements based on selector given
    *
+   * @method select
+   * @private
    * @param String sel selector
    * @param HTMLElement root root element
    * @return NodeList Array of HTMLElements
@@ -101,13 +104,9 @@ hilo.test = function (con) {
     }
   };
 
-// Test.prototype.not = (function () {
-  //   var con = this.con;
-  //   return new Test(con, true);
-  // }());
-  
+
 Test.prototype.ifEquals = function (tw) {
-    var val = this.con == tw;
+    var val = this.con === tw;
     return this.neg ? !val : val;
   };
 
@@ -140,6 +139,44 @@ Test.prototype.ifEquals = function (tw) {
     var val = this.con === tw;
     return this.neg ? !val : val;
   };
+
+hiloAjax = function (config) {
+    var xhr;
+
+    if (window.XMLHttpRequest) {
+      xhr = new window.XMLHttpRequest();
+    } else if (window.ActiveXObject) {
+      xhr = new window.ActiveXObject('Microsoft.XMLHTTP');
+    }
+
+    if (!config.url) {
+      throw new TypeError("url parameter not provided to hilo.ajax");
+    }
+
+    config.async = config.async ? config.async : true;
+    config.username = config.username ? config.username : null;
+    config.password = config.password ? config.password : null;
+
+    if(!config.contentType) {
+      config.contentType = 'application/x-www-form-urlencoded; charset=UTF-8';
+    }
+
+    xhr.onreadystatechange = function () {
+      if (config.callback) {
+        config.callback(xhr);
+      }
+    };
+
+    if (config.method === 'POST') {
+      xhr.open('POST', config.url, config.async, config.username, config.password);
+      xhr.send(config.data);
+    } else {
+      xhr.open('GET', config.url + (config.data ? "+" + config.data : ''), config.async, config.username, config.password);
+      xhr.send();
+    }
+  };
+
+  hilo.ajax = hiloAjax;
 
 Dom = function (els) {
     var _i, _l;
@@ -201,15 +238,15 @@ Dom = function (els) {
   // Element Selections
 
   Dom.prototype.first = function () {
-    return this[0];
+    return new Dom([this[0]]);
   };
   
   Dom.prototype.last = function () {
-    return this[this.length - 1];
+    return new Dom([this[this.length - 1]]);
   };
   
   Dom.prototype.el = function (place) {
-    return this[place];
+    return new Dom([this[place - 1]]);
   };
   
   Dom.prototype.children = function (sel) {
@@ -220,6 +257,20 @@ Dom = function (els) {
     });
 
     return new Dom(els);
+  };
+
+  Dom.prototype.rel = function (sul) {
+    var els = [];
+
+    this.each(function (el) {
+      els.push(el[sul]);
+    });
+
+    return new Dom(els);
+  };
+
+  Dom.prototype.next = function () {
+    this.rel('nextSibling');
   };
 
 Dom.prototype.html = function (htmlCode) {
@@ -284,8 +335,24 @@ Dom.prototype.html = function (htmlCode) {
     this.each(function (el) {
       el.innerText += text;
     });
+
+    return new Dom(this);
   };
   
+  Dom.prototype.value = function (val) {
+    if (val) {
+      this.each(function (el) {
+        el.value = val;
+      });
+
+      return new Dom(this);
+    } else {
+      this.one(function (el) {
+        return el.value;
+      });
+    }
+  };
+
 Dom.prototype.id = function (id) {
     if(id) {
       this.each(function(el) {
@@ -328,6 +395,20 @@ Dom.prototype.id = function (id) {
     });
   };
   
+  Dom.prototype.attr = function (name, val) {
+    if(val) {
+      this.each(function(el) {
+        el.setAttribute(name, val);
+      });
+
+      return new Dom(this);
+    } else {
+      this.one(function (el) {
+        return el[name];
+      });
+    }
+  };
+
 Dom.prototype.css = function (prop, value) {
     if (value) {
       this.each(function (el) {
@@ -510,16 +591,13 @@ Dom.prototype.get = function () {
     var els = [];
 
     this.each(function (el) {
-      console.dir(els);
-      els = [].push(el);
+      els.push(el);
     });
 
     return els;
   };
   
   
-  // Events
-
   Dom.prototype.on = (function () {
     if (document.addEventListener) {
       return function (evt, fn) {
@@ -563,6 +641,101 @@ Dom.prototype.get = function () {
       };
     }
   }());
+
+  
+  Dom.prototype.ready = function (fn) {
+    this.each(function (el) {
+      el.onreadystatechange = function () {
+        if (el.readyState = 'complete') {
+          fn();
+        }
+      };
+    });
+  };
+
+  Dom.prototype.click = function (fn) {
+    this.on('click', fn);
+  };
+
+  Dom.prototype.hover = function (fn) {
+    this.on('hover', fn);
+  };
+
+  Dom.prototype.focus = function (fn) {
+    this.on('focus', fn);
+  };
+
+  Dom.prototype.drag = function (fn) {
+    this.on('drag', fn);
+  };
+
+  Dom.prototype.dragenter = function (fn) {
+    this.on('dragenter', fn);
+  };
+
+  Dom.prototype.dragend = function (fn) {
+    this.on('dragend', fn);
+  };
+
+  Dom.prototype.dragleave = function (fn) {
+    this.on('dragleave', fn);
+  };
+
+  Dom.prototype.dragover = function (fn) {
+    this.on('dragover', fn);
+  };
+
+  Dom.prototype.dragstart = function (fn) {
+    this.on('dragstart', fn);
+  };
+
+  Dom.prototype.drop = function (fn) {
+    this.on('drop', fn);
+  };
+
+  Dom.prototype.keyup = function (fn) {
+    this.on('keyup', fn);
+  };
+
+  Dom.prototype.keypress = function (fn) {
+    this.on('keypress', fn);
+  };
+
+  Dom.prototype.keydown = function (fn) {
+    this.on('keydown', fn);
+  };
+
+  Dom.prototype.load = function (fn) {
+    this.on('load', fn);
+  };
+
+  Dom.prototype.mouseup = function (fn) {
+    this.on('mouseup', fn);
+  };
+
+  Dom.prototype.mouseover = function (fn) {
+    this.on('mouseover', fn);
+  };
+
+  Dom.prototype.mousedown = function (fn) {
+    this.on('mousedown', fn);
+  };
+
+  Dom.prototype.mousewheel = function (fn) {
+    this.on('mousewheel', fn);
+  };
+
+  Dom.prototype.change = function (fn) {
+    this.on('change', fn);
+  };
+
+  Dom.prototype.blur = function (fn) {
+    this.on('blur', fn);
+  };
+
+  Dom.prototype.submit = function (fn) {
+    this.on('submit', fn);
+  };
 
 
   // Effects
@@ -627,89 +800,153 @@ Dom.prototype.get = function () {
   };
 
 
-  feature = {
-    applicationcache: (function () {
-      return !!window.applicationCache;
-    }()),
-    audiopreload: (function () {
-      return 'preload' in document.createElement('audio');
-    }()),
-    canvas: (function () {
-      return !!document.createElement('canvas').getContext;
-    }()),
-    classlist: (function () {
-      return 'classList' in document.createElement('p');
-    }()),
-    es6: (function () {
-      return typeof String.prototype.contains === 'function';
-    }()),
-    geolocation: (function () {
-      return 'geolocation' in window.navigator;
-    }()),
-    indexeddb: (function () {
-      return !!(window.indexedDB && window.IDBKeyRange && window.IDBTransaction);
-    }()),
-    input: {
+  feature = (function () {
+    var i = document.createElement("input");
 
-    },
-    localstorage: (function () {
-      try {
-        return 'localStorage' in window && window['localStorage'] !== null && !!window.localStorage.setItem;
-      } catch(e){
-        return false;
-      }
-    }()),
-    microdata: (function () {
-      return 'getItems' in document;
-    }()),
-    placeholder : (function () {
-      return 'placeholder' in document.createElement('input');
-    }()),
-    template: (function () {
-      return 'content' in document.createElement('template');
-    }()),
-    video: (function () {
-      try {
-        return !!document.createElement('video').canPlayType;
-      } catch (e) {
-        return false;
-      }
-    }()),
-    h264: (function () {
-      var v = document.createElement("video");
-      try {
-        return v.canPlayType('video/mp4; codecs="avc1.42E01E, mp4a.40.2"');
-      } catch (e) {
-        return false;
-      }
-    }()),
-    webm: (function () {
-      var v = document.createElement("video");
-      try {
-        return v.canPlayType('video/webm; codecs="vp8, vorbis"');
-      } catch (e) {
-        return false;
-      }
-    }()),
-    ogg: (function () {
-      var v = document.createElement("video");
-      try {
-        return v.canPlayType('video/ogg; codecs="theora, vorbis"');
-      } catch (e) {
-        return false;
-      }
-    }()),
-    webaudio: (function () {
-      return !!(window.webkitAudioContext || window.AudioContext);
-    }()),
-    webworkers: (function () {
-      return !!window.Worker;
-    }())
-  };
+    return {
+      applicationcache: (function () {
+        return !!window.applicationCache;
+      }()),
+      audiopreload: (function () {
+        return 'preload' in document.createElement('audio');
+      }()),
+      canvas: (function () {
+        return !!document.createElement('canvas').getContext;
+      }()),
+      classlist: (function () {
+        return 'classList' in document.createElement('p');
+      }()),
+      es6: (function () {
+        return typeof String.prototype.contains === 'function';
+      }()),
+      geolocation: (function () {
+        return 'geolocation' in window.navigator;
+      }()),
+      history: (function () {
+        return !!(window.history && history.pushState);
+      }()),
+      indexeddb: (function () {
+        return !!(window.indexedDB && window.IDBKeyRange && window.IDBTransaction);
+      }()),
+      input: {
+        autofocus: (function () {
+          return 'autofocus' in i;
+        }()),
+        placeholder: (function () {
+          return 'placeholder' in i;
+        }()),
+        type: {
+          color: (function () {
+            i.setAttribute('type', 'color');
+            return i.type !== 'text';
+          }()),
+          date: (function () {
+            i.setAttribute('type', 'date');
+            return i.type !== 'text';
+          }()),
+          datetime: (function () {
+            i.setAttribute('type', 'datetime');
+            return i.type !== 'text';
+          }()),
+          datetimeLocal: (function () {
+            i.setAttribute('type', 'datetime-local');
+            return i.type !== 'text';
+          }()),
+          email: (function () {
+            i.setAttribute('type', 'email');
+            return i.type !== 'text';
+          }()),
+          month: (function () {
+            i.setAttribute('type', 'month');
+            return i.type !== 'text';
+          }()),
+          number: (function () {
+            i.setAttribute('type', 'number');
+            return i.type !== 'text';
+          }()),
+          range: (function () {
+            i.setAttribute('type', 'range');
+            return i.type !== 'text';
+          }()),
+          search: (function () {
+            i.setAttribute('type', 'search');
+            return i.type !== 'text';
+          }()),
+          tel: (function () {
+            i.setAttribute('type', 'tel');
+            return i.type !== 'text';
+          }()),
+          time: (function () {
+            i.setAttribute('type', 'time');
+            return i.type !== 'text';
+          }()),
+          week: (function () {
+            i.setAttribute('type', 'week');
+            return i.type !== 'text';
+          }())
+        }
+      },
+      localstorage: (function () {
+        try {
+          return 'localStorage' in window && window['localStorage'] !== null && !!window.localStorage.setItem;
+        } catch(e){
+          return false;
+        }
+      }()),
+      microdata: (function () {
+        return 'getItems' in document;
+      }()),
+      template: (function () {
+        return 'content' in document.createElement('template');
+      }()),
+      video: (function () {
+        try {
+          return !!document.createElement('video').canPlayType;
+        } catch (e) {
+          return false;
+        }
+      }()),
+      h264: (function () {
+        var v = document.createElement("video");
+        try {
+          return v.canPlayType('video/mp4; codecs="avc1.42E01E, mp4a.40.2"');
+        } catch (e) {
+          return false;
+        }
+      }()),
+      webm: (function () {
+        var v = document.createElement("video");
+        try {
+          return v.canPlayType('video/webm; codecs="vp8, vorbis"');
+        } catch (e) {
+          return false;
+        }
+      }()),
+      ogg: (function () {
+        var v = document.createElement("video");
+        try {
+          return v.canPlayType('video/ogg; codecs="theora, vorbis"');
+        } catch (e) {
+          return false;
+        }
+      }()),
+      webaudio: (function () {
+        return !!(window.webkitAudioContext || window.AudioContext);
+      }()),
+      webworkers: (function () {
+        return !!window.Worker;
+      }())
+    };
+  }());
 
   hilo.feature = feature;
 
 
+  hilo.noConflict = function () {
+    delete window.$;
+  };
+  
+  
   window.$ = hilo;
 
   return hilo;

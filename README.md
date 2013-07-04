@@ -10,7 +10,6 @@ Hilo is a lightning fast Open Source JavaScript Framework and library that makes
 - Feature Detection
 - Events
 - More JavaScript (Validation, Strings, etc.)
-- Animation (soon..)
 - AJAX (very soon..)
 
 ## Usage

@@ -48,3 +48,16 @@
     });
   };
   
+  Dom.prototype.attr = function (name, val) {
+    if(val) {
+      this.each(function(el) {
+        el.setAttribute(name, val);
+      });
+
+      return new Dom(this);
+    } else {
+      this.one(function (el) {
+        return el[name];
+      });
+    }
+  };
