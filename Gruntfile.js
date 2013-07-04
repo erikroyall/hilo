@@ -82,32 +82,18 @@ module.exports = function(grunt) {
         files: '<%= concat.dist.src %>',
         tasks: ['concat', 'jshint:hilo', 'yuidoc']
       }
-    },
-    yuidoc: {
-    compile: {
-      name: '<%= pkg.title %>',
-      description: '<%= pkg.description %>',
-      version: '<%= pkg.version %>',
-      url: '<%= pkg.homepage %>',
-      options: {
-        paths: 'src/',
-        outdir: 'doc/',
-        theme: 'simple'
-      }
     }
-  }
   });
 
   // These plugins provide necessary tasks.
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-yuidoc');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-devtools');
 
   // Default task.
-  grunt.registerTask('default', ['concat', 'jshint', 'yuidoc', 'watch']);
+  grunt.registerTask('default', ['concat', 'jshint', 'watch']);
   grunt.registerTask('release', ['concat']);
 
 };
