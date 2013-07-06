@@ -14,13 +14,21 @@
   };
   
   Dom.prototype.children = function (sel) {
-    var els = [];
-
-    this.each(function (el) {
-      els = els.concat(el.querySelectorAll(sel)[0]);
-    });
-
-    return new Dom(els);
+    var children = [], _i;
+    if (sel) {
+      this.each(function (el) {
+        var s = select(sel, el);
+        for (_i = 0; _i < s.length; _i++) {
+          children = children.concat(s[_i]);
+        }
+      });
+    } else {
+      this.each(function (el) {
+        for (_i = 0; _i < el.children.length; _i++) {
+          children = children.concat(el.children[_i]);
+        }
+      });
+    }
   };
 
   Dom.prototype.rel = function (sul) {

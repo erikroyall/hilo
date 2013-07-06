@@ -1,4 +1,4 @@
-/*! Hilo - v0.1.0 - 2013-07-05
+/*! Hilo - v0.1.0 - 2013-07-06
  *  http://erikroyall.github.com/hilo/
  *  Copyright (c) 2013 Erik Royall and Hilo contributors
  *  Licensed under MIT (see LICENSE-MIT) 
@@ -14,6 +14,8 @@ window.Hilo = (function () {
     , feature = {}  // Feature Detection
     , hiloAjax      // AJAX Func.
     , createEl      // Create an Element
+    , Animation
+    , HiloObject
     , Test;
 
   /**
@@ -26,33 +28,63 @@ window.Hilo = (function () {
    * @return NodeList Array of HTMLElements
    */
 
-  select = function (sel, root) {
-    var els, c, rt;
+  select = function (selector, root, e) {
+    var rt, sel = selector, tempObj;
 
-    rt = root || document;
+    function get (sel, root) {
+      var els, c, rt;
 
-    if(sel.split(" ").length === 1) {
-      c = sel.slice(0,1);
-      switch(c) {
-        case "#":
-          els = [rt.getElementById(sel.substr(0,1))];
-          break;
-        case ".":
-          els = rt.getElementsByClassName(sel);
-          break;
-        case "*":
-          els = document.all;
-          break;
-        default:
-          els = rt.getElementsByTagName(sel);
-          break;
+      rt = root || document;
+
+      if(sel.split(" ").length === 1 
+      && sel.split(">").length === 1
+      && sel.split(":").length === 1
+      && sel.split("+").length === 1) {
+        c = sel.slice(0,1);
+        switch(c) {
+          case "#":
+            els = [rt.getElementById(sel.substr(1,sel.length))];
+            break;
+          case ".":
+            els = rt.getElementsByClassName(sel);
+            break;
+          case "*":
+            els = document.all;
+            break;
+          case "&":
+            els = document.documentElement;
+            break;
+          default:
+            els = rt.getElementsByTagName(sel);
+            break;
+        }
+      } else {
+        els = rt.querySelectorAll(sel);
       }
-    } else {
-      els = document.querySelectorAll(sel);
-      console.log('Used querySelectorAll');
+
+      return els;
     }
 
-    return els;
+    if (typeof root === 'object') {
+      rt = root;
+    } else if (root === true) {
+      tempObj = window.temporaryHiloStorageObject[sel];
+      if (tempObj) {
+        return tempObj;
+      } else {
+        if (typeof e === 'object') {
+          tempObj = get(sel, e);
+        } else {
+          tempObj = get(sel);
+        }
+        
+        return tempObj;
+      }
+    } else {
+      rt = document;
+    }
+
+    return get(sel, rt);
   };
 
   /**
@@ -65,9 +97,9 @@ window.Hilo = (function () {
    * @root HTMLElement Where to start searching from
    */
 
-  hilo = function (input, root) {
+  hilo = function (input, root, e) {
     if (typeof input === 'string') {
-      return new Dom(select(input, root));
+      return new Dom(select(input, root, e));
     } else if (typeof input === 'function') { // Function
       document.onreadystatechange = function () {
         if (document.readyState === 'complete') {
@@ -81,6 +113,8 @@ window.Hilo = (function () {
       return new Dom(input);
     }
   };
+
+  hilo.version = '1.0.0-pre-dev-beta-2';
 
 hilo.test = function (con) {
     return new Test(con);
@@ -250,13 +284,21 @@ Dom = function (els) {
   };
   
   Dom.prototype.children = function (sel) {
-    var els = [];
-
-    this.each(function (el) {
-      els = els.concat(el.querySelectorAll(sel)[0]);
-    });
-
-    return new Dom(els);
+    var children = [], _i;
+    if (sel) {
+      this.each(function (el) {
+        var s = select(sel, el);
+        for (_i = 0; _i < s.length; _i++) {
+          children = children.concat(s[_i]);
+        }
+      });
+    } else {
+      this.each(function (el) {
+        for (_i = 0; _i < el.children.length; _i++) {
+          children = children.concat(el.children[_i]);
+        }
+      });
+    }
   };
 
   Dom.prototype.rel = function (sul) {
@@ -799,6 +841,60 @@ Dom.prototype.get = function () {
     return new Dom(this);
   };
 
+  Animation = {
+    // ease: function (dur, opt) {
+      
+    // }
+  };
+  // Dom.prototype.anim = function (dur, prop, options) {
+  //   var ease, easing = {}, fade = {}, animate;
+
+  //   function parseCSS (value) {
+  //     var n = parseFloat (value);
+  //     return {
+  //       number: n,
+  //       units: value.replace(n, '')
+  //     };
+  //   }
+
+  //   animate = function (dur, prop, options) {
+      
+  //   };
+
+  //   easing.linear = function (pos) {
+  //     return pos;
+  //   };
+
+  //   easing.sine = function (pos) {
+  //     return (-Math.cos(pos * Math.PI) / 2) + 0.5;
+  //   };
+
+  //   easing.bounce = function (pos) {
+  //     if (pos < (1 / 2.75 )) {
+  //       return 7.6 * pos * pos ;
+  //     } else if (pos < (2 /2.75 )) {
+  //       return 7.6 * (pos -= (1.5 / 2.75 )) * pos + 0.74 ;
+  //     } else if (pos < (2.5 / 2.75 )) {
+  //       return 7.6 * (pos -= (2.25 / 2.75 )) * pos + 0.91 ;
+  //     } else {
+  //       return 7.6 * (pos -= (2.625 / 2.75 )) * pos + 0.98 ;
+  //     }
+  //   };
+
+  //   fade.fadeIn = function (options) {
+  //     element.style.opacity = options.from ;
+  //     animate(dur, { 'opacity': options.to }, { 'easing': options.easing })
+  //   };
+
+  //   if (options.hasOwnProperty('easing')) {
+  //     if (typeof options.easing === 'string') {
+  //       ease = easing[options.easing];
+  //     } else {
+  //       ease = options.easing;
+  //     }
+  //   }
+  // };
+
 
   feature = (function () {
     var i = document.createElement("input");
@@ -946,7 +1042,7 @@ Dom.prototype.get = function () {
     delete window.$;
   };
   
-  
+  window.temporaryHiloStorageObject = {};
   window.$ = hilo;
 
   return hilo;

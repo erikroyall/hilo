@@ -34,6 +34,8 @@ module.exports = function(grunt) {
           'src/evt/helpers.js',
           'src/evt/simple.js',
           'src/fx/simple.js',
+          'src/anim/Animation.js',
+          'src/anim/base.js',
           'src/feat/all.js',
           'src/util/core.js',
           'src/end.js'
@@ -80,7 +82,7 @@ module.exports = function(grunt) {
       },
       hilo: {
         files: '<%= concat.dist.src %>',
-        tasks: ['concat', 'jshint:hilo', 'yuidoc']
+        tasks: ['concat', 'jshint:hilo']
       }
     }
   });
