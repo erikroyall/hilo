@@ -9,17 +9,14 @@
 
   Dom.prototype.html = function (htmlCode) {
     if (htmlCode) {
-      this.each(function(el) {
+      return this.each(function(el) {
         el.innerHTML = htmlCode;
       });
-      return new Dom(this);
     } else {
       this.one(function(el) {
         return el.innerHTML;
       });
     }
-
-    return new Dom(this);
   };
 
   /**
@@ -32,10 +29,9 @@
 
   Dom.prototype.text = function (text) {
     if (text) {
-      this.each(function(el) {
+      return this.each(function(el) {
         el.innerText = text;
       });
-      return new Dom(this);
     } else {
       this.one(function(el) {
         return el.innerText;
@@ -52,7 +48,7 @@
    */
 
   Dom.prototype.append = function (html) {
-    this.each(function (el) {
+    return this.each(function (el) {
       el.innerHTML += html;
     });
   };
@@ -66,20 +62,16 @@
    */
 
   Dom.prototype.appendText = function (text) {
-    this.each(function (el) {
+    return this.each(function (el) {
       el.innerText += text;
     });
-
-    return new Dom(this);
   };
   
   Dom.prototype.value = function (val) {
     if (val) {
-      this.each(function (el) {
+      return this.each(function (el) {
         el.value = val;
       });
-
-      return new Dom(this);
     } else {
       this.one(function (el) {
         return el.value;

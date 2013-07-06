@@ -6,8 +6,8 @@
   };
 
   Dom.prototype.map = function (fn) {
-    var results = [], _i;
-    for (_i = 0; _i < this.length; _i++) {
+    var results = [], _i, _l;
+    for (_i = 0, _l = this.length; _i < _l; _i += 1) {
       results.push(fn.call(this, this[_i], _i));
     }
     return results;

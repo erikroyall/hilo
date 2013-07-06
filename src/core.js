@@ -5,8 +5,9 @@
     , hiloAjax      // AJAX Func.
     , createEl      // Create an Element
     , Animation
-    , HiloObject
     , Test;
+
+  window.temporaryHiloStorageObject = {};
 
   /**
    * Selects and returns elements based on selector given
@@ -22,41 +23,47 @@
     var rt, sel = selector, tempObj;
 
     function get (sel, root) {
-      var els, c, rt;
+      var c, rt;
 
       rt = root || document;
 
-      if(sel.split(" ").length === 1 
-      && sel.split(">").length === 1
-      && sel.split(":").length === 1
-      && sel.split("+").length === 1) {
-        c = sel.slice(0,1);
-        switch(c) {
-          case "#":
-            els = [rt.getElementById(sel.substr(1,sel.length))];
-            break;
-          case ".":
-            els = rt.getElementsByClassName(sel);
-            break;
-          case "*":
-            els = document.all;
-            break;
-          case "&":
-            els = document.documentElement;
-            break;
-          default:
-            els = rt.getElementsByTagName(sel);
-            break;
+      function dom (sel, rt) {
+        var els;
+
+        if(sel.split(" ").length === 1 && 
+          sel.split(">").length === 1 && 
+          sel.split(":").length === 1 && 
+          sel.split("+").length === 1) {
+          c = sel.slice(0,1);
+          switch(c) {
+            case "#":
+              els = [rt.getElementById(sel.substr(1,sel.length))];
+              break;
+            case ".":
+              els = rt.getElementsByClassName(sel);
+              break;
+            case "*":
+              els = document.all;
+              break;
+            case "&":
+              els = document.documentElement;
+              break;
+            default:
+              els = rt.getElementsByTagName(sel);
+              break;
+          }
+        } else {
+          els = rt.querySelectorAll(sel);
         }
-      } else {
-        els = rt.querySelectorAll(sel);
+
+        return els;
       }
 
-      return els;
+      return dom(sel, rt);
     }
 
-    if (typeof root === 'object') {
-      rt = root;
+    if (typeof root === 'string') {
+
     } else if (root === true) {
       tempObj = window.temporaryHiloStorageObject[sel];
       if (tempObj) {

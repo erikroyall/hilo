@@ -15,8 +15,9 @@ window.Hilo = (function () {
     , hiloAjax      // AJAX Func.
     , createEl      // Create an Element
     , Animation
-    , HiloObject
     , Test;
+
+  window.temporaryHiloStorageObject = {};
 
   /**
    * Selects and returns elements based on selector given
@@ -32,41 +33,47 @@ window.Hilo = (function () {
     var rt, sel = selector, tempObj;
 
     function get (sel, root) {
-      var els, c, rt;
+      var c, rt;
 
       rt = root || document;
 
-      if(sel.split(" ").length === 1 
-      && sel.split(">").length === 1
-      && sel.split(":").length === 1
-      && sel.split("+").length === 1) {
-        c = sel.slice(0,1);
-        switch(c) {
-          case "#":
-            els = [rt.getElementById(sel.substr(1,sel.length))];
-            break;
-          case ".":
-            els = rt.getElementsByClassName(sel);
-            break;
-          case "*":
-            els = document.all;
-            break;
-          case "&":
-            els = document.documentElement;
-            break;
-          default:
-            els = rt.getElementsByTagName(sel);
-            break;
+      function dom (sel, rt) {
+        var els;
+
+        if(sel.split(" ").length === 1 && 
+          sel.split(">").length === 1 && 
+          sel.split(":").length === 1 && 
+          sel.split("+").length === 1) {
+          c = sel.slice(0,1);
+          switch(c) {
+            case "#":
+              els = [rt.getElementById(sel.substr(1,sel.length))];
+              break;
+            case ".":
+              els = rt.getElementsByClassName(sel);
+              break;
+            case "*":
+              els = document.all;
+              break;
+            case "&":
+              els = document.documentElement;
+              break;
+            default:
+              els = rt.getElementsByTagName(sel);
+              break;
+          }
+        } else {
+          els = rt.querySelectorAll(sel);
         }
-      } else {
-        els = rt.querySelectorAll(sel);
+
+        return els;
       }
 
-      return els;
+      return dom(sel, rt);
     }
 
-    if (typeof root === 'object') {
-      rt = root;
+    if (typeof root === 'string') {
+
     } else if (root === true) {
       tempObj = window.temporaryHiloStorageObject[sel];
       if (tempObj) {
@@ -115,6 +122,148 @@ window.Hilo = (function () {
   };
 
   hilo.version = '1.0.0-pre-dev-beta-2';
+
+
+  feature = (function () {
+    var i = document.createElement("input");
+
+    return {
+      applicationcache: (function () {
+        return !!window.applicationCache;
+      }()),
+      audiopreload: (function () {
+        return 'preload' in document.createElement('audio');
+      }()),
+      canvas: (function () {
+        return !!document.createElement('canvas').getContext;
+      }()),
+      classList: (function () {
+        return 'classList' in document.createElement('p');
+      }()),
+      es6: (function () {
+        return typeof String.prototype.contains === 'function';
+      }()),
+      geolocation: (function () {
+        return 'geolocation' in window.navigator;
+      }()),
+      history: (function () {
+        return !!(window.history && history.pushState);
+      }()),
+      indexeddb: (function () {
+        return !!(window.indexedDB && window.IDBKeyRange && window.IDBTransaction);
+      }()),
+      input: {
+        autofocus: (function () {
+          return 'autofocus' in i;
+        }()),
+        placeholder: (function () {
+          return 'placeholder' in i;
+        }()),
+        type: {
+          color: (function () {
+            i.setAttribute('type', 'color');
+            return i.type !== 'text';
+          }()),
+          date: (function () {
+            i.setAttribute('type', 'date');
+            return i.type !== 'text';
+          }()),
+          datetime: (function () {
+            i.setAttribute('type', 'datetime');
+            return i.type !== 'text';
+          }()),
+          datetimeLocal: (function () {
+            i.setAttribute('type', 'datetime-local');
+            return i.type !== 'text';
+          }()),
+          email: (function () {
+            i.setAttribute('type', 'email');
+            return i.type !== 'text';
+          }()),
+          month: (function () {
+            i.setAttribute('type', 'month');
+            return i.type !== 'text';
+          }()),
+          number: (function () {
+            i.setAttribute('type', 'number');
+            return i.type !== 'text';
+          }()),
+          range: (function () {
+            i.setAttribute('type', 'range');
+            return i.type !== 'text';
+          }()),
+          search: (function () {
+            i.setAttribute('type', 'search');
+            return i.type !== 'text';
+          }()),
+          tel: (function () {
+            i.setAttribute('type', 'tel');
+            return i.type !== 'text';
+          }()),
+          time: (function () {
+            i.setAttribute('type', 'time');
+            return i.type !== 'text';
+          }()),
+          week: (function () {
+            i.setAttribute('type', 'week');
+            return i.type !== 'text';
+          }())
+        }
+      },
+      localstorage: (function () {
+        try {
+          return 'localStorage' in window && window['localStorage'] !== null && !!window.localStorage.setItem;
+        } catch(e){
+          return false;
+        }
+      }()),
+      microdata: (function () {
+        return 'getItems' in document;
+      }()),
+      template: (function () {
+        return 'content' in document.createElement('template');
+      }()),
+      video: (function () {
+        try {
+          return !!document.createElement('video').canPlayType;
+        } catch (e) {
+          return false;
+        }
+      }()),
+      h264: (function () {
+        var v = document.createElement("video");
+        try {
+          return v.canPlayType('video/mp4; codecs="avc1.42E01E, mp4a.40.2"');
+        } catch (e) {
+          return false;
+        }
+      }()),
+      webm: (function () {
+        var v = document.createElement("video");
+        try {
+          return v.canPlayType('video/webm; codecs="vp8, vorbis"');
+        } catch (e) {
+          return false;
+        }
+      }()),
+      ogg: (function () {
+        var v = document.createElement("video");
+        try {
+          return v.canPlayType('video/ogg; codecs="theora, vorbis"');
+        } catch (e) {
+          return false;
+        }
+      }()),
+      webaudio: (function () {
+        return !!(window.webkitAudioContext || window.AudioContext);
+      }()),
+      webworkers: (function () {
+        return !!window.Worker;
+      }())
+    };
+  }());
+
+  hilo.feature = feature;
 
 hilo.test = function (con) {
     return new Test(con);
@@ -256,8 +405,8 @@ Dom = function (els) {
   };
 
   Dom.prototype.map = function (fn) {
-    var results = [], _i;
-    for (_i = 0; _i < this.length; _i++) {
+    var results = [], _i, _l;
+    for (_i = 0, _l = this.length; _i < _l; _i += 1) {
       results.push(fn.call(this, this[_i], _i));
     }
     return results;
@@ -299,6 +448,7 @@ Dom = function (els) {
         }
       });
     }
+    return children;
   };
 
   Dom.prototype.rel = function (sul) {
@@ -317,17 +467,14 @@ Dom = function (els) {
 
 Dom.prototype.html = function (htmlCode) {
     if (htmlCode) {
-      this.each(function(el) {
+      return this.each(function(el) {
         el.innerHTML = htmlCode;
       });
-      return new Dom(this);
     } else {
       this.one(function(el) {
         return el.innerHTML;
       });
     }
-
-    return new Dom(this);
   };
 
   /**
@@ -340,10 +487,9 @@ Dom.prototype.html = function (htmlCode) {
 
   Dom.prototype.text = function (text) {
     if (text) {
-      this.each(function(el) {
+      return this.each(function(el) {
         el.innerText = text;
       });
-      return new Dom(this);
     } else {
       this.one(function(el) {
         return el.innerText;
@@ -360,7 +506,7 @@ Dom.prototype.html = function (htmlCode) {
    */
 
   Dom.prototype.append = function (html) {
-    this.each(function (el) {
+    return this.each(function (el) {
       el.innerHTML += html;
     });
   };
@@ -374,20 +520,16 @@ Dom.prototype.html = function (htmlCode) {
    */
 
   Dom.prototype.appendText = function (text) {
-    this.each(function (el) {
+    return this.each(function (el) {
       el.innerText += text;
     });
-
-    return new Dom(this);
   };
   
   Dom.prototype.value = function (val) {
     if (val) {
-      this.each(function (el) {
+      return this.each(function (el) {
         el.value = val;
       });
-
-      return new Dom(this);
     } else {
       this.one(function (el) {
         return el.value;
@@ -397,11 +539,9 @@ Dom.prototype.html = function (htmlCode) {
 
 Dom.prototype.id = function (id) {
     if(id) {
-      this.each(function(el) {
+      return this.each(function(el) {
         el.id = id;
       });
-
-      return new Dom(this);
     } else {
       this.one(function (el) {
         return el.id;
@@ -417,21 +557,61 @@ Dom.prototype.id = function (id) {
    * @return object
    */
 
-  Dom.prototype.addClass = function (className) {
-    this.each(function (el) {
-      var _i, parts  = className.split(" ");
+  Dom.prototype.addClass = feature.classList === true ? function (className) {
+    return this.each(function (el) {
+    console.log('classList');
+      var _i, parts;
 
       if (typeof className === 'string') { // String
+        parts = className.split(" ");
+
         if (parts.length === 1) {
-          el.classList.add(className);
+          if (!el.classList.contains(className)) {
+            el.classList.add(className);
+          }
         } else {
-          for (_i = 0; _i < parts.length; _i++) {
-            el.classList.add(parts[_i]);
+          for (_i = 0; _i < parts.length; _i += 1) {
+            if (!el.classList.contains(parts[_i])) {
+              el.classList.add(parts[_i]);
+            }
           }
         }
       } else if (className.length) { // An array
-        for (_i = 0; _i < className.length; _i++) {
-          el.classList.add(className[_i]);
+        for (_i = 0; _i < className.length; _i += 1) {
+          if (!el.classList.contains(className[_i])) {
+            el.classList.add(className[_i]);
+          }
+        }
+      }
+    });
+  } :
+  function (className) {
+    return this.each(function (el) {
+    console.log('className');
+      var _i, parts;
+
+      if (typeof className === 'string') {
+        parts = className.split(" ");
+        if (parts.length === 1) {
+          if (el.className === '') {
+            el.className = className;
+          } else {
+            el.className += ' ' + className;
+          }
+        } else {
+          for (_i = 0; _i < parts.length; _i += 1) {
+            el.className += ' ' + parts[_i];
+          }
+        }
+      } else if (className.length) {
+        if (className.length > 1) {
+          for (_i = 0; _i < className.length; _i += 1) {
+            el.className += ' ' + className[_i];
+          }
+        } else {
+          for (_i = 0; _i < className.length; _i += 1) {
+            el.className += className[_i];
+          }
         }
       }
     });
@@ -896,153 +1076,10 @@ Dom.prototype.get = function () {
   // };
 
 
-  feature = (function () {
-    var i = document.createElement("input");
-
-    return {
-      applicationcache: (function () {
-        return !!window.applicationCache;
-      }()),
-      audiopreload: (function () {
-        return 'preload' in document.createElement('audio');
-      }()),
-      canvas: (function () {
-        return !!document.createElement('canvas').getContext;
-      }()),
-      classlist: (function () {
-        return 'classList' in document.createElement('p');
-      }()),
-      es6: (function () {
-        return typeof String.prototype.contains === 'function';
-      }()),
-      geolocation: (function () {
-        return 'geolocation' in window.navigator;
-      }()),
-      history: (function () {
-        return !!(window.history && history.pushState);
-      }()),
-      indexeddb: (function () {
-        return !!(window.indexedDB && window.IDBKeyRange && window.IDBTransaction);
-      }()),
-      input: {
-        autofocus: (function () {
-          return 'autofocus' in i;
-        }()),
-        placeholder: (function () {
-          return 'placeholder' in i;
-        }()),
-        type: {
-          color: (function () {
-            i.setAttribute('type', 'color');
-            return i.type !== 'text';
-          }()),
-          date: (function () {
-            i.setAttribute('type', 'date');
-            return i.type !== 'text';
-          }()),
-          datetime: (function () {
-            i.setAttribute('type', 'datetime');
-            return i.type !== 'text';
-          }()),
-          datetimeLocal: (function () {
-            i.setAttribute('type', 'datetime-local');
-            return i.type !== 'text';
-          }()),
-          email: (function () {
-            i.setAttribute('type', 'email');
-            return i.type !== 'text';
-          }()),
-          month: (function () {
-            i.setAttribute('type', 'month');
-            return i.type !== 'text';
-          }()),
-          number: (function () {
-            i.setAttribute('type', 'number');
-            return i.type !== 'text';
-          }()),
-          range: (function () {
-            i.setAttribute('type', 'range');
-            return i.type !== 'text';
-          }()),
-          search: (function () {
-            i.setAttribute('type', 'search');
-            return i.type !== 'text';
-          }()),
-          tel: (function () {
-            i.setAttribute('type', 'tel');
-            return i.type !== 'text';
-          }()),
-          time: (function () {
-            i.setAttribute('type', 'time');
-            return i.type !== 'text';
-          }()),
-          week: (function () {
-            i.setAttribute('type', 'week');
-            return i.type !== 'text';
-          }())
-        }
-      },
-      localstorage: (function () {
-        try {
-          return 'localStorage' in window && window['localStorage'] !== null && !!window.localStorage.setItem;
-        } catch(e){
-          return false;
-        }
-      }()),
-      microdata: (function () {
-        return 'getItems' in document;
-      }()),
-      template: (function () {
-        return 'content' in document.createElement('template');
-      }()),
-      video: (function () {
-        try {
-          return !!document.createElement('video').canPlayType;
-        } catch (e) {
-          return false;
-        }
-      }()),
-      h264: (function () {
-        var v = document.createElement("video");
-        try {
-          return v.canPlayType('video/mp4; codecs="avc1.42E01E, mp4a.40.2"');
-        } catch (e) {
-          return false;
-        }
-      }()),
-      webm: (function () {
-        var v = document.createElement("video");
-        try {
-          return v.canPlayType('video/webm; codecs="vp8, vorbis"');
-        } catch (e) {
-          return false;
-        }
-      }()),
-      ogg: (function () {
-        var v = document.createElement("video");
-        try {
-          return v.canPlayType('video/ogg; codecs="theora, vorbis"');
-        } catch (e) {
-          return false;
-        }
-      }()),
-      webaudio: (function () {
-        return !!(window.webkitAudioContext || window.AudioContext);
-      }()),
-      webworkers: (function () {
-        return !!window.Worker;
-      }())
-    };
-  }());
-
-  hilo.feature = feature;
-
-
   hilo.noConflict = function () {
     delete window.$;
   };
   
-  window.temporaryHiloStorageObject = {};
   window.$ = hilo;
 
   return hilo;

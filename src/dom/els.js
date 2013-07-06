@@ -29,6 +29,7 @@
         }
       });
     }
+    return children;
   };
 
   Dom.prototype.rel = function (sul) {

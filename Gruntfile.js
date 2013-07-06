@@ -20,6 +20,7 @@ module.exports = function(grunt) {
         src: [
           'src/start.js',
           'src/core.js',
+          'src/feat/all.js',
           'src/test/main.js',
           'src/test/not.js',
           'src/test/comp.js',
@@ -36,7 +37,6 @@ module.exports = function(grunt) {
           'src/fx/simple.js',
           'src/anim/Animation.js',
           'src/anim/base.js',
-          'src/feat/all.js',
           'src/util/core.js',
           'src/end.js'
           ],

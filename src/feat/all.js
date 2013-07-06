@@ -12,7 +12,7 @@
       canvas: (function () {
         return !!document.createElement('canvas').getContext;
       }()),
-      classlist: (function () {
+      classList: (function () {
         return 'classList' in document.createElement('p');
       }()),
       es6: (function () {
