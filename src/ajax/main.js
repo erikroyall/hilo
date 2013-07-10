@@ -1,27 +1,30 @@
-  /**
   
-    config:
-    - method: HTTP Method "GET" or "POST" (default: "POST")
-    - url: The file to send request
-    - async: Whether to perform an asynchronous request (default: true)
-    - response: Response type "text" or "XML"
-    - Event functions
-      - callback: The function to be executed each time onreadystatechange event is triggered
-      - completed
-      - error
-      - abort
-      - success
-      - progress
-      - load
-      - loadStart
-      - loadEnd
-    - username
-    - password
-    - contentType
-  
-  **/
-
   hiloAjax = function (config) {
+      
+    /*
+    
+      config:
+      - method: HTTP Method "GET" or "POST" (default: "POST")
+      - url: The file to send request
+      - async: Whether to perform an asynchronous request (default: true)
+      - response: Response type "text" or "XML"
+      - Event functions
+        - callback: The function to be executed each time onreadystatechange event is triggered
+        - completed
+        - error
+        - abort
+        - success
+        - progress
+        - load
+        - loadStart
+        - loadEnd
+      - username
+      - password
+      - contentType
+    
+    */
+
+    
     var xhr;
 
     if (window.XMLHttpRequest) {

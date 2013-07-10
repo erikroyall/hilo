@@ -1,23 +1,20 @@
+  
   var hilo          // Public API
-    , Dom           // DOM Manipulation Methods
-    , select        
-    , feature = {}  // Feature Detection
+    , win = window  // Reference to window
+    , doc = document// Reference to document
+    , select        // Private Selector Function
+    , feature       // Feature Detection
+    , browser       // Browser Detection
     , hiloAjax      // AJAX Func.
     , createEl      // Create an Element
-    , Animation
-    , Test;
+    , impEvts       // Array containing imp. evts.
+    , impCss        // Array containing imp. css props.
+    , _i
+    , Animation     // Animation Class
+    , Dom           // DOM Manipulation Methods
+    , Test;         // Test class
 
-  window.temporaryHiloStorageObject = {};
-
-  /**
-   * Selects and returns elements based on selector given
-   *
-   * @method select
-   * @private
-   * @param String sel selector
-   * @param HTMLElement root root element
-   * @return NodeList Array of HTMLElements
-   */
+  win.temporaryHiloStorageObject = {};
 
   select = function (selector, root, e) {
     var rt, sel = selector, tempObj;
@@ -53,7 +50,11 @@
               break;
           }
         } else {
-          els = rt.querySelectorAll(sel);
+          try {
+            els = rt.querySelectorAll(sel);
+          } catch (e) {
+            els = win.Hilo.select(sel, rt);
+          }
         }
 
         return els;
@@ -65,7 +66,7 @@
     if (typeof root === 'string') {
 
     } else if (root === true) {
-      tempObj = window.temporaryHiloStorageObject[sel];
+      tempObj = win.temporaryHiloStorageObject[sel];
       if (tempObj) {
         return tempObj;
       } else {
@@ -84,16 +85,6 @@
     return get(sel, rt);
   };
 
-  /**
-   * The Main Class
-   *
-   * @class hilo
-   * @constructor
-   * 
-   * @param {String|Function|Object|Array|HTMLElement} input MAGICal input
-   * @root HTMLElement Where to start searching from
-   */
-
   hilo = function (input, root, e) {
     if (typeof input === 'string') {
       return new Dom(select(input, root, e));
@@ -111,4 +102,4 @@
     }
   };
 
-  hilo.version = '1.0.0-pre-dev-beta-2';
+  hilo.version = '0.1.0-pre-dev-beta-4';

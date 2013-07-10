@@ -1,4 +1,8 @@
 
   hilo.noConflict = function () {
-    delete window.$;
+    try {
+      delete window.$;
+    } catch (e) {
+      window.$ = undefined;
+    }
   };

@@ -1,13 +1,4 @@
-  /**
-   * Main DOM class
-   *
-   * @class Dom
-   * @private
-   * @constructor
-   * @param Array els A DOMNodeList
-   * @return void
-   */
-
+  
   Dom = function (els) {
     var _i, _l;
 

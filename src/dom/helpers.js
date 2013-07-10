@@ -1,3 +1,4 @@
+  
   // Helper Functions
 
   Dom.prototype.each = function (fn) {
@@ -16,4 +17,25 @@
   Dom.prototype.one = function (fn) {
     var m = this.map(fn);
     return m.length > 1 ? m : m[0];
+  };
+
+  Dom.prototype.filter = function (fun) {
+    var len = this.length >>> 0
+      , _i
+      , t = Object(this)
+      , res = []
+      , val;
+
+    for (_i = 0; _i < len; _i++)
+    {
+      if (_i in t)
+      {
+        val = t[_i]; // in case fun mutates this
+        if (fun.call(this, val, _i, t)) {
+          res.push(val);
+        }
+      }
+    }
+
+    return new Dom(res);
   };

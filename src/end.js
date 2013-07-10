@@ -1,5 +1,5 @@
   
-  window.$ = hilo;
+  win.$ = hilo; // Shorthand
 
   return hilo;
 }());

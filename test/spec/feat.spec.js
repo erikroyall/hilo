@@ -27,6 +27,7 @@ describe("HTML5", function () {
         return i.type !== 'text';
       }()));
     });
+  });
 });
 
 describe("Multimedia", function () {
@@ -49,4 +50,3 @@ describe("Multimedia", function () {
     });
   })
 });
-

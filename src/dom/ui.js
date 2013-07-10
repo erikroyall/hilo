@@ -1,0 +1,2 @@
+  
+  Dom.prototype.ui = {};

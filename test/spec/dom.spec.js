@@ -28,26 +28,26 @@ describe("Hilo DOM", function () {
 describe("DOM fx", function () {
   it('.hide() should set HTMLElement.style.display to none', function () {
     var el; 
-    el = document.querySelector('div');
+    el = document.getElementsByTagName('div')[0];
     $('div').hide();
     expect(el.style.display).toEqual('none');
   });
   it('.show() should set HTMLElement.style.display apart from none', function () {
     var el; 
     $('div').show();
-    el = document.querySelector('div');
+    el = document.getElementsByTagName('div')[0];
     expect(el.style.display).not.toEqual('none');
   });
   it('.disappear() should set HTMLElement.style.opacity to "0"', function () {
     var el; 
-    el = document.querySelector('div');
+    el = document.getElementsByTagName('div')[0];
     $('div').disappear();
     expect(el.style.opacity).toEqual('0');
   });
   it('.appear() should set HTMLElement.style.opacity to "1"', function () {
     var el; 
     $('div').appear();
-    el = document.querySelector('div');
+    el = document.getElementsByTagName('div')[0];
     expect(el.style.opacity).toEqual('1');
   });
 });

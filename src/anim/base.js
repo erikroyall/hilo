@@ -1,3 +1,4 @@
+  
   // Dom.prototype.anim = function (dur, prop, options) {
   //   var ease, easing = {}, fade = {}, animate;
 

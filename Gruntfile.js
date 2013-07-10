@@ -5,11 +5,11 @@ module.exports = function(grunt) {
   grunt.initConfig({
     // Metadata.
     pkg: grunt.file.readJSON('package.json'),
-    banner: '/*! <%= pkg.title %> - v0.1.0 - ' +
+    banner: '/* <%= pkg.title %> - <%= pkg.version %> - ' +
       '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
-      ' *  http://erikroyall.github.com/hilo/\n' +
-      ' *  Copyright (c) 2013 Erik Royall and Hilo contributors\n' +
-      ' *  Licensed under <%= pkg.license %> (see LICENSE-MIT) \n */\n\n',
+      ' * http://erikroyall.github.com/<%= pkg.name %>/\n' +
+      ' * Copyright (c) 2013 Erik Royall and <%= pkg.title %> contributors\n' +
+      ' * Licensed under <%= pkg.license %> (see LICENSE-MIT) \n */\n\n',
     // Task configuration.
     concat: {
       options: {
@@ -20,12 +20,13 @@ module.exports = function(grunt) {
         src: [
           'src/start.js',
           'src/core.js',
-          'src/feat/all.js',
+          'src/detect/feature.js',
+          'src/detect/browser.js',
           'src/test/main.js',
-          'src/test/not.js',
           'src/test/comp.js',
           'src/ajax/main.js',
           'src/dom/main.js',
+          'src/dom/qwery.js',
           'src/dom/helpers.js',
           'src/dom/els.js',
           'src/dom/manp.js',
@@ -38,15 +39,18 @@ module.exports = function(grunt) {
           'src/anim/Animation.js',
           'src/anim/base.js',
           'src/util/core.js',
+          'src/dom/ui.js',
+          'src/ext.js',
           'src/end.js'
           ],
-        dest: 'build/<%= pkg.name %>-dev.js'
+        dest: 'build/rls/<%= pkg.name %>-dev.js'
       }
     },
     uglify: {
-      dist: {
-        src: 'build/<% pkg.name %>.js',
-        dest: 'build/<%= pkg.name %>.min.js'
+      hilo: {
+        files: {
+          'build/<%= pkg.name %>-dev.min.js' : ['build/<%= pkg.name %>-dev.js']
+        }
       }
     },
     jshint: {
@@ -82,7 +86,7 @@ module.exports = function(grunt) {
       },
       hilo: {
         files: '<%= concat.dist.src %>',
-        tasks: ['concat', 'jshint:hilo']
+        tasks: ['concat', 'uglify:hilo', 'jshint:hilo']
       }
     }
   });
@@ -95,7 +99,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-devtools');
 
   // Default task.
-  grunt.registerTask('default', ['concat', 'jshint', 'watch']);
+  grunt.registerTask('default', ['concat', 'uglify:hilo', 'jshint', 'watch']);
   grunt.registerTask('release', ['concat']);
 
 };
