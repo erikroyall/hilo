@@ -7,18 +7,23 @@
 window.Hilo = (function () {
 
   "use strict";
+
+  /*jshint -W083 */
   
   var hilo          // Public API
-    , win = window
-    , doc = document
-    , Dom           // DOM Manipulation Methods
-    , select        
+    , win = window  // Reference to window
+    , doc = document// Reference to document
+    , select        // Private Selector Function
     , feature       // Feature Detection
     , browser       // Browser Detection
     , hiloAjax      // AJAX Func.
     , createEl      // Create an Element
-    , Animation
-    , Test;
+    , impEvts       // Array containing imp. evts.
+    , impCss        // Array containing imp. css props.
+    , _i
+    , Animation     // Animation Class
+    , Dom           // DOM Manipulation Methods
+    , Test;         // Test class
 
   win.temporaryHiloStorageObject = {};
 
@@ -56,7 +61,11 @@ window.Hilo = (function () {
               break;
           }
         } else {
-          els = win.Hilo.select(sel, rt);
+          try {
+            els = rt.querySelectorAll(sel);
+          } catch (e) {
+            els = win.Hilo.select(sel, rt);
+          }
         }
 
         return els;
@@ -1162,54 +1171,14 @@ window.Hilo = (function () {
       });
     }
   };
-  
-  Dom.prototype.width = function (width) {
-    return this.css('width', width ? width : false);
-  };
-  
-  Dom.prototype.height = function (height) {
-    return this.css('height', height ? height : false);
-  };
-  
-  Dom.prototype.color = function (color) {
-    return this.css('color', color ? color : false);
-  };
-  
-  Dom.prototype.backgroundColor = function (backgroundColor) {
-    return this.css('backgroundColor', backgroundColor ? backgroundColor : false);
-  };
-  
-  Dom.prototype.background = function (background) {
-    return this.css('background', background ? background : false);
-  };
-  
-  Dom.prototype.margin = function (margin) {
-    return this.css('margin', margin ? margin : false);
-  };
 
-  Dom.prototype.padding = function (padding) {
-    return this.css('padding', padding ? padding : false);
-  };
+  impCss = ["width", "height", "color", "backgroundColor", "background", "margin", "padding", "top", "left", "bottom", "right"];
   
-  Dom.prototype.fontSize = function (fontSize) {
-    return this.css('fontSize', fontSize ? fontSize : false);
-  };
-  
-  Dom.prototype.left = function (left) {
-    return this.css('left', left ? left : false);
-  };
-  
-  Dom.prototype.right = function (right) {
-    return this.css('right', right ? right : false);
-  };
-  
-  Dom.prototype.top = function (top) {
-    return this.css('top', top ? top : false);
-  };
-  
-  Dom.prototype.bottom = function (bottom) {
-    return this.css('bottom', bottom ? bottom : false);
-  };
+  for(_i; _i < impCss; _i += 1) {
+    Dom.prototype[impCss[_i]] = function (val) {
+      this.css(impCss[_i], val);
+    };
+  }
 
   Dom.prototype.computed = function (prop) {
     return this.one(function (el) {
@@ -1297,89 +1266,13 @@ window.Hilo = (function () {
     });
   };
 
-  Dom.prototype.click = function (fn) {
-    this.on('click', fn);
-  };
+  impEvts = ["click", "focus", "mouseover", "mouseout", "ready", "load"];
 
-  Dom.prototype.hover = function (fn) {
-    this.on('hover', fn);
-  };
-
-  Dom.prototype.focus = function (fn) {
-    this.on('focus', fn);
-  };
-
-  Dom.prototype.drag = function (fn) {
-    this.on('drag', fn);
-  };
-
-  Dom.prototype.dragenter = function (fn) {
-    this.on('dragenter', fn);
-  };
-
-  Dom.prototype.dragend = function (fn) {
-    this.on('dragend', fn);
-  };
-
-  Dom.prototype.dragleave = function (fn) {
-    this.on('dragleave', fn);
-  };
-
-  Dom.prototype.dragover = function (fn) {
-    this.on('dragover', fn);
-  };
-
-  Dom.prototype.dragstart = function (fn) {
-    this.on('dragstart', fn);
-  };
-
-  Dom.prototype.drop = function (fn) {
-    this.on('drop', fn);
-  };
-
-  Dom.prototype.keyup = function (fn) {
-    this.on('keyup', fn);
-  };
-
-  Dom.prototype.keypress = function (fn) {
-    this.on('keypress', fn);
-  };
-
-  Dom.prototype.keydown = function (fn) {
-    this.on('keydown', fn);
-  };
-
-  Dom.prototype.load = function (fn) {
-    this.on('load', fn);
-  };
-
-  Dom.prototype.mouseup = function (fn) {
-    this.on('mouseup', fn);
-  };
-
-  Dom.prototype.mouseover = function (fn) {
-    this.on('mouseover', fn);
-  };
-
-  Dom.prototype.mousedown = function (fn) {
-    this.on('mousedown', fn);
-  };
-
-  Dom.prototype.mousewheel = function (fn) {
-    this.on('mousewheel', fn);
-  };
-
-  Dom.prototype.change = function (fn) {
-    this.on('change', fn);
-  };
-
-  Dom.prototype.blur = function (fn) {
-    this.on('blur', fn);
-  };
-
-  Dom.prototype.submit = function (fn) {
-    this.on('submit', fn);
-  };
+  for (_i = 0; _i < impEvts.length; _i += 1) {
+    Dom.prototype[impEvts[_i]] = function (fn) {
+      this.on(impEvts[_i], fn);
+    };
+  }
 
   // Effects
 

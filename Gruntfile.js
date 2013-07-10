@@ -43,7 +43,7 @@ module.exports = function(grunt) {
           'src/ext.js',
           'src/end.js'
           ],
-        dest: 'build/rls/<%= pkg.name %>-dev.js'
+        dest: 'build/<%= pkg.name %>-dev.js'
       }
     },
     uglify: {
