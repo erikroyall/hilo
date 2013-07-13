@@ -11,7 +11,24 @@
     }
   };
 
-  impCss = ["width", "height", "color", "backgroundColor", "background", "margin", "padding", "top", "left", "bottom", "right"];
+  impCss = [
+    "width",
+    "height",
+    "fontFamily",
+    "fontWeight",
+    "fontDecoration",
+    "textAlign",
+    "textTransform",
+    "color",
+    "backgroundColor",
+    "background",
+    "margin",
+    "padding",
+    "top",
+    "left",
+    "bottom",
+    "right"
+    ];
   
   for(_i; _i < impCss; _i += 1) {
     Dom.prototype[impCss[_i]] = function (val) {

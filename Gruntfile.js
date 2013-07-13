@@ -36,14 +36,21 @@ module.exports = function(grunt) {
           'src/evt/helpers.js',
           'src/evt/simple.js',
           'src/fx/simple.js',
-          'src/anim/Animation.js',
-          'src/anim/base.js',
-          'src/util/core.js',
           'src/dom/ui.js',
           'src/ext.js',
           'src/end.js'
           ],
         dest: 'build/<%= pkg.name %>-dev.js'
+      }
+    },
+    copy: {
+      doc: {
+        files: [
+          {
+            src: 'build/hilo-dev.min.js',
+            dest: 'doc/assets/js/hilo.min.js'
+          }
+        ]
       }
     },
     uglify: {
@@ -86,7 +93,7 @@ module.exports = function(grunt) {
       },
       hilo: {
         files: '<%= concat.dist.src %>',
-        tasks: ['concat', 'uglify:hilo', 'jshint:hilo']
+        tasks: ['concat', 'uglify:hilo', 'copy:doc', 'jshint:hilo']
       }
     }
   });
@@ -96,10 +103,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-devtools');
 
   // Default task.
-  grunt.registerTask('default', ['concat', 'uglify:hilo', 'jshint', 'watch']);
+  grunt.registerTask('default', ['concat', 'uglify:hilo', 'copy:doc', 'jshint', 'watch']);
   grunt.registerTask('release', ['concat']);
 
 };

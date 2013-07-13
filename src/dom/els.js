@@ -12,7 +12,7 @@
   Dom.prototype.el = function (place) {
     return new Dom([this[place - 1]]);
   };
-  
+
   Dom.prototype.children = function (sel) {
     var children = [], _i;
     if (sel) {

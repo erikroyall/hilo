@@ -10,7 +10,6 @@
     , impEvts       // Array containing imp. evts.
     , impCss        // Array containing imp. css props.
     , _i
-    , Animation     // Animation Class
     , Dom           // DOM Manipulation Methods
     , Test;         // Test class
 

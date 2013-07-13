@@ -20,7 +20,7 @@ Add Hilo in the `<head>` or `<body>` section of your page.
 ```html
   <head>
     ...
-    <script type="text/javascript"></script>
+    <script type="text/javascript" src="hilo.js"></script>
   </head>
   ...
 ```
@@ -36,3 +36,40 @@ Create another `<script>` and write Hilo code there.
   });
 </script>
 ```
+
+## About Hilo
+
+### Name
+
+Well, it's a weird name. The reason behind choosing this name is
+that the author of Hilo, Erik Royall, likes to write *Hilo Wald*
+programs instead of _Hello World_ programs. And when he got the
+idea of writing a JavaScript library he used the first word in
+*Hilo Wald* as the name for the library. 
+_Note: The name **Wald** will undoubtedly be used as a name for_
+_his next project so..._
+
+### License
+
+Copyright (c) 2013 **Erik Royall** and **Hilo contributors**
+
+Permission is hereby granted, free of charge, to any person
+obtaining a copy of this software and associated documentation
+files (the "Software"), to deal in the Software without
+restriction, including without limitation the rights to use,
+copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the
+Software is furnished to do so, subject to the following
+conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER DEALINGS IN THE SOFTWARE.

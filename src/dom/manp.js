@@ -34,6 +34,12 @@
       el.innerText += text;
     });
   };
+
+  Dom.prototype.prepend = function (html) {
+    return this.each(function (el) {
+      el.innerHTML = html + el.innerHTML;
+    });
+  };
   
   Dom.prototype.value = function (val) {
     if (val) {

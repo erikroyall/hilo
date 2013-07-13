@@ -1,14 +1,13 @@
-/* Hilo - 0.1.0-pre-dev-beta-4 - 2013-07-10
+/* Hilo - 0.1.0-pre-dev-beta-4 - 2013-07-12
  * http://erikroyall.github.com/hilo/
  * Copyright (c) 2013 Erik Royall and Hilo contributors
  * Licensed under MIT (see LICENSE-MIT) 
  */
 
 window.Hilo = (function () {
+  /*jshint -W083, -W040 */
 
   "use strict";
-
-  /*jshint -W083 */
   
   var hilo          // Public API
     , win = window  // Reference to window
@@ -21,7 +20,6 @@ window.Hilo = (function () {
     , impEvts       // Array containing imp. evts.
     , impCss        // Array containing imp. css props.
     , _i
-    , Animation     // Animation Class
     , Dom           // DOM Manipulation Methods
     , Test;         // Test class
 
@@ -965,6 +963,12 @@ window.Hilo = (function () {
       el.innerText += text;
     });
   };
+
+  Dom.prototype.prepend = function (html) {
+    return this.each(function (el) {
+      el.innerHTML = html + el.innerHTML;
+    });
+  };
   
   Dom.prototype.value = function (val) {
     if (val) {
@@ -1172,7 +1176,24 @@ window.Hilo = (function () {
     }
   };
 
-  impCss = ["width", "height", "color", "backgroundColor", "background", "margin", "padding", "top", "left", "bottom", "right"];
+  impCss = [
+    "width",
+    "height",
+    "fontFamily",
+    "fontWeight",
+    "fontDecoration",
+    "textAlign",
+    "textTransform",
+    "color",
+    "backgroundColor",
+    "background",
+    "margin",
+    "padding",
+    "top",
+    "left",
+    "bottom",
+    "right"
+    ];
   
   for(_i; _i < impCss; _i += 1) {
     Dom.prototype[impCss[_i]] = function (val) {
@@ -1266,7 +1287,28 @@ window.Hilo = (function () {
     });
   };
 
-  impEvts = ["click", "focus", "mouseover", "mouseout", "ready", "load"];
+  impEvts = [
+    "click",
+    "change",
+    "dblclick",
+    "drag",
+    "dragstart",
+    "dragend",
+    "dragenter",
+    "dragleave",
+    "dragover",
+    "drop",
+    "error",
+    "focus",
+    "keyup",
+    "keydown",
+    "keypress",
+    "mouseover",
+    "mousemove",
+    "mouseout",
+    "ready",
+    "load"
+    ];
 
   for (_i = 0; _i < impEvts.length; _i += 1) {
     Dom.prototype[impEvts[_i]] = function (fn) {
@@ -1333,69 +1375,6 @@ window.Hilo = (function () {
     });
 
     return new Dom(this);
-  };
-  
-  Animation = {
-    // ease: function (dur, opt) {
-      
-    // }
-  };
-  
-  // Dom.prototype.anim = function (dur, prop, options) {
-  //   var ease, easing = {}, fade = {}, animate;
-
-  //   function parseCSS (value) {
-  //     var n = parseFloat (value);
-  //     return {
-  //       number: n,
-  //       units: value.replace(n, '')
-  //     };
-  //   }
-
-  //   animate = function (dur, prop, options) {
-      
-  //   };
-
-  //   easing.linear = function (pos) {
-  //     return pos;
-  //   };
-
-  //   easing.sine = function (pos) {
-  //     return (-Math.cos(pos * Math.PI) / 2) + 0.5;
-  //   };
-
-  //   easing.bounce = function (pos) {
-  //     if (pos < (1 / 2.75 )) {
-  //       return 7.6 * pos * pos ;
-  //     } else if (pos < (2 /2.75 )) {
-  //       return 7.6 * (pos -= (1.5 / 2.75 )) * pos + 0.74 ;
-  //     } else if (pos < (2.5 / 2.75 )) {
-  //       return 7.6 * (pos -= (2.25 / 2.75 )) * pos + 0.91 ;
-  //     } else {
-  //       return 7.6 * (pos -= (2.625 / 2.75 )) * pos + 0.98 ;
-  //     }
-  //   };
-
-  //   fade.fadeIn = function (options) {
-  //     element.style.opacity = options.from ;
-  //     animate(dur, { 'opacity': options.to }, { 'easing': options.easing })
-  //   };
-
-  //   if (options.hasOwnProperty('easing')) {
-  //     if (typeof options.easing === 'string') {
-  //       ease = easing[options.easing];
-  //     } else {
-  //       ease = options.easing;
-  //     }
-  //   }
-  // };
-
-  hilo.noConflict = function () {
-    try {
-      delete window.$;
-    } catch (e) {
-      window.$ = undefined;
-    }
   };
   
   Dom.prototype.ui = {};
