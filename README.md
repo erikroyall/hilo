@@ -1,6 +1,6 @@
 Hilo
 ====
-_0.1.0 pre dev beta_
+_0.1.0 pre dev beta_ - **0.1.0-pre-dev-beta-4**
 
 Hilo is a lightning fast Open Source JavaScript Framework and library that makes developing awesome websites easy. With Hilo, you won't have to worry about speed or backwards compatibility. All these are provided to you. It all depends on how you make use of it.
 
