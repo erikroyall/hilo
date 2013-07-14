@@ -43,16 +43,6 @@ module.exports = function(grunt) {
         dest: 'build/<%= pkg.name %>-dev.js'
       }
     },
-    // copy: {
-    //   doc: {
-    //     files: [
-    //       {
-    //         src: 'build/hilo-dev.min.js',
-    //         dest: 'doc/assets/js/hilo.min.js'
-    //       }
-    //     ]
-    //   }
-    // },
     uglify: {
       hilo: {
         files: {
