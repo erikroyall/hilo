@@ -104,7 +104,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-devtools');
 
   // Default task.
   grunt.registerTask('default', ['concat', 'uglify:hilo', 'copy:doc', 'jshint', 'watch']);
