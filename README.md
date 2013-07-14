@@ -51,7 +51,7 @@ _his next project so..._
 
 ### License
 
-Copyright (c) 2013 **Erik Royall** and **Hilo contributors**
+Copyright (c) 2013 **Erik Royall**
 
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation
