@@ -1,4 +1,4 @@
-/* Hilo - 0.1.0-pre-dev-beta-4 - 2013-07-12
+/* Hilo - 0.1.0-pre-dev-beta-4 - 2013-07-14
  * http://erikroyall.github.com/hilo/
  * Copyright (c) 2013 Erik Royall and Hilo contributors
  * Licensed under MIT (see LICENSE-MIT) 
@@ -12,6 +12,7 @@ window.Hilo = (function () {
   var hilo          // Public API
     , win = window  // Reference to window
     , doc = document// Reference to document
+    , callbacks = []// Array of funs. to be exec.ed on DOMReady
     , select        // Private Selector Function
     , feature       // Feature Detection
     , browser       // Browser Detection
@@ -19,7 +20,7 @@ window.Hilo = (function () {
     , createEl      // Create an Element
     , impEvts       // Array containing imp. evts.
     , impCss        // Array containing imp. css props.
-    , _i
+    , _i            // Loop helper
     , Dom           // DOM Manipulation Methods
     , Test;         // Test class
 
@@ -98,11 +99,13 @@ window.Hilo = (function () {
     if (typeof input === 'string') {
       return new Dom(select(input, root, e));
     } else if (typeof input === 'function') { // Function
-      document.onreadystatechange = function () {
-        if (document.readyState === 'complete') {
-          input();
-        }
-      };
+      if (document.readyState === 'complete') {
+        console.log('r');
+        input();
+      } else {
+        console.log('q');
+        callbacks.push(input);
+      }
     } else if (input.length) { // DOM Node List / Hilo DOM Object
       return new Dom(input);
     } else { // DOM Node
@@ -880,7 +883,7 @@ window.Hilo = (function () {
   Dom.prototype.el = function (place) {
     return new Dom([this[place - 1]]);
   };
-  
+
   Dom.prototype.children = function (sel) {
     var children = [], _i;
     if (sel) {
@@ -1383,6 +1386,17 @@ window.Hilo = (function () {
   hilo.Test = Test.prototype;
   hilo.qwery = select.pseudos;
   
+  doc.onreadystatechange = function () {
+    console.log ('h');
+    if (doc.readyState === 'complete') {
+      console.log('f');
+      for (_i = 0; _i < callbacks.length; _i += 1) {
+        console.log('d');
+        callbacks[_i]();
+      }
+    }
+  };
+
   win.$ = hilo; // Shorthand
 
   return hilo;

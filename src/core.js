@@ -2,6 +2,7 @@
   var hilo          // Public API
     , win = window  // Reference to window
     , doc = document// Reference to document
+    , callbacks = []// Array of funs. to be exec.ed on DOMReady
     , select        // Private Selector Function
     , feature       // Feature Detection
     , browser       // Browser Detection
@@ -9,7 +10,7 @@
     , createEl      // Create an Element
     , impEvts       // Array containing imp. evts.
     , impCss        // Array containing imp. css props.
-    , _i
+    , _i            // Loop helper
     , Dom           // DOM Manipulation Methods
     , Test;         // Test class
 
@@ -88,11 +89,13 @@
     if (typeof input === 'string') {
       return new Dom(select(input, root, e));
     } else if (typeof input === 'function') { // Function
-      document.onreadystatechange = function () {
-        if (document.readyState === 'complete') {
-          input();
-        }
-      };
+      if (document.readyState === 'complete') {
+        console.log('r');
+        input();
+      } else {
+        console.log('q');
+        callbacks.push(input);
+      }
     } else if (input.length) { // DOM Node List / Hilo DOM Object
       return new Dom(input);
     } else { // DOM Node
