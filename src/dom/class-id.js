@@ -1,15 +1,23 @@
   
+  // Set or return id of first element
+
   Dom.prototype.id = function (id) {
     if(id) {
-      return this.each(function(el) {
+
+      // Setting id of only one element because
+      // id is intended to be an unique identifier
+
+      return this.one(function(el) {
         el.id = id;
       });
     } else {
-      this.one(function (el) {
+      return this.one(function (el) {
         return el.id;
       });
     }
   };
+
+  // Add class(es) to selected elements
 
   Dom.prototype.addClass = feature.classList === true ? function (className) {
     return this.each(function (el) {
@@ -18,11 +26,11 @@
       if (typeof className === 'string') { // String
         parts = className.split(" ");
 
-        if (parts.length === 1) {
+        if (parts.length === 1) { // One Class
           if (!el.classList.contains(className)) {
             el.classList.add(className);
           }
-        } else {
+        } else { // Multiple classes
           for (_i = 0; _i < parts.length; _i += 1) {
             if (!el.classList.contains(parts[_i])) {
               el.classList.add(parts[_i]);
@@ -69,6 +77,8 @@
     });
   };
 
+  // Remove class(es) from selected elements
+
   Dom.prototype.removeClass = feature.classList === true ? function (className) {
     this.each(function (el) {
       var _i, parts;
@@ -113,6 +123,8 @@
       }
     });
   };
+
+  // Check if all selected elements has a class
 
   Dom.prototype.hasClass = feature.classList ? function (className) {
     this.one(function (el) {
@@ -166,6 +178,8 @@
       });
     });
   };
+
+  // Set or return attribute of elements
   
   Dom.prototype.attr = function (name, val) {
     if(val) {

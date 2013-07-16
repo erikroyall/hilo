@@ -5,9 +5,7 @@
     , callbacks = []   // Array of functions to be executed on DOMReady
     , select           // Private Selector Function
     , feature          // Feature Detection
-    , browser          // Browser Detection
     , hiloAjax         // AJAX Func.
-    , createEl         // Create an Element
     , impEvts          // Array containing imp. evts.
     , impCss           // Array containing imp. css props.
     , _i               // Loop helper
@@ -134,4 +132,5 @@
   // Enable Selector Caching
   hilo.temp = {};
 
+  // Version info
   hilo.version = '0.1.0-pre-dev-beta-5';

@@ -1,10 +1,14 @@
   
-  // Helper Functions
+  /* Helper Functions */
+
+  // Just like map, but returns the new Dom object
 
   Dom.prototype.each = function (fn) {
     this.map(fn);
     return this;
   };
+
+  // Return the results of executing a function on all the selected elements
 
   Dom.prototype.map = function (fn) {
     var results = [], _i, _l;
@@ -13,11 +17,16 @@
     }
     return results;
   };
+
+  // Map on the first element
   
   Dom.prototype.one = function (fn) {
     var m = this.map(fn);
     return m.length > 1 ? m : m[0];
   };
+
+  // Filters the selected elements and returns the
+  // elements that pass the test (or return true)
 
   Dom.prototype.filter = function (fun) {
     var len = this.length >>> 0

@@ -2,14 +2,16 @@
   Dom = function (els) {
     var _i, _l;
 
-    for (_i = 0, _l = els.length; _i < _l; _i+=1) {
+    for (_i = 0, _l = els.length; _i < _l; _i += 1) {
       this[_i] = els[_i];
     }
 
     this.length = els.length;
   };
 
-  createEl = function (tagName, attrs) {
+  // Create an element and return it
+
+  hilo.create = function (tagName, attrs) {
     var el = new Dom([document.createElement(tagName)]), key;
 
     if (attrs) {
@@ -32,5 +34,3 @@
 
     return el;
   };
-
-  hilo.create = createEl;
