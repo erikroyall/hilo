@@ -10,12 +10,12 @@ easy. Whatever you write using Hilo's API is JavaScript. Hilo is
 also supported by legacy browsers like IE 7,8,9. So, it's backwards
 compatible.
 
-## Is Backwards compatibility important
+## Is Backwards compatibility important?
 
 Yeah, sometimes. But it's completely optional. And it's not so easy
 to support the maximum number of user agents (browsers).
 
-Hilo supports IE7+, Chrome 1+, Firefox 2+, Opera 10.5+ and Safari 5+. 
+Hilo supports IE7+, Chrome 1+, Firefox 2+, Opera 10+ and Safari 5+. 
 
 ## How it makes writing JavaScript eas(ier)y
 
