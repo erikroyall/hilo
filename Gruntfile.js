@@ -21,7 +21,6 @@ module.exports = function(grunt) {
           'src/start.js',
           'src/core.js',
           'src/detect/feature.js',
-          'src/detect/browser.js',
           'src/test/main.js',
           'src/test/comp.js',
           'src/ajax/main.js',
