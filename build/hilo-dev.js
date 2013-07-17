@@ -1,4 +1,4 @@
-/* Hilo - 0.1.0-pre-dev-beta-5 - 2013-07-14
+/* Hilo - 0.1.0-pre-dev-beta-5 - 2013-07-17
  * http://erikroyall.github.com/hilo/
  * Copyright (c) 2013 Erik Royall and Hilo contributors
  * Licensed under MIT (see LICENSE-MIT) 
@@ -15,9 +15,7 @@ window.Hilo = (function () {
     , callbacks = []   // Array of functions to be executed on DOMReady
     , select           // Private Selector Function
     , feature          // Feature Detection
-    , browser          // Browser Detection
     , hiloAjax         // AJAX Func.
-    , createEl         // Create an Element
     , impEvts          // Array containing imp. evts.
     , impCss           // Array containing imp. css props.
     , _i               // Loop helper
@@ -144,6 +142,7 @@ window.Hilo = (function () {
   // Enable Selector Caching
   hilo.temp = {};
 
+  // Version info
   hilo.version = '0.1.0-pre-dev-beta-5';
 
   feature = (function () {
@@ -286,8 +285,6 @@ window.Hilo = (function () {
   }());
 
   hilo.feature = feature;
-  
-  browser = {};
 
   hilo.test = function (con) {
     return new Test(con);
@@ -385,14 +382,16 @@ window.Hilo = (function () {
   Dom = function (els) {
     var _i, _l;
 
-    for (_i = 0, _l = els.length; _i < _l; _i+=1) {
+    for (_i = 0, _l = els.length; _i < _l; _i += 1) {
       this[_i] = els[_i];
     }
 
     this.length = els.length;
   };
 
-  createEl = function (tagName, attrs) {
+  // Create an element and return it
+
+  hilo.create = function (tagName, attrs) {
     var el = new Dom([document.createElement(tagName)]), key;
 
     if (attrs) {
@@ -415,8 +414,6 @@ window.Hilo = (function () {
 
     return el;
   };
-
-  hilo.create = createEl;
   
   /*!
    * Qwery - A Blazing Fast query selector engine
@@ -858,13 +855,14 @@ window.Hilo = (function () {
     qwery.pseudos = {};
     return qwery;
   }());
-  
-  // Helper Functions
+// Just like map, but returns the new Dom object
 
   Dom.prototype.each = function (fn) {
     this.map(fn);
     return this;
   };
+
+  // Return the results of executing a function on all the selected elements
 
   Dom.prototype.map = function (fn) {
     var results = [], _i, _l;
@@ -873,11 +871,16 @@ window.Hilo = (function () {
     }
     return results;
   };
+
+  // Map on the first element
   
   Dom.prototype.one = function (fn) {
     var m = this.map(fn);
     return m.length > 1 ? m : m[0];
   };
+
+  // Filters the selected elements and returns the
+  // elements that pass the test (or return true)
 
   Dom.prototype.filter = function (fun) {
     var len = this.length >>> 0
@@ -899,31 +902,36 @@ window.Hilo = (function () {
 
     return new Dom(res);
   };
-
-  // Element Selections
+// Return first element in the selected elements
 
   Dom.prototype.first = function () {
     return new Dom([this[0]]);
   };
+
+  // Return last element in the selected elements
   
   Dom.prototype.last = function () {
     return new Dom([this[this.length - 1]]);
   };
+
+  // Return nth element in the selected elements
   
   Dom.prototype.el = function (place) {
     return new Dom([this[place - 1]]);
   };
 
+  // Return children of selected elements
+
   Dom.prototype.children = function (sel) {
     var children = [], _i;
-    if (sel) {
+    if (sel) { // Based on selector
       return this.each(function (el) {
         var s = select(sel, el);
         for (_i = 0; _i < s.length; _i++) {
           children = children.concat(s[_i]);
         }
       });
-    } else {
+    } else { // All Children
       return this.each(function (el) {
         for (_i = 0; _i < el.children.length; _i++) {
           children = children.concat(el.children[_i]);
@@ -933,11 +941,15 @@ window.Hilo = (function () {
     return children;
   };
 
+  // Return parent of first selected element
+
   Dom.prototype.parent = function () {
     return this.one(function (el) {
       return new Dom([el.parentElement]);
     });
   };
+
+  // Return first element in the selected elements
 
   Dom.prototype.parents = function () {
     var pars = [];
@@ -949,6 +961,8 @@ window.Hilo = (function () {
     return new Dom(pars);
   };
 
+  // Return array of values of property specified
+
   Dom.prototype.rel = function (sul) {
     var els = [];
 
@@ -956,6 +970,8 @@ window.Hilo = (function () {
       els.push(el[sul]);
     });
   };
+
+  // Return next element siblings of every element
 
   Dom.prototype.next = function () {
     this.rel('nextSibling');
@@ -1015,17 +1031,25 @@ window.Hilo = (function () {
     }
   };
   
+  // Set or return id of first element
+
   Dom.prototype.id = function (id) {
     if(id) {
-      return this.each(function(el) {
+
+      // Setting id of only one element because
+      // id is intended to be an unique identifier
+
+      return this.one(function(el) {
         el.id = id;
       });
     } else {
-      this.one(function (el) {
+      return this.one(function (el) {
         return el.id;
       });
     }
   };
+
+  // Add class(es) to selected elements
 
   Dom.prototype.addClass = feature.classList === true ? function (className) {
     return this.each(function (el) {
@@ -1034,11 +1058,11 @@ window.Hilo = (function () {
       if (typeof className === 'string') { // String
         parts = className.split(" ");
 
-        if (parts.length === 1) {
+        if (parts.length === 1) { // One Class
           if (!el.classList.contains(className)) {
             el.classList.add(className);
           }
-        } else {
+        } else { // Multiple classes
           for (_i = 0; _i < parts.length; _i += 1) {
             if (!el.classList.contains(parts[_i])) {
               el.classList.add(parts[_i]);
@@ -1085,6 +1109,8 @@ window.Hilo = (function () {
     });
   };
 
+  // Remove class(es) from selected elements
+
   Dom.prototype.removeClass = feature.classList === true ? function (className) {
     this.each(function (el) {
       var _i, parts;
@@ -1129,6 +1155,8 @@ window.Hilo = (function () {
       }
     });
   };
+
+  // Check if all selected elements has a class
 
   Dom.prototype.hasClass = feature.classList ? function (className) {
     this.one(function (el) {
@@ -1182,6 +1210,8 @@ window.Hilo = (function () {
       });
     });
   };
+
+  // Set or return attribute of elements
   
   Dom.prototype.attr = function (name, val) {
     if(val) {
