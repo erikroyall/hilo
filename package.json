@@ -4,6 +4,11 @@
   "description": "An ultra-fast JavaScript Framework",
   "version": "0.1.0-pre-dev-beta-5",
   "license": "MIT",
+  "author": {
+    "name": "Erik Royall",
+    "email": "erikroyall@hotmail.com",
+    "url": "erikroyall.github.com"
+  },
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-jshint": "~0.5.4",
