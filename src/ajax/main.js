@@ -12,7 +12,7 @@
       - async: Whether to perform an asynchronous request (default: true)
       - response: Response type "text" or "XML"
       - Event functions
-        - callback: The function to be executed each time onreadystatechange event is triggered
+        - callback: fn to be exec. on readystatechange
         - completed
         - error
         - abort
@@ -30,10 +30,10 @@
     
     var xhr;
 
-    if (window.XMLHttpRequest) {
-      xhr = new window.XMLHttpRequest();
-    } else if (window.ActiveXObject) {
-      xhr = new window.ActiveXObject('Microsoft.XMLHTTP');
+    if (win.XMLHttpRequest) {
+      xhr = new win.XMLHttpRequest();
+    } else if (win.ActiveXObject) {
+      xhr = new win.ActiveXObject('Microsoft.XMLHTTP');
     }
 
     if (!config.url) {
@@ -52,13 +52,36 @@
       if (config.callback) {
         config.callback(xhr);
       }
+
+      
     };
 
-    if (config.method === 'POST') {
-      xhr.open('POST', config.url, config.async, config.username, config.password);
+    if (config.method.trim().toUpperCase() === 'POST') {
+      xhr.open(
+        'POST',
+        config.url,
+        config.async,
+        config.username,
+        config.password
+      );
       xhr.send(config.data);
+    } else if (config.method.trim().toUpperCase() === 'GET') {
+      xhr.open(
+        'GET',
+        config.url + (config.data ? "+" + config.data : ''),
+        config.async,
+        config.username,
+        config.password
+      );
+      xhr.send();
     } else {
-      xhr.open('GET', config.url + (config.data ? "+" + config.data : ''), config.async, config.username, config.password);
+      xhr.open(
+        config.method.trim().toUpperCase(),
+        config.url + (config.data ? "+" + config.data : ''),
+        (config.async ? config.async: true),
+        (config.username ? config.username : null),
+        (config.password ? config.password : null)
+      );
       xhr.send();
     }
   };

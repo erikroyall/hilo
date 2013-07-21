@@ -310,8 +310,8 @@
       if (!root || !selector) {
         return [];
       }
-      if (selector === window || isNode(selector)) {
-        return !_root || (selector !== window && isNode(root) && isAncestor(selector, root)) ? [selector] : [];
+      if (selector === win || isNode(selector)) {
+        return !_root || (selector !== win && isNode(root) && isAncestor(selector, root)) ? [selector] : [];
       }
       if (selector && arrayLike(selector)) {
         return flatten(selector);
@@ -355,7 +355,7 @@
         return (container.compareDocumentPosition(element) & 16) === 16;
       } : 'contains' in html ?
       function (element, container) {
-        container = container[nodeType] === 9 || container === window ? html : container;
+        container = container[nodeType] === 9 || container === win ? html : container;
         return container !== element && container.contains(element);
       } :
       function (element, container) {
