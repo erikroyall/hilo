@@ -1,5 +1,5 @@
 /*! 
- * Hilo - 0.1.0-pre-dev-beta-5 - 2013-07-21
+ * Hilo - 0.1.0-pre-dev-beta-6 - 2013-07-21
  * http://erikroyall.github.com/hilo/
  * Copyright (c) 2013 Erik Royall and Hilo contributors
  * Licensed under MIT (see LICENSE-MIT) 

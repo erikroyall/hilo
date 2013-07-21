@@ -133,4 +133,4 @@
   hilo.temp = {};
 
   // Version info
-  hilo.version = '0.1.0-pre-dev-beta-5';
+  hilo.version = '0.1.0-pre-dev-beta-6';
