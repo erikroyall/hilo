@@ -1,4 +1,10 @@
   
+  // --------------------------------------------------
+  // DOM HTML
+  // --------------------------------------------------
+
+  // Set innerHTML of s.el.
+
   Dom.prototype.html = function (htmlCode) {
     if (htmlCode) {
       return this.each(function(el) {

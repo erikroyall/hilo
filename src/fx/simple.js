@@ -1,5 +1,7 @@
 
-  // Effects
+  // --------------------------------------------------
+  // Effects (fx)
+  // --------------------------------------------------
 
   Dom.prototype.show = function (display) {
     display = display || '';

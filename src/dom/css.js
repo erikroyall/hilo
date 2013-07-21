@@ -1,4 +1,10 @@
   
+  // --------------------------------------------------
+  // Hilo CSS
+  // --------------------------------------------------
+
+  // Set a css prop. to s.el.
+
   Dom.prototype.css = function (prop, value) {
     if (value) {
       return this.each(function (el) {
@@ -43,17 +49,29 @@
   };
 
   Dom.prototype.outerWidth = function () {
-    return parseFloat(this.computed('width')) + parseFloat(this.computed('paddingLeft')) + parseFloat(this.computed('paddingRight')) + parseFloat(this.computed('borderLeft')) + parseFloat(this.computed('borderRight')) + "px";
+    return parseFloat(this.computed('width')) + 
+    parseFloat(this.computed('paddingLeft')) + 
+    parseFloat(this.computed('paddingRight')) + 
+    parseFloat(this.computed('borderLeft')) + 
+    parseFloat(this.computed('borderRight')) + "px";
   };
 
   Dom.prototype.innerWidth = function () {
-    return parseFloat(this.computed('width')) + parseFloat(this.computed('paddingLeft')) + parseFloat(this.computed('paddingRight')) + "px";
+    return parseFloat(this.computed('width')) + 
+    parseFloat(this.computed('paddingLeft')) + 
+    parseFloat(this.computed('paddingRight')) + "px";
   };
 
   Dom.prototype.outerHeight = function () {
-    return parseFloat(this.computed('height')) + parseFloat(this.computed('paddingTop')) + parseFloat(this.computed('paddingBottom')) + parseFloat(this.computed('borderTop')) + parseFloat(this.computed('borderBottom')) + "px";
+    return parseFloat(this.computed('height')) + 
+    parseFloat(this.computed('paddingTop')) + 
+    parseFloat(this.computed('paddingBottom')) + 
+    parseFloat(this.computed('borderTop')) + 
+    parseFloat(this.computed('borderBottom')) + "px";
   };
 
   Dom.prototype.innerHeight = function () {
-    return parseFloat(this.computed('height')) + parseFloat(this.computed('paddingTop')) + parseFloat(this.computed('paddingBottom')) + "px";
+    return parseFloat(this.computed('height')) + 
+    parseFloat(this.computed('paddingTop')) + 
+    parseFloat(this.computed('paddingBottom')) + "px";
   };

@@ -1,31 +1,39 @@
+  // --------------------------------------------------
+  // Feature Detection
+  // --------------------------------------------------
 
   feature = (function () {
-    var i = document.createElement("input");
+    var c = document.createElement
+      , i = c("input")
+      , is = i.setAttribute
+      , ad = c("audio")
+      , p = c("p")
+      , v = c("video");
 
     return {
       applicationcache: (function () {
-        return !!window.applicationCache;
+        return !!win.applicationCache;
       }()),
       audiopreload: (function () {
-        return 'preload' in document.createElement('audio');
+        return 'preload' in ad;
       }()),
       canvas: (function () {
-        return !!document.createElement('canvas').getContext;
+        return !!c('canvas').getContext;
       }()),
       classList: (function () {
-        return 'classList' in document.createElement('p');
+        return 'classList' in p;
       }()),
       es6: (function () {
         return typeof String.prototype.contains === 'function';
       }()),
       geolocation: (function () {
-        return 'geolocation' in window.navigator;
+        return 'geolocation' in win.navigator;
       }()),
       history: (function () {
-        return !!(window.history && history.pushState);
+        return !!(win.history && history.pushState);
       }()),
       indexeddb: (function () {
-        return !!(window.indexedDB && window.IDBKeyRange && window.IDBTransaction);
+        return !!(win.indexedDB && win.IDBKeyRange && win.IDBTransaction);
       }()),
       input: {
         autofocus: (function () {
@@ -36,58 +44,58 @@
         }()),
         type: {
           color: (function () {
-            i.setAttribute('type', 'color');
+            is('type', 'color');
             return i.type !== 'text';
           }()),
           date: (function () {
-            i.setAttribute('type', 'date');
+            is('type', 'date');
             return i.type !== 'text';
           }()),
           datetime: (function () {
-            i.setAttribute('type', 'datetime');
+            is('type', 'datetime');
             return i.type !== 'text';
           }()),
           datetimeLocal: (function () {
-            i.setAttribute('type', 'datetime-local');
+            is('type', 'datetime-local');
             return i.type !== 'text';
           }()),
           email: (function () {
-            i.setAttribute('type', 'email');
+            is('type', 'email');
             return i.type !== 'text';
           }()),
           month: (function () {
-            i.setAttribute('type', 'month');
+            is('type', 'month');
             return i.type !== 'text';
           }()),
           number: (function () {
-            i.setAttribute('type', 'number');
+            is('type', 'number');
             return i.type !== 'text';
           }()),
           range: (function () {
-            i.setAttribute('type', 'range');
+            is('type', 'range');
             return i.type !== 'text';
           }()),
           search: (function () {
-            i.setAttribute('type', 'search');
+            is('type', 'search');
             return i.type !== 'text';
           }()),
           tel: (function () {
-            i.setAttribute('type', 'tel');
+            is('type', 'tel');
             return i.type !== 'text';
           }()),
           time: (function () {
-            i.setAttribute('type', 'time');
+            is('type', 'time');
             return i.type !== 'text';
           }()),
           week: (function () {
-            i.setAttribute('type', 'week');
+            is('type', 'week');
             return i.type !== 'text';
           }())
         }
       },
       localstorage: (function () {
         try {
-          return 'localStorage' in window && window['localStorage'] !== null && !!window.localStorage.setItem;
+          return 'localStorage' in win && win['localStorage'] !== null && !!win.localStorage.setItem;
         } catch(e){
           return false;
         }
@@ -96,17 +104,16 @@
         return 'getItems' in document;
       }()),
       template: (function () {
-        return 'content' in document.createElement('template');
+        return 'content' in c('template');
       }()),
       video: (function () {
         try {
-          return !!document.createElement('video').canPlayType;
+          return !!v.canPlayType;
         } catch (e) {
           return false;
         }
       }()),
       h264: (function () {
-        var v = document.createElement("video");
         try {
           return v.canPlayType('video/mp4; codecs="avc1.42E01E, mp4a.40.2"');
         } catch (e) {
@@ -114,7 +121,6 @@
         }
       }()),
       webm: (function () {
-        var v = document.createElement("video");
         try {
           return v.canPlayType('video/webm; codecs="vp8, vorbis"');
         } catch (e) {
@@ -122,7 +128,6 @@
         }
       }()),
       ogg: (function () {
-        var v = document.createElement("video");
         try {
           return v.canPlayType('video/ogg; codecs="theora, vorbis"');
         } catch (e) {
@@ -130,10 +135,10 @@
         }
       }()),
       webaudio: (function () {
-        return !!(window.webkitAudioContext || window.AudioContext);
+        return !!(win.webkitAudioContext || win.AudioContext);
       }()),
       webworkers: (function () {
-        return !!window.Worker;
+        return !!win.Worker;
       }())
     };
   }());

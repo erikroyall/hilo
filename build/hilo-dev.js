@@ -1,4 +1,5 @@
-/* Hilo - 0.1.0-pre-dev-beta-5 - 2013-07-17
+/*! 
+ * Hilo - 0.1.0-pre-dev-beta-5 - 2013-07-21
  * http://erikroyall.github.com/hilo/
  * Copyright (c) 2013 Erik Royall and Hilo contributors
  * Licensed under MIT (see LICENSE-MIT) 
@@ -144,34 +145,42 @@ window.Hilo = (function () {
 
   // Version info
   hilo.version = '0.1.0-pre-dev-beta-5';
+  // --------------------------------------------------
+  // Feature Detection
+  // --------------------------------------------------
 
   feature = (function () {
-    var i = document.createElement("input");
+    var c = document.createElement
+      , i = c("input")
+      , is = i.setAttribute
+      , ad = c("audio")
+      , p = c("p")
+      , v = c("video");
 
     return {
       applicationcache: (function () {
-        return !!window.applicationCache;
+        return !!win.applicationCache;
       }()),
       audiopreload: (function () {
-        return 'preload' in document.createElement('audio');
+        return 'preload' in ad;
       }()),
       canvas: (function () {
-        return !!document.createElement('canvas').getContext;
+        return !!c('canvas').getContext;
       }()),
       classList: (function () {
-        return 'classList' in document.createElement('p');
+        return 'classList' in p;
       }()),
       es6: (function () {
         return typeof String.prototype.contains === 'function';
       }()),
       geolocation: (function () {
-        return 'geolocation' in window.navigator;
+        return 'geolocation' in win.navigator;
       }()),
       history: (function () {
-        return !!(window.history && history.pushState);
+        return !!(win.history && history.pushState);
       }()),
       indexeddb: (function () {
-        return !!(window.indexedDB && window.IDBKeyRange && window.IDBTransaction);
+        return !!(win.indexedDB && win.IDBKeyRange && win.IDBTransaction);
       }()),
       input: {
         autofocus: (function () {
@@ -182,58 +191,58 @@ window.Hilo = (function () {
         }()),
         type: {
           color: (function () {
-            i.setAttribute('type', 'color');
+            is('type', 'color');
             return i.type !== 'text';
           }()),
           date: (function () {
-            i.setAttribute('type', 'date');
+            is('type', 'date');
             return i.type !== 'text';
           }()),
           datetime: (function () {
-            i.setAttribute('type', 'datetime');
+            is('type', 'datetime');
             return i.type !== 'text';
           }()),
           datetimeLocal: (function () {
-            i.setAttribute('type', 'datetime-local');
+            is('type', 'datetime-local');
             return i.type !== 'text';
           }()),
           email: (function () {
-            i.setAttribute('type', 'email');
+            is('type', 'email');
             return i.type !== 'text';
           }()),
           month: (function () {
-            i.setAttribute('type', 'month');
+            is('type', 'month');
             return i.type !== 'text';
           }()),
           number: (function () {
-            i.setAttribute('type', 'number');
+            is('type', 'number');
             return i.type !== 'text';
           }()),
           range: (function () {
-            i.setAttribute('type', 'range');
+            is('type', 'range');
             return i.type !== 'text';
           }()),
           search: (function () {
-            i.setAttribute('type', 'search');
+            is('type', 'search');
             return i.type !== 'text';
           }()),
           tel: (function () {
-            i.setAttribute('type', 'tel');
+            is('type', 'tel');
             return i.type !== 'text';
           }()),
           time: (function () {
-            i.setAttribute('type', 'time');
+            is('type', 'time');
             return i.type !== 'text';
           }()),
           week: (function () {
-            i.setAttribute('type', 'week');
+            is('type', 'week');
             return i.type !== 'text';
           }())
         }
       },
       localstorage: (function () {
         try {
-          return 'localStorage' in window && window['localStorage'] !== null && !!window.localStorage.setItem;
+          return 'localStorage' in win && win['localStorage'] !== null && !!win.localStorage.setItem;
         } catch(e){
           return false;
         }
@@ -242,17 +251,16 @@ window.Hilo = (function () {
         return 'getItems' in document;
       }()),
       template: (function () {
-        return 'content' in document.createElement('template');
+        return 'content' in c('template');
       }()),
       video: (function () {
         try {
-          return !!document.createElement('video').canPlayType;
+          return !!v.canPlayType;
         } catch (e) {
           return false;
         }
       }()),
       h264: (function () {
-        var v = document.createElement("video");
         try {
           return v.canPlayType('video/mp4; codecs="avc1.42E01E, mp4a.40.2"');
         } catch (e) {
@@ -260,7 +268,6 @@ window.Hilo = (function () {
         }
       }()),
       webm: (function () {
-        var v = document.createElement("video");
         try {
           return v.canPlayType('video/webm; codecs="vp8, vorbis"');
         } catch (e) {
@@ -268,7 +275,6 @@ window.Hilo = (function () {
         }
       }()),
       ogg: (function () {
-        var v = document.createElement("video");
         try {
           return v.canPlayType('video/ogg; codecs="theora, vorbis"');
         } catch (e) {
@@ -276,15 +282,19 @@ window.Hilo = (function () {
         }
       }()),
       webaudio: (function () {
-        return !!(window.webkitAudioContext || window.AudioContext);
+        return !!(win.webkitAudioContext || win.AudioContext);
       }()),
       webworkers: (function () {
-        return !!window.Worker;
+        return !!win.Worker;
       }())
     };
   }());
 
   hilo.feature = feature;
+  
+  // --------------------------------------------------
+  // Testing
+  // --------------------------------------------------
 
   hilo.test = function (con) {
     return new Test(con);
@@ -297,6 +307,10 @@ window.Hilo = (function () {
     }
   };
   
+  // --------------------------------------------------
+  // Test Comparisions
+  // --------------------------------------------------
+
   Test.prototype.ifEquals = function (tw) {
     var val = this.con === tw;
     return this.neg ? !val : val;
@@ -316,6 +330,192 @@ window.Hilo = (function () {
     return this.neg ? !val : val;
   };
   
+  /*!
+   * ES5 Shims, adopted from ES5 Shim (MIT)
+   * http://es5.github.com/
+   */
+
+  // --------------------------------------------------
+  // Array Object Shims
+  // --------------------------------------------------
+
+  // http://es5.github.com/#x15.4.4.20
+
+  if (!Array.prototype.filter) {
+    Array.prototype.filter = function(fun /*, thisp */) {
+      var t, len, res, thisp, i, val;
+      if (this.length === 0) {
+        throw new TypeError();
+      }
+
+      t = Object(this);
+      len = t.length >>> 0;
+      if (typeof fun !== "function") {
+        throw new TypeError();
+      }
+
+      res = [];
+      thisp = arguments[1];
+      for (i = 0; i < len; i++) {
+        if (i in t) {
+          val = t[i]; // in case fun mutates this
+          if (fun.call(thisp, val, i, t)) {
+            res.push(val);
+          }
+        }
+      }
+
+      return res;
+    };
+  }
+
+  // http://es5.github.com/#x15.4.4.18
+
+  if ( !Array.prototype.forEach ) {
+    Array.prototype.forEach = function( callback, thisArg ) {
+      var T, k, O, len, kValue;
+
+      if (this.length === 0) {
+        throw new TypeError( " this is null or not defined" );
+      }
+
+      O = Object(this);
+
+      len = O.length >>> 0; // Hack to convert O.length to a UInt32
+
+      if ( {}.toString.call(callback) !== "[object Function]" ) {
+        throw new TypeError( callback + " is not a function" );
+      }
+
+      if (thisArg) {
+        T = thisArg;
+      }
+
+      k = 0;
+
+      while(k < len) {
+        if (k in O) {
+          kValue = O[k];
+          callback.call(T, kValue, k, O);
+        }
+        k++;
+      }
+    };
+  }
+
+  // http://es5.github.com/#x15.4.4.14
+
+  if (!Array.prototype.indexOf) {
+    Array.prototype.indexOf = function (searchElement /*, fromIndex */ ) {
+      var t, len, n, k;
+
+      if (this.length === 0) {
+        throw new TypeError();
+      }
+
+      t = Object(this);
+      len = t.length >>> 0;
+      if (len === 0) {
+        return -1;
+      }
+      n = 0;
+      if (arguments.length > 0) {
+        n = Number(arguments[1]);
+        if (n !== n) { // shortcut for verifying if it's NaN
+          n = 0;
+        } else if (n !== 0 && n !== Infinity && n !== -Infinity) {
+          n = (n > 0 || -1) * Math.floor(Math.abs(n));
+        }
+      }
+      if (n >= len) {
+        return -1;
+      }
+      k = n >= 0 ? n : Math.max(len - Math.abs(n), 0);
+      for (; k < len; k++) {
+        if (k in t && t[k] === searchElement) {
+          return k;
+        }
+      }
+      return -1;
+    };
+  }
+
+  // http://es5.github.com/#x15.4.3.2
+
+  if(!Array.isArray) {
+    Array.isArray = function (arg) {
+      return Object.prototype.toString.call(arg) === '[object Array]';
+    };
+  }
+
+  // http://es5.github.com/#x15.4.4.19
+
+  if (!Array.prototype.map) {
+    Array.prototype.map = function(callback, thisArg) {
+      var T, A, k, O, len, kValue, mappedValue;
+
+      if (this.length === 0) {
+        throw new TypeError(" this is null or not defined");
+      }
+
+      O = Object(this);
+      len = O.length >>> 0;
+
+      if ({}.toString.call(callback) !== "[object Function]") {
+        throw new TypeError(callback + " is not a function");
+      }
+
+      if (thisArg) {
+        T = thisArg;
+      }
+
+      A = new Array(len);
+      k = 0;
+
+      while(k < len) {
+        if (k in O) {
+          kValue = O[ k ];
+          mappedValue = callback.call(T, kValue, k, O);
+          A[ k ] = mappedValue;
+        }
+        k++;
+      }
+
+      return A;
+    };      
+  }
+
+  
+  // --------------------------------------------------
+  // String Shims
+  // --------------------------------------------------
+
+  // http://es5.github.com/#x15.5.4.20
+
+  (function () {
+    var ws = "\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003" +
+      "\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028" +
+      "\u2029\uFEFF";
+
+    if(!String.prototype.trim) {
+      String.prototype.trim = function trim() {
+        ws = "[" + ws + "]";
+
+        var trimBeginRegexp = new RegExp("^" + ws + ws + "*"),
+          trimEndRegexp = new RegExp(ws + ws + "*$");
+
+        if (this === void 0 || this === null) {
+          throw new TypeError("can't convert "+this+" to object");
+        }
+        return String(this).replace(trimBeginRegexp, "").replace(trimEndRegexp, "");
+      };
+    }
+  }());
+
+  // --------------------------------------------------
+  // Hilo AJAX
+  // --------------------------------------------------
+
   hiloAjax = function (config) {
       
     /*
@@ -379,6 +579,10 @@ window.Hilo = (function () {
 
   hilo.ajax = hiloAjax;
   
+  // --------------------------------------------------
+  // Hilo DOM
+  // --------------------------------------------------
+
   Dom = function (els) {
     var _i, _l;
 
@@ -855,7 +1059,12 @@ window.Hilo = (function () {
     qwery.pseudos = {};
     return qwery;
   }());
-// Just like map, but returns the new Dom object
+  
+  // --------------------------------------------------
+  // Helper Functions
+  // --------------------------------------------------
+
+  // Just like map, but returns the new Dom object
 
   Dom.prototype.each = function (fn) {
     this.map(fn);
@@ -902,7 +1111,12 @@ window.Hilo = (function () {
 
     return new Dom(res);
   };
-// Return first element in the selected elements
+
+  // --------------------------------------------------
+  // Element Selections, etc.
+  // --------------------------------------------------
+
+  // Return first element in the selected elements
 
   Dom.prototype.first = function () {
     return new Dom([this[0]]);
@@ -977,6 +1191,12 @@ window.Hilo = (function () {
     this.rel('nextSibling');
   };
   
+  // --------------------------------------------------
+  // DOM HTML
+  // --------------------------------------------------
+
+  // Set innerHTML of s.el.
+
   Dom.prototype.html = function (htmlCode) {
     if (htmlCode) {
       return this.each(function(el) {
@@ -1031,6 +1251,10 @@ window.Hilo = (function () {
     }
   };
   
+  // --------------------------------------------------
+  // Classes and IDs
+  // --------------------------------------------------
+
   // Set or return id of first element
 
   Dom.prototype.id = function (id) {
@@ -1227,6 +1451,12 @@ window.Hilo = (function () {
     }
   };
   
+  // --------------------------------------------------
+  // Hilo CSS
+  // --------------------------------------------------
+
+  // Set a css prop. to s.el.
+
   Dom.prototype.css = function (prop, value) {
     if (value) {
       return this.each(function (el) {
@@ -1271,20 +1501,38 @@ window.Hilo = (function () {
   };
 
   Dom.prototype.outerWidth = function () {
-    return parseFloat(this.computed('width')) + parseFloat(this.computed('paddingLeft')) + parseFloat(this.computed('paddingRight')) + parseFloat(this.computed('borderLeft')) + parseFloat(this.computed('borderRight')) + "px";
+    return parseFloat(this.computed('width')) + 
+    parseFloat(this.computed('paddingLeft')) + 
+    parseFloat(this.computed('paddingRight')) + 
+    parseFloat(this.computed('borderLeft')) + 
+    parseFloat(this.computed('borderRight')) + "px";
   };
 
   Dom.prototype.innerWidth = function () {
-    return parseFloat(this.computed('width')) + parseFloat(this.computed('paddingLeft')) + parseFloat(this.computed('paddingRight')) + "px";
+    return parseFloat(this.computed('width')) + 
+    parseFloat(this.computed('paddingLeft')) + 
+    parseFloat(this.computed('paddingRight')) + "px";
   };
 
   Dom.prototype.outerHeight = function () {
-    return parseFloat(this.computed('height')) + parseFloat(this.computed('paddingTop')) + parseFloat(this.computed('paddingBottom')) + parseFloat(this.computed('borderTop')) + parseFloat(this.computed('borderBottom')) + "px";
+    return parseFloat(this.computed('height')) + 
+    parseFloat(this.computed('paddingTop')) + 
+    parseFloat(this.computed('paddingBottom')) + 
+    parseFloat(this.computed('borderTop')) + 
+    parseFloat(this.computed('borderBottom')) + "px";
   };
 
   Dom.prototype.innerHeight = function () {
-    return parseFloat(this.computed('height')) + parseFloat(this.computed('paddingTop')) + parseFloat(this.computed('paddingBottom')) + "px";
+    return parseFloat(this.computed('height')) + 
+    parseFloat(this.computed('paddingTop')) + 
+    parseFloat(this.computed('paddingBottom')) + "px";
   };
+  
+  // --------------------------------------------------
+  // DOM Extensions
+  // --------------------------------------------------
+
+  // Get an array containig s.el.
 
   Dom.prototype.get = function () {
     var els = [];
@@ -1295,7 +1543,11 @@ window.Hilo = (function () {
 
     return els;
   };
-  
+
+  // --------------------------------------------------
+  // Events
+  // --------------------------------------------------
+
   Dom.prototype.on = (function () {
     if (document.addEventListener) {
       return function (evt, fn) {
@@ -1340,6 +1592,10 @@ window.Hilo = (function () {
     }
   }());
   
+  // --------------------------------------------------
+  // Events (imp.)
+  // --------------------------------------------------
+
   Dom.prototype.ready = function (fn) {
     this.each(function (el) {
       el.onreadystatechange = function () {
@@ -1371,7 +1627,7 @@ window.Hilo = (function () {
     "mouseout",
     "ready",
     "load"
-    ];
+  ];
 
   for (_i = 0; _i < impEvts.length; _i += 1) {
     Dom.prototype[impEvts[_i]] = function (fn) {
@@ -1379,7 +1635,9 @@ window.Hilo = (function () {
     };
   }
 
-  // Effects
+  // --------------------------------------------------
+  // Effects (fx)
+  // --------------------------------------------------
 
   Dom.prototype.show = function (display) {
     display = display || '';
@@ -1439,12 +1697,17 @@ window.Hilo = (function () {
 
     return new Dom(this);
   };
-  
-  Dom.prototype.ui = {};
-  
+  // --------------------------------------------------
+  // Hilo Extension API
+  // --------------------------------------------------
+    
   hilo.Dom = Dom.prototype;
   hilo.Test = Test.prototype;
   hilo.qwery = select.pseudos;
+  
+  // --------------------------------------------------
+  // Set event handler for triggering DOM Evenets
+  // --------------------------------------------------
   
   doc.onreadystatechange = function () {
     if (doc.readyState === 'complete') {

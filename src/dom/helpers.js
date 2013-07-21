@@ -1,5 +1,7 @@
   
-  /* Helper Functions */
+  // --------------------------------------------------
+  // Helper Functions
+  // --------------------------------------------------
 
   // Just like map, but returns the new Dom object
 

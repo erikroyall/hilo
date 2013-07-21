@@ -1,5 +1,7 @@
 
-  /* Element Selections */
+  // --------------------------------------------------
+  // Element Selections, etc.
+  // --------------------------------------------------
 
   // Return first element in the selected elements
 

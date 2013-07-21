@@ -1,4 +1,8 @@
   
+  // --------------------------------------------------
+  // Classes and IDs
+  // --------------------------------------------------
+
   // Set or return id of first element
 
   Dom.prototype.id = function (id) {

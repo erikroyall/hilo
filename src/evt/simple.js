@@ -1,4 +1,8 @@
   
+  // --------------------------------------------------
+  // Events (imp.)
+  // --------------------------------------------------
+
   Dom.prototype.ready = function (fn) {
     this.each(function (el) {
       el.onreadystatechange = function () {
@@ -30,7 +34,7 @@
     "mouseout",
     "ready",
     "load"
-    ];
+  ];
 
   for (_i = 0; _i < impEvts.length; _i += 1) {
     Dom.prototype[impEvts[_i]] = function (fn) {

@@ -7,7 +7,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
     
     pkg: grunt.file.readJSON('package.json'),
-    banner: '/* <%= pkg.title %> - <%= pkg.version %> - ' +
+    banner: '/*! \n * <%= pkg.title %> - <%= pkg.version %> - ' +
       '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
       ' * http://erikroyall.github.com/<%= pkg.name %>/\n' +
       ' * Copyright (c) 2013 Erik Royall and <%= pkg.title %> contributors\n' +
@@ -25,6 +25,9 @@ module.exports = function(grunt) {
           'src/detect/feature.js',
           'src/test/main.js',
           'src/test/comp.js',
+          'src/shim/array.js',
+          'src/shim/string.js',
+          'src/shim/object.js',
           'src/ajax/main.js',
           'src/dom/main.js',
           'src/dom/qwery.js',
@@ -37,7 +40,6 @@ module.exports = function(grunt) {
           'src/evt/helpers.js',
           'src/evt/simple.js',
           'src/fx/simple.js',
-          'src/dom/ui.js',
           'src/ext.js',
           'src/end.js'
           ],
