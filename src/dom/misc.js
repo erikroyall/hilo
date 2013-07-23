@@ -3,7 +3,18 @@
   // DOM Extensions
   // --------------------------------------------------
 
-  // Get an array containig s.el.
+  // -------------------------
+  // .get()
+  // -------------------------
+  // 
+  // Get an array of selected elements
+  // 
+  // .get()
+  //
+  // Examples:
+  // 
+  // $('script').get()
+  //
 
   Dom.prototype.get = function () {
     var els = [];

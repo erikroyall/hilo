@@ -1,4 +1,4 @@
-  
+
   /*!
    * ES5 Shims, adopted from ES5 Shim (MIT)
    * http://es5.github.com/
@@ -13,18 +13,21 @@
   if (!Array.prototype.filter) {
     Array.prototype.filter = function(fun /*, thisp */) {
       var t, len, res, thisp, i, val;
+
       if (this.length === 0) {
         throw new TypeError();
       }
 
       t = Object(this);
       len = t.length >>> 0;
+
       if (typeof fun !== "function") {
         throw new TypeError();
       }
 
       res = [];
       thisp = arguments[1];
+
       for (i = 0; i < len; i++) {
         if (i in t) {
           val = t[i]; // in case fun mutates this
@@ -84,10 +87,13 @@
 
       t = Object(this);
       len = t.length >>> 0;
+
       if (len === 0) {
         return -1;
       }
+
       n = 0;
+      
       if (arguments.length > 0) {
         n = Number(arguments[1]);
         if (n !== n) { // shortcut for verifying if it's NaN
@@ -96,15 +102,19 @@
           n = (n > 0 || -1) * Math.floor(Math.abs(n));
         }
       }
+      
       if (n >= len) {
         return -1;
       }
+      
       k = n >= 0 ? n : Math.max(len - Math.abs(n), 0);
+      
       for (; k < len; k++) {
         if (k in t && t[k] === searchElement) {
           return k;
         }
       }
+      
       return -1;
     };
   }

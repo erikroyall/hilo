@@ -1,11 +1,11 @@
 /*! 
- * Hilo - 0.1.0-pre-dev-beta-6 - 2013-07-21
+ * Hilo - 0.1.0-pre-dev-beta-6 - 2013-07-23
  * http://erikroyall.github.com/hilo/
  * Copyright (c) 2013 Erik Royall and Hilo contributors
  * Licensed under MIT (see LICENSE-MIT) 
  */
 
-window.Hilo = (function () {
+window.Hilo = (function (undefined) {
   /*jshint -W083, -W040 */
 
   "use strict";
@@ -34,8 +34,8 @@ window.Hilo = (function () {
    * to select elements
    */
 
-  select = function (selector, root, en) {
-    var rt, sel = selector, tempObj;
+  select = function (selector, root /*, en */) {
+    // var rt, sel = selector, tempObj;
 
     /*
      * Selects elements based on selector and root
@@ -44,79 +44,94 @@ window.Hilo = (function () {
      * root - Root element {String|HTMLElement}
      */
 
-    function get (sel, root) {
-      var c, rt;
+    // function get (sel, root) {
+    //   var c, rt;
 
-      rt = root || document;
+    //   rt = root || doc;
 
-      /*
-       * The main selecting engine. Written by me.
-       *
-       * !sel - Selector {String}
-       * rt - Root element {String|HTMLElement}
-       */
+    //   /*
+    //    * The main selecting engine. Written by me.
+    //    *
+    //    * !sel - Selector {String}
+    //    * rt - Root element {String|HTMLElement}
+    //    */
 
-      function dom (sel, rt) {
-        var els;
+    //   function dom (sel, rt) {
+    //     var els;
 
-        if(                               // >
-          sel.split(" ").length === 1 &&  // >>
-          sel.split(">").length === 1 &&  // >>> Make sure sel doesn't have  ,>,: or +
-          sel.split(":").length === 1 &&  // >>
-          sel.split("+").length === 1) {  // >
-          c = sel.slice(0,1); // Find out first ltr; Useful in next step
-          switch(c) {
-            case "#":
-              els = [rt.getElementById(sel.substr(1,sel.length))];
-              break;
-            case ".":
-              els = rt.getElementsByClassName(sel);
-              break;
-            case "*":
-              els = document.all;
-              break;
-            case "&":
-              els = document.documentElement;
-              break;
-            default:
-              els = rt.getElementsByTagName(sel);
-              break;
-          }
-        } else {
-          try {
-            els = rt.querySelectorAll(sel);
-          } catch (en) {
-            els = win.Hilo.select(sel, rt);
-          }
-        }
+    //     function isNotComplexSelector(sel) {
+    //       function h (sel, str) {
+    //         return sel.split(str).length === 1;
+    //       }
 
-        return els;
-      }
+    //       return (
+    //         h(sel, " ") &&
+    //         h(sel, ">") &&
+    //         h(sel, ":") &&
+    //         h(sel, "[") &&
+    //         h(sel, "]") &&
+    //         h(sel, "=") &&
+    //         h(sel, "~") &&
+    //         h(sel, "?")
+    //       );
+    //     }
 
-      return dom(sel, rt);
-    }
+    //     if(isNotComplexSelector(sel)) {
+    //       c = sel.slice(0,1); // Find out first ltr; Useful in next step
+    //       switch(c) {
+    //         case "#":
+    //           els = [rt.getElementById(sel.substr(1,sel.length))];
+    //           break;
+    //         case ".":
+    //           els = rt.getElementsByClassName(sel);
+    //           break;
+    //         case "*":
+    //           els = rt.getElementsByTagName('*');
+    //           break;
+    //         case "&":
+    //           els = doc.documentElement;
+    //           break;
+    //         default:
+    //           els = rt.getElementsByTagName(sel);
+    //           break;
+    //       }
+    //     } else {
+    //       try {
+    //         els = rt.querySelectorAll(sel);
+    //       } catch (e) {
+    //         els = win.Hilo.select(sel, rt);
+    //       }
+    //     }
 
-    if (root === true) {
-      // The temporary object
-      tempObj = win.Hilo.temp[sel];
-      if (tempObj) {
-        return tempObj;
-      } else {
-        if (typeof en === 'object') {
-          tempObj = get(sel, en);
-        } else {
-          tempObj = get(sel);
-        }
+    //     return els;
+    //   }
+
+    //   return dom(sel, rt);
+    // }
+
+    // if (root === true) {
+    //   // The temporary object
+    //   tempObj = win.Hilo.temp[sel];
+    //   if (tempObj) {
+    //     return tempObj;
+    //   } else {
+    //     if (typeof en === 'object') {
+    //       tempObj = get(sel, en);
+    //     } else {
+    //       tempObj = get(sel);
+    //     }
         
-        return tempObj;
-      }
-    } else if (typeof root === 'string') {
+    //     return tempObj;
+    //   }
+    // } else if (typeof root === 'string') {
 
-    } else {
-      rt = document;
-    }
+    // } else {
+    //   rt = document;
+    // }
 
-    return get(sel, rt);
+    // return get(sel, rt);
+
+    return win.Hilo.select(selector, root);
   };
 
   /*
@@ -124,6 +139,10 @@ window.Hilo = (function () {
    */
 
   hilo = function (input, root, en) {
+    if (!input) {
+      return win.Hilo;
+    }
+
     if (typeof input === 'string') {
       return new Dom(select(input, root, en));
     } else if (typeof input === 'function') { // Function
@@ -618,7 +637,7 @@ window.Hilo = (function () {
     var val = this.con === tw;
     return this.neg ? !val : val;
   };
-  
+
   /*!
    * ES5 Shims, adopted from ES5 Shim (MIT)
    * http://es5.github.com/
@@ -633,18 +652,21 @@ window.Hilo = (function () {
   if (!Array.prototype.filter) {
     Array.prototype.filter = function(fun /*, thisp */) {
       var t, len, res, thisp, i, val;
+
       if (this.length === 0) {
         throw new TypeError();
       }
 
       t = Object(this);
       len = t.length >>> 0;
+
       if (typeof fun !== "function") {
         throw new TypeError();
       }
 
       res = [];
       thisp = arguments[1];
+
       for (i = 0; i < len; i++) {
         if (i in t) {
           val = t[i]; // in case fun mutates this
@@ -704,10 +726,13 @@ window.Hilo = (function () {
 
       t = Object(this);
       len = t.length >>> 0;
+
       if (len === 0) {
         return -1;
       }
+
       n = 0;
+      
       if (arguments.length > 0) {
         n = Number(arguments[1]);
         if (n !== n) { // shortcut for verifying if it's NaN
@@ -716,15 +741,19 @@ window.Hilo = (function () {
           n = (n > 0 || -1) * Math.floor(Math.abs(n));
         }
       }
+      
       if (n >= len) {
         return -1;
       }
+      
       k = n >= 0 ? n : Math.max(len - Math.abs(n), 0);
+      
       for (; k < len; k++) {
         if (k in t && t[k] === searchElement) {
           return k;
         }
       }
+      
       return -1;
     };
   }
@@ -856,7 +885,16 @@ window.Hilo = (function () {
         config.callback(xhr);
       }
 
-      
+      if (xhr.readyState === 4) {
+        switch (xhr.status) {
+          case 200:
+            if (config.success) {
+              config.success();
+            }
+            
+            break;
+        }
+      }
     };
 
     if (config.method.trim().toUpperCase() === 'POST') {
@@ -895,15 +933,48 @@ window.Hilo = (function () {
   // Hilo DOM
   // --------------------------------------------------
 
+  // -------------------------
+  // Dom Class (private)
+  // -------------------------
+  // 
+  // The main DOM Class.
+  //
+  // Note: This class is accessible inside
+  // the source code only and is not mutable
+  // from outside the code
+  // 
+  // new Dom ( els )
+  //   els (NodeList) : An array of elements to be selected
+  //
+  // Examples:
+  //
+  // new Dom (document.querySelectorAll(p:first-child))
+  // new Dom ([document.createElement('div')])
+  // new Dom ([document.getElementByid('box')])
+  // new Dom (document.getElementsByClassName('hidden'))
+  // new Dom (document.getElementsByTagName('mark'))
+  //
+
   Dom = function (els) {
     var _i, _l;
+
+    // Note that `this` is an object and'
+    // NOT an Array
+
+    // Loop thorugh the NodeList and set
+    // this[index] for els[index]
 
     for (_i = 0, _l = els.length; _i < _l; _i += 1) {
       this[_i] = els[_i];
     }
 
+    // Useful for looping through as ours
+    // is an object and not an array
+
     this.length = els.length;
   };
+
+  Dom.prototype = Array.prototype;
 
   // Create an element and return it
 
@@ -1000,11 +1071,12 @@ window.Hilo = (function () {
     function Cache() {
       this.c = {};
     }
+
     Cache.prototype = {
       g: function (k) {
         return this.c[k] || undefined;
-      }
-    , s: function (k, v, r) {
+      },
+      s: function (k, v, r) {
         v = r ? new RegExp(v) : v;
         return (this.c[k] = v);
       }
@@ -1018,13 +1090,15 @@ window.Hilo = (function () {
     function classRegex(c) {
       return classCache.g(c) || classCache.s(c, '(^|\\s+)' + c + '(\\s+|$)', 1);
     }
+
     // not quite as fast as inline loops in older browsers so don't use liberally
     function each(a, fn) {
       var i = 0, l = a.length;
-      for (; i < l; i++) {
+      for (; i < l; i += 1) {
         fn(a[i]);
       }
     }
+
     function flatten(ar) {
       for (var r = [], i = 0, l = ar.length; i < l; ++i) {
         if (arrayLike(ar[i])) {
@@ -1035,6 +1109,7 @@ window.Hilo = (function () {
       }
       return r;
     }
+
     function arrayify(ar) {
       var i = 0, l = ar.length, r = [];
       for (; i < l; i++) {
@@ -1042,6 +1117,7 @@ window.Hilo = (function () {
       }
       return r;
     }
+
     function previous(n) {
       while (n = n.previousSibling) {
         if (n[nodeType] === 1) {
@@ -1050,12 +1126,14 @@ window.Hilo = (function () {
       }
       return n;
     }
+
     function q(query) {
       return query.match(chunker);
     }
     // called using `this` as element and arguments from regex group results.
     // given => div.hello[title="world"]:foo('bar')
     // div.hello[title="world"]:foo('bar'), div, .hello, [title="world"], title, =, world, :foo('bar'), foo, ('bar'), bar]
+    
     function interpret(whole, tag, idsAndClasses, wholeAttribute, attribute, qualifier, value, wholePseudo, pseudo, wholePseudoVal, pseudoVal) {
       var i, m, k, o, classes, thisRef = this;
       if (thisRef[nodeType] !== 1) {
@@ -1111,6 +1189,7 @@ window.Hilo = (function () {
       }
       return 0;
     }
+    
     // given a selector, first check for simple cases then collect all base candidate matches and filter
     function _qwery(selector, _root) {
       var r = [], ret = [], i, l, m, token, els, intr, item, root = _root
@@ -1158,6 +1237,7 @@ window.Hilo = (function () {
 
       return ret;
     }
+    
     // compare element to a selector
     function is(el, selector, root) {
       if (isNode(selector)) {
@@ -1178,6 +1258,7 @@ window.Hilo = (function () {
       }
       return false;
     }
+    
     // given elements matching the right-most part of a selector, filter out any that don't match the rest
     function ancestorMatch(el, tokens, dividedTokens, root) {
       var cand;
@@ -1197,9 +1278,11 @@ window.Hilo = (function () {
       }
       return (cand = crawl(el, tokens.length - 1, el)) && (!root || isAncestor(cand, root));
     }
+    
     function isNode(el, t) {
       return el && typeof el === 'object' && (t = el[nodeType]) && (t === 1 || t === 9);
     }
+    
     function uniq(ar) {
       var a = [], i, j;
       o:
@@ -1213,9 +1296,11 @@ window.Hilo = (function () {
       }
       return a;
     }
+    
     function arrayLike(o) {
       return (typeof o === 'object' && isFinite(o.length));
     }
+    
     function normalizeRoot(root) {
       if (!root) {
         return doc;
@@ -1229,12 +1314,14 @@ window.Hilo = (function () {
 
       return root;
     }
+
     function byId(root, id, el) {
       // if doc, query on it, else query the parent doc or if a detached fragment rewrite the query and run on the fragment
       return root[nodeType] === 9 ? root.getElementById(id) : root.ownerDocument &&
           (((el = root.ownerDocument.getElementById(id)) && isAncestor(el, root) && el) ||
             (!isAncestor(root, root.ownerDocument) && select('[id="' + id + '"]', root)[0]));
     }
+
     function qwery(selector, _root) {
       var m, el, root = normalizeRoot(_root);
 
@@ -1262,6 +1349,7 @@ window.Hilo = (function () {
 
       return select(selector, root);
     }
+
     // where the root is not document and a relationship selector is first we have to
     // do some awkward adjustments to get it to work, even with qSA
     function collectSelector(root, collector) {
@@ -1282,6 +1370,7 @@ window.Hilo = (function () {
         return s.length && collector(root, s, false);
       };
     }
+    
     isAncestor = 'compareDocumentPosition' in html ?
       function (element, container) {
         return (container.compareDocumentPosition(element) & 16) === 16;
@@ -1298,6 +1387,7 @@ window.Hilo = (function () {
         }
         return 0;
       };
+
     getAttr = (function () {
       // detect buggy IE src/href getAttribute() call
       var e = doc.createElement('p');
@@ -1308,10 +1398,13 @@ window.Hilo = (function () {
         } :
         function (e, a) { return e.getAttribute(a); };
     }());
+
     hasByClass = !!doc[byClass];
       // has native qSA support
+
     hasQSA = doc.querySelector && doc[qSA];
       // use native qSA
+
     selectQSA = function (selector, root) {
       var result = [], ss, e;
       try {
@@ -1333,6 +1426,7 @@ window.Hilo = (function () {
       } catch (ex) { }
       return selectNonNative(selector, root);
     };
+
     // no native selector support
     selectNonNative = function (selector, root) {
       var result = [], items, m, i, l, r, ss;
@@ -1358,12 +1452,14 @@ window.Hilo = (function () {
       }));
       return ss.length > 1 && result.length > 1 ? uniq(result) : result;
     };
+
     configure = function (options) {
       // configNativeQSA: use fully-internal selector or native qSA where present
       if (typeof options[useNativeQSA] !== 'undefined') {
         select = !options[useNativeQSA] ? selectNonNative : hasQSA ? selectQSA : selectNonNative;
       }
     };
+    
     configure({ useNativeQSA: true });
     qwery.configure = configure;
     qwery.uniq = uniq;
@@ -1376,14 +1472,42 @@ window.Hilo = (function () {
   // Helper Functions
   // --------------------------------------------------
 
-  // Just like map, but returns the new Dom object
+  // -------------------------
+  // .each()
+  // -------------------------
+  // 
+  // Just like .map() but returns the current Dom instance
+  // 
+  // .each ( fn ) 
+  //   fn (function) : The function to be called
+  //
+  // Example:
+  // 
+  // $('p').each (function (el) {
+  //   doSomethingWith(e);
+  // });
+  // 
 
   Dom.prototype.each = function (fn) {
     this.map(fn);
-    return this;
+    return this; // return the current Dom instance
   };
 
+  // -------------------------
+  // .map()
+  // -------------------------
+  // 
   // Return the results of executing a function on all the selected elements
+  // 
+  // .map( fn )
+  //    fn (function) : The function to be called
+  //
+  // Example:
+  // 
+  // $('div.need-cf').map(function (e) {
+  //   doSomethingWith(e);
+  // });
+  // 
 
   Dom.prototype.map = function (fn) {
     var results = [], _i, _l;
@@ -1393,15 +1517,73 @@ window.Hilo = (function () {
     return results;
   };
 
-  // Map on the first element
-  
+  // -------------------------
+  // .one()
+  // -------------------------
+  // 
+  // .map fn on selected elements and return them based on length
+  //
+
   Dom.prototype.one = function (fn) {
     var m = this.map(fn);
     return m.length > 1 ? m : m[0];
   };
 
+  // -------------------------
+  // .first()
+  // -------------------------
+  // 
+  // Return the results of executing a function on all the selected elements
+  // 
+  // .first( fn )
+  //    fn (function) : The function to be called
+  //
+  // Example:
+  // 
+  // $('div').first(function (e) {
+  //   console.log(e + ' is the first div');
+  // });
+  // 
+
+  Dom.prototype.first = function (fn) {
+    return (this.map(fn))[0];
+  };
+
+  // -------------------------
+  // .next()
+  // -------------------------
+  // 
+  // Return next element siblings of the selected elements
+  // 
+  // .next( )
+  //
+  // Examples:
+  // 
+  // $('div.editor').next().class('next-to-editor')
+  //
+
+  Dom.prototype.next = function () {
+    return this.rel('nextElementSibling');
+  };
+
+  // -------------------------
+  // .filter()
+  // -------------------------
+  // 
   // Filters the selected elements and returns the
   // elements that pass the test (or return true)
+  // 
+  // .filter( fn )
+  //    fn (function) : The function to be called
+  // 
+  // Example:
+  // 
+  // Filter to find divs with className hidden
+  // 
+  // $('div').filter(function (el) {
+  //   return el.className.split('hidden').length > 1;
+  // });
+  // 
 
   Dom.prototype.filter = function (fun) {
     var len = this.length >>> 0
@@ -1414,7 +1596,7 @@ window.Hilo = (function () {
     {
       if (_i in t)
       {
-        val = t[_i]; // in case fun mutates this
+        val = t[_i];
         if (fun.call(this, val, _i, t)) {
           res.push(val);
         }
@@ -1428,54 +1610,116 @@ window.Hilo = (function () {
   // Element Selections, etc.
   // --------------------------------------------------
 
-  // Return first element in the selected elements
+  // -------------------------
+  // .first()
+  // -------------------------
+  // 
+  // Return the first element in the selected elements
+  // 
+  // .first( )
+  //
+  // Examples:
+  // 
+  // $('p.hidden').first().show()
+  //
 
   Dom.prototype.first = function () {
     return new Dom([this[0]]);
   };
 
+  // -------------------------
+  // .ladt()
+  // -------------------------
+  // 
   // Return last element in the selected elements
+  // 
+  // .ladt( attr [, value] )
+  //
+  // Examples:
+  // 
+  // $('p.hidden').last().show()
+  //
   
   Dom.prototype.last = function () {
     return new Dom([this[this.length - 1]]);
   };
 
+  // -------------------------
+  // .el()
+  // -------------------------
+  // 
   // Return nth element in the selected elements
-  
+  // 
+  // .el( place )
+  //   place (number) : A number representing place of element
+  //
+  // Examples:
+  // 
+  // $('p.hidden').el(3).show()
+  //
+
   Dom.prototype.el = function (place) {
     return new Dom([this[place - 1]]);
   };
 
-  // Return children of selected elements
+  // -------------------------
+  // .children()
+  // -------------------------
+  // 
+  // Return nth element in the selected elements
+  // 
+  // .children( )
+  //
+  // Examples:
+  // 
+  // $('p.hidden').el().show()
+  //
 
   Dom.prototype.children = function (sel) {
-    var children = [], _i;
-    if (sel) { // Based on selector
-      return this.each(function (el) {
-        var s = select(sel, el);
-        for (_i = 0; _i < s.length; _i++) {
-          children = children.concat(s[_i]);
-        }
-      });
-    } else { // All Children
-      return this.each(function (el) {
-        for (_i = 0; _i < el.children.length; _i++) {
-          children = children.concat(el.children[_i]);
-        }
-      });
-    }
+    var children = [], _i, _l;
+
+    this.each(function (el) {
+      var childNodes = select(sel ? sel : '*', el);
+
+      for (_i = 0, _l = childNodes.length; _i < _l; _i += 1) {
+        children = children.concat(childNodes[_i]);
+      }
+    });
+
     return children;
   };
 
-  // Return parent of first selected element
+  // -------------------------
+  // .parent()
+  // -------------------------
+  // 
+  // Return parent of the first selected element
+  // 
+  // .parent( )
+  //
+  // Examples:
+  // 
+  // $('div#editor').parent().hide()
+  //
 
   Dom.prototype.parent = function () {
-    return this.one(function (el) {
+    return this.first(function (el) {
       return new Dom([el.parentElement]);
     });
   };
 
-  // Return first element in the selected elements
+  // -------------------------
+  // .parents()
+  // -------------------------
+  // 
+  // Return parents of all selected elements
+  // 
+  // .parents( )
+  //
+  // Examples:
+  // 
+  // $('div.editor').parents().hide()
+  //
 
   Dom.prototype.parents = function () {
     var pars = [];
@@ -1487,27 +1731,83 @@ window.Hilo = (function () {
     return new Dom(pars);
   };
 
-  // Return array of values of property specified
+  // -------------------------
+  // .parent()
+  // -------------------------
+  // 
+  // Return relative of selected elements based
+  // on the relation given
+  // 
+  // .rel( rel )
+  //   rel (string) : The relation between curent and 
+  //
+  // Examples:
+  // 
+  // $('div#editor').parent().hide()
+  //
 
   Dom.prototype.rel = function (sul) {
     var els = [];
 
-    return this.each(function (el) {
+    this.each(function (el) {
       els.push(el[sul]);
     });
+
+    return els;
   };
 
-  // Return next element siblings of every element
+  // -------------------------
+  // .next()
+  // -------------------------
+  // 
+  // Return next element siblings of the selected elements
+  // 
+  // .next( )
+  //
+  // Examples:
+  // 
+  // $('div.editor').next().class('next-to-editor')
+  //
 
   Dom.prototype.next = function () {
-    this.rel('nextSibling');
+    return this.rel('nextElementSibling');
+  };
+
+  // -------------------------
+  // .prev()
+  // -------------------------
+  // 
+  // Return previous element siblings of the selected elements
+  // 
+  // .prev( )
+  //
+  // Examples:
+  // 
+  // $('div.editor').prev().class('prev-to-editor')
+  //
+
+  Dom.prototype.prev = function () {
+    return this.rel('previousElementSibling');
   };
   
   // --------------------------------------------------
   // DOM HTML
   // --------------------------------------------------
 
-  // Set innerHTML of s.el.
+  // -------------------------
+  // .html()
+  // -------------------------
+  // 
+  // Set or return innerHTML of selected elements
+  // 
+  // .html( [htmlCode] )
+  //    htmlCode (string) : The htmlCode to be set
+  //
+  // Examples:
+  // 
+  // $('p:first-child').html('first-p')
+  // var html = $('span').html()
+  // 
 
   Dom.prototype.html = function (htmlCode) {
     if (htmlCode) {
@@ -1515,11 +1815,26 @@ window.Hilo = (function () {
         el.innerHTML = htmlCode;
       });
     } else {
-      return this.one(function(el) {
+      return this.first(function(el) {
         return el.innerHTML;
       });
     }
   };
+
+  // -------------------------
+  // .text()
+  // -------------------------
+  // 
+  // Set or return innerHTML of selected elements
+  // 
+  // .text( [text] )
+  //    text (string) : The text to be set
+  //
+  // Examples:
+  // 
+  // $('p:first-child').text('first-p')
+  // var text = $('span').text()
+  // 
 
   Dom.prototype.text = function (text) {
     if (text) {
@@ -1527,17 +1842,45 @@ window.Hilo = (function () {
         el.innerText = text;
       });
     } else {
-      return this.one(function(el) {
+      return this.first(function(el) {
         return el.innerText;
       });
     }
   };
+
+  // -------------------------
+  // .append()
+  // -------------------------
+  // 
+  // Set or return innerHTML of selected elements
+  // 
+  // .append( [html] )
+  //    html (string) : The html to be appended
+  //
+  // Examples:
+  // 
+  // $('p:first-child').append(' - From the first p child')
+  // 
   
   Dom.prototype.append = function (html) {
     return this.each(function (el) {
       el.innerHTML += html;
     });
   };
+
+  // -------------------------
+  // .appendText()
+  // -------------------------
+  // 
+  // Set or return innerHTML of selected elements
+  // 
+  // .appendText( [text] )
+  //    text (string) : The text to be set
+  //
+  // Examples:
+  // 
+  // $('p:first-child').appendText('The same thing here, too.')
+  // 
   
   Dom.prototype.appendText = function (text) {
     return this.each(function (el) {
@@ -1545,11 +1888,39 @@ window.Hilo = (function () {
     });
   };
 
+  // -------------------------
+  // .prepend()
+  // -------------------------
+  // 
+  // Set or return innerHTML of selected elements
+  // 
+  // .prepend( [html] )
+  //    html (string) : The html to be prepended
+  //
+  // Examples:
+  // 
+  // $('p:first-child').prepend(' - From the first p child')
+  // 
+
   Dom.prototype.prepend = function (html) {
     return this.each(function (el) {
       el.innerHTML = html + el.innerHTML;
     });
   };
+
+  // -------------------------
+  // .append()
+  // -------------------------
+  // 
+  // Set or return innerHTML of selected elements
+  // 
+  // .append( [html] )
+  //    html (string) : The html to be appended
+  //
+  // Examples:
+  // 
+  // $('p:first-child').append(' - From the first p child')
+  // 
   
   Dom.prototype.value = function (val) {
     if (val) {
@@ -1557,7 +1928,7 @@ window.Hilo = (function () {
         el.value = val;
       });
     } else {
-      this.one(function (el) {
+      this.first(function (el) {
         return el.value;
       });
     }
@@ -1567,7 +1938,18 @@ window.Hilo = (function () {
   // Classes and IDs
   // --------------------------------------------------
 
-  // Set or return id of first element
+  // -------------------------
+  // .id()
+  // -------------------------
+  // 
+  // Set or return id attribute of selected elements
+  // 
+  // .get()
+  //
+  // Examples:
+  // 
+  // $('p.rect').first().id('square')
+  // 
 
   Dom.prototype.id = function (id) {
     if(id) {
@@ -1575,189 +1957,391 @@ window.Hilo = (function () {
       // Setting id of only one element because
       // id is intended to be an unique identifier
 
-      return this.one(function(el) {
+      return this.first(function(el) {
         el.id = id;
       });
     } else {
-      return this.one(function (el) {
+      return this.first(function (el) {
         return el.id;
       });
     }
   };
 
-  // Add class(es) to selected elements
+  // -------------------------
+  // .class()
+  // -------------------------
+  // 
+  // Add, remove or check classes of selected elements
+  // based on action given
+  // 
+  // .class( action, className )
+  //   action (string) : add, remove or has
+  //   className (string|array) : class name or list of class names
+  //
+  // Examples:
+  // 
+  // $('div#editor').parent().hide()
+  //
 
-  Dom.prototype.addClass = feature.classList === true ? function (className) {
+  Dom.prototype['class'] = feature.classList === true ? function (action, className) {
     return this.each(function (el) {
-      var _i, parts;
+      var _i, parts, contains, res = [];
 
-      if (typeof className === 'string') { // String
+      if (typeof className === 'string') { // A String
         parts = className.split(" ");
 
-        if (parts.length === 1) { // One Class
-          if (!el.classList.contains(className)) {
-            el.classList.add(className);
+        if (parts.length === 1) { // String, one class
+          contains = el.classList.contains(className);
+
+          switch (action) {
+            case 'add':
+              if (!contains) {
+                el.classList.add(className);
+              }
+
+              break;
+            case 'remove':
+              if (contains) {
+                el.classList.remove(className);
+              }
+
+              break;
+            case 'has':
+              res = true;
+              break;
+            case 'toggle':
+              for (_i = 0; _i < parts.length; _i += 1) {
+                if (contains) {
+                  el.classList.remove(parts[_i]);
+                } else {
+                  el.classList.add(parts[_i]);
+                }
+              }
+              break;
+            default:
+              throw new TypeError("Unknown value provided as first parameter to .class()");
           }
-        } else { // Multiple classes
-          for (_i = 0; _i < parts.length; _i += 1) {
-            if (!el.classList.contains(parts[_i])) {
-              el.classList.add(parts[_i]);
+        } else { // String, many classes
+          contains = function (className) {
+            return el.classList.contains(className);
+          };
+
+          switch (action) {
+            case 'add':
+              for (_i = 0; _i < parts.length; _i += 1) {
+                if (!contains(parts[_i])) {
+                  el.classList.add(parts[_i]);
+                }
+              }
+
+              break;
+            case 'remove':
+              for (_i = 0; _i < parts.length; _i += 1) {
+                if (contains(parts[_i])) {
+                  el.classList.remove(parts[_i]);
+                }
+              }
+
+              break;
+            case 'has':
+              for (_i = 0; _i < parts.length; _i += 1) {
+                res.push(contains(parts[_i]));
+              }
+
+              break;
+            case 'toggle':
+              for (_i = 0; _i < parts.length; _i += 1) {
+                if (contains(parts[_i])) {
+                  el.classList.remove(parts[_i]);
+                } else {
+                  el.classList.add(parts[_i]);
+                }
+              }
+              break;
+            default:
+              throw new TypeError("Unknown value provided as first parameter to .class()");
+          }
+        }
+      } else if (className.length) { // Array
+        parts = className;
+
+        contains = function (className) {
+          return el.classList.contains(className);
+        };
+
+        switch (action) {
+          case 'add':
+            for (_i = 0; _i < parts.length; _i += 1) {
+              if (!contains(parts[_i])) {
+                el.classList.add(parts[_i]);
+              }
             }
-          }
-        }
-      } else if (className.length) { // An array
-        for (_i = 0; _i < className.length; _i += 1) {
-          if (!el.classList.contains(className[_i])) {
-            el.classList.add(className[_i]);
-          }
-        }
-      }
-    });
-  } :
-  function (className) {
-    return this.each(function (el) {
-      var _i, parts;
 
-      if (typeof className === 'string') {
-        parts = className.split(" ");
-        if (parts.length === 1) {
-          if (el.className === '') {
-            el.className = className;
-          } else {
-            el.className += ' ' + className;
-          }
-        } else {
-          for (_i = 0; _i < parts.length; _i += 1) {
-            el.className += ' ' + parts[_i];
-          }
-        }
-      } else if (className.length) {
-        if (className.length > 1) {
-          for (_i = 0; _i < className.length; _i += 1) {
-            el.className += ' ' + className[_i];
-          }
-        } else {
-          for (_i = 0; _i < className.length; _i += 1) {
-            el.className += className[_i];
-          }
-        }
-      }
-    });
-  };
-
-  // Remove class(es) from selected elements
-
-  Dom.prototype.removeClass = feature.classList === true ? function (className) {
-    this.each(function (el) {
-      var _i, parts;
-      if (typeof className === 'string') { // String
-        parts = className.split(" ");
-
-        if (parts.length === 1) {
-          if (el.classList.contains(className)) {
-            el.classList.remove(className);
-          }
-        } else {
-          for (_i = 0; _i < parts.length; _i += 1) {
-            if (el.classList.contains(parts[_i])) {
-              el.classList.remove(parts[_i]);
+            break;
+          case 'remove':
+            for (_i = 0; _i < parts.length; _i += 1) {
+              if (contains(parts[_i])) {
+                el.classList.remove(parts[_i]);
+              }
             }
-          }
-        }
-      } else if (className.length) { // An array
-        for (_i = 0; _i < className.length; _i += 1) {
-          if (el.classList.contains(className[_i])) {
-            el.classList.remove(className[_i]);
-          }
-        }
-      }
-    });
-  } : function (className) {
-    return this.each(function (el) {
-      var _i, parts;
-      if (typeof className === 'string') {
-        parts = className.split(" ");
-        if (parts.length === 1) {
-          el.className.replace(className, "");
-        } else {
-          for (_i = 0; _i < parts.length; _i += 1) {
-            el.className.replace(parts[_i], "");
-          }
-        }
-      } else if (className.length) {
-        for (_i = 0; _i < className.length; _i += 1) {
-          el.className.replace(className[_i], "");
-        }
-      }
-    });
-  };
 
-  // Check if all selected elements has a class
-
-  Dom.prototype.hasClass = feature.classList ? function (className) {
-    this.one(function (el) {
-      var _i, parts, res = [];
-      if (typeof className === 'string') { // String
-        parts = className.split(" ");
-
-        if (parts.length === 1) {
-          if (el.classList.contains(className)) {
-            res = el.classList.has(className);
-          }
-        } else {
-          for (_i = 0; _i < parts.length; _i += 1) {
-            if (el.classList.contains(parts[_i])) {
-              res = res.concat(el.classList.has(parts[_i]));
+            break;
+          case 'has':
+            for (_i = 0; _i < parts.length; _i += 1) {
+              res.push(contains(parts[_i]));
             }
-          }
+
+            break;
+          case 'toggle':
+            for (_i = 0; _i < parts.length; _i += 1) {
+              if (contains(parts[_i])) {
+                el.classList.remove(parts[_i]);
+              } else {
+                el.classList.add(parts[_i]);
+              }
+            }
+            
+            break;
+          default:
+            throw new TypeError("Unknown value provided as first parameter to .class()");
         }
-      } else if (className.length) { // An array
-        for (_i = 0; _i < className.length; _i += 1) {
-          if (el.classList.contains(className[_i])) {
-            res = res.concat(el.classList.has(className[_i]));
-          }
-        }
+      } else {
+        throw new TypeError ("Please provide the right parameter (string or array) for .class()");
       }
 
       return typeof res === 'boolean' ? res : res.every(function (el) {
         return el === true;
       });
     });
-  }: function (className) {
-    return this.one(function (el) {
-      var _i, parts, res;
+  } : function (action, className) {
+    return this.each(function (el) {
+      var _i, parts, contains, res = [];
+
       if (typeof className === 'string') {
         parts = className.split(" ");
+
         if (parts.length === 1) {
-          return !!(el.className.indexOf(className));
+          contains = el.className.split(className).length > 1;
+
+          switch (action) {
+            case 'add':
+              if (!contains) {
+                el.className += (className);
+              }
+
+              break;
+            case 'remove':
+              if (contains) {
+                el.className.replace(className, '');
+              }
+
+              break;
+            case 'has':
+              res = contains;
+              
+              break;
+            case 'toggle':
+              for (_i = 0; _i < parts.length; _i += 1) {
+                if (contains) {
+                  el.className.replace(className, '');
+                } else {
+                  el.className += className;
+                }
+              }
+
+              break;
+            default:
+              throw new TypeError("Unknown value provided as first parameter to .class()");
+          }
         } else {
-          for (_i = 0; _i < parts.length; _i += 1) {
-            res = res.concat(el.className.indexOf(parts[_i]));
+          contains = function (className) {
+            return el.className.split(className).length > 1;
+          };
+
+          switch (action) {
+            case 'add':
+              for (_i = 0; _i < parts.length; _i += 1) {
+                if (!contains(parts[_i])) {
+                  el.className += parts[_i];
+                }
+              }
+
+              break;
+            case 'remove':
+              for (_i = 0; _i < parts.length; _i += 1) {
+                if (contains(parts[_i])) {
+                  el.className.replace(parts[_i], '');
+                }
+              }
+
+              break;
+            case 'has':
+              for (_i = 0; _i < parts.length; _i += 1) {
+                res.push(contains(parts[_i]));
+              }
+
+              break;
+            case 'toggle':
+              for (_i = 0; _i < parts.length; _i += 1) {
+                if (contains(parts[_i])) {
+                  el.className.replace(parts[_i], '');
+                } else {
+                  el.className += parts[_i];
+                }
+              }
+
+              break;
+            default:
+              throw new TypeError("Unknown value provided as first parameter to .class()");
           }
         }
       } else if (className.length) {
-        for (_i = 0; _i < className.length; _i += 1) {
-          res = res.concat(el.className.indexOf(className[_i]));
+        contains = function (className) {
+          return el.className.split(className).length > 1;
+        };
+
+        switch (action) {
+          case 'add':
+            for (_i = 0; _i < parts.length; _i += 1) {
+              if (!contains(parts[_i])) {
+                el.className += parts[_i];
+              }
+            }
+
+            break;
+          case 'remove':
+            for (_i = 0; _i < parts.length; _i += 1) {
+              if (contains(parts[_i])) {
+                el.className.replace(parts[_i], '');
+              }
+            }
+
+            break;
+          case 'has':
+            for (_i = 0; _i < parts.length; _i += 1) {
+              res.push(contains(parts[_i]));
+            }
+
+            break;
+          case 'toggle':
+            for (_i = 0; _i < parts.length; _i += 1) {
+              if (contains(parts[_i])) {
+                el.className.replace(parts[_i], '');
+              } else {
+                el.className += parts[_i];
+              }
+            }
+
+            break;
+          default:
+            throw new TypeError("Unknown value provided as first parameter to .class()");
         }
+      } else {
+        throw new TypeError ("Please provide the right parameter (string or array) for .class()");
       }
 
-      return res.every(function (el) {
+      return typeof res === 'boolean' ? res : res.every(function (el) {
         return el === true;
       });
     });
   };
 
-  // Set or return attribute of elements
+  // -------------------------
+  // .addClass()
+  // -------------------------
+  // 
+  // Add class(es) to selected elements
+  // 
+  // .addClass( className )
+  //   className (string|array) : The class(es to be added)
+  //
+  // Examples:
+  // 
+  // $('p').addClass('paragraph')
+  // 
+
+  Dom.prototype.addClass = function (className) {
+    return this['class']('add', className);
+  };
+
+  // -------------------------
+  // .removeClass()
+  // -------------------------
+  // 
+  // Remove class(es) from selected elements
+  // 
+  // .removeClass( className )
+  //   className (string|array) : The class(es to be added)
+  //
+  // Examples:
+  // 
+  // $('p').removeClass('hidden')
+  //
+
+  Dom.prototype.removeClass = function (className) {
+    return this['class']('remove', className);
+  };
+
+  // -------------------------
+  // .hasClass()
+  // -------------------------
+  // 
+  // Check if all elements has class(es)
+  // 
+  // .hasClass( className )
+  //   className (string|array) : The class(es to be added)
+  //
+  // Examples:
+  // 
+  // $('p').hasClass()
+  //
+
+  Dom.prototype.hasClass = function (className) {
+    return this['class']('has', className);
+  };
+
+  // -------------------------
+  // .toggleClass()
+  // -------------------------
+  // 
+  // Add or remove class(es) based on existence
+  // 
+  // .hasClass( className )
+  //   className (string|array) : The class(es to be added)
+  //
+  // Examples:
+  // 
+  // $('p').hasClass()
+  //
+
+  Dom.prototype.toggleClass = function (className) {
+    return this['class']('toggle', className);
+  };
+
+  // -------------------------
+  // .attr()
+  // -------------------------
+  // 
+  // Set or return an attribute of selected elements
+  // 
+  // .attr( attr [, value] )
+  //   attr (string) : Name of attribute
+  //   value (any) : Value of attrib ute
+  //
+  // Examples:
+  // 
+  // $('p.hidden').attr('hidden')
+  // $('div.edit').attr('contentEditable', 'true')
+  // $('body').attr('hilo', '0.1.0')
+  //
   
   Dom.prototype.attr = function (name, val) {
     if(val) {
-      this.each(function(el) {
+      return this.each(function(el) {
         el.setAttribute(name, val);
       });
-
-      return new Dom(this);
     } else {
-      this.one(function (el) {
+      return this.first(function (el) {
         return el[name];
       });
     }
@@ -1768,18 +2352,31 @@ window.Hilo = (function () {
   // --------------------------------------------------
 
   // Set a css prop. to s.el.
+  // 
+  // Syntax .css( prop [, value] )
+  //
+  // Examples:
+  // 
+  // $(selector).css('background-color', '#444')
+  // var fontColor = $(selector).css('color')
+  //
 
   Dom.prototype.css = function (prop, value) {
-    if (value) {
+    if (value) { // If value arg. is given
       return this.each(function (el) {
-        el.style[prop] = value;
+        el.style[prop] = value; // Set CSS prop. to value
       });
-    } else {
-      return this.one(function (el) {
-        return el.style[prop];
+    } else { // Otherwise, if value arg. is not given
+      return this.first(function (el) {
+        return el.style[prop]; // Return the style of that element
       });
     }
   };
+
+  // Important CSS Properties
+  //
+  // Important CSS methods that are provided as public methods
+  //
 
   impCss = [
     "width",
@@ -1805,6 +2402,8 @@ window.Hilo = (function () {
       this.css(impCss[_i], val);
     };
   }
+
+  // Get computed style of the first element
 
   Dom.prototype.computed = function (prop) {
     return this.one(function (el) {
@@ -1844,7 +2443,18 @@ window.Hilo = (function () {
   // DOM Extensions
   // --------------------------------------------------
 
-  // Get an array containig s.el.
+  // -------------------------
+  // .get()
+  // -------------------------
+  // 
+  // Get an array of selected elements
+  // 
+  // .get()
+  //
+  // Examples:
+  // 
+  // $('script').get()
+  //
 
   Dom.prototype.get = function () {
     var els = [];
@@ -1919,6 +2529,7 @@ window.Hilo = (function () {
   };
 
   impEvts = [
+    "blur",
     "click",
     "change",
     "dblclick",
@@ -1934,11 +2545,15 @@ window.Hilo = (function () {
     "keyup",
     "keydown",
     "keypress",
+    "load",
+    "mousedown",
+    "mouseleave",
+    "mouseenter",
     "mouseover",
     "mousemove",
     "mouseout",
     "ready",
-    "load"
+    "submit"
   ];
 
   for (_i = 0; _i < impEvts.length; _i += 1) {
@@ -1953,52 +2568,43 @@ window.Hilo = (function () {
 
   Dom.prototype.show = function (display) {
     display = display || '';
-    this.each(function (el) {
+
+    return this.each(function (el) {
       el.style.display = display;
     });
-
-    return new Dom(this);
   };
 
   Dom.prototype.hide = function () {
-    this.each(function (el) {
+    return this.each(function (el) {
       el.style.display = 'none';
     });
-
-    return new Dom(this);
   };
 
   Dom.prototype.toggle = function (display) {
-    this.each(function (el) {
+    return this.each(function (el) {
       if (el.style.display === 'none') {
         el.style.display = display ? display : '';
       } else {
         el.style.display = 'none';
       }
     });
-
-    return new Dom(this);
   };
 
   Dom.prototype.appear = function () {
-    this.each(function (el) {
+    return this.each(function (el) {
       el.style.opacity = "1";
     });
-
-    return new Dom(this);
   };
 
   Dom.prototype.disappear = function () {
-    this.each(function (el) {
+    return this.each(function (el) {
       el.style.opacity = "0";
       el.style.cusor = "default";
     });
-
-    return new Dom(this);
   };
 
   Dom.prototype.toggleVisibility = function () {
-    this.each(function (el) {
+    return this.each(function (el) {
       if (el.style.opacity === "0") {
         el.style.opacity = "1";
       } else {
@@ -2006,9 +2612,8 @@ window.Hilo = (function () {
         el.style.cusor = "default";
       }
     });
-
-    return new Dom(this);
   };
+  
   // --------------------------------------------------
   // Hilo Extension API
   // --------------------------------------------------

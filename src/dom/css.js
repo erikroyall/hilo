@@ -4,18 +4,31 @@
   // --------------------------------------------------
 
   // Set a css prop. to s.el.
+  // 
+  // Syntax .css( prop [, value] )
+  //
+  // Examples:
+  // 
+  // $(selector).css('background-color', '#444')
+  // var fontColor = $(selector).css('color')
+  //
 
   Dom.prototype.css = function (prop, value) {
-    if (value) {
+    if (value) { // If value arg. is given
       return this.each(function (el) {
-        el.style[prop] = value;
+        el.style[prop] = value; // Set CSS prop. to value
       });
-    } else {
-      return this.one(function (el) {
-        return el.style[prop];
+    } else { // Otherwise, if value arg. is not given
+      return this.first(function (el) {
+        return el.style[prop]; // Return the style of that element
       });
     }
   };
+
+  // Important CSS Properties
+  //
+  // Important CSS methods that are provided as public methods
+  //
 
   impCss = [
     "width",
@@ -41,6 +54,8 @@
       this.css(impCss[_i], val);
     };
   }
+
+  // Get computed style of the first element
 
   Dom.prototype.computed = function (prop) {
     return this.one(function (el) {

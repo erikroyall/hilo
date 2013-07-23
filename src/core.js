@@ -23,8 +23,8 @@
    * to select elements
    */
 
-  select = function (selector, root, en) {
-    var rt, sel = selector, tempObj;
+  select = function (selector, root /*, en */) {
+    // var rt, sel = selector, tempObj;
 
     /*
      * Selects elements based on selector and root
@@ -33,79 +33,94 @@
      * root - Root element {String|HTMLElement}
      */
 
-    function get (sel, root) {
-      var c, rt;
+    // function get (sel, root) {
+    //   var c, rt;
 
-      rt = root || document;
+    //   rt = root || doc;
 
-      /*
-       * The main selecting engine. Written by me.
-       *
-       * !sel - Selector {String}
-       * rt - Root element {String|HTMLElement}
-       */
+    //   /*
+    //    * The main selecting engine. Written by me.
+    //    *
+    //    * !sel - Selector {String}
+    //    * rt - Root element {String|HTMLElement}
+    //    */
 
-      function dom (sel, rt) {
-        var els;
+    //   function dom (sel, rt) {
+    //     var els;
 
-        if(                               // >
-          sel.split(" ").length === 1 &&  // >>
-          sel.split(">").length === 1 &&  // >>> Make sure sel doesn't have  ,>,: or +
-          sel.split(":").length === 1 &&  // >>
-          sel.split("+").length === 1) {  // >
-          c = sel.slice(0,1); // Find out first ltr; Useful in next step
-          switch(c) {
-            case "#":
-              els = [rt.getElementById(sel.substr(1,sel.length))];
-              break;
-            case ".":
-              els = rt.getElementsByClassName(sel);
-              break;
-            case "*":
-              els = document.all;
-              break;
-            case "&":
-              els = document.documentElement;
-              break;
-            default:
-              els = rt.getElementsByTagName(sel);
-              break;
-          }
-        } else {
-          try {
-            els = rt.querySelectorAll(sel);
-          } catch (en) {
-            els = win.Hilo.select(sel, rt);
-          }
-        }
+    //     function isNotComplexSelector(sel) {
+    //       function h (sel, str) {
+    //         return sel.split(str).length === 1;
+    //       }
 
-        return els;
-      }
+    //       return (
+    //         h(sel, " ") &&
+    //         h(sel, ">") &&
+    //         h(sel, ":") &&
+    //         h(sel, "[") &&
+    //         h(sel, "]") &&
+    //         h(sel, "=") &&
+    //         h(sel, "~") &&
+    //         h(sel, "?")
+    //       );
+    //     }
 
-      return dom(sel, rt);
-    }
+    //     if(isNotComplexSelector(sel)) {
+    //       c = sel.slice(0,1); // Find out first ltr; Useful in next step
+    //       switch(c) {
+    //         case "#":
+    //           els = [rt.getElementById(sel.substr(1,sel.length))];
+    //           break;
+    //         case ".":
+    //           els = rt.getElementsByClassName(sel);
+    //           break;
+    //         case "*":
+    //           els = rt.getElementsByTagName('*');
+    //           break;
+    //         case "&":
+    //           els = doc.documentElement;
+    //           break;
+    //         default:
+    //           els = rt.getElementsByTagName(sel);
+    //           break;
+    //       }
+    //     } else {
+    //       try {
+    //         els = rt.querySelectorAll(sel);
+    //       } catch (e) {
+    //         els = win.Hilo.select(sel, rt);
+    //       }
+    //     }
 
-    if (root === true) {
-      // The temporary object
-      tempObj = win.Hilo.temp[sel];
-      if (tempObj) {
-        return tempObj;
-      } else {
-        if (typeof en === 'object') {
-          tempObj = get(sel, en);
-        } else {
-          tempObj = get(sel);
-        }
+    //     return els;
+    //   }
+
+    //   return dom(sel, rt);
+    // }
+
+    // if (root === true) {
+    //   // The temporary object
+    //   tempObj = win.Hilo.temp[sel];
+    //   if (tempObj) {
+    //     return tempObj;
+    //   } else {
+    //     if (typeof en === 'object') {
+    //       tempObj = get(sel, en);
+    //     } else {
+    //       tempObj = get(sel);
+    //     }
         
-        return tempObj;
-      }
-    } else if (typeof root === 'string') {
+    //     return tempObj;
+    //   }
+    // } else if (typeof root === 'string') {
 
-    } else {
-      rt = document;
-    }
+    // } else {
+    //   rt = document;
+    // }
 
-    return get(sel, rt);
+    // return get(sel, rt);
+
+    return win.Hilo.select(selector, root);
   };
 
   /*
@@ -113,6 +128,10 @@
    */
 
   hilo = function (input, root, en) {
+    if (!input) {
+      return win.Hilo;
+    }
+
     if (typeof input === 'string') {
       return new Dom(select(input, root, en));
     } else if (typeof input === 'function') { // Function

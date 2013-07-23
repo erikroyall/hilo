@@ -53,7 +53,16 @@
         config.callback(xhr);
       }
 
-      
+      if (xhr.readyState === 4) {
+        switch (xhr.status) {
+          case 200:
+            if (config.success) {
+              config.success();
+            }
+            
+            break;
+        }
+      }
     };
 
     if (config.method.trim().toUpperCase() === 'POST') {

@@ -68,11 +68,12 @@
     function Cache() {
       this.c = {};
     }
+
     Cache.prototype = {
       g: function (k) {
         return this.c[k] || undefined;
-      }
-    , s: function (k, v, r) {
+      },
+      s: function (k, v, r) {
         v = r ? new RegExp(v) : v;
         return (this.c[k] = v);
       }
@@ -86,13 +87,15 @@
     function classRegex(c) {
       return classCache.g(c) || classCache.s(c, '(^|\\s+)' + c + '(\\s+|$)', 1);
     }
+
     // not quite as fast as inline loops in older browsers so don't use liberally
     function each(a, fn) {
       var i = 0, l = a.length;
-      for (; i < l; i++) {
+      for (; i < l; i += 1) {
         fn(a[i]);
       }
     }
+
     function flatten(ar) {
       for (var r = [], i = 0, l = ar.length; i < l; ++i) {
         if (arrayLike(ar[i])) {
@@ -103,6 +106,7 @@
       }
       return r;
     }
+
     function arrayify(ar) {
       var i = 0, l = ar.length, r = [];
       for (; i < l; i++) {
@@ -110,6 +114,7 @@
       }
       return r;
     }
+
     function previous(n) {
       while (n = n.previousSibling) {
         if (n[nodeType] === 1) {
@@ -118,12 +123,14 @@
       }
       return n;
     }
+
     function q(query) {
       return query.match(chunker);
     }
     // called using `this` as element and arguments from regex group results.
     // given => div.hello[title="world"]:foo('bar')
     // div.hello[title="world"]:foo('bar'), div, .hello, [title="world"], title, =, world, :foo('bar'), foo, ('bar'), bar]
+    
     function interpret(whole, tag, idsAndClasses, wholeAttribute, attribute, qualifier, value, wholePseudo, pseudo, wholePseudoVal, pseudoVal) {
       var i, m, k, o, classes, thisRef = this;
       if (thisRef[nodeType] !== 1) {
@@ -179,6 +186,7 @@
       }
       return 0;
     }
+    
     // given a selector, first check for simple cases then collect all base candidate matches and filter
     function _qwery(selector, _root) {
       var r = [], ret = [], i, l, m, token, els, intr, item, root = _root
@@ -226,6 +234,7 @@
 
       return ret;
     }
+    
     // compare element to a selector
     function is(el, selector, root) {
       if (isNode(selector)) {
@@ -246,6 +255,7 @@
       }
       return false;
     }
+    
     // given elements matching the right-most part of a selector, filter out any that don't match the rest
     function ancestorMatch(el, tokens, dividedTokens, root) {
       var cand;
@@ -265,9 +275,11 @@
       }
       return (cand = crawl(el, tokens.length - 1, el)) && (!root || isAncestor(cand, root));
     }
+    
     function isNode(el, t) {
       return el && typeof el === 'object' && (t = el[nodeType]) && (t === 1 || t === 9);
     }
+    
     function uniq(ar) {
       var a = [], i, j;
       o:
@@ -281,9 +293,11 @@
       }
       return a;
     }
+    
     function arrayLike(o) {
       return (typeof o === 'object' && isFinite(o.length));
     }
+    
     function normalizeRoot(root) {
       if (!root) {
         return doc;
@@ -297,12 +311,14 @@
 
       return root;
     }
+
     function byId(root, id, el) {
       // if doc, query on it, else query the parent doc or if a detached fragment rewrite the query and run on the fragment
       return root[nodeType] === 9 ? root.getElementById(id) : root.ownerDocument &&
           (((el = root.ownerDocument.getElementById(id)) && isAncestor(el, root) && el) ||
             (!isAncestor(root, root.ownerDocument) && select('[id="' + id + '"]', root)[0]));
     }
+
     function qwery(selector, _root) {
       var m, el, root = normalizeRoot(_root);
 
@@ -330,6 +346,7 @@
 
       return select(selector, root);
     }
+
     // where the root is not document and a relationship selector is first we have to
     // do some awkward adjustments to get it to work, even with qSA
     function collectSelector(root, collector) {
@@ -350,6 +367,7 @@
         return s.length && collector(root, s, false);
       };
     }
+    
     isAncestor = 'compareDocumentPosition' in html ?
       function (element, container) {
         return (container.compareDocumentPosition(element) & 16) === 16;
@@ -366,6 +384,7 @@
         }
         return 0;
       };
+
     getAttr = (function () {
       // detect buggy IE src/href getAttribute() call
       var e = doc.createElement('p');
@@ -376,10 +395,13 @@
         } :
         function (e, a) { return e.getAttribute(a); };
     }());
+
     hasByClass = !!doc[byClass];
       // has native qSA support
+
     hasQSA = doc.querySelector && doc[qSA];
       // use native qSA
+
     selectQSA = function (selector, root) {
       var result = [], ss, e;
       try {
@@ -401,6 +423,7 @@
       } catch (ex) { }
       return selectNonNative(selector, root);
     };
+
     // no native selector support
     selectNonNative = function (selector, root) {
       var result = [], items, m, i, l, r, ss;
@@ -426,12 +449,14 @@
       }));
       return ss.length > 1 && result.length > 1 ? uniq(result) : result;
     };
+
     configure = function (options) {
       // configNativeQSA: use fully-internal selector or native qSA where present
       if (typeof options[useNativeQSA] !== 'undefined') {
         select = !options[useNativeQSA] ? selectNonNative : hasQSA ? selectQSA : selectNonNative;
       }
     };
+    
     configure({ useNativeQSA: true });
     qwery.configure = configure;
     qwery.uniq = uniq;

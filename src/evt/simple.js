@@ -14,6 +14,7 @@
   };
 
   impEvts = [
+    "blur",
     "click",
     "change",
     "dblclick",
@@ -29,11 +30,15 @@
     "keyup",
     "keydown",
     "keypress",
+    "load",
+    "mousedown",
+    "mouseleave",
+    "mouseenter",
     "mouseover",
     "mousemove",
     "mouseout",
     "ready",
-    "load"
+    "submit"
   ];
 
   for (_i = 0; _i < impEvts.length; _i += 1) {

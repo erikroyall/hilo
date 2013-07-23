@@ -3,54 +3,116 @@
   // Element Selections, etc.
   // --------------------------------------------------
 
-  // Return first element in the selected elements
+  // -------------------------
+  // .first()
+  // -------------------------
+  // 
+  // Return the first element in the selected elements
+  // 
+  // .first( )
+  //
+  // Examples:
+  // 
+  // $('p.hidden').first().show()
+  //
 
   Dom.prototype.first = function () {
     return new Dom([this[0]]);
   };
 
+  // -------------------------
+  // .ladt()
+  // -------------------------
+  // 
   // Return last element in the selected elements
+  // 
+  // .ladt( attr [, value] )
+  //
+  // Examples:
+  // 
+  // $('p.hidden').last().show()
+  //
   
   Dom.prototype.last = function () {
     return new Dom([this[this.length - 1]]);
   };
 
+  // -------------------------
+  // .el()
+  // -------------------------
+  // 
   // Return nth element in the selected elements
-  
+  // 
+  // .el( place )
+  //   place (number) : A number representing place of element
+  //
+  // Examples:
+  // 
+  // $('p.hidden').el(3).show()
+  //
+
   Dom.prototype.el = function (place) {
     return new Dom([this[place - 1]]);
   };
 
-  // Return children of selected elements
+  // -------------------------
+  // .children()
+  // -------------------------
+  // 
+  // Return nth element in the selected elements
+  // 
+  // .children( )
+  //
+  // Examples:
+  // 
+  // $('p.hidden').el().show()
+  //
 
   Dom.prototype.children = function (sel) {
-    var children = [], _i;
-    if (sel) { // Based on selector
-      return this.each(function (el) {
-        var s = select(sel, el);
-        for (_i = 0; _i < s.length; _i++) {
-          children = children.concat(s[_i]);
-        }
-      });
-    } else { // All Children
-      return this.each(function (el) {
-        for (_i = 0; _i < el.children.length; _i++) {
-          children = children.concat(el.children[_i]);
-        }
-      });
-    }
+    var children = [], _i, _l;
+
+    this.each(function (el) {
+      var childNodes = select(sel ? sel : '*', el);
+
+      for (_i = 0, _l = childNodes.length; _i < _l; _i += 1) {
+        children = children.concat(childNodes[_i]);
+      }
+    });
+
     return children;
   };
 
-  // Return parent of first selected element
+  // -------------------------
+  // .parent()
+  // -------------------------
+  // 
+  // Return parent of the first selected element
+  // 
+  // .parent( )
+  //
+  // Examples:
+  // 
+  // $('div#editor').parent().hide()
+  //
 
   Dom.prototype.parent = function () {
-    return this.one(function (el) {
+    return this.first(function (el) {
       return new Dom([el.parentElement]);
     });
   };
 
-  // Return first element in the selected elements
+  // -------------------------
+  // .parents()
+  // -------------------------
+  // 
+  // Return parents of all selected elements
+  // 
+  // .parents( )
+  //
+  // Examples:
+  // 
+  // $('div.editor').parents().hide()
+  //
 
   Dom.prototype.parents = function () {
     var pars = [];
@@ -62,18 +124,61 @@
     return new Dom(pars);
   };
 
-  // Return array of values of property specified
+  // -------------------------
+  // .parent()
+  // -------------------------
+  // 
+  // Return relative of selected elements based
+  // on the relation given
+  // 
+  // .rel( rel )
+  //   rel (string) : The relation between curent and 
+  //
+  // Examples:
+  // 
+  // $('div#editor').parent().hide()
+  //
 
   Dom.prototype.rel = function (sul) {
     var els = [];
 
-    return this.each(function (el) {
+    this.each(function (el) {
       els.push(el[sul]);
     });
+
+    return els;
   };
 
-  // Return next element siblings of every element
+  // -------------------------
+  // .next()
+  // -------------------------
+  // 
+  // Return next element siblings of the selected elements
+  // 
+  // .next( )
+  //
+  // Examples:
+  // 
+  // $('div.editor').next().class('next-to-editor')
+  //
 
   Dom.prototype.next = function () {
-    this.rel('nextSibling');
+    return this.rel('nextElementSibling');
+  };
+
+  // -------------------------
+  // .prev()
+  // -------------------------
+  // 
+  // Return previous element siblings of the selected elements
+  // 
+  // .prev( )
+  //
+  // Examples:
+  // 
+  // $('div.editor').prev().class('prev-to-editor')
+  //
+
+  Dom.prototype.prev = function () {
+    return this.rel('previousElementSibling');
   };
