@@ -1,5 +1,5 @@
 /*! 
- * Hilo - 0.1.0-pre-dev-beta-6 - 2013-07-26
+ * Hilo - 0.1.0-pre-dev-beta-7 - 2013-07-26
  * http://erikroyall.github.com/hilo/
  * Copyright (c) 2013 Erik Royall and Hilo contributors
  * Licensed under MIT (see LICENSE-MIT) 
@@ -176,7 +176,7 @@
   hilo.temp = {};
 
   // Version info
-  hilo.version = '0.1.0-pre-dev-beta-6';
+  hilo.version = '0.1.0-pre-dev-beta-7';
   
   // --------------------------------------------------
   // Feature Detection
@@ -2072,7 +2072,7 @@
     }
   };
 
-  hilo.select = Sizzle || qwery || Quicksand || undefined;
+  hilo.select = win.Sizzle || win.qwery || win.Quicksand || undefined;
 
   win.$ = hilo; // Shorthand
 

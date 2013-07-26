@@ -11,7 +11,7 @@
     }
   };
 
-  hilo.select = Sizzle || qwery || Quicksand || undefined;
+  hilo.select = win.Sizzle || win.qwery || win.Quicksand || undefined;
 
   win.$ = hilo; // Shorthand
 
