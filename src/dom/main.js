@@ -25,7 +25,7 @@
   // new Dom (document.getElementsByTagName('mark'))
   //
 
-  Dom = function (els) {
+  Dom = function (els, sel) {
     var _i, _l;
 
     // Note that `this` is an object and'
@@ -42,6 +42,11 @@
     // is an object and not an array
 
     this.length = els.length;
+
+    // Know what selector is used to select
+    // the elements
+
+    this.sel = sel;
   };
 
   Dom.prototype = Array.prototype;

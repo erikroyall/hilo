@@ -11,7 +11,9 @@
     }
   };
 
+  hilo.select = Sizzle || qwery || Quicksand || undefined;
+
   win.$ = hilo; // Shorthand
 
   return hilo;
-}());
+}));

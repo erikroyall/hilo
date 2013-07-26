@@ -30,7 +30,6 @@ module.exports = function(grunt) {
           'src/shim/object.js',
           'src/ajax/main.js',
           'src/dom/main.js',
-          'src/dom/qwery.js',
           'src/dom/helpers.js',
           'src/dom/els.js',
           'src/dom/manp.js',

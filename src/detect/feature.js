@@ -1,3 +1,4 @@
+  
   // --------------------------------------------------
   // Feature Detection
   // --------------------------------------------------
@@ -20,9 +21,15 @@
 
     return {
 
+      // addEventListener()
+
+      addEventListener: (function () {
+        return typeof win.addEventListener === 'function';
+      }()),
+
       // Application Cache (or Offline Web Apps)
       
-      applicationcache: (function () {
+      applicationCache: (function () {
         return !!win.applicationCache;
       }()),
 
@@ -34,13 +41,13 @@
 
       // Preload audio (hmm.. background music?)
       
-      audiopreload: (function () {
+      audioPreload: (function () {
         return 'preload' in a;
       }()),
 
       // Audio Types
       
-      audiotypes: {
+      audioTypes: {
 
         // MP3 audio format
 
@@ -75,7 +82,7 @@
 
       // Canvas Text
       
-      canvastext: (function () {
+      canvasText: (function () {
         return !!cn.getContext && typeof cn.getContext('2d').fillText === 'function';
       }()),
 
@@ -99,7 +106,7 @@
 
       // contentEditable
       
-      contenteditable: (function () {
+      contentEditable: (function () {
         return 'isContentEditable' in s;
       }()),
 
@@ -133,10 +140,22 @@
         return typeof FileReader !== 'undefined';
       }()),
 
+      // gen5
+      
+      gen5: (function () {
+        return parseInt(win.navigator.appVersion, 10) === 5;
+      }()),
+
       // Geolocation
       
       geolocation: (function () {
         return 'geolocation' in win.navigator;
+      }()),
+
+      // window.getSelection() method
+
+      getSelection: (function () {
+        return typeof win.getSelection === 'function';
       }()),
 
       // History API
@@ -234,7 +253,7 @@
 
       // Local Storage
       
-      localstorage: (function () {
+      localStorage: (function () {
         try {
           return 'localStorage' in win && win['localStorage'] !== null && !!win.localStorage.setItem;
         } catch(e){
@@ -272,20 +291,48 @@
         return 'value' in c("progress");
       }()),
 
+      // querySelector & querySelectorAll
+
+      qsa: (function () {
+        return 'querySelector' in win && 'querySelectorAll' in win;
+      }()),
+
+      // requestAnimationFrame
+
+      requestAnimationFrame: (function () {
+        if (typeof requestAnimationFrame === 'function') {
+          return true;
+        } else if (typeof msRequestAnimationFrame === 'function') {
+          return 'ms';
+        } else if (typeof webkitRequestAnimationFrame === 'function') {
+          return 'webkit';
+        } else if (typeof mozRequestAnimationFrame === 'function') {
+          return 'moz';
+        } else {
+          return false;
+        }
+      }()),
+
       // Server-sent Events
 
-      serverevt: (function () {
+      serverEvt: (function () {
         return typeof EventSource !== 'undefined';
       }()),
 
       // Session Storage
 
-      sessionstorage: (function () {
+      sessionStorage: (function () {
         try {
           return 'sessionStorage' in win && win['sessionStorage'] !== null;
         } catch(e) {
           return false;
         }
+      }()),
+
+      // Modal Dialog (showModalDialog)
+
+      showModalDialog: (function () {
+        return typeof win.showModalDialog === "function";
       }()),
 
       // SVG (Scalable Vector Graphics)
@@ -313,6 +360,7 @@
       }()),
 
       // Undo (not just Ctrl + Z)
+
       undo: (function () {
         return typeof UndoManager !== 'undefined';
       }()),
@@ -329,13 +377,13 @@
 
       // Video Captions
 
-      videocaptions: (function () {
+      videoCaptions: (function () {
         return 'src' in c("track");
       }()),
 
       // Video Formats
 
-      videoformats: {
+      videoFormats: {
 
         // H264 Video Format (MP4)
 
@@ -370,19 +418,19 @@
 
       // Video posters
 
-      videoposter: (function () {
+      videoPoster: (function () {
         return 'poster' in c("video");
       }()),
 
       // Web Audio API (NOT the <audio> tag)
 
-      webaudio: (function () {
+      webAudio: (function () {
         return !!(win.webkitAudioContext || win.AudioContext);
       }()),
 
       // WebSockets
 
-      websockets: (function () {
+      webSockets: (function () {
         return !!win.webSocket;
       }()),
 
@@ -394,7 +442,7 @@
 
       // Web Workers
 
-      webworkers: (function () {
+      webWorkers: (function () {
         return !!win.Worker;
       }()),
 
@@ -409,6 +457,9 @@
       xdocmsg: (function () {
         return !!win.postMessage;
       }()),
+
+      // XML HTTP Request
+
       xhr: {
 
         // Cross-domain requests
