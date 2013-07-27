@@ -200,50 +200,62 @@
         // Input Types (they are pretty self-explanatory)
         
         type: {
+          
           color: (function () {
             is('type', 'color');
             return i.type !== 'text';
           }()),
+
           date: (function () {
             is('type', 'date');
             return i.type !== 'text';
           }()),
+
           datetime: (function () {
             is('type', 'datetime');
             return i.type !== 'text';
           }()),
+
           datetimeLocal: (function () {
             is('type', 'datetime-local');
             return i.type !== 'text';
           }()),
+
           email: (function () {
             is('type', 'email');
             return i.type !== 'text';
           }()),
+
           month: (function () {
             is('type', 'month');
             return i.type !== 'text';
           }()),
+
           number: (function () {
             is('type', 'number');
             return i.type !== 'text';
           }()),
+
           range: (function () {
             is('type', 'range');
             return i.type !== 'text';
           }()),
+
           search: (function () {
             is('type', 'search');
             return i.type !== 'text';
           }()),
+
           tel: (function () {
             is('type', 'tel');
             return i.type !== 'text';
           }()),
+
           time: (function () {
             is('type', 'time');
             return i.type !== 'text';
           }()),
+
           week: (function () {
             is('type', 'week');
             return i.type !== 'text';
