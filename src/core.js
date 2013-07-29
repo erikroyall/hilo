@@ -16,7 +16,7 @@
 
   start = new Date().getTime();
 
-  /* 
+   
    * Select elements
    * 
    * !selector - Selector {String}
@@ -25,7 +25,7 @@
    * 
    * This function can be used throughout the code
    * to select elements
-   */
+   
 
   select = function (selector, root , en) {
     var rt, sel = selector, tempObj;
@@ -76,7 +76,7 @@
               els = [rt.getElementById(sel.substr(1,sel.length))];
               break;
             case ".":
-              els = rt.getElementsByClassName(sel);
+              els = rt.getElementsByClassName(sel) || rt.querySelectorAll(sel);
               break;
             case "*":
               els = rt.getElementsByTagName("*");
@@ -124,6 +124,7 @@
 
     return get(sel, rt);
   };
+
 
   /*
    * Local copy of the one and only global
