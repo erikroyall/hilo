@@ -24,7 +24,7 @@ Create another `<script>` and write Hilo code there.
 
 ```<script>
   $(function () {
-    $('div').click(function () {
+    $("div").click(function () {
       $(this).toggle();
     });
   });

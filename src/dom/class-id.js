@@ -13,7 +13,7 @@
   //
   // Examples:
   // 
-  // $('p.rect').first().id('square')
+  // $("p.rect").first().id("square")
   // 
 
   Dom.prototype.id = function (id) {
@@ -45,36 +45,36 @@
   //
   // Examples:
   // 
-  // $('div#editor').parent().hide()
+  // $("div#editor").parent().hide()
   //
 
-  Dom.prototype['class'] = feature.classList === true ? function (action, className) {
+  Dom.prototype["class"] = feature.classList === true ? function (action, className) {
     return this.each(function (el) {
       var _i, parts, contains, res = [];
 
-      if (typeof className === 'string') { // A String
+      if (typeof className === "string") { // A String
         parts = className.split(" ");
 
         if (parts.length === 1) { // String, one class
           contains = el.classList.contains(className);
 
           switch (action) {
-            case 'add':
+            case "add":
               if (!contains) {
                 el.classList.add(className);
               }
 
               break;
-            case 'remove':
+            case "remove":
               if (contains) {
                 el.classList.remove(className);
               }
 
               break;
-            case 'has':
+            case "has":
               res = true;
               break;
-            case 'toggle':
+            case "toggle":
               for (_i = 0; _i < parts.length; _i += 1) {
                 if (contains) {
                   el.classList.remove(parts[_i]);
@@ -92,7 +92,7 @@
           };
 
           switch (action) {
-            case 'add':
+            case "add":
               for (_i = 0; _i < parts.length; _i += 1) {
                 if (!contains(parts[_i])) {
                   el.classList.add(parts[_i]);
@@ -100,7 +100,7 @@
               }
 
               break;
-            case 'remove':
+            case "remove":
               for (_i = 0; _i < parts.length; _i += 1) {
                 if (contains(parts[_i])) {
                   el.classList.remove(parts[_i]);
@@ -108,13 +108,13 @@
               }
 
               break;
-            case 'has':
+            case "has":
               for (_i = 0; _i < parts.length; _i += 1) {
                 res.push(contains(parts[_i]));
               }
 
               break;
-            case 'toggle':
+            case "toggle":
               for (_i = 0; _i < parts.length; _i += 1) {
                 if (contains(parts[_i])) {
                   el.classList.remove(parts[_i]);
@@ -135,7 +135,7 @@
         };
 
         switch (action) {
-          case 'add':
+          case "add":
             for (_i = 0; _i < parts.length; _i += 1) {
               if (!contains(parts[_i])) {
                 el.classList.add(parts[_i]);
@@ -143,7 +143,7 @@
             }
 
             break;
-          case 'remove':
+          case "remove":
             for (_i = 0; _i < parts.length; _i += 1) {
               if (contains(parts[_i])) {
                 el.classList.remove(parts[_i]);
@@ -151,13 +151,13 @@
             }
 
             break;
-          case 'has':
+          case "has":
             for (_i = 0; _i < parts.length; _i += 1) {
               res.push(contains(parts[_i]));
             }
 
             break;
-          case 'toggle':
+          case "toggle":
             for (_i = 0; _i < parts.length; _i += 1) {
               if (contains(parts[_i])) {
                 el.classList.remove(parts[_i]);
@@ -174,7 +174,7 @@
         throw new TypeError ("Please provide the right parameter (string or array) for .class()");
       }
 
-      return typeof res === 'boolean' ? res : res.every(function (el) {
+      return typeof res === "boolean" ? res : res.every(function (el) {
         return el === true;
       });
     });
@@ -182,33 +182,33 @@
     return this.each(function (el) {
       var _i, parts, contains, res = [];
 
-      if (typeof className === 'string') {
+      if (typeof className === "string") {
         parts = className.split(" ");
 
         if (parts.length === 1) {
           contains = el.className.split(className).length > 1;
 
           switch (action) {
-            case 'add':
+            case "add":
               if (!contains) {
                 el.className += (className);
               }
 
               break;
-            case 'remove':
+            case "remove":
               if (contains) {
-                el.className.replace(className, '');
+                el.className.replace(className, "");
               }
 
               break;
-            case 'has':
+            case "has":
               res = contains;
               
               break;
-            case 'toggle':
+            case "toggle":
               for (_i = 0; _i < parts.length; _i += 1) {
                 if (contains) {
-                  el.className.replace(className, '');
+                  el.className.replace(className, "");
                 } else {
                   el.className += className;
                 }
@@ -224,7 +224,7 @@
           };
 
           switch (action) {
-            case 'add':
+            case "add":
               for (_i = 0; _i < parts.length; _i += 1) {
                 if (!contains(parts[_i])) {
                   el.className += parts[_i];
@@ -232,24 +232,24 @@
               }
 
               break;
-            case 'remove':
+            case "remove":
               for (_i = 0; _i < parts.length; _i += 1) {
                 if (contains(parts[_i])) {
-                  el.className.replace(parts[_i], '');
+                  el.className.replace(parts[_i], "");
                 }
               }
 
               break;
-            case 'has':
+            case "has":
               for (_i = 0; _i < parts.length; _i += 1) {
                 res.push(contains(parts[_i]));
               }
 
               break;
-            case 'toggle':
+            case "toggle":
               for (_i = 0; _i < parts.length; _i += 1) {
                 if (contains(parts[_i])) {
-                  el.className.replace(parts[_i], '');
+                  el.className.replace(parts[_i], "");
                 } else {
                   el.className += parts[_i];
                 }
@@ -261,12 +261,14 @@
           }
         }
       } else if (className.length) {
+        parts = className;
+        
         contains = function (className) {
           return el.className.split(className).length > 1;
         };
 
         switch (action) {
-          case 'add':
+          case "add":
             for (_i = 0; _i < parts.length; _i += 1) {
               if (!contains(parts[_i])) {
                 el.className += parts[_i];
@@ -274,24 +276,24 @@
             }
 
             break;
-          case 'remove':
+          case "remove":
             for (_i = 0; _i < parts.length; _i += 1) {
               if (contains(parts[_i])) {
-                el.className.replace(parts[_i], '');
+                el.className.replace(parts[_i], "");
               }
             }
 
             break;
-          case 'has':
+          case "has":
             for (_i = 0; _i < parts.length; _i += 1) {
               res.push(contains(parts[_i]));
             }
 
             break;
-          case 'toggle':
+          case "toggle":
             for (_i = 0; _i < parts.length; _i += 1) {
               if (contains(parts[_i])) {
-                el.className.replace(parts[_i], '');
+                el.className.replace(parts[_i], "");
               } else {
                 el.className += parts[_i];
               }
@@ -305,7 +307,7 @@
         throw new TypeError ("Please provide the right parameter (string or array) for .class()");
       }
 
-      return typeof res === 'boolean' ? res : res.every(function (el) {
+      return typeof res === "boolean" ? res : res.every(function (el) {
         return el === true;
       });
     });
@@ -322,11 +324,11 @@
   //
   // Examples:
   // 
-  // $('p').addClass('paragraph')
+  // $("p").addClass("paragraph")
   // 
 
   Dom.prototype.addClass = function (className) {
-    return this['class']('add', className);
+    return this["class"]("add", className);
   };
 
   // -------------------------
@@ -340,11 +342,11 @@
   //
   // Examples:
   // 
-  // $('p').removeClass('hidden')
+  // $("p").removeClass("hidden")
   //
 
   Dom.prototype.removeClass = function (className) {
-    return this['class']('remove', className);
+    return this["class"]("remove", className);
   };
 
   // -------------------------
@@ -358,11 +360,11 @@
   //
   // Examples:
   // 
-  // $('p').hasClass()
+  // $("p").hasClass()
   //
 
   Dom.prototype.hasClass = function (className) {
-    return this['class']('has', className);
+    return this["class"]("has", className);
   };
 
   // -------------------------
@@ -376,11 +378,11 @@
   //
   // Examples:
   // 
-  // $('p').hasClass()
+  // $("p").hasClass()
   //
 
   Dom.prototype.toggleClass = function (className) {
-    return this['class']('toggle', className);
+    return this["class"]("toggle", className);
   };
 
   // -------------------------
@@ -395,9 +397,9 @@
   //
   // Examples:
   // 
-  // $('p.hidden').attr('hidden')
-  // $('div.edit').attr('contentEditable', 'true')
-  // $('body').attr('hilo', '0.1.0')
+  // $("p.hidden").attr("hidden")
+  // $("div.edit").attr("contentEditable", "true")
+  // $("body").attr("hilo", "0.1.0")
   //
   
   Dom.prototype.attr = function (name, val) {

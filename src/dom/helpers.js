@@ -14,7 +14,7 @@
   //
   // Example:
   // 
-  // $('p').each (function (el) {
+  // $("p").each (function (el) {
   //   doSomethingWith(e);
   // });
   // 
@@ -35,7 +35,7 @@
   //
   // Example:
   // 
-  // $('div.need-cf').map(function (e) {
+  // $("div.need-cf").map(function (e) {
   //   doSomethingWith(e);
   // });
   // 
@@ -71,8 +71,8 @@
   //
   // Example:
   // 
-  // $('div').first(function (e) {
-  //   console.log(e + ' is the first div');
+  // $("div").first(function (e) {
+  //   console.log(e + " is the first div");
   // });
   // 
 
@@ -90,11 +90,11 @@
   //
   // Examples:
   // 
-  // $('div.editor').next().class('next-to-editor')
+  // $("div.editor").next().class("next-to-editor")
   //
 
   Dom.prototype.next = function () {
-    return this.rel('nextElementSibling');
+    return this.rel("nextElementSibling");
   };
 
   // -------------------------
@@ -111,8 +111,8 @@
   // 
   // Filter to find divs with className hidden
   // 
-  // $('div').filter(function (el) {
-  //   return el.className.split('hidden').length > 1;
+  // $("div").filter(function (el) {
+  //   return el.className.split("hidden").length > 1;
   // });
   // 
 

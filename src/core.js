@@ -1,5 +1,7 @@
   
   var hilo             // Public API
+    , start            // Start time
+    , elapsed          // Time elapsed
     , win = window     // Reference to window
     , doc = document   // Reference to document
     , callbacks = []   // Array of functions to be executed on DOMReady
@@ -11,6 +13,8 @@
     , _i               // Loop helper
     , Dom              // DOM Manipulation Methods
     , Test;            // Test class
+
+  start = new Date().getTime();
 
   /* 
    * Select elements
@@ -75,7 +79,7 @@
               els = rt.getElementsByClassName(sel);
               break;
             case "*":
-              els = rt.getElementsByTagName('*');
+              els = rt.getElementsByTagName("*");
               break;
             case "&":
               els = doc.documentElement;
@@ -104,7 +108,7 @@
       if (tempObj[sel]) {
         return tempObj[sel];
       } else {
-        if (typeof en === 'object') {
+        if (typeof en === "object") {
           tempObj[sel] = get(sel, en);
         } else {
           tempObj[sel] = get(sel);
@@ -112,7 +116,7 @@
         
         return tempObj[sel];
       }
-    } else if (typeof root === 'string') {
+    } else if (typeof root === "string") {
       rt = select(root, doc)[0];
     } else {
       rt = doc;
@@ -126,14 +130,14 @@
    */
 
   hilo = function (input, root, en) {
-    if (!input) {
+    if (typeof input === "undefined") {
       return win.Hilo;
     }
 
-    if (typeof input === 'string') {
+    if (typeof input === "string") {
       return new Dom(select(input, root, en), input);
-    } else if (typeof input === 'function') { // Function
-      if (document.readyState === 'complete') {
+    } else if (typeof input === "function") { // Function
+      if (document.readyState === "complete") {
         input();
       } else {
         callbacks.push(input);
@@ -150,4 +154,4 @@
   hilo.temp = {};
 
   // Version info
-  hilo.version = '0.1.0-pre-dev-beta-7';
+  hilo.version = "0.1.0-pre-dev-beta-7";

@@ -13,7 +13,7 @@
   //
   // Examples:
   // 
-  // $('p.hidden').first().show()
+  // $("p.hidden").first().show()
   //
 
   Dom.prototype.first = function () {
@@ -30,7 +30,7 @@
   //
   // Examples:
   // 
-  // $('p.hidden').last().show()
+  // $("p.hidden").last().show()
   //
   
   Dom.prototype.last = function () {
@@ -48,7 +48,7 @@
   //
   // Examples:
   // 
-  // $('p.hidden').el(3).show()
+  // $("p.hidden").el(3).show()
   //
 
   Dom.prototype.el = function (place) {
@@ -65,14 +65,14 @@
   //
   // Examples:
   // 
-  // $('p.hidden').el().show()
+  // $("p.hidden").el().show()
   //
 
   Dom.prototype.children = function (sel) {
     var children = [], _i, _l;
 
     this.each(function (el) {
-      var childNodes = select(sel ? sel : '*', el);
+      var childNodes = select(sel ? sel : "*", el);
 
       for (_i = 0, _l = childNodes.length; _i < _l; _i += 1) {
         children = children.concat(childNodes[_i]);
@@ -92,7 +92,7 @@
   //
   // Examples:
   // 
-  // $('div#editor').parent().hide()
+  // $("div#editor").parent().hide()
   //
 
   Dom.prototype.parent = function () {
@@ -111,7 +111,7 @@
   //
   // Examples:
   // 
-  // $('div.editor').parents().hide()
+  // $("div.editor").parents().hide()
   //
 
   Dom.prototype.parents = function () {
@@ -136,7 +136,7 @@
   //
   // Examples:
   // 
-  // $('div#editor').parent().hide()
+  // $("div#editor").parent().hide()
   //
 
   Dom.prototype.rel = function (sul) {
@@ -159,11 +159,11 @@
   //
   // Examples:
   // 
-  // $('div.editor').next().class('next-to-editor')
+  // $("div.editor").next().class("next-to-editor")
   //
 
   Dom.prototype.next = function () {
-    return this.rel('nextElementSibling');
+    return this.rel("nextElementSibling");
   };
 
   // -------------------------
@@ -176,9 +176,9 @@
   //
   // Examples:
   // 
-  // $('div.editor').prev().class('prev-to-editor')
+  // $("div.editor").prev().class("prev-to-editor")
   //
 
   Dom.prototype.prev = function () {
-    return this.rel('previousElementSibling');
+    return this.rel("previousElementSibling");
   };

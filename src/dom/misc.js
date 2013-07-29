@@ -13,7 +13,7 @@
   //
   // Examples:
   // 
-  // $('script').get()
+  // $("script").get()
   //
 
   Dom.prototype.get = function () {

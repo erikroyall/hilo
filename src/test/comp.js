@@ -10,9 +10,9 @@
 
   Test.prototype.ifContains = function (tw) {
     var ifString = this.con.split(tw).length === 1 ? false : true;
-    if (typeof tw === 'string' && typeof this.con === 'object' && this.con.length) {
+    if (typeof tw === "string" && typeof this.con === "object" && this.con.length) {
 
-    } else if (typeof tw === 'string' && typeof this.con === 'string') {
+    } else if (typeof tw === "string" && typeof this.con === "string") {
       return this.neg ? !ifString : ifString;
     }
   };

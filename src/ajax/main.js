@@ -33,7 +33,7 @@
     if (win.XMLHttpRequest) {
       xhr = new win.XMLHttpRequest();
     } else if (win.ActiveXObject) {
-      xhr = new win.ActiveXObject('Microsoft.XMLHTTP');
+      xhr = new win.ActiveXObject("Microsoft.XMLHTTP");
     }
 
     if (!config.url) {
@@ -45,7 +45,7 @@
     config.password = config.password ? config.password : null;
 
     if(!config.contentType) {
-      config.contentType = 'application/x-www-form-urlencoded; charset=UTF-8';
+      config.contentType = "application/x-www-form-urlencoded; charset=UTF-8";
     }
 
     xhr.onreadystatechange = function () {
@@ -65,19 +65,19 @@
       }
     };
 
-    if (config.method.trim().toUpperCase() === 'POST') {
+    if (config.method.trim().toUpperCase() === "POST") {
       xhr.open(
-        'POST',
+        "POST",
         config.url,
         config.async,
         config.username,
         config.password
       );
       xhr.send(config.data);
-    } else if (config.method.trim().toUpperCase() === 'GET') {
+    } else if (config.method.trim().toUpperCase() === "GET") {
       xhr.open(
-        'GET',
-        config.url + (config.data ? "+" + config.data : ''),
+        "GET",
+        config.url + (config.data ? "+" + config.data : ""),
         config.async,
         config.username,
         config.password

@@ -35,17 +35,17 @@ JavaScript:
 
 ```
 (function () {
-  var cl = document.getElementById('#clickMe')
-    , el = document.getElementById('#content');
+  var cl = document.getElementById("#clickMe")
+    , el = document.getElementById("#content");
 
   function changeContent = function () {
     el.innerHTML = 'Hilo Wald';
   }
 
   if (document.addEventListener) {
-    cl.addEventListener('click', changeContent, false);
+    cl.addEventListener("click", changeContent, false);
   } else if (document.attachEvent) {
-    el.attachEvent('onclick', changeContent);
+    el.attachEvent("onclick", changeContent);
   } else {
     el.onclick = changeContent;
   }
@@ -58,8 +58,8 @@ Hilo, there's just a little code and that's not so confusing.
 Hilo Code:
 
 ```
-Hilo('#clickMe').click(function() {
-  Hilo('#content').html('Hilo Wald');
+Hilo("#clickMe").click(function() {
+  Hilo("#content").html('Hilo Wald');
 });
 ```
 

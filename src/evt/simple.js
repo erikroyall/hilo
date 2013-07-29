@@ -6,7 +6,7 @@
   Dom.prototype.ready = function (fn) {
     this.each(function (el) {
       el.onreadystatechange = function () {
-        if (el.readyState = 'complete') {
+        if (el.readyState = "complete") {
           fn();
         }
       };

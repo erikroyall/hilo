@@ -14,8 +14,8 @@
   //
   // Examples:
   // 
-  // $('p:first-child').html('first-p')
-  // var html = $('span').html()
+  // $("p:first-child").html("first-p")
+  // var html = $("span").html()
   // 
 
   Dom.prototype.html = function (htmlCode) {
@@ -41,8 +41,8 @@
   //
   // Examples:
   // 
-  // $('p:first-child').text('first-p')
-  // var text = $('span').text()
+  // $("p:first-child").text("first-p")
+  // var text = $("span").text()
   // 
 
   Dom.prototype.text = function (text) {
@@ -68,7 +68,7 @@
   //
   // Examples:
   // 
-  // $('p:first-child').append(' - From the first p child')
+  // $("p:first-child").append(" - From the first p child")
   // 
   
   Dom.prototype.append = function (html) {
@@ -88,7 +88,7 @@
   //
   // Examples:
   // 
-  // $('p:first-child').appendText('The same thing here, too.')
+  // $("p:first-child").appendText("The same thing here, too.")
   // 
   
   Dom.prototype.appendText = function (text) {
@@ -108,7 +108,7 @@
   //
   // Examples:
   // 
-  // $('p:first-child').prepend(' - From the first p child')
+  // $("p:first-child").prepend(" - From the first p child")
   // 
 
   Dom.prototype.prepend = function (html) {
@@ -128,7 +128,7 @@
   //
   // Examples:
   // 
-  // $('p:first-child').append(' - From the first p child')
+  // $("p:first-child").append(" - From the first p child")
   // 
   
   Dom.prototype.value = function (val) {

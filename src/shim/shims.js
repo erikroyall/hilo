@@ -24,3 +24,31 @@
       };
     }
   }());
+
+  // Array Shims
+
+  if (!Array.prototype.every) {
+    Array.prototype.every = function(fun /*, thisp */) {
+      var t, len, thisp, _i;
+
+      if (this === null) {
+        throw new TypeError();
+      }
+
+      t = Object(this);
+      len = t.length >>> 0;
+      if (typeof fun !== "function") {
+        throw new TypeError();
+      }
+
+      thisp = arguments[1];
+
+      for (_i = 0; _i < len; _i++) {
+        if (_i in t && !fun.call(thisp, t[_i], _i, t)) {
+          return false;
+        }
+      }
+
+      return true;
+    };
+  }

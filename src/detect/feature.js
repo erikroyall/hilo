@@ -24,7 +24,7 @@
       // addEventListener()
 
       addEventListener: (function () {
-        return typeof win.addEventListener === 'function';
+        return typeof win.addEventListener === "function";
       }()),
 
       // Application Cache (or Offline Web Apps)
@@ -42,35 +42,35 @@
       // Preload audio (hmm.. background music?)
       
       audioPreload: (function () {
-        return 'preload' in a;
+        return "preload" in a;
       }()),
 
       // Audio Types
       
-      audioTypes: {
+      audioType: {
 
         // MP3 audio format
 
         mp3: (function () {
-          return !!(a.canPlayType && a.canPlayType('audio/mpeg;').replace(/no/, ''));
+          return !!(a.canPlayType && a.canPlayType("audio/mpeg;").replace(/no/, ""));
         }()),
 
         // Vorbis audio format
         
         vorbis: (function () {
-          return !!(a.canPlayType && a.canPlayType('audio/ogg; codecs="vorbis"').replace(/no/, ''));
+          return !!(a.canPlayType && a.canPlayType("audio/ogg; codecs='vorbis'").replace(/no/, ""));
         }()),
 
         // MS WAV audio format
         
         wav: (function () {
-          return !!(a.canPlayType && a.canPlayType('audio/wav; codecs="1"').replace(/no/, ''));
+          return !!(a.canPlayType && a.canPlayType("audio/wav; codecs='1'").replace(/no/, ""));
         }()),
 
         // AAC audio format
         
         aac: (function () {
-          return !!(a.canPlayType && a.canPlayType('audio/mp4; codecs="mp4a.40.2"').replace(/no/, ''));
+          return !!(a.canPlayType && a.canPlayType("audio/mp4; codecs='mp4a.40.2'").replace(/no/, ""));
         }())
       },
 
@@ -83,61 +83,61 @@
       // Canvas Text
       
       canvasText: (function () {
-        return !!cn.getContext && typeof cn.getContext('2d').fillText === 'function';
+        return !!cn.getContext && typeof cn.getContext("2d").fillText === "function";
       }()),
 
       // classList prop. in HTMLElement
       
       classList: (function () {
-        return 'classList' in s;
+        return "classList" in s;
       }()),
 
       // Command
       
       command: (function () {
-        return 'type' in c("command");
+        return "type" in c("command");
       }()),
 
       // Form Constraint Validation
       
       consval: (function () {
-        return 'noValidate' in c("form");
+        return "noValidate" in c("form");
       }()),
 
       // contentEditable
       
       contentEditable: (function () {
-        return 'isContentEditable' in s;
+        return "isContentEditable" in s;
       }()),
 
       // Datalist (tag)
       
       datalist: (function () {
-        return 'options' in c("datalist");
+        return "options" in c("datalist");
       }()),
 
       // Details (tag)
       
       details: (function () {
-        return 'open' in c("details");
+        return "open" in c("details");
       }()),
 
       // Drag & Drop
       
       dragdrop: (function () {
-        return 'draggable' in s;
+        return "draggable" in s;
       }()),
 
       // ECMAScript 6
       
       es6: (function () {
-        return typeof String.prototype.contains === 'function';
+        return typeof String.prototype.contains === "function";
       }()),
 
       // File system API
       
       fileapi: (function () {
-        return typeof FileReader !== 'undefined';
+        return typeof FileReader !== "undefined";
       }()),
 
       // gen5
@@ -149,13 +149,13 @@
       // Geolocation
       
       geolocation: (function () {
-        return 'geolocation' in win.navigator;
+        return "geolocation" in win.navigator;
       }()),
 
       // window.getSelection() method
 
       getSelection: (function () {
-        return typeof win.getSelection === 'function';
+        return typeof win.getSelection === "function";
       }()),
 
       // History API
@@ -168,10 +168,10 @@
       
       iframe: {
         sandbox: (function () {
-          return 'sandbox' in fr;
+          return "sandbox" in fr;
         }()),
         srdoc: (function () {
-          return 'srcdoc' in fr;
+          return "srcdoc" in fr;
         }())
       },
 
@@ -188,13 +188,13 @@
         // Input Auto Focus
         
         autofocus: (function () {
-          return 'autofocus' in i;
+          return "autofocus" in i;
         }()),
 
         // Placeholder
         
         placeholder: (function () {
-          return 'placeholder' in i;
+          return "placeholder" in i;
         }()),
 
         // Input Types (they are pretty self-explanatory)
@@ -202,63 +202,63 @@
         type: {
           
           color: (function () {
-            is('type', 'color');
-            return i.type !== 'text';
+            is("type", "color");
+            return i.type !== "text";
           }()),
 
           date: (function () {
-            is('type', 'date');
-            return i.type !== 'text';
+            is("type", "date");
+            return i.type !== "text";
           }()),
 
           datetime: (function () {
-            is('type', 'datetime');
-            return i.type !== 'text';
+            is("type", "datetime");
+            return i.type !== "text";
           }()),
 
           datetimeLocal: (function () {
-            is('type', 'datetime-local');
-            return i.type !== 'text';
+            is("type", "datetime-local");
+            return i.type !== "text";
           }()),
 
           email: (function () {
-            is('type', 'email');
-            return i.type !== 'text';
+            is("type", "email");
+            return i.type !== "text";
           }()),
 
           month: (function () {
-            is('type', 'month');
-            return i.type !== 'text';
+            is("type", "month");
+            return i.type !== "text";
           }()),
 
           number: (function () {
-            is('type', 'number');
-            return i.type !== 'text';
+            is("type", "number");
+            return i.type !== "text";
           }()),
 
           range: (function () {
-            is('type', 'range');
-            return i.type !== 'text';
+            is("type", "range");
+            return i.type !== "text";
           }()),
 
           search: (function () {
-            is('type', 'search');
-            return i.type !== 'text';
+            is("type", "search");
+            return i.type !== "text";
           }()),
 
           tel: (function () {
-            is('type', 'tel');
-            return i.type !== 'text';
+            is("type", "tel");
+            return i.type !== "text";
           }()),
 
           time: (function () {
-            is('type', 'time');
-            return i.type !== 'text';
+            is("type", "time");
+            return i.type !== "text";
           }()),
 
           week: (function () {
-            is('type', 'week');
-            return i.type !== 'text';
+            is("type", "week");
+            return i.type !== "text";
           }())
         }
       },
@@ -267,7 +267,7 @@
       
       localStorage: (function () {
         try {
-          return 'localStorage' in win && win['localStorage'] !== null && !!win.localStorage.setItem;
+          return "localStorage" in win && win["localStorage"] !== null && !!win.localStorage.setItem;
         } catch(e){
           return false;
         }
@@ -276,13 +276,13 @@
       // Meter (tag)
       
       meter: (function () {
-        return 'value' in c("meter");
+        return "value" in c("meter");
       }()),
 
       // Microdata
       
       microdata: (function () {
-        return 'getItems' in doc;
+        return "getItems" in doc;
       }()),
 
       // Offline (App Cache)
@@ -294,32 +294,32 @@
       // Output (tag)
       
       output: (function () {
-        return 'value' in c("output");
+        return "value" in c("output");
       }()),
 
       // Progress (tag)
 
       progress: (function () {
-        return 'value' in c("progress");
+        return "value" in c("progress");
       }()),
 
       // querySelector & querySelectorAll
 
       qsa: (function () {
-        return 'querySelector' in win && 'querySelectorAll' in win;
+        return "querySelector" in win && "querySelectorAll" in win;
       }()),
 
       // requestAnimationFrame
 
       requestAnimationFrame: (function () {
-        if (typeof requestAnimationFrame === 'function') {
+        if (typeof requestAnimationFrame === "function") {
           return true;
-        } else if (typeof msRequestAnimationFrame === 'function') {
-          return 'ms';
-        } else if (typeof webkitRequestAnimationFrame === 'function') {
-          return 'webkit';
-        } else if (typeof mozRequestAnimationFrame === 'function') {
-          return 'moz';
+        } else if (typeof msRequestAnimationFrame === "function") {
+          return "ms";
+        } else if (typeof webkitRequestAnimationFrame === "function") {
+          return "webkit";
+        } else if (typeof mozRequestAnimationFrame === "function") {
+          return "moz";
         } else {
           return false;
         }
@@ -328,14 +328,14 @@
       // Server-sent Events
 
       serverEvt: (function () {
-        return typeof EventSource !== 'undefined';
+        return typeof EventSource !== "undefined";
       }()),
 
       // Session Storage
 
       sessionStorage: (function () {
         try {
-          return 'sessionStorage' in win && win['sessionStorage'] !== null;
+          return "sessionStorage" in win && win["sessionStorage"] !== null;
         } catch(e) {
           return false;
         }
@@ -349,32 +349,32 @@
 
       // SVG (Scalable Vector Graphics)
       svg: (function () {
-        return !!(doc.createElementNS && doc.createElementNS('http://www.w3.org/2000/svg', 'svg').createSVGRect);
+        return !!(doc.createElementNS && doc.createElementNS("http://www.w3.org/2000/svg", "svg").createSVGRect);
       }()),
 
       // SVG in text/html
 
       svginhtml:(function () {
-        d.innerHTML = '<svg></svg>';
+        d.innerHTML = "<svg></svg>";
         return !!(win.SVGSVGElement && d.firstChild instanceof win.SVGSVGElement);
       }()),
 
       // Template (tag)
 
       template: (function () {
-        return 'content' in c('template');
+        return "content" in c("template");
       }()),
 
       // Time (tag)
 
       time: (function () {
-        return 'datetime' in c("time");
+        return "datetime" in c("time");
       }()),
 
       // Undo (not just Ctrl + Z)
 
       undo: (function () {
-        return typeof UndoManager !== 'undefined';
+        return typeof UndoManager !== "undefined";
       }()),
 
       // Video
@@ -390,7 +390,7 @@
       // Video Captions
 
       videoCaptions: (function () {
-        return 'src' in c("track");
+        return "src" in c("track");
       }()),
 
       // Video Formats
@@ -401,7 +401,7 @@
 
         h264: (function () {
           try {
-            return v.canPlayType('video/mp4; codecs="avc1.42E01E, mp4a.40.2"');
+            return v.canPlayType("video/mp4; codecs='avc1.42E01E, mp4a.40.2'");
           } catch (e) {
             return false;
           }
@@ -411,7 +411,7 @@
 
         webm: (function () {
           try {
-            return v.canPlayType('video/webm; codecs="vp8, vorbis"');
+            return v.canPlayType("video/webm; codecs='vp8, vorbis'");
           } catch (e) {
             return false;
           }
@@ -421,7 +421,7 @@
 
         ogg: (function () {
           try {
-            return v.canPlayType('video/ogg; codecs="theora, vorbis"');
+            return v.canPlayType("video/ogg; codecs='theora, vorbis'");
           } catch (e) {
             return false;
           }
@@ -431,7 +431,7 @@
       // Video posters
 
       videoPoster: (function () {
-        return 'poster' in c("video");
+        return "poster" in c("video");
       }()),
 
       // Web Audio API (NOT the <audio> tag)
@@ -461,7 +461,7 @@
       // Widgets
 
       widgets: (function () {
-        return typeof widget !== 'undefined';
+        return typeof widget !== "undefined";
       }()),
 
       // Cross-document messaging
@@ -477,7 +477,7 @@
         // Cross-domain requests
 
         xdr: (function () {
-          return 'withCredentials' in xr;
+          return "withCredentials" in xr;
         }()),
 
         // Send as form data
@@ -489,7 +489,7 @@
         // Upload progress events
 
         upe: (function () {
-          return 'upload' in xr;
+          return "upload" in xr;
         }())
       }
     };

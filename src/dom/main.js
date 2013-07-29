@@ -19,16 +19,16 @@
   // Examples:
   //
   // new Dom (document.querySelectorAll(p:first-child))
-  // new Dom ([document.createElement('div')])
-  // new Dom ([document.getElementByid('box')])
-  // new Dom (document.getElementsByClassName('hidden'))
-  // new Dom (document.getElementsByTagName('mark'))
+  // new Dom ([document.createElement("div")])
+  // new Dom ([document.getElementByid("box")])
+  // new Dom (document.getElementsByClassName("hidden"))
+  // new Dom (document.getElementsByTagName("mark"))
   //
 
   Dom = function (els, sel) {
     var _i, _l;
 
-    // Note that `this` is an object and'
+    // Note that `this` is an object and"
     // NOT an Array
 
     // Loop thorugh the NodeList and set
@@ -69,7 +69,7 @@
 
       for (key in attrs) {
         if(attrs.hasOwnProperty(key)) {
-          el.attr(key, attrs['key']);
+          el.attr(key, attrs["key"]);
         }
       }
     }

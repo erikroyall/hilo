@@ -2,14 +2,14 @@
   var module = module || false
     , define = define || false;
 
-  if (typeof module !== 'undefined' && module.exports) {
+  if (typeof module !== "undefined" && module.exports) {
     module.exports = hilo;
-  } else if (typeof define === 'function' && define.amd) {
+  } else if (typeof define === "function" && define.amd) {
     define(hilo);
   } else {
     root[name] = hilo();
   }
-}('Hilo', this, function () {
+}("Hilo", this, function () {
   /*jshint -W083, -W040 */
 
   // JSHint escapes:
