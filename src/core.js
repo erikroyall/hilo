@@ -15,8 +15,8 @@
     , Test;            // Test class
 
   start = new Date().getTime();
-
    
+  /*
    * Select elements
    * 
    * !selector - Selector {String}
@@ -25,6 +25,7 @@
    * 
    * This function can be used throughout the code
    * to select elements
+   */
    
 
   select = function (selector, root , en) {
@@ -89,11 +90,7 @@
               break;
           }
         } else {
-          try {
-            els = rt.querySelectorAll(sel);
-          } catch (e) {
-            els = win.Hilo.select(sel, rt);
-          }
+          els = doc.querySelectorAll(rt + " " + sel);
         }
 
         return els;

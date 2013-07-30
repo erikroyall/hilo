@@ -2,13 +2,24 @@
   // querySelector pollyfill using Sizzle
 
   (function(){
+    var css3Selectors;
 
-    // If there's native support for querySelector, don't load Sizzle.
-    if (undefined !== document.querySelector) {
+    /*jshint -W098, -W117 */
+
+    // If there's native support for querySelector and CSS3 Selectors
+    // , don't load Sizzle.
+    
+    try {
+      document.querySelectorAll(":root");
+      css3Selectors = true;
+    } catch (e) {
+      css3Selectors = false;
+    }
+
+    if (css3Selectors === true) {
       return;
     }
 
-    
     /*!
      * Sizzle CSS Selector Engine v1.10.6-pre
      * http://sizzlejs.com/
@@ -19,11 +30,23 @@
      *
      */
 
-    (function( window ) {
+    (function( win ) {
 
       var i,
         support,
-        cachedruns,
+        cachedruns = function () {
+          var keys = [];
+
+          function cache( key, value ) {
+            // Use (key + " ") to avoid collision with native prototype properties (see Issue #157)
+            if ( keys.push( key += " " ) > Expr.cacheLength ) {
+              // Only keep the most recent entries
+              delete cache[ keys.shift() ];
+            }
+            return (cache[ key ] = value);
+          }
+          return cache;
+        },
         Expr,
         getText,
         isXML,
@@ -43,12 +66,12 @@
 
         // Instance-specific data
         expando = "sizzle" + -(new Date()),
-        preferredDoc = window.document,
+        preferredDoc = win.document,
         dirruns = 0,
         done = 0,
-        classCache = createCache(),
-        tokenCache = createCache(),
-        compilerCache = createCache(),
+        classCache,
+        tokenCache,
+        compilerCache,
         hasDuplicate = false,
         sortOrder = function( a, b ) {
           if ( a === b ) {
@@ -299,13 +322,7 @@
         return select( selector.replace( rtrim, "$1" ), context, results, seed );
       }
 
-      /**
-       * Create key-value caches of limited size
-       * @returns {Function(string, Object)} Returns the Object data after storing it on itself with
-       *  property name the (space-suffixed) string and (if the cache is larger than Expr.cacheLength)
-       *  deleting the oldest entry
-       */
-      function createCache() {
+      function createCache () {
         var keys = [];
 
         function cache( key, value ) {
@@ -317,6 +334,82 @@
           return (cache[ key ] = value);
         }
         return cache;
+      }
+
+
+      classCache = createCache();
+      tokenCache = createCache();
+      compilerCache = createCache();
+
+      /**
+       * Create key-value caches of limited size
+       * @returns {Function(string, Object)} Returns the Object data after storing it on itself with
+       *  property name the (space-suffixed) string and (if the cache is larger than Expr.cacheLength)
+       *  deleting the oldest entry
+       */
+
+      function select( selector, context, results, seed ) {
+        var i, tokens, token, type, find,
+          match = tokenize( selector );
+
+        if ( !seed ) {
+          // Try to minimize operations if there is only one group
+          if ( match.length === 1 ) {
+
+            // Take a shortcut and set the context if the root selector is an ID
+            tokens = match[0] = match[0].slice( 0 );
+            if ( tokens.length > 2 && (token = tokens[0]).type === "ID" &&
+                support.getById && context.nodeType === 9 && documentIsHTML &&
+                Expr.relative[ tokens[1].type ] ) {
+
+              context = ( Expr.find["ID"]( token.matches[0].replace(runescape, funescape), context ) || [] )[0];
+              if ( !context ) {
+                return results;
+              }
+              selector = selector.slice( tokens.shift().value.length );
+            }
+
+            // Fetch a seed set for right-to-left matching
+            i = matchExpr["needsContext"].test( selector ) ? 0 : tokens.length;
+            while ( i-- ) {
+              token = tokens[i];
+
+              // Abort if we hit a combinator
+              if ( Expr.relative[ (type = token.type) ] ) {
+                break;
+              }
+              if ( (find = Expr.find[ type ]) ) {
+                // Search, expanding context for leading sibling combinators
+                if ( (seed = find(
+                  token.matches[0].replace( runescape, funescape ),
+                  rsibling.test( tokens[0].type ) && context.parentNode || context
+                )) ) {
+
+                  // If seed is empty or no tokens remain, we can return early
+                  tokens.splice( i, 1 );
+                  selector = seed.length && toSelector( tokens );
+                  if ( !selector ) {
+                    push.apply( results, seed );
+                    return results;
+                  }
+
+                  break;
+                }
+              }
+            }
+          }
+        }
+
+        // Compile and execute a filtering function
+        // Provide `match` to avoid retokenization if we modified the selector above
+        compile( selector, match )(
+          seed,
+          context,
+          !documentIsHTML,
+          results,
+          rsibling.test( selector )
+        );
+        return results;
       }
 
       /**
@@ -794,9 +887,9 @@
         return doc;
       };
 
-      Sizzle.matches = function( expr, elements ) {
-        return Sizzle( expr, null, null, elements );
-      };
+      // Sizzle.matches = function( expr, elements ) {
+      //   return Sizzle( expr, null, null, elements );
+      // };
 
       Sizzle.matchesSelector = function( elem, expr ) {
         // Set document vars if needed
@@ -1157,9 +1250,9 @@
             // pseudo-class names are case-insensitive
             // http://www.w3.org/TR/selectors/#pseudo-classes
             // Prioritize by case sensitivity in case custom pseudos are added with uppercase letters
-            // Remember that setFilters inherits from pseudos
+            // Remember that SetFilters inherits from pseudos
             var args,
-              fn = Expr.pseudos[ pseudo ] || Expr.setFilters[ pseudo.toLowerCase() ] ||
+              fn = Expr.pseudos[ pseudo ] || Expr.SetFilters[ pseudo.toLowerCase() ] ||
                 Sizzle.error( "unsupported pseudo: " + pseudo );
 
             // The user may use createPseudo to indicate that
@@ -1172,7 +1265,7 @@
             // But maintain support for old signatures
             if ( fn.length > 1 ) {
               args = [ pseudo, pseudo, "", argument ];
-              return Expr.setFilters.hasOwnProperty( pseudo.toLowerCase() ) ?
+              return Expr.SetFilters.hasOwnProperty( pseudo.toLowerCase() ) ?
                 markFunction(function( seed, matches ) {
                   var idx,
                     matched = fn( seed, argument ),
@@ -1263,7 +1356,7 @@
 
           // Miscellaneous
           "target": function( elem ) {
-            var hash = window.location && window.location.hash;
+            var hash = win.location && win.location.hash;
             return hash && hash.slice( 1 ) === elem.id;
           },
 
@@ -1400,10 +1493,10 @@
         Expr.pseudos[ i ] = createButtonPseudo( i );
       }
 
-      // Easy API for creating new setFilters
-      function setFilters() {}
-      setFilters.prototype = Expr.filters = Expr.pseudos;
-      Expr.setFilters = new setFilters();
+      // Easy API for creating new SetFilters
+      function SetFilters() {}
+      SetFilters.prototype = Expr.filters = Expr.pseudos;
+      Expr.SetFilters = new SetFilters();
 
       function tokenize( selector, parseOnly ) {
         var matched, match, tokens, type,
@@ -1855,70 +1948,6 @@
         return results;
       }
 
-      function select( selector, context, results, seed ) {
-        var i, tokens, token, type, find,
-          match = tokenize( selector );
-
-        if ( !seed ) {
-          // Try to minimize operations if there is only one group
-          if ( match.length === 1 ) {
-
-            // Take a shortcut and set the context if the root selector is an ID
-            tokens = match[0] = match[0].slice( 0 );
-            if ( tokens.length > 2 && (token = tokens[0]).type === "ID" &&
-                support.getById && context.nodeType === 9 && documentIsHTML &&
-                Expr.relative[ tokens[1].type ] ) {
-
-              context = ( Expr.find["ID"]( token.matches[0].replace(runescape, funescape), context ) || [] )[0];
-              if ( !context ) {
-                return results;
-              }
-              selector = selector.slice( tokens.shift().value.length );
-            }
-
-            // Fetch a seed set for right-to-left matching
-            i = matchExpr["needsContext"].test( selector ) ? 0 : tokens.length;
-            while ( i-- ) {
-              token = tokens[i];
-
-              // Abort if we hit a combinator
-              if ( Expr.relative[ (type = token.type) ] ) {
-                break;
-              }
-              if ( (find = Expr.find[ type ]) ) {
-                // Search, expanding context for leading sibling combinators
-                if ( (seed = find(
-                  token.matches[0].replace( runescape, funescape ),
-                  rsibling.test( tokens[0].type ) && context.parentNode || context
-                )) ) {
-
-                  // If seed is empty or no tokens remain, we can return early
-                  tokens.splice( i, 1 );
-                  selector = seed.length && toSelector( tokens );
-                  if ( !selector ) {
-                    push.apply( results, seed );
-                    return results;
-                  }
-
-                  break;
-                }
-              }
-            }
-          }
-        }
-
-        // Compile and execute a filtering function
-        // Provide `match` to avoid retokenization if we modified the selector above
-        compile( selector, match )(
-          seed,
-          context,
-          !documentIsHTML,
-          results,
-          rsibling.test( selector )
-        );
-        return results;
-      }
-
       // One-time assignments
 
       // Sort stability
@@ -1981,22 +2010,14 @@
         });
       }
 
-      // EXPOSE
-      if ( typeof define === "function" && define.amd ) {
-        define(function() { return Sizzle; });
-      } else {
-        window.Sizzle = Sizzle;
-      }
-      // EXPOSE
+      document.querySelectorAll = function querySelectorAll (selector) {
+        return Sizzle(selector, this);
+      };
 
-    })( window );
-     
-    // Expose
-    document.querySelectorAll = function querySelectorAll(selector){
-      return Sizzle(selector, this);
-    };
-    document.querySelector = function querySelector(selector){
-      return (document.querySelectorAll.call(this, selector)[0] || null);
-    };
-   
+      document.querySelector = function querySelector (selector) {
+        return (document.querySelectorAll.call(this, selector)[0] || null);
+      };
+
+    })( win );
+
   }());

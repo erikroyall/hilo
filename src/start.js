@@ -10,7 +10,7 @@
     root[name] = hilo();
   }
 }("Hilo", this, function () {
-  /*jshint -W083, -W040 */
+  /*jshint -W083, -W040, -W064, -W030 */
 
   // JSHint escapes:
   //  W083 - Don't make function within a loop
