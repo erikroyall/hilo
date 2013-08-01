@@ -11,8 +11,8 @@
       , d = c("div")
       , cn = c("canvas")
       , fr = c("iframe")
-      , is = function (attr, val) {
-        return i.setAttribute (attr, val);
+      , is = function (i, attr, val) {
+        return !!(i.setAttribute (attr, val));
       }
       , a = c("audio")
       , s = c("span")
@@ -202,62 +202,62 @@
         type: {
           
           color: (function () {
-            is("type", "color");
+            is(i, "type", "color");
             return i.type !== "text";
           }()),
 
           date: (function () {
-            is("type", "date");
+            is(i, "type", "date");
             return i.type !== "text";
           }()),
 
           datetime: (function () {
-            is("type", "datetime");
+            is(i, "type", "datetime");
             return i.type !== "text";
           }()),
 
           datetimeLocal: (function () {
-            is("type", "datetime-local");
+            is(i, "type", "datetime-local");
             return i.type !== "text";
           }()),
 
           email: (function () {
-            is("type", "email");
+            is(i, "type", "email");
             return i.type !== "text";
           }()),
 
           month: (function () {
-            is("type", "month");
+            is(i, "type", "month");
             return i.type !== "text";
           }()),
 
           number: (function () {
-            is("type", "number");
+            is(i, "type", "number");
             return i.type !== "text";
           }()),
 
           range: (function () {
-            is("type", "range");
+            is(i, "type", "range");
             return i.type !== "text";
           }()),
 
           search: (function () {
-            is("type", "search");
+            is(i, "type", "search");
             return i.type !== "text";
           }()),
 
           tel: (function () {
-            is("type", "tel");
+            is(i, "type", "tel");
             return i.type !== "text";
           }()),
 
           time: (function () {
-            is("type", "time");
+            is(i, "type", "time");
             return i.type !== "text";
           }()),
 
           week: (function () {
-            is("type", "week");
+            is(i, "type", "week");
             return i.type !== "text";
           }())
         }

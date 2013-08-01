@@ -1,5 +1,5 @@
 /*! 
- * Hilo - 0.1.0-pre-dev-beta-7 - 2013-07-31
+ * Hilo - 0.1.0-pre-dev-beta-7 - 2013-08-01
  * http://erikroyall.github.com/hilo/
  * Copyright (c) 2013 Erik Royall and Hilo contributors
  * Licensed under MIT (see LICENSE-MIT) 
@@ -17,11 +17,12 @@
     root[name] = hilo();
   }
 }("Hilo", this, function () {
-  /*jshint -W083, -W040, -W064, -W030 */
+  /*jshint -W083, -W064, -W030*/
 
   // JSHint escapes:
-  //  W083 - Don't make function within a loop
-  //  W040 - Possible script violation (Qwery; thisRef = this)
+  //  W083 - Don't make function within a loop (Evts)
+  //  W064 - Missing new prefix when invoking constructor (Sizzle)
+  //  W030 - Allow expressions
 
   "use strict";
 
@@ -193,8 +194,8 @@
       , d = c("div")
       , cn = c("canvas")
       , fr = c("iframe")
-      , is = function (attr, val) {
-        return i.setAttribute (attr, val);
+      , is = function (i, attr, val) {
+        return !!(i.setAttribute (attr, val));
       }
       , a = c("audio")
       , s = c("span")
@@ -384,62 +385,62 @@
         type: {
           
           color: (function () {
-            is("type", "color");
+            is(i, "type", "color");
             return i.type !== "text";
           }()),
 
           date: (function () {
-            is("type", "date");
+            is(i, "type", "date");
             return i.type !== "text";
           }()),
 
           datetime: (function () {
-            is("type", "datetime");
+            is(i, "type", "datetime");
             return i.type !== "text";
           }()),
 
           datetimeLocal: (function () {
-            is("type", "datetime-local");
+            is(i, "type", "datetime-local");
             return i.type !== "text";
           }()),
 
           email: (function () {
-            is("type", "email");
+            is(i, "type", "email");
             return i.type !== "text";
           }()),
 
           month: (function () {
-            is("type", "month");
+            is(i, "type", "month");
             return i.type !== "text";
           }()),
 
           number: (function () {
-            is("type", "number");
+            is(i, "type", "number");
             return i.type !== "text";
           }()),
 
           range: (function () {
-            is("type", "range");
+            is(i, "type", "range");
             return i.type !== "text";
           }()),
 
           search: (function () {
-            is("type", "search");
+            is(i, "type", "search");
             return i.type !== "text";
           }()),
 
           tel: (function () {
-            is("type", "tel");
+            is(i, "type", "tel");
             return i.type !== "text";
           }()),
 
           time: (function () {
-            is("type", "time");
+            is(i, "type", "time");
             return i.type !== "text";
           }()),
 
           week: (function () {
-            is("type", "week");
+            is(i, "type", "week");
             return i.type !== "text";
           }())
         }
@@ -785,14 +786,12 @@
       - response: Response type "text" or "XML"
       - Event functions
         - callback: fn to be exec. on readystatechange
-        - completed
+        - complete
         - error
-        - abort
+        - timeout
         - success
-        - progress
-        - load
-        - loadStart
-        - loadEnd
+        - notfound
+        - forbidden
       - username
       - password
       - contentType
@@ -812,13 +811,11 @@
       throw new TypeError("url parameter not provided to hilo.ajax");
     }
 
-    config.async = config.async ? config.async : true;
-    config.username = config.username ? config.username : null;
-    config.password = config.password ? config.password : null;
+    config.async = config.async || true;
+    config.username = config.username || null;
+    config.password = config.password || null;
 
-    if(!config.contentType) {
-      config.contentType = "application/x-www-form-urlencoded; charset=UTF-8";
-    }
+    config.contentType = config.contentType || "application/x-www-form-urlencoded; charset=UTF-8";
 
     xhr.onreadystatechange = function () {
       if (config.callback) {
@@ -826,16 +823,42 @@
       }
 
       if (xhr.readyState === 4) {
+        if (config.complete) {
+          config.complete(xhr);
+        }
+        
         switch (xhr.status) {
           case 200:
             if (config.success) {
-              config.success();
+              config.success(xhr.responseText, xhr);
             }
-            
+
+            break;
+          case 404:
+            if (config.notfound) {
+              config.notfound(xhr);
+            }
+
+            break;
+          case 403:
+          case 401:
+            if (config.forbidden) {
+              config.forbidden(xhr);
+            }
+
+            break;
+          case 500:
+          case 400:
+            if (config.error) {
+              config.error();
+            }
+
             break;
         }
       }
     };
+
+    xhr.timeout = config.timeout;
 
     if (config.method.trim().toUpperCase() === "POST") {
       xhr.open(
@@ -874,11 +897,9 @@
   (function(){
     var css3Selectors;
 
-    /*jshint -W098, -W117 */
-
     // If there's native support for querySelector and CSS3 Selectors
     // , don't load Sizzle.
-    
+
     try {
       document.querySelectorAll(":root");
       css3Selectors = true;
@@ -1083,6 +1104,77 @@
         };
       }
 
+      /**
+       * Create key-value caches of limited size
+       * @returns {Function(string, Object)} Returns the Object data after storing it on itself with
+       *  property name the (space-suffixed) string and (if the cache is larger than Expr.cacheLength)
+       *  deleting the oldest entry
+       */
+
+      function select( selector, context, results, seed ) {
+        var i, tokens, token, type, find,
+          match = tokenize( selector );
+
+        if ( !seed ) {
+          // Try to minimize operations if there is only one group
+          if ( match.length === 1 ) {
+
+            // Take a shortcut and set the context if the root selector is an ID
+            tokens = match[0] = match[0].slice( 0 );
+            if ( tokens.length > 2 && (token = tokens[0]).type === "ID" &&
+                support.getById && context.nodeType === 9 && documentIsHTML &&
+                Expr.relative[ tokens[1].type ] ) {
+
+              context = ( Expr.find["ID"]( token.matches[0].replace(runescape, funescape), context ) || [] )[0];
+              if ( !context ) {
+                return results;
+              }
+              selector = selector.slice( tokens.shift().value.length );
+            }
+
+            // Fetch a seed set for right-to-left matching
+            i = matchExpr["needsContext"].test( selector ) ? 0 : tokens.length;
+            while ( i-- ) {
+              token = tokens[i];
+
+              // Abort if we hit a combinator
+              if ( Expr.relative[ (type = token.type) ] ) {
+                break;
+              }
+              if ( (find = Expr.find[ type ]) ) {
+                // Search, expanding context for leading sibling combinators
+                if ( (seed = find(
+                  token.matches[0].replace( runescape, funescape ),
+                  rsibling.test( tokens[0].type ) && context.parentNode || context
+                )) ) {
+
+                  // If seed is empty or no tokens remain, we can return early
+                  tokens.splice( i, 1 );
+                  selector = seed.length && toSelector( tokens );
+                  if ( !selector ) {
+                    push.apply( results, seed );
+                    return results;
+                  }
+
+                  break;
+                }
+              }
+            }
+          }
+        }
+
+        // Compile and execute a filtering function
+        // Provide `match` to avoid retokenization if we modified the selector above
+        compile( selector, match )(
+          seed,
+          context,
+          !documentIsHTML,
+          results,
+          rsibling.test( selector )
+        );
+        return results;
+      }
+
       function Sizzle( selector, context, results, seed ) {
         var match, elem, m, nodeType,
           // QSA vars
@@ -1210,77 +1302,6 @@
       classCache = createCache();
       tokenCache = createCache();
       compilerCache = createCache();
-
-      /**
-       * Create key-value caches of limited size
-       * @returns {Function(string, Object)} Returns the Object data after storing it on itself with
-       *  property name the (space-suffixed) string and (if the cache is larger than Expr.cacheLength)
-       *  deleting the oldest entry
-       */
-
-      function select( selector, context, results, seed ) {
-        var i, tokens, token, type, find,
-          match = tokenize( selector );
-
-        if ( !seed ) {
-          // Try to minimize operations if there is only one group
-          if ( match.length === 1 ) {
-
-            // Take a shortcut and set the context if the root selector is an ID
-            tokens = match[0] = match[0].slice( 0 );
-            if ( tokens.length > 2 && (token = tokens[0]).type === "ID" &&
-                support.getById && context.nodeType === 9 && documentIsHTML &&
-                Expr.relative[ tokens[1].type ] ) {
-
-              context = ( Expr.find["ID"]( token.matches[0].replace(runescape, funescape), context ) || [] )[0];
-              if ( !context ) {
-                return results;
-              }
-              selector = selector.slice( tokens.shift().value.length );
-            }
-
-            // Fetch a seed set for right-to-left matching
-            i = matchExpr["needsContext"].test( selector ) ? 0 : tokens.length;
-            while ( i-- ) {
-              token = tokens[i];
-
-              // Abort if we hit a combinator
-              if ( Expr.relative[ (type = token.type) ] ) {
-                break;
-              }
-              if ( (find = Expr.find[ type ]) ) {
-                // Search, expanding context for leading sibling combinators
-                if ( (seed = find(
-                  token.matches[0].replace( runescape, funescape ),
-                  rsibling.test( tokens[0].type ) && context.parentNode || context
-                )) ) {
-
-                  // If seed is empty or no tokens remain, we can return early
-                  tokens.splice( i, 1 );
-                  selector = seed.length && toSelector( tokens );
-                  if ( !selector ) {
-                    push.apply( results, seed );
-                    return results;
-                  }
-
-                  break;
-                }
-              }
-            }
-          }
-        }
-
-        // Compile and execute a filtering function
-        // Provide `match` to avoid retokenization if we modified the selector above
-        compile( selector, match )(
-          seed,
-          context,
-          !documentIsHTML,
-          results,
-          rsibling.test( selector )
-        );
-        return results;
-      }
 
       /**
        * Mark a function for special use by Sizzle
@@ -4103,7 +4124,7 @@
   Dom.prototype.disappear = function () {
     return this.each(function (el) {
       el.style.opacity = "0";
-      el.style.cusor = "default";
+      el.style.cursor = "default";
     });
   };
 
@@ -4113,9 +4134,59 @@
         el.style.opacity = "1";
       } else {
         el.style.opacity = "0";
-        el.style.cusor = "default";
+        el.style.cursor = "default";
       }
     });
+  };
+
+  Dom.prototype.fade = function (inOut, timing) {
+    if (inOut === "in") {
+      this.show();
+    }
+
+    return this.each(function (el) {
+      var time;
+
+      switch(timing) {
+        case "slow":
+          time = 200;
+          break;
+        case "normal":
+          time = 120;
+          break;
+        case "fast":
+          time = 80;
+          break;
+        default:
+          time = time || 120;
+          break;
+      }
+
+      function animate () {
+        var val = 0.3, end = 1;
+
+        if (parseFloat(el.style.opacity) === (inOut === "in" ? 1 : 0)) {
+          clearInterval(win.Hilo.temp.anim);
+        } else {
+          if (inOut === "out") {
+            val = -val;
+            end = 0;
+          }
+
+          el.style.opacity = parseFloat(el.style.opacity || end) + val; 
+        }
+      }
+
+      win.Hilo.temp.anim = setInterval(animate, timing);
+    });
+  };
+
+  Dom.prototype.fadeIn = function (timing) {
+    this.fade("in", timing);
+  };
+
+  Dom.prototype.fadeOut = function (timing) {
+    this.fade("out", timing);
   };
   
   // --------------------------------------------------

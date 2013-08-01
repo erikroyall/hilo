@@ -13,14 +13,12 @@
       - response: Response type "text" or "XML"
       - Event functions
         - callback: fn to be exec. on readystatechange
-        - completed
+        - complete
         - error
-        - abort
+        - timeout
         - success
-        - progress
-        - load
-        - loadStart
-        - loadEnd
+        - notfound
+        - forbidden
       - username
       - password
       - contentType
@@ -40,13 +38,11 @@
       throw new TypeError("url parameter not provided to hilo.ajax");
     }
 
-    config.async = config.async ? config.async : true;
-    config.username = config.username ? config.username : null;
-    config.password = config.password ? config.password : null;
+    config.async = config.async || true;
+    config.username = config.username || null;
+    config.password = config.password || null;
 
-    if(!config.contentType) {
-      config.contentType = "application/x-www-form-urlencoded; charset=UTF-8";
-    }
+    config.contentType = config.contentType || "application/x-www-form-urlencoded; charset=UTF-8";
 
     xhr.onreadystatechange = function () {
       if (config.callback) {
@@ -54,16 +50,42 @@
       }
 
       if (xhr.readyState === 4) {
+        if (config.complete) {
+          config.complete(xhr);
+        }
+        
         switch (xhr.status) {
           case 200:
             if (config.success) {
-              config.success();
+              config.success(xhr.responseText, xhr);
             }
-            
+
+            break;
+          case 404:
+            if (config.notfound) {
+              config.notfound(xhr);
+            }
+
+            break;
+          case 403:
+          case 401:
+            if (config.forbidden) {
+              config.forbidden(xhr);
+            }
+
+            break;
+          case 500:
+          case 400:
+            if (config.error) {
+              config.error();
+            }
+
             break;
         }
       }
     };
+
+    xhr.timeout = config.timeout;
 
     if (config.method.trim().toUpperCase() === "POST") {
       xhr.open(

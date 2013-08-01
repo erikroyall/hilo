@@ -10,10 +10,11 @@
     root[name] = hilo();
   }
 }("Hilo", this, function () {
-  /*jshint -W083, -W040, -W064, -W030 */
+  /*jshint -W083, -W064, -W030*/
 
   // JSHint escapes:
-  //  W083 - Don't make function within a loop
-  //  W040 - Possible script violation (Qwery; thisRef = this)
+  //  W083 - Don't make function within a loop (Evts)
+  //  W064 - Missing new prefix when invoking constructor (Sizzle)
+  //  W030 - Allow expressions
 
   "use strict";
