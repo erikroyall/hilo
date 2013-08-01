@@ -180,7 +180,7 @@
   hilo.temp = {};
 
   // Version info
-  hilo.version = "0.1.0-pre-dev-beta-7";
+  hilo.version = "0.1.0-pre-dev-beta-8";
   
   // --------------------------------------------------
   // Feature Detection
@@ -4195,7 +4195,6 @@
     
   hilo.Dom = Dom.prototype;
   hilo.Test = Test.prototype;
-  hilo.qwery = select.pseudos;
   
   // --------------------------------------------------
   // Set event handler for triggering DOM Evenets
@@ -4208,8 +4207,6 @@
       }
     }
   };
-
-  hilo.select = win.Sizzle || win.qwery || win.Quicksand || undefined;
 
   win.$ = hilo; // Shorthand
 

@@ -1,47 +1,98 @@
-/* Hilo - 0.1.0-pre-dev-beta-5 - 2013-07-14
+/*! 
+ * Hilo - 0.1.0-pre-dev-beta-7 - 2013-07-26
  * http://erikroyall.github.com/hilo/
  * Copyright (c) 2013 Erik Royall and Hilo contributors
  * Licensed under MIT (see LICENSE-MIT) 
  */
 
-window.Hilo = (function () {
+(function (name, root, hilo) {
+  var module = module || false
+    , define = define || false;
+
+  if (typeof module !== 'undefined' && module.exports) {
+    module.exports = hilo;
+  } else if (typeof define === 'function' && define.amd) {
+    define(hilo);
+  } else {
+    root[name] = hilo();
+  }
+}('Hilo', this, function () {
   /*jshint -W083, -W040 */
+
+  // JSHint escapes:
+  //  W083 - Don't make function within a loop
+  //  W040 - Possible script violation (Qwery; thisRef = this)
 
   "use strict";
   
-  var hilo          // Public API
-    , win = window  // Reference to window
-    , doc = document// Reference to document
-    , callbacks = []// Array of funs. to be exec.ed on DOMReady
-    , select        // Private Selector Function
-    , feature       // Feature Detection
-    , browser       // Browser Detection
-    , hiloAjax      // AJAX Func.
-    , createEl      // Create an Element
-    , impEvts       // Array containing imp. evts.
-    , impCss        // Array containing imp. css props.
-    , _i            // Loop helper
-    , Dom           // DOM Manipulation Methods
-    , Test;         // Test class
+  var hilo             // Public API
+    , win = window     // Reference to window
+    , doc = document   // Reference to document
+    , callbacks = []   // Array of functions to be executed on DOMReady
+    , select           // Private Selector Function
+    , feature          // Feature Detection
+    , hiloAjax         // AJAX Func.
+    , impEvts          // Array containing imp. evts.
+    , impCss           // Array containing imp. css props.
+    , _i               // Loop helper
+    , Dom              // DOM Manipulation Methods
+    , Test;            // Test class
 
-  win.temporaryHiloStorageObject = {};
+  /* 
+   * Select elements
+   * 
+   * !selector - Selector {String}
+   * root - Root element {String|HTMLElement} | Whether to cache {Boolean}
+   * e - Root element if cache is specfied {String|HTMLElement} 
+   * 
+   * This function can be used throughout the code
+   * to select elements
+   */
 
-  select = function (selector, root, e) {
+  select = function (selector, root , en) {
     var rt, sel = selector, tempObj;
+
+    /*
+     * Selects elements based on selector and root
+     *
+     * !sel - Selector {String}
+     * root - Root element {String|HTMLElement}
+     */
 
     function get (sel, root) {
       var c, rt;
 
-      rt = root || document;
+      rt = root || doc;
+
+      /*
+       * The main selecting engine. Written by me.
+       *
+       * !sel - Selector {String}
+       * rt - Root element {String|HTMLElement}
+       */
 
       function dom (sel, rt) {
         var els;
 
-        if(sel.split(" ").length === 1 && 
-          sel.split(">").length === 1 && 
-          sel.split(":").length === 1 && 
-          sel.split("+").length === 1) {
-          c = sel.slice(0,1);
+        function isNotComplexSelector(sel) {
+          function h (sel, str) {
+            return sel.split(str).length === 1;
+          }
+
+          return (
+            h(sel, " ") &&
+            h(sel, ">") &&
+            h(sel, ":") &&
+            h(sel, "[") &&
+            h(sel, "]") &&
+            h(sel, "=") &&
+            h(sel, "~") &&
+            h(sel, "?")
+          );
+        }
+
+        if(isNotComplexSelector(sel)) {
+          c = sel.slice(0,1); // Find out first ltr; Useful in next step
           switch(c) {
             case "#":
               els = [rt.getElementById(sel.substr(1,sel.length))];
@@ -50,10 +101,10 @@ window.Hilo = (function () {
               els = rt.getElementsByClassName(sel);
               break;
             case "*":
-              els = document.all;
+              els = rt.getElementsByTagName('*');
               break;
             case "&":
-              els = document.documentElement;
+              els = doc.documentElement;
               break;
             default:
               els = rt.getElementsByTagName(sel);
@@ -73,38 +124,47 @@ window.Hilo = (function () {
       return dom(sel, rt);
     }
 
-    if (typeof root === 'string') {
-
-    } else if (root === true) {
-      tempObj = win.temporaryHiloStorageObject[sel];
-      if (tempObj) {
-        return tempObj;
+    if (root === true) {
+      // The temporary object
+      tempObj = win.Hilo.temp;
+      if (tempObj[sel]) {
+        return tempObj[sel];
       } else {
-        if (typeof e === 'object') {
-          tempObj = get(sel, e);
+        if (typeof en === 'object') {
+          tempObj[sel] = get(sel, en);
         } else {
-          tempObj = get(sel);
+          tempObj[sel] = get(sel);
         }
         
-        return tempObj;
+        return tempObj[sel];
       }
+    } else if (typeof root === 'string') {
+      rt = select(root, doc)[0];
     } else {
-      rt = document;
+      rt = doc;
     }
 
     return get(sel, rt);
   };
 
-  hilo = function (input, root, e) {
+  /*
+   * Local copy of the one and only global
+   */
+
+  hilo = function (input, root, en) {
+    if (!input) {
+      return win.Hilo;
+    }
+
     if (typeof input === 'string') {
-      return new Dom(select(input, root, e));
+      return new Dom(select(input, root, en), input);
     } else if (typeof input === 'function') { // Function
       if (document.readyState === 'complete') {
         input();
       } else {
         callbacks.push(input);
       }
-    } else if (input.length) { // DOM Node List / Hilo DOM Object
+    } else if (input.length) { // DOM Node List | Hilo DOM Object
       return new Dom(input);
     } else { // DOM Node
       input = [input];
@@ -112,150 +172,501 @@ window.Hilo = (function () {
     }
   };
 
-  hilo.version = '0.1.0-pre-dev-beta-4';
+  // Enable Selector Caching
+  hilo.temp = {};
+
+  // Version info
+  hilo.version = '0.1.0-pre-dev-beta-7';
+  
+  // --------------------------------------------------
+  // Feature Detection
+  // --------------------------------------------------
 
   feature = (function () {
-    var i = document.createElement("input");
+    var c = function (tagName) {
+        return doc.createElement(tagName);
+      }
+      , i = c("input")
+      , d = c("div")
+      , cn = c("canvas")
+      , fr = c("iframe")
+      , is = function (attr, val) {
+        return i.setAttribute (attr, val);
+      }
+      , a = c("audio")
+      , s = c("span")
+      , v = c("video")
+      , xr = new XMLHttpRequest();
 
     return {
-      applicationcache: (function () {
-        return !!window.applicationCache;
+
+      // addEventListener()
+
+      addEventListener: (function () {
+        return typeof win.addEventListener === 'function';
       }()),
-      audiopreload: (function () {
-        return 'preload' in document.createElement('audio');
+
+      // Application Cache (or Offline Web Apps)
+      
+      applicationCache: (function () {
+        return !!win.applicationCache;
       }()),
+
+      // Audio (tag)
+      
+      audio: (function () {
+        return !!a.canPlayType;
+      }()),
+
+      // Preload audio (hmm.. background music?)
+      
+      audioPreload: (function () {
+        return 'preload' in a;
+      }()),
+
+      // Audio Types
+      
+      audioTypes: {
+
+        // MP3 audio format
+
+        mp3: (function () {
+          return !!(a.canPlayType && a.canPlayType('audio/mpeg;').replace(/no/, ''));
+        }()),
+
+        // Vorbis audio format
+        
+        vorbis: (function () {
+          return !!(a.canPlayType && a.canPlayType('audio/ogg; codecs="vorbis"').replace(/no/, ''));
+        }()),
+
+        // MS WAV audio format
+        
+        wav: (function () {
+          return !!(a.canPlayType && a.canPlayType('audio/wav; codecs="1"').replace(/no/, ''));
+        }()),
+
+        // AAC audio format
+        
+        aac: (function () {
+          return !!(a.canPlayType && a.canPlayType('audio/mp4; codecs="mp4a.40.2"').replace(/no/, ''));
+        }())
+      },
+
+      // Canvas API
+      
       canvas: (function () {
-        return !!document.createElement('canvas').getContext;
+        return !!cn.getContext;
       }()),
+
+      // Canvas Text
+      
+      canvasText: (function () {
+        return !!cn.getContext && typeof cn.getContext('2d').fillText === 'function';
+      }()),
+
+      // classList prop. in HTMLElement
+      
       classList: (function () {
-        return 'classList' in document.createElement('p');
+        return 'classList' in s;
       }()),
+
+      // Command
+      
+      command: (function () {
+        return 'type' in c("command");
+      }()),
+
+      // Form Constraint Validation
+      
+      consval: (function () {
+        return 'noValidate' in c("form");
+      }()),
+
+      // contentEditable
+      
+      contentEditable: (function () {
+        return 'isContentEditable' in s;
+      }()),
+
+      // Datalist (tag)
+      
+      datalist: (function () {
+        return 'options' in c("datalist");
+      }()),
+
+      // Details (tag)
+      
+      details: (function () {
+        return 'open' in c("details");
+      }()),
+
+      // Drag & Drop
+      
+      dragdrop: (function () {
+        return 'draggable' in s;
+      }()),
+
+      // ECMAScript 6
+      
       es6: (function () {
         return typeof String.prototype.contains === 'function';
       }()),
+
+      // File system API
+      
+      fileapi: (function () {
+        return typeof FileReader !== 'undefined';
+      }()),
+
+      // gen5
+      
+      gen5: (function () {
+        return parseInt(win.navigator.appVersion, 10) === 5;
+      }()),
+
+      // Geolocation
+      
       geolocation: (function () {
-        return 'geolocation' in window.navigator;
+        return 'geolocation' in win.navigator;
       }()),
+
+      // window.getSelection() method
+
+      getSelection: (function () {
+        return typeof win.getSelection === 'function';
+      }()),
+
+      // History API
+      
       history: (function () {
-        return !!(window.history && history.pushState);
+        return !!(win.history && history.pushState);
       }()),
+
+      // IFrame
+      
+      iframe: {
+        sandbox: (function () {
+          return 'sandbox' in fr;
+        }()),
+        srdoc: (function () {
+          return 'srcdoc' in fr;
+        }())
+      },
+
+      // IndexedDB (use this instead of WebSQL)
+      
       indexeddb: (function () {
-        return !!(window.indexedDB && window.IDBKeyRange && window.IDBTransaction);
+        return !!(win.indexedDB && win.IDBKeyRange && win.IDBTransaction);
       }()),
+
+      // Input
+      
       input: {
+
+        // Input Auto Focus
+        
         autofocus: (function () {
           return 'autofocus' in i;
         }()),
+
+        // Placeholder
+        
         placeholder: (function () {
           return 'placeholder' in i;
         }()),
+
+        // Input Types (they are pretty self-explanatory)
+        
         type: {
           color: (function () {
-            i.setAttribute('type', 'color');
+            is('type', 'color');
             return i.type !== 'text';
           }()),
           date: (function () {
-            i.setAttribute('type', 'date');
+            is('type', 'date');
             return i.type !== 'text';
           }()),
           datetime: (function () {
-            i.setAttribute('type', 'datetime');
+            is('type', 'datetime');
             return i.type !== 'text';
           }()),
           datetimeLocal: (function () {
-            i.setAttribute('type', 'datetime-local');
+            is('type', 'datetime-local');
             return i.type !== 'text';
           }()),
           email: (function () {
-            i.setAttribute('type', 'email');
+            is('type', 'email');
             return i.type !== 'text';
           }()),
           month: (function () {
-            i.setAttribute('type', 'month');
+            is('type', 'month');
             return i.type !== 'text';
           }()),
           number: (function () {
-            i.setAttribute('type', 'number');
+            is('type', 'number');
             return i.type !== 'text';
           }()),
           range: (function () {
-            i.setAttribute('type', 'range');
+            is('type', 'range');
             return i.type !== 'text';
           }()),
           search: (function () {
-            i.setAttribute('type', 'search');
+            is('type', 'search');
             return i.type !== 'text';
           }()),
           tel: (function () {
-            i.setAttribute('type', 'tel');
+            is('type', 'tel');
             return i.type !== 'text';
           }()),
           time: (function () {
-            i.setAttribute('type', 'time');
+            is('type', 'time');
             return i.type !== 'text';
           }()),
           week: (function () {
-            i.setAttribute('type', 'week');
+            is('type', 'week');
             return i.type !== 'text';
           }())
         }
       },
-      localstorage: (function () {
+
+      // Local Storage
+      
+      localStorage: (function () {
         try {
-          return 'localStorage' in window && window['localStorage'] !== null && !!window.localStorage.setItem;
+          return 'localStorage' in win && win['localStorage'] !== null && !!win.localStorage.setItem;
         } catch(e){
           return false;
         }
       }()),
+
+      // Meter (tag)
+      
+      meter: (function () {
+        return 'value' in c("meter");
+      }()),
+
+      // Microdata
+      
       microdata: (function () {
-        return 'getItems' in document;
+        return 'getItems' in doc;
       }()),
+
+      // Offline (App Cache)
+      
+      offline: (function () {
+        return !!win.applicationCache;
+      }()),
+
+      // Output (tag)
+      
+      output: (function () {
+        return 'value' in c("output");
+      }()),
+
+      // Progress (tag)
+
+      progress: (function () {
+        return 'value' in c("progress");
+      }()),
+
+      // querySelector & querySelectorAll
+
+      qsa: (function () {
+        return 'querySelector' in win && 'querySelectorAll' in win;
+      }()),
+
+      // requestAnimationFrame
+
+      requestAnimationFrame: (function () {
+        if (typeof requestAnimationFrame === 'function') {
+          return true;
+        } else if (typeof msRequestAnimationFrame === 'function') {
+          return 'ms';
+        } else if (typeof webkitRequestAnimationFrame === 'function') {
+          return 'webkit';
+        } else if (typeof mozRequestAnimationFrame === 'function') {
+          return 'moz';
+        } else {
+          return false;
+        }
+      }()),
+
+      // Server-sent Events
+
+      serverEvt: (function () {
+        return typeof EventSource !== 'undefined';
+      }()),
+
+      // Session Storage
+
+      sessionStorage: (function () {
+        try {
+          return 'sessionStorage' in win && win['sessionStorage'] !== null;
+        } catch(e) {
+          return false;
+        }
+      }()),
+
+      // Modal Dialog (showModalDialog)
+
+      showModalDialog: (function () {
+        return typeof win.showModalDialog === "function";
+      }()),
+
+      // SVG (Scalable Vector Graphics)
+      svg: (function () {
+        return !!(doc.createElementNS && doc.createElementNS('http://www.w3.org/2000/svg', 'svg').createSVGRect);
+      }()),
+
+      // SVG in text/html
+
+      svginhtml:(function () {
+        d.innerHTML = '<svg></svg>';
+        return !!(win.SVGSVGElement && d.firstChild instanceof win.SVGSVGElement);
+      }()),
+
+      // Template (tag)
+
       template: (function () {
-        return 'content' in document.createElement('template');
+        return 'content' in c('template');
       }()),
+
+      // Time (tag)
+
+      time: (function () {
+        return 'datetime' in c("time");
+      }()),
+
+      // Undo (not just Ctrl + Z)
+
+      undo: (function () {
+        return typeof UndoManager !== 'undefined';
+      }()),
+
+      // Video
+
       video: (function () {
         try {
-          return !!document.createElement('video').canPlayType;
+          return !!v.canPlayType;
         } catch (e) {
           return false;
         }
       }()),
-      h264: (function () {
-        var v = document.createElement("video");
-        try {
-          return v.canPlayType('video/mp4; codecs="avc1.42E01E, mp4a.40.2"');
-        } catch (e) {
-          return false;
-        }
+
+      // Video Captions
+
+      videoCaptions: (function () {
+        return 'src' in c("track");
       }()),
-      webm: (function () {
-        var v = document.createElement("video");
-        try {
-          return v.canPlayType('video/webm; codecs="vp8, vorbis"');
-        } catch (e) {
-          return false;
-        }
+
+      // Video Formats
+
+      videoFormats: {
+
+        // H264 Video Format (MP4)
+
+        h264: (function () {
+          try {
+            return v.canPlayType('video/mp4; codecs="avc1.42E01E, mp4a.40.2"');
+          } catch (e) {
+            return false;
+          }
+        }()),
+
+        // WebM Video Format
+
+        webm: (function () {
+          try {
+            return v.canPlayType('video/webm; codecs="vp8, vorbis"');
+          } catch (e) {
+            return false;
+          }
+        }()),
+
+        // OGG Theora Video Format
+
+        ogg: (function () {
+          try {
+            return v.canPlayType('video/ogg; codecs="theora, vorbis"');
+          } catch (e) {
+            return false;
+          }
+        }())
+      },
+
+      // Video posters
+
+      videoPoster: (function () {
+        return 'poster' in c("video");
       }()),
-      ogg: (function () {
-        var v = document.createElement("video");
-        try {
-          return v.canPlayType('video/ogg; codecs="theora, vorbis"');
-        } catch (e) {
-          return false;
-        }
+
+      // Web Audio API (NOT the <audio> tag)
+
+      webAudio: (function () {
+        return !!(win.webkitAudioContext || win.AudioContext);
       }()),
-      webaudio: (function () {
-        return !!(window.webkitAudioContext || window.AudioContext);
+
+      // WebSockets
+
+      webSockets: (function () {
+        return !!win.webSocket;
       }()),
-      webworkers: (function () {
-        return !!window.Worker;
-      }())
+
+      // WebSQL (a deprecated specification; use IndexedDB instead)
+
+      websql: (function () {
+        return !!win.openDatabase;
+      }()),
+
+      // Web Workers
+
+      webWorkers: (function () {
+        return !!win.Worker;
+      }()),
+
+      // Widgets
+
+      widgets: (function () {
+        return typeof widget !== 'undefined';
+      }()),
+
+      // Cross-document messaging
+
+      xdocmsg: (function () {
+        return !!win.postMessage;
+      }()),
+
+      // XML HTTP Request
+
+      xhr: {
+
+        // Cross-domain requests
+
+        xdr: (function () {
+          return 'withCredentials' in xr;
+        }()),
+
+        // Send as form data
+
+        formdata: (function () {
+          return !!win.FormData;
+        }()),
+
+        // Upload progress events
+
+        upe: (function () {
+          return 'upload' in xr;
+        }())
+      }
     };
   }());
 
   hilo.feature = feature;
   
-  browser = {};
+  // --------------------------------------------------
+  // Testing
+  // --------------------------------------------------
 
   hilo.test = function (con) {
     return new Test(con);
@@ -268,6 +679,10 @@ window.Hilo = (function () {
     }
   };
   
+  // --------------------------------------------------
+  // Test Comparisions
+  // --------------------------------------------------
+
   Test.prototype.ifEquals = function (tw) {
     var val = this.con === tw;
     return this.neg ? !val : val;
@@ -286,7 +701,38 @@ window.Hilo = (function () {
     var val = this.con === tw;
     return this.neg ? !val : val;
   };
+
   
+  // --------------------------------------------------
+  // String Shims
+  // --------------------------------------------------
+
+  // http://es5.github.com/#x15.5.4.20
+
+  (function () {
+    var ws = "\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003" +
+      "\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028" +
+      "\u2029\uFEFF";
+
+    if(!String.prototype.trim) {
+      String.prototype.trim = function trim() {
+        ws = "[" + ws + "]";
+
+        var trimBeginRegexp = new RegExp("^" + ws + ws + "*"),
+          trimEndRegexp = new RegExp(ws + ws + "*$");
+
+        if (this === void 0 || this === null) {
+          throw new TypeError("can't convert "+this+" to object");
+        }
+        return String(this).replace(trimBeginRegexp, "").replace(trimEndRegexp, "");
+      };
+    }
+  }());
+
+  // --------------------------------------------------
+  // Hilo AJAX
+  // --------------------------------------------------
+
   hiloAjax = function (config) {
       
     /*
@@ -297,7 +743,7 @@ window.Hilo = (function () {
       - async: Whether to perform an asynchronous request (default: true)
       - response: Response type "text" or "XML"
       - Event functions
-        - callback: The function to be executed each time onreadystatechange event is triggered
+        - callback: fn to be exec. on readystatechange
         - completed
         - error
         - abort
@@ -315,10 +761,10 @@ window.Hilo = (function () {
     
     var xhr;
 
-    if (window.XMLHttpRequest) {
-      xhr = new window.XMLHttpRequest();
-    } else if (window.ActiveXObject) {
-      xhr = new window.ActiveXObject('Microsoft.XMLHTTP');
+    if (win.XMLHttpRequest) {
+      xhr = new win.XMLHttpRequest();
+    } else if (win.ActiveXObject) {
+      xhr = new win.ActiveXObject('Microsoft.XMLHTTP');
     }
 
     if (!config.url) {
@@ -337,30 +783,106 @@ window.Hilo = (function () {
       if (config.callback) {
         config.callback(xhr);
       }
+
+      if (xhr.readyState === 4) {
+        switch (xhr.status) {
+          case 200:
+            if (config.success) {
+              config.success();
+            }
+            
+            break;
+        }
+      }
     };
 
-    if (config.method === 'POST') {
-      xhr.open('POST', config.url, config.async, config.username, config.password);
+    if (config.method.trim().toUpperCase() === 'POST') {
+      xhr.open(
+        'POST',
+        config.url,
+        config.async,
+        config.username,
+        config.password
+      );
       xhr.send(config.data);
+    } else if (config.method.trim().toUpperCase() === 'GET') {
+      xhr.open(
+        'GET',
+        config.url + (config.data ? "+" + config.data : ''),
+        config.async,
+        config.username,
+        config.password
+      );
+      xhr.send();
     } else {
-      xhr.open('GET', config.url + (config.data ? "+" + config.data : ''), config.async, config.username, config.password);
+      xhr.open(
+        config.method.trim().toUpperCase(),
+        config.url + (config.data ? "+" + config.data : ''),
+        (config.async ? config.async: true),
+        (config.username ? config.username : null),
+        (config.password ? config.password : null)
+      );
       xhr.send();
     }
   };
 
   hilo.ajax = hiloAjax;
   
-  Dom = function (els) {
+  // --------------------------------------------------
+  // Hilo DOM
+  // --------------------------------------------------
+
+  // -------------------------
+  // Dom Class (private)
+  // -------------------------
+  // 
+  // The main DOM Class.
+  //
+  // Note: This class is accessible inside
+  // the source code only and is not mutable
+  // from outside the code
+  // 
+  // new Dom ( els )
+  //   els (NodeList) : An array of elements to be selected
+  //
+  // Examples:
+  //
+  // new Dom (document.querySelectorAll(p:first-child))
+  // new Dom ([document.createElement('div')])
+  // new Dom ([document.getElementByid('box')])
+  // new Dom (document.getElementsByClassName('hidden'))
+  // new Dom (document.getElementsByTagName('mark'))
+  //
+
+  Dom = function (els, sel) {
     var _i, _l;
 
-    for (_i = 0, _l = els.length; _i < _l; _i+=1) {
+    // Note that `this` is an object and'
+    // NOT an Array
+
+    // Loop thorugh the NodeList and set
+    // this[index] for els[index]
+
+    for (_i = 0, _l = els.length; _i < _l; _i += 1) {
       this[_i] = els[_i];
     }
 
+    // Useful for looping through as ours
+    // is an object and not an array
+
     this.length = els.length;
+
+    // Know what selector is used to select
+    // the elements
+
+    this.sel = sel;
   };
 
-  createEl = function (tagName, attrs) {
+  Dom.prototype = Array.prototype;
+
+  // Create an element and return it
+
+  hilo.create = function (tagName, attrs) {
     var el = new Dom([document.createElement(tagName)]), key;
 
     if (attrs) {
@@ -383,456 +905,47 @@ window.Hilo = (function () {
 
     return el;
   };
-
-  hilo.create = createEl;
   
-  /*!
-   * Qwery - A Blazing Fast query selector engine
-   * https://github.com/ded/qwery
-   * copyright Dustin Diaz 2012
-   * MIT License
-   */
-
-  select = (function () {
-    var html = doc.documentElement
-      , byClass = 'getElementsByClassName'
-      , byTag = 'getElementsByTagName'
-      , qSA = 'querySelectorAll'
-      , useNativeQSA = 'useNativeQSA'
-      , tagName = 'tagName'
-      , nodeType = 'nodeType'
-      , select // main select() method, assign later
-
-      , id = /#([\w\-]+)/
-      , clas = /\.[\w\-]+/g
-      , idOnly = /^#([\w\-]+)$/
-      , classOnly = /^\.([\w\-]+)$/
-      , tagOnly = /^([\w\-]+)$/
-      , tagAndOrClass = /^([\w]+)?\.([\w\-]+)$/
-      , splittable = /(^|,)\s*[>~+]/
-      , normalizr = /^\s+|\s*([,\s\+\~>]|$)\s*/g
-      , splitters = /[\s\>\+\~]/
-      , splittersMore = /(?![\s\w\-\/\?\&\=\:\.\(\)\!,@#%<>\{\}\$\*\^'"]*\]|[\s\w\+\-]*\))/
-      , specialChars = /([.*+?\^=!:${}()|\[\]\/\\])/g
-      , simple = /^(\*|[a-z0-9]+)?(?:([\.\#]+[\w\-\.#]+)?)/
-      , attr = /\[([\w\-]+)(?:([\|\^\$\*\~]?\=)['"]?([ \w\-\/\?\&\=\:\.\(\)\!,@#%<>\{\}\$\*\^]+)["']?)?\]/
-      , pseudo = /:([\w\-]+)(\(['"]?([^()]+)['"]?\))?/
-      , easy = new RegExp(idOnly.source + '|' + tagOnly.source + '|' + classOnly.source)
-      , dividers = new RegExp('(' + splitters.source + ')' + splittersMore.source, 'g')
-      , tokenizr = new RegExp(splitters.source + splittersMore.source)
-      , chunker = new RegExp(simple.source + '(' + attr.source + ')?' + '(' + pseudo.source + ')?')
-
-      , walker = {
-        ' ': function (node) {
-          return node && node !== html && node.parentNode;
-        }
-      , '>': function (node, contestant) {
-          return node && node.parentNode === contestant.parentNode && node.parentNode;
-        }
-      , '~': function (node) {
-          return node && node.previousSibling;
-        }
-      , '+': function (node, contestant, p1, p2) {
-          if (!node) {
-            return false;
-          }
-
-          return (p1 = previous(node)) && (p2 = previous(contestant)) && p1 === p2 && p1;
-        }
-      }
-      , classCache
-      , cleanCache
-      , attrCache
-      , tokenCache
-      , isAncestor
-      , getAttr
-      , hasByClass
-      , hasQSA
-      , selectQSA
-      , selectNonNative
-      , configure;
-
-    function Cache() {
-      this.c = {};
-    }
-    Cache.prototype = {
-      g: function (k) {
-        return this.c[k] || undefined;
-      }
-    , s: function (k, v, r) {
-        v = r ? new RegExp(v) : v;
-        return (this.c[k] = v);
-      }
-    };
-
-    classCache = new Cache();
-    cleanCache = new Cache();
-    attrCache = new Cache();
-    tokenCache = new Cache();
-
-    function classRegex(c) {
-      return classCache.g(c) || classCache.s(c, '(^|\\s+)' + c + '(\\s+|$)', 1);
-    }
-    // not quite as fast as inline loops in older browsers so don't use liberally
-    function each(a, fn) {
-      var i = 0, l = a.length;
-      for (; i < l; i++) {
-        fn(a[i]);
-      }
-    }
-    function flatten(ar) {
-      for (var r = [], i = 0, l = ar.length; i < l; ++i) {
-        if (arrayLike(ar[i])) {
-          r = r.concat(ar[i]);
-        } else {
-          r[r.length] = ar[i];
-        }
-      }
-      return r;
-    }
-    function arrayify(ar) {
-      var i = 0, l = ar.length, r = [];
-      for (; i < l; i++) {
-        r[i] = ar[i];
-      }
-      return r;
-    }
-    function previous(n) {
-      while (n = n.previousSibling) {
-        if (n[nodeType] === 1) {
-          break;
-        }
-      }
-      return n;
-    }
-    function q(query) {
-      return query.match(chunker);
-    }
-    // called using `this` as element and arguments from regex group results.
-    // given => div.hello[title="world"]:foo('bar')
-    // div.hello[title="world"]:foo('bar'), div, .hello, [title="world"], title, =, world, :foo('bar'), foo, ('bar'), bar]
-    function interpret(whole, tag, idsAndClasses, wholeAttribute, attribute, qualifier, value, wholePseudo, pseudo, wholePseudoVal, pseudoVal) {
-      var i, m, k, o, classes, thisRef = this;
-      if (thisRef[nodeType] !== 1) {
-        return false;
-      }
-      if (tag && tag !== '*' && thisRef[tagName] && thisRef[tagName].toLowerCase() !== tag) {
-        return false;
-      }
-      if (idsAndClasses && (m = idsAndClasses.match(id)) && m[1] !== thisRef.id) {
-        return false;
-      }
-      if (idsAndClasses && (classes = idsAndClasses.match(clas))) {
-        for (i = classes.length; i--;) {
-          if (!classRegex(classes[i].slice(1)).test(thisRef.className)) {
-            return false;
-          }
-        }
-      }
-      if (pseudo && qwery.pseudos[pseudo] && !qwery.pseudos[pseudo](thisRef, pseudoVal)) {
-        return false;
-      }
-      if (wholeAttribute && !value) { // select is just for existance of attrib
-        o = thisRef.attributes;
-        for (k in o) {
-          if (Object.prototype.hasOwnProperty.call(o, k) && (o[k].name || k) === attribute) {
-            return thisRef;
-          }
-        }
-      }
-      if (wholeAttribute && !checkAttr(qualifier, getAttr(thisRef, attribute) || '', value)) {
-        // select is for attrib equality
-        return false;
-      }
-      return thisRef;
-    }
-    function clean(s) {
-      return cleanCache.g(s) || cleanCache.s(s, s.replace(specialChars, '\\$1'));
-    }
-    function checkAttr(qualify, actual, val) {
-      switch (qualify) {
-      case '=':
-        return actual === val;
-      case '^=':
-        return actual.match(attrCache.g('^=' + val) || attrCache.s('^=' + val, '^' + clean(val), 1));
-      case '$=':
-        return actual.match(attrCache.g('$=' + val) || attrCache.s('$=' + val, clean(val) + '$', 1));
-      case '*=':
-        return actual.match(attrCache.g(val) || attrCache.s(val, clean(val), 1));
-      case '~=':
-        return actual.match(attrCache.g('~=' + val) || attrCache.s('~=' + val, '(?:^|\\s+)' + clean(val) + '(?:\\s+|$)', 1));
-      case '|=':
-        return actual.match(attrCache.g('|=' + val) || attrCache.s('|=' + val, '^' + clean(val) + '(-|$)', 1));
-      }
-      return 0;
-    }
-    // given a selector, first check for simple cases then collect all base candidate matches and filter
-    function _qwery(selector, _root) {
-      var r = [], ret = [], i, l, m, token, els, intr, item, root = _root
-        , tokens = tokenCache.g(selector) || tokenCache.s(selector, selector.split(tokenizr))
-        , dividedTokens = selector.match(dividers);
-
-      if (!tokens.length) {
-        return r;
-      }
-
-      token = (tokens = tokens.slice(0)).pop(); // copy Cached tokens, take the last one
-      if (tokens.length && (m = tokens[tokens.length - 1].match(idOnly))) {
-        root = byId(_root, m[1]);
-      }
-      if (!root) {
-        return r;
-      }
-
-      intr = q(token);
-      // collect base candidates to filter
-      els = root !== _root && root[nodeType] !== 9 && dividedTokens && /^[+~]$/.test(dividedTokens[dividedTokens.length - 1]) ?
-        (function (r) {
-          while (root = root.nextSibling) {
-            return root[nodeType] === 1 && (intr[1] ? intr[1] === root[tagName].toLowerCase() : 1) && (r[r.length] = root);
-          }
-          return r;
-        }([])) :
-        root[byTag](intr[1] || '*');
-      // filter elements according to the right-most part of the selector
-      for (i = 0, l = els.length; i < l; i++) {
-        if (item = interpret.apply(els[i], intr)) {
-          r[r.length] = item;
-        }
-      }
-      if (!tokens.length) {
-        return r;
-      }
-
-      // filter further according to the rest of the selector (the left side)
-      each(r, function (e) {
-        if (ancestorMatch(e, tokens, dividedTokens)) {
-          ret[ret.length] = e;
-        }
-      });
-
-      return ret;
-    }
-    // compare element to a selector
-    function is(el, selector, root) {
-      if (isNode(selector)) {
-        return el === selector;
-      }
-      if (arrayLike(selector)) {
-        return !!~flatten(selector).indexOf(el); // if selector is an array, is el a member?
-      }
-
-      var selectors = selector.split(','), tokens, dividedTokens;
-      while (selector = selectors.pop()) {
-        tokens = tokenCache.g(selector) || tokenCache.s(selector, selector.split(tokenizr));
-        dividedTokens = selector.match(dividers);
-        tokens = tokens.slice(0); // copy array
-        if (interpret.apply(el, q(tokens.pop())) && (!tokens.length || ancestorMatch(el, tokens, dividedTokens, root))) {
-          return true;
-        }
-      }
-      return false;
-    }
-    // given elements matching the right-most part of a selector, filter out any that don't match the rest
-    function ancestorMatch(el, tokens, dividedTokens, root) {
-      var cand;
-      // recursively work backwards through the tokens and up the dom, covering all options
-      function crawl(e, i, p) {
-        while (p = walker[dividedTokens[i]](p, e)) {
-          if (isNode(p) && (interpret.apply(p, q(tokens[i])))) {
-            if (i) {
-              if (cand = crawl(p, i - 1, p)) {
-                return cand;
-              }
-            } else {
-              return p;
-            }
-          }
-        }
-      }
-      return (cand = crawl(el, tokens.length - 1, el)) && (!root || isAncestor(cand, root));
-    }
-    function isNode(el, t) {
-      return el && typeof el === 'object' && (t = el[nodeType]) && (t === 1 || t === 9);
-    }
-    function uniq(ar) {
-      var a = [], i, j;
-      o:
-      for (i = 0; i < ar.length; ++i) {
-        for (j = 0; j < a.length; ++j) {
-          if (a[j] === ar[i]) {
-            continue o;
-          }
-        }
-        a[a.length] = ar[i];
-      }
-      return a;
-    }
-    function arrayLike(o) {
-      return (typeof o === 'object' && isFinite(o.length));
-    }
-    function normalizeRoot(root) {
-      if (!root) {
-        return doc;
-      }
-      if (typeof root === 'string') {
-        return qwery(root)[0];
-      }
-      if (!root[nodeType] && arrayLike(root)) {
-        return root[0];
-      }
-
-      return root;
-    }
-    function byId(root, id, el) {
-      // if doc, query on it, else query the parent doc or if a detached fragment rewrite the query and run on the fragment
-      return root[nodeType] === 9 ? root.getElementById(id) : root.ownerDocument &&
-          (((el = root.ownerDocument.getElementById(id)) && isAncestor(el, root) && el) ||
-            (!isAncestor(root, root.ownerDocument) && select('[id="' + id + '"]', root)[0]));
-    }
-    function qwery(selector, _root) {
-      var m, el, root = normalizeRoot(_root);
-
-      // easy, fast cases that we can dispatch with simple DOM calls
-      if (!root || !selector) {
-        return [];
-      }
-      if (selector === window || isNode(selector)) {
-        return !_root || (selector !== window && isNode(root) && isAncestor(selector, root)) ? [selector] : [];
-      }
-      if (selector && arrayLike(selector)) {
-        return flatten(selector);
-      }
-      if (m = selector.match(easy)) {
-        if (m[1]) {
-          return (el = byId(root, m[1])) ? [el] : [];
-        }
-        if (m[2]) {
-          return arrayify(root[byTag](m[2]));
-        }
-        if (hasByClass && m[3]) {
-          return arrayify(root[byClass](m[3]));
-        }
-      }
-
-      return select(selector, root);
-    }
-    // where the root is not document and a relationship selector is first we have to
-    // do some awkward adjustments to get it to work, even with qSA
-    function collectSelector(root, collector) {
-      return function (s) {
-        var oid, nid;
-        if (splittable.test(s)) {
-          if (root[nodeType] !== 9) {
-            // make sure the el has an id, rewrite the query, set root to doc and run it
-            if (!(nid = oid = root.getAttribute('id'))) {
-              root.setAttribute('id', nid = '__qwerymeupscotty');
-            }
-            s = '[id="' + nid + '"]' + s; // avoid byId and allow us to match context element
-            collector(root.parentNode || root, s, true);
-            return oid || root.removeAttribute('id');
-          }
-          return;
-        }
-        return s.length && collector(root, s, false);
-      };
-    }
-    isAncestor = 'compareDocumentPosition' in html ?
-      function (element, container) {
-        return (container.compareDocumentPosition(element) & 16) === 16;
-      } : 'contains' in html ?
-      function (element, container) {
-        container = container[nodeType] === 9 || container === window ? html : container;
-        return container !== element && container.contains(element);
-      } :
-      function (element, container) {
-        while (element = element.parentNode) {
-          if (element === container) {
-            return 1;
-          }
-        }
-        return 0;
-      };
-    getAttr = (function () {
-      // detect buggy IE src/href getAttribute() call
-      var e = doc.createElement('p');
-      return ((e.innerHTML = '<a href="#x">x</a>') && e.firstChild.getAttribute('href') !== '#x') ?
-        function (e, a) {
-          return a === 'class' ? e.className : (a === 'href' || a === 'src') ?
-            e.getAttribute(a, 2) : e.getAttribute(a);
-        } :
-        function (e, a) { return e.getAttribute(a); };
-    }());
-    hasByClass = !!doc[byClass];
-      // has native qSA support
-    hasQSA = doc.querySelector && doc[qSA];
-      // use native qSA
-    selectQSA = function (selector, root) {
-      var result = [], ss, e;
-      try {
-        if (root[nodeType] === 9 || !splittable.test(selector)) {
-          // most work is done right here, defer to qSA
-          return arrayify(root[qSA](selector));
-        }
-        // special case where we need the services of `collectSelector()`
-        each(ss = selector.split(','), collectSelector(root, function (ctx, s) {
-          e = ctx[qSA](s);
-          if (e.length === 1) {
-            result[result.length] = e.item(0);
-          }
-          else if (e.length) {
-            result = result.concat(arrayify(e));
-          }
-        }));
-        return ss.length > 1 && result.length > 1 ? uniq(result) : result;
-      } catch (ex) { }
-      return selectNonNative(selector, root);
-    };
-    // no native selector support
-    selectNonNative = function (selector, root) {
-      var result = [], items, m, i, l, r, ss;
-      selector = selector.replace(normalizr, '$1');
-      if (m = selector.match(tagAndOrClass)) {
-        r = classRegex(m[2]);
-        items = root[byTag](m[1] || '*');
-        for (i = 0, l = items.length; i < l; i++) {
-          if (r.test(items[i].className)) {
-            result[result.length] = items[i];
-          }
-        }
-        return result;
-      }
-      // more complex selector, get `_qwery()` to do the work for us
-      each(ss = selector.split(','), collectSelector(root, function (ctx, s, rewrite) {
-        r = _qwery(s, ctx);
-        for (i = 0, l = r.length; i < l; i++) {
-          if (ctx[nodeType] === 9 || rewrite || isAncestor(r[i], root)) {
-            result[result.length] = r[i];
-          }
-        }
-      }));
-      return ss.length > 1 && result.length > 1 ? uniq(result) : result;
-    };
-    configure = function (options) {
-      // configNativeQSA: use fully-internal selector or native qSA where present
-      if (typeof options[useNativeQSA] !== 'undefined') {
-        select = !options[useNativeQSA] ? selectNonNative : hasQSA ? selectQSA : selectNonNative;
-      }
-    };
-    configure({ useNativeQSA: true });
-    qwery.configure = configure;
-    qwery.uniq = uniq;
-    qwery.is = is;
-    qwery.pseudos = {};
-    return qwery;
-  }());
-  
+  // --------------------------------------------------
   // Helper Functions
+  // --------------------------------------------------
+
+  // -------------------------
+  // .each()
+  // -------------------------
+  // 
+  // Just like .map() but returns the current Dom instance
+  // 
+  // .each ( fn ) 
+  //   fn (function) : The function to be called
+  //
+  // Example:
+  // 
+  // $('p').each (function (el) {
+  //   doSomethingWith(e);
+  // });
+  // 
 
   Dom.prototype.each = function (fn) {
     this.map(fn);
-    return this;
+    return this; // return the current Dom instance
   };
+
+  // -------------------------
+  // .map()
+  // -------------------------
+  // 
+  // Return the results of executing a function on all the selected elements
+  // 
+  // .map( fn )
+  //    fn (function) : The function to be called
+  //
+  // Example:
+  // 
+  // $('div.need-cf').map(function (e) {
+  //   doSomethingWith(e);
+  // });
+  // 
 
   Dom.prototype.map = function (fn) {
     var results = [], _i, _l;
@@ -841,11 +954,74 @@ window.Hilo = (function () {
     }
     return results;
   };
-  
+
+  // -------------------------
+  // .one()
+  // -------------------------
+  // 
+  // .map fn on selected elements and return them based on length
+  //
+
   Dom.prototype.one = function (fn) {
     var m = this.map(fn);
     return m.length > 1 ? m : m[0];
   };
+
+  // -------------------------
+  // .first()
+  // -------------------------
+  // 
+  // Return the results of executing a function on all the selected elements
+  // 
+  // .first( fn )
+  //    fn (function) : The function to be called
+  //
+  // Example:
+  // 
+  // $('div').first(function (e) {
+  //   console.log(e + ' is the first div');
+  // });
+  // 
+
+  Dom.prototype.first = function (fn) {
+    return (this.map(fn))[0];
+  };
+
+  // -------------------------
+  // .next()
+  // -------------------------
+  // 
+  // Return next element siblings of the selected elements
+  // 
+  // .next( )
+  //
+  // Examples:
+  // 
+  // $('div.editor').next().class('next-to-editor')
+  //
+
+  Dom.prototype.next = function () {
+    return this.rel('nextElementSibling');
+  };
+
+  // -------------------------
+  // .filter()
+  // -------------------------
+  // 
+  // Filters the selected elements and returns the
+  // elements that pass the test (or return true)
+  // 
+  // .filter( fn )
+  //    fn (function) : The function to be called
+  // 
+  // Example:
+  // 
+  // Filter to find divs with className hidden
+  // 
+  // $('div').filter(function (el) {
+  //   return el.className.split('hidden').length > 1;
+  // });
+  // 
 
   Dom.prototype.filter = function (fun) {
     var len = this.length >>> 0
@@ -858,7 +1034,7 @@ window.Hilo = (function () {
     {
       if (_i in t)
       {
-        val = t[_i]; // in case fun mutates this
+        val = t[_i];
         if (fun.call(this, val, _i, t)) {
           res.push(val);
         }
@@ -868,44 +1044,120 @@ window.Hilo = (function () {
     return new Dom(res);
   };
 
-  // Element Selections
+  // --------------------------------------------------
+  // Element Selections, etc.
+  // --------------------------------------------------
+
+  // -------------------------
+  // .first()
+  // -------------------------
+  // 
+  // Return the first element in the selected elements
+  // 
+  // .first( )
+  //
+  // Examples:
+  // 
+  // $('p.hidden').first().show()
+  //
 
   Dom.prototype.first = function () {
     return new Dom([this[0]]);
   };
+
+  // -------------------------
+  // .ladt()
+  // -------------------------
+  // 
+  // Return last element in the selected elements
+  // 
+  // .ladt( attr [, value] )
+  //
+  // Examples:
+  // 
+  // $('p.hidden').last().show()
+  //
   
   Dom.prototype.last = function () {
     return new Dom([this[this.length - 1]]);
   };
-  
+
+  // -------------------------
+  // .el()
+  // -------------------------
+  // 
+  // Return nth element in the selected elements
+  // 
+  // .el( place )
+  //   place (number) : A number representing place of element
+  //
+  // Examples:
+  // 
+  // $('p.hidden').el(3).show()
+  //
+
   Dom.prototype.el = function (place) {
     return new Dom([this[place - 1]]);
   };
 
+  // -------------------------
+  // .children()
+  // -------------------------
+  // 
+  // Return nth element in the selected elements
+  // 
+  // .children( )
+  //
+  // Examples:
+  // 
+  // $('p.hidden').el().show()
+  //
+
   Dom.prototype.children = function (sel) {
-    var children = [], _i;
-    if (sel) {
-      return this.each(function (el) {
-        var s = select(sel, el);
-        for (_i = 0; _i < s.length; _i++) {
-          children = children.concat(s[_i]);
-        }
-      });
-    } else {
-      return this.each(function (el) {
-        for (_i = 0; _i < el.children.length; _i++) {
-          children = children.concat(el.children[_i]);
-        }
-      });
-    }
+    var children = [], _i, _l;
+
+    this.each(function (el) {
+      var childNodes = select(sel ? sel : '*', el);
+
+      for (_i = 0, _l = childNodes.length; _i < _l; _i += 1) {
+        children = children.concat(childNodes[_i]);
+      }
+    });
+
     return children;
   };
 
+  // -------------------------
+  // .parent()
+  // -------------------------
+  // 
+  // Return parent of the first selected element
+  // 
+  // .parent( )
+  //
+  // Examples:
+  // 
+  // $('div#editor').parent().hide()
+  //
+
   Dom.prototype.parent = function () {
-    return this.one(function (el) {
+    return this.first(function (el) {
       return new Dom([el.parentElement]);
     });
   };
+
+  // -------------------------
+  // .parents()
+  // -------------------------
+  // 
+  // Return parents of all selected elements
+  // 
+  // .parents( )
+  //
+  // Examples:
+  // 
+  // $('div.editor').parents().hide()
+  //
 
   Dom.prototype.parents = function () {
     var pars = [];
@@ -917,29 +1169,110 @@ window.Hilo = (function () {
     return new Dom(pars);
   };
 
+  // -------------------------
+  // .parent()
+  // -------------------------
+  // 
+  // Return relative of selected elements based
+  // on the relation given
+  // 
+  // .rel( rel )
+  //   rel (string) : The relation between curent and 
+  //
+  // Examples:
+  // 
+  // $('div#editor').parent().hide()
+  //
+
   Dom.prototype.rel = function (sul) {
     var els = [];
 
-    return this.each(function (el) {
+    this.each(function (el) {
       els.push(el[sul]);
     });
+
+    return els;
   };
 
+  // -------------------------
+  // .next()
+  // -------------------------
+  // 
+  // Return next element siblings of the selected elements
+  // 
+  // .next( )
+  //
+  // Examples:
+  // 
+  // $('div.editor').next().class('next-to-editor')
+  //
+
   Dom.prototype.next = function () {
-    this.rel('nextSibling');
+    return this.rel('nextElementSibling');
+  };
+
+  // -------------------------
+  // .prev()
+  // -------------------------
+  // 
+  // Return previous element siblings of the selected elements
+  // 
+  // .prev( )
+  //
+  // Examples:
+  // 
+  // $('div.editor').prev().class('prev-to-editor')
+  //
+
+  Dom.prototype.prev = function () {
+    return this.rel('previousElementSibling');
   };
   
+  // --------------------------------------------------
+  // DOM HTML
+  // --------------------------------------------------
+
+  // -------------------------
+  // .html()
+  // -------------------------
+  // 
+  // Set or return innerHTML of selected elements
+  // 
+  // .html( [htmlCode] )
+  //    htmlCode (string) : The htmlCode to be set
+  //
+  // Examples:
+  // 
+  // $('p:first-child').html('first-p')
+  // var html = $('span').html()
+  // 
+
   Dom.prototype.html = function (htmlCode) {
     if (htmlCode) {
       return this.each(function(el) {
         el.innerHTML = htmlCode;
       });
     } else {
-      return this.one(function(el) {
+      return this.first(function(el) {
         return el.innerHTML;
       });
     }
   };
+
+  // -------------------------
+  // .text()
+  // -------------------------
+  // 
+  // Set or return innerHTML of selected elements
+  // 
+  // .text( [text] )
+  //    text (string) : The text to be set
+  //
+  // Examples:
+  // 
+  // $('p:first-child').text('first-p')
+  // var text = $('span').text()
+  // 
 
   Dom.prototype.text = function (text) {
     if (text) {
@@ -947,17 +1280,45 @@ window.Hilo = (function () {
         el.innerText = text;
       });
     } else {
-      return this.one(function(el) {
+      return this.first(function(el) {
         return el.innerText;
       });
     }
   };
+
+  // -------------------------
+  // .append()
+  // -------------------------
+  // 
+  // Set or return innerHTML of selected elements
+  // 
+  // .append( [html] )
+  //    html (string) : The html to be appended
+  //
+  // Examples:
+  // 
+  // $('p:first-child').append(' - From the first p child')
+  // 
   
   Dom.prototype.append = function (html) {
     return this.each(function (el) {
       el.innerHTML += html;
     });
   };
+
+  // -------------------------
+  // .appendText()
+  // -------------------------
+  // 
+  // Set or return innerHTML of selected elements
+  // 
+  // .appendText( [text] )
+  //    text (string) : The text to be set
+  //
+  // Examples:
+  // 
+  // $('p:first-child').appendText('The same thing here, too.')
+  // 
   
   Dom.prototype.appendText = function (text) {
     return this.each(function (el) {
@@ -965,11 +1326,39 @@ window.Hilo = (function () {
     });
   };
 
+  // -------------------------
+  // .prepend()
+  // -------------------------
+  // 
+  // Set or return innerHTML of selected elements
+  // 
+  // .prepend( [html] )
+  //    html (string) : The html to be prepended
+  //
+  // Examples:
+  // 
+  // $('p:first-child').prepend(' - From the first p child')
+  // 
+
   Dom.prototype.prepend = function (html) {
     return this.each(function (el) {
       el.innerHTML = html + el.innerHTML;
     });
   };
+
+  // -------------------------
+  // .append()
+  // -------------------------
+  // 
+  // Set or return innerHTML of selected elements
+  // 
+  // .append( [html] )
+  //    html (string) : The html to be appended
+  //
+  // Examples:
+  // 
+  // $('p:first-child').append(' - From the first p child')
+  // 
   
   Dom.prototype.value = function (val) {
     if (val) {
@@ -977,205 +1366,455 @@ window.Hilo = (function () {
         el.value = val;
       });
     } else {
-      this.one(function (el) {
+      this.first(function (el) {
         return el.value;
       });
     }
   };
   
+  // --------------------------------------------------
+  // Classes and IDs
+  // --------------------------------------------------
+
+  // -------------------------
+  // .id()
+  // -------------------------
+  // 
+  // Set or return id attribute of selected elements
+  // 
+  // .get()
+  //
+  // Examples:
+  // 
+  // $('p.rect').first().id('square')
+  // 
+
   Dom.prototype.id = function (id) {
     if(id) {
-      return this.each(function(el) {
+
+      // Setting id of only one element because
+      // id is intended to be an unique identifier
+
+      return this.first(function(el) {
         el.id = id;
       });
     } else {
-      this.one(function (el) {
+      return this.first(function (el) {
         return el.id;
       });
     }
   };
 
-  Dom.prototype.addClass = feature.classList === true ? function (className) {
+  // -------------------------
+  // .class()
+  // -------------------------
+  // 
+  // Add, remove or check classes of selected elements
+  // based on action given
+  // 
+  // .class( action, className )
+  //   action (string) : add, remove or has
+  //   className (string|array) : class name or list of class names
+  //
+  // Examples:
+  // 
+  // $('div#editor').parent().hide()
+  //
+
+  Dom.prototype['class'] = feature.classList === true ? function (action, className) {
     return this.each(function (el) {
-      var _i, parts;
+      var _i, parts, contains, res = [];
 
-      if (typeof className === 'string') { // String
+      if (typeof className === 'string') { // A String
         parts = className.split(" ");
 
-        if (parts.length === 1) {
-          if (!el.classList.contains(className)) {
-            el.classList.add(className);
+        if (parts.length === 1) { // String, one class
+          contains = el.classList.contains(className);
+
+          switch (action) {
+            case 'add':
+              if (!contains) {
+                el.classList.add(className);
+              }
+
+              break;
+            case 'remove':
+              if (contains) {
+                el.classList.remove(className);
+              }
+
+              break;
+            case 'has':
+              res = true;
+              break;
+            case 'toggle':
+              for (_i = 0; _i < parts.length; _i += 1) {
+                if (contains) {
+                  el.classList.remove(parts[_i]);
+                } else {
+                  el.classList.add(parts[_i]);
+                }
+              }
+              break;
+            default:
+              throw new TypeError("Unknown value provided as first parameter to .class()");
           }
-        } else {
-          for (_i = 0; _i < parts.length; _i += 1) {
-            if (!el.classList.contains(parts[_i])) {
-              el.classList.add(parts[_i]);
+        } else { // String, many classes
+          contains = function (className) {
+            return el.classList.contains(className);
+          };
+
+          switch (action) {
+            case 'add':
+              for (_i = 0; _i < parts.length; _i += 1) {
+                if (!contains(parts[_i])) {
+                  el.classList.add(parts[_i]);
+                }
+              }
+
+              break;
+            case 'remove':
+              for (_i = 0; _i < parts.length; _i += 1) {
+                if (contains(parts[_i])) {
+                  el.classList.remove(parts[_i]);
+                }
+              }
+
+              break;
+            case 'has':
+              for (_i = 0; _i < parts.length; _i += 1) {
+                res.push(contains(parts[_i]));
+              }
+
+              break;
+            case 'toggle':
+              for (_i = 0; _i < parts.length; _i += 1) {
+                if (contains(parts[_i])) {
+                  el.classList.remove(parts[_i]);
+                } else {
+                  el.classList.add(parts[_i]);
+                }
+              }
+              break;
+            default:
+              throw new TypeError("Unknown value provided as first parameter to .class()");
+          }
+        }
+      } else if (className.length) { // Array
+        parts = className;
+
+        contains = function (className) {
+          return el.classList.contains(className);
+        };
+
+        switch (action) {
+          case 'add':
+            for (_i = 0; _i < parts.length; _i += 1) {
+              if (!contains(parts[_i])) {
+                el.classList.add(parts[_i]);
+              }
             }
-          }
-        }
-      } else if (className.length) { // An array
-        for (_i = 0; _i < className.length; _i += 1) {
-          if (!el.classList.contains(className[_i])) {
-            el.classList.add(className[_i]);
-          }
-        }
-      }
-    });
-  } :
-  function (className) {
-    return this.each(function (el) {
-      var _i, parts;
 
-      if (typeof className === 'string') {
-        parts = className.split(" ");
-        if (parts.length === 1) {
-          if (el.className === '') {
-            el.className = className;
-          } else {
-            el.className += ' ' + className;
-          }
-        } else {
-          for (_i = 0; _i < parts.length; _i += 1) {
-            el.className += ' ' + parts[_i];
-          }
-        }
-      } else if (className.length) {
-        if (className.length > 1) {
-          for (_i = 0; _i < className.length; _i += 1) {
-            el.className += ' ' + className[_i];
-          }
-        } else {
-          for (_i = 0; _i < className.length; _i += 1) {
-            el.className += className[_i];
-          }
-        }
-      }
-    });
-  };
-
-  Dom.prototype.removeClass = feature.classList === true ? function (className) {
-    this.each(function (el) {
-      var _i, parts;
-      if (typeof className === 'string') { // String
-        parts = className.split(" ");
-
-        if (parts.length === 1) {
-          if (el.classList.contains(className)) {
-            el.classList.remove(className);
-          }
-        } else {
-          for (_i = 0; _i < parts.length; _i += 1) {
-            if (el.classList.contains(parts[_i])) {
-              el.classList.remove(parts[_i]);
+            break;
+          case 'remove':
+            for (_i = 0; _i < parts.length; _i += 1) {
+              if (contains(parts[_i])) {
+                el.classList.remove(parts[_i]);
+              }
             }
-          }
-        }
-      } else if (className.length) { // An array
-        for (_i = 0; _i < className.length; _i += 1) {
-          if (el.classList.contains(className[_i])) {
-            el.classList.remove(className[_i]);
-          }
-        }
-      }
-    });
-  } : function (className) {
-    return this.each(function (el) {
-      var _i, parts;
-      if (typeof className === 'string') {
-        parts = className.split(" ");
-        if (parts.length === 1) {
-          el.className.replace(className, "");
-        } else {
-          for (_i = 0; _i < parts.length; _i += 1) {
-            el.className.replace(parts[_i], "");
-          }
-        }
-      } else if (className.length) {
-        for (_i = 0; _i < className.length; _i += 1) {
-          el.className.replace(className[_i], "");
-        }
-      }
-    });
-  };
 
-  Dom.prototype.hasClass = feature.classList ? function (className) {
-    this.one(function (el) {
-      var _i, parts, res = [];
-      if (typeof className === 'string') { // String
-        parts = className.split(" ");
-
-        if (parts.length === 1) {
-          if (el.classList.contains(className)) {
-            res = el.classList.has(className);
-          }
-        } else {
-          for (_i = 0; _i < parts.length; _i += 1) {
-            if (el.classList.contains(parts[_i])) {
-              res = res.concat(el.classList.has(parts[_i]));
+            break;
+          case 'has':
+            for (_i = 0; _i < parts.length; _i += 1) {
+              res.push(contains(parts[_i]));
             }
-          }
+
+            break;
+          case 'toggle':
+            for (_i = 0; _i < parts.length; _i += 1) {
+              if (contains(parts[_i])) {
+                el.classList.remove(parts[_i]);
+              } else {
+                el.classList.add(parts[_i]);
+              }
+            }
+            
+            break;
+          default:
+            throw new TypeError("Unknown value provided as first parameter to .class()");
         }
-      } else if (className.length) { // An array
-        for (_i = 0; _i < className.length; _i += 1) {
-          if (el.classList.contains(className[_i])) {
-            res = res.concat(el.classList.has(className[_i]));
-          }
-        }
+      } else {
+        throw new TypeError ("Please provide the right parameter (string or array) for .class()");
       }
 
       return typeof res === 'boolean' ? res : res.every(function (el) {
         return el === true;
       });
     });
-  }: function (className) {
-    return this.one(function (el) {
-      var _i, parts, res;
+  } : function (action, className) {
+    return this.each(function (el) {
+      var _i, parts, contains, res = [];
+
       if (typeof className === 'string') {
         parts = className.split(" ");
+
         if (parts.length === 1) {
-          return !!(el.className.indexOf(className));
+          contains = el.className.split(className).length > 1;
+
+          switch (action) {
+            case 'add':
+              if (!contains) {
+                el.className += (className);
+              }
+
+              break;
+            case 'remove':
+              if (contains) {
+                el.className.replace(className, '');
+              }
+
+              break;
+            case 'has':
+              res = contains;
+              
+              break;
+            case 'toggle':
+              for (_i = 0; _i < parts.length; _i += 1) {
+                if (contains) {
+                  el.className.replace(className, '');
+                } else {
+                  el.className += className;
+                }
+              }
+
+              break;
+            default:
+              throw new TypeError("Unknown value provided as first parameter to .class()");
+          }
         } else {
-          for (_i = 0; _i < parts.length; _i += 1) {
-            res = res.concat(el.className.indexOf(parts[_i]));
+          contains = function (className) {
+            return el.className.split(className).length > 1;
+          };
+
+          switch (action) {
+            case 'add':
+              for (_i = 0; _i < parts.length; _i += 1) {
+                if (!contains(parts[_i])) {
+                  el.className += parts[_i];
+                }
+              }
+
+              break;
+            case 'remove':
+              for (_i = 0; _i < parts.length; _i += 1) {
+                if (contains(parts[_i])) {
+                  el.className.replace(parts[_i], '');
+                }
+              }
+
+              break;
+            case 'has':
+              for (_i = 0; _i < parts.length; _i += 1) {
+                res.push(contains(parts[_i]));
+              }
+
+              break;
+            case 'toggle':
+              for (_i = 0; _i < parts.length; _i += 1) {
+                if (contains(parts[_i])) {
+                  el.className.replace(parts[_i], '');
+                } else {
+                  el.className += parts[_i];
+                }
+              }
+
+              break;
+            default:
+              throw new TypeError("Unknown value provided as first parameter to .class()");
           }
         }
       } else if (className.length) {
-        for (_i = 0; _i < className.length; _i += 1) {
-          res = res.concat(el.className.indexOf(className[_i]));
+        contains = function (className) {
+          return el.className.split(className).length > 1;
+        };
+
+        switch (action) {
+          case 'add':
+            for (_i = 0; _i < parts.length; _i += 1) {
+              if (!contains(parts[_i])) {
+                el.className += parts[_i];
+              }
+            }
+
+            break;
+          case 'remove':
+            for (_i = 0; _i < parts.length; _i += 1) {
+              if (contains(parts[_i])) {
+                el.className.replace(parts[_i], '');
+              }
+            }
+
+            break;
+          case 'has':
+            for (_i = 0; _i < parts.length; _i += 1) {
+              res.push(contains(parts[_i]));
+            }
+
+            break;
+          case 'toggle':
+            for (_i = 0; _i < parts.length; _i += 1) {
+              if (contains(parts[_i])) {
+                el.className.replace(parts[_i], '');
+              } else {
+                el.className += parts[_i];
+              }
+            }
+
+            break;
+          default:
+            throw new TypeError("Unknown value provided as first parameter to .class()");
         }
+      } else {
+        throw new TypeError ("Please provide the right parameter (string or array) for .class()");
       }
 
-      return res.every(function (el) {
+      return typeof res === 'boolean' ? res : res.every(function (el) {
         return el === true;
       });
     });
   };
+
+  // -------------------------
+  // .addClass()
+  // -------------------------
+  // 
+  // Add class(es) to selected elements
+  // 
+  // .addClass( className )
+  //   className (string|array) : The class(es to be added)
+  //
+  // Examples:
+  // 
+  // $('p').addClass('paragraph')
+  // 
+
+  Dom.prototype.addClass = function (className) {
+    return this['class']('add', className);
+  };
+
+  // -------------------------
+  // .removeClass()
+  // -------------------------
+  // 
+  // Remove class(es) from selected elements
+  // 
+  // .removeClass( className )
+  //   className (string|array) : The class(es to be added)
+  //
+  // Examples:
+  // 
+  // $('p').removeClass('hidden')
+  //
+
+  Dom.prototype.removeClass = function (className) {
+    return this['class']('remove', className);
+  };
+
+  // -------------------------
+  // .hasClass()
+  // -------------------------
+  // 
+  // Check if all elements has class(es)
+  // 
+  // .hasClass( className )
+  //   className (string|array) : The class(es to be added)
+  //
+  // Examples:
+  // 
+  // $('p').hasClass()
+  //
+
+  Dom.prototype.hasClass = function (className) {
+    return this['class']('has', className);
+  };
+
+  // -------------------------
+  // .toggleClass()
+  // -------------------------
+  // 
+  // Add or remove class(es) based on existence
+  // 
+  // .hasClass( className )
+  //   className (string|array) : The class(es to be added)
+  //
+  // Examples:
+  // 
+  // $('p').hasClass()
+  //
+
+  Dom.prototype.toggleClass = function (className) {
+    return this['class']('toggle', className);
+  };
+
+  // -------------------------
+  // .attr()
+  // -------------------------
+  // 
+  // Set or return an attribute of selected elements
+  // 
+  // .attr( attr [, value] )
+  //   attr (string) : Name of attribute
+  //   value (any) : Value of attrib ute
+  //
+  // Examples:
+  // 
+  // $('p.hidden').attr('hidden')
+  // $('div.edit').attr('contentEditable', 'true')
+  // $('body').attr('hilo', '0.1.0')
+  //
   
   Dom.prototype.attr = function (name, val) {
     if(val) {
-      this.each(function(el) {
+      return this.each(function(el) {
         el.setAttribute(name, val);
       });
-
-      return new Dom(this);
     } else {
-      this.one(function (el) {
+      return this.first(function (el) {
         return el[name];
       });
     }
   };
   
+  // --------------------------------------------------
+  // Hilo CSS
+  // --------------------------------------------------
+
+  // Set a css prop. to s.el.
+  // 
+  // Syntax .css( prop [, value] )
+  //
+  // Examples:
+  // 
+  // $(selector).css('background-color', '#444')
+  // var fontColor = $(selector).css('color')
+  //
+
   Dom.prototype.css = function (prop, value) {
-    if (value) {
+    if (value) { // If value arg. is given
       return this.each(function (el) {
-        el.style[prop] = value;
+        el.style[prop] = value; // Set CSS prop. to value
       });
-    } else {
-      return this.one(function (el) {
-        return el.style[prop];
+    } else { // Otherwise, if value arg. is not given
+      return this.first(function (el) {
+        return el.style[prop]; // Return the style of that element
       });
     }
   };
+
+  // Important CSS Properties
+  //
+  // Important CSS methods that are provided as public methods
+  //
 
   impCss = [
     "width",
@@ -1202,6 +1841,8 @@ window.Hilo = (function () {
     };
   }
 
+  // Get computed style of the first element
+
   Dom.prototype.computed = function (prop) {
     return this.one(function (el) {
       return win.getComputedStyle(el)[prop];
@@ -1209,20 +1850,49 @@ window.Hilo = (function () {
   };
 
   Dom.prototype.outerWidth = function () {
-    return parseFloat(this.computed('width')) + parseFloat(this.computed('paddingLeft')) + parseFloat(this.computed('paddingRight')) + parseFloat(this.computed('borderLeft')) + parseFloat(this.computed('borderRight')) + "px";
+    return parseFloat(this.computed('width')) + 
+    parseFloat(this.computed('paddingLeft')) + 
+    parseFloat(this.computed('paddingRight')) + 
+    parseFloat(this.computed('borderLeft')) + 
+    parseFloat(this.computed('borderRight')) + "px";
   };
 
   Dom.prototype.innerWidth = function () {
-    return parseFloat(this.computed('width')) + parseFloat(this.computed('paddingLeft')) + parseFloat(this.computed('paddingRight')) + "px";
+    return parseFloat(this.computed('width')) + 
+    parseFloat(this.computed('paddingLeft')) + 
+    parseFloat(this.computed('paddingRight')) + "px";
   };
 
   Dom.prototype.outerHeight = function () {
-    return parseFloat(this.computed('height')) + parseFloat(this.computed('paddingTop')) + parseFloat(this.computed('paddingBottom')) + parseFloat(this.computed('borderTop')) + parseFloat(this.computed('borderBottom')) + "px";
+    return parseFloat(this.computed('height')) + 
+    parseFloat(this.computed('paddingTop')) + 
+    parseFloat(this.computed('paddingBottom')) + 
+    parseFloat(this.computed('borderTop')) + 
+    parseFloat(this.computed('borderBottom')) + "px";
   };
 
   Dom.prototype.innerHeight = function () {
-    return parseFloat(this.computed('height')) + parseFloat(this.computed('paddingTop')) + parseFloat(this.computed('paddingBottom')) + "px";
+    return parseFloat(this.computed('height')) + 
+    parseFloat(this.computed('paddingTop')) + 
+    parseFloat(this.computed('paddingBottom')) + "px";
   };
+  
+  // --------------------------------------------------
+  // DOM Extensions
+  // --------------------------------------------------
+
+  // -------------------------
+  // .get()
+  // -------------------------
+  // 
+  // Get an array of selected elements
+  // 
+  // .get()
+  //
+  // Examples:
+  // 
+  // $('script').get()
+  //
 
   Dom.prototype.get = function () {
     var els = [];
@@ -1233,7 +1903,11 @@ window.Hilo = (function () {
 
     return els;
   };
-  
+
+  // --------------------------------------------------
+  // Events
+  // --------------------------------------------------
+
   Dom.prototype.on = (function () {
     if (document.addEventListener) {
       return function (evt, fn) {
@@ -1278,6 +1952,10 @@ window.Hilo = (function () {
     }
   }());
   
+  // --------------------------------------------------
+  // Events (imp.)
+  // --------------------------------------------------
+
   Dom.prototype.ready = function (fn) {
     this.each(function (el) {
       el.onreadystatechange = function () {
@@ -1289,6 +1967,7 @@ window.Hilo = (function () {
   };
 
   impEvts = [
+    "blur",
     "click",
     "change",
     "dblclick",
@@ -1304,12 +1983,16 @@ window.Hilo = (function () {
     "keyup",
     "keydown",
     "keypress",
+    "load",
+    "mousedown",
+    "mouseleave",
+    "mouseenter",
     "mouseover",
     "mousemove",
     "mouseout",
     "ready",
-    "load"
-    ];
+    "submit"
+  ];
 
   for (_i = 0; _i < impEvts.length; _i += 1) {
     Dom.prototype[impEvts[_i]] = function (fn) {
@@ -1317,56 +2000,49 @@ window.Hilo = (function () {
     };
   }
 
-  // Effects
+  // --------------------------------------------------
+  // Effects (fx)
+  // --------------------------------------------------
 
   Dom.prototype.show = function (display) {
     display = display || '';
-    this.each(function (el) {
+
+    return this.each(function (el) {
       el.style.display = display;
     });
-
-    return new Dom(this);
   };
 
   Dom.prototype.hide = function () {
-    this.each(function (el) {
+    return this.each(function (el) {
       el.style.display = 'none';
     });
-
-    return new Dom(this);
   };
 
   Dom.prototype.toggle = function (display) {
-    this.each(function (el) {
+    return this.each(function (el) {
       if (el.style.display === 'none') {
         el.style.display = display ? display : '';
       } else {
         el.style.display = 'none';
       }
     });
-
-    return new Dom(this);
   };
 
   Dom.prototype.appear = function () {
-    this.each(function (el) {
+    return this.each(function (el) {
       el.style.opacity = "1";
     });
-
-    return new Dom(this);
   };
 
   Dom.prototype.disappear = function () {
-    this.each(function (el) {
+    return this.each(function (el) {
       el.style.opacity = "0";
       el.style.cusor = "default";
     });
-
-    return new Dom(this);
   };
 
   Dom.prototype.toggleVisibility = function () {
-    this.each(function (el) {
+    return this.each(function (el) {
       if (el.style.opacity === "0") {
         el.style.opacity = "1";
       } else {
@@ -1374,15 +2050,19 @@ window.Hilo = (function () {
         el.style.cusor = "default";
       }
     });
-
-    return new Dom(this);
   };
   
-  Dom.prototype.ui = {};
-  
+  // --------------------------------------------------
+  // Hilo Extension API
+  // --------------------------------------------------
+    
   hilo.Dom = Dom.prototype;
   hilo.Test = Test.prototype;
   hilo.qwery = select.pseudos;
+  
+  // --------------------------------------------------
+  // Set event handler for triggering DOM Evenets
+  // --------------------------------------------------
   
   doc.onreadystatechange = function () {
     if (doc.readyState === 'complete') {
@@ -1392,7 +2072,9 @@ window.Hilo = (function () {
     }
   };
 
+  hilo.select = win.Sizzle || win.qwery || win.Quicksand || undefined;
+
   win.$ = hilo; // Shorthand
 
   return hilo;
-}());
+}));

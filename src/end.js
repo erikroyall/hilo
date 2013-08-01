@@ -11,8 +11,6 @@
     }
   };
 
-  hilo.select = win.Sizzle || win.qwery || win.Quicksand || undefined;
-
   win.$ = hilo; // Shorthand
 
   elapsed = new Date().getTime() - start;
