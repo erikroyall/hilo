@@ -17,6 +17,7 @@ Here is the full list of those functions.
 * [.disappear()](disappear.md) - Make s.el. hide but still occupy space
 * [.each()](each.md) - Execute a function on each element
 * [.el()](el.md) - Return nth element in s.el.
+* [.empty()](empty.md) - Remove all childNodes of s.el.
 * [.filter()](filter.md) - Shortlist (filter) s.el. with a function
 * [.first()](first.md) - Return the first s.el.
 * [.get()](get.md) - Get s.el. in the form of an array

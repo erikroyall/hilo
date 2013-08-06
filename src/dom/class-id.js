@@ -191,7 +191,7 @@
           switch (action) {
             case "add":
               if (!contains) {
-                el.className += (className);
+                el.className += " " +  (className);
               }
 
               break;
@@ -210,7 +210,7 @@
                 if (contains) {
                   el.className.replace(className, "");
                 } else {
-                  el.className += className;
+                  el.className += " " +  className;
                 }
               }
 
@@ -227,7 +227,7 @@
             case "add":
               for (_i = 0; _i < parts.length; _i += 1) {
                 if (!contains(parts[_i])) {
-                  el.className += parts[_i];
+                  el.className += " " +  parts[_i];
                 }
               }
 
@@ -251,7 +251,7 @@
                 if (contains(parts[_i])) {
                   el.className.replace(parts[_i], "");
                 } else {
-                  el.className += parts[_i];
+                  el.className += " " +  parts[_i];
                 }
               }
 
@@ -271,7 +271,7 @@
           case "add":
             for (_i = 0; _i < parts.length; _i += 1) {
               if (!contains(parts[_i])) {
-                el.className += parts[_i];
+                el.className += " " +  parts[_i];
               }
             }
 
@@ -295,7 +295,7 @@
               if (contains(parts[_i])) {
                 el.className.replace(parts[_i], "");
               } else {
-                el.className += parts[_i];
+                el.className += " " +  parts[_i];
               }
             }
 

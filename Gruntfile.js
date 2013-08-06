@@ -21,13 +21,14 @@ module.exports = function(grunt) {
       dist: {
         src: [
           "src/start.js",
-          "src/core.js",
+          "src/detect/browser.js",
           "src/detect/feature.js",
+          "src/dom/sizzle.js",
+          "src/core.js",
           "src/test/main.js",
           "src/test/comp.js",
           "src/shim/shims.js",
           "src/ajax/main.js",
-          "src/dom/sizzle.js",
           "src/dom/main.js",
           "src/dom/helpers.js",
           "src/dom/els.js",
@@ -38,6 +39,8 @@ module.exports = function(grunt) {
           "src/evt/helpers.js",
           "src/evt/simple.js",
           "src/fx/simple.js",
+          "src/detect/classify.js",
+          "src/evt/keymap.js",
           "src/ext.js",
           "src/end.js"
           ],

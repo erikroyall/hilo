@@ -18,3 +18,23 @@
   //  W030 - Allow expressions
 
   "use strict";
+  
+  var hilo             // Public API
+    , start            // Start time
+    , elapsed          // Time elapsed
+    , win = window     // Reference to window
+    , doc = document   // Reference to document
+    , sizzle           // Sizzle.js
+    , detected
+    , key
+    , callbacks = []   // Array of functions to be executed on DOMReady
+    , select           // Private Selector Function
+    , feature          // Feature Detection
+    , hiloAjax         // AJAX Func.
+    , impEvts          // Array containing imp. evts.
+    , impCss           // Array containing imp. css props.
+    , _i               // Loop helper
+    , Dom              // DOM Manipulation Methods
+    , Test;            // Test class
+  
+  start = new Date().getTime();

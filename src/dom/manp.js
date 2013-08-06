@@ -19,7 +19,7 @@
   // 
 
   Dom.prototype.html = function (htmlCode) {
-    if (htmlCode) {
+    if (typeof htmlCode !== "undefined") {
       return this.each(function(el) {
         el.innerHTML = htmlCode;
       });
@@ -46,7 +46,7 @@
   // 
 
   Dom.prototype.text = function (text) {
-    if (text) {
+    if (typeof text !== "undefined") {
       return this.each(function(el) {
         el.innerText = text;
       });
@@ -55,6 +55,23 @@
         return el.innerText;
       });
     }
+  };
+
+  // -------------------------
+  // .empty()
+  // -------------------------
+  // 
+  // Empty the selected elements
+  // 
+  // .empty()
+  //
+  // Examples:
+  // 
+  // $("#todo-list").empty()
+  // 
+
+  Dom.prototype.empty = function () {
+    return this.html("");
   };
 
   // -------------------------

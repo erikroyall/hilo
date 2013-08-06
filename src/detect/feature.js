@@ -306,7 +306,17 @@
       // querySelector & querySelectorAll
 
       qsa: (function () {
-        return "querySelector" in win && "querySelectorAll" in win;
+        return "querySelector" in doc && "querySelectorAll" in doc;
+      }()),
+
+      // CSS3 Selectors in querySelectorAll
+
+      qsa3: (function () {
+        try {
+          return doc.querySelectorAll(":root").length > 0;
+        } catch (e) {
+          return false;
+        }
       }()),
 
       // requestAnimationFrame
@@ -494,5 +504,3 @@
       }
     };
   }());
-
-  hilo.feature = feature;
