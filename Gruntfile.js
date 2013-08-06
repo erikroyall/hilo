@@ -3,14 +3,33 @@
 module.exports = function(grunt) {
 
   "use strict";
+
+  // Run: "grunt --no-color --force" without the quotes
+  // and keep it clean
+
+  var itsbeen = " * "
+    , st = new Date(1375182296792)
+    , ct = new Date()
+    , diff = {
+      y: ct.getFullYear() - st.getFullYear(),
+      m: ct.getMonth() - st.getMonth(),
+      d: ct.getDate() - st.getDate()
+    };
+
+  itsbeen += "Project started before ";
+  itsbeen += (diff.y === 0) ? "" : diff.y === 1 ? 1 + " year, " : ((diff.y < 0 ? 30 - Math.abs(diff.y) : diff.y) + " years") + " and "; 
+  itsbeen += (diff.m === 0) ? "" : diff.m === 1 ? 1 + " month and " : ((diff.m < 0 ? 30 - Math.abs(diff.m) : diff.m) + " months") + " and "; 
+  itsbeen += (diff.d === 0) ? "" : diff.d === 1 ? 1 + " day " : ((diff.d < 0 ? 30 - Math.abs(diff.d) : diff.d) + " days"); 
+  itsbeen += "\n";
   
   grunt.initConfig({
     
     pkg: grunt.file.readJSON("package.json"),
     banner: "/*! \n * <%= pkg.title %> - <%= pkg.version %> - " +
       "<%= grunt.template.today('yyyy-mm-dd') %>\n" +
+      itsbeen +
       " * http://erikroyall.github.com/<%= pkg.name %>/\n" +
-      " * Copyright (c) 2013 Erik Royall and <%= pkg.title %> contributors\n" +
+      " * Copyright (c) 2013 Erik Royall\n" +
       " * Licensed under <%= pkg.license %> (see LICENSE-MIT) \n */\n\n",
     
     concat: {
@@ -24,6 +43,7 @@ module.exports = function(grunt) {
           "src/detect/browser.js",
           "src/detect/feature.js",
           "src/dom/sizzle.js",
+          "src/es/util.js",
           "src/core.js",
           "src/test/main.js",
           "src/test/comp.js",
