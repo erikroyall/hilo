@@ -1,20 +1,21 @@
 /*! 
  * Hilo - 0.1.0-pre-dev-beta-8 - 2013-08-06
+ * Project started before 1 month and 6 days
  * http://erikroyall.github.com/hilo/
- * Copyright (c) 2013 Erik Royall and Hilo contributors
+ * Copyright (c) 2013 Erik Royall
  * Licensed under MIT (see LICENSE-MIT) 
  */
 
-(function (name, root, hilo) {
+(function (A, M, D) {
   var module = module || false
     , define = define || false;
 
   if (typeof module !== "undefined" && module.exports) {
-    module.exports = hilo;
+    module.exports = D;
   } else if (typeof define === "function" && define.amd) {
-    define(hilo);
+    define(D);
   } else {
-    root[name] = hilo();
+    M[A] = D();
   }
 }("Hilo", this, function () {
   /*jshint -W083, -W064, -W030*/
@@ -2785,6 +2786,40 @@
 
   }());
   
+  function each (arr, fn, thisRef) {
+    var _i, _l;
+
+    if (!(arr && fn)) {
+      return;
+    }
+
+    thisRef = thisRef || arr;
+
+    if (Array.prototype.forEach) {
+      return Array.prototype.forEach.call(arr, fn);
+    }
+
+    for (_i = 0, _l = arr.length; _i < _l; _i += 1) {
+      fn.call(thisRef, arr[_i]);
+    }
+  }
+
+  function extend (obj, ext) {
+    var _i;
+
+    if (!(typeof obj === "object" && typeof ext === "object")) {
+      return;
+    }
+
+    for (_i in ext) {
+      if (ext.hasOwnProperty(_i)) {
+        obj[_i] = ext[_i];
+      }
+    }
+
+    return obj[_i];
+  }
+  
   // Core Library
 
   /*
@@ -2811,9 +2846,11 @@
   hilo = function (input, root, en) {
     if (typeof input === "undefined") {
       return win.Hilo;
-    }
-
-    if (typeof input === "string") {
+    } else if (typeof input === "string") {
+      if (input.trim() === "") {
+        return new Dom({length:0});
+      }
+      
       return new Dom(select(input, root, en), input);
     } else if (typeof input === "function") { // Function
       if (document.readyState === "complete") {
@@ -2839,6 +2876,11 @@
   hilo.browser = detected.browser;
   hilo.engine = detected.engine;
   hilo.platform = detected.system;
+
+  // ES Utils
+
+  hilo.each = each;
+  hilo.extend = extend;
   
   // --------------------------------------------------
   // Testing
@@ -4397,7 +4439,7 @@
 
         if (hilo.browser.ie < 10) {
           classes.push("lt-ie10");
-        };
+        }
       }
 
       if (hilo.browser.ie >= 6) {
@@ -4437,7 +4479,7 @@
 
         if (hilo.browser.version > 10) {
           classes.push("gt-ie10");
-        };
+        }
       }
 
       if (hilo.browser.ie === 6) {
@@ -4477,7 +4519,7 @@
       classes.push("gecko");
     }
 
-    classes.push(hilo.browser.name.toLowerCase() + parseInt(hilo.browser.version), 10);
+    classes.push(hilo.browser.name.toLowerCase() + parseInt(hilo.browser.version, 10));
 
     function getBrowserVersion () {
       return String(hilo.browser.version).replace(".", "-");
@@ -4505,16 +4547,16 @@
 
     // Numbers
 
-    "n0": 48,
-    "n1": 49,
-    "n2": 50,
-    "n3": 51,
-    "n4": 52,
-    "n5": 53,
-    "n6": 54,
-    "n7": 55,
-    "n8": 56,
-    "n9": 57,
+    "0": 48,
+    "1": 49,
+    "2": 50,
+    "3": 51,
+    "4": 52,
+    "5": 53,
+    "6": 54,
+    "7": 55,
+    "8": 56,
+    "9": 57,
 
     // Uppercase letters
 
@@ -4582,7 +4624,7 @@
     cmd: 17,
     enter: 13,
     esc: 27,
-    delete: 46,
+    del: 46,
     end: 35,
     back: 8,
 

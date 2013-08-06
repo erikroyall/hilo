@@ -1,13 +1,13 @@
-(function (name, root, hilo) {
+(function (A, M, D) {
   var module = module || false
     , define = define || false;
 
   if (typeof module !== "undefined" && module.exports) {
-    module.exports = hilo;
+    module.exports = D;
   } else if (typeof define === "function" && define.amd) {
-    define(hilo);
+    define(D);
   } else {
-    root[name] = hilo();
+    M[A] = D();
   }
 }("Hilo", this, function () {
   /*jshint -W083, -W064, -W030*/

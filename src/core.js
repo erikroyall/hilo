@@ -25,9 +25,11 @@
   hilo = function (input, root, en) {
     if (typeof input === "undefined") {
       return win.Hilo;
-    }
-
-    if (typeof input === "string") {
+    } else if (typeof input === "string") {
+      if (input.trim() === "") {
+        return new Dom({length:0});
+      }
+      
       return new Dom(select(input, root, en), input);
     } else if (typeof input === "function") { // Function
       if (document.readyState === "complete") {
@@ -53,3 +55,8 @@
   hilo.browser = detected.browser;
   hilo.engine = detected.engine;
   hilo.platform = detected.system;
+
+  // ES Utils
+
+  hilo.each = each;
+  hilo.extend = extend;

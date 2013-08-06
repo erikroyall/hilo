@@ -51,7 +51,7 @@
 
         if (hilo.browser.ie < 10) {
           classes.push("lt-ie10");
-        };
+        }
       }
 
       if (hilo.browser.ie >= 6) {
@@ -91,7 +91,7 @@
 
         if (hilo.browser.version > 10) {
           classes.push("gt-ie10");
-        };
+        }
       }
 
       if (hilo.browser.ie === 6) {
@@ -131,7 +131,7 @@
       classes.push("gecko");
     }
 
-    classes.push(hilo.browser.name.toLowerCase() + parseInt(hilo.browser.version), 10);
+    classes.push(hilo.browser.name.toLowerCase() + parseInt(hilo.browser.version, 10));
 
     function getBrowserVersion () {
       return String(hilo.browser.version).replace(".", "-");
