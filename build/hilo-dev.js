@@ -1,6 +1,6 @@
 /*! 
- * Hilo - 0.1.0-pre-dev-beta-8 - 2013-08-06
- * Project started before 1 month and 6 days
+ * Hilo - 0.1.0-pre-dev-beta-8 - 2013-08-07
+ * Project started before 1 month and 7 days
  * http://erikroyall.github.com/hilo/
  * Copyright (c) 2013 Erik Royall
  * Licensed under MIT (see LICENSE-MIT) 
@@ -2833,7 +2833,9 @@
    */
 
   select = feature.qsa3 ? function (selector, root) {
+    // Set root to root or document
     root = root || doc;
+
     return root.querySelectorAll(selector);
   } : function (selector, root) {
     return sizzle(selector, root);
