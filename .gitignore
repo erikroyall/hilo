@@ -1,3 +1,7 @@
 build
+src
+.grunt
+junit
+test
 node_modules
 *.sublime-*
