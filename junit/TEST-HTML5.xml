@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites>
+
+  <testsuite name="HTML5" errors="0" tests="5" failures="0" time="0.139" timestamp="2013-08-08T13:32:55.258Z">
+    
+      <testcase assertions="1" classname="HTML5" name="Geolocation" time="0.011">
+        
+      </testcase>
+    
+      <testcase assertions="1" classname="HTML5" name="indexedDB" time="0.01">
+        
+      </testcase>
+    
+      <testcase assertions="1" classname="HTML5" name="localStorage" time="0.012">
+        
+      </testcase>
+    
+      <testcase assertions="1" classname="HTML5" name="WebWorkers" time="0.011">
+        
+      </testcase>
+    
+      <testcase assertions="1" classname="HTML5" name="Application Cache (Offline Web)" time="0.01">
+        
+      </testcase>
+    
+  </testsuite>
+
+</testsuites>

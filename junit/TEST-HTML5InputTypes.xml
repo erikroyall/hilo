@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites>
+
+  <testsuite name="HTML5 Input Types" errors="0" tests="1" failures="0" time="0.021" timestamp="2013-08-08T13:32:55.247Z">
+    
+      <testcase assertions="1" classname="HTML5 Input Types" name="color" time="0.011">
+        
+      </testcase>
+    
+  </testsuite>
+
+</testsuites>

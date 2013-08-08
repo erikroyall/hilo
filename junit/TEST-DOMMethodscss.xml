@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites>
+
+  <testsuite name="DOM Methods .css()" errors="0" tests="2" failures="0" time="0.043" timestamp="2013-08-08T13:34:40.332Z">
+    
+      <testcase assertions="1" classname="DOM Methods .css()" name="should set css of an element" time="0.012">
+        
+      </testcase>
+    
+      <testcase assertions="1" classname="DOM Methods .css()" name="should get css val of prop. of an element" time="0.011">
+        
+      </testcase>
+    
+  </testsuite>
+
+</testsuites>

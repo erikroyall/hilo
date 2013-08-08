@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites>
+
+  <testsuite name="DOM Methods .html()" errors="0" tests="2" failures="0" time="0.039" timestamp="2013-08-08T13:34:40.084Z">
+    
+      <testcase assertions="0" classname="DOM Methods .html()" name="should set the innerHTML of an element" time="0.01">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="DOM Methods .html()" name="should return the innerHTML when no content is passed" time="0.009">
+        
+      </testcase>
+    
+  </testsuite>
+
+</testsuites>

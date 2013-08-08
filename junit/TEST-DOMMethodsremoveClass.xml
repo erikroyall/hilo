@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites>
+
+  <testsuite name="DOM Methods .removeClass()" errors="0" tests="3" failures="0" time="0.058" timestamp="2013-08-08T13:34:40.280Z">
+    
+      <testcase assertions="0" classname="DOM Methods .removeClass()" name="should remove a class" time="0.01">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="DOM Methods .removeClass()" name="should accept an array" time="0.01">
+        
+      </testcase>
+    
+      <testcase assertions="0" classname="DOM Methods .removeClass()" name="should accept a string of separated values" time="0.01">
+        
+      </testcase>
+    
+  </testsuite>
+
+</testsuites>

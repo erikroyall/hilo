@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites>
+
+  <testsuite name="Multimedia" errors="0" tests="1" failures="0" time="0.096" timestamp="2013-08-08T13:32:55.366Z">
+    
+      <testcase assertions="1" classname="Multimedia" name="Video" time="0.011">
+        
+      </testcase>
+    
+  </testsuite>
+
+</testsuites>
