@@ -20,12 +20,6 @@ describe("Hilo DOM", function () {
 
     expect(elmArr).toEqual(dElmArr);
   });
-
-  if (!Hilo.browser.ie || Hilo.browser.ie > 8) {
-    it('should treat * same as document.all', function () {
-      expect(Hilo('*').get()).toEqual(Hilo(document.getElementsByTagName('*')).get());
-    });
-  }
 });
 
 describe("DOM fx", function () {

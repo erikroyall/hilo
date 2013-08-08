@@ -26,7 +26,7 @@ module.exports = function(grunt) {
     
     pkg: grunt.file.readJSON("package.json"),
     banner: "/*! \n * <%= pkg.title %> - <%= pkg.version %> - " +
-      "<%= grunt.template.today('yyyy-mm-dd') %>\n" +
+      "<%= grunt.template.today(\"yyyy-mm-dd\") %>\n" +
       itsbeen +
       " * http://erikroyall.github.com/<%= pkg.name %>/\n" +
       " * Copyright (c) 2013 Erik Royall\n" +
@@ -74,6 +74,17 @@ module.exports = function(grunt) {
         }
       }
     },
+    jasmine: {
+      options: {
+        helpers: "build/hilo-dev.js",
+        junit: {
+          path: "junit"
+        }
+      },
+      hilo: {
+        src: "test/spec/**/*.spec.js"
+      }
+    },
     jshint: {
       options: {
         curly: true,
@@ -103,11 +114,11 @@ module.exports = function(grunt) {
     watch: {
       gruntfile: {
         files: "<%= jshint.gruntfile.src %>",
-        tasks: ["jshint:gruntfile"]
+        tasks: ["jshint:gruntfile", "concat", "uglify:hilo", "jshint:hilo", "jasmine:hilo"]
       },
       hilo: {
         files: "<%= concat.dist.src %>",
-        tasks: ["concat", "uglify:hilo", "jshint:hilo"]
+        tasks: ["concat", "uglify:hilo", "jshint:hilo", "jasmine:hilo"]
       }
     }
   });
@@ -116,8 +127,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-contrib-uglify");
   grunt.loadNpmTasks("grunt-contrib-jshint");
   grunt.loadNpmTasks("grunt-contrib-watch");
+  grunt.loadNpmTasks("grunt-contrib-jasmine");
+
   
-  grunt.registerTask("default", ["concat", "uglify:hilo", "jshint", "watch"]);
+  grunt.registerTask("default", ["concat", "uglify:hilo", "jasmine:hilo", "jshint", "watch"]);
   grunt.registerTask("release", ["concat"]);
 
 };
