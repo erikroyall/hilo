@@ -1,5 +1,5 @@
 /*! 
- * Hilo - 0.1.0-pre-dev-beta-8 - 2013-08-09
+ * Hilo - 0.1.0-pre-dev-beta-9 - 2013-08-09
  * Project started before 1 month and 9 days
  * http://erikroyall.github.com/hilo/
  * Copyright (c) 2013 Erik Royall
@@ -7,6 +7,9 @@
  */
 
 (function (A, M, D) {
+
+  // Asynchronous Module Definition, if available
+
   var module = module || false
     , define = define || false;
 
@@ -28,24 +31,65 @@
   "use strict";
   
   var hilo             // Public API
-    , start            // Start time
-    , elapsed          // Time elapsed
+
+    // Later used to measure performace (Hilo.perf)
+    , start
+    , elapsed
+
+    // References
     , win = window     // Reference to window
     , doc = document   // Reference to document
-    , sizzle           // Sizzle.js
+
+    // Sizzle.js wrapper
+    , sizzle
+
+    // Later stores detected features
     , detected
+
+    // Key mappings (Hilo.keys)
     , key
+
+    // Array of callbacks to be exec.ed on DOMReady
     , callbacks = []   // Array of functions to be executed on DOMReady
-    , select           // Private Selector Function
+
+    // Private Selector Function
+    , select
+
+    // Feature Detection (Hilo.feature)
     , feature          // Feature Detection
-    , hiloAjax         // AJAX Func.
-    , impEvts          // Array containing imp. evts.
-    , impCss           // Array containing imp. css props.
-    , _i               // Loop helper
+
+    // Main AJAX function (Hilo.ajax)
+    , hiloAjax
+
+    // Important Events/CSS props.
+    , impEvts
+    , impCss
+
+    // Loop Variable
+    , _i
+
+    // -------------------------
+    // DOM
+    // -------------------------
+    // 
+    // The main DOM Class
+    //
     , Dom              // DOM Manipulation Methods
+
+    // -------------------------
+    // Test
+    // -------------------------
+    // 
+    // The main Test Class
+    //
     , Test;            // Test class
   
   start = new Date().getTime();
+  
+  // --------------------------------------------------
+  // Browser, Engine, Platform Detection
+  // --------------------------------------------------
+
   detected = (function () {
     var engine
       , browser
@@ -263,7 +307,7 @@
       browser.version = browser.firefox;
     }
 
-    // return it
+    // return them
 
     return {
       engine: engine,
@@ -802,7 +846,8 @@
         var keys = [];
 
         function cache( key, value ) {
-          // Use (key + " ") to avoid collision with native prototype properties (see Issue #157)
+          // Use (key + " ") to avoid collision 
+          // with native prototype properties (see Issue #157)
           if ( keys.push( key += " " ) > Expr.cacheLength ) {
             // Only keep the most recent entries
             delete cache[ keys.shift() ];
@@ -878,13 +923,19 @@
       characterEncoding = "(?:\\\\.|[\\w-]|[^\\x00-\\xa0])+",
 
       // Loosely modeled on CSS identifier characters
-      // An unquoted value should be a CSS identifier http://www.w3.org/TR/css3-selectors/#attribute-selectors
-      // Proper syntax: http://www.w3.org/TR/CSS21/syndata.html#value-def-identifier
+      // An unquoted value should be a CSS identifier 
+      // http://www.w3.org/TR/css3-selectors/#attribute-selectors
+      // Proper syntax: 
+      // http://www.w3.org/TR/CSS21/syndata.html#value-def-identifier
       identifier = characterEncoding.replace( "w", "w#" ),
 
-      // Acceptable operators http://www.w3.org/TR/selectors/#attribute-selectors
-      attributes = "\\[" + whitespace + "*(" + characterEncoding + ")" + whitespace +
-        "*(?:([*^$|!~]?=)" + whitespace + "*(?:(['\"])((?:\\\\.|[^\\\\])*?)\\3|(" + identifier + ")|)|)" + whitespace + "*\\]",
+      // Acceptable operators 
+      // http://www.w3.org/TR/selectors/#attribute-selectors
+      attributes = "\\[" + whitespace + "*(" + characterEncoding + ")" + 
+        whitespace +
+        "*(?:([*^$|!~]?=)" + whitespace + 
+        "*(?:(['\"])((?:\\\\.|[^\\\\])*?)\\3|(" + identifier + ")|)|)" + 
+        whitespace + "*\\]",
 
       // Prefer arguments quoted,
       //   then not containing pseudos/brackets,
@@ -892,16 +943,21 @@
       //   then anything else
       // These preferences are here to reduce the number of selectors
       //   needing tokenize in the PSEUDO preFilter
-      pseudos = ":(" + characterEncoding + ")(?:\\(((['\"])((?:\\\\.|[^\\\\])*?)\\3|((?:\\\\.|[^\\\\()[\\]]|" + attributes.replace( 3, 8 ) + ")*)|.*)\\)|)",
+      pseudos = ":(" + characterEncoding + 
+        ")(?:\\(((['\"])((?:\\\\.|[^\\\\])*?)\\3|((?:\\\\.|[^\\\\()[\\]]|" + 
+        attributes.replace( 3, 8 ) + ")*)|.*)\\)|)",
 
       // Leading and non-escaped trailing whitespace, capturing some non-whitespace characters preceding the latter
-      rtrim = new RegExp( "^" + whitespace + "+|((?:^|[^\\\\])(?:\\\\.)*)" + whitespace + "+$", "g" ),
+      rtrim = new RegExp( "^" + whitespace + "+|((?:^|[^\\\\])(?:\\\\.)*)" + 
+        whitespace + "+$", "g" ),
 
       rcomma = new RegExp( "^" + whitespace + "*," + whitespace + "*" ),
-      rcombinators = new RegExp( "^" + whitespace + "*([>+~]|" + whitespace + ")" + whitespace + "*" ),
+      rcombinators = new RegExp( "^" + whitespace + "*([>+~]|" + whitespace +
+        ")" + whitespace + "*" ),
 
       rsibling = new RegExp( whitespace + "*[+~]" ),
-      rattributeQuotes = new RegExp( "=" + whitespace + "*([^\\]'\"]*)" + whitespace + "*\\]", "g" ),
+      rattributeQuotes = new RegExp( "=" + whitespace + "*([^\\]'\"]*)" + 
+        whitespace + "*\\]", "g" ),
 
       rpseudo = new RegExp( pseudos ),
       ridentifier = new RegExp( "^" + identifier + "$" ),
@@ -933,7 +989,8 @@
       rescape = /'|\\/g,
 
       // CSS escapes http://www.w3.org/TR/CSS21/syndata.html#escaped-characters
-      runescape = new RegExp( "\\\\([\\da-f]{1,6}" + whitespace + "?|(" + whitespace + ")|.)", "ig" ),
+      runescape = new RegExp( "\\\\([\\da-f]{1,6}" + whitespace + "?|(" + 
+        whitespace + ")|.)", "ig" ),
       funescape = function( _, escaped, escapedWhitespace ) {
         var high = "0x" + escaped - 0x10000;
         // NaN means non-codepoint
@@ -998,7 +1055,8 @@
               support.getById && context.nodeType === 9 && documentIsHTML &&
               Expr.relative[ tokens[1].type ] ) {
 
-            context = ( Expr.find["ID"]( token.matches[0].replace(runescape, funescape), context ) || [] )[0];
+            context = ( Expr.find["ID"]( token.matches[0].replace(runescape, 
+              funescape), context ) || [] )[0];
             if ( !context ) {
               return results;
             }
@@ -2822,15 +2880,21 @@
   
   // Core Library
 
-  /*
-   * Select elements
-   * 
-   * selector - Selector {String}
-   * root - Root element {String|HTMLElement}
-   * 
-   * This function can be used throughout the code
-   * to select elements
-   */
+  // --------------------------------------------------
+  // select()
+  // --------------------------------------------------
+  // 
+  // Select elements
+  // 
+  // This function can be used throughout the code
+  // to select elements
+  // 
+  // Usage:
+  //
+  // select(selector, root)
+  //   selector - Selector {String}
+  //   root - Root element {String|HTMLElement}
+  //
 
   select = feature.qsa3 ? function (selector, root) {
     // Set root to given root or document
@@ -2841,9 +2905,12 @@
     return sizzle(selector, root);
   };
 
-  /*
-   * Local copy of the one and only global
-   */
+  // --------------------------------------------------
+  // hilo
+  // --------------------------------------------------
+  // 
+  // The main hilo global function
+  //
 
   hilo = function (input, root, en) {
     if (typeof input === "undefined") {
@@ -2879,15 +2946,15 @@
   hilo.temp = {};
 
   // Version info
-  hilo.version = "0.1.0-pre-dev-beta-8";
+  hilo.version = "0.1.0-pre-dev-beta-9";
 
+  // Detections
   hilo.feature = feature;
   hilo.browser = detected.browser;
   hilo.engine = detected.engine;
   hilo.platform = detected.system;
 
   // ES Utils
-
   hilo.each = each;
   hilo.extend = extend;
   
@@ -2950,7 +3017,8 @@
         if (this === void 0 || this === null) {
           throw new TypeError("can't convert "+this+" to object");
         }
-        return String(this).replace(trimBeginRegexp, "").replace(trimEndRegexp, "");
+        return String(this).replace(trimBeginRegexp, "")
+          .replace(trimEndRegexp, "");
       };
     }
   }());
@@ -2989,26 +3057,26 @@
   hiloAjax = function (config) {
       
     /*
-    
-      config:
-      - method: HTTP Method "GET" or "POST" (default: "POST")
-      - url: The file to send request
-      - async: Whether to perform an asynchronous request (default: true)
-      - response: Response type "text" or "XML"
-      - Event functions
-        - callback: fn to be exec. on readystatechange
-        - complete
-        - error
-        - timeout
-        - success
-        - notfound
-        - forbidden
-      - username
-      - password
-      - contentType
-    
-    */
-
+     *
+     * config:
+     *  
+     * - method: HTTP Method "GET" or "POST" (default: "POST")
+     * - url: The file to send request
+     * - async: Whether to perform an asynchronous request (default: true)
+     * - response: Response type "text" or "XML"
+     * - Event functions
+     *   - callback: fn to be exec. on readystatechange
+     *   - complete
+     *   - error
+     *   - timeout
+     *   - success
+     *   - notfound
+     *   - forbidden
+     * - username
+     * - password
+     * - contentType
+     *
+     */
     
     var xhr;
 
@@ -3022,10 +3090,16 @@
       throw new TypeError("url parameter not provided to hilo.ajax");
     }
 
+    // Set defaults
+
+    // Asynchronous requests are preferred
     config.async = config.async || true;
+
+    // Authentication params
     config.username = config.username || null;
     config.password = config.password || null;
 
+    // contentType application/x-www-form-urlencoded; charset=UTF-8 is preferred
     config.contentType = config.contentType || "application/x-www-form-urlencoded; charset=UTF-8";
 
     xhr.onreadystatechange = function () {
@@ -3071,32 +3145,37 @@
 
     xhr.timeout = config.timeout;
 
-    if (config.method.trim().toUpperCase() === "POST") {
-      xhr.open(
-        "POST",
-        config.url,
-        config.async,
-        config.username,
-        config.password
-      );
-      xhr.send(config.data);
-    } else if (config.method.trim().toUpperCase() === "GET") {
-      xhr.open(
-        "GET",
-        config.url + (config.data ? "+" + config.data : ""),
-        config.async,
-        config.username,
-        config.password
-      );
-      xhr.send();
+    if (typeof config.method === "string") {
+      if (config.method.trim().toUpperCase() === "POST") {
+        xhr.open(
+          "POST",
+          config.url,
+          config.async,
+          config.username,
+          config.password
+        );
+
+        xhr.send(config.data);
+      } else if (config.method.trim().toUpperCase() === "GET") {
+        xhr.open(
+          "GET",
+          config.url + (config.data ? "+" + config.data : ""),
+          config.async,
+          config.username,
+          config.password
+        );
+
+        xhr.send();
+      }
     } else {
       xhr.open(
         config.method.trim().toUpperCase(),
         config.url + (config.data ? "+" + config.data : ''),
-        (config.async ? config.async: true),
-        (config.username ? config.username : null),
-        (config.password ? config.password : null)
+        config.async,
+        config.username,
+        config.password
       );
+
       xhr.send();
     }
   };
@@ -3341,12 +3420,12 @@
   };
 
   // -------------------------
-  // .ladt()
+  // .last()
   // -------------------------
   // 
   // Return last element in the selected elements
   // 
-  // .ladt( attr [, value] )
+  // .last( attr [, value] )
   //
   // Examples:
   // 
@@ -3713,7 +3792,8 @@
   // $("div#editor").parent().hide()
   //
 
-  Dom.prototype["class"] = feature.classList === true ? function (action, className) {
+  Dom.prototype["class"] = feature.classList === true ? 
+  function (action, className) {
     return this.each(function (el) {
       var _i, parts, contains, res = [];
 
@@ -3748,8 +3828,6 @@
                 }
               }
               break;
-            default:
-              throw new TypeError("Unknown value provided as first parameter to .class()");
           }
         } else { // String, many classes
           contains = function (className) {
@@ -3788,8 +3866,6 @@
                 }
               }
               break;
-            default:
-              throw new TypeError("Unknown value provided as first parameter to .class()");
           }
         }
       } else if (className.length) { // Array
@@ -3832,11 +3908,7 @@
             }
             
             break;
-          default:
-            throw new TypeError("Unknown value provided as first parameter to .class()");
         }
-      } else {
-        throw new TypeError ("Please provide the right parameter (string or array) for .class()");
       }
 
       return typeof res === "boolean" ? res : res.every(function (el) {
@@ -3880,8 +3952,6 @@
               }
 
               break;
-            default:
-              throw new TypeError("Unknown value provided as first parameter to .class()");
           }
         } else {
           contains = function (className) {
@@ -3921,8 +3991,6 @@
               }
 
               break;
-            default:
-              throw new TypeError("Unknown value provided as first parameter to .class()");
           }
         }
       } else if (className.length) {
@@ -3965,11 +4033,7 @@
             }
 
             break;
-          default:
-            throw new TypeError("Unknown value provided as first parameter to .class()");
         }
-      } else {
-        throw new TypeError ("Please provide the right parameter (string or array) for .class()");
       }
 
       return typeof res === "boolean" ? res : res.every(function (el) {
@@ -4251,7 +4315,29 @@
   // --------------------------------------------------
 
   Dom.prototype.fire = (function () {
-
+    if (document.dispatchEvent) {
+      return function (event) {
+        var evt = document.createEvent("UIEvents");
+        evt.initUIEvent(event, true, true, window, 1);
+        this.each(function (el) {
+          el.dispatchEvent(evt);
+        });
+      };
+    } else if (document.fireEvent) {
+      return function (event) {
+        var evt = document.createEventObject();
+        evt.button = 1;
+        this.each(function(el) {
+          el.fireEvent("on" + event, evt);
+        });
+      };
+    } else {
+      return function (event) {
+        this.each(function (el) {
+          el["on" + event].call();
+        });
+      };
+    }
   }());
   
   // --------------------------------------------------
@@ -4298,7 +4384,11 @@
 
   for (_i = 0; _i < impEvts.length; _i += 1) {
     Dom.prototype[impEvts[_i]] = function (fn) {
-      this.on(impEvts[_i], fn);
+      if (typeof fn === "function") {
+        return this.on(impEvts[_i], fn);
+      }
+
+      return this.fire(impEvts[_i]);
     };
   }
 
