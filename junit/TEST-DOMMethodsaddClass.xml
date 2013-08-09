@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuites>
 
-  <testsuite name="DOM Methods .addClass()" errors="0" tests="3" failures="0" time="0.062" timestamp="2013-08-08T13:34:40.211Z">
+  <testsuite name="DOM Methods .addClass()" errors="0" tests="3" failures="0" time="0.059" timestamp="2013-08-09T02:40:41.897Z">
     
-      <testcase assertions="0" classname="DOM Methods .addClass()" name="should add a class" time="0.012">
+      <testcase assertions="0" classname="DOM Methods .addClass()" name="should add a class" time="0.011">
         
       </testcase>
     
@@ -11,7 +11,7 @@
         
       </testcase>
     
-      <testcase assertions="0" classname="DOM Methods .addClass()" name="should accept a string of separated values" time="0.009">
+      <testcase assertions="0" classname="DOM Methods .addClass()" name="should accept a string of separated values" time="0.01">
         
       </testcase>
     

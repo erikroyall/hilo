@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuites>
 
-  <testsuite name="DOM Methods .text()" errors="0" tests="2" failures="0" time="0.047" timestamp="2013-08-08T13:34:40.140Z">
+  <testsuite name="DOM Methods .text()" errors="0" tests="2" failures="0" time="0.046" timestamp="2013-08-09T02:40:41.826Z">
     
-      <testcase assertions="0" classname="DOM Methods .text()" name="should set the innerText of an element" time="0.017">
+      <testcase assertions="0" classname="DOM Methods .text()" name="should set the innerText of an element" time="0.018">
         
       </testcase>
     
-      <testcase assertions="0" classname="DOM Methods .text()" name="should return the innerText when no content is passed" time="0.011">
+      <testcase assertions="0" classname="DOM Methods .text()" name="should return the innerText when no content is passed" time="0.009">
         
       </testcase>
     

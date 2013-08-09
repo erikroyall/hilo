@@ -1,6 +1,6 @@
 /*! 
- * Hilo - 0.1.0-pre-dev-beta-8 - 2013-08-08
- * Project started before 1 month and 8 days
+ * Hilo - 0.1.0-pre-dev-beta-8 - 2013-08-09
+ * Project started before 1 month and 9 days
  * http://erikroyall.github.com/hilo/
  * Copyright (c) 2013 Erik Royall
  * Licensed under MIT (see LICENSE-MIT) 
@@ -4245,6 +4245,14 @@
       };
     }
   }());
+
+  // --------------------------------------------------
+  // .fire()
+  // --------------------------------------------------
+
+  Dom.prototype.fire = (function () {
+
+  }());
   
   // --------------------------------------------------
   // Events (imp.)
@@ -4552,6 +4560,10 @@
 
     return classes;
   };
+  
+  // These keyborad key mappings will be later used
+  // to enable use of shortcut keys or the like
+
   key = {
 
     // Numbers

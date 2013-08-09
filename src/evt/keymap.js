@@ -1,3 +1,7 @@
+  
+  // These keyborad key mappings will be later used
+  // to enable use of shortcut keys or the like
+
   key = {
 
     // Numbers

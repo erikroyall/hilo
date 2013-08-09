@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuites>
 
-  <testsuite name="DOM fx" errors="0" tests="4" failures="0" time="0.086" timestamp="2013-08-08T13:34:40.035Z">
+  <testsuite name="DOM fx" errors="0" tests="4" failures="0" time="0.039" timestamp="2013-08-09T02:40:41.704Z">
     
-      <testcase assertions="1" classname="DOM fx" name=".hide() should set HTMLElement.style.display to none" time="0.011">
+      <testcase assertions="1" classname="DOM fx" name=".hide() should set HTMLElement.style.display to none" time="0.005">
         
       </testcase>
     
-      <testcase assertions="1" classname="DOM fx" name=".show() should set HTMLElement.style.display apart from none" time="0.01">
+      <testcase assertions="1" classname="DOM fx" name=".show() should set HTMLElement.style.display apart from none" time="0.004">
         
       </testcase>
     
-      <testcase assertions="1" classname="DOM fx" name=".disappear() should set HTMLElement.style.opacity to &quot;0&quot;" time="0.011">
+      <testcase assertions="1" classname="DOM fx" name=".disappear() should set HTMLElement.style.opacity to &quot;0&quot;" time="0.006">
         
       </testcase>
     
-      <testcase assertions="1" classname="DOM fx" name=".appear() should set HTMLElement.style.opacity to &quot;1&quot;" time="0.01">
+      <testcase assertions="1" classname="DOM fx" name=".appear() should set HTMLElement.style.opacity to &quot;1&quot;" time="0.004">
         
       </testcase>
     
