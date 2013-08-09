@@ -48,7 +48,8 @@
   // $("div#editor").parent().hide()
   //
 
-  Dom.prototype["class"] = feature.classList === true ? function (action, className) {
+  Dom.prototype["class"] = feature.classList === true ? 
+  function (action, className) {
     return this.each(function (el) {
       var _i, parts, contains, res = [];
 
@@ -83,8 +84,6 @@
                 }
               }
               break;
-            default:
-              throw new TypeError("Unknown value provided as first parameter to .class()");
           }
         } else { // String, many classes
           contains = function (className) {
@@ -123,8 +122,6 @@
                 }
               }
               break;
-            default:
-              throw new TypeError("Unknown value provided as first parameter to .class()");
           }
         }
       } else if (className.length) { // Array
@@ -167,11 +164,7 @@
             }
             
             break;
-          default:
-            throw new TypeError("Unknown value provided as first parameter to .class()");
         }
-      } else {
-        throw new TypeError ("Please provide the right parameter (string or array) for .class()");
       }
 
       return typeof res === "boolean" ? res : res.every(function (el) {
@@ -215,8 +208,6 @@
               }
 
               break;
-            default:
-              throw new TypeError("Unknown value provided as first parameter to .class()");
           }
         } else {
           contains = function (className) {
@@ -256,8 +247,6 @@
               }
 
               break;
-            default:
-              throw new TypeError("Unknown value provided as first parameter to .class()");
           }
         }
       } else if (className.length) {
@@ -300,11 +289,7 @@
             }
 
             break;
-          default:
-            throw new TypeError("Unknown value provided as first parameter to .class()");
         }
-      } else {
-        throw new TypeError ("Please provide the right parameter (string or array) for .class()");
       }
 
       return typeof res === "boolean" ? res : res.every(function (el) {

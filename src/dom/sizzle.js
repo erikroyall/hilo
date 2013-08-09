@@ -23,7 +23,8 @@
         var keys = [];
 
         function cache( key, value ) {
-          // Use (key + " ") to avoid collision with native prototype properties (see Issue #157)
+          // Use (key + " ") to avoid collision 
+          // with native prototype properties (see Issue #157)
           if ( keys.push( key += " " ) > Expr.cacheLength ) {
             // Only keep the most recent entries
             delete cache[ keys.shift() ];
@@ -99,13 +100,19 @@
       characterEncoding = "(?:\\\\.|[\\w-]|[^\\x00-\\xa0])+",
 
       // Loosely modeled on CSS identifier characters
-      // An unquoted value should be a CSS identifier http://www.w3.org/TR/css3-selectors/#attribute-selectors
-      // Proper syntax: http://www.w3.org/TR/CSS21/syndata.html#value-def-identifier
+      // An unquoted value should be a CSS identifier 
+      // http://www.w3.org/TR/css3-selectors/#attribute-selectors
+      // Proper syntax: 
+      // http://www.w3.org/TR/CSS21/syndata.html#value-def-identifier
       identifier = characterEncoding.replace( "w", "w#" ),
 
-      // Acceptable operators http://www.w3.org/TR/selectors/#attribute-selectors
-      attributes = "\\[" + whitespace + "*(" + characterEncoding + ")" + whitespace +
-        "*(?:([*^$|!~]?=)" + whitespace + "*(?:(['\"])((?:\\\\.|[^\\\\])*?)\\3|(" + identifier + ")|)|)" + whitespace + "*\\]",
+      // Acceptable operators 
+      // http://www.w3.org/TR/selectors/#attribute-selectors
+      attributes = "\\[" + whitespace + "*(" + characterEncoding + ")" + 
+        whitespace +
+        "*(?:([*^$|!~]?=)" + whitespace + 
+        "*(?:(['\"])((?:\\\\.|[^\\\\])*?)\\3|(" + identifier + ")|)|)" + 
+        whitespace + "*\\]",
 
       // Prefer arguments quoted,
       //   then not containing pseudos/brackets,
@@ -113,16 +120,21 @@
       //   then anything else
       // These preferences are here to reduce the number of selectors
       //   needing tokenize in the PSEUDO preFilter
-      pseudos = ":(" + characterEncoding + ")(?:\\(((['\"])((?:\\\\.|[^\\\\])*?)\\3|((?:\\\\.|[^\\\\()[\\]]|" + attributes.replace( 3, 8 ) + ")*)|.*)\\)|)",
+      pseudos = ":(" + characterEncoding + 
+        ")(?:\\(((['\"])((?:\\\\.|[^\\\\])*?)\\3|((?:\\\\.|[^\\\\()[\\]]|" + 
+        attributes.replace( 3, 8 ) + ")*)|.*)\\)|)",
 
       // Leading and non-escaped trailing whitespace, capturing some non-whitespace characters preceding the latter
-      rtrim = new RegExp( "^" + whitespace + "+|((?:^|[^\\\\])(?:\\\\.)*)" + whitespace + "+$", "g" ),
+      rtrim = new RegExp( "^" + whitespace + "+|((?:^|[^\\\\])(?:\\\\.)*)" + 
+        whitespace + "+$", "g" ),
 
       rcomma = new RegExp( "^" + whitespace + "*," + whitespace + "*" ),
-      rcombinators = new RegExp( "^" + whitespace + "*([>+~]|" + whitespace + ")" + whitespace + "*" ),
+      rcombinators = new RegExp( "^" + whitespace + "*([>+~]|" + whitespace +
+        ")" + whitespace + "*" ),
 
       rsibling = new RegExp( whitespace + "*[+~]" ),
-      rattributeQuotes = new RegExp( "=" + whitespace + "*([^\\]'\"]*)" + whitespace + "*\\]", "g" ),
+      rattributeQuotes = new RegExp( "=" + whitespace + "*([^\\]'\"]*)" + 
+        whitespace + "*\\]", "g" ),
 
       rpseudo = new RegExp( pseudos ),
       ridentifier = new RegExp( "^" + identifier + "$" ),
@@ -154,7 +166,8 @@
       rescape = /'|\\/g,
 
       // CSS escapes http://www.w3.org/TR/CSS21/syndata.html#escaped-characters
-      runescape = new RegExp( "\\\\([\\da-f]{1,6}" + whitespace + "?|(" + whitespace + ")|.)", "ig" ),
+      runescape = new RegExp( "\\\\([\\da-f]{1,6}" + whitespace + "?|(" + 
+        whitespace + ")|.)", "ig" ),
       funescape = function( _, escaped, escapedWhitespace ) {
         var high = "0x" + escaped - 0x10000;
         // NaN means non-codepoint
@@ -219,7 +232,8 @@
               support.getById && context.nodeType === 9 && documentIsHTML &&
               Expr.relative[ tokens[1].type ] ) {
 
-            context = ( Expr.find["ID"]( token.matches[0].replace(runescape, funescape), context ) || [] )[0];
+            context = ( Expr.find["ID"]( token.matches[0].replace(runescape, 
+              funescape), context ) || [] )[0];
             if ( !context ) {
               return results;
             }

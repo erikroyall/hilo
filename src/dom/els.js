@@ -21,12 +21,12 @@
   };
 
   // -------------------------
-  // .ladt()
+  // .last()
   // -------------------------
   // 
   // Return last element in the selected elements
   // 
-  // .ladt( attr [, value] )
+  // .last( attr [, value] )
   //
   // Examples:
   // 

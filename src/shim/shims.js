@@ -20,7 +20,8 @@
         if (this === void 0 || this === null) {
           throw new TypeError("can't convert "+this+" to object");
         }
-        return String(this).replace(trimBeginRegexp, "").replace(trimEndRegexp, "");
+        return String(this).replace(trimBeginRegexp, "")
+          .replace(trimEndRegexp, "");
       };
     }
   }());

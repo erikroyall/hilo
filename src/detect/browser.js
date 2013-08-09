@@ -1,3 +1,8 @@
+  
+  // --------------------------------------------------
+  // Browser, Engine, Platform Detection
+  // --------------------------------------------------
+
   detected = (function () {
     var engine
       , browser
@@ -215,7 +220,7 @@
       browser.version = browser.firefox;
     }
 
-    // return it
+    // return them
 
     return {
       engine: engine,
