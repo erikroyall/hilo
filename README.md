@@ -1,6 +1,6 @@
 Hilo
 ====
-_0.1.0 pre dev beta_ - **0.1.0-pre-dev-beta-7**
+_0.1.0 pre dev beta_ - **0.1.0-pre-dev-beta-8**
 
 Hilo is a lightning fast Open Source JavaScript Framework and library that makes developing awesome websites easy. With Hilo, you won't have to worry about speed or backwards compatibility. All these are provided to you. It all depends on how you make use of it.
 
@@ -20,11 +20,11 @@ Hilo is a lightning fast Open Source JavaScript Framework and library that makes
 Add Hilo in the `<head>` or `<body>` section of your page.
 
 ```html
-  <head>
-    ...
-    <script type="text/javascript" src="hilo.js"></script>
-  </head>
+<head>
   ...
+  <script type="text/javascript" src="hilo.js"></script>
+</head>
+    ...
 ```
 
 Create another `<script>` and write Hilo code there.
