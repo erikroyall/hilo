@@ -43,6 +43,10 @@
 
   for (_i = 0; _i < impEvts.length; _i += 1) {
     Dom.prototype[impEvts[_i]] = function (fn) {
-      this.on(impEvts[_i], fn);
+      if (typeof fn === "function") {
+        return this.on(impEvts[_i], fn);
+      }
+
+      return this.fire(impEvts[_i]);
     };
   }
