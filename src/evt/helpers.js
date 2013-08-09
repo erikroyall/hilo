@@ -52,5 +52,27 @@
   // --------------------------------------------------
 
   Dom.prototype.fire = (function () {
-
+    if (document.dispatchEvent) {
+      return function (event) {
+        var evt = document.createEvent("UIEvents");
+        evt.initUIEvent(event, true, true, window, 1);
+        this.each(function (el) {
+          el.dispatchEvent(evt);
+        });
+      };
+    } else if (document.fireEvent) {
+      return function (event) {
+        var evt = document.createEventObject();
+        evt.button = 1;
+        this.each(function(el) {
+          el.fireEvent("on" + event, evt);
+        });
+      };
+    } else {
+      return function (event) {
+        this.each(function (el) {
+          el["on" + event].call();
+        });
+      };
+    }
   }());
