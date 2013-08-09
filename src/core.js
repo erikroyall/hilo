@@ -1,15 +1,21 @@
   
   // Core Library
 
-  /*
-   * Select elements
-   * 
-   * selector - Selector {String}
-   * root - Root element {String|HTMLElement}
-   * 
-   * This function can be used throughout the code
-   * to select elements
-   */
+  // --------------------------------------------------
+  // select()
+  // --------------------------------------------------
+  // 
+  // Select elements
+  // 
+  // This function can be used throughout the code
+  // to select elements
+  // 
+  // Usage:
+  //
+  // select(selector, root)
+  //   selector - Selector {String}
+  //   root - Root element {String|HTMLElement}
+  //
 
   select = feature.qsa3 ? function (selector, root) {
     // Set root to given root or document
@@ -20,9 +26,12 @@
     return sizzle(selector, root);
   };
 
-  /*
-   * Local copy of the one and only global
-   */
+  // --------------------------------------------------
+  // hilo
+  // --------------------------------------------------
+  // 
+  // The main hilo global function
+  //
 
   hilo = function (input, root, en) {
     if (typeof input === "undefined") {
@@ -58,14 +67,14 @@
   hilo.temp = {};
 
   // Version info
-  hilo.version = "0.1.0-pre-dev-beta-8";
+  hilo.version = "0.1.0-pre-dev-beta-9";
 
+  // Detections
   hilo.feature = feature;
   hilo.browser = detected.browser;
   hilo.engine = detected.engine;
   hilo.platform = detected.system;
 
   // ES Utils
-
   hilo.each = each;
   hilo.extend = extend;

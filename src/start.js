@@ -1,4 +1,7 @@
 (function (A, M, D) {
+
+  // Asynchronous Module Definition, if available
+
   var module = module || false
     , define = define || false;
 
@@ -20,21 +23,57 @@
   "use strict";
   
   var hilo             // Public API
-    , start            // Start time
-    , elapsed          // Time elapsed
+
+    // Later used to measure performace (Hilo.perf)
+    , start
+    , elapsed
+
+    // References
     , win = window     // Reference to window
     , doc = document   // Reference to document
-    , sizzle           // Sizzle.js
+
+    // Sizzle.js wrapper
+    , sizzle
+
+    // Later stores detected features
     , detected
+
+    // Key mappings (Hilo.keys)
     , key
+
+    // Array of callbacks to be exec.ed on DOMReady
     , callbacks = []   // Array of functions to be executed on DOMReady
-    , select           // Private Selector Function
+
+    // Private Selector Function
+    , select
+
+    // Feature Detection (Hilo.feature)
     , feature          // Feature Detection
-    , hiloAjax         // AJAX Func.
-    , impEvts          // Array containing imp. evts.
-    , impCss           // Array containing imp. css props.
-    , _i               // Loop helper
+
+    // Main AJAX function (Hilo.ajax)
+    , hiloAjax
+
+    // Important Events/CSS props.
+    , impEvts
+    , impCss
+
+    // Loop Variable
+    , _i
+
+    // -------------------------
+    // DOM
+    // -------------------------
+    // 
+    // The main DOM Class
+    //
     , Dom              // DOM Manipulation Methods
+
+    // -------------------------
+    // Test
+    // -------------------------
+    // 
+    // The main Test Class
+    //
     , Test;            // Test class
   
   start = new Date().getTime();
