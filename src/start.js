@@ -53,27 +53,8 @@
     // Main AJAX function (Hilo.ajax)
     , hiloAjax
 
-    // Important Events/CSS props.
-    , impEvts
-    , impCss
-
     // Loop Variable
-    , _i
-
-    // -------------------------
-    // DOM
-    // -------------------------
-    // 
-    // The main DOM Class
-    //
-    , Dom              // DOM Manipulation Methods
-
-    // -------------------------
-    // Test
-    // -------------------------
-    // 
-    // The main Test Class
-    //
-    , Test;            // Test class
+    , _i;
   
+  // Start performace testing
   start = new Date().getTime();

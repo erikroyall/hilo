@@ -3,13 +3,16 @@
   // Testing
   // --------------------------------------------------
 
-  hilo.test = function (con) {
-    return new Test(con);
-  };
+  extend(hilo, {
+    test: function (con) {
+      return new Test(con);
+    }
+  });
 
-  Test = function (con, neg) {
+  function Test (con, neg) {
     this.con = con;
+    
     if (neg) {
       this.neg = true;
     }
-  };
+  }

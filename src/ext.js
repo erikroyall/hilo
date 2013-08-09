@@ -3,5 +3,7 @@
   // Hilo Extension API
   // --------------------------------------------------
     
-  hilo.Dom = Dom.prototype;
-  hilo.Test = Test.prototype;
+  extend(hilo, {
+    Dom: Dom.prototype,
+    Test: Test.prototype
+  });

@@ -25,7 +25,7 @@
   // new Dom (document.getElementsByTagName("mark"))
   //
 
-  Dom = function (els, sel) {
+  function Dom (els, sel) {
     var _i, _l;
 
     // Note that `this` is an object and"
@@ -47,32 +47,6 @@
     // the elements
 
     this.sel = sel;
-  };
+  }
 
   Dom.prototype = Array.prototype;
-
-  // Create an element and return it
-
-  hilo.create = function (tagName, attrs) {
-    var el = new Dom([document.createElement(tagName)]), key;
-
-    if (attrs) {
-      if (attrs.className) {
-        el.addClass(attrs.className);
-        delete attrs.className;
-      }
-
-      if (attrs.text) {
-        el.text(attrs.text);
-        delete attrs.text;
-      }
-
-      for (key in attrs) {
-        if(attrs.hasOwnProperty(key)) {
-          el.attr(key, attrs["key"]);
-        }
-      }
-    }
-
-    return el;
-  };

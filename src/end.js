@@ -15,7 +15,9 @@
 
   elapsed = new Date().getTime() - start;
 
-  hilo.perf = elapsed;
+  extend(hilo, {
+    perf: elapsed
+  });
 
   return hilo;
 }));
