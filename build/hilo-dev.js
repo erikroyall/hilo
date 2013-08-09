@@ -61,29 +61,10 @@
     // Main AJAX function (Hilo.ajax)
     , hiloAjax
 
-    // Important Events/CSS props.
-    , impEvts
-    , impCss
-
     // Loop Variable
-    , _i
-
-    // -------------------------
-    // DOM
-    // -------------------------
-    // 
-    // The main DOM Class
-    //
-    , Dom              // DOM Manipulation Methods
-
-    // -------------------------
-    // Test
-    // -------------------------
-    // 
-    // The main Test Class
-    //
-    , Test;            // Test class
+    , _i;
   
+  // Start performace testing
   start = new Date().getTime();
   
   // --------------------------------------------------
@@ -2962,39 +2943,44 @@
   // Testing
   // --------------------------------------------------
 
-  hilo.test = function (con) {
-    return new Test(con);
-  };
+  extend(hilo, {
+    test: function (con) {
+      return new Test(con);
+    }
+  });
 
-  Test = function (con, neg) {
+  function Test (con, neg) {
     this.con = con;
+    
     if (neg) {
       this.neg = true;
     }
-  };
+  }
   
   // --------------------------------------------------
   // Test Comparisions
   // --------------------------------------------------
 
-  Test.prototype.ifEquals = function (tw) {
-    var val = this.con === tw;
-    return this.neg ? !val : val;
-  };
+  extend(Test.prototype, {
+    ifEquals: function (tw) {
+      var val = this.con === tw;
+      return this.neg ? !val : val;
+    },
 
-  Test.prototype.ifContains = function (tw) {
-    var ifString = this.con.split(tw).length === 1 ? false : true;
-    if (typeof tw === "string" && typeof this.con === "object" && this.con.length) {
+    ifIs: function (tw) {
+      var val = this.con === tw;
+      return this.neg ? !val : val;
+    },
 
-    } else if (typeof tw === "string" && typeof this.con === "string") {
-      return this.neg ? !ifString : ifString;
+    ifContains: function (tw) {
+      var ifString = this.con.split(tw).length === 1 ? false : true;
+      if (typeof tw === "string" && typeof this.con === "object" && this.con.length) {
+
+      } else if (typeof tw === "string" && typeof this.con === "string") {
+        return this.neg ? !ifString : ifString;
+      }
     }
-  };
-  
-  Test.prototype.ifIs = function (tw) {
-    var val = this.con === tw;
-    return this.neg ? !val : val;
-  };
+  });
   
   // --------------------------------------------------
   // String Shims
@@ -3208,7 +3194,7 @@
   // new Dom (document.getElementsByTagName("mark"))
   //
 
-  Dom = function (els, sel) {
+  function Dom (els, sel) {
     var _i, _l;
 
     // Note that `this` is an object and"
@@ -3230,11 +3216,137 @@
     // the elements
 
     this.sel = sel;
-  };
+  }
 
   Dom.prototype = Array.prototype;
+  
+  // --------------------------------------------------
+  // Helper Functions
+  // --------------------------------------------------
 
-  // Create an element and return it
+  extend(Dom.prototype, {
+
+    // -------------------------
+    // .each()
+    // -------------------------
+    // 
+    // Just like .map() but returns the current Dom instance
+    // 
+    // .each ( fn ) 
+    //   fn (function) : The function to be called
+    //
+    // Example:
+    // 
+    // $("p").each (function (el) {
+    //   doSomethingWith(e);
+    // });
+    // 
+
+    each: function (fn) {
+      this.map(fn);
+      return this; // return the current Dom instance
+    },
+
+    // -------------------------
+    // .map()
+    // -------------------------
+    // 
+    // Return the results of executing a function on all the selected elements
+    // 
+    // .map( fn )
+    //    fn (function) : The function to be called
+    //
+    // Example:
+    // 
+    // $("div.need-cf").map(function (e) {
+    //   doSomethingWith(e);
+    // });
+    // 
+
+    map: function (fn) {
+      var results = [], _i, _l;
+      for (_i = 0, _l = this.length; _i < _l; _i += 1) {
+        results.push(fn.call(this, this[_i], _i));
+      }
+      return results;
+    },
+
+    // -------------------------
+    // .one()
+    // -------------------------
+    // 
+    // .map fn on selected elements and return them based on length
+    //
+
+    one: function (fn) {
+      var m = this.map(fn);
+      return m.length > 1 ? m : m[0];
+    },
+
+    // -------------------------
+    // .first()
+    // -------------------------
+    // 
+    // Return the results of executing a function on all the selected elements
+    // 
+    // .first( fn )
+    //    fn (function) : The function to be called
+    //
+    // Example:
+    // 
+    // $("div").first(function (e) {
+    //   console.log(e + " is the first div");
+    // });
+    // 
+
+    first: function (fn) {
+      return (this.map(fn))[0];
+    },
+
+    // -------------------------
+    // .filter()
+    // -------------------------
+    // 
+    // Filters the selected elements and returns the
+    // elements that pass the test (or return true)
+    // 
+    // .filter( fn )
+    //    fn (function) : The function to be called
+    // 
+    // Example:
+    // 
+    // Filter to find divs with className hidden
+    // 
+    // $("div").filter(function (el) {
+    //   return el.className.split("hidden").length > 1;
+    // });
+    // 
+
+    filter: function (fun) {
+      var len = this.length >>> 0
+        , _i
+        , t = Object(this)
+        , res = []
+        , val;
+
+      for (_i = 0; _i < len; _i++)
+      {
+        if (_i in t)
+        {
+          val = t[_i];
+          if (fun.call(this, val, _i, t)) {
+            res.push(val);
+          }
+        }
+      }
+
+      return new Dom(res);
+    }
+  });
+
+  // --------------------------------------------------
+  // Element Selections, etc.
+  // --------------------------------------------------
 
   hilo.create = function (tagName, attrs) {
     var el = new Dom([document.createElement(tagName)]), key;
@@ -3259,328 +3371,189 @@
 
     return el;
   };
-  
-  // --------------------------------------------------
-  // Helper Functions
-  // --------------------------------------------------
 
-  // -------------------------
-  // .each()
-  // -------------------------
-  // 
-  // Just like .map() but returns the current Dom instance
-  // 
-  // .each ( fn ) 
-  //   fn (function) : The function to be called
-  //
-  // Example:
-  // 
-  // $("p").each (function (el) {
-  //   doSomethingWith(e);
-  // });
-  // 
+  extend(Dom.prototype, {
 
-  Dom.prototype.each = function (fn) {
-    this.map(fn);
-    return this; // return the current Dom instance
-  };
+    // -------------------------
+    // .first()
+    // -------------------------
+    // 
+    // Return the first element in the selected elements
+    // 
+    // .first( )
+    //
+    // Examples:
+    // 
+    // $("p.hidden").first().show()
+    //
 
-  // -------------------------
-  // .map()
-  // -------------------------
-  // 
-  // Return the results of executing a function on all the selected elements
-  // 
-  // .map( fn )
-  //    fn (function) : The function to be called
-  //
-  // Example:
-  // 
-  // $("div.need-cf").map(function (e) {
-  //   doSomethingWith(e);
-  // });
-  // 
+    first: function () {
+      return new Dom([this[0]]);
+    },
 
-  Dom.prototype.map = function (fn) {
-    var results = [], _i, _l;
-    for (_i = 0, _l = this.length; _i < _l; _i += 1) {
-      results.push(fn.call(this, this[_i], _i));
-    }
-    return results;
-  };
+    // -------------------------
+    // .last()
+    // -------------------------
+    // 
+    // Return last element in the selected elements
+    // 
+    // .last( attr [, value] )
+    //
+    // Examples:
+    // 
+    // $("p.hidden").last().show()
+    //
 
-  // -------------------------
-  // .one()
-  // -------------------------
-  // 
-  // .map fn on selected elements and return them based on length
-  //
+    last: function () {
+      return new Dom([this[this.length - 1]]);
+    },
 
-  Dom.prototype.one = function (fn) {
-    var m = this.map(fn);
-    return m.length > 1 ? m : m[0];
-  };
+    // -------------------------
+    // .el()
+    // -------------------------
+    // 
+    // Return nth element in the selected elements
+    // 
+    // .el( place )
+    //   place (number) : A number representing place of element
+    //
+    // Examples:
+    // 
+    // $("p.hidden").el(3).show()
+    //
 
-  // -------------------------
-  // .first()
-  // -------------------------
-  // 
-  // Return the results of executing a function on all the selected elements
-  // 
-  // .first( fn )
-  //    fn (function) : The function to be called
-  //
-  // Example:
-  // 
-  // $("div").first(function (e) {
-  //   console.log(e + " is the first div");
-  // });
-  // 
+    el: function (place) {
+      return new Dom([this[place - 1]]);
+    },
 
-  Dom.prototype.first = function (fn) {
-    return (this.map(fn))[0];
-  };
+    // -------------------------
+    // .children()
+    // -------------------------
+    // 
+    // Return nth element in the selected elements
+    // 
+    // .children( )
+    //
+    // Examples:
+    // 
+    // $("p.hidden").el().show()
+    //
 
-  // -------------------------
-  // .next()
-  // -------------------------
-  // 
-  // Return next element siblings of the selected elements
-  // 
-  // .next( )
-  //
-  // Examples:
-  // 
-  // $("div.editor").next().class("next-to-editor")
-  //
+    children: function (sel) {
+      var children = [], _i, _l;
 
-  Dom.prototype.next = function () {
-    return this.rel("nextElementSibling");
-  };
+      this.each(function (el) {
+        var childNodes = select(sel ? sel : "*", el);
 
-  // -------------------------
-  // .filter()
-  // -------------------------
-  // 
-  // Filters the selected elements and returns the
-  // elements that pass the test (or return true)
-  // 
-  // .filter( fn )
-  //    fn (function) : The function to be called
-  // 
-  // Example:
-  // 
-  // Filter to find divs with className hidden
-  // 
-  // $("div").filter(function (el) {
-  //   return el.className.split("hidden").length > 1;
-  // });
-  // 
-
-  Dom.prototype.filter = function (fun) {
-    var len = this.length >>> 0
-      , _i
-      , t = Object(this)
-      , res = []
-      , val;
-
-    for (_i = 0; _i < len; _i++)
-    {
-      if (_i in t)
-      {
-        val = t[_i];
-        if (fun.call(this, val, _i, t)) {
-          res.push(val);
+        for (_i = 0, _l = childNodes.length; _i < _l; _i += 1) {
+          children = children.concat(childNodes[_i]);
         }
-      }
+      });
+
+      return children;
+    },
+
+    // -------------------------
+    // .parent()
+    // -------------------------
+    // 
+    // Return parent of the first selected element
+    // 
+    // .parent( )
+    //
+    // Examples:
+    // 
+    // $("div#editor").parent().hide()
+    //
+
+    parents: function () {
+      var pars = [];
+
+      this.each(function (el) {
+        pars = pars.concat(el.parentElement);
+      });
+
+      return new Dom(pars);
+    },
+
+    // -------------------------
+    // .parent()
+    // -------------------------
+    // 
+    // Return parent of first selected element
+    // 
+    // .parent( )
+    //
+    // Examples:
+    // 
+    // $("div.editor").parent().hide()
+    //
+
+    parent: function () {
+      return this.first(function (el) {
+        return new Dom([el.parentElement]);
+      });
+    },
+
+    // -------------------------
+    // .rel()
+    // -------------------------
+    // 
+    // Return relative of selected elements based
+    // on the relation given
+    // 
+    // .rel( rel )
+    //   rel (string) : The relation between curent and 
+    //
+    // Examples:
+    // 
+    // $("div#editor").rel("nextSibling").addClass("next-to-editor")
+    //
+
+    rel: function (sul) {
+      var els = [];
+
+      this.each(function (el) {
+        els.push(el[sul]);
+      });
+
+      return els;
+    },
+
+    // -------------------------
+    // .next()
+    // -------------------------
+    // 
+    // Return next element siblings of the selected elements
+    // 
+    // .next( )
+    //
+    // Examples:
+    // 
+    // $("div.editor").next().class("next-to-editor")
+    //
+
+    next: function () {
+      return this.rel("nextElementSibling");
+    },
+
+    // -------------------------
+    // .prev()
+    // -------------------------
+    // 
+    // Return previous element siblings of the selected elements
+    // 
+    // .prev( )
+    //
+    // Examples:
+    // 
+    // $("div.editor").prev().class("prev-to-editor")
+    //
+
+    prev: function () {
+      return this.rel("previousElementSibling");
     }
-
-    return new Dom(res);
-  };
-
-  // --------------------------------------------------
-  // Element Selections, etc.
-  // --------------------------------------------------
-
-  // -------------------------
-  // .first()
-  // -------------------------
-  // 
-  // Return the first element in the selected elements
-  // 
-  // .first( )
-  //
-  // Examples:
-  // 
-  // $("p.hidden").first().show()
-  //
-
-  Dom.prototype.first = function () {
-    return new Dom([this[0]]);
-  };
-
-  // -------------------------
-  // .last()
-  // -------------------------
-  // 
-  // Return last element in the selected elements
-  // 
-  // .last( attr [, value] )
-  //
-  // Examples:
-  // 
-  // $("p.hidden").last().show()
-  //
-  
-  Dom.prototype.last = function () {
-    return new Dom([this[this.length - 1]]);
-  };
-
-  // -------------------------
-  // .el()
-  // -------------------------
-  // 
-  // Return nth element in the selected elements
-  // 
-  // .el( place )
-  //   place (number) : A number representing place of element
-  //
-  // Examples:
-  // 
-  // $("p.hidden").el(3).show()
-  //
-
-  Dom.prototype.el = function (place) {
-    return new Dom([this[place - 1]]);
-  };
-
-  // -------------------------
-  // .children()
-  // -------------------------
-  // 
-  // Return nth element in the selected elements
-  // 
-  // .children( )
-  //
-  // Examples:
-  // 
-  // $("p.hidden").el().show()
-  //
-
-  Dom.prototype.children = function (sel) {
-    var children = [], _i, _l;
-
-    this.each(function (el) {
-      var childNodes = select(sel ? sel : "*", el);
-
-      for (_i = 0, _l = childNodes.length; _i < _l; _i += 1) {
-        children = children.concat(childNodes[_i]);
-      }
-    });
-
-    return children;
-  };
-
-  // -------------------------
-  // .parent()
-  // -------------------------
-  // 
-  // Return parent of the first selected element
-  // 
-  // .parent( )
-  //
-  // Examples:
-  // 
-  // $("div#editor").parent().hide()
-  //
-
-  Dom.prototype.parent = function () {
-    return this.first(function (el) {
-      return new Dom([el.parentElement]);
-    });
-  };
-
-  // -------------------------
-  // .parents()
-  // -------------------------
-  // 
-  // Return parents of all selected elements
-  // 
-  // .parents( )
-  //
-  // Examples:
-  // 
-  // $("div.editor").parents().hide()
-  //
-
-  Dom.prototype.parents = function () {
-    var pars = [];
-
-    this.each(function (el) {
-      pars = pars.concat(el.parentElement);
-    });
-
-    return new Dom(pars);
-  };
-
-  // -------------------------
-  // .parent()
-  // -------------------------
-  // 
-  // Return relative of selected elements based
-  // on the relation given
-  // 
-  // .rel( rel )
-  //   rel (string) : The relation between curent and 
-  //
-  // Examples:
-  // 
-  // $("div#editor").parent().hide()
-  //
-
-  Dom.prototype.rel = function (sul) {
-    var els = [];
-
-    this.each(function (el) {
-      els.push(el[sul]);
-    });
-
-    return els;
-  };
-
-  // -------------------------
-  // .next()
-  // -------------------------
-  // 
-  // Return next element siblings of the selected elements
-  // 
-  // .next( )
-  //
-  // Examples:
-  // 
-  // $("div.editor").next().class("next-to-editor")
-  //
-
-  Dom.prototype.next = function () {
-    return this.rel("nextElementSibling");
-  };
-
-  // -------------------------
-  // .prev()
-  // -------------------------
-  // 
-  // Return previous element siblings of the selected elements
-  // 
-  // .prev( )
-  //
-  // Examples:
-  // 
-  // $("div.editor").prev().class("prev-to-editor")
-  //
-
-  Dom.prototype.prev = function () {
-    return this.rel("previousElementSibling");
-  };
+  });
   
   // --------------------------------------------------
   // DOM HTML
@@ -3747,89 +3720,131 @@
   // Classes and IDs
   // --------------------------------------------------
 
-  // -------------------------
-  // .id()
-  // -------------------------
-  // 
-  // Set or return id attribute of selected elements
-  // 
-  // .get()
-  //
-  // Examples:
-  // 
-  // $("p.rect").first().id("square")
-  // 
+  extend(Dom.prototype, {
 
-  Dom.prototype.id = function (id) {
-    if(id) {
+    // -------------------------
+    // .id()
+    // -------------------------
+    // 
+    // Set or return id attribute of selected elements
+    // 
+    // .get()
+    //
+    // Examples:
+    // 
+    // $("p.rect").first().id("square")
+    // 
 
-      // Setting id of only one element because
-      // id is intended to be an unique identifier
+    id: function (id) {
+      if(id) {
 
-      return this.first(function(el) {
-        el.id = id;
-      });
-    } else {
-      return this.first(function (el) {
-        return el.id;
-      });
-    }
-  };
+        // Setting id of only one element because
+        // id is intended to be an unique identifier
 
-  // -------------------------
-  // .class()
-  // -------------------------
-  // 
-  // Add, remove or check classes of selected elements
-  // based on action given
-  // 
-  // .class( action, className )
-  //   action (string) : add, remove or has
-  //   className (string|array) : class name or list of class names
-  //
-  // Examples:
-  // 
-  // $("div#editor").parent().hide()
-  //
+        return this.first(function(el) {
+          el.id = id;
+        });
+      } else {
+        return this.first(function (el) {
+          return el.id;
+        });
+      }
+    },
 
-  Dom.prototype["class"] = feature.classList === true ? 
-  function (action, className) {
-    return this.each(function (el) {
-      var _i, parts, contains, res = [];
+    // -------------------------
+    // .class()
+    // -------------------------
+    // 
+    // Add, remove or check classes of selected elements
+    // based on action given
+    // 
+    // .class( action, className )
+    //   action (string) : add, remove or has
+    //   className (string|array) : class name or list of class names
+    //
+    // Examples:
+    // 
+    // $("div#editor").class("add", "no-js")
+    //
 
-      if (typeof className === "string") { // A String
-        parts = className.split(" ");
+    "class": feature.classList === true ? function (action, className) {
+      return this.each(function (el) {
+        var _i, parts, contains, res = [];
 
-        if (parts.length === 1) { // String, one class
-          contains = el.classList.contains(className);
+        if (typeof className === "string") { // A String
+          parts = className.split(" ");
 
-          switch (action) {
-            case "add":
-              if (!contains) {
-                el.classList.add(className);
-              }
+          if (parts.length === 1) { // String, one class
+            contains = el.classList.contains(className);
 
-              break;
-            case "remove":
-              if (contains) {
-                el.classList.remove(className);
-              }
-
-              break;
-            case "has":
-              res = true;
-              break;
-            case "toggle":
-              for (_i = 0; _i < parts.length; _i += 1) {
-                if (contains) {
-                  el.classList.remove(parts[_i]);
-                } else {
-                  el.classList.add(parts[_i]);
+            switch (action) {
+              case "add":
+                if (!contains) {
+                  el.classList.add(className);
                 }
-              }
-              break;
+
+                break;
+              case "remove":
+                if (contains) {
+                  el.classList.remove(className);
+                }
+
+                break;
+              case "has":
+                res = true;
+                break;
+              case "toggle":
+                for (_i = 0; _i < parts.length; _i += 1) {
+                  if (contains) {
+                    el.classList.remove(parts[_i]);
+                  } else {
+                    el.classList.add(parts[_i]);
+                  }
+                }
+                break;
+            }
+          } else { // String, many classes
+            contains = function (className) {
+              return el.classList.contains(className);
+            };
+
+            switch (action) {
+              case "add":
+                for (_i = 0; _i < parts.length; _i += 1) {
+                  if (!contains(parts[_i])) {
+                    el.classList.add(parts[_i]);
+                  }
+                }
+
+                break;
+              case "remove":
+                for (_i = 0; _i < parts.length; _i += 1) {
+                  if (contains(parts[_i])) {
+                    el.classList.remove(parts[_i]);
+                  }
+                }
+
+                break;
+              case "has":
+                for (_i = 0; _i < parts.length; _i += 1) {
+                  res.push(contains(parts[_i]));
+                }
+
+                break;
+              case "toggle":
+                for (_i = 0; _i < parts.length; _i += 1) {
+                  if (contains(parts[_i])) {
+                    el.classList.remove(parts[_i]);
+                  } else {
+                    el.classList.add(parts[_i]);
+                  }
+                }
+                break;
+            }
           }
-        } else { // String, many classes
+        } else if (className.length) { // Array
+          parts = className;
+
           contains = function (className) {
             return el.classList.contains(className);
           };
@@ -3865,95 +3880,96 @@
                   el.classList.add(parts[_i]);
                 }
               }
-              break;
-          }
-        }
-      } else if (className.length) { // Array
-        parts = className;
-
-        contains = function (className) {
-          return el.classList.contains(className);
-        };
-
-        switch (action) {
-          case "add":
-            for (_i = 0; _i < parts.length; _i += 1) {
-              if (!contains(parts[_i])) {
-                el.classList.add(parts[_i]);
-              }
-            }
-
-            break;
-          case "remove":
-            for (_i = 0; _i < parts.length; _i += 1) {
-              if (contains(parts[_i])) {
-                el.classList.remove(parts[_i]);
-              }
-            }
-
-            break;
-          case "has":
-            for (_i = 0; _i < parts.length; _i += 1) {
-              res.push(contains(parts[_i]));
-            }
-
-            break;
-          case "toggle":
-            for (_i = 0; _i < parts.length; _i += 1) {
-              if (contains(parts[_i])) {
-                el.classList.remove(parts[_i]);
-              } else {
-                el.classList.add(parts[_i]);
-              }
-            }
-            
-            break;
-        }
-      }
-
-      return typeof res === "boolean" ? res : res.every(function (el) {
-        return el === true;
-      });
-    });
-  } : function (action, className) {
-    return this.each(function (el) {
-      var _i, parts, contains, res = [];
-
-      if (typeof className === "string") {
-        parts = className.split(" ");
-
-        if (parts.length === 1) {
-          contains = el.className.split(className).length > 1;
-
-          switch (action) {
-            case "add":
-              if (!contains) {
-                el.className += " " +  (className);
-              }
-
-              break;
-            case "remove":
-              if (contains) {
-                el.className.replace(className, "");
-              }
-
-              break;
-            case "has":
-              res = contains;
               
               break;
-            case "toggle":
-              for (_i = 0; _i < parts.length; _i += 1) {
+          }
+        }
+
+        return typeof res === "boolean" ? res : res.every(function (el) {
+          return el === true;
+        });
+      });
+    } : function (action, className) {
+      return this.each(function (el) {
+        var _i, parts, contains, res = [];
+
+        if (typeof className === "string") {
+          parts = className.split(" ");
+
+          if (parts.length === 1) {
+            contains = el.className.split(className).length > 1;
+
+            switch (action) {
+              case "add":
+                if (!contains) {
+                  el.className += " " +  (className);
+                }
+
+                break;
+              case "remove":
                 if (contains) {
                   el.className.replace(className, "");
-                } else {
-                  el.className += " " +  className;
                 }
-              }
 
-              break;
+                break;
+              case "has":
+                res = contains;
+                
+                break;
+              case "toggle":
+                for (_i = 0; _i < parts.length; _i += 1) {
+                  if (contains) {
+                    el.className.replace(className, "");
+                  } else {
+                    el.className += " " +  className;
+                  }
+                }
+
+                break;
+            }
+          } else {
+            contains = function (className) {
+              return el.className.split(className).length > 1;
+            };
+
+            switch (action) {
+              case "add":
+                for (_i = 0; _i < parts.length; _i += 1) {
+                  if (!contains(parts[_i])) {
+                    el.className += " " +  parts[_i];
+                  }
+                }
+
+                break;
+              case "remove":
+                for (_i = 0; _i < parts.length; _i += 1) {
+                  if (contains(parts[_i])) {
+                    el.className.replace(parts[_i], "");
+                  }
+                }
+
+                break;
+              case "has":
+                for (_i = 0; _i < parts.length; _i += 1) {
+                  res.push(contains(parts[_i]));
+                }
+
+                break;
+              case "toggle":
+                for (_i = 0; _i < parts.length; _i += 1) {
+                  if (contains(parts[_i])) {
+                    el.className.replace(parts[_i], "");
+                  } else {
+                    el.className += " " +  parts[_i];
+                  }
+                }
+
+                break;
+            }
           }
-        } else {
+        } else if (className.length) {
+          parts = className;
+          
           contains = function (className) {
             return el.className.split(className).length > 1;
           };
@@ -3993,247 +4009,219 @@
               break;
           }
         }
-      } else if (className.length) {
-        parts = className;
-        
-        contains = function (className) {
-          return el.className.split(className).length > 1;
-        };
 
-        switch (action) {
-          case "add":
-            for (_i = 0; _i < parts.length; _i += 1) {
-              if (!contains(parts[_i])) {
-                el.className += " " +  parts[_i];
-              }
-            }
+        return typeof res === "boolean" ? res : res.every(function (el) {
+          return el === true;
+        });
+      });
+    },
 
-            break;
-          case "remove":
-            for (_i = 0; _i < parts.length; _i += 1) {
-              if (contains(parts[_i])) {
-                el.className.replace(parts[_i], "");
-              }
-            }
+    // -------------------------
+    // .addClass()
+    // -------------------------
+    // 
+    // Add class(es) to selected elements
+    // 
+    // .addClass( className )
+    //   className (string|array) : The class(es to be added)
+    //
+    // Examples:
+    // 
+    // $("p").addClass("paragraph")
+    // 
 
-            break;
-          case "has":
-            for (_i = 0; _i < parts.length; _i += 1) {
-              res.push(contains(parts[_i]));
-            }
+    addClass: function (className) {
+      return this["class"]("add", className);
+    },
 
-            break;
-          case "toggle":
-            for (_i = 0; _i < parts.length; _i += 1) {
-              if (contains(parts[_i])) {
-                el.className.replace(parts[_i], "");
-              } else {
-                el.className += " " +  parts[_i];
-              }
-            }
+    // -------------------------
+    // .removeClass()
+    // -------------------------
+    // 
+    // Remove class(es) from selected elements
+    // 
+    // .removeClass( className )
+    //   className (string|array) : The class(es to be added)
+    //
+    // Examples:
+    // 
+    // $("p").removeClass("hidden")
+    //
 
-            break;
-        }
+    removeClass: function (className) {
+      return this["class"]("remove", className);
+    },
+
+    // -------------------------
+    // .hasClass()
+    // -------------------------
+    // 
+    // Check if all elements has class(es)
+    // 
+    // .hasClass( className )
+    //   className (string|array) : The class(es to be added)
+    //
+    // Examples:
+    // 
+    // $("p").hasClass()
+    //
+
+    hasClass: function (className) {
+      return this["class"]("has", className);
+    },
+
+    // -------------------------
+    // .toggleClass()
+    // -------------------------
+    // 
+    // Add or remove class(es) based on existence
+    // 
+    // .hasClass( className )
+    //   className (string|array) : The class(es to be added)
+    //
+    // Examples:
+    // 
+    // $("p").hasClass()
+    //
+
+    toggleClass: function (className) {
+      return this["class"]("toggle", className);
+    },
+
+    // -------------------------
+    // .attr()
+    // -------------------------
+    // 
+    // Set or return an attribute of selected elements
+    // 
+    // .attr( attr [, value] )
+    //   attr (string) : Name of attribute
+    //   value (any) : Value of attrib ute
+    //
+    // Examples:
+    // 
+    // $("p.hidden").attr("hidden")
+    // $("div.edit").attr("contentEditable", "true")
+    // $("body").attr("hilo", "0.1.0")
+    //
+    
+    attr: function (name, val) {
+      if(val) {
+        return this.each(function(el) {
+          el.setAttribute(name, val);
+        });
+      } else {
+        return this.first(function (el) {
+          return el[name];
+        });
       }
-
-      return typeof res === "boolean" ? res : res.every(function (el) {
-        return el === true;
-      });
-    });
-  };
-
-  // -------------------------
-  // .addClass()
-  // -------------------------
-  // 
-  // Add class(es) to selected elements
-  // 
-  // .addClass( className )
-  //   className (string|array) : The class(es to be added)
-  //
-  // Examples:
-  // 
-  // $("p").addClass("paragraph")
-  // 
-
-  Dom.prototype.addClass = function (className) {
-    return this["class"]("add", className);
-  };
-
-  // -------------------------
-  // .removeClass()
-  // -------------------------
-  // 
-  // Remove class(es) from selected elements
-  // 
-  // .removeClass( className )
-  //   className (string|array) : The class(es to be added)
-  //
-  // Examples:
-  // 
-  // $("p").removeClass("hidden")
-  //
-
-  Dom.prototype.removeClass = function (className) {
-    return this["class"]("remove", className);
-  };
-
-  // -------------------------
-  // .hasClass()
-  // -------------------------
-  // 
-  // Check if all elements has class(es)
-  // 
-  // .hasClass( className )
-  //   className (string|array) : The class(es to be added)
-  //
-  // Examples:
-  // 
-  // $("p").hasClass()
-  //
-
-  Dom.prototype.hasClass = function (className) {
-    return this["class"]("has", className);
-  };
-
-  // -------------------------
-  // .toggleClass()
-  // -------------------------
-  // 
-  // Add or remove class(es) based on existence
-  // 
-  // .hasClass( className )
-  //   className (string|array) : The class(es to be added)
-  //
-  // Examples:
-  // 
-  // $("p").hasClass()
-  //
-
-  Dom.prototype.toggleClass = function (className) {
-    return this["class"]("toggle", className);
-  };
-
-  // -------------------------
-  // .attr()
-  // -------------------------
-  // 
-  // Set or return an attribute of selected elements
-  // 
-  // .attr( attr [, value] )
-  //   attr (string) : Name of attribute
-  //   value (any) : Value of attrib ute
-  //
-  // Examples:
-  // 
-  // $("p.hidden").attr("hidden")
-  // $("div.edit").attr("contentEditable", "true")
-  // $("body").attr("hilo", "0.1.0")
-  //
-  
-  Dom.prototype.attr = function (name, val) {
-    if(val) {
-      return this.each(function(el) {
-        el.setAttribute(name, val);
-      });
-    } else {
-      return this.first(function (el) {
-        return el[name];
-      });
     }
-  };
+  });
   
   // --------------------------------------------------
   // Hilo CSS
   // --------------------------------------------------
 
-  // Set a css prop. to s.el.
-  // 
-  // Syntax .css( prop [, value] )
-  //
-  // Examples:
-  // 
-  // $(selector).css("background-color", "#444")
-  // var fontColor = $(selector).css("color")
-  //
+  extend(Dom.prototype, {
 
-  Dom.prototype.css = function (prop, value) {
-    if (value) { // If value arg. is given
-      return this.each(function (el) {
-        el.style[prop] = value; // Set CSS prop. to value
-      });
-    } else { // Otherwise, if value arg. is not given
-      return this.one(function (el) {
-        return el.style[prop]; // Return the style of that element
-      });
+    // --------------------------------------------------
+    // .css()
+    // --------------------------------------------------
+    // 
+    // Set a css prop. to s.el.
+    // 
+    // Syntax .css( prop [, value] )
+    //
+    // Examples:
+    // 
+    // $(selector).css("background-color", "#444")
+    // var fontColor = $(selector).css("color")
+    // 
+
+    css: function (prop, value) {
+      if (value) { // If value arg. is given
+        return this.each(function (el) {
+          el.style[prop] = value; // Set CSS prop. to value
+        });
+      } else { // Otherwise, if value arg. is not given
+        return this.one(function (el) {
+          return el.style[prop]; // Return the style of that element
+        });
+      }
     }
-  };
+  });
 
-  // Important CSS Properties
-  //
-  // Important CSS methods that are provided as public methods
-  //
+  (function () {
 
-  impCss = [
-    "width",
-    "height",
-    "fontFamily",
-    "fontWeight",
-    "fontDecoration",
-    "textAlign",
-    "textTransform",
-    "color",
-    "backgroundColor",
-    "background",
-    "margin",
-    "padding",
-    "top",
-    "left",
-    "bottom",
-    "right"
-  ];
-  
-  for(_i; _i < impCss; _i += 1) {
-    Dom.prototype[impCss[_i]] = function (val) {
-      this.css(impCss[_i], val);
-    };
-  }
+    var cssObj = {}
+      , impCss;
+
+    impCss = [
+      "width",
+      "height",
+      "fontFamily",
+      "fontWeight",
+      "fontDecoration",
+      "textAlign",
+      "textTransform",
+      "color",
+      "backgroundColor",
+      "background",
+      "margin",
+      "padding",
+      "top",
+      "left",
+      "bottom",
+      "right"
+    ];
+    
+    for (_i = 0; _i < impCss.length; _i += 1) {
+      cssObj[impCss[_i]] = function (val) {
+        return this.css(impCss[_i], val);
+      };
+    }
+
+    extend(Dom.prototype, cssObj);
+
+  }());
 
   // Get computed style of the first element
 
-  Dom.prototype.computed = function (prop) {
-    return this.one(function (el) {
-      return win.getComputedStyle(el)[prop];
-    });
-  };
+  extend(Dom.prototype, {
+    computed: function (prop) {
+      return this.one(function (el) {
+        return win.getComputedStyle(el)[prop];
+      });
+    },
 
-  Dom.prototype.outerWidth = function () {
-    return parseFloat(this.computed("width")) + 
-    parseFloat(this.computed("paddingLeft")) + 
-    parseFloat(this.computed("paddingRight")) + 
-    parseFloat(this.computed("borderLeft")) + 
-    parseFloat(this.computed("borderRight")) + "px";
-  };
+    outerWidth: function () {
+      return parseFloat(this.computed("width")) + 
+      parseFloat(this.computed("paddingLeft")) + 
+      parseFloat(this.computed("paddingRight")) + 
+      parseFloat(this.computed("borderLeft")) + 
+      parseFloat(this.computed("borderRight")) + "px";
+    },
 
-  Dom.prototype.innerWidth = function () {
-    return parseFloat(this.computed("width")) + 
-    parseFloat(this.computed("paddingLeft")) + 
-    parseFloat(this.computed("paddingRight")) + "px";
-  };
+    innerWidth: function () {
+      return parseFloat(this.computed("width")) + 
+      parseFloat(this.computed("paddingLeft")) + 
+      parseFloat(this.computed("paddingRight")) + "px";
+    },
 
-  Dom.prototype.outerHeight = function () {
-    return parseFloat(this.computed("height")) + 
-    parseFloat(this.computed("paddingTop")) + 
-    parseFloat(this.computed("paddingBottom")) + 
-    parseFloat(this.computed("borderTop")) + 
-    parseFloat(this.computed("borderBottom")) + "px";
-  };
+    outerHeight: function () {
+      return parseFloat(this.computed("height")) + 
+      parseFloat(this.computed("paddingTop")) + 
+      parseFloat(this.computed("paddingBottom")) + 
+      parseFloat(this.computed("borderTop")) + 
+      parseFloat(this.computed("borderBottom")) + "px";
+    },
 
-  Dom.prototype.innerHeight = function () {
-    return parseFloat(this.computed("height")) + 
-    parseFloat(this.computed("paddingTop")) + 
-    parseFloat(this.computed("paddingBottom")) + "px";
-  };
+    innerHeight: function () {
+      return parseFloat(this.computed("height")) + 
+      parseFloat(this.computed("paddingTop")) + 
+      parseFloat(this.computed("paddingBottom")) + "px";
+    }
+  });
   
   // --------------------------------------------------
   // DOM Extensions
@@ -4266,233 +4254,425 @@
   // Events
   // --------------------------------------------------
 
-  Dom.prototype.on = (function () {
-    if (document.addEventListener) {
-      return function (evt, fn) {
-        return this.each(function (el) {
-          el.addEventListener(evt, fn, false);
-        });
-      };
-    } else if (document.attachEvent)  {
-      return function (evt, fn) {
-        return this.each(function (el) {
-          el.attachEvent("on" + evt, fn);
-        });
-      };
-    } else {
-      return function (evt, fn) {
-        return this.each(function (el) {
-          el["on" + evt] = fn;
-        });
-      };
-    }
-  }());
+  extend(Dom.prototype, {
 
-  Dom.prototype.off = (function () {
-    if (document.removeEventListener) {
-      return function (evt, fn) {
-        return this.each(function (el) {
-          el.removeEventListener(evt, fn, false);
-        });
-      };
-    } else if (document.detachEvent)  {
-      return function (evt, fn) {
-        return this.each(function (el) {
-          el.detachEvent("on" + evt, fn);
-        });
-      };
-    } else {
-      return function (evt) {
-        return this.each(function (el) {
-          el["on" + evt] = null;
-        });
-      };
-    }
-  }());
+    // -------------------------
+    // .on()
+    // -------------------------
+    // 
+    // Listen to an event and execute a function
+    // when that event happens
+    // 
+    // .on( evt, fn )
+    //   !evt (string) : The name of event
+    //   fn (function) : Function to be executed when the event is fired
+    //
+    // Examples:
+    // 
+    // $("p.hidden").on("click", function () {
+    //   $(this).show()
+    // })
+    //
 
-  // --------------------------------------------------
-  // .fire()
-  // --------------------------------------------------
+    on: (function () {
+      if (document.addEventListener) {
+        return function (evt, fn) {
+          return this.each(function (el) {
+            el.addEventListener(evt, fn, false);
+          });
+        };
+      } else if (document.attachEvent)  {
+        return function (evt, fn) {
+          return this.each(function (el) {
+            el.attachEvent("on" + evt, fn);
+          });
+        };
+      } else {
+        return function (evt, fn) {
+          return this.each(function (el) {
+            el["on" + evt] = fn;
+          });
+        };
+      }
+    }()),
 
-  Dom.prototype.fire = (function () {
-    if (document.dispatchEvent) {
-      return function (event) {
-        var evt = document.createEvent("UIEvents");
-        evt.initUIEvent(event, true, true, window, 1);
-        this.each(function (el) {
-          el.dispatchEvent(evt);
-        });
-      };
-    } else if (document.fireEvent) {
-      return function (event) {
-        var evt = document.createEventObject();
-        evt.button = 1;
-        this.each(function(el) {
-          el.fireEvent("on" + event, evt);
-        });
-      };
-    } else {
-      return function (event) {
-        this.each(function (el) {
-          el["on" + event].call();
-        });
-      };
-    }
-  }());
+    // -------------------------
+    // .off()
+    // -------------------------
+    // 
+    // Stop listening to an event
+    // 
+    // .off( evt, fn )
+    //   !evt (string) : The name of event
+    //   fn (function) : The Event handler function
+    //
+    // Examples:
+    // 
+    // $("p").off("click", fn)
+    //
+
+    off: (function () {
+      if (document.removeEventListener) {
+        return function (evt, fn) {
+          return this.each(function (el) {
+            el.removeEventListener(evt, fn, false);
+          });
+        };
+      } else if (document.detachEvent)  {
+        return function (evt, fn) {
+          return this.each(function (el) {
+            el.detachEvent("on" + evt, fn);
+          });
+        };
+      } else {
+        return function (evt) {
+          return this.each(function (el) {
+            el["on" + evt] = null;
+          });
+        };
+      }
+    }()),
+
+    // -------------------------
+    // .fire()
+    // -------------------------
+    // 
+    // Trigger (or fire) an event
+    // 
+    // .fire( evt )
+    //   !evt (string) : The name of event
+    //
+    // Examples:
+    // 
+    // $("p.hidden").fire("click")
+    //
+
+    fire: (function () {
+      if (document.dispatchEvent) {
+        return function (event) {
+          var evt = document.createEvent("UIEvents");
+          evt.initUIEvent(event, true, true, window, 1);
+
+          return this.each(function (el) {
+            el.dispatchEvent(evt);
+          });
+        };
+      } else if (document.fireEvent) {
+        return function (event) {
+          var evt = document.createEventObject();
+          evt.button = 1;
+
+          return this.each(function(el) {
+            el.fireEvent("on" + event, evt);
+          });
+        };
+      } else {
+        return function (event) {
+          return this.each(function (el) {
+            el["on" + event].call();
+          });
+        };
+      }
+    }())
+  });
   
   // --------------------------------------------------
   // Events (imp.)
   // --------------------------------------------------
 
-  Dom.prototype.ready = function (fn) {
-    this.each(function (el) {
-      el.onreadystatechange = function () {
-        if (el.readyState = "complete") {
-          fn();
+  extend(Dom.prototype, {
+    ready: function (fn) {
+      this.each(function (el) {
+        el.onreadystatechange = function () {
+          if (el.readyState = "complete") {
+            fn();
+          }
+        };
+      });
+    }
+  });
+
+  (function () {
+    var evtObj = {}
+      , impEvts;
+
+    impEvts = [
+      "blur",
+      "click",
+      "change",
+      "dblclick",
+      "drag",
+      "dragstart",
+      "dragend",
+      "dragenter",
+      "dragleave",
+      "dragover",
+      "drop",
+      "error",
+      "focus",
+      "keyup",
+      "keydown",
+      "keypress",
+      "load",
+      "mousedown",
+      "mouseleave",
+      "mouseenter",
+      "mouseover",
+      "mousemove",
+      "mouseout",
+      "submit"
+    ];
+
+    for (_i = 0; _i < impEvts.length; _i += 1) {
+      evtObj[impEvts[_i]] = function (fn) {
+        if (typeof fn === "function") {
+          return this.on(impEvts[_i], fn);
         }
+
+        return this.fire(impEvts[_i]);
       };
-    });
-  };
+    }
 
-  impEvts = [
-    "blur",
-    "click",
-    "change",
-    "dblclick",
-    "drag",
-    "dragstart",
-    "dragend",
-    "dragenter",
-    "dragleave",
-    "dragover",
-    "drop",
-    "error",
-    "focus",
-    "keyup",
-    "keydown",
-    "keypress",
-    "load",
-    "mousedown",
-    "mouseleave",
-    "mouseenter",
-    "mouseover",
-    "mousemove",
-    "mouseout",
-    "ready",
-    "submit"
-  ];
-
-  for (_i = 0; _i < impEvts.length; _i += 1) {
-    Dom.prototype[impEvts[_i]] = function (fn) {
-      if (typeof fn === "function") {
-        return this.on(impEvts[_i], fn);
-      }
-
-      return this.fire(impEvts[_i]);
-    };
-  }
+    extend(Dom.prototype, evtObj);
+  }());
 
   // --------------------------------------------------
   // Effects (fx)
   // --------------------------------------------------
 
-  Dom.prototype.show = function (display) {
-    display = display || "";
+  extend(Dom.prototype, {
 
-    return this.each(function (el) {
-      el.style.display = display;
-    });
-  };
+    // -------------------------
+    // .show()
+    // -------------------------
+    // 
+    // Sets the display property of sel.els. to "" or given value
+    // 
+    // .show ( [display] ) 
+    //   display (string) : Value of display prop.
+    //
+    // Example:
+    // 
+    // $("p").show();
+    // 
 
-  Dom.prototype.hide = function () {
-    return this.each(function (el) {
-      el.style.display = "none";
-    });
-  };
+    show: function (display) {
+      display = display || "";
 
-  Dom.prototype.toggle = function (display) {
-    return this.each(function (el) {
-      if (el.style.display === "none") {
-        el.style.display = display ? display : "";
-      } else {
+      return this.each(function (el) {
+        el.style.display = display;
+      });
+    },
+
+    // -------------------------
+    // .hide()
+    // -------------------------
+    // 
+    // Sets the display property of sel.els. to "none"
+    // 
+    // .hide () 
+    //
+    // Example:
+    // 
+    // $("p").hide();
+    // 
+
+    hide: function () {
+      return this.each(function (el) {
         el.style.display = "none";
-      }
-    });
-  };
+      });
+    },
 
-  Dom.prototype.appear = function () {
-    return this.each(function (el) {
-      el.style.opacity = "1";
-    });
-  };
+    // -------------------------
+    // .toggle()
+    // -------------------------
+    // 
+    // Shows hidden elements,
+    // Hides visible elements
+    // 
+    // .toggle ( [display] ) 
+    //   display (string) : Value of display prop.
+    //
+    // Example:
+    // 
+    // $("p").toggle();
+    // 
 
-  Dom.prototype.disappear = function () {
-    return this.each(function (el) {
-      el.style.opacity = "0";
-      el.style.cursor = "default";
-    });
-  };
+    toggle: function (display) {
+      return this.each(function (el) {
+        if (el.style.display === "none") {
+          el.style.display = display ? display : "";
+        } else {
+          el.style.display = "none";
+        }
+      });
+    },
 
-  Dom.prototype.toggleVisibility = function () {
-    return this.each(function (el) {
-      if (el.style.opacity === "0") {
+    // -------------------------
+    // .appear()
+    // -------------------------
+    // 
+    // Sets opacity to 1
+    // 
+    // .appear ()
+    //
+    // Example:
+    // 
+    // $("p").appear();
+    // 
+
+    appear: function () {
+      return this.each(function (el) {
         el.style.opacity = "1";
-      } else {
+      });
+    },
+
+    // -------------------------
+    // .disappear()
+    // -------------------------
+    // 
+    // Sets opacity to 0
+    // 
+    // .disappear () 
+    //   display (string) : Value of display prop.
+    //
+    // Example:
+    // 
+    // $("p").disappear();
+    // 
+
+    disappear: function () {
+      return this.each(function (el) {
         el.style.opacity = "0";
         el.style.cursor = "default";
-      }
-    });
-  };
+      });
+    },
 
-  Dom.prototype.fade = function (inOut, timing) {
-    if (inOut === "in") {
-      this.show();
-    }
+    // -------------------------
+    // .toggleVisibility()
+    // -------------------------
+    // 
+    // appears a disappeared element,
+    // disappears a appeared element
+    // 
+    // .toggleVisibility ()
+    //
+    // Example:
+    // 
+    // $("p").toggleVisibility();
+    // 
 
-    return this.each(function (el) {
-      var time;
-
-      switch(timing) {
-        case "slow":
-          time = 200;
-          break;
-        case "normal":
-          time = 120;
-          break;
-        case "fast":
-          time = 80;
-          break;
-        default:
-          time = time || 120;
-          break;
-      }
-
-      function animate () {
-        var val = 0.3, end = 1;
-
-        if (parseFloat(el.style.opacity) === (inOut === "in" ? 1 : 0)) {
-          clearInterval(win.Hilo.temp.anim);
+    toggleVisibility: function () {
+      return this.each(function (el) {
+        if (el.style.opacity === "0") {
+          el.style.opacity = "1";
         } else {
-          if (inOut === "out") {
-            val = -val;
-            end = 0;
-          }
-
-          el.style.opacity = parseFloat(el.style.opacity || end) + val; 
+          el.style.opacity = "0";
+          el.style.cursor = "default";
         }
+      });
+    },
+
+    // -------------------------
+    // .fade()
+    // -------------------------
+    // 
+    // Animates opacity prop. from 0 to 1 or 1 to 0
+    // 
+    // .fade ( inOut [, timing] ) 
+    //   !inOut (in|out) : Whether to fadeIn ("in") or fadeOut ("out")
+    //   timing (number) : Rate of animation (the lesser, the faster)
+    //
+    // Example:
+    // 
+    // $("p").fade("in");
+    // $("p").fade("out");
+    // $("p").fade("in", 140);
+    // $("p").fade("out", 100);
+    // 
+
+    fade: function (inOut, timing) {
+      if (inOut === "in") {
+        this.show();
       }
 
-      win.Hilo.temp.anim = setInterval(animate, timing);
-    });
-  };
+      return this.each(function (el) {
+        var time;
 
-  Dom.prototype.fadeIn = function (timing) {
-    this.fade("in", timing);
-  };
+        switch(timing) {
+          case "slow":
+            time = 200;
+            break;
+          case "normal":
+            time = 120;
+            break;
+          case "fast":
+            time = 80;
+            break;
+          default:
+            time = time || 120;
+            break;
+        }
 
-  Dom.prototype.fadeOut = function (timing) {
-    this.fade("out", timing);
-  };
+        function animate () {
+          var val = 0.3, end = 1;
+
+          if (parseFloat(el.style.opacity) === (inOut === "in" ? 1 : 0)) {
+            clearInterval(win.Hilo.temp.anim);
+          } else {
+            if (inOut === "out") {
+              val = -val;
+              end = 0;
+            }
+
+            el.style.opacity = parseFloat(el.style.opacity || end) + val; 
+          }
+        }
+
+        win.Hilo.temp.anim = setInterval(animate, timing);
+      });
+    },
+
+    // -------------------------
+    // .fadeIn()
+    // -------------------------
+    // 
+    // Animates opacity prop. from 0 to 1
+    // 
+    // .fadeIn ( [timing] )
+    //   timing (number) : Rate of animation (the lesser the faster; default:120)
+    //
+    // Examples:
+    // 
+    // $("p").fadeIn(200); // Slow
+    // $("p").fadeIn(); // Normal
+    // $("p").fadeIn(80); // Fast
+    // 
+
+    fadeIn: function (timing) {
+      this.fade("in", timing);
+    },
+
+    // -------------------------
+    // .fadeOut()
+    // -------------------------
+    // 
+    // Animates opacity prop. from 1 to 0
+    // 
+    // .fadeOut ( [timing] )
+    //   timing (number) : Rate of animation (the lesser, the faster)
+    //
+    // Examples:
+    // 
+    // $("p").fadeOut(200); // Slow
+    // $("p").fadeOut(); // Normal
+    // $("p").fadeOut(80); // Fast
+    // 
+
+    fadeOut: function (timing) {
+      this.fade("out", timing);
+    }
+  });
 
   hilo.classify = function () {
     var html = win.Hilo("html")
@@ -4782,14 +4962,18 @@
 
   };
 
-  hilo.keys = key;
+  extend(hilo, {
+    keys: key
+  });
   
   // --------------------------------------------------
   // Hilo Extension API
   // --------------------------------------------------
     
-  hilo.Dom = Dom.prototype;
-  hilo.Test = Test.prototype;
+  extend(hilo, {
+    Dom: Dom.prototype,
+    Test: Test.prototype
+  });
   
   // --------------------------------------------------
   // Set event handler for triggering DOM Evenets
@@ -4807,7 +4991,9 @@
 
   elapsed = new Date().getTime() - start;
 
-  hilo.perf = elapsed;
+  extend(hilo, {
+    perf: elapsed
+  });
 
   return hilo;
 }));
