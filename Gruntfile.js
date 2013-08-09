@@ -76,10 +76,7 @@ module.exports = function(grunt) {
     },
     jasmine: {
       options: {
-        helpers: "build/hilo-dev.js",
-        junit: {
-          path: "junit"
-        }
+        helpers: "build/hilo-dev.js"
       },
       hilo: {
         src: "test/spec/**/*.spec.js"
