@@ -13,6 +13,15 @@
             "fors": {},
             "namespaces": {}
         },
+        "src\\ajax\\more.js": {
+            "name": "src\\ajax\\more.js",
+            "modules": {},
+            "classes": {},
+            "fors": {
+                "hilo": 1
+            },
+            "namespaces": {}
+        },
         "src\\dom\\class-id.js": {
             "name": "src\\dom\\class-id.js",
             "modules": {},
@@ -84,6 +93,26 @@
             "fors": {},
             "namespaces": {}
         },
+        "src\\test\\comp.js": {
+            "name": "src\\test\\comp.js",
+            "modules": {},
+            "classes": {},
+            "fors": {
+                "Test": 1
+            },
+            "namespaces": {}
+        },
+        "src\\test\\main.js": {
+            "name": "src\\test\\main.js",
+            "modules": {},
+            "classes": {
+                "Test": 1
+            },
+            "fors": {
+                "hilo": 1
+            },
+            "namespaces": {}
+        },
         "src\\core.js": {
             "name": "src\\core.js",
             "modules": {
@@ -101,20 +130,35 @@
             "name": "Hilo",
             "submodules": {},
             "classes": {
+                "hilo": 1,
                 "Dom": 1,
-                "hilo": 1
+                "Test": 1
             },
             "fors": {},
             "namespaces": {},
             "tag": "module",
-            "file": "src\\core.js",
-            "line": 29,
+            "file": "src\\test\\main.js",
+            "line": 31,
             "description": "The main Hilo Object / function",
             "static": 1,
             "author": "Erik Royall"
         }
     },
     "classes": {
+        "hilo": {
+            "name": "hilo",
+            "shortname": "hilo",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Hilo",
+            "file": "src\\core.js",
+            "line": 29,
+            "description": "The main Hilo Object / function",
+            "static": 1
+        },
         "Dom": {
             "name": "Dom",
             "shortname": "Dom",
@@ -148,19 +192,38 @@
             ],
             "since": "0.1.0"
         },
-        "hilo": {
-            "name": "hilo",
-            "shortname": "hilo",
+        "Test": {
+            "name": "Test",
+            "shortname": "Test",
             "classitems": [],
             "plugins": [],
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
             "module": "Hilo",
-            "file": "src\\core.js",
-            "line": 29,
-            "description": "The main Hilo Object / function",
-            "static": 1
+            "file": "src\\test\\main.js",
+            "line": 31,
+            "description": "Main Test Class",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "con",
+                    "description": "To compare",
+                    "type": "Any"
+                },
+                {
+                    "name": "neg",
+                    "description": "Whether to inverse the result",
+                    "type": "Boolean"
+                }
+            ],
+            "return": {
+                "description": "void"
+            },
+            "example": [
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\nnew Test({});\nnew Test(\"Hilo\", true);\n</pre></div>"
+            ],
+            "since": "0.1.0"
         }
     },
     "classitems": [
@@ -179,7 +242,65 @@
                 "description": "",
                 "type": "Hilo"
             },
-            "class": "Dom"
+            "class": "hilo"
+        },
+        {
+            "file": "src\\ajax\\more.js",
+            "line": 42,
+            "description": "Send an AJAX GET Request",
+            "itemtype": "method",
+            "name": "get",
+            "params": [
+                {
+                    "name": "strOpt",
+                    "description": "File path or Options",
+                    "type": "String|object"
+                },
+                {
+                    "name": "callback",
+                    "description": "The function to execute",
+                    "type": "Function|object"
+                },
+                {
+                    "name": "Options",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "example": [
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\n$.get({\n  url: \"path/to/file.js\",\n  success: function (data) {\n    console.log(data);\n  }\n}); // Longer form, the below is preferred\n</pre></div>\n\n<div class=\"code\"><pre class=\"prettyprint\">\n$.get(\"path/to/file.js\", function (data) {\n  console.log(data);\n}); // This does the exact same function as above\n</pre></div>\n\n<div class=\"code\"><pre class=\"prettyprint\">\n$.get(\"path/to/file.js\", function (data) {\n  console.log(data);\n}, {\n  error: function (err) {\n    console.error(err);\n  }\n}); // Shortform, with more options\n</pre></div>"
+            ],
+            "since": "0.1.0",
+            "class": "hilo"
+        },
+        {
+            "file": "src\\ajax\\more.js",
+            "line": 81,
+            "description": "Send an AJAX POST Request",
+            "itemtype": "method",
+            "name": "post",
+            "params": [
+                {
+                    "name": "strOpt",
+                    "description": "File path or Options",
+                    "type": "String|object"
+                },
+                {
+                    "name": "callback",
+                    "description": "The function to execute",
+                    "type": "Function|object"
+                },
+                {
+                    "name": "Options",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "example": [
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\n$.post({\n  url: \"path/to/file.js\",\n  success: function (data) {\n    console.log(data);\n  },\n  data: JSON.encode(obj)\n}); // Longer form, the below is preferred\n</pre></div>\n\n<div class=\"code\"><pre class=\"prettyprint\">\n$.post(\"path/to/file.js\", function (data) {\n  console.log(data);\n}, {\n  data: JSON.encode(obj),\n  error: function (err) {\n    console.error(err);\n  }\n}); // Shortform, with more options\n</pre></div>"
+            ],
+            "since": "0.1.0",
+            "class": "hilo"
         },
         {
             "file": "src\\dom\\class-id.js",
@@ -825,7 +946,7 @@
                 "description": "Returns the Object data after storing it on itself with\n property name the (space-suffixed) string and (if the cache is larger than Expr.cacheLength)\n deleting the oldest entry",
                 "type": "Function(string, Object)"
             },
-            "class": "hilo"
+            "class": "Test"
         },
         {
             "file": "src\\dom\\sizzle.js",
@@ -838,7 +959,7 @@
                     "type": "Function"
                 }
             ],
-            "class": "hilo"
+            "class": "Test"
         },
         {
             "file": "src\\dom\\sizzle.js",
@@ -851,7 +972,7 @@
                     "type": "Function"
                 }
             ],
-            "class": "hilo"
+            "class": "Test"
         },
         {
             "file": "src\\dom\\sizzle.js",
@@ -869,7 +990,7 @@
                     "type": "Function"
                 }
             ],
-            "class": "hilo"
+            "class": "Test"
         },
         {
             "file": "src\\dom\\sizzle.js",
@@ -891,7 +1012,7 @@
                 "description": "Returns less than 0 if a precedes b, greater than 0 if a follows b",
                 "type": "Number"
             },
-            "class": "hilo"
+            "class": "Test"
         },
         {
             "file": "src\\dom\\sizzle.js",
@@ -904,7 +1025,7 @@
                     "type": "String"
                 }
             ],
-            "class": "hilo"
+            "class": "Test"
         },
         {
             "file": "src\\dom\\sizzle.js",
@@ -917,7 +1038,7 @@
                     "type": "String"
                 }
             ],
-            "class": "hilo"
+            "class": "Test"
         },
         {
             "file": "src\\dom\\sizzle.js",
@@ -930,7 +1051,7 @@
                     "type": "Function"
                 }
             ],
-            "class": "hilo"
+            "class": "Test"
         },
         {
             "file": "src\\dom\\sizzle.js",
@@ -943,7 +1064,7 @@
                     "type": "Element|Object"
                 }
             ],
-            "class": "hilo"
+            "class": "Test"
         },
         {
             "file": "src\\dom\\sizzle.js",
@@ -961,7 +1082,7 @@
                 "description": "Returns the current document",
                 "type": "Object"
             },
-            "class": "hilo"
+            "class": "Test"
         },
         {
             "file": "src\\dom\\sizzle.js",
@@ -974,7 +1095,7 @@
                     "type": "ArrayLike"
                 }
             ],
-            "class": "hilo"
+            "class": "Test"
         },
         {
             "file": "src\\dom\\sizzle.js",
@@ -987,6 +1108,74 @@
                     "type": "Array|Element"
                 }
             ],
+            "class": "Test"
+        },
+        {
+            "file": "src\\test\\comp.js",
+            "line": 8,
+            "description": "Test if equal",
+            "itemtype": "method",
+            "name": "ifEquals",
+            "params": [
+                {
+                    "name": "tw",
+                    "description": "Comparision object",
+                    "type": "Any"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "example": [
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\nvar isIt = $.test(hilo.version).ifEquals(\"v0.1.0-pre-dev-beta-9\");\n</pre></div>"
+            ],
+            "since": "0.1.0",
+            "class": "Test"
+        },
+        {
+            "file": "src\\test\\comp.js",
+            "line": 26,
+            "description": "Test if contains",
+            "itemtype": "method",
+            "name": "ifContains",
+            "params": [
+                {
+                    "name": "tw",
+                    "description": "Comparision object",
+                    "type": "Any"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "example": [
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\nvar isHiloBeta = $.test(hilo.version).ifContains(\"beta\");\n</pre></div>"
+            ],
+            "since": "0.1.0",
+            "class": "Test"
+        },
+        {
+            "file": "src\\test\\main.js",
+            "line": 8,
+            "description": "Public test function",
+            "itemtype": "method",
+            "name": "test",
+            "params": [
+                {
+                    "name": "con",
+                    "description": ""
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Test"
+            },
+            "example": [
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\n$.test(\"hello\");\n$.test({\n  name: \"Erik Royall\",\n  age: 14,\n  projects: [\"hilo\", \"helio\"]\n});\n</pre></div>"
+            ],
+            "since": "0.1.0",
             "class": "hilo"
         }
     ],

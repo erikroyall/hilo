@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src\dom\misc.js - hilo</title>
+    <title>src\test\comp.js - hilo</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -12,7 +12,7 @@
 </head>
 <body>
 <div class="main-header">
-  <h1 class="site-logo"><a href="../index.html">hilo: src\dom\misc.js</a></h1>
+  <h1 class="site-logo"><a href="../index.html">hilo: src\test\comp.js</a></h1>
   
   <p>API Docs for: 0.1.0-pre-dev-beta-9</p>
 </div>
@@ -72,35 +72,56 @@
 
   </div>
   <div class="main">
-    <div class="content"><h4>src\dom\misc.js</h4>
+    <div class="content"><h4>src\test\comp.js</h4>
 
 <pre class="code prettyprint linenums">
   
   // --------------------------------------------------
-  // DOM Extensions
+  // Test Comparisions
   // --------------------------------------------------
 
-  /**
-   * Get a NodeList of selected elements
-   * 
-   * @for Dom
-   * @method get
-   * @return {Dom}
-   * @example
-   * &lt;div class=&quot;code&quot;&gt;&lt;pre class=&quot;prettyprint&quot;&gt;
-   * $(&quot;script&quot;).get();
-   * &lt;/pre&gt;&lt;/div&gt;
-   * @since 0.1.0
-   */
-  Dom.prototype.get = function () {
-    var els = [];
+  extend(Test.prototype, {
 
-    this.each(function (el) {
-      els.push(el);
-    });
+    /**
+     * Test if equal
+     *
+     * @for Test
+     * @method ifEquals
+     * @param {Any} tw Comparision object
+     * @return {boolean}
+     * @example
+     * &lt;div class=&quot;code&quot;&gt;&lt;pre class=&quot;prettyprint&quot;&gt;
+     * var isIt = $.test(hilo.version).ifEquals(&quot;v0.1.0-pre-dev-beta-9&quot;);
+     * &lt;/pre&gt;&lt;/div&gt;
+     * @since 0.1.0
+     */
+    ifEquals: function (tw) {
+      var val = this.con === tw;
+      return this.neg ? !val : val;
+    },
 
-    return els;
-  };
+    /**
+     * Test if contains
+     *
+     * @for Test
+     * @method ifContains
+     * @param {Any} tw Comparision object
+     * @return {boolean}
+     * @example
+     * &lt;div class=&quot;code&quot;&gt;&lt;pre class=&quot;prettyprint&quot;&gt;
+     * var isHiloBeta = $.test(hilo.version).ifContains(&quot;beta&quot;);
+     * &lt;/pre&gt;&lt;/div&gt;
+     * @since 0.1.0
+     */
+    ifContains: function (tw) {
+      var ifString = this.con.split(tw).length === 1 ? false : true;
+      if (typeof tw === &quot;string&quot; &amp;&amp; typeof this.con === &quot;object&quot; &amp;&amp; this.con.length) {
+
+      } else if (typeof tw === &quot;string&quot; &amp;&amp; typeof this.con === &quot;string&quot;) {
+        return this.neg ? !ifString : ifString;
+      }
+    }
+  });
 </pre>
 
 </div>

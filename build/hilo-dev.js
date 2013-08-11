@@ -2949,11 +2949,45 @@
   // --------------------------------------------------
 
   extend(hilo, {
+
+    /**
+     * Public test function
+     *
+     * @for hilo
+     * @method test
+     * @param con
+     * @return {Test}
+     * @example
+     * <div class="code"><pre class="prettyprint">
+     * $.test("hello");
+     * $.test({
+     *   name: "Erik Royall",
+     *   age: 14,
+     *   projects: ["hilo", "helio"]
+     * });
+     * </pre></div>
+     * @since 0.1.0
+     */
     test: function (con) {
       return new Test(con);
     }
   });
 
+  /**
+   * Main Test Class
+   *
+   * @constructor
+   * @class Test
+   * @param {Any} con To compare
+   * @param {boolean} neg Whether to inverse the result
+   * @return void
+   * @example
+   * <div class="code"><pre class="prettyprint">
+   * new Test({});
+   * new Test("Hilo", true);
+   * </pre></div>
+   * @since 0.1.0
+   */
   function Test (con, neg) {
     this.con = con;
     
@@ -2967,16 +3001,38 @@
   // --------------------------------------------------
 
   extend(Test.prototype, {
+
+    /**
+     * Test if equal
+     *
+     * @for Test
+     * @method ifEquals
+     * @param {Any} tw Comparision object
+     * @return {boolean}
+     * @example
+     * <div class="code"><pre class="prettyprint">
+     * var isIt = $.test(hilo.version).ifEquals("v0.1.0-pre-dev-beta-9");
+     * </pre></div>
+     * @since 0.1.0
+     */
     ifEquals: function (tw) {
       var val = this.con === tw;
       return this.neg ? !val : val;
     },
 
-    ifIs: function (tw) {
-      var val = this.con === tw;
-      return this.neg ? !val : val;
-    },
-
+    /**
+     * Test if contains
+     *
+     * @for Test
+     * @method ifContains
+     * @param {Any} tw Comparision object
+     * @return {boolean}
+     * @example
+     * <div class="code"><pre class="prettyprint">
+     * var isHiloBeta = $.test(hilo.version).ifContains("beta");
+     * </pre></div>
+     * @since 0.1.0
+     */
     ifContains: function (tw) {
       var ifString = this.con.split(tw).length === 1 ? false : true;
       if (typeof tw === "string" && typeof this.con === "object" && this.con.length) {
@@ -3207,68 +3263,76 @@
     }
   }
 
-  // --------------------------------------------------
-  // Hilo.get()
-  // --------------------------------------------------
-  // 
-  // Send an AJAX GET request
-  // 
-  //  .get( strOpt [, callback [, oOpt]] )
-  //
-  // Examples:
-  // 
-  // $.get({
-  //   url: "path/to/file.js",
-  //   success: function (data) {
-  //     console.log(data);
-  //   }
-  // }) // Longer form, the below is preferred
-  // 
-  // $.get("path/to/file.js", function (data) {
-  //   console.log(data);
-  // }) // This does the exact same function as above
-  // 
-  // $.get("path/to/file.js", function (data) {
-  //   console.log(data);
-  // }, {
-  //   error: function (err) {
-  //     console.error(err);
-  //   }
-  // }) // Shortform, with more options
-  // 
-
+  /**
+   * Send an AJAX GET Request
+   *
+   * @for hilo
+   * @method get
+   * @param {string|object} strOpt File path or Options
+   * @param {function|object} callback The function to execute
+   * @param {object} Options
+   * @example
+   * <div class="code"><pre class="prettyprint">
+   * $.get({
+   *   url: "path/to/file.js",
+   *   success: function (data) {
+   *     console.log(data);
+   *   }
+   * }); // Longer form, the below is preferred
+   * </pre></div>
+   *
+   * <div class="code"><pre class="prettyprint">
+   * $.get("path/to/file.js", function (data) {
+   *   console.log(data);
+   * }); // This does the exact same function as above
+   * </pre></div>
+   *
+   * <div class="code"><pre class="prettyprint">
+   * $.get("path/to/file.js", function (data) {
+   *   console.log(data);
+   * }, {
+   *   error: function (err) {
+   *     console.error(err);
+   *   }
+   * }); // Shortform, with more options
+   * </pre></div>
+   * @since 0.1.0
+   */
   hilo.get = function (strOpt, callback, oOpt) {
     ajaxRequest("GET", strOpt, callback, oOpt);
   };
 
-  // --------------------------------------------------
-  // Hilo.post()
-  // --------------------------------------------------
-  // 
-  // Send an AJAX POST request
-  // 
-  //  .post( strOpt [, callback [, oOpt]] )
-  //
-  // Examples:
-  // 
-  // $.post({
-  //   url: "path/to/file.js",
-  //   success: function (data) {
-  //     console.log(data);
-  //   },
-  //   data: JSON.encode(obj)
-  // }) // Longer form, the below is preferred
-  // 
-  // $.post("path/to/file.js", function (data) {
-  //   console.log(data);
-  // }, {
-  //   data: JSON.encode(obj),
-  //   error: function (err) {
-  //     console.error(err);
-  //   }
-  // }) // Shortform, with more options
-  // 
-
+  /**
+   * Send an AJAX POST Request
+   *
+   * @for hilo
+   * @method post
+   * @param {string|object} strOpt File path or Options
+   * @param {function|object} callback The function to execute
+   * @param {object} Options
+   * @example
+   * <div class="code"><pre class="prettyprint">
+   * $.post({
+   *   url: "path/to/file.js",
+   *   success: function (data) {
+   *     console.log(data);
+   *   },
+   *   data: JSON.encode(obj)
+   * }); // Longer form, the below is preferred
+   * </pre></div>
+   *
+   * <div class="code"><pre class="prettyprint">
+   * $.post("path/to/file.js", function (data) {
+   *   console.log(data);
+   * }, {
+   *   data: JSON.encode(obj),
+   *   error: function (err) {
+   *     console.error(err);
+   *   }
+   * }); // Shortform, with more options
+   * </pre></div>
+   * @since 0.1.0
+   */
   hilo.post = function (strOpt, callback, oOpt) {
     ajaxRequest("POST", strOpt, callback, oOpt);
   };

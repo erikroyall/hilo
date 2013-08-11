@@ -44,6 +44,8 @@
             
                 <li><a href="../classes/hilo.html">hilo</a></li>
             
+                <li><a href="../classes/Test.html">Test</a></li>
+            
         </ul>
     </div>
 </div>
@@ -57,6 +59,12 @@
         <ul>
             
                 <li><a href="#methods_create">create</a></li>
+            
+                <li><a href="#methods_get">get</a></li>
+            
+                <li><a href="#methods_post">post</a></li>
+            
+                <li><a href="#methods_test">test</a></li>
             
         </ul>
     </div>
@@ -75,7 +83,7 @@
         <h2 class="no-toc">Files</h2>
     </div>
     <div class="bd">
-        <ul><li>src\ajax\main.js/<ul></ul></li><li>src\core.js/<ul></ul></li><li>src\dom\class-id.js/<ul></ul></li><li>src\dom\css.js/<ul></ul></li><li>src\dom\els.js/<ul></ul></li><li>src\dom\helpers.js/<ul></ul></li><li>src\dom\main.js/<ul></ul></li><li>src\dom\manp.js/<ul></ul></li><li>src\dom\misc.js/<ul></ul></li><li>src\dom\sizzle.js/<ul></ul></li></ul>
+        <ul><li>src\ajax\main.js/<ul></ul></li><li>src\ajax\more.js/<ul></ul></li><li>src\core.js/<ul></ul></li><li>src\dom\class-id.js/<ul></ul></li><li>src\dom\css.js/<ul></ul></li><li>src\dom\els.js/<ul></ul></li><li>src\dom\helpers.js/<ul></ul></li><li>src\dom\main.js/<ul></ul></li><li>src\dom\manp.js/<ul></ul></li><li>src\dom\misc.js/<ul></ul></li><li>src\dom\sizzle.js/<ul></ul></li><li>src\test\comp.js/<ul></ul></li><li>src\test\main.js/<ul></ul></li></ul>
     </div>
 </div>
 
@@ -142,6 +150,197 @@
 $.create("div", {
   class: "post",
   "data-id": 2
+});
+</pre></div>
+    
+</div>
+
+            
+                <a name="methods_get"></a>
+<div class="method item">
+     <strong class="name"><code>get</code></strong>( <code>strOpt, callback, Options </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../../files/src_ajax_more.js.html#l42"><code>src\ajax\more.js:42</code></a>
+    </span><br>
+    <p>Send an AJAX GET Request</p>
+    
+    <strong>Parameters:</strong>
+    <ul class="params">
+    
+        <li>
+        
+            <code>strOpt</code> <strong>&lt;String | Object&gt;</strong>
+        
+        
+        <p>File path or Options</p>
+            
+        </li>
+    
+        <li>
+        
+            <code>callback</code> <strong>&lt;Function | Object&gt;</strong>
+        
+        
+        <p>The function to execute</p>
+            
+        </li>
+    
+        <li>
+        
+            <code>Options</code> <strong>&lt;Object&gt;</strong>
+        
+        
+         
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+        <h5>Example</h5>
+        <div class="code"><pre class="prettyprint">
+$.get({
+  url: "path/to/file.js",
+  success: function (data) {
+    console.log(data);
+  }
+}); // Longer form, the below is preferred
+</pre></div>
+
+<div class="code"><pre class="prettyprint">
+$.get("path/to/file.js", function (data) {
+  console.log(data);
+}); // This does the exact same function as above
+</pre></div>
+
+<div class="code"><pre class="prettyprint">
+$.get("path/to/file.js", function (data) {
+  console.log(data);
+}, {
+  error: function (err) {
+    console.error(err);
+  }
+}); // Shortform, with more options
+</pre></div>
+    
+</div>
+
+            
+                <a name="methods_post"></a>
+<div class="method item">
+     <strong class="name"><code>post</code></strong>( <code>strOpt, callback, Options </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../../files/src_ajax_more.js.html#l81"><code>src\ajax\more.js:81</code></a>
+    </span><br>
+    <p>Send an AJAX POST Request</p>
+    
+    <strong>Parameters:</strong>
+    <ul class="params">
+    
+        <li>
+        
+            <code>strOpt</code> <strong>&lt;String | Object&gt;</strong>
+        
+        
+        <p>File path or Options</p>
+            
+        </li>
+    
+        <li>
+        
+            <code>callback</code> <strong>&lt;Function | Object&gt;</strong>
+        
+        
+        <p>The function to execute</p>
+            
+        </li>
+    
+        <li>
+        
+            <code>Options</code> <strong>&lt;Object&gt;</strong>
+        
+        
+         
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+        <h5>Example</h5>
+        <div class="code"><pre class="prettyprint">
+$.post({
+  url: "path/to/file.js",
+  success: function (data) {
+    console.log(data);
+  },
+  data: JSON.encode(obj)
+}); // Longer form, the below is preferred
+</pre></div>
+
+<div class="code"><pre class="prettyprint">
+$.post("path/to/file.js", function (data) {
+  console.log(data);
+}, {
+  data: JSON.encode(obj),
+  error: function (err) {
+    console.error(err);
+  }
+}); // Shortform, with more options
+</pre></div>
+    
+</div>
+
+            
+                <a name="methods_test"></a>
+<div class="method item">
+    <a href="..\classes\Test.html" class="crosslink">Test</a> <strong class="name"><code>test</code></strong>( <code>con </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../../files/src_test_main.js.html#l8"><code>src\test\main.js:8</code></a>
+    </span><br>
+    <p>Public test function</p>
+    
+    <strong>Parameters:</strong>
+    <ul class="params">
+    
+        <li>
+        
+            <code>con</code> <strong>&lt;Object&gt;</strong>
+        
+        
+         
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="..\classes\Test.html" class="crosslink">Test</a>&gt; </div>
+    
+    
+    
+        <h5>Example</h5>
+        <div class="code"><pre class="prettyprint">
+$.test("hello");
+$.test({
+  name: "Erik Royall",
+  age: 14,
+  projects: ["hilo", "helio"]
 });
 </pre></div>
     

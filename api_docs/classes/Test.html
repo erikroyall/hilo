@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Test - hilo</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <script src=""></script>
+</head>
+<body>
+<div class="main-header">
+  <h1 class="site-logo"><a href="../index.html">hilo: Test</a></h1>
+  
+  <p>API Docs for: 0.1.0-pre-dev-beta-9</p>
+</div>
+<div class="doc">
+  <div class="sidebar">
+    <div id="modules" class="sidebox">
+    <div class="hd">
+        <h2 class="no-toc">Modules</h2>
+    </div>
+    <div class="bd">
+        <ul>
+            
+                <li><a href="../modules/Hilo.html">Hilo</a>
+                
+                </li>
+            
+        </ul>
+    </div>
+</div>
+
+<div id="classes" class="sidebox">
+    <div class="hd">
+        <h2 class="no-toc">Classes</h2>
+    </div>
+    <div class="bd">
+        <ul>
+            
+                <li><a href="../classes/Dom.html">Dom</a></li>
+            
+                <li><a href="../classes/hilo.html">hilo</a></li>
+            
+                <li><a href="../classes/Test.html">Test</a></li>
+            
+        </ul>
+    </div>
+</div>
+
+
+<div id="methods-on-page" class="sidebox on-page">
+    <div class="hd">
+        <h2 class="no-toc">Methods On Page</h2>
+    </div>
+    <div class="bd">
+        <ul>
+            
+                <li><a href="#methods_ifContains">ifContains</a></li>
+            
+                <li><a href="#methods_ifEquals">ifEquals</a></li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+<div id="fileTree" class="sidebox">
+    <div class="hd">
+        <h2 class="no-toc">Files</h2>
+    </div>
+    <div class="bd">
+        <ul><li>src\ajax\main.js/<ul></ul></li><li>src\ajax\more.js/<ul></ul></li><li>src\core.js/<ul></ul></li><li>src\dom\class-id.js/<ul></ul></li><li>src\dom\css.js/<ul></ul></li><li>src\dom\els.js/<ul></ul></li><li>src\dom\helpers.js/<ul></ul></li><li>src\dom\main.js/<ul></ul></li><li>src\dom\manp.js/<ul></ul></li><li>src\dom\misc.js/<ul></ul></li><li>src\dom\sizzle.js/<ul></ul></li><li>src\test\comp.js/<ul></ul></li><li>src\test\main.js/<ul></ul></li></ul>
+    </div>
+</div>
+
+
+
+  </div>
+  <div class="main">
+    <div class="content"><h4>Class Test</h4>
+
+
+
+<span class="foundat">Class defined in: <a href="../../files/src_test_main.js.html#l31"><code>src\test\main.js:31</code></a></span>
+<div class="intro"><p>Main Test Class</p></div>
+
+
+    
+    <a name="methods_Test"></a>
+<div class="method item">
+    <strong class="name"><code>Test</code></strong>( <code>con, neg </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../../files/src_test_main.js.html#l31"><code>src\test\main.js:31</code></a>
+    </span><br>
+    
+    
+    <strong>Parameters:</strong>
+    <ul class="params">
+    
+        <li>
+        
+            <code>con</code> <strong>&lt;Any&gt;</strong>
+        
+        
+        <p>To compare</p>
+            
+        </li>
+    
+        <li>
+        
+            <code>neg</code> <strong>&lt;Boolean&gt;</strong>
+        
+        
+        <p>Whether to inverse the result</p>
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+    <br><div class="returns"><strong>Returns:</strong> void</div>
+    
+    
+    
+        <h5>Example</h5>
+        <div class="code"><pre class="prettyprint">
+new Test({});
+new Test("Hilo", true);
+</pre></div>
+    
+</div>
+
+    
+
+
+<div id="classdocs">
+    <ul>
+        
+        <li><a href="#methods">Methods</a></li>
+        
+        
+        
+        
+    </ul>
+    <div>
+        
+            <div id="methods">
+            
+                <a name="methods_ifContains"></a>
+<div class="method item">
+    Boolean <strong class="name"><code>ifContains</code></strong>( <code>tw </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../../files/src_test_comp.js.html#l26"><code>src\test\comp.js:26</code></a>
+    </span><br>
+    <p>Test if contains</p>
+    
+    <strong>Parameters:</strong>
+    <ul class="params">
+    
+        <li>
+        
+            <code>tw</code> <strong>&lt;Any&gt;</strong>
+        
+        
+        <p>Comparision object</p>
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+    <br><div class="returns"><strong>Returns:</strong> &lt;Boolean&gt; </div>
+    
+    
+    
+        <h5>Example</h5>
+        <div class="code"><pre class="prettyprint">
+var isHiloBeta = $.test(hilo.version).ifContains("beta");
+</pre></div>
+    
+</div>
+
+            
+                <a name="methods_ifEquals"></a>
+<div class="method item">
+    Boolean <strong class="name"><code>ifEquals</code></strong>( <code>tw </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../../files/src_test_comp.js.html#l8"><code>src\test\comp.js:8</code></a>
+    </span><br>
+    <p>Test if equal</p>
+    
+    <strong>Parameters:</strong>
+    <ul class="params">
+    
+        <li>
+        
+            <code>tw</code> <strong>&lt;Any&gt;</strong>
+        
+        
+        <p>Comparision object</p>
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+    <br><div class="returns"><strong>Returns:</strong> &lt;Boolean&gt; </div>
+    
+    
+    
+        <h5>Example</h5>
+        <div class="code"><pre class="prettyprint">
+var isIt = $.test(hilo.version).ifEquals("v0.1.0-pre-dev-beta-9");
+</pre></div>
+    
+</div>
+
+            
+            </div>
+        
+        
+        
+        
+    </div>
+</div>
+</div>
+  </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>
