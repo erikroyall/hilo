@@ -160,6 +160,10 @@ a {
     padding: 0;
   }
 
+  .site-logo a {
+    color: #e7e4d5;
+  }
+
     @media all and (min-width: 240px) {
       .site-logo {
         font-size: 2em;
@@ -189,3 +193,81 @@ a {
     .lt-ie9 .site-logo {
       font-size: 2.5em;
     }
+
+div.code {
+  border: 1px dashed #703e38;
+  background-color: #d3c8b4;
+
+  overflow: auto;
+  padding: 1em;
+  margin: 1em 0;
+}
+
+  div.code::-webkit-scrollbar {
+    height: 10px;
+  }
+
+  div.code pre, span.code {
+    font-family: "Consolas", monospace;
+    margin: 0;
+  }
+
+/*
+ * Prettyprint
+ */
+
+.pln {
+  color: #000;
+}
+
+@media all {
+  .str {
+    color: #0f8000;
+  }
+
+  .kwd {
+    color: #9c0b5d;
+    font-style: italic;
+  }
+
+  .com {
+    color: #800;
+  }
+
+  .typ {
+    color: #606;
+  }
+
+  .lit {
+    color: #066;
+  }
+
+  .pun, .opn, .clo {
+    color: #000;
+  }
+
+  .tag, .atn {
+    color: #002967;
+  }
+
+  .atv {
+    color: #080;
+  }
+
+  .dec, .var {
+    color: #606;
+  }
+
+  .fun {
+    color: red;
+  }
+}
+
+/*
+ * Docs
+ */
+
+.method.item {
+  border-bottom: 1px dashed #703e3b;
+  padding: 4% 0;
+}
