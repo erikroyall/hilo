@@ -5,20 +5,21 @@
 
   extend(Dom.prototype, {
 
-    // --------------------------------------------------
-    // .css()
-    // --------------------------------------------------
-    // 
-    // Set a css prop. to s.el.
-    // 
-    // Syntax .css( prop [, value] )
-    //
-    // Examples:
-    // 
-    // $(selector).css("background-color", "#444")
-    // var fontColor = $(selector).css("color")
-    // 
-
+    /**
+     * Set or return css property
+     *
+     * @for Dom
+     * @method css
+     * @param {string} prop Name of property
+     * @param {string} value Value of property
+     * @return {string|void}
+     * @beta
+     * @example
+     * <div class="code"><pre class="prettyprint">
+     * $("p").css("marginLeft", "10em");
+     * </pre></div>
+     * @since 0.1.0
+     */
     css: function (prop, value) {
       if (value) { // If value arg. is given
         return this.each(function (el) {
@@ -69,6 +70,17 @@
   // Get computed style of the first element
 
   extend(Dom.prototype, {
+
+    /**
+     * Get computed property
+     * 
+     * @for Dom
+     * @method computed
+     * @param {string} prop Name of property
+     * @return {number|boolean|string}
+     * @beta
+     * @since 0.1.0
+     */
     computed: function (prop) {
       return this.one(function (el) {
         return win.getComputedStyle(el)[prop];

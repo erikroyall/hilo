@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>src\dom\css.js - hilo</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <script src=""></script>
+</head>
+<body>
+<div class="main-header">
+  <h1 class="site-logo"><a href="../index.html">hilo: src\dom\css.js</a></h1>
+  
+  <p>API Docs for: 0.1.0-pre-dev-beta-9</p>
+</div>
+<div class="doc">
+  <div class="sidebar">
+    <div id="modules" class="sidebox">
+    <div class="hd">
+        <h2 class="no-toc">Modules</h2>
+    </div>
+    <div class="bd">
+        <ul>
+            
+                <li><a href="../modules/Hilo.html">Hilo</a>
+                
+                </li>
+            
+        </ul>
+    </div>
+</div>
+
+<div id="classes" class="sidebox">
+    <div class="hd">
+        <h2 class="no-toc">Classes</h2>
+    </div>
+    <div class="bd">
+        <ul>
+            
+                <li><a href="../classes/Dom.html">Dom</a></li>
+            
+                <li><a href="../classes/hilo.html">hilo</a></li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<div id="fileTree" class="sidebox">
+    <div class="hd">
+        <h2 class="no-toc">Files</h2>
+    </div>
+    <div class="bd">
+        <ul><li>src\ajax\main.js/<ul></ul></li><li>src\core.js/<ul></ul></li><li>src\dom\class-id.js/<ul></ul></li><li>src\dom\css.js/<ul></ul></li><li>src\dom\els.js/<ul></ul></li><li>src\dom\helpers.js/<ul></ul></li><li>src\dom\main.js/<ul></ul></li><li>src\dom\manp.js/<ul></ul></li><li>src\dom\misc.js/<ul></ul></li><li>src\dom\sizzle.js/<ul></ul></li></ul>
+    </div>
+</div>
+
+
+
+  </div>
+  <div class="main">
+    <div class="content"><h4>src\dom\css.js</h4>
+
+<pre class="code prettyprint linenums">
+  
+  // --------------------------------------------------
+  // Hilo CSS
+  // --------------------------------------------------
+
+  extend(Dom.prototype, {
+
+    /**
+     * Set or return css property
+     *
+     * @for Dom
+     * @method css
+     * @param {string} prop Name of property
+     * @param {string} value Value of property
+     * @return {string|void}
+     * @beta
+     * @example
+     * &lt;div class=&quot;code&quot;&gt;&lt;pre class=&quot;prettyprint&quot;&gt;
+     * $(&quot;p&quot;).css(&quot;marginLeft&quot;, &quot;10em&quot;);
+     * &lt;/pre&gt;&lt;/div&gt;
+     * @since 0.1.0
+     */
+    css: function (prop, value) {
+      if (value) { // If value arg. is given
+        return this.each(function (el) {
+          el.style[prop] = value; // Set CSS prop. to value
+        });
+      } else { // Otherwise, if value arg. is not given
+        return this.one(function (el) {
+          return el.style[prop]; // Return the style of that element
+        });
+      }
+    }
+  });
+
+  (function () {
+
+    var cssObj = {}
+      , impCss;
+
+    impCss = [
+      &quot;width&quot;,
+      &quot;height&quot;,
+      &quot;fontFamily&quot;,
+      &quot;fontWeight&quot;,
+      &quot;fontDecoration&quot;,
+      &quot;textAlign&quot;,
+      &quot;textTransform&quot;,
+      &quot;color&quot;,
+      &quot;backgroundColor&quot;,
+      &quot;background&quot;,
+      &quot;margin&quot;,
+      &quot;padding&quot;,
+      &quot;top&quot;,
+      &quot;left&quot;,
+      &quot;bottom&quot;,
+      &quot;right&quot;
+    ];
+    
+    for (_i = 0; _i &lt; impCss.length; _i += 1) {
+      cssObj[impCss[_i]] = function (val) {
+        return this.css(impCss[_i], val);
+      };
+    }
+
+    extend(Dom.prototype, cssObj);
+
+  }());
+
+  // Get computed style of the first element
+
+  extend(Dom.prototype, {
+
+    /**
+     * Get computed property
+     * 
+     * @for Dom
+     * @method computed
+     * @param {string} prop Name of property
+     * @return {number|boolean|string}
+     * @beta
+     * @since 0.1.0
+     */
+    computed: function (prop) {
+      return this.one(function (el) {
+        return win.getComputedStyle(el)[prop];
+      });
+    },
+
+    outerWidth: function () {
+      return parseFloat(this.computed(&quot;width&quot;)) + 
+      parseFloat(this.computed(&quot;paddingLeft&quot;)) + 
+      parseFloat(this.computed(&quot;paddingRight&quot;)) + 
+      parseFloat(this.computed(&quot;borderLeft&quot;)) + 
+      parseFloat(this.computed(&quot;borderRight&quot;)) + &quot;px&quot;;
+    },
+
+    innerWidth: function () {
+      return parseFloat(this.computed(&quot;width&quot;)) + 
+      parseFloat(this.computed(&quot;paddingLeft&quot;)) + 
+      parseFloat(this.computed(&quot;paddingRight&quot;)) + &quot;px&quot;;
+    },
+
+    outerHeight: function () {
+      return parseFloat(this.computed(&quot;height&quot;)) + 
+      parseFloat(this.computed(&quot;paddingTop&quot;)) + 
+      parseFloat(this.computed(&quot;paddingBottom&quot;)) + 
+      parseFloat(this.computed(&quot;borderTop&quot;)) + 
+      parseFloat(this.computed(&quot;borderBottom&quot;)) + &quot;px&quot;;
+    },
+
+    innerHeight: function () {
+      return parseFloat(this.computed(&quot;height&quot;)) + 
+      parseFloat(this.computed(&quot;paddingTop&quot;)) + 
+      parseFloat(this.computed(&quot;paddingBottom&quot;)) + &quot;px&quot;;
+    }
+  });
+</pre>
+
+</div>
+  </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>

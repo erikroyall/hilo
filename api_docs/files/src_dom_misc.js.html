@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src\core.js - hilo</title>
+    <title>src\dom\misc.js - hilo</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -13,7 +13,7 @@
 </head>
 <body>
 <div class="main-header">
-  <h1 class="site-logo"><a href="../index.html">hilo: src\core.js</a></h1>
+  <h1 class="site-logo"><a href="../index.html">hilo: src\dom\misc.js</a></h1>
   
   <p>API Docs for: 0.1.0-pre-dev-beta-9</p>
 </div>
@@ -71,90 +71,35 @@
 
   </div>
   <div class="main">
-    <div class="content"><h4>src\core.js</h4>
+    <div class="content"><h4>src\dom\misc.js</h4>
 
 <pre class="code prettyprint linenums">
   
-  // Core Library
-
   // --------------------------------------------------
-  // select()
+  // DOM Extensions
   // --------------------------------------------------
-  // 
-  // Select elements
-  // 
-  // This function can be used throughout the code
-  // to select elements
-  // 
-  // Usage:
-  //
-  // select(selector, root)
-  //   selector - Selector {String}
-  //   root - Root element {String|HTMLElement}
-  //
-
-  select = feature.qsa3 ? function (selector, root) {
-    // Set root to given root or document
-    root = root || doc;
-
-    return root.querySelectorAll(selector);
-  } : function (selector, root) {
-    return sizzle(selector, root);
-  };
 
   /**
-   * The main Hilo Object / function
+   * Get a NodeList of selected elements
    * 
-   * @module Hilo
-   * @static
-   * @class hilo
-   * @author Erik Royall
+   * @for Dom
+   * @method get
+   * @return {Dom}
+   * @example
+   * &lt;div class=&quot;code&quot;&gt;&lt;pre class=&quot;prettyprint&quot;&gt;
+   * $(&quot;script&quot;).get();
+   * &lt;/pre&gt;&lt;/div&gt;
+   * @since 0.1.0
    */
-  hilo = function (input, root, en) {
-    if (typeof input === &quot;undefined&quot;) {
-      // It&#x27;s better than not returning anything
-      return win.Hilo;
-    } else if (typeof input === &quot;string&quot;) {
-      if (input.trim() === &quot;&quot;) {
-        // Can&#x27;t pass empty string to querySelectorAll()
-        return new Dom({length:0});
-      }
-      
-      // Most common, return based on selector
-      return new Dom(select(input, root, en), input);
-    } else if (typeof input === &quot;function&quot;) {
-      if (document.readyState === &quot;complete&quot;) {
-        input();
-      } else {
-        callbacks.push(input);
-      }
+  Dom.prototype.get = function () {
+    var els = [];
 
-      // Allows to immediately start executing more code
-      // It&#x27;s better than not returning anything!
-      return win.Hilo;
-    } else if (input.length) { // DOM Node List | Hilo DOM Object
-      return new Dom(input);
-    } else { // DOM Node
-      input = [input];
-      return new Dom(input);
-    }
+    this.each(function (el) {
+      els.push(el);
+    });
+
+    return els;
   };
-
-  // Enable Selector Caching
-  hilo.temp = {};
-
-  // Version info
-  hilo.version = &quot;0.1.0-pre-dev-beta-9&quot;;
-
-  // Detections
-  hilo.feature = feature;
-  hilo.browser = detected.browser;
-  hilo.engine = detected.engine;
-  hilo.platform = detected.system;
-
-  // ES Utils
-  hilo.each = each;
-  hilo.extend = extend;
 </pre>
 
 </div>

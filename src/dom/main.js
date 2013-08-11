@@ -12,11 +12,13 @@
    * @param {string} sel The selector used
    * @return void
    * @example
-   *  new Dom (document.querySelectorAll(p:first-child); <br />
-   *  new Dom ([document.createElement("div")]);<br />
-   *  new Dom ([document.getElementByid("box")]);<br />
-   *  new Dom (document.getElementsByClassName("hidden"));<br />
-   *  new Dom (document.getElementsByTagName("mark"));<br />
+   * <div class="code"><pre class="prettyprint">
+   * new Dom (document.querySelectorAll(p:first-child);
+   * new Dom ([document.createElement("div")]);
+   * new Dom ([document.getElementByid("box")]);
+   * new Dom (document.getElementsByClassName("hidden"));
+   * new Dom (document.getElementsByTagName("mark"));
+   * </pre></div>
    * @since 0.1.0
    */
   function Dom (els, sel) {

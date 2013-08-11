@@ -2891,7 +2891,12 @@
   };
 
   /**
+   * The main Hilo Object / function
+   * 
    * @module Hilo
+   * @static
+   * @class hilo
+   * @author Erik Royall
    */
   hilo = function (input, root, en) {
     if (typeof input === "undefined") {
@@ -3281,11 +3286,13 @@
    * @param {string} sel The selector used
    * @return void
    * @example
-   *  new Dom (document.querySelectorAll(p:first-child); <br />
-   *  new Dom ([document.createElement("div")]);<br />
-   *  new Dom ([document.getElementByid("box")]);<br />
-   *  new Dom (document.getElementsByClassName("hidden"));<br />
-   *  new Dom (document.getElementsByTagName("mark"));<br />
+   * <div class="code"><pre class="prettyprint">
+   * new Dom (document.querySelectorAll(p:first-child);
+   * new Dom ([document.createElement("div")]);
+   * new Dom ([document.getElementByid("box")]);
+   * new Dom (document.getElementsByClassName("hidden"));
+   * new Dom (document.getElementsByTagName("mark"));
+   * </pre></div>
    * @since 0.1.0
    */
   function Dom (els, sel) {
@@ -3320,43 +3327,42 @@
 
   extend(Dom.prototype, {
 
-    // -------------------------
-    // .each()
-    // -------------------------
-    // 
-    // Just like .map() but returns the current Dom instance
-    // 
-    // .each ( fn ) 
-    //   fn (function) : The function to be called
-    //
-    // Example:
-    // 
-    // $("p").each (function (el) {
-    //   doSomethingWith(e);
-    // });
-    // 
-
+    /**
+     * Execute a function on selected elements
+     * 
+     * @for Dom
+     * @method each
+     * @param {function} fn The function to be called on
+     * @return {Dom}
+     * @example
+     * <div class="code"><pre class="prettyprint">
+     * $("p").each(function (el) {
+     *   doSomethingWith(e);
+     * });
+     * </pre></div>
+     * @since 0.1.0
+     */
     each: function (fn) {
       this.map(fn);
       return this; // return the current Dom instance
     },
 
-    // -------------------------
-    // .map()
-    // -------------------------
-    // 
-    // Return the results of executing a function on all the selected elements
-    // 
-    // .map( fn )
-    //    fn (function) : The function to be called
-    //
-    // Example:
-    // 
-    // $("div.need-cf").map(function (e) {
-    //   doSomethingWith(e);
-    // });
-    // 
-
+    /**
+     * Return the results of executing a function 
+     * on all the selected elements
+     * 
+     * @for Dom
+     * @method map
+     * @param {function} fn The function to be called on
+     * @return {array} The results of execution
+     * @example
+     * <div class="code"><pre class="prettyprint">
+     * $("div.need-cf").map(function (e) {
+     *   doSomethingWith(e);
+     * });
+     * </pre></div>
+     * @since 0.1.0
+     */
     map: function (fn) {
       var results = [], _i, _l;
       for (_i = 0, _l = this.length; _i < _l; _i += 1) {
@@ -3365,58 +3371,57 @@
       return results;
     },
 
-    // -------------------------
-    // .one()
-    // -------------------------
-    // 
-    // .map fn on selected elements and return them based on length
-    //
-
+    /**
+     * Map on selected elements and return them based 
+     * on the number of selected elements
+     * 
+     * @for Dom
+     * @method one
+     * @param {function} fn Function to be called on
+     * @return {Any|array}
+     * @since 0.1.0
+     */
     one: function (fn) {
       var m = this.map(fn);
       return m.length > 1 ? m : m[0];
     },
 
-    // -------------------------
-    // .first()
-    // -------------------------
-    // 
-    // Return the results of executing a function on all the selected elements
-    // 
-    // .first( fn )
-    //    fn (function) : The function to be called
-    //
-    // Example:
-    // 
-    // $("div").first(function (e) {
-    //   console.log(e + " is the first div");
-    // });
-    // 
-
+    /**
+     * Execute a function on the first selected element
+     * 
+     * @for Dom
+     * @method first
+     * @param {function} fn The function to be called
+     * @return {Dom}
+     * @example
+     * <div class="code"><pre class="prettyprint">
+     * $("div").first(function (e) {
+     *   console.log(e + " is the first div");
+     * });
+     * </pre></div>
+     * @since 0.1.0
+     */
     first: function (fn) {
-      return (this.map(fn))[0];
+      return fn(this[0]);
     },
 
-    // -------------------------
-    // .filter()
-    // -------------------------
-    // 
-    // Filters the selected elements and returns the
-    // elements that pass the test (or return true)
-    // 
-    // .filter( fn )
-    //    fn (function) : The function to be called
-    // 
-    // Example:
-    // 
-    // Filter to find divs with className hidden
-    // 
-    // $("div").filter(function (el) {
-    //   return el.className.split("hidden").length > 1;
-    // });
-    // 
-
-    filter: function (fun) {
+    /**
+     * Filters the selected elements and returns the 
+     * elements that pass the test (or return true)
+     * 
+     * @for Dom
+     * @method filter
+     * @param {function} fn The filter function
+     * @return {Dom}
+     * @example
+     * <div class="code"><pre class="prettyprint">
+     * $("div").filter(function (el) {
+     *   return el.className.split("hidden").length > 1;
+     * });
+     * </pre></div>
+     * @since 0.1.0
+     */
+    filter: function (fn) {
       var len = this.length >>> 0
         , _i
         , t = Object(this)
@@ -3428,7 +3433,7 @@
         if (_i in t)
         {
           val = t[_i];
-          if (fun.call(this, val, _i, t)) {
+          if (fn.call(this, val, _i, t)) {
             res.push(val);
           }
         }
@@ -3442,6 +3447,23 @@
   // Element Selections, etc.
   // --------------------------------------------------
 
+  /**
+   * Create an element
+   *
+   * @for hilo
+   * @method create
+   * @param {string} tagName Tag Name or Node name of element
+   * @attrs {object} attrs An object containing the attributes and values
+   * @return {HTMLElement} The created element
+   * @example
+   * <div class="code"><pre class="prettyprint">
+   * $.create("div", {
+   *   class: "post",
+   *   "data-id": 2
+   * });
+   * </pre></div>
+   * @since 0.1.0
+   */
   hilo.create = function (tagName, attrs) {
     var el = new Dom([document.createElement(tagName)]), key;
 
@@ -3468,71 +3490,69 @@
 
   extend(Dom.prototype, {
 
-    // -------------------------
-    // .first()
-    // -------------------------
-    // 
-    // Return the first element in the selected elements
-    // 
-    // .first( )
-    //
-    // Examples:
-    // 
-    // $("p.hidden").first().show()
-    //
-
+    /**
+     * Return first element of the selected elements
+     *
+     * @for Dom
+     * @method first
+     * @return {Dom} The first element
+     * @example
+     * <div class="code"><pre class="prettyprint">
+     * $("p.hidden").first().show();
+     * </pre></div>
+     * @since 0.1.0
+     */
     first: function () {
       return new Dom([this[0]]);
     },
 
-    // -------------------------
-    // .last()
-    // -------------------------
-    // 
-    // Return last element in the selected elements
-    // 
-    // .last( attr [, value] )
-    //
-    // Examples:
-    // 
-    // $("p.hidden").last().show()
-    //
-
+    /**
+     * Return last element of the selected elements
+     *
+     * @for Dom
+     * @method last
+     * @return {Dom} The last element
+     * @example
+     * <div class="code"><pre class="prettyprint">
+     * $("p.hidden").last().show();
+     * </pre></div>
+     * @since 0.1.0
+     */
     last: function () {
       return new Dom([this[this.length - 1]]);
     },
 
-    // -------------------------
-    // .el()
-    // -------------------------
-    // 
-    // Return nth element in the selected elements
-    // 
-    // .el( place )
-    //   place (number) : A number representing place of element
-    //
-    // Examples:
-    // 
-    // $("p.hidden").el(3).show()
-    //
-
+    /**
+     * Return nth element of the selected elements
+     *
+     * @for Dom
+     * @method el
+     * @return {number} place The index of element (Index Starts from 1)
+     * @return {Dom} The nth element
+     * @example
+     * <div class="code"><pre class="prettyprint">
+     * $("p.hidden").el(3).show();
+     * </pre></div>
+     * @since 0.1.0
+     */
     el: function (place) {
       return new Dom([this[place - 1]]);
     },
 
-    // -------------------------
-    // .children()
-    // -------------------------
-    // 
-    // Return nth element in the selected elements
-    // 
-    // .children( )
-    //
-    // Examples:
-    // 
-    // $("p.hidden").el().show()
-    //
-
+    /**
+     * Return the children of selected elements
+     *
+     * @for Dom
+     * @method children
+     * @param {string} sel Optional filtering selector
+     * @return {Dom}
+     * @example
+     * <div class="code"><pre class="prettyprint">
+     * var childrenOfContainer = $("div.container").children();
+     * $("div.container").children(":not(.hidden)").addClass("me");
+     * </pre></div>
+     * @since 0.1.0
+     */
     children: function (sel) {
       var children = [], _i, _l;
 
@@ -3547,19 +3567,18 @@
       return children;
     },
 
-    // -------------------------
-    // .parent()
-    // -------------------------
-    // 
-    // Return parent of the first selected element
-    // 
-    // .parent( )
-    //
-    // Examples:
-    // 
-    // $("div#editor").parent().hide()
-    //
-
+    /**
+     * Returns the parents of selected elements
+     *
+     * @for Dom
+     * @method parents
+     * @return {Dom}
+     * @example
+     * <div class="code"><pre class="prettyprint">
+     * $("div#editor").parent().hide()
+     * </pre></div>
+     * @since 0.1.0
+     */
     parents: function () {
       var pars = [];
 
@@ -3570,40 +3589,38 @@
       return new Dom(pars);
     },
 
-    // -------------------------
-    // .parent()
-    // -------------------------
-    // 
-    // Return parent of first selected element
-    // 
-    // .parent( )
-    //
-    // Examples:
-    // 
-    // $("div.editor").parent().hide()
-    //
-
+    /**
+     * Return parent of first selected element
+     *
+     * @for Dom
+     * @method parent
+     * @return {Dom}
+     * @example
+     * <div class="code"><pre class="prettyprint">
+     * $("div.editor").parent().hide();
+     * </pre></div>
+     * @since 0.1.0
+     */
     parent: function () {
       return this.first(function (el) {
         return new Dom([el.parentElement]);
       });
     },
 
-    // -------------------------
-    // .rel()
-    // -------------------------
-    // 
-    // Return relative of selected elements based
-    // on the relation given
-    // 
-    // .rel( rel )
-    //   rel (string) : The relation between curent and 
-    //
-    // Examples:
-    // 
-    // $("div#editor").rel("nextSibling").addClass("next-to-editor")
-    //
-
+    /**
+     * Return relative of selected elements based 
+     * on the relation given
+     * 
+     * @for Dom
+     * @method rel
+     * @param {string} relation relation
+     * @return {Dom}
+     * @example
+     * <div class="code"><pre class="prettyprint">
+     * $("div#editor").rel("nextSibling").addClass("next-to-editor")
+     * </pre></div>
+     * @since 0.1.0
+     */
     rel: function (sul) {
       var els = [];
 
@@ -3614,36 +3631,32 @@
       return els;
     },
 
-    // -------------------------
-    // .next()
-    // -------------------------
-    // 
-    // Return next element siblings of the selected elements
-    // 
-    // .next( )
-    //
-    // Examples:
-    // 
-    // $("div.editor").next().class("next-to-editor")
-    //
-
+    /**
+     * Return next sibling elements of selected elements
+     *
+     * @for Dom
+     * @method next
+     * @return {Dom}
+     * @example
+     * <div class="code"><pre class="prettyprint">
+     * $("div.editor").next().class("next-to-editor")
+     * </pre></div>
+     */
     next: function () {
       return this.rel("nextElementSibling");
     },
 
-    // -------------------------
-    // .prev()
-    // -------------------------
-    // 
-    // Return previous element siblings of the selected elements
-    // 
-    // .prev( )
-    //
-    // Examples:
-    // 
-    // $("div.editor").prev().class("prev-to-editor")
-    //
-
+    /**
+     * Return previous sibling elements of selected elements
+     *
+     * @for Dom
+     * @method prev
+     * @return {Dom}
+     * @example
+     * <div class="code"><pre class="prettyprint">
+     * $("div.editor").prev().class("prev-to-editor")
+     * </pre></div>
+     */
     prev: function () {
       return this.rel("previousElementSibling");
     }
@@ -3653,21 +3666,20 @@
   // DOM HTML
   // --------------------------------------------------
 
-  // -------------------------
-  // .html()
-  // -------------------------
-  // 
-  // Set or return innerHTML of selected elements
-  // 
-  // .html( [htmlCode] )
-  //    htmlCode (string) : The htmlCode to be set
-  //
-  // Examples:
-  // 
-  // $("p:first-child").html("first-p")
-  // var html = $("span").html()
-  // 
-
+  /**
+   * Set or return innerHTML of selected elements
+   * 
+   * @for Dom
+   * @method html
+   * @param {string} html HTML Code to be inserted
+   * @return {string|void}
+   * @example
+   * <div class="code"><pre class="prettyprint">
+   * $("p:first-child").html("first-p")
+   * var html = $("span").html()
+   * </pre></div>
+   * @since 0.1.0
+   */
   Dom.prototype.html = function (htmlCode) {
     if (typeof htmlCode !== "undefined") {
       return this.each(function(el) {
@@ -3680,124 +3692,73 @@
     }
   };
 
-  // -------------------------
-  // .text()
-  // -------------------------
-  // 
-  // Set or return innerHTML of selected elements
-  // 
-  // .text( [text] )
-  //    text (string) : The text to be set
-  //
-  // Examples:
-  // 
-  // $("p:first-child").text("first-p")
-  // var text = $("span").text()
-  // 
-
-  Dom.prototype.text = function (text) {
-    if (typeof text !== "undefined") {
-      return this.each(function(el) {
-        el.innerText = text;
-      });
-    } else {
-      return this.first(function(el) {
-        return el.innerText;
-      });
-    }
-  };
-
-  // -------------------------
-  // .empty()
-  // -------------------------
-  // 
-  // Empty the selected elements
-  // 
-  // .empty()
-  //
-  // Examples:
-  // 
-  // $("#todo-list").empty()
-  // 
-
+  /**
+   * Empty the selected elements
+   * 
+   * @for Dom
+   * @method empty
+   * @return {Dom}
+   * @example
+   * <div class="code"><pre class="prettyprint">
+   * $("#todo-list").empty()
+   * </pre></div>
+   * @since 0.1.0
+   */
   Dom.prototype.empty = function () {
     return this.html("");
   };
 
-  // -------------------------
-  // .append()
-  // -------------------------
-  // 
-  // Set or return innerHTML of selected elements
-  // 
-  // .append( [html] )
-  //    html (string) : The html to be appended
-  //
-  // Examples:
-  // 
-  // $("p:first-child").append(" - From the first p child")
-  // 
-  
+  /**
+   * Append html to selected elements
+   * 
+   * @for Dom
+   * @method append
+   * @param {string} html The HTML Code to be appended
+   * @return {Dom}
+   * @example
+   * <div class="code"><pre class="prettyprint">
+   * $("p:first-child").append(" - From the first p child")
+   * </pre></div>
+   * @since 0.1.0
+   */
   Dom.prototype.append = function (html) {
     return this.each(function (el) {
       el.innerHTML += html;
     });
   };
 
-  // -------------------------
-  // .appendText()
-  // -------------------------
-  // 
-  // Set or return innerHTML of selected elements
-  // 
-  // .appendText( [text] )
-  //    text (string) : The text to be set
-  //
-  // Examples:
-  // 
-  // $("p:first-child").appendText("The same thing here, too.")
-  // 
-  
-  Dom.prototype.appendText = function (text) {
-    return this.each(function (el) {
-      el.innerText += text;
-    });
-  };
-
-  // -------------------------
-  // .prepend()
-  // -------------------------
-  // 
-  // Set or return innerHTML of selected elements
-  // 
-  // .prepend( [html] )
-  //    html (string) : The html to be prepended
-  //
-  // Examples:
-  // 
-  // $("p:first-child").prepend(" - From the first p child")
-  // 
-
+  /**
+   * Prepend html to selected elements
+   * 
+   * @for Dom
+   * @method prepend
+   * @param {string} html The HTML Code to be prepended
+   * @return {Dom}
+   * @example
+   * <div class="code"><pre class="prettyprint">
+   * $("p.subject").prepend("Subject: ")
+   * </pre></div>
+   * @since 0.1.0
+   */
   Dom.prototype.prepend = function (html) {
     return this.each(function (el) {
       el.innerHTML = html + el.innerHTML;
     });
   };
 
-  // -------------------------
-  // .append()
-  // -------------------------
-  // 
-  // Set or return innerHTML of selected elements
-  // 
-  // .append( [html] )
-  //    html (string) : The html to be appended
-  //
-  // Examples:
-  // 
-  // $("p:first-child").append(" - From the first p child")
-  // 
-  
+  /**
+   * Get or set the value attribute of selected element
+   * 
+   * @for Dom
+   * @method value
+   * @param val The value to set to
+   * @return {string|void}
+   * @example
+   * <div class="code"><pre class="prettyprint">
+   * $("#my-form").children("input#name").value();
+   * </pre></div>
+   * @since 0.1.0
+   */
   Dom.prototype.value = function (val) {
     if (val) {
       return this.each(function (el) {
@@ -3824,7 +3785,9 @@
      * @param {string} id The id to set
      * @return {string|void}
      * @example
-     *  $("p.rect").first().id("square")
+     * <div class="code"><pre class="prettyprint">
+     * $("p.rect").first().id("square")
+     * </pre></div>
      * @since 0.1.0
      */
     id: function (id) {
@@ -3852,7 +3815,9 @@
      * @param {string|array} className Class(es) to be checked or manipulated
      * @return {boolean|void}
      * @example
-     *  $("div#editor").class("add", "no-js")
+     * <div class="code"><pre class="prettyprint">
+     * $("div#editor").class("add", "no-js")
+     * </pre></div>
      * @since 0.1.0
      */
     "class": feature.classList === true ? function (action, className) {
@@ -4116,7 +4081,9 @@
      * @param {string|array} className The class(es) to add
      * @return {Dom}
      * @example
-     *  $("p").addClass("paragraph")
+     * <div class="code"><pre class="prettyprint">
+     * $("p").addClass("paragraph")
+     * </pre></div>
      * @since 0.1.0
      */
     addClass: function (className) {
@@ -4131,7 +4098,9 @@
      * @param classes {string|array} The class(es) to be removed
      * @return {Dom}
      * @example
-     *  $("p.hidden").removeClass("hidden")
+     * <div class="code"><pre class="prettyprint">
+     * $("p.hidden").removeClass("hidden")
+     * </pre></div>
      * @since 0.1.0
      */
     removeClass: function (className) {
@@ -4146,9 +4115,11 @@
      * @param {string|array} className The class(es) to be checked for existence
      * @return {Boolean}
      * @example
-     *  if(!$("audio:not([controls])").hasClass("hidden")) {
-     *    $("audio:not([controls])").addClass("hidden");
-     *  }
+     * <div class="code"><pre class="prettyprint">
+     * if(!$("audio:not([controls])").hasClass("hidden")) {
+     *   $("audio:not([controls])").addClass("hidden");
+     * }
+     * </pre></div>
      * @since 0.1.0
      */
     hasClass: function (className) {
@@ -4163,9 +4134,11 @@
      * @param {string|array} className The classes to be toggled
      * @return {Dom}
      * @example
-     *  $(".someClass").on("click", function () {
-     *    $(this).toggleClass("opaque");
-     *  });
+     * <div class="code"><pre class="prettyprint">
+     * $(".someClass").on("click", function () {
+     *   $(this).toggleClass("opaque");
+     * });
+     * </pre></div>
      * @since 0.1.0
      */
     toggleClass: function (className) {
@@ -4181,9 +4154,11 @@
      * @param {string} val Value of the attribute
      * @return {string|void}
      * @example
-     *  $("p.hidden").attr("hidden")
-     *  $("div.edit").attr("contentEditable", "true")
-     *  $("body").attr("hilo", "0.1.0")
+     * <div class="code prettyprint">
+     * $("p.hidden").attr("hidden"); 
+     * $("div.edit").attr("contentEditable", "true"); 
+     * $("body").attr("hilo", "0.1.0"); 
+     * </div>
      * @since 0.1.0
      */
     attr: function (name, val) {
@@ -4205,20 +4180,21 @@
 
   extend(Dom.prototype, {
 
-    // --------------------------------------------------
-    // .css()
-    // --------------------------------------------------
-    // 
-    // Set a css prop. to s.el.
-    // 
-    // Syntax .css( prop [, value] )
-    //
-    // Examples:
-    // 
-    // $(selector).css("background-color", "#444")
-    // var fontColor = $(selector).css("color")
-    // 
-
+    /**
+     * Set or return css property
+     *
+     * @for Dom
+     * @method css
+     * @param {string} prop Name of property
+     * @param {string} value Value of property
+     * @return {string|void}
+     * @beta
+     * @example
+     * <div class="code"><pre class="prettyprint">
+     * $("p").css("marginLeft", "10em");
+     * </pre></div>
+     * @since 0.1.0
+     */
     css: function (prop, value) {
       if (value) { // If value arg. is given
         return this.each(function (el) {
@@ -4269,6 +4245,17 @@
   // Get computed style of the first element
 
   extend(Dom.prototype, {
+
+    /**
+     * Get computed property
+     * 
+     * @for Dom
+     * @method computed
+     * @param {string} prop Name of property
+     * @return {number|boolean|string}
+     * @beta
+     * @since 0.1.0
+     */
     computed: function (prop) {
       return this.one(function (el) {
         return win.getComputedStyle(el)[prop];
@@ -4308,19 +4295,18 @@
   // DOM Extensions
   // --------------------------------------------------
 
-  // -------------------------
-  // .get()
-  // -------------------------
-  // 
-  // Get an array of selected elements
-  // 
-  // .get()
-  //
-  // Examples:
-  // 
-  // $("script").get()
-  //
-
+  /**
+   * Get a NodeList of selected elements
+   * 
+   * @for Dom
+   * @method get
+   * @return {Dom}
+   * @example
+   * <div class="code"><pre class="prettyprint">
+   * $("script").get();
+   * </pre></div>
+   * @since 0.1.0
+   */
   Dom.prototype.get = function () {
     var els = [];
 

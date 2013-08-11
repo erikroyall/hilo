@@ -22,6 +22,34 @@
             },
             "namespaces": {}
         },
+        "src\\dom\\css.js": {
+            "name": "src\\dom\\css.js",
+            "modules": {},
+            "classes": {},
+            "fors": {
+                "Dom": 1
+            },
+            "namespaces": {}
+        },
+        "src\\dom\\els.js": {
+            "name": "src\\dom\\els.js",
+            "modules": {},
+            "classes": {},
+            "fors": {
+                "hilo": 1,
+                "Dom": 1
+            },
+            "namespaces": {}
+        },
+        "src\\dom\\helpers.js": {
+            "name": "src\\dom\\helpers.js",
+            "modules": {},
+            "classes": {},
+            "fors": {
+                "Dom": 1
+            },
+            "namespaces": {}
+        },
         "src\\dom\\main.js": {
             "name": "src\\dom\\main.js",
             "modules": {},
@@ -29,6 +57,24 @@
                 "Dom": 1
             },
             "fors": {},
+            "namespaces": {}
+        },
+        "src\\dom\\manp.js": {
+            "name": "src\\dom\\manp.js",
+            "modules": {},
+            "classes": {},
+            "fors": {
+                "Dom": 1
+            },
+            "namespaces": {}
+        },
+        "src\\dom\\misc.js": {
+            "name": "src\\dom\\misc.js",
+            "modules": {},
+            "classes": {},
+            "fors": {
+                "Dom": 1
+            },
             "namespaces": {}
         },
         "src\\dom\\sizzle.js": {
@@ -43,7 +89,9 @@
             "modules": {
                 "Hilo": 1
             },
-            "classes": {},
+            "classes": {
+                "hilo": 1
+            },
             "fors": {},
             "namespaces": {}
         }
@@ -53,13 +101,17 @@
             "name": "Hilo",
             "submodules": {},
             "classes": {
-                "Dom": 1
+                "Dom": 1,
+                "hilo": 1
             },
             "fors": {},
             "namespaces": {},
             "tag": "module",
-            "file": "src\\dom\\main.js",
-            "line": 6
+            "file": "src\\core.js",
+            "line": 29,
+            "description": "The main Hilo Object / function",
+            "static": 1,
+            "author": "Erik Royall"
         }
     },
     "classes": {
@@ -92,9 +144,23 @@
                 "description": "void"
             },
             "example": [
-                "\n new Dom (document.querySelectorAll(p:first-child); <br />\n new Dom ([document.createElement(\"div\")]);<br />\n new Dom ([document.getElementByid(\"box\")]);<br />\n new Dom (document.getElementsByClassName(\"hidden\"));<br />\n new Dom (document.getElementsByTagName(\"mark\"));<br />"
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\nnew Dom (document.querySelectorAll(p:first-child);\nnew Dom ([document.createElement(\"div\")]);\nnew Dom ([document.getElementByid(\"box\")]);\nnew Dom (document.getElementsByClassName(\"hidden\"));\nnew Dom (document.getElementsByTagName(\"mark\"));\n</pre></div>"
             ],
             "since": "0.1.0"
+        },
+        "hilo": {
+            "name": "hilo",
+            "shortname": "hilo",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Hilo",
+            "file": "src\\core.js",
+            "line": 29,
+            "description": "The main Hilo Object / function",
+            "static": 1
         }
     },
     "classitems": [
@@ -133,14 +199,14 @@
                 "type": "String|void"
             },
             "example": [
-                "\n $(\"p.rect\").first().id(\"square\")"
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\n$(\"p.rect\").first().id(\"square\")\n</pre></div>"
             ],
             "since": "0.1.0",
             "class": "Dom"
         },
         {
             "file": "src\\dom\\class-id.js",
-            "line": 35,
+            "line": 37,
             "description": "Add, remove or check class(es)",
             "itemtype": "method",
             "name": "class",
@@ -161,14 +227,14 @@
                 "type": "Boolean|void"
             },
             "example": [
-                "\n $(\"div#editor\").class(\"add\", \"no-js\")"
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\n$(\"div#editor\").class(\"add\", \"no-js\")\n</pre></div>"
             ],
             "since": "0.1.0",
             "class": "Dom"
         },
         {
             "file": "src\\dom\\class-id.js",
-            "line": 300,
+            "line": 304,
             "description": "Adds class(es) to selected elements",
             "itemtype": "method",
             "name": "addClass",
@@ -184,14 +250,14 @@
                 "type": "Dom"
             },
             "example": [
-                "\n $(\"p\").addClass(\"paragraph\")"
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\n$(\"p\").addClass(\"paragraph\")\n</pre></div>"
             ],
             "since": "0.1.0",
             "class": "Dom"
         },
         {
             "file": "src\\dom\\class-id.js",
-            "line": 315,
+            "line": 321,
             "description": "Remove class(es) from selected elements",
             "itemtype": "method",
             "name": "removeClass",
@@ -207,14 +273,14 @@
                 "type": "Dom"
             },
             "example": [
-                "\n $(\"p.hidden\").removeClass(\"hidden\")"
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\n$(\"p.hidden\").removeClass(\"hidden\")\n</pre></div>"
             ],
             "since": "0.1.0",
             "class": "Dom"
         },
         {
             "file": "src\\dom\\class-id.js",
-            "line": 330,
+            "line": 338,
             "description": "Check for class(es) in selected elements",
             "itemtype": "method",
             "name": "hasClass",
@@ -230,14 +296,14 @@
                 "type": "Boolean"
             },
             "example": [
-                "\n if(!$(\"audio:not([controls])\").hasClass(\"hidden\")) {\n   $(\"audio:not([controls])\").addClass(\"hidden\");\n }"
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\nif(!$(\"audio:not([controls])\").hasClass(\"hidden\")) {\n  $(\"audio:not([controls])\").addClass(\"hidden\");\n}\n</pre></div>"
             ],
             "since": "0.1.0",
             "class": "Dom"
         },
         {
             "file": "src\\dom\\class-id.js",
-            "line": 347,
+            "line": 357,
             "description": "Add class(es) if not already, remove if added",
             "itemtype": "method",
             "name": "toggleClass",
@@ -253,14 +319,14 @@
                 "type": "Dom"
             },
             "example": [
-                "\n $(\".someClass\").on(\"click\", function () {\n   $(this).toggleClass(\"opaque\");\n });"
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\n$(\".someClass\").on(\"click\", function () {\n  $(this).toggleClass(\"opaque\");\n});\n</pre></div>"
             ],
             "since": "0.1.0",
             "class": "Dom"
         },
         {
             "file": "src\\dom\\class-id.js",
-            "line": 364,
+            "line": 376,
             "description": "Set or return attributes",
             "itemtype": "method",
             "name": "attr",
@@ -281,7 +347,472 @@
                 "type": "String|void"
             },
             "example": [
-                "\n $(\"p.hidden\").attr(\"hidden\")\n $(\"div.edit\").attr(\"contentEditable\", \"true\")\n $(\"body\").attr(\"hilo\", \"0.1.0\")"
+                "\n<div class=\"code prettyprint\">\n$(\"p.hidden\").attr(\"hidden\"); \n$(\"div.edit\").attr(\"contentEditable\", \"true\"); \n$(\"body\").attr(\"hilo\", \"0.1.0\"); \n</div>"
+            ],
+            "since": "0.1.0",
+            "class": "Dom"
+        },
+        {
+            "file": "src\\dom\\css.js",
+            "line": 8,
+            "description": "Set or return css property",
+            "itemtype": "method",
+            "name": "css",
+            "params": [
+                {
+                    "name": "prop",
+                    "description": "Name of property",
+                    "type": "String"
+                },
+                {
+                    "name": "value",
+                    "description": "Value of property",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "String|void"
+            },
+            "beta": 1,
+            "example": [
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\n$(\"p\").css(\"marginLeft\", \"10em\");\n</pre></div>"
+            ],
+            "since": "0.1.0",
+            "class": "Dom"
+        },
+        {
+            "file": "src\\dom\\css.js",
+            "line": 74,
+            "description": "Get computed property",
+            "itemtype": "method",
+            "name": "computed",
+            "params": [
+                {
+                    "name": "prop",
+                    "description": "Name of property",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Number|boolean|string"
+            },
+            "beta": 1,
+            "since": "0.1.0",
+            "class": "Dom"
+        },
+        {
+            "file": "src\\dom\\els.js",
+            "line": 6,
+            "description": "Create an element",
+            "itemtype": "method",
+            "name": "create",
+            "params": [
+                {
+                    "name": "tagName",
+                    "description": "Tag Name or Node name of element",
+                    "type": "String"
+                }
+            ],
+            "attrs": "{object} attrs An object containing the attributes and values",
+            "return": {
+                "description": "The created element",
+                "type": "HTMLElement"
+            },
+            "example": [
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\n$.create(\"div\", {\n  class: \"post\",\n  \"data-id\": 2\n});\n</pre></div>"
+            ],
+            "since": "0.1.0",
+            "class": "hilo"
+        },
+        {
+            "file": "src\\dom\\els.js",
+            "line": 49,
+            "description": "Return first element of the selected elements",
+            "itemtype": "method",
+            "name": "first",
+            "return": {
+                "description": "The first element",
+                "type": "Dom"
+            },
+            "example": [
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\n$(\"p.hidden\").first().show();\n</pre></div>"
+            ],
+            "since": "0.1.0",
+            "class": "Dom"
+        },
+        {
+            "file": "src\\dom\\els.js",
+            "line": 65,
+            "description": "Return last element of the selected elements",
+            "itemtype": "method",
+            "name": "last",
+            "return": {
+                "description": "The last element",
+                "type": "Dom"
+            },
+            "example": [
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\n$(\"p.hidden\").last().show();\n</pre></div>"
+            ],
+            "since": "0.1.0",
+            "class": "Dom"
+        },
+        {
+            "file": "src\\dom\\els.js",
+            "line": 81,
+            "description": "Return nth element of the selected elements",
+            "itemtype": "method",
+            "name": "el",
+            "return": {
+                "description": "The nth element",
+                "type": "Dom"
+            },
+            "example": [
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\n$(\"p.hidden\").el(3).show();\n</pre></div>"
+            ],
+            "since": "0.1.0",
+            "class": "Dom"
+        },
+        {
+            "file": "src\\dom\\els.js",
+            "line": 98,
+            "description": "Return the children of selected elements",
+            "itemtype": "method",
+            "name": "children",
+            "params": [
+                {
+                    "name": "sel",
+                    "description": "Optional filtering selector",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Dom"
+            },
+            "example": [
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\nvar childrenOfContainer = $(\"div.container\").children();\n$(\"div.container\").children(\":not(.hidden)\").addClass(\"me\");\n</pre></div>"
+            ],
+            "since": "0.1.0",
+            "class": "Dom"
+        },
+        {
+            "file": "src\\dom\\els.js",
+            "line": 126,
+            "description": "Returns the parents of selected elements",
+            "itemtype": "method",
+            "name": "parents",
+            "return": {
+                "description": "",
+                "type": "Dom"
+            },
+            "example": [
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\n$(\"div#editor\").parent().hide()\n</pre></div>"
+            ],
+            "since": "0.1.0",
+            "class": "Dom"
+        },
+        {
+            "file": "src\\dom\\els.js",
+            "line": 148,
+            "description": "Return parent of first selected element",
+            "itemtype": "method",
+            "name": "parent",
+            "return": {
+                "description": "",
+                "type": "Dom"
+            },
+            "example": [
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\n$(\"div.editor\").parent().hide();\n</pre></div>"
+            ],
+            "since": "0.1.0",
+            "class": "Dom"
+        },
+        {
+            "file": "src\\dom\\els.js",
+            "line": 166,
+            "description": "Return relative of selected elements based \non the relation given",
+            "itemtype": "method",
+            "name": "rel",
+            "params": [
+                {
+                    "name": "relation",
+                    "description": "relation",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Dom"
+            },
+            "example": [
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\n$(\"div#editor\").rel(\"nextSibling\").addClass(\"next-to-editor\")\n</pre></div>"
+            ],
+            "since": "0.1.0",
+            "class": "Dom"
+        },
+        {
+            "file": "src\\dom\\els.js",
+            "line": 190,
+            "description": "Return next sibling elements of selected elements",
+            "itemtype": "method",
+            "name": "next",
+            "return": {
+                "description": "",
+                "type": "Dom"
+            },
+            "example": [
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\n$(\"div.editor\").next().class(\"next-to-editor\")\n</pre></div>"
+            ],
+            "class": "Dom"
+        },
+        {
+            "file": "src\\dom\\els.js",
+            "line": 205,
+            "description": "Return previous sibling elements of selected elements",
+            "itemtype": "method",
+            "name": "prev",
+            "return": {
+                "description": "",
+                "type": "Dom"
+            },
+            "example": [
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\n$(\"div.editor\").prev().class(\"prev-to-editor\")\n</pre></div>"
+            ],
+            "class": "Dom"
+        },
+        {
+            "file": "src\\dom\\helpers.js",
+            "line": 8,
+            "description": "Execute a function on selected elements",
+            "itemtype": "method",
+            "name": "each",
+            "params": [
+                {
+                    "name": "fn",
+                    "description": "The function to be called on",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Dom"
+            },
+            "example": [
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\n$(\"p\").each(function (el) {\n  doSomethingWith(e);\n});\n</pre></div>"
+            ],
+            "since": "0.1.0",
+            "class": "Dom"
+        },
+        {
+            "file": "src\\dom\\helpers.js",
+            "line": 28,
+            "description": "Return the results of executing a function \non all the selected elements",
+            "itemtype": "method",
+            "name": "map",
+            "params": [
+                {
+                    "name": "fn",
+                    "description": "The function to be called on",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "The results of execution",
+                "type": "Array"
+            },
+            "example": [
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\n$(\"div.need-cf\").map(function (e) {\n  doSomethingWith(e);\n});\n</pre></div>"
+            ],
+            "since": "0.1.0",
+            "class": "Dom"
+        },
+        {
+            "file": "src\\dom\\helpers.js",
+            "line": 52,
+            "description": "Map on selected elements and return them based \non the number of selected elements",
+            "itemtype": "method",
+            "name": "one",
+            "params": [
+                {
+                    "name": "fn",
+                    "description": "Function to be called on",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Any|array"
+            },
+            "since": "0.1.0",
+            "class": "Dom"
+        },
+        {
+            "file": "src\\dom\\helpers.js",
+            "line": 67,
+            "description": "Execute a function on the first selected element",
+            "itemtype": "method",
+            "name": "first",
+            "params": [
+                {
+                    "name": "fn",
+                    "description": "The function to be called",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Dom"
+            },
+            "example": [
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\n$(\"div\").first(function (e) {\n  console.log(e + \" is the first div\");\n});\n</pre></div>"
+            ],
+            "since": "0.1.0",
+            "class": "Dom"
+        },
+        {
+            "file": "src\\dom\\helpers.js",
+            "line": 86,
+            "description": "Filters the selected elements and returns the \nelements that pass the test (or return true)",
+            "itemtype": "method",
+            "name": "filter",
+            "params": [
+                {
+                    "name": "fn",
+                    "description": "The filter function",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Dom"
+            },
+            "example": [
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\n$(\"div\").filter(function (el) {\n  return el.className.split(\"hidden\").length > 1;\n});\n</pre></div>"
+            ],
+            "since": "0.1.0",
+            "class": "Dom"
+        },
+        {
+            "file": "src\\dom\\manp.js",
+            "line": 6,
+            "description": "Set or return innerHTML of selected elements",
+            "itemtype": "method",
+            "name": "html",
+            "params": [
+                {
+                    "name": "html",
+                    "description": "HTML Code to be inserted",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "String|void"
+            },
+            "example": [
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\n$(\"p:first-child\").html(\"first-p\")\nvar html = $(\"span\").html()\n</pre></div>"
+            ],
+            "since": "0.1.0",
+            "class": "Dom"
+        },
+        {
+            "file": "src\\dom\\manp.js",
+            "line": 32,
+            "description": "Empty the selected elements",
+            "itemtype": "method",
+            "name": "empty",
+            "return": {
+                "description": "",
+                "type": "Dom"
+            },
+            "example": [
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\n$(\"#todo-list\").empty()\n</pre></div>"
+            ],
+            "since": "0.1.0",
+            "class": "Dom"
+        },
+        {
+            "file": "src\\dom\\manp.js",
+            "line": 48,
+            "description": "Append html to selected elements",
+            "itemtype": "method",
+            "name": "append",
+            "params": [
+                {
+                    "name": "html",
+                    "description": "The HTML Code to be appended",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Dom"
+            },
+            "example": [
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\n$(\"p:first-child\").append(\" - From the first p child\")\n</pre></div>"
+            ],
+            "since": "0.1.0",
+            "class": "Dom"
+        },
+        {
+            "file": "src\\dom\\manp.js",
+            "line": 67,
+            "description": "Prepend html to selected elements",
+            "itemtype": "method",
+            "name": "prepend",
+            "params": [
+                {
+                    "name": "html",
+                    "description": "The HTML Code to be prepended",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Dom"
+            },
+            "example": [
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\n$(\"p.subject\").prepend(\"Subject: \")\n</pre></div>"
+            ],
+            "since": "0.1.0",
+            "class": "Dom"
+        },
+        {
+            "file": "src\\dom\\manp.js",
+            "line": 86,
+            "description": "Get or set the value attribute of selected element",
+            "itemtype": "method",
+            "name": "value",
+            "params": [
+                {
+                    "name": "val",
+                    "description": "The value to set to"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "String|void"
+            },
+            "example": [
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\n$(\"#my-form\").children(\"input#name\").value();\n</pre></div>"
+            ],
+            "since": "0.1.0",
+            "class": "Dom"
+        },
+        {
+            "file": "src\\dom\\misc.js",
+            "line": 6,
+            "description": "Get a NodeList of selected elements",
+            "itemtype": "method",
+            "name": "get",
+            "return": {
+                "description": "",
+                "type": "Dom"
+            },
+            "example": [
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\n$(\"script\").get();\n</pre></div>"
             ],
             "since": "0.1.0",
             "class": "Dom"
@@ -294,7 +825,7 @@
                 "description": "Returns the Object data after storing it on itself with\n property name the (space-suffixed) string and (if the cache is larger than Expr.cacheLength)\n deleting the oldest entry",
                 "type": "Function(string, Object)"
             },
-            "class": ""
+            "class": "hilo"
         },
         {
             "file": "src\\dom\\sizzle.js",
@@ -307,7 +838,7 @@
                     "type": "Function"
                 }
             ],
-            "class": ""
+            "class": "hilo"
         },
         {
             "file": "src\\dom\\sizzle.js",
@@ -320,7 +851,7 @@
                     "type": "Function"
                 }
             ],
-            "class": ""
+            "class": "hilo"
         },
         {
             "file": "src\\dom\\sizzle.js",
@@ -338,7 +869,7 @@
                     "type": "Function"
                 }
             ],
-            "class": ""
+            "class": "hilo"
         },
         {
             "file": "src\\dom\\sizzle.js",
@@ -360,7 +891,7 @@
                 "description": "Returns less than 0 if a precedes b, greater than 0 if a follows b",
                 "type": "Number"
             },
-            "class": ""
+            "class": "hilo"
         },
         {
             "file": "src\\dom\\sizzle.js",
@@ -373,7 +904,7 @@
                     "type": "String"
                 }
             ],
-            "class": ""
+            "class": "hilo"
         },
         {
             "file": "src\\dom\\sizzle.js",
@@ -386,7 +917,7 @@
                     "type": "String"
                 }
             ],
-            "class": ""
+            "class": "hilo"
         },
         {
             "file": "src\\dom\\sizzle.js",
@@ -399,7 +930,7 @@
                     "type": "Function"
                 }
             ],
-            "class": ""
+            "class": "hilo"
         },
         {
             "file": "src\\dom\\sizzle.js",
@@ -412,7 +943,7 @@
                     "type": "Element|Object"
                 }
             ],
-            "class": ""
+            "class": "hilo"
         },
         {
             "file": "src\\dom\\sizzle.js",
@@ -430,7 +961,7 @@
                 "description": "Returns the current document",
                 "type": "Object"
             },
-            "class": ""
+            "class": "hilo"
         },
         {
             "file": "src\\dom\\sizzle.js",
@@ -443,7 +974,7 @@
                     "type": "ArrayLike"
                 }
             ],
-            "class": ""
+            "class": "hilo"
         },
         {
             "file": "src\\dom\\sizzle.js",
@@ -456,10 +987,14 @@
                     "type": "Array|Element"
                 }
             ],
-            "class": ""
+            "class": "hilo"
         }
     ],
     "warnings": [
+        {
+            "message": "unknown tag: attrs",
+            "line": " src\\dom\\els.js:6"
+        },
         {
             "message": "replacing incorrect tag: returns with return",
             "line": " src\\dom\\sizzle.js:214"

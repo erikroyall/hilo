@@ -1,7 +1,8 @@
 YUI.add("yuidoc-meta", function(Y) {
    Y.YUIDoc = { meta: {
     "classes": [
-        "Dom"
+        "Dom",
+        "hilo"
     ],
     "modules": [
         "Hilo"
@@ -9,7 +10,8 @@ YUI.add("yuidoc-meta", function(Y) {
     "allModules": [
         {
             "displayName": "Hilo",
-            "name": "Hilo"
+            "name": "Hilo",
+            "description": "The main Hilo Object / function"
         }
     ]
 } };

@@ -13,7 +13,9 @@
      * @param {string} id The id to set
      * @return {string|void}
      * @example
-     *  $("p.rect").first().id("square")
+     * <div class="code"><pre class="prettyprint">
+     * $("p.rect").first().id("square")
+     * </pre></div>
      * @since 0.1.0
      */
     id: function (id) {
@@ -41,7 +43,9 @@
      * @param {string|array} className Class(es) to be checked or manipulated
      * @return {boolean|void}
      * @example
-     *  $("div#editor").class("add", "no-js")
+     * <div class="code"><pre class="prettyprint">
+     * $("div#editor").class("add", "no-js")
+     * </pre></div>
      * @since 0.1.0
      */
     "class": feature.classList === true ? function (action, className) {
@@ -305,7 +309,9 @@
      * @param {string|array} className The class(es) to add
      * @return {Dom}
      * @example
-     *  $("p").addClass("paragraph")
+     * <div class="code"><pre class="prettyprint">
+     * $("p").addClass("paragraph")
+     * </pre></div>
      * @since 0.1.0
      */
     addClass: function (className) {
@@ -320,7 +326,9 @@
      * @param classes {string|array} The class(es) to be removed
      * @return {Dom}
      * @example
-     *  $("p.hidden").removeClass("hidden")
+     * <div class="code"><pre class="prettyprint">
+     * $("p.hidden").removeClass("hidden")
+     * </pre></div>
      * @since 0.1.0
      */
     removeClass: function (className) {
@@ -335,9 +343,11 @@
      * @param {string|array} className The class(es) to be checked for existence
      * @return {Boolean}
      * @example
-     *  if(!$("audio:not([controls])").hasClass("hidden")) {
-     *    $("audio:not([controls])").addClass("hidden");
-     *  }
+     * <div class="code"><pre class="prettyprint">
+     * if(!$("audio:not([controls])").hasClass("hidden")) {
+     *   $("audio:not([controls])").addClass("hidden");
+     * }
+     * </pre></div>
      * @since 0.1.0
      */
     hasClass: function (className) {
@@ -352,9 +362,11 @@
      * @param {string|array} className The classes to be toggled
      * @return {Dom}
      * @example
-     *  $(".someClass").on("click", function () {
-     *    $(this).toggleClass("opaque");
-     *  });
+     * <div class="code"><pre class="prettyprint">
+     * $(".someClass").on("click", function () {
+     *   $(this).toggleClass("opaque");
+     * });
+     * </pre></div>
      * @since 0.1.0
      */
     toggleClass: function (className) {
@@ -370,9 +382,11 @@
      * @param {string} val Value of the attribute
      * @return {string|void}
      * @example
-     *  $("p.hidden").attr("hidden")
-     *  $("div.edit").attr("contentEditable", "true")
-     *  $("body").attr("hilo", "0.1.0")
+     * <div class="code prettyprint">
+     * $("p.hidden").attr("hidden"); 
+     * $("div.edit").attr("contentEditable", "true"); 
+     * $("body").attr("hilo", "0.1.0"); 
+     * </div>
      * @since 0.1.0
      */
     attr: function (name, val) {

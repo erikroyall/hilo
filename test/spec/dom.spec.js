@@ -73,29 +73,6 @@ describe("DOM Methods", function () {
       return he.html() === innerContent;
     });
   });
-  describe('.text()', function () {
-    it("should set the innerText of an element", function () {
-      var el = document.createElement('div')
-        , he = $.create('div')
-        , innerContent = 'Hello World';
-
-      el.innerText = innerContent;
-      he.text(innerContent);
-
-      return el.innerText === he[0].innerText;
-    });
-    it("should return the innerText when no content is passed", function() {
-      var el = document.createElement('div')
-        , he
-        , innerContent;
-
-      el.innerText = innerContent;
-
-      he = Hilo(el);
-
-      return he.text() === innerContent;
-    });
-  });
   describe('.addClass()', function() {
     it('should add a class', function () {
       var el = document.createElement('div');

@@ -3,6 +3,23 @@
   // Element Selections, etc.
   // --------------------------------------------------
 
+  /**
+   * Create an element
+   *
+   * @for hilo
+   * @method create
+   * @param {string} tagName Tag Name or Node name of element
+   * @attrs {object} attrs An object containing the attributes and values
+   * @return {HTMLElement} The created element
+   * @example
+   * <div class="code"><pre class="prettyprint">
+   * $.create("div", {
+   *   class: "post",
+   *   "data-id": 2
+   * });
+   * </pre></div>
+   * @since 0.1.0
+   */
   hilo.create = function (tagName, attrs) {
     var el = new Dom([document.createElement(tagName)]), key;
 
@@ -29,71 +46,69 @@
 
   extend(Dom.prototype, {
 
-    // -------------------------
-    // .first()
-    // -------------------------
-    // 
-    // Return the first element in the selected elements
-    // 
-    // .first( )
-    //
-    // Examples:
-    // 
-    // $("p.hidden").first().show()
-    //
-
+    /**
+     * Return first element of the selected elements
+     *
+     * @for Dom
+     * @method first
+     * @return {Dom} The first element
+     * @example
+     * <div class="code"><pre class="prettyprint">
+     * $("p.hidden").first().show();
+     * </pre></div>
+     * @since 0.1.0
+     */
     first: function () {
       return new Dom([this[0]]);
     },
 
-    // -------------------------
-    // .last()
-    // -------------------------
-    // 
-    // Return last element in the selected elements
-    // 
-    // .last( attr [, value] )
-    //
-    // Examples:
-    // 
-    // $("p.hidden").last().show()
-    //
-
+    /**
+     * Return last element of the selected elements
+     *
+     * @for Dom
+     * @method last
+     * @return {Dom} The last element
+     * @example
+     * <div class="code"><pre class="prettyprint">
+     * $("p.hidden").last().show();
+     * </pre></div>
+     * @since 0.1.0
+     */
     last: function () {
       return new Dom([this[this.length - 1]]);
     },
 
-    // -------------------------
-    // .el()
-    // -------------------------
-    // 
-    // Return nth element in the selected elements
-    // 
-    // .el( place )
-    //   place (number) : A number representing place of element
-    //
-    // Examples:
-    // 
-    // $("p.hidden").el(3).show()
-    //
-
+    /**
+     * Return nth element of the selected elements
+     *
+     * @for Dom
+     * @method el
+     * @return {number} place The index of element (Index Starts from 1)
+     * @return {Dom} The nth element
+     * @example
+     * <div class="code"><pre class="prettyprint">
+     * $("p.hidden").el(3).show();
+     * </pre></div>
+     * @since 0.1.0
+     */
     el: function (place) {
       return new Dom([this[place - 1]]);
     },
 
-    // -------------------------
-    // .children()
-    // -------------------------
-    // 
-    // Return nth element in the selected elements
-    // 
-    // .children( )
-    //
-    // Examples:
-    // 
-    // $("p.hidden").el().show()
-    //
-
+    /**
+     * Return the children of selected elements
+     *
+     * @for Dom
+     * @method children
+     * @param {string} sel Optional filtering selector
+     * @return {Dom}
+     * @example
+     * <div class="code"><pre class="prettyprint">
+     * var childrenOfContainer = $("div.container").children();
+     * $("div.container").children(":not(.hidden)").addClass("me");
+     * </pre></div>
+     * @since 0.1.0
+     */
     children: function (sel) {
       var children = [], _i, _l;
 
@@ -108,19 +123,18 @@
       return children;
     },
 
-    // -------------------------
-    // .parent()
-    // -------------------------
-    // 
-    // Return parent of the first selected element
-    // 
-    // .parent( )
-    //
-    // Examples:
-    // 
-    // $("div#editor").parent().hide()
-    //
-
+    /**
+     * Returns the parents of selected elements
+     *
+     * @for Dom
+     * @method parents
+     * @return {Dom}
+     * @example
+     * <div class="code"><pre class="prettyprint">
+     * $("div#editor").parent().hide()
+     * </pre></div>
+     * @since 0.1.0
+     */
     parents: function () {
       var pars = [];
 
@@ -131,40 +145,38 @@
       return new Dom(pars);
     },
 
-    // -------------------------
-    // .parent()
-    // -------------------------
-    // 
-    // Return parent of first selected element
-    // 
-    // .parent( )
-    //
-    // Examples:
-    // 
-    // $("div.editor").parent().hide()
-    //
-
+    /**
+     * Return parent of first selected element
+     *
+     * @for Dom
+     * @method parent
+     * @return {Dom}
+     * @example
+     * <div class="code"><pre class="prettyprint">
+     * $("div.editor").parent().hide();
+     * </pre></div>
+     * @since 0.1.0
+     */
     parent: function () {
       return this.first(function (el) {
         return new Dom([el.parentElement]);
       });
     },
 
-    // -------------------------
-    // .rel()
-    // -------------------------
-    // 
-    // Return relative of selected elements based
-    // on the relation given
-    // 
-    // .rel( rel )
-    //   rel (string) : The relation between curent and 
-    //
-    // Examples:
-    // 
-    // $("div#editor").rel("nextSibling").addClass("next-to-editor")
-    //
-
+    /**
+     * Return relative of selected elements based 
+     * on the relation given
+     * 
+     * @for Dom
+     * @method rel
+     * @param {string} relation relation
+     * @return {Dom}
+     * @example
+     * <div class="code"><pre class="prettyprint">
+     * $("div#editor").rel("nextSibling").addClass("next-to-editor")
+     * </pre></div>
+     * @since 0.1.0
+     */
     rel: function (sul) {
       var els = [];
 
@@ -175,36 +187,32 @@
       return els;
     },
 
-    // -------------------------
-    // .next()
-    // -------------------------
-    // 
-    // Return next element siblings of the selected elements
-    // 
-    // .next( )
-    //
-    // Examples:
-    // 
-    // $("div.editor").next().class("next-to-editor")
-    //
-
+    /**
+     * Return next sibling elements of selected elements
+     *
+     * @for Dom
+     * @method next
+     * @return {Dom}
+     * @example
+     * <div class="code"><pre class="prettyprint">
+     * $("div.editor").next().class("next-to-editor")
+     * </pre></div>
+     */
     next: function () {
       return this.rel("nextElementSibling");
     },
 
-    // -------------------------
-    // .prev()
-    // -------------------------
-    // 
-    // Return previous element siblings of the selected elements
-    // 
-    // .prev( )
-    //
-    // Examples:
-    // 
-    // $("div.editor").prev().class("prev-to-editor")
-    //
-
+    /**
+     * Return previous sibling elements of selected elements
+     *
+     * @for Dom
+     * @method prev
+     * @return {Dom}
+     * @example
+     * <div class="code"><pre class="prettyprint">
+     * $("div.editor").prev().class("prev-to-editor")
+     * </pre></div>
+     */
     prev: function () {
       return this.rel("previousElementSibling");
     }

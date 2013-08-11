@@ -27,7 +27,12 @@
   };
 
   /**
+   * The main Hilo Object / function
+   * 
    * @module Hilo
+   * @static
+   * @class hilo
+   * @author Erik Royall
    */
   hilo = function (input, root, en) {
     if (typeof input === "undefined") {
