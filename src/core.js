@@ -26,13 +26,9 @@
     return sizzle(selector, root);
   };
 
-  // --------------------------------------------------
-  // hilo
-  // --------------------------------------------------
-  // 
-  // The main hilo global function
-  //
-
+  /**
+   * @module Hilo
+   */
   hilo = function (input, root, en) {
     if (typeof input === "undefined") {
       // It's better than not returning anything

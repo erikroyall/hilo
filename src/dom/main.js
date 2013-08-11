@@ -3,28 +3,22 @@
   // Hilo DOM
   // --------------------------------------------------
 
-  // -------------------------
-  // Dom Class (private)
-  // -------------------------
-  // 
-  // The main DOM Class.
-  //
-  // Note: This class is accessible inside
-  // the source code only and is not mutable
-  // from outside the code
-  // 
-  // new Dom ( els )
-  //   els (NodeList) : An array of elements to be selected
-  //
-  // Examples:
-  //
-  // new Dom (document.querySelectorAll(p:first-child))
-  // new Dom ([document.createElement("div")])
-  // new Dom ([document.getElementByid("box")])
-  // new Dom (document.getElementsByClassName("hidden"))
-  // new Dom (document.getElementsByTagName("mark"))
-  //
-
+  /**
+   * Main DOM Class
+   * 
+   * @class Dom
+   * @constructor
+   * @param {array} els The elements to manipulate
+   * @param {string} sel The selector used
+   * @return void
+   * @example
+   *  new Dom (document.querySelectorAll(p:first-child); <br />
+   *  new Dom ([document.createElement("div")]);<br />
+   *  new Dom ([document.getElementByid("box")]);<br />
+   *  new Dom (document.getElementsByClassName("hidden"));<br />
+   *  new Dom (document.getElementsByTagName("mark"));<br />
+   * @since 0.1.0
+   */
   function Dom (els, sel) {
     var _i, _l;
 

@@ -2,6 +2,12 @@
   // Hilo AJAX
   // --------------------------------------------------
 
+  /**
+   * Makes an AJAX request
+   * 
+   * @param {object} config AJAX configuration options
+   * @return {Hilo}
+   */
   hiloAjax = function (config) {
       
     /*
@@ -56,38 +62,25 @@
         config.callback(xhr);
       }
 
-      if (xhr.readyState === 4) {
-        if (config.complete) {
-          config.complete(xhr);
-        }
+      if (xhr.readyState === 4) { // Request is completed
+        typeof config.complete ? config.complete.call(this, xhr) : null;
         
         switch (xhr.status) {
-          case 200:
-            if (config.success) {
-              config.success(xhr.responseText, xhr);
-            }
+          case 200: {
+            typeof config.success ? config.success.call(this, xhr) : null;
+          } break;
 
-            break;
-          case 404:
-            if (config.notfound) {
-              config.notfound(xhr);
-            }
+          case 404: {
+            typeof config.notfound ? config.notfound.call(this, xhr) : null;
+          } break;
 
-            break;
-          case 403:
-          case 401:
-            if (config.forbidden) {
-              config.forbidden(xhr);
-            }
+          case 403: {
+            typeof config.forbidden ? config.forbidden.call(this, xhr) : null;
+          } break;
 
-            break;
-          case 500:
-          case 400:
-            if (config.error) {
-              config.error();
-            }
-
-            break;
+          case 500: {
+            typeof config.error ? config.error.call(this, xhr) : null;
+          } break;
         }
       }
     };
@@ -114,7 +107,7 @@
           config.password
         );
 
-        xhr.send();
+        xhr.send(typeof config.data === "string" ? config.data : null);
       }
     } else {
       xhr.open(
@@ -125,7 +118,7 @@
         config.password
       );
 
-      xhr.send();
+      xhr.send(typeof config.data === "string" ? config.data : null);
     }
   };
 

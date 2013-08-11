@@ -39,43 +39,68 @@
     }
   }
 
-  extend(hilo, {
+  // --------------------------------------------------
+  // Hilo.get()
+  // --------------------------------------------------
+  // 
+  // Send an AJAX GET request
+  // 
+  //  .get( strOpt [, callback [, oOpt]] )
+  //
+  // Examples:
+  // 
+  // $.get({
+  //   url: "path/to/file.js",
+  //   success: function (data) {
+  //     console.log(data);
+  //   }
+  // }) // Longer form, the below is preferred
+  // 
+  // $.get("path/to/file.js", function (data) {
+  //   console.log(data);
+  // }) // This does the exact same function as above
+  // 
+  // $.get("path/to/file.js", function (data) {
+  //   console.log(data);
+  // }, {
+  //   error: function (err) {
+  //     console.error(err);
+  //   }
+  // }) // Shortform, with more options
+  // 
 
-    // --------------------------------------------------
-    // Hilo.get()
-    // --------------------------------------------------
-    // 
-    // Send an AJAX GET request
-    // 
-    //  .get( strOpt [, callback [, oOpt]] )
-    //
-    // Examples:
-    // 
-    // $.get({
-    //   url: "path/to/file.js",
-    //   success: function (data) {
-    //     console.log(data);
-    //   }
-    // }) // Longer form, the below is preferred
-    // 
-    // $.get("path/to/file.js", function (data) {
-    //   console.log(data);
-    // }) // This does the exact same function as above
-    // 
-    // $.get("path/to/file.js", function (data) {
-    //   console.log(data);
-    // }, {
-    //   error: function (err) {
-    //     console.error(err);
-    //   }
-    // }) // Shortform, with more options
-    // 
+  hilo.get = function (strOpt, callback, oOpt) {
+    ajaxRequest("GET", strOpt, callback, oOpt);
+  };
 
-    get: function (strOpt, callback, oOpt) {
-      ajaxRequest("GET", strOpt, callback, oOpt);
-    },
+  // --------------------------------------------------
+  // Hilo.post()
+  // --------------------------------------------------
+  // 
+  // Send an AJAX POST request
+  // 
+  //  .post( strOpt [, callback [, oOpt]] )
+  //
+  // Examples:
+  // 
+  // $.post({
+  //   url: "path/to/file.js",
+  //   success: function (data) {
+  //     console.log(data);
+  //   },
+  //   data: JSON.encode(obj)
+  // }) // Longer form, the below is preferred
+  // 
+  // $.post("path/to/file.js", function (data) {
+  //   console.log(data);
+  // }, {
+  //   data: JSON.encode(obj),
+  //   error: function (err) {
+  //     console.error(err);
+  //   }
+  // }) // Shortform, with more options
+  // 
 
-    post: function (strOpt, callback, oOpt) {
-      ajaxRequest("POST", strOpt, callback, oOpt);
-    }
-  });
+  hilo.post = function (strOpt, callback, oOpt) {
+    ajaxRequest("POST", strOpt, callback, oOpt);
+  };

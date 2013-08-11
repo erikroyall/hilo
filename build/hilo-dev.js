@@ -190,21 +190,25 @@
       if (/Win(?:dows )?([^do]{2})\s?(\d+\.\d+)?/.test(ua)) {
         if (RegExp["$1"] === "NT") {
           switch(RegExp["$2"]) {
-            case "5.0":
+            case "5.0": {
               system.win = "2000";
-              break;
-            case "5.1":
+            } break;
+            
+            case "5.1": {
               system.win = "XP";
-              break;
-            case "6.0":
+            } break;
+            
+            case "6.0": {
               system.win = "Vista";
-              break;
-            case "6.1":
+            } break;
+            
+            case "6.1": {
               system.win = "7";
-              break;
-            default:
+            } break;
+            
+            default: {
               system.win = "NT";
-              break;
+            } break;
           }
         } else if (RegExp["$1"] === "9x") {
           system.win = "ME";
@@ -2886,13 +2890,9 @@
     return sizzle(selector, root);
   };
 
-  // --------------------------------------------------
-  // hilo
-  // --------------------------------------------------
-  // 
-  // The main hilo global function
-  //
-
+  /**
+   * @module Hilo
+   */
   hilo = function (input, root, en) {
     if (typeof input === "undefined") {
       // It's better than not returning anything
@@ -3040,6 +3040,12 @@
   // Hilo AJAX
   // --------------------------------------------------
 
+  /**
+   * Makes an AJAX request
+   * 
+   * @param {object} config AJAX configuration options
+   * @return {Hilo}
+   */
   hiloAjax = function (config) {
       
     /*
@@ -3094,38 +3100,25 @@
         config.callback(xhr);
       }
 
-      if (xhr.readyState === 4) {
-        if (config.complete) {
-          config.complete(xhr);
-        }
+      if (xhr.readyState === 4) { // Request is completed
+        typeof config.complete ? config.complete.call(this, xhr) : null;
         
         switch (xhr.status) {
-          case 200:
-            if (config.success) {
-              config.success(xhr.responseText, xhr);
-            }
+          case 200: {
+            typeof config.success ? config.success.call(this, xhr) : null;
+          } break;
 
-            break;
-          case 404:
-            if (config.notfound) {
-              config.notfound(xhr);
-            }
+          case 404: {
+            typeof config.notfound ? config.notfound.call(this, xhr) : null;
+          } break;
 
-            break;
-          case 403:
-          case 401:
-            if (config.forbidden) {
-              config.forbidden(xhr);
-            }
+          case 403: {
+            typeof config.forbidden ? config.forbidden.call(this, xhr) : null;
+          } break;
 
-            break;
-          case 500:
-          case 400:
-            if (config.error) {
-              config.error();
-            }
-
-            break;
+          case 500: {
+            typeof config.error ? config.error.call(this, xhr) : null;
+          } break;
         }
       }
     };
@@ -3152,7 +3145,7 @@
           config.password
         );
 
-        xhr.send();
+        xhr.send(typeof config.data === "string" ? config.data : null);
       }
     } else {
       xhr.open(
@@ -3163,7 +3156,7 @@
         config.password
       );
 
-      xhr.send();
+      xhr.send(typeof config.data === "string" ? config.data : null);
     }
   };
 
@@ -3209,73 +3202,92 @@
     }
   }
 
-  extend(hilo, {
+  // --------------------------------------------------
+  // Hilo.get()
+  // --------------------------------------------------
+  // 
+  // Send an AJAX GET request
+  // 
+  //  .get( strOpt [, callback [, oOpt]] )
+  //
+  // Examples:
+  // 
+  // $.get({
+  //   url: "path/to/file.js",
+  //   success: function (data) {
+  //     console.log(data);
+  //   }
+  // }) // Longer form, the below is preferred
+  // 
+  // $.get("path/to/file.js", function (data) {
+  //   console.log(data);
+  // }) // This does the exact same function as above
+  // 
+  // $.get("path/to/file.js", function (data) {
+  //   console.log(data);
+  // }, {
+  //   error: function (err) {
+  //     console.error(err);
+  //   }
+  // }) // Shortform, with more options
+  // 
 
-    // --------------------------------------------------
-    // Hilo.get()
-    // --------------------------------------------------
-    // 
-    // Send an AJAX GET request
-    // 
-    //  .get( strOpt [, callback [, oOpt]] )
-    //
-    // Examples:
-    // 
-    // $.get({
-    //   url: "path/to/file.js",
-    //   success: function (data) {
-    //     console.log(data);
-    //   }
-    // }) // Longer form, the below is preferred
-    // 
-    // $.get("path/to/file.js", function (data) {
-    //   console.log(data);
-    // }) // This does the exact same function as above
-    // 
-    // $.get("path/to/file.js", function (data) {
-    //   console.log(data);
-    // }, {
-    //   error: function (err) {
-    //     console.error(err);
-    //   }
-    // }) // Shortform, with more options
-    // 
+  hilo.get = function (strOpt, callback, oOpt) {
+    ajaxRequest("GET", strOpt, callback, oOpt);
+  };
 
-    get: function (strOpt, callback, oOpt) {
-      ajaxRequest("GET", strOpt, callback, oOpt);
-    },
+  // --------------------------------------------------
+  // Hilo.post()
+  // --------------------------------------------------
+  // 
+  // Send an AJAX POST request
+  // 
+  //  .post( strOpt [, callback [, oOpt]] )
+  //
+  // Examples:
+  // 
+  // $.post({
+  //   url: "path/to/file.js",
+  //   success: function (data) {
+  //     console.log(data);
+  //   },
+  //   data: JSON.encode(obj)
+  // }) // Longer form, the below is preferred
+  // 
+  // $.post("path/to/file.js", function (data) {
+  //   console.log(data);
+  // }, {
+  //   data: JSON.encode(obj),
+  //   error: function (err) {
+  //     console.error(err);
+  //   }
+  // }) // Shortform, with more options
+  // 
 
-    post: function (strOpt, callback, oOpt) {
-      ajaxRequest("POST", strOpt, callback, oOpt);
-    }
-  });
+  hilo.post = function (strOpt, callback, oOpt) {
+    ajaxRequest("POST", strOpt, callback, oOpt);
+  };
   
   // --------------------------------------------------
   // Hilo DOM
   // --------------------------------------------------
 
-  // -------------------------
-  // Dom Class (private)
-  // -------------------------
-  // 
-  // The main DOM Class.
-  //
-  // Note: This class is accessible inside
-  // the source code only and is not mutable
-  // from outside the code
-  // 
-  // new Dom ( els )
-  //   els (NodeList) : An array of elements to be selected
-  //
-  // Examples:
-  //
-  // new Dom (document.querySelectorAll(p:first-child))
-  // new Dom ([document.createElement("div")])
-  // new Dom ([document.getElementByid("box")])
-  // new Dom (document.getElementsByClassName("hidden"))
-  // new Dom (document.getElementsByTagName("mark"))
-  //
-
+  /**
+   * Main DOM Class
+   * 
+   * @class Dom
+   * @constructor
+   * @param {array} els The elements to manipulate
+   * @param {string} sel The selector used
+   * @return void
+   * @example
+   *  new Dom (document.querySelectorAll(p:first-child); <br />
+   *  new Dom ([document.createElement("div")]);<br />
+   *  new Dom ([document.getElementByid("box")]);<br />
+   *  new Dom (document.getElementsByClassName("hidden"));<br />
+   *  new Dom (document.getElementsByTagName("mark"));<br />
+   * @since 0.1.0
+   */
   function Dom (els, sel) {
     var _i, _l;
 
@@ -3804,21 +3816,19 @@
 
   extend(Dom.prototype, {
 
-    // -------------------------
-    // .id()
-    // -------------------------
-    // 
-    // Set or return id attribute of selected elements
-    // 
-    // .get()
-    //
-    // Examples:
-    // 
-    // $("p.rect").first().id("square")
-    // 
-
+    /**
+     * Set or return ID of first element
+     *  
+     * @for Dom
+     * @method id
+     * @param {string} id The id to set
+     * @return {string|void}
+     * @example
+     *  $("p.rect").first().id("square")
+     * @since 0.1.0
+     */
     id: function (id) {
-      if(id) {
+      if (id) {
 
         // Setting id of only one element because
         // id is intended to be an unique identifier
@@ -3833,22 +3843,18 @@
       }
     },
 
-    // -------------------------
-    // .class()
-    // -------------------------
-    // 
-    // Add, remove or check classes of selected elements
-    // based on action given
-    // 
-    // .class( action, className )
-    //   action (string) : add, remove or has
-    //   className (string|array) : class name or list of class names
-    //
-    // Examples:
-    // 
-    // $("div#editor").class("add", "no-js")
-    //
-
+    /**
+     * Add, remove or check class(es)
+     * 
+     * @for Dom
+     * @method class
+     * @param {string} action Specifies the action to take
+     * @param {string|array} className Class(es) to be checked or manipulated
+     * @return {boolean|void}
+     * @example
+     *  $("div#editor").class("add", "no-js")
+     * @since 0.1.0
+     */
     "class": feature.classList === true ? function (action, className) {
       return this.each(function (el) {
         var _i, parts, contains, res = [];
@@ -3860,22 +3866,23 @@
             contains = el.classList.contains(className);
 
             switch (action) {
-              case "add":
+              case "add": {
                 if (!contains) {
                   el.classList.add(className);
                 }
+              } break;
 
-                break;
-              case "remove":
+              case "remove": {
                 if (contains) {
                   el.classList.remove(className);
                 }
+              } break;
 
-                break;
-              case "has":
+              case "has": {
                 res = true;
-                break;
-              case "toggle":
+              } break;
+
+              case "toggle": {
                 for (_i = 0; _i < parts.length; _i += 1) {
                   if (contains) {
                     el.classList.remove(parts[_i]);
@@ -3883,7 +3890,7 @@
                     el.classList.add(parts[_i]);
                   }
                 }
-                break;
+              } break;
             }
           } else { // String, many classes
             contains = function (className) {
@@ -3891,29 +3898,29 @@
             };
 
             switch (action) {
-              case "add":
+              case "add": {
                 for (_i = 0; _i < parts.length; _i += 1) {
                   if (!contains(parts[_i])) {
                     el.classList.add(parts[_i]);
                   }
                 }
+              } break;
 
-                break;
-              case "remove":
+              case "remove": {
                 for (_i = 0; _i < parts.length; _i += 1) {
                   if (contains(parts[_i])) {
                     el.classList.remove(parts[_i]);
                   }
                 }
+              } break;
 
-                break;
-              case "has":
+              case "has": {
                 for (_i = 0; _i < parts.length; _i += 1) {
                   res.push(contains(parts[_i]));
                 }
+              } break;
 
-                break;
-              case "toggle":
+              case "toggle": {
                 for (_i = 0; _i < parts.length; _i += 1) {
                   if (contains(parts[_i])) {
                     el.classList.remove(parts[_i]);
@@ -3921,7 +3928,7 @@
                     el.classList.add(parts[_i]);
                   }
                 }
-                break;
+              } break;
             }
           }
         } else if (className.length) { // Array
@@ -3932,29 +3939,32 @@
           };
 
           switch (action) {
-            case "add":
+            case "add": {
               for (_i = 0; _i < parts.length; _i += 1) {
                 if (!contains(parts[_i])) {
                   el.classList.add(parts[_i]);
                 }
               }
 
-              break;
-            case "remove":
+            } break;
+
+            case "remove": {
               for (_i = 0; _i < parts.length; _i += 1) {
                 if (contains(parts[_i])) {
                   el.classList.remove(parts[_i]);
                 }
               }
 
-              break;
-            case "has":
+            } break;
+
+            case "has": {
               for (_i = 0; _i < parts.length; _i += 1) {
                 res.push(contains(parts[_i]));
               }
 
-              break;
-            case "toggle":
+            } break;
+
+            case "toggle": {
               for (_i = 0; _i < parts.length; _i += 1) {
                 if (contains(parts[_i])) {
                   el.classList.remove(parts[_i]);
@@ -3962,8 +3972,7 @@
                   el.classList.add(parts[_i]);
                 }
               }
-              
-              break;
+            } break;
           }
         }
 
@@ -3982,23 +3991,24 @@
             contains = el.className.split(className).length > 1;
 
             switch (action) {
-              case "add":
+              case "add": {
                 if (!contains) {
                   el.className += " " +  (className);
                 }
+              } break;
 
-                break;
-              case "remove":
+              case "remove": {
                 if (contains) {
                   el.className.replace(className, "");
                 }
+              } break;
 
-                break;
-              case "has":
+              case "has": {
                 res = contains;
-                
-                break;
-              case "toggle":
+               
+              } break;
+
+              case "toggle": {
                 for (_i = 0; _i < parts.length; _i += 1) {
                   if (contains) {
                     el.className.replace(className, "");
@@ -4006,8 +4016,7 @@
                     el.className += " " +  className;
                   }
                 }
-
-                break;
+              } break;
             }
           } else {
             contains = function (className) {
@@ -4015,29 +4024,29 @@
             };
 
             switch (action) {
-              case "add":
+              case "add": {
                 for (_i = 0; _i < parts.length; _i += 1) {
                   if (!contains(parts[_i])) {
                     el.className += " " +  parts[_i];
                   }
                 }
+              } break;
 
-                break;
-              case "remove":
+              case "remove": {
                 for (_i = 0; _i < parts.length; _i += 1) {
                   if (contains(parts[_i])) {
                     el.className.replace(parts[_i], "");
                   }
                 }
+              } break;
 
-                break;
-              case "has":
+              case "has": {
                 for (_i = 0; _i < parts.length; _i += 1) {
                   res.push(contains(parts[_i]));
                 }
+              } break;
 
-                break;
-              case "toggle":
+              case "toggle": {
                 for (_i = 0; _i < parts.length; _i += 1) {
                   if (contains(parts[_i])) {
                     el.className.replace(parts[_i], "");
@@ -4045,8 +4054,7 @@
                     el.className += " " +  parts[_i];
                   }
                 }
-
-                break;
+              } break;
             }
           }
         } else if (className.length) {
@@ -4057,29 +4065,32 @@
           };
 
           switch (action) {
-            case "add":
+            case "add": {
               for (_i = 0; _i < parts.length; _i += 1) {
                 if (!contains(parts[_i])) {
                   el.className += " " +  parts[_i];
                 }
               }
 
-              break;
-            case "remove":
+            } break;
+
+            case "remove": {
               for (_i = 0; _i < parts.length; _i += 1) {
                 if (contains(parts[_i])) {
                   el.className.replace(parts[_i], "");
                 }
               }
 
-              break;
-            case "has":
+            } break;
+
+            case "has": {
               for (_i = 0; _i < parts.length; _i += 1) {
                 res.push(contains(parts[_i]));
               }
 
-              break;
-            case "toggle":
+            } break;
+
+            case "toggle": {
               for (_i = 0; _i < parts.length; _i += 1) {
                 if (contains(parts[_i])) {
                   el.className.replace(parts[_i], "");
@@ -4087,8 +4098,7 @@
                   el.className += " " +  parts[_i];
                 }
               }
-
-              break;
+            } break;
           }
         }
 
@@ -4098,95 +4108,84 @@
       });
     },
 
-    // -------------------------
-    // .addClass()
-    // -------------------------
-    // 
-    // Add class(es) to selected elements
-    // 
-    // .addClass( className )
-    //   className (string|array) : The class(es to be added)
-    //
-    // Examples:
-    // 
-    // $("p").addClass("paragraph")
-    // 
-
+    /**
+     * Adds class(es) to selected elements
+     * 
+     * @for Dom
+     * @method addClass
+     * @param {string|array} className The class(es) to add
+     * @return {Dom}
+     * @example
+     *  $("p").addClass("paragraph")
+     * @since 0.1.0
+     */
     addClass: function (className) {
       return this["class"]("add", className);
     },
 
-    // -------------------------
-    // .removeClass()
-    // -------------------------
-    // 
-    // Remove class(es) from selected elements
-    // 
-    // .removeClass( className )
-    //   className (string|array) : The class(es to be added)
-    //
-    // Examples:
-    // 
-    // $("p").removeClass("hidden")
-    //
-
+    /**
+     * Remove class(es) from selected elements
+     * 
+     * @for Dom
+     * @method removeClass
+     * @param classes {string|array} The class(es) to be removed
+     * @return {Dom}
+     * @example
+     *  $("p.hidden").removeClass("hidden")
+     * @since 0.1.0
+     */
     removeClass: function (className) {
       return this["class"]("remove", className);
     },
 
-    // -------------------------
-    // .hasClass()
-    // -------------------------
-    // 
-    // Check if all elements has class(es)
-    // 
-    // .hasClass( className )
-    //   className (string|array) : The class(es to be added)
-    //
-    // Examples:
-    // 
-    // $("p").hasClass()
-    //
-
+    /**
+     * Check for class(es) in selected elements
+     * 
+     * @for Dom
+     * @method hasClass
+     * @param {string|array} className The class(es) to be checked for existence
+     * @return {Boolean}
+     * @example
+     *  if(!$("audio:not([controls])").hasClass("hidden")) {
+     *    $("audio:not([controls])").addClass("hidden");
+     *  }
+     * @since 0.1.0
+     */
     hasClass: function (className) {
       return this["class"]("has", className);
     },
 
-    // -------------------------
-    // .toggleClass()
-    // -------------------------
-    // 
-    // Add or remove class(es) based on existence
-    // 
-    // .hasClass( className )
-    //   className (string|array) : The class(es to be added)
-    //
-    // Examples:
-    // 
-    // $("p").hasClass()
-    //
-
+    /**
+     * Add class(es) if not already, remove if added
+     * 
+     * @for Dom
+     * @method toggleClass
+     * @param {string|array} className The classes to be toggled
+     * @return {Dom}
+     * @example
+     *  $(".someClass").on("click", function () {
+     *    $(this).toggleClass("opaque");
+     *  });
+     * @since 0.1.0
+     */
     toggleClass: function (className) {
       return this["class"]("toggle", className);
     },
-
-    // -------------------------
-    // .attr()
-    // -------------------------
-    // 
-    // Set or return an attribute of selected elements
-    // 
-    // .attr( attr [, value] )
-    //   attr (string) : Name of attribute
-    //   value (any) : Value of attrib ute
-    //
-    // Examples:
-    // 
-    // $("p.hidden").attr("hidden")
-    // $("div.edit").attr("contentEditable", "true")
-    // $("body").attr("hilo", "0.1.0")
-    //
     
+    /**
+     * Set or return attributes
+     * 
+     * @for Dom
+     * @method attr
+     * @param {string} name Name of attribute
+     * @param {string} val Value of the attribute
+     * @return {string|void}
+     * @example
+     *  $("p.hidden").attr("hidden")
+     *  $("div.edit").attr("contentEditable", "true")
+     *  $("body").attr("hilo", "0.1.0")
+     * @since 0.1.0
+     */
     attr: function (name, val) {
       if(val) {
         return this.each(function(el) {
