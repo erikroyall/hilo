@@ -10,7 +10,9 @@
             "name": "src\\ajax\\main.js",
             "modules": {},
             "classes": {},
-            "fors": {},
+            "fors": {
+                "hilo": 1
+            },
             "namespaces": {}
         },
         "src\\ajax\\more.js": {
@@ -231,6 +233,8 @@
             "file": "src\\ajax\\main.js",
             "line": 5,
             "description": "Makes an AJAX request",
+            "itemtype": "method",
+            "name": "ajax",
             "params": [
                 {
                     "name": "config",
@@ -242,6 +246,8 @@
                 "description": "",
                 "type": "Hilo"
             },
+            "examples": "<div class=\"code\"><pre class=\"prettyprint\">\n$.ajax({\n  method: \"GET\",\n  url: \"requestHandler.php\",\n  success: function (data, xhr) {\n    console.log(data, xhr);\n  }\n});\n</pre></div>",
+            "since": "0.1.0",
             "class": "hilo"
         },
         {
@@ -1181,6 +1187,10 @@
     ],
     "warnings": [
         {
+            "message": "unknown tag: examples",
+            "line": " src\\ajax\\main.js:5"
+        },
+        {
             "message": "unknown tag: attrs",
             "line": " src\\dom\\els.js:6"
         },
@@ -1195,10 +1205,6 @@
         {
             "message": "replacing incorrect tag: returns with return",
             "line": " src\\dom\\sizzle.js:545"
-        },
-        {
-            "message": "Missing item type\nMakes an AJAX request",
-            "line": " src\\ajax\\main.js:5"
         },
         {
             "message": "Missing item type\nCreate key-value caches of limited size",

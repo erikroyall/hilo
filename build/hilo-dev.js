@@ -3104,8 +3104,21 @@
   /**
    * Makes an AJAX request
    * 
+   * @for hilo
+   * @method ajax
    * @param {object} config AJAX configuration options
    * @return {Hilo}
+   * @examples
+   * <div class="code"><pre class="prettyprint">
+   * $.ajax({
+   *   method: "GET",
+   *   url: "requestHandler.php",
+   *   success: function (data, xhr) {
+   *     console.log(data, xhr);
+   *   }
+   * });
+   * </pre></div>
+   * @since 0.1.0
    */
   hiloAjax = function (config) {
       
