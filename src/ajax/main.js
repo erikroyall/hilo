@@ -11,6 +11,7 @@
      * - method: HTTP Method "GET" or "POST" (default: "POST")
      * - url: The file to send request
      * - async: Whether to perform an asynchronous request (default: true)
+     * - data: The data to be sent to the server
      * - response: Response type "text" or "XML"
      * - Event functions
      *   - callback: fn to be exec. on readystatechange

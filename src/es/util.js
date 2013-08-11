@@ -30,5 +30,5 @@
       }
     }
 
-    return obj[_i];
+    return obj;
   }

@@ -1,6 +1,6 @@
 /*! 
- * Hilo - 0.1.0-pre-dev-beta-9 - 2013-08-09
- * Project started before 1 month and 9 days
+ * Hilo - 0.1.0-pre-dev-beta-9 - 2013-08-11
+ * Project started before 1 month and 11 days
  * http://erikroyall.github.com/hilo/
  * Copyright (c) 2013 Erik Royall
  * Licensed under MIT (see LICENSE-MIT) 
@@ -2856,7 +2856,7 @@
       }
     }
 
-    return obj[_i];
+    return obj;
   }
   
   // Core Library
@@ -3049,6 +3049,7 @@
      * - method: HTTP Method "GET" or "POST" (default: "POST")
      * - url: The file to send request
      * - async: Whether to perform an asynchronous request (default: true)
+     * - data: The data to be sent to the server
      * - response: Response type "text" or "XML"
      * - Event functions
      *   - callback: fn to be exec. on readystatechange
@@ -3167,6 +3168,87 @@
   };
 
   hilo.ajax = hiloAjax;
+  
+  // AJAX Simplifiers
+
+  function ajaxRequest (method, strOpt, callback, oOpt) {
+
+    //
+    // How does this function work?
+    //
+    // Let's forget about the method parameter
+    //
+    // 1. If "strOpt" is a string, and "callback" is a function,
+    //    a. If "oOpt" is an object, then all props. of "oOpt" and
+    //       {method:method,url:strOpt,success:callback} is passed
+    //       as the first parameter to the hiloAjax function.
+    //    b. If "oOpt" is not an object, hiloAjax is called with
+    //       {method:method,url:strOpt,success:callback} as the 
+    //       first parameter.
+    // 2. Else, hiloAjax is called with {method:method} and strOpt
+    //    as the first parameter.
+    //
+    // Note: "method" is the HTTP Req. method ("GET", "POST" or alike)
+    // 
+    //
+
+    oOpt = (typeof oOpt === "object" ? oOpt : undefined);
+    
+    if (typeof strOpt === "string" && typeof callback === "function") {
+      hiloAjax(extend({
+        method: method,
+        url: strOpt,
+
+        // 'success' and not 'callback' because that's what everyone wants
+        success: callback
+      }, oOpt));
+    } else {
+      hiloAjax(extend({
+        method: method
+      }, strOpt));
+    }
+  }
+
+  extend(hilo, {
+
+    // --------------------------------------------------
+    // Hilo.get()
+    // --------------------------------------------------
+    // 
+    // Send an AJAX GET request
+    // 
+    //  .get( strOpt [, callback [, oOpt]] )
+    //
+    // Examples:
+    // 
+    // $.get({
+    //   url: "path/to/file.js",
+    //   success: function (data) {
+    //     console.log(data);
+    //   }
+    // }) // Longer form, the below is preferred
+    // 
+    // $.get("path/to/file.js", function (data) {
+    //   console.log(data);
+    // }) // This does the exact same function as above
+    // 
+    // $.get("path/to/file.js", function (data) {
+    //   console.log(data);
+    // }, {
+    //   error: function (err) {
+    //     console.error(err);
+    //   }
+    // }) // Shortform, with more options
+    // 
+
+    get: function (strOpt, callback, oOpt) {
+      ajaxRequest("GET", strOpt, callback, oOpt);
+    },
+
+    post: function (strOpt, callback, oOpt) {
+      ajaxRequest("POST", strOpt, callback, oOpt);
+    }
+  });
   
   // --------------------------------------------------
   // Hilo DOM

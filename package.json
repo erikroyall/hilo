@@ -1,7 +1,7 @@
 {
   "name": "hilo",
   "title": "Hilo",
-  "description": "An ultra-fast JavaScript Framework",
+  "description": "A lightning fast client-side JavaScript Framework and library that makes developing awesome websites easy",
   "version": "0.1.0-pre-dev-beta-9",
   "license": "MIT",
   "author": {

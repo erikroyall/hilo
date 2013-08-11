@@ -49,6 +49,7 @@ module.exports = function(grunt) {
           "src/test/comp.js",
           "src/shim/shims.js",
           "src/ajax/main.js",
+          "src/ajax/more.js",
           "src/dom/main.js",
           "src/dom/helpers.js",
           "src/dom/els.js",
