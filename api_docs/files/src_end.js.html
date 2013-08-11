@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>src\end.js - hilo</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <script src=""></script>
+</head>
+<body>
+<div class="main-header">
+  <h1 class="site-logo"><a href="../index.html">hilo: src\end.js</a></h1>
+  
+  <p>API Docs for: 0.1.0-pre-dev-beta-9</p>
+</div>
+<div class="doc">
+  <div class="sidebar">
+    <div id="modules" class="sidebox">
+    <div class="hd">
+        <h2 class="no-toc">Modules</h2>
+    </div>
+    <div class="bd">
+        <ul>
+            
+                <li><a href="../modules/Hilo.html">Hilo</a>
+                
+                </li>
+            
+        </ul>
+    </div>
+</div>
+
+<div id="classes" class="sidebox">
+    <div class="hd">
+        <h2 class="no-toc">Classes</h2>
+    </div>
+    <div class="bd">
+        <ul>
+            
+                <li><a href="../classes/Dom.html">Dom</a></li>
+            
+                <li><a href="../classes/hilo.html">hilo</a></li>
+            
+                <li><a href="../classes/Test.html">Test</a></li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<div id="fileTree" class="sidebox">
+    <div class="hd">
+        <h2 class="no-toc">Files</h2>
+    </div>
+    <div class="bd">
+        <ul><li>src\ajax\main.js/<ul></ul></li><li>src\ajax\more.js/<ul></ul></li><li>src\core.js/<ul></ul></li><li>src\dom\class-id.js/<ul></ul></li><li>src\dom\css.js/<ul></ul></li><li>src\dom\els.js/<ul></ul></li><li>src\dom\helpers.js/<ul></ul></li><li>src\dom\main.js/<ul></ul></li><li>src\dom\manp.js/<ul></ul></li><li>src\dom\misc.js/<ul></ul></li><li>src\dom\sizzle.js/<ul></ul></li><li>src\end.js/<ul></ul></li><li>src\fx\simple.js/<ul></ul></li><li>src\test\comp.js/<ul></ul></li><li>src\test\main.js/<ul></ul></li></ul>
+    </div>
+</div>
+
+
+
+  </div>
+  <div class="main">
+    <div class="content"><h4>src\end.js</h4>
+
+<pre class="code prettyprint linenums">
+  
+  // --------------------------------------------------
+  // Set event handler for triggering DOM Evenets
+  // --------------------------------------------------
+  
+  doc.onreadystatechange = function () {
+    if (doc.readyState === &quot;complete&quot;) {
+      for (_i = 0; _i &lt; callbacks.length; _i += 1) {
+        callbacks[_i]();
+      }
+    }
+  };
+
+  win.$ = hilo; // Shorthand
+
+  elapsed = new Date().getTime() - start;
+
+  /**
+   * Time taken to load (in ms)
+   * 
+   * @for hilo
+   * @property perf
+   * @type {number}
+   * @since 0.1.0
+   */
+  hilo.perf = elapsed;
+
+  return hilo;
+}));
+
+</pre>
+
+</div>
+  </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>

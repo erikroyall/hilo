@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>src\fx\simple.js - hilo</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <script src=""></script>
+</head>
+<body>
+<div class="main-header">
+  <h1 class="site-logo"><a href="../index.html">hilo: src\fx\simple.js</a></h1>
+  
+  <p>API Docs for: 0.1.0-pre-dev-beta-9</p>
+</div>
+<div class="doc">
+  <div class="sidebar">
+    <div id="modules" class="sidebox">
+    <div class="hd">
+        <h2 class="no-toc">Modules</h2>
+    </div>
+    <div class="bd">
+        <ul>
+            
+                <li><a href="../modules/Hilo.html">Hilo</a>
+                
+                </li>
+            
+        </ul>
+    </div>
+</div>
+
+<div id="classes" class="sidebox">
+    <div class="hd">
+        <h2 class="no-toc">Classes</h2>
+    </div>
+    <div class="bd">
+        <ul>
+            
+                <li><a href="../classes/Dom.html">Dom</a></li>
+            
+                <li><a href="../classes/hilo.html">hilo</a></li>
+            
+                <li><a href="../classes/Test.html">Test</a></li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<div id="fileTree" class="sidebox">
+    <div class="hd">
+        <h2 class="no-toc">Files</h2>
+    </div>
+    <div class="bd">
+        <ul><li>src\ajax\main.js/<ul></ul></li><li>src\ajax\more.js/<ul></ul></li><li>src\core.js/<ul></ul></li><li>src\dom\class-id.js/<ul></ul></li><li>src\dom\css.js/<ul></ul></li><li>src\dom\els.js/<ul></ul></li><li>src\dom\helpers.js/<ul></ul></li><li>src\dom\main.js/<ul></ul></li><li>src\dom\manp.js/<ul></ul></li><li>src\dom\misc.js/<ul></ul></li><li>src\dom\sizzle.js/<ul></ul></li><li>src\end.js/<ul></ul></li><li>src\fx\simple.js/<ul></ul></li><li>src\test\comp.js/<ul></ul></li><li>src\test\main.js/<ul></ul></li></ul>
+    </div>
+</div>
+
+
+
+  </div>
+  <div class="main">
+    <div class="content"><h4>src\fx\simple.js</h4>
+
+<pre class="code prettyprint linenums">
+
+  // --------------------------------------------------
+  // Effects (fx)
+  // --------------------------------------------------
+
+  extend(Dom.prototype, {
+
+    /**
+     * Sets the display property of sel.els. to &quot;&quot; or given value
+     * 
+     * @for Dom
+     * @method show
+     * @param {string} display Value of display prop.
+     * @return {Dom}
+     * @example
+     * &lt;div class=&quot;code&quot;&gt;&lt;pre class=&quot;prettyprint&quot;&gt;
+     * $(&quot;p&quot;).show();
+     * &lt;/pre&gt;&lt;/div&gt;
+     * @since 0.1.0
+     */
+    show: function (display) {
+      display = display || &quot;&quot;;
+
+      return this.each(function (el) {
+        el.style.display = display;
+      });
+    },
+
+    // -------------------------
+    // .hide()
+    // -------------------------
+    // 
+    // Sets the display property of sel.els. to &quot;none&quot;
+    // 
+    // .hide () 
+    //
+    // Example:
+    // 
+    // $(&quot;p&quot;).hide();
+    // 
+
+    /**
+     * Sets the display property of sel.els. to &quot;none&quot;
+     * 
+     * @for Dom
+     * @method hide
+     * @return {Dom}
+     * @example
+     * &lt;div class=&quot;code&quot;&gt;&lt;pre class=&quot;prettyprint&quot;&gt;
+     * $(&quot;p&quot;).hide();
+     * &lt;/pre&gt;&lt;/div&gt;
+     * @since 0.1.0
+     */
+    hide: function () {
+      return this.each(function (el) {
+        el.style.display = &quot;none&quot;;
+      });
+    },
+
+    /**
+     * Shows hidden elements, hides shown elements
+     * 
+     * @for Dom
+     * @method toggle
+     * @return {Dom}
+     * @example
+     * &lt;div class=&quot;code&quot;&gt;&lt;pre class=&quot;prettyprint&quot;&gt;
+     * $(&quot;p&quot;).toggle();
+     * &lt;/pre&gt;&lt;/div&gt;
+     * @since 0.1.0
+     */
+    toggle: function (display) {
+      return this.each(function (el) {
+        if (el.style.display === &quot;none&quot;) {
+          el.style.display = display ? display : &quot;&quot;;
+        } else {
+          el.style.display = &quot;none&quot;;
+        }
+      });
+    },
+
+    /**
+     * Sets opacity to 1
+     * 
+     * @for Dom
+     * @method appear
+     * @return {Dom}
+     * @example
+     * &lt;div class=&quot;code&quot;&gt;&lt;pre class=&quot;prettyprint&quot;&gt;
+     * $(&quot;p&quot;).appear();
+     * &lt;/pre&gt;&lt;/div&gt;
+     * @since 0.1.0
+     */
+    appear: function () {
+      return this.each(function (el) {
+        el.style.opacity = &quot;1&quot;;
+      });
+    },
+
+    /**
+     * Sets opacity to 0
+     * 
+     * @for Dom
+     * @method disappear
+     * @return {Dom}
+     * @example
+     * &lt;div class=&quot;code&quot;&gt;&lt;pre class=&quot;prettyprint&quot;&gt;
+     * $(&quot;p&quot;).disappear();
+     * &lt;/pre&gt;&lt;/div&gt;
+     * @since 0.1.0
+     */
+    disappear: function () {
+      return this.each(function (el) {
+        el.style.opacity = &quot;0&quot;;
+        el.style.cursor = &quot;default&quot;;
+      });
+    },
+
+    /**
+     * Appears a disappeared element, disappears and appeared element
+     * 
+     * @for Dom
+     * @method toggleVisibility
+     * @return {Dom}
+     * @example
+     * &lt;div class=&quot;code&quot;&gt;&lt;pre class=&quot;prettyprint&quot;&gt;
+     * $(&quot;p&quot;).toggleVisibility();
+     * &lt;/pre&gt;&lt;/div&gt;
+     * @since 0.1.0
+     */
+    toggleVisibility: function () {
+      return this.each(function (el) {
+        if (el.style.opacity === &quot;0&quot;) {
+          el.style.opacity = &quot;1&quot;;
+        } else {
+          el.style.opacity = &quot;0&quot;;
+          el.style.cursor = &quot;default&quot;;
+        }
+      });
+    },
+
+    /**
+     * Animates opacity prop. from 0 to 1 or 1 to 0
+     * 
+     * @for Dom
+     * @method fade
+     * @param {string} inOut Whether &quot;in&quot; or &quot;out&quot;
+     * @param {number|string} &quot;fast&quot;, &quot;slow&quot;, &quot;normal&quot; or a number 
+     * @return {Dom}
+     * @example
+     * &lt;div class=&quot;code&quot;&gt;&lt;pre class=&quot;prettyprint&quot;&gt;
+     * $(&quot;p&quot;).fade(&quot;in&quot;);
+     * $(&quot;p&quot;).fade(&quot;out&quot;);
+     * $(&quot;p&quot;).fade(&quot;in&quot;, 140);
+     * $(&quot;p&quot;).fade(&quot;out&quot;, 100);
+     * &lt;/pre&gt;&lt;/div&gt;
+     * @since 0.1.0
+     */
+    fade: function (inOut, timing) {
+      if (inOut === &quot;in&quot;) {
+        this.show();
+      }
+
+      return this.each(function (el) {
+        var time;
+
+        switch(timing) {
+          case &quot;slow&quot;:
+            time = 200;
+            break;
+          case &quot;normal&quot;:
+            time = 120;
+            break;
+          case &quot;fast&quot;:
+            time = 80;
+            break;
+          default:
+            time = time || 120;
+            break;
+        }
+
+        function animate () {
+          var val = 0.3, end = 1;
+
+          if (parseFloat(el.style.opacity) === (inOut === &quot;in&quot; ? 1 : 0)) {
+            clearInterval(win.Hilo.temp.anim);
+          } else {
+            if (inOut === &quot;out&quot;) {
+              val = -val;
+              end = 0;
+            }
+
+            el.style.opacity = parseFloat(el.style.opacity || end) + val; 
+          }
+        }
+
+        win.Hilo.temp.anim = setInterval(animate, timing);
+      });
+    },
+
+    /**
+     * Animates opacity prop. from 0 to 1
+     * 
+     * @for Dom
+     * @method fadeIn
+     * @param {number|string} &quot;fast&quot;, &quot;slow&quot;, &quot;normal&quot; or a number 
+     * @return {Dom}
+     * @example
+     * &lt;div class=&quot;code&quot;&gt;&lt;pre class=&quot;prettyprint&quot;&gt;
+     * $(&quot;p&quot;).fadeIn();
+     * $(&quot;p&quot;).fadeIn(140);
+     * &lt;/pre&gt;&lt;/div&gt;
+     * @since 0.1.0
+     */
+    fadeIn: function (timing) {
+      this.fade(&quot;in&quot;, timing);
+    },
+
+    /**
+     * Animates opacity prop. from 1 to 0
+     * 
+     * @for Dom
+     * @method fadeOut
+     * @param {number|string} &quot;fast&quot;, &quot;slow&quot;, &quot;normal&quot; or a number 
+     * @return {Dom}
+     * @example
+     * &lt;div class=&quot;code&quot;&gt;&lt;pre class=&quot;prettyprint&quot;&gt;
+     * $(&quot;p&quot;).fadeOut();
+     * $(&quot;p&quot;).fadeOut(140);
+     * &lt;/pre&gt;&lt;/div&gt;
+     * @since 0.1.0
+     */
+    fadeOut: function (timing) {
+      this.fade(&quot;out&quot;, timing);
+    }
+  });
+</pre>
+
+</div>
+  </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>
