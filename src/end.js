@@ -15,9 +15,15 @@
 
   elapsed = new Date().getTime() - start;
 
-  extend(hilo, {
-    perf: elapsed
-  });
+  /**
+   * Time taken to load (in ms)
+   * 
+   * @for hilo
+   * @property perf
+   * @type {number}
+   * @since 0.1.0
+   */
+  hilo.perf = elapsed;
 
   return hilo;
 }));

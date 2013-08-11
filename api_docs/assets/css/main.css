@@ -153,7 +153,6 @@ a {
   .site-logo {
     font-size: 1.8em;
     font-weight: bolder;
-    text-transform: uppercase;
     word-wrap: break-word;
 
     margin: 0.45em 0;
@@ -243,7 +242,7 @@ div.code {
   }
 
   .pun, .opn, .clo {
-    color: #000;
+    color: #600;
   }
 
   .tag, .atn {

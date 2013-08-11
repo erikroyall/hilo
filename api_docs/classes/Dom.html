@@ -60,6 +60,8 @@
             
                 <li><a href="#methods_addClass">addClass</a></li>
             
+                <li><a href="#methods_appear">appear</a></li>
+            
                 <li><a href="#methods_append">append</a></li>
             
                 <li><a href="#methods_attr">attr</a></li>
@@ -72,11 +74,19 @@
             
                 <li><a href="#methods_css">css</a></li>
             
+                <li><a href="#methods_disappear">disappear</a></li>
+            
                 <li><a href="#methods_each">each</a></li>
             
                 <li><a href="#methods_el">el</a></li>
             
                 <li><a href="#methods_empty">empty</a></li>
+            
+                <li><a href="#methods_fade">fade</a></li>
+            
+                <li><a href="#methods_fadeIn">fadeIn</a></li>
+            
+                <li><a href="#methods_fadeOut">fadeOut</a></li>
             
                 <li><a href="#methods_filter">filter</a></li>
             
@@ -87,6 +97,8 @@
                 <li><a href="#methods_get">get</a></li>
             
                 <li><a href="#methods_hasClass">hasClass</a></li>
+            
+                <li><a href="#methods_hide">hide</a></li>
             
                 <li><a href="#methods_html">html</a></li>
             
@@ -112,7 +124,13 @@
             
                 <li><a href="#methods_removeClass">removeClass</a></li>
             
+                <li><a href="#methods_show">show</a></li>
+            
+                <li><a href="#methods_toggle">toggle</a></li>
+            
                 <li><a href="#methods_toggleClass">toggleClass</a></li>
+            
+                <li><a href="#methods_toggleVisibility">toggleVisibility</a></li>
             
                 <li><a href="#methods_value">value</a></li>
             
@@ -133,7 +151,7 @@
         <h2 class="no-toc">Files</h2>
     </div>
     <div class="bd">
-        <ul><li>src\ajax\main.js/<ul></ul></li><li>src\ajax\more.js/<ul></ul></li><li>src\core.js/<ul></ul></li><li>src\dom\class-id.js/<ul></ul></li><li>src\dom\css.js/<ul></ul></li><li>src\dom\els.js/<ul></ul></li><li>src\dom\helpers.js/<ul></ul></li><li>src\dom\main.js/<ul></ul></li><li>src\dom\manp.js/<ul></ul></li><li>src\dom\misc.js/<ul></ul></li><li>src\dom\sizzle.js/<ul></ul></li><li>src\test\comp.js/<ul></ul></li><li>src\test\main.js/<ul></ul></li></ul>
+        <ul><li>src\ajax\main.js/<ul></ul></li><li>src\ajax\more.js/<ul></ul></li><li>src\core.js/<ul></ul></li><li>src\dom\class-id.js/<ul></ul></li><li>src\dom\css.js/<ul></ul></li><li>src\dom\els.js/<ul></ul></li><li>src\dom\helpers.js/<ul></ul></li><li>src\dom\main.js/<ul></ul></li><li>src\dom\manp.js/<ul></ul></li><li>src\dom\misc.js/<ul></ul></li><li>src\dom\sizzle.js/<ul></ul></li><li>src\end.js/<ul></ul></li><li>src\fx\simple.js/<ul></ul></li><li>src\test\comp.js/<ul></ul></li><li>src\test\main.js/<ul></ul></li></ul>
     </div>
 </div>
 
@@ -258,6 +276,32 @@ $("p").addClass("paragraph")
 </div>
 
             
+                <a name="methods_appear"></a>
+<div class="method item">
+    <a href="..\classes\Dom.html" class="crosslink">Dom</a> <strong class="name"><code>appear</code></strong>( <code>  </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../../files/src_fx_simple.js.html#l82"><code>src\fx\simple.js:82</code></a>
+    </span><br>
+    <p>Sets opacity to 1</p>
+    
+    
+    
+    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="..\classes\Dom.html" class="crosslink">Dom</a>&gt; </div>
+    
+    
+    
+        <h5>Example</h5>
+        <div class="code"><pre class="prettyprint">
+$("p").appear();
+</pre></div>
+    
+</div>
+
+            
                 <a name="methods_append"></a>
 <div class="method item">
     <a href="..\classes\Dom.html" class="crosslink">Dom</a> <strong class="name"><code>append</code></strong>( <code>html </code> ) 
@@ -340,11 +384,11 @@ $("p:first-child").append(" - From the first p child")
     
     
         <h5>Example</h5>
-        <div class="code prettyprint">
+        <div class="code"><pre class="prettyprint">
 $("p.hidden").attr("hidden"); 
 $("div.edit").attr("contentEditable", "true"); 
 $("body").attr("hilo", "0.1.0"); 
-</div>
+</pre></div>
     
 </div>
 
@@ -523,6 +567,32 @@ $("p").css("marginLeft", "10em");
 </div>
 
             
+                <a name="methods_disappear"></a>
+<div class="method item">
+    <a href="..\classes\Dom.html" class="crosslink">Dom</a> <strong class="name"><code>disappear</code></strong>( <code>  </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../../files/src_fx_simple.js.html#l100"><code>src\fx\simple.js:100</code></a>
+    </span><br>
+    <p>Sets opacity to 0</p>
+    
+    
+    
+    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="..\classes\Dom.html" class="crosslink">Dom</a>&gt; </div>
+    
+    
+    
+        <h5>Example</h5>
+        <div class="code"><pre class="prettyprint">
+$("p").disappear();
+</pre></div>
+    
+</div>
+
+            
                 <a name="methods_each"></a>
 <div class="method item">
     <a href="..\classes\Dom.html" class="crosslink">Dom</a> <strong class="name"><code>each</code></strong>( <code>fn </code> ) 
@@ -617,6 +687,140 @@ $("#todo-list").empty()
 </div>
 
             
+                <a name="methods_fade"></a>
+<div class="method item">
+    <a href="..\classes\Dom.html" class="crosslink">Dom</a> <strong class="name"><code>fade</code></strong>( <code>inOut, &amp;quot;fast&amp;quot;, </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../../files/src_fx_simple.js.html#l142"><code>src\fx\simple.js:142</code></a>
+    </span><br>
+    <p>Animates opacity prop. from 0 to 1 or 1 to 0</p>
+    
+    <strong>Parameters:</strong>
+    <ul class="params">
+    
+        <li>
+        
+            <code>inOut</code> <strong>&lt;String&gt;</strong>
+        
+        
+        <p>Whether "in" or "out"</p>
+            
+        </li>
+    
+        <li>
+        
+            <code>&amp;quot;fast&amp;quot;,</code> <strong>&lt;Number | String&gt;</strong>
+        
+        
+        <p>"slow", "normal" or a number</p>
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="..\classes\Dom.html" class="crosslink">Dom</a>&gt; </div>
+    
+    
+    
+        <h5>Example</h5>
+        <div class="code"><pre class="prettyprint">
+$("p").fade("in");
+$("p").fade("out");
+$("p").fade("in", 140);
+$("p").fade("out", 100);
+</pre></div>
+    
+</div>
+
+            
+                <a name="methods_fadeIn"></a>
+<div class="method item">
+    <a href="..\classes\Dom.html" class="crosslink">Dom</a> <strong class="name"><code>fadeIn</code></strong>( <code>&amp;quot;fast&amp;quot;, </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../../files/src_fx_simple.js.html#l201"><code>src\fx\simple.js:201</code></a>
+    </span><br>
+    <p>Animates opacity prop. from 0 to 1</p>
+    
+    <strong>Parameters:</strong>
+    <ul class="params">
+    
+        <li>
+        
+            <code>&amp;quot;fast&amp;quot;,</code> <strong>&lt;Number | String&gt;</strong>
+        
+        
+        <p>"slow", "normal" or a number</p>
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="..\classes\Dom.html" class="crosslink">Dom</a>&gt; </div>
+    
+    
+    
+        <h5>Example</h5>
+        <div class="code"><pre class="prettyprint">
+$("p").fadeIn();
+$("p").fadeIn(140);
+</pre></div>
+    
+</div>
+
+            
+                <a name="methods_fadeOut"></a>
+<div class="method item">
+    <a href="..\classes\Dom.html" class="crosslink">Dom</a> <strong class="name"><code>fadeOut</code></strong>( <code>&amp;quot;fast&amp;quot;, </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../../files/src_fx_simple.js.html#l219"><code>src\fx\simple.js:219</code></a>
+    </span><br>
+    <p>Animates opacity prop. from 1 to 0</p>
+    
+    <strong>Parameters:</strong>
+    <ul class="params">
+    
+        <li>
+        
+            <code>&amp;quot;fast&amp;quot;,</code> <strong>&lt;Number | String&gt;</strong>
+        
+        
+        <p>"slow", "normal" or a number</p>
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="..\classes\Dom.html" class="crosslink">Dom</a>&gt; </div>
+    
+    
+    
+        <h5>Example</h5>
+        <div class="code"><pre class="prettyprint">
+$("p").fadeOut();
+$("p").fadeOut(140);
+</pre></div>
+    
+</div>
+
+            
                 <a name="methods_filter"></a>
 <div class="method item">
     <a href="..\classes\Dom.html" class="crosslink">Dom</a> <strong class="name"><code>filter</code></strong>( <code>fn </code> ) 
@@ -662,6 +866,32 @@ $("div").filter(function (el) {
             
                 <a name="methods_first"></a>
 <div class="method item">
+    <a href="..\classes\Dom.html" class="crosslink">Dom</a> <strong class="name"><code>first</code></strong>( <code>  </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../../files/src_dom_els.js.html#l49"><code>src\dom\els.js:49</code></a>
+    </span><br>
+    <p>Return first element of the selected elements</p>
+    
+    
+    
+    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="..\classes\Dom.html" class="crosslink">Dom</a>&gt; The first element</div>
+    
+    
+    
+        <h5>Example</h5>
+        <div class="code"><pre class="prettyprint">
+$("p.hidden").first().show();
+</pre></div>
+    
+</div>
+
+            
+                <a name="methods_first"></a>
+<div class="method item">
     <a href="..\classes\Dom.html" class="crosslink">Dom</a> <strong class="name"><code>first</code></strong>( <code>fn </code> ) 
     <br>
     <span class="foundat">
@@ -697,32 +927,6 @@ $("div").filter(function (el) {
 $("div").first(function (e) {
   console.log(e + " is the first div");
 });
-</pre></div>
-    
-</div>
-
-            
-                <a name="methods_first"></a>
-<div class="method item">
-    <a href="..\classes\Dom.html" class="crosslink">Dom</a> <strong class="name"><code>first</code></strong>( <code>  </code> ) 
-    <br>
-    <span class="foundat">
-    
-        
-    
-        <a href="../../files/src_dom_els.js.html#l49"><code>src\dom\els.js:49</code></a>
-    </span><br>
-    <p>Return first element of the selected elements</p>
-    
-    
-    
-    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="..\classes\Dom.html" class="crosslink">Dom</a>&gt; The first element</div>
-    
-    
-    
-        <h5>Example</h5>
-        <div class="code"><pre class="prettyprint">
-$("p.hidden").first().show();
 </pre></div>
     
 </div>
@@ -791,6 +995,32 @@ $("script").get();
 if(!$("audio:not([controls])").hasClass("hidden")) {
   $("audio:not([controls])").addClass("hidden");
 }
+</pre></div>
+    
+</div>
+
+            
+                <a name="methods_hide"></a>
+<div class="method item">
+    <a href="..\classes\Dom.html" class="crosslink">Dom</a> <strong class="name"><code>hide</code></strong>( <code>  </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../../files/src_fx_simple.js.html#l42"><code>src\fx\simple.js:42</code></a>
+    </span><br>
+    <p>Sets the display property of sel.els. to "none"</p>
+    
+    
+    
+    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="..\classes\Dom.html" class="crosslink">Dom</a>&gt; </div>
+    
+    
+    
+        <h5>Example</h5>
+        <div class="code"><pre class="prettyprint">
+$("p").hide();
 </pre></div>
     
 </div>
@@ -1207,6 +1437,72 @@ $("p.hidden").removeClass("hidden")
 </div>
 
             
+                <a name="methods_show"></a>
+<div class="method item">
+    <a href="..\classes\Dom.html" class="crosslink">Dom</a> <strong class="name"><code>show</code></strong>( <code>display </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../../files/src_fx_simple.js.html#l8"><code>src\fx\simple.js:8</code></a>
+    </span><br>
+    <p>Sets the display property of sel.els. to "" or given value</p>
+    
+    <strong>Parameters:</strong>
+    <ul class="params">
+    
+        <li>
+        
+            <code>display</code> <strong>&lt;String&gt;</strong>
+        
+        
+        <p>Value of display prop.</p>
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="..\classes\Dom.html" class="crosslink">Dom</a>&gt; </div>
+    
+    
+    
+        <h5>Example</h5>
+        <div class="code"><pre class="prettyprint">
+$("p").show();
+</pre></div>
+    
+</div>
+
+            
+                <a name="methods_toggle"></a>
+<div class="method item">
+    <a href="..\classes\Dom.html" class="crosslink">Dom</a> <strong class="name"><code>toggle</code></strong>( <code>  </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../../files/src_fx_simple.js.html#l60"><code>src\fx\simple.js:60</code></a>
+    </span><br>
+    <p>Shows hidden elements, hides shown elements</p>
+    
+    
+    
+    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="..\classes\Dom.html" class="crosslink">Dom</a>&gt; </div>
+    
+    
+    
+        <h5>Example</h5>
+        <div class="code"><pre class="prettyprint">
+$("p").toggle();
+</pre></div>
+    
+</div>
+
+            
                 <a name="methods_toggleClass"></a>
 <div class="method item">
     <a href="..\classes\Dom.html" class="crosslink">Dom</a> <strong class="name"><code>toggleClass</code></strong>( <code>className </code> ) 
@@ -1244,6 +1540,32 @@ $("p.hidden").removeClass("hidden")
 $(".someClass").on("click", function () {
   $(this).toggleClass("opaque");
 });
+</pre></div>
+    
+</div>
+
+            
+                <a name="methods_toggleVisibility"></a>
+<div class="method item">
+    <a href="..\classes\Dom.html" class="crosslink">Dom</a> <strong class="name"><code>toggleVisibility</code></strong>( <code>  </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../../files/src_fx_simple.js.html#l119"><code>src\fx\simple.js:119</code></a>
+    </span><br>
+    <p>Appears a disappeared element, disappears and appeared element</p>
+    
+    
+    
+    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="..\classes\Dom.html" class="crosslink">Dom</a>&gt; </div>
+    
+    
+    
+        <h5>Example</h5>
+        <div class="code"><pre class="prettyprint">
+$("p").toggleVisibility();
 </pre></div>
     
 </div>

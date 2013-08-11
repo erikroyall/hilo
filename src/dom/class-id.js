@@ -382,11 +382,11 @@
      * @param {string} val Value of the attribute
      * @return {string|void}
      * @example
-     * <div class="code prettyprint">
+     * <div class="code"><pre class="prettyprint">
      * $("p.hidden").attr("hidden"); 
      * $("div.edit").attr("contentEditable", "true"); 
      * $("body").attr("hilo", "0.1.0"); 
-     * </div>
+     * </pre></div>
      * @since 0.1.0
      */
     attr: function (name, val) {

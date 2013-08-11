@@ -95,6 +95,15 @@
             "fors": {},
             "namespaces": {}
         },
+        "src\\fx\\simple.js": {
+            "name": "src\\fx\\simple.js",
+            "modules": {},
+            "classes": {},
+            "fors": {
+                "Dom": 1
+            },
+            "namespaces": {}
+        },
         "src\\test\\comp.js": {
             "name": "src\\test\\comp.js",
             "modules": {},
@@ -125,6 +134,15 @@
             },
             "fors": {},
             "namespaces": {}
+        },
+        "src\\end.js": {
+            "name": "src\\end.js",
+            "modules": {},
+            "classes": {},
+            "fors": {
+                "hilo": 1
+            },
+            "namespaces": {}
         }
     },
     "modules": {
@@ -136,7 +154,9 @@
                 "Dom": 1,
                 "Test": 1
             },
-            "fors": {},
+            "fors": {
+                "hilo": 1
+            },
             "namespaces": {},
             "tag": "module",
             "file": "src\\test\\main.js",
@@ -474,7 +494,7 @@
                 "type": "String|void"
             },
             "example": [
-                "\n<div class=\"code prettyprint\">\n$(\"p.hidden\").attr(\"hidden\"); \n$(\"div.edit\").attr(\"contentEditable\", \"true\"); \n$(\"body\").attr(\"hilo\", \"0.1.0\"); \n</div>"
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\n$(\"p.hidden\").attr(\"hidden\"); \n$(\"div.edit\").attr(\"contentEditable\", \"true\"); \n$(\"body\").attr(\"hilo\", \"0.1.0\"); \n</pre></div>"
             ],
             "since": "0.1.0",
             "class": "Dom"
@@ -952,7 +972,7 @@
                 "description": "Returns the Object data after storing it on itself with\n property name the (space-suffixed) string and (if the cache is larger than Expr.cacheLength)\n deleting the oldest entry",
                 "type": "Function(string, Object)"
             },
-            "class": "Test"
+            "class": "Dom"
         },
         {
             "file": "src\\dom\\sizzle.js",
@@ -965,7 +985,7 @@
                     "type": "Function"
                 }
             ],
-            "class": "Test"
+            "class": "Dom"
         },
         {
             "file": "src\\dom\\sizzle.js",
@@ -978,7 +998,7 @@
                     "type": "Function"
                 }
             ],
-            "class": "Test"
+            "class": "Dom"
         },
         {
             "file": "src\\dom\\sizzle.js",
@@ -996,7 +1016,7 @@
                     "type": "Function"
                 }
             ],
-            "class": "Test"
+            "class": "Dom"
         },
         {
             "file": "src\\dom\\sizzle.js",
@@ -1018,7 +1038,7 @@
                 "description": "Returns less than 0 if a precedes b, greater than 0 if a follows b",
                 "type": "Number"
             },
-            "class": "Test"
+            "class": "Dom"
         },
         {
             "file": "src\\dom\\sizzle.js",
@@ -1031,7 +1051,7 @@
                     "type": "String"
                 }
             ],
-            "class": "Test"
+            "class": "Dom"
         },
         {
             "file": "src\\dom\\sizzle.js",
@@ -1044,7 +1064,7 @@
                     "type": "String"
                 }
             ],
-            "class": "Test"
+            "class": "Dom"
         },
         {
             "file": "src\\dom\\sizzle.js",
@@ -1057,7 +1077,7 @@
                     "type": "Function"
                 }
             ],
-            "class": "Test"
+            "class": "Dom"
         },
         {
             "file": "src\\dom\\sizzle.js",
@@ -1070,7 +1090,7 @@
                     "type": "Element|Object"
                 }
             ],
-            "class": "Test"
+            "class": "Dom"
         },
         {
             "file": "src\\dom\\sizzle.js",
@@ -1088,7 +1108,7 @@
                 "description": "Returns the current document",
                 "type": "Object"
             },
-            "class": "Test"
+            "class": "Dom"
         },
         {
             "file": "src\\dom\\sizzle.js",
@@ -1101,7 +1121,7 @@
                     "type": "ArrayLike"
                 }
             ],
-            "class": "Test"
+            "class": "Dom"
         },
         {
             "file": "src\\dom\\sizzle.js",
@@ -1114,7 +1134,184 @@
                     "type": "Array|Element"
                 }
             ],
-            "class": "Test"
+            "class": "Dom"
+        },
+        {
+            "file": "src\\fx\\simple.js",
+            "line": 8,
+            "description": "Sets the display property of sel.els. to \"\" or given value",
+            "itemtype": "method",
+            "name": "show",
+            "params": [
+                {
+                    "name": "display",
+                    "description": "Value of display prop.",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Dom"
+            },
+            "example": [
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\n$(\"p\").show();\n</pre></div>"
+            ],
+            "since": "0.1.0",
+            "class": "Dom"
+        },
+        {
+            "file": "src\\fx\\simple.js",
+            "line": 42,
+            "description": "Sets the display property of sel.els. to \"none\"",
+            "itemtype": "method",
+            "name": "hide",
+            "return": {
+                "description": "",
+                "type": "Dom"
+            },
+            "example": [
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\n$(\"p\").hide();\n</pre></div>"
+            ],
+            "since": "0.1.0",
+            "class": "Dom"
+        },
+        {
+            "file": "src\\fx\\simple.js",
+            "line": 60,
+            "description": "Shows hidden elements, hides shown elements",
+            "itemtype": "method",
+            "name": "toggle",
+            "return": {
+                "description": "",
+                "type": "Dom"
+            },
+            "example": [
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\n$(\"p\").toggle();\n</pre></div>"
+            ],
+            "since": "0.1.0",
+            "class": "Dom"
+        },
+        {
+            "file": "src\\fx\\simple.js",
+            "line": 82,
+            "description": "Sets opacity to 1",
+            "itemtype": "method",
+            "name": "appear",
+            "return": {
+                "description": "",
+                "type": "Dom"
+            },
+            "example": [
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\n$(\"p\").appear();\n</pre></div>"
+            ],
+            "since": "0.1.0",
+            "class": "Dom"
+        },
+        {
+            "file": "src\\fx\\simple.js",
+            "line": 100,
+            "description": "Sets opacity to 0",
+            "itemtype": "method",
+            "name": "disappear",
+            "return": {
+                "description": "",
+                "type": "Dom"
+            },
+            "example": [
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\n$(\"p\").disappear();\n</pre></div>"
+            ],
+            "since": "0.1.0",
+            "class": "Dom"
+        },
+        {
+            "file": "src\\fx\\simple.js",
+            "line": 119,
+            "description": "Appears a disappeared element, disappears and appeared element",
+            "itemtype": "method",
+            "name": "toggleVisibility",
+            "return": {
+                "description": "",
+                "type": "Dom"
+            },
+            "example": [
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\n$(\"p\").toggleVisibility();\n</pre></div>"
+            ],
+            "since": "0.1.0",
+            "class": "Dom"
+        },
+        {
+            "file": "src\\fx\\simple.js",
+            "line": 142,
+            "description": "Animates opacity prop. from 0 to 1 or 1 to 0",
+            "itemtype": "method",
+            "name": "fade",
+            "params": [
+                {
+                    "name": "inOut",
+                    "description": "Whether \"in\" or \"out\"",
+                    "type": "String"
+                },
+                {
+                    "name": "\"fast\",",
+                    "description": "\"slow\", \"normal\" or a number",
+                    "type": "Number|string"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Dom"
+            },
+            "example": [
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\n$(\"p\").fade(\"in\");\n$(\"p\").fade(\"out\");\n$(\"p\").fade(\"in\", 140);\n$(\"p\").fade(\"out\", 100);\n</pre></div>"
+            ],
+            "since": "0.1.0",
+            "class": "Dom"
+        },
+        {
+            "file": "src\\fx\\simple.js",
+            "line": 201,
+            "description": "Animates opacity prop. from 0 to 1",
+            "itemtype": "method",
+            "name": "fadeIn",
+            "params": [
+                {
+                    "name": "\"fast\",",
+                    "description": "\"slow\", \"normal\" or a number",
+                    "type": "Number|string"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Dom"
+            },
+            "example": [
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\n$(\"p\").fadeIn();\n$(\"p\").fadeIn(140);\n</pre></div>"
+            ],
+            "since": "0.1.0",
+            "class": "Dom"
+        },
+        {
+            "file": "src\\fx\\simple.js",
+            "line": 219,
+            "description": "Animates opacity prop. from 1 to 0",
+            "itemtype": "method",
+            "name": "fadeOut",
+            "params": [
+                {
+                    "name": "\"fast\",",
+                    "description": "\"slow\", \"normal\" or a number",
+                    "type": "Number|string"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Dom"
+            },
+            "example": [
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\n$(\"p\").fadeOut();\n$(\"p\").fadeOut(140);\n</pre></div>"
+            ],
+            "since": "0.1.0",
+            "class": "Dom"
         },
         {
             "file": "src\\test\\comp.js",
@@ -1183,6 +1380,17 @@
             ],
             "since": "0.1.0",
             "class": "hilo"
+        },
+        {
+            "file": "src\\end.js",
+            "line": 18,
+            "description": "Time taken to load (in ms)",
+            "itemtype": "property",
+            "name": "perf",
+            "type": "{number}",
+            "since": "0.1.0",
+            "class": "hilo",
+            "module": "Hilo"
         }
     ],
     "warnings": [

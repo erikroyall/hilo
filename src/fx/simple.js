@@ -5,20 +5,19 @@
 
   extend(Dom.prototype, {
 
-    // -------------------------
-    // .show()
-    // -------------------------
-    // 
-    // Sets the display property of sel.els. to "" or given value
-    // 
-    // .show ( [display] ) 
-    //   display (string) : Value of display prop.
-    //
-    // Example:
-    // 
-    // $("p").show();
-    // 
-
+    /**
+     * Sets the display property of sel.els. to "" or given value
+     * 
+     * @for Dom
+     * @method show
+     * @param {string} display Value of display prop.
+     * @return {Dom}
+     * @example
+     * <div class="code"><pre class="prettyprint">
+     * $("p").show();
+     * </pre></div>
+     * @since 0.1.0
+     */
     show: function (display) {
       display = display || "";
 
@@ -40,27 +39,36 @@
     // $("p").hide();
     // 
 
+    /**
+     * Sets the display property of sel.els. to "none"
+     * 
+     * @for Dom
+     * @method hide
+     * @return {Dom}
+     * @example
+     * <div class="code"><pre class="prettyprint">
+     * $("p").hide();
+     * </pre></div>
+     * @since 0.1.0
+     */
     hide: function () {
       return this.each(function (el) {
         el.style.display = "none";
       });
     },
 
-    // -------------------------
-    // .toggle()
-    // -------------------------
-    // 
-    // Shows hidden elements,
-    // Hides visible elements
-    // 
-    // .toggle ( [display] ) 
-    //   display (string) : Value of display prop.
-    //
-    // Example:
-    // 
-    // $("p").toggle();
-    // 
-
+    /**
+     * Shows hidden elements, hides shown elements
+     * 
+     * @for Dom
+     * @method toggle
+     * @return {Dom}
+     * @example
+     * <div class="code"><pre class="prettyprint">
+     * $("p").toggle();
+     * </pre></div>
+     * @since 0.1.0
+     */
     toggle: function (display) {
       return this.each(function (el) {
         if (el.style.display === "none") {
@@ -71,39 +79,36 @@
       });
     },
 
-    // -------------------------
-    // .appear()
-    // -------------------------
-    // 
-    // Sets opacity to 1
-    // 
-    // .appear ()
-    //
-    // Example:
-    // 
-    // $("p").appear();
-    // 
-
+    /**
+     * Sets opacity to 1
+     * 
+     * @for Dom
+     * @method appear
+     * @return {Dom}
+     * @example
+     * <div class="code"><pre class="prettyprint">
+     * $("p").appear();
+     * </pre></div>
+     * @since 0.1.0
+     */
     appear: function () {
       return this.each(function (el) {
         el.style.opacity = "1";
       });
     },
 
-    // -------------------------
-    // .disappear()
-    // -------------------------
-    // 
-    // Sets opacity to 0
-    // 
-    // .disappear () 
-    //   display (string) : Value of display prop.
-    //
-    // Example:
-    // 
-    // $("p").disappear();
-    // 
-
+    /**
+     * Sets opacity to 0
+     * 
+     * @for Dom
+     * @method disappear
+     * @return {Dom}
+     * @example
+     * <div class="code"><pre class="prettyprint">
+     * $("p").disappear();
+     * </pre></div>
+     * @since 0.1.0
+     */
     disappear: function () {
       return this.each(function (el) {
         el.style.opacity = "0";
@@ -111,20 +116,18 @@
       });
     },
 
-    // -------------------------
-    // .toggleVisibility()
-    // -------------------------
-    // 
-    // appears a disappeared element,
-    // disappears a appeared element
-    // 
-    // .toggleVisibility ()
-    //
-    // Example:
-    // 
-    // $("p").toggleVisibility();
-    // 
-
+    /**
+     * Appears a disappeared element, disappears and appeared element
+     * 
+     * @for Dom
+     * @method toggleVisibility
+     * @return {Dom}
+     * @example
+     * <div class="code"><pre class="prettyprint">
+     * $("p").toggleVisibility();
+     * </pre></div>
+     * @since 0.1.0
+     */
     toggleVisibility: function () {
       return this.each(function (el) {
         if (el.style.opacity === "0") {
@@ -136,24 +139,23 @@
       });
     },
 
-    // -------------------------
-    // .fade()
-    // -------------------------
-    // 
-    // Animates opacity prop. from 0 to 1 or 1 to 0
-    // 
-    // .fade ( inOut [, timing] ) 
-    //   !inOut (in|out) : Whether to fadeIn ("in") or fadeOut ("out")
-    //   timing (number) : Rate of animation (the lesser, the faster)
-    //
-    // Example:
-    // 
-    // $("p").fade("in");
-    // $("p").fade("out");
-    // $("p").fade("in", 140);
-    // $("p").fade("out", 100);
-    // 
-
+    /**
+     * Animates opacity prop. from 0 to 1 or 1 to 0
+     * 
+     * @for Dom
+     * @method fade
+     * @param {string} inOut Whether "in" or "out"
+     * @param {number|string} "fast", "slow", "normal" or a number 
+     * @return {Dom}
+     * @example
+     * <div class="code"><pre class="prettyprint">
+     * $("p").fade("in");
+     * $("p").fade("out");
+     * $("p").fade("in", 140);
+     * $("p").fade("out", 100);
+     * </pre></div>
+     * @since 0.1.0
+     */
     fade: function (inOut, timing) {
       if (inOut === "in") {
         this.show();
@@ -196,42 +198,38 @@
       });
     },
 
-    // -------------------------
-    // .fadeIn()
-    // -------------------------
-    // 
-    // Animates opacity prop. from 0 to 1
-    // 
-    // .fadeIn ( [timing] )
-    //   timing (number) : Rate of animation (the lesser the faster; default:120)
-    //
-    // Examples:
-    // 
-    // $("p").fadeIn(200); // Slow
-    // $("p").fadeIn(); // Normal
-    // $("p").fadeIn(80); // Fast
-    // 
-
+    /**
+     * Animates opacity prop. from 0 to 1
+     * 
+     * @for Dom
+     * @method fadeIn
+     * @param {number|string} "fast", "slow", "normal" or a number 
+     * @return {Dom}
+     * @example
+     * <div class="code"><pre class="prettyprint">
+     * $("p").fadeIn();
+     * $("p").fadeIn(140);
+     * </pre></div>
+     * @since 0.1.0
+     */
     fadeIn: function (timing) {
       this.fade("in", timing);
     },
 
-    // -------------------------
-    // .fadeOut()
-    // -------------------------
-    // 
-    // Animates opacity prop. from 1 to 0
-    // 
-    // .fadeOut ( [timing] )
-    //   timing (number) : Rate of animation (the lesser, the faster)
-    //
-    // Examples:
-    // 
-    // $("p").fadeOut(200); // Slow
-    // $("p").fadeOut(); // Normal
-    // $("p").fadeOut(80); // Fast
-    // 
-
+    /**
+     * Animates opacity prop. from 1 to 0
+     * 
+     * @for Dom
+     * @method fadeOut
+     * @param {number|string} "fast", "slow", "normal" or a number 
+     * @return {Dom}
+     * @example
+     * <div class="code"><pre class="prettyprint">
+     * $("p").fadeOut();
+     * $("p").fadeOut(140);
+     * </pre></div>
+     * @since 0.1.0
+     */
     fadeOut: function (timing) {
       this.fade("out", timing);
     }
