@@ -120,6 +120,22 @@
       } else if (typeof tw === &quot;string&quot; &amp;&amp; typeof this.con === &quot;string&quot;) {
         return this.neg ? !ifString : ifString;
       }
+    },
+
+    /**
+     * Inverse a test
+     *
+     * @for Test
+     * @method not
+     * @return {Test}
+     * @example
+     * &lt;div class=&quot;code&quot;&gt;&lt;pre class=&quot;prettyprint&quot;&gt;
+     * $(&quot;Hilo.js&quot;).not().ifEquals(&quot;Hilo&quot;);
+     * &lt;/pre&gt;&lt;/div&gt;
+     * @since 0.1.0
+     */
+    not: function () {
+      return new Test(this, true);
     }
   });
 </pre>

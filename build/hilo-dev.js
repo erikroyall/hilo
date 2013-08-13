@@ -3040,6 +3040,22 @@
       } else if (typeof tw === "string" && typeof this.con === "string") {
         return this.neg ? !ifString : ifString;
       }
+    },
+
+    /**
+     * Inverse a test
+     *
+     * @for Test
+     * @method not
+     * @return {Test}
+     * @example
+     * <div class="code"><pre class="prettyprint">
+     * $("Hilo.js").not().ifEquals("Hilo");
+     * </pre></div>
+     * @since 0.1.0
+     */
+    not: function () {
+      return new Test(this, true);
     }
   });
   

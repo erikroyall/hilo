@@ -1360,6 +1360,22 @@
             "class": "Test"
         },
         {
+            "file": "src\\test\\comp.js",
+            "line": 48,
+            "description": "Inverse a test",
+            "itemtype": "method",
+            "name": "not",
+            "return": {
+                "description": "",
+                "type": "Test"
+            },
+            "example": [
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\n$(\"Hilo.js\").not().ifEquals(\"Hilo\");\n</pre></div>"
+            ],
+            "since": "0.1.0",
+            "class": "Test"
+        },
+        {
             "file": "src\\test\\main.js",
             "line": 8,
             "description": "Public test function",

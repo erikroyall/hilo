@@ -62,6 +62,8 @@
             
                 <li><a href="#methods_ifEquals">ifEquals</a></li>
             
+                <li><a href="#methods_not">not</a></li>
+            
         </ul>
     </div>
 </div>
@@ -236,6 +238,32 @@ var isHiloBeta = $.test(hilo.version).ifContains("beta");
         <h5>Example</h5>
         <div class="code"><pre class="prettyprint">
 var isIt = $.test(hilo.version).ifEquals("v0.1.0-pre-dev-beta-9");
+</pre></div>
+    
+</div>
+
+            
+                <a name="methods_not"></a>
+<div class="method item">
+    <a href="..\classes\Test.html" class="crosslink">Test</a> <strong class="name"><code>not</code></strong>( <code>  </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../../files/src_test_comp.js.html#l48"><code>src\test\comp.js:48</code></a>
+    </span><br>
+    <p>Inverse a test</p>
+    
+    
+    
+    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="..\classes\Test.html" class="crosslink">Test</a>&gt; </div>
+    
+    
+    
+        <h5>Example</h5>
+        <div class="code"><pre class="prettyprint">
+$("Hilo.js").not().ifEquals("Hilo");
 </pre></div>
     
 </div>
