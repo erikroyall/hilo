@@ -53,6 +53,10 @@
     // Main AJAX function (Hilo.ajax)
     , hiloAjax
 
+    , own = function (obj, prop) {
+      return obj.hasOwnProperty(prop);
+    }
+
     // Loop Variable
     , _i;
   

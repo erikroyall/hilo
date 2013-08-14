@@ -40,6 +40,8 @@
     <div class="bd">
         <ul>
             
+                <li><a href="../classes/Animation.html">Animation</a></li>
+            
                 <li><a href="../classes/Dom.html">Dom</a></li>
             
                 <li><a href="../classes/hilo.html">hilo</a></li>
@@ -151,7 +153,7 @@
         <h2 class="no-toc">Files</h2>
     </div>
     <div class="bd">
-        <ul><li>src\ajax\main.js/<ul></ul></li><li>src\ajax\more.js/<ul></ul></li><li>src\core.js/<ul></ul></li><li>src\dom\class-id.js/<ul></ul></li><li>src\dom\css.js/<ul></ul></li><li>src\dom\els.js/<ul></ul></li><li>src\dom\helpers.js/<ul></ul></li><li>src\dom\main.js/<ul></ul></li><li>src\dom\manp.js/<ul></ul></li><li>src\dom\misc.js/<ul></ul></li><li>src\dom\sizzle.js/<ul></ul></li><li>src\end.js/<ul></ul></li><li>src\fx\simple.js/<ul></ul></li><li>src\test\comp.js/<ul></ul></li><li>src\test\main.js/<ul></ul></li></ul>
+        <ul><li>src\ajax\main.js/<ul></ul></li><li>src\ajax\more.js/<ul></ul></li><li>src\anim\main.js/<ul></ul></li><li>src\core.js/<ul></ul></li><li>src\dom\class-id.js/<ul></ul></li><li>src\dom\css.js/<ul></ul></li><li>src\dom\els.js/<ul></ul></li><li>src\dom\helpers.js/<ul></ul></li><li>src\dom\main.js/<ul></ul></li><li>src\dom\manp.js/<ul></ul></li><li>src\dom\misc.js/<ul></ul></li><li>src\dom\sizzle.js/<ul></ul></li><li>src\end.js/<ul></ul></li><li>src\fx\simple.js/<ul></ul></li><li>src\test\comp.js/<ul></ul></li><li>src\test\main.js/<ul></ul></li></ul>
     </div>
 </div>
 
@@ -284,7 +286,7 @@ $("p").addClass("paragraph")
     
         
     
-        <a href="../../files/src_fx_simple.js.html#l82"><code>src\fx\simple.js:82</code></a>
+        <a href="../../files/src_fx_simple.js.html#l69"><code>src\fx\simple.js:69</code></a>
     </span><br>
     <p>Sets opacity to 1</p>
     
@@ -491,7 +493,7 @@ $("div#editor").class("add", "no-js")
     
         
     
-        <a href="../../files/src_dom_css.js.html#l74"><code>src\dom\css.js:74</code></a>
+        <a href="../../files/src_dom_css.js.html#l156"><code>src\dom\css.js:156</code></a>
     </span><br>
     <p>Get computed property</p>
     
@@ -526,7 +528,7 @@ $("div#editor").class("add", "no-js")
     
         
     
-        <a href="../../files/src_dom_css.js.html#l8"><code>src\dom\css.js:8</code></a>
+        <a href="../../files/src_dom_css.js.html#l73"><code>src\dom\css.js:73</code></a>
     </span><br>
     <p>Set or return css property</p>
     
@@ -535,10 +537,10 @@ $("div#editor").class("add", "no-js")
     
         <li>
         
-            <code>prop</code> <strong>&lt;String&gt;</strong>
+            <code>prop</code> <strong>&lt;String | Object&gt;</strong>
         
         
-        <p>Name of property</p>
+        <p>Name of property | Properties</p>
             
         </li>
     
@@ -561,7 +563,12 @@ $("div#editor").class("add", "no-js")
     
         <h5>Example</h5>
         <div class="code"><pre class="prettyprint">
-$("p").css("marginLeft", "10em");
+$("p").css("margin-left", "10em");
+
+$("p.round").css({
+  "border-radius": 10,
+  width: 100
+});
 </pre></div>
     
 </div>
@@ -575,7 +582,7 @@ $("p").css("marginLeft", "10em");
     
         
     
-        <a href="../../files/src_fx_simple.js.html#l100"><code>src\fx\simple.js:100</code></a>
+        <a href="../../files/src_fx_simple.js.html#l87"><code>src\fx\simple.js:87</code></a>
     </span><br>
     <p>Sets opacity to 0</p>
     
@@ -695,7 +702,7 @@ $("#todo-list").empty()
     
         
     
-        <a href="../../files/src_fx_simple.js.html#l142"><code>src\fx\simple.js:142</code></a>
+        <a href="../../files/src_fx_simple.js.html#l129"><code>src\fx\simple.js:129</code></a>
     </span><br>
     <p>Animates opacity prop. from 0 to 1 or 1 to 0</p>
     
@@ -747,7 +754,7 @@ $("p").fade("out", 100);
     
         
     
-        <a href="../../files/src_fx_simple.js.html#l201"><code>src\fx\simple.js:201</code></a>
+        <a href="../../files/src_fx_simple.js.html#l188"><code>src\fx\simple.js:188</code></a>
     </span><br>
     <p>Animates opacity prop. from 0 to 1</p>
     
@@ -788,7 +795,7 @@ $("p").fadeIn(140);
     
         
     
-        <a href="../../files/src_fx_simple.js.html#l219"><code>src\fx\simple.js:219</code></a>
+        <a href="../../files/src_fx_simple.js.html#l206"><code>src\fx\simple.js:206</code></a>
     </span><br>
     <p>Animates opacity prop. from 1 to 0</p>
     
@@ -1008,7 +1015,7 @@ if(!$("audio:not([controls])").hasClass("hidden")) {
     
         
     
-        <a href="../../files/src_fx_simple.js.html#l42"><code>src\fx\simple.js:42</code></a>
+        <a href="../../files/src_fx_simple.js.html#l29"><code>src\fx\simple.js:29</code></a>
     </span><br>
     <p>Sets the display property of sel.els. to "none"</p>
     
@@ -1485,7 +1492,7 @@ $("p").show();
     
         
     
-        <a href="../../files/src_fx_simple.js.html#l60"><code>src\fx\simple.js:60</code></a>
+        <a href="../../files/src_fx_simple.js.html#l47"><code>src\fx\simple.js:47</code></a>
     </span><br>
     <p>Shows hidden elements, hides shown elements</p>
     
@@ -1553,7 +1560,7 @@ $(".someClass").on("click", function () {
     
         
     
-        <a href="../../files/src_fx_simple.js.html#l119"><code>src\fx\simple.js:119</code></a>
+        <a href="../../files/src_fx_simple.js.html#l106"><code>src\fx\simple.js:106</code></a>
     </span><br>
     <p>Appears a disappeared element, disappears and appeared element</p>
     

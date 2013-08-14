@@ -1,6 +1,6 @@
 /*! 
- * Hilo - 0.1.0-pre-dev-beta-9 - 2013-08-11
- * Project started before 1 month and 11 days
+ * Hilo - 0.1.0-pre-dev-beta-9 - 2013-08-14
+ * Project started before 1 month and 14 days
  * http://erikroyall.github.com/hilo/
  * Copyright (c) 2013 Erik Royall
  * Licensed under MIT (see LICENSE-MIT) 
@@ -60,6 +60,10 @@
 
     // Main AJAX function (Hilo.ajax)
     , hiloAjax
+
+    , own = function (obj, prop) {
+      return obj.hasOwnProperty(prop);
+    }
 
     // Loop Variable
     , _i;
@@ -190,25 +194,25 @@
       if (/Win(?:dows )?([^do]{2})\s?(\d+\.\d+)?/.test(ua)) {
         if (RegExp["$1"] === "NT") {
           switch(RegExp["$2"]) {
-            case "5.0": {
+            case "5.0":
               system.win = "2000";
-            } break;
+              break;
             
-            case "5.1": {
+            case "5.1":
               system.win = "XP";
-            } break;
+              break;
             
-            case "6.0": {
+            case "6.0":
               system.win = "Vista";
-            } break;
+              break;
             
-            case "6.1": {
+            case "6.1":
               system.win = "7";
-            } break;
+              break;
             
-            default: {
+            default:
               system.win = "NT";
-            } break;
+              break;
           }
         } else if (RegExp["$1"] === "9x") {
           system.win = "ME";
@@ -3194,21 +3198,21 @@
         typeof config.complete ? config.complete.call(this, xhr) : null;
         
         switch (xhr.status) {
-          case 200: {
+          case 200:
             typeof config.success ? config.success.call(this, xhr) : null;
-          } break;
+            break;
 
-          case 404: {
+          case 404:
             typeof config.notfound ? config.notfound.call(this, xhr) : null;
-          } break;
+            break;
 
-          case 403: {
+          case 403:
             typeof config.forbidden ? config.forbidden.call(this, xhr) : null;
-          } break;
+            break;
 
-          case 500: {
+          case 500:
             typeof config.error ? config.error.call(this, xhr) : null;
-          } break;
+            break;
         }
       }
     };
@@ -4271,6 +4275,71 @@
   // Hilo CSS
   // --------------------------------------------------
 
+  function unhyph (prop) {
+    return prop.replace(/-(.)/g, function (m, m1) {
+      return m1.toUpperCase();
+    });
+  }
+
+  function unitize (unit, prop) {
+    var pixel = {
+      "width": true,
+      "max-width": true,
+      "min-width": true,
+
+      "height": true,
+      "max-height": true,
+      "min-height": true,
+
+      "border-width": true,
+      "border-top-width": true,
+      "border-left-width": true,
+      "border-bottom-width": true,
+      "border-right-width": true,
+      "border-radius": true,
+
+      "outline-width": true,
+      "outline-offset": true,
+      "stroke-width": true,
+
+      "font-size": true,
+      "line-height": true,
+      "letter-spacing": true,
+      "text-indent": true,
+      "text-underline-width": true,
+
+      "margin": true,
+      "margin-top": true,
+      "margin-left": true,
+      "margin-bottom": true,
+      "margin-right": true,
+
+      "padding": true,
+      "padding-top": true,
+      "padding-left": true,
+      "padding-bottom": true,
+      "padding-right": true,
+
+      "top": true,
+      "left": true,
+      "bottom": true,
+      "right": true
+    };
+
+    if (typeof unit === "string") {
+      return unit;
+    }
+
+    if (pixel[prop] === true) {
+      console.log("Changing " + unit + " to " + unit + "px");
+      return unit + "px";
+    }
+
+    console.log("Conversion not possible");
+
+    return unit;
+  }
+
   extend(Dom.prototype, {
 
     /**
@@ -4278,25 +4347,42 @@
      *
      * @for Dom
      * @method css
-     * @param {string} prop Name of property
+     * @param {String|Object} prop Name of property | Properties
      * @param {string} value Value of property
      * @return {string|void}
      * @beta
      * @example
      * <div class="code"><pre class="prettyprint">
-     * $("p").css("marginLeft", "10em");
+     * $("p").css("margin-left", "10em");
+     * 
+     * $("p.round").css({
+     *   "border-radius": 10,
+     *   width: 100
+     * });
      * </pre></div>
      * @since 0.1.0
      */
     css: function (prop, value) {
-      if (value) { // If value arg. is given
-        return this.each(function (el) {
-          el.style[prop] = value; // Set CSS prop. to value
-        });
-      } else { // Otherwise, if value arg. is not given
-        return this.one(function (el) {
-          return el.style[prop]; // Return the style of that element
-        });
+      var _i;
+
+      if (typeof prop === "string") {
+        if (value) {
+          return this.each(function (el) {
+            el.style[unhyph(prop)] = unitize(value, unhyph(prop));
+          });
+        } else {
+          return this.first(function (el) {
+            return el.style[unhyph(prop)];
+          });
+        }
+      } else if (typeof prop === "object") {
+        for (_i in prop) {
+          if (own(prop, _i)) {
+            return this.each(function (el) {
+              el.style[unhyph(_i)] = unitize(prop[_i], unhyph(_i));
+            });
+          }
+        }
       }
     }
   });
@@ -4622,19 +4708,6 @@
         el.style.display = display;
       });
     },
-
-    // -------------------------
-    // .hide()
-    // -------------------------
-    // 
-    // Sets the display property of sel.els. to "none"
-    // 
-    // .hide () 
-    //
-    // Example:
-    // 
-    // $("p").hide();
-    // 
 
     /**
      * Sets the display property of sel.els. to "none"

@@ -79,21 +79,21 @@
         typeof config.complete ? config.complete.call(this, xhr) : null;
         
         switch (xhr.status) {
-          case 200: {
+          case 200:
             typeof config.success ? config.success.call(this, xhr) : null;
-          } break;
+            break;
 
-          case 404: {
+          case 404:
             typeof config.notfound ? config.notfound.call(this, xhr) : null;
-          } break;
+            break;
 
-          case 403: {
+          case 403:
             typeof config.forbidden ? config.forbidden.call(this, xhr) : null;
-          } break;
+            break;
 
-          case 500: {
+          case 500:
             typeof config.error ? config.error.call(this, xhr) : null;
-          } break;
+            break;
         }
       }
     };

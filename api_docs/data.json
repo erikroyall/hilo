@@ -24,6 +24,15 @@
             },
             "namespaces": {}
         },
+        "src\\anim\\main.js": {
+            "name": "src\\anim\\main.js",
+            "modules": {},
+            "classes": {
+                "Animation": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "src\\dom\\class-id.js": {
             "name": "src\\dom\\class-id.js",
             "modules": {},
@@ -151,6 +160,7 @@
             "submodules": {},
             "classes": {
                 "hilo": 1,
+                "Animation": 1,
                 "Dom": 1,
                 "Test": 1
             },
@@ -180,6 +190,48 @@
             "line": 29,
             "description": "The main Hilo Object / function",
             "static": 1
+        },
+        "Animation": {
+            "name": "Animation",
+            "shortname": "Animation",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Hilo",
+            "file": "src\\anim\\main.js",
+            "line": 6,
+            "description": "Animate a set of CSS properties given",
+            "is_constructor": 1,
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "css",
+                    "description": "An object containing CSS properties",
+                    "type": "Object"
+                },
+                {
+                    "name": "timing",
+                    "description": "The timing",
+                    "type": "Number"
+                },
+                {
+                    "name": "onanimationstart",
+                    "description": "fn to exec. when animation starts",
+                    "type": "Function"
+                },
+                {
+                    "name": "onanimationend",
+                    "description": "fn to exec. when animation ends",
+                    "type": "Function"
+                }
+            ],
+            "example": [
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\nnew Animation ({opacity:0});\nnew Animation ({width:100,height:100})\n</pre></div>"
+            ],
+            "since": "0.1.0"
         },
         "Dom": {
             "name": "Dom",
@@ -501,15 +553,15 @@
         },
         {
             "file": "src\\dom\\css.js",
-            "line": 8,
+            "line": 73,
             "description": "Set or return css property",
             "itemtype": "method",
             "name": "css",
             "params": [
                 {
                     "name": "prop",
-                    "description": "Name of property",
-                    "type": "String"
+                    "description": "Name of property | Properties",
+                    "type": "String|Object"
                 },
                 {
                     "name": "value",
@@ -523,14 +575,14 @@
             },
             "beta": 1,
             "example": [
-                "\n<div class=\"code\"><pre class=\"prettyprint\">\n$(\"p\").css(\"marginLeft\", \"10em\");\n</pre></div>"
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\n$(\"p\").css(\"margin-left\", \"10em\");\n\n$(\"p.round\").css({\n  \"border-radius\": 10,\n  width: 100\n});\n</pre></div>"
             ],
             "since": "0.1.0",
             "class": "Dom"
         },
         {
             "file": "src\\dom\\css.js",
-            "line": 74,
+            "line": 156,
             "description": "Get computed property",
             "itemtype": "method",
             "name": "computed",
@@ -1161,7 +1213,7 @@
         },
         {
             "file": "src\\fx\\simple.js",
-            "line": 42,
+            "line": 29,
             "description": "Sets the display property of sel.els. to \"none\"",
             "itemtype": "method",
             "name": "hide",
@@ -1177,7 +1229,7 @@
         },
         {
             "file": "src\\fx\\simple.js",
-            "line": 60,
+            "line": 47,
             "description": "Shows hidden elements, hides shown elements",
             "itemtype": "method",
             "name": "toggle",
@@ -1193,7 +1245,7 @@
         },
         {
             "file": "src\\fx\\simple.js",
-            "line": 82,
+            "line": 69,
             "description": "Sets opacity to 1",
             "itemtype": "method",
             "name": "appear",
@@ -1209,7 +1261,7 @@
         },
         {
             "file": "src\\fx\\simple.js",
-            "line": 100,
+            "line": 87,
             "description": "Sets opacity to 0",
             "itemtype": "method",
             "name": "disappear",
@@ -1225,7 +1277,7 @@
         },
         {
             "file": "src\\fx\\simple.js",
-            "line": 119,
+            "line": 106,
             "description": "Appears a disappeared element, disappears and appeared element",
             "itemtype": "method",
             "name": "toggleVisibility",
@@ -1241,7 +1293,7 @@
         },
         {
             "file": "src\\fx\\simple.js",
-            "line": 142,
+            "line": 129,
             "description": "Animates opacity prop. from 0 to 1 or 1 to 0",
             "itemtype": "method",
             "name": "fade",
@@ -1269,7 +1321,7 @@
         },
         {
             "file": "src\\fx\\simple.js",
-            "line": 201,
+            "line": 188,
             "description": "Animates opacity prop. from 0 to 1",
             "itemtype": "method",
             "name": "fadeIn",
@@ -1292,7 +1344,7 @@
         },
         {
             "file": "src\\fx\\simple.js",
-            "line": 219,
+            "line": 206,
             "description": "Animates opacity prop. from 1 to 0",
             "itemtype": "method",
             "name": "fadeOut",

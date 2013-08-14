@@ -40,6 +40,8 @@
     <div class="bd">
         <ul>
             
+                <li><a href="../classes/Animation.html">Animation</a></li>
+            
                 <li><a href="../classes/Dom.html">Dom</a></li>
             
                 <li><a href="../classes/hilo.html">hilo</a></li>
@@ -64,7 +66,7 @@
         <h2 class="no-toc">Files</h2>
     </div>
     <div class="bd">
-        <ul><li>src\ajax\main.js/<ul></ul></li><li>src\ajax\more.js/<ul></ul></li><li>src\core.js/<ul></ul></li><li>src\dom\class-id.js/<ul></ul></li><li>src\dom\css.js/<ul></ul></li><li>src\dom\els.js/<ul></ul></li><li>src\dom\helpers.js/<ul></ul></li><li>src\dom\main.js/<ul></ul></li><li>src\dom\manp.js/<ul></ul></li><li>src\dom\misc.js/<ul></ul></li><li>src\dom\sizzle.js/<ul></ul></li><li>src\end.js/<ul></ul></li><li>src\fx\simple.js/<ul></ul></li><li>src\test\comp.js/<ul></ul></li><li>src\test\main.js/<ul></ul></li></ul>
+        <ul><li>src\ajax\main.js/<ul></ul></li><li>src\ajax\more.js/<ul></ul></li><li>src\anim\main.js/<ul></ul></li><li>src\core.js/<ul></ul></li><li>src\dom\class-id.js/<ul></ul></li><li>src\dom\css.js/<ul></ul></li><li>src\dom\els.js/<ul></ul></li><li>src\dom\helpers.js/<ul></ul></li><li>src\dom\main.js/<ul></ul></li><li>src\dom\manp.js/<ul></ul></li><li>src\dom\misc.js/<ul></ul></li><li>src\dom\sizzle.js/<ul></ul></li><li>src\end.js/<ul></ul></li><li>src\fx\simple.js/<ul></ul></li><li>src\test\comp.js/<ul></ul></li><li>src\test\main.js/<ul></ul></li></ul>
     </div>
 </div>
 
@@ -80,6 +82,71 @@
   // Hilo CSS
   // --------------------------------------------------
 
+  function unhyph (prop) {
+    return prop.replace(/-(.)/g, function (m, m1) {
+      return m1.toUpperCase();
+    });
+  }
+
+  function unitize (unit, prop) {
+    var pixel = {
+      &quot;width&quot;: true,
+      &quot;max-width&quot;: true,
+      &quot;min-width&quot;: true,
+
+      &quot;height&quot;: true,
+      &quot;max-height&quot;: true,
+      &quot;min-height&quot;: true,
+
+      &quot;border-width&quot;: true,
+      &quot;border-top-width&quot;: true,
+      &quot;border-left-width&quot;: true,
+      &quot;border-bottom-width&quot;: true,
+      &quot;border-right-width&quot;: true,
+      &quot;border-radius&quot;: true,
+
+      &quot;outline-width&quot;: true,
+      &quot;outline-offset&quot;: true,
+      &quot;stroke-width&quot;: true,
+
+      &quot;font-size&quot;: true,
+      &quot;line-height&quot;: true,
+      &quot;letter-spacing&quot;: true,
+      &quot;text-indent&quot;: true,
+      &quot;text-underline-width&quot;: true,
+
+      &quot;margin&quot;: true,
+      &quot;margin-top&quot;: true,
+      &quot;margin-left&quot;: true,
+      &quot;margin-bottom&quot;: true,
+      &quot;margin-right&quot;: true,
+
+      &quot;padding&quot;: true,
+      &quot;padding-top&quot;: true,
+      &quot;padding-left&quot;: true,
+      &quot;padding-bottom&quot;: true,
+      &quot;padding-right&quot;: true,
+
+      &quot;top&quot;: true,
+      &quot;left&quot;: true,
+      &quot;bottom&quot;: true,
+      &quot;right&quot;: true
+    };
+
+    if (typeof unit === &quot;string&quot;) {
+      return unit;
+    }
+
+    if (pixel[prop] === true) {
+      console.log(&quot;Changing &quot; + unit + &quot; to &quot; + unit + &quot;px&quot;);
+      return unit + &quot;px&quot;;
+    }
+
+    console.log(&quot;Conversion not possible&quot;);
+
+    return unit;
+  }
+
   extend(Dom.prototype, {
 
     /**
@@ -87,25 +154,42 @@
      *
      * @for Dom
      * @method css
-     * @param {string} prop Name of property
+     * @param {String|Object} prop Name of property | Properties
      * @param {string} value Value of property
      * @return {string|void}
      * @beta
      * @example
      * &lt;div class=&quot;code&quot;&gt;&lt;pre class=&quot;prettyprint&quot;&gt;
-     * $(&quot;p&quot;).css(&quot;marginLeft&quot;, &quot;10em&quot;);
+     * $(&quot;p&quot;).css(&quot;margin-left&quot;, &quot;10em&quot;);
+     * 
+     * $(&quot;p.round&quot;).css({
+     *   &quot;border-radius&quot;: 10,
+     *   width: 100
+     * });
      * &lt;/pre&gt;&lt;/div&gt;
      * @since 0.1.0
      */
     css: function (prop, value) {
-      if (value) { // If value arg. is given
-        return this.each(function (el) {
-          el.style[prop] = value; // Set CSS prop. to value
-        });
-      } else { // Otherwise, if value arg. is not given
-        return this.one(function (el) {
-          return el.style[prop]; // Return the style of that element
-        });
+      var _i;
+
+      if (typeof prop === &quot;string&quot;) {
+        if (value) {
+          return this.each(function (el) {
+            el.style[unhyph(prop)] = unitize(value, unhyph(prop));
+          });
+        } else {
+          return this.first(function (el) {
+            return el.style[unhyph(prop)];
+          });
+        }
+      } else if (typeof prop === &quot;object&quot;) {
+        for (_i in prop) {
+          if (own(prop, _i)) {
+            return this.each(function (el) {
+              el.style[unhyph(_i)] = unitize(prop[_i], unhyph(_i));
+            });
+          }
+        }
       }
     }
   });

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src\end.js - hilo</title>
+    <title>src\anim\main.js - hilo</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -12,7 +12,7 @@
 </head>
 <body>
 <div class="main-header">
-  <h1 class="site-logo"><a href="../index.html">hilo: src\end.js</a></h1>
+  <h1 class="site-logo"><a href="../index.html">hilo: src\anim\main.js</a></h1>
   
   <p>API Docs for: 0.1.0-pre-dev-beta-9</p>
 </div>
@@ -74,39 +74,56 @@
 
   </div>
   <div class="main">
-    <div class="content"><h4>src\end.js</h4>
+    <div class="content"><h4>src\anim\main.js</h4>
 
 <pre class="code prettyprint linenums">
   
   // --------------------------------------------------
-  // Set event handler for triggering DOM Evenets
+  // Animation
   // --------------------------------------------------
-  
-  doc.onreadystatechange = function () {
-    if (doc.readyState === &quot;complete&quot;) {
-      for (_i = 0; _i &lt; callbacks.length; _i += 1) {
-        callbacks[_i]();
-      }
-    }
-  };
-
-  win.$ = hilo; // Shorthand
-
-  elapsed = new Date().getTime() - start;
 
   /**
-   * Time taken to load (in ms)
+   * Animate a set of CSS properties given
    * 
-   * @for hilo
-   * @property perf
-   * @type {number}
+   * @constructor
+   * @class Animation
+   * @private
+   * @param {Object} css An object containing CSS properties
+   * @param {Number} timing The timing
+   * @param {Function} onanimationstart fn to exec. when animation starts
+   * @param {Function} onanimationend fn to exec. when animation ends
+   * @example
+   * &lt;div class=&quot;code&quot;&gt;&lt;pre class=&quot;prettyprint&quot;&gt;
+   * new Animation ({opacity:0});
+   * new Animation ({width:100,height:100})
+   * &lt;/pre&gt;&lt;/div&gt;
    * @since 0.1.0
    */
-  hilo.perf = elapsed;
 
-  return hilo;
-}));
+  function Animation (css, timing, onanimationstart, onanimationend) {
+    if (typeof css !== &quot;object&quot;) {
+      return;
+    }
 
+    return this.each(function (el) {
+      var time;
+
+      switch(timing) {
+        case &quot;slow&quot;:
+          time = 200;
+          break;
+        case &quot;normal&quot;:
+          time = 120;
+          break;
+        case &quot;fast&quot;:
+          time = 80;
+          break;
+        default:
+          time = time || 120;
+          break;
+      }
+    });
+  }
 </pre>
 
 </div>

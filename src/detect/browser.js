@@ -122,25 +122,25 @@
       if (/Win(?:dows )?([^do]{2})\s?(\d+\.\d+)?/.test(ua)) {
         if (RegExp["$1"] === "NT") {
           switch(RegExp["$2"]) {
-            case "5.0": {
+            case "5.0":
               system.win = "2000";
-            } break;
+              break;
             
-            case "5.1": {
+            case "5.1":
               system.win = "XP";
-            } break;
+              break;
             
-            case "6.0": {
+            case "6.0":
               system.win = "Vista";
-            } break;
+              break;
             
-            case "6.1": {
+            case "6.1":
               system.win = "7";
-            } break;
+              break;
             
-            default: {
+            default:
               system.win = "NT";
-            } break;
+              break;
           }
         } else if (RegExp["$1"] === "9x") {
           system.win = "ME";

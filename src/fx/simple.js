@@ -26,19 +26,6 @@
       });
     },
 
-    // -------------------------
-    // .hide()
-    // -------------------------
-    // 
-    // Sets the display property of sel.els. to "none"
-    // 
-    // .hide () 
-    //
-    // Example:
-    // 
-    // $("p").hide();
-    // 
-
     /**
      * Sets the display property of sel.els. to "none"
      * 
