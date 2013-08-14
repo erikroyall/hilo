@@ -3595,11 +3595,11 @@
      * @return {Dom} The first element
      * @example
      * <div class="code"><pre class="prettyprint">
-     * $("p.hidden").first().show();
+     * $("p.hidden").firstEl().show();
      * </pre></div>
      * @since 0.1.0
      */
-    first: function () {
+    firstEl: function () {
       return new Dom([this[0]]);
     },
 
@@ -3615,7 +3615,7 @@
      * </pre></div>
      * @since 0.1.0
      */
-    last: function () {
+    lastEl: function () {
       return new Dom([this[this.length - 1]]);
     },
 
@@ -4284,41 +4284,41 @@
   function unitize (unit, prop) {
     var pixel = {
       "width": true,
-      "max-width": true,
-      "min-width": true,
+      "maxWidth": true,
+      "minWidth": true,
 
       "height": true,
-      "max-height": true,
-      "min-height": true,
+      "maxHeight": true,
+      "minHeight": true,
 
-      "border-width": true,
-      "border-top-width": true,
-      "border-left-width": true,
-      "border-bottom-width": true,
-      "border-right-width": true,
-      "border-radius": true,
+      "borderWidth": true,
+      "borderTopWidth": true,
+      "borderLeftWidth": true,
+      "borderBottomWidth": true,
+      "borderRightWidth": true,
+      "borderRadius": true,
 
-      "outline-width": true,
-      "outline-offset": true,
-      "stroke-width": true,
+      "outlineWidth": true,
+      "outlineOffset": true,
+      "strokeWidth": true,
 
-      "font-size": true,
-      "line-height": true,
-      "letter-spacing": true,
-      "text-indent": true,
-      "text-underline-width": true,
+      "fontSize": true,
+      "lineHeight": true,
+      "letterSpacing": true,
+      "textIndent": true,
+      "textUnderlineWidth": true,
 
       "margin": true,
-      "margin-top": true,
-      "margin-left": true,
-      "margin-bottom": true,
-      "margin-right": true,
+      "marginTop": true,
+      "marginLeft": true,
+      "marginBottom": true,
+      "marginRight": true,
 
       "padding": true,
-      "padding-top": true,
-      "padding-left": true,
-      "padding-bottom": true,
-      "padding-right": true,
+      "paddingTop": true,
+      "paddingLeft": true,
+      "paddingBottom": true,
+      "paddingRight": true,
 
       "top": true,
       "left": true,

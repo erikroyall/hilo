@@ -50,15 +50,15 @@
      * Return first element of the selected elements
      *
      * @for Dom
-     * @method first
+     * @method firstEl
      * @return {Dom} The first element
      * @example
      * <div class="code"><pre class="prettyprint">
-     * $("p.hidden").first().show();
+     * $("p.hidden").firstEl().show();
      * </pre></div>
      * @since 0.1.0
      */
-    first: function () {
+    firstEl: function () {
       return new Dom([this[0]]);
     },
 
@@ -66,15 +66,15 @@
      * Return last element of the selected elements
      *
      * @for Dom
-     * @method last
+     * @method lastEl
      * @return {Dom} The last element
      * @example
      * <div class="code"><pre class="prettyprint">
-     * $("p.hidden").last().show();
+     * $("p.hidden").lastEl().show();
      * </pre></div>
      * @since 0.1.0
      */
-    last: function () {
+    lastEl: function () {
       return new Dom([this[this.length - 1]]);
     },
 

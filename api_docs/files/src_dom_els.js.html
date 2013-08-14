@@ -133,11 +133,11 @@
      * @return {Dom} The first element
      * @example
      * &lt;div class=&quot;code&quot;&gt;&lt;pre class=&quot;prettyprint&quot;&gt;
-     * $(&quot;p.hidden&quot;).first().show();
+     * $(&quot;p.hidden&quot;).firstEl().show();
      * &lt;/pre&gt;&lt;/div&gt;
      * @since 0.1.0
      */
-    first: function () {
+    firstEl: function () {
       return new Dom([this[0]]);
     },
 
@@ -153,7 +153,7 @@
      * &lt;/pre&gt;&lt;/div&gt;
      * @since 0.1.0
      */
-    last: function () {
+    lastEl: function () {
       return new Dom([this[this.length - 1]]);
     },
 

@@ -636,7 +636,7 @@
                 "type": "Dom"
             },
             "example": [
-                "\n<div class=\"code\"><pre class=\"prettyprint\">\n$(\"p.hidden\").first().show();\n</pre></div>"
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\n$(\"p.hidden\").firstEl().show();\n</pre></div>"
             ],
             "since": "0.1.0",
             "class": "Dom"
