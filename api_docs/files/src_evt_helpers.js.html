@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>src\evt\helpers.js - hilo</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <script src=""></script>
+</head>
+<body>
+<div class="main-header">
+  <h1 class="site-logo"><a href="../index.html">hilo: src\evt\helpers.js</a></h1>
+  
+  <p>API Docs for: 0.1.0-pre-dev-beta-9</p>
+</div>
+<div class="doc">
+  <div class="sidebar">
+    <div id="modules" class="sidebox">
+    <div class="hd">
+        <h2 class="no-toc">Modules</h2>
+    </div>
+    <div class="bd">
+        <ul>
+            
+                <li><a href="../modules/Hilo.html">Hilo</a>
+                
+                </li>
+            
+        </ul>
+    </div>
+</div>
+
+<div id="classes" class="sidebox">
+    <div class="hd">
+        <h2 class="no-toc">Classes</h2>
+    </div>
+    <div class="bd">
+        <ul>
+            
+                <li><a href="../classes/Animation.html">Animation</a></li>
+            
+                <li><a href="../classes/Dom.html">Dom</a></li>
+            
+                <li><a href="../classes/hilo.html">hilo</a></li>
+            
+                <li><a href="../classes/Test.html">Test</a></li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<div id="fileTree" class="sidebox">
+    <div class="hd">
+        <h2 class="no-toc">Files</h2>
+    </div>
+    <div class="bd">
+        <ul><li>src\ajax\main.js/<ul></ul></li><li>src\ajax\more.js/<ul></ul></li><li>src\anim\main.js/<ul></ul></li><li>src\core.js/<ul></ul></li><li>src\dom\class-id.js/<ul></ul></li><li>src\dom\css.js/<ul></ul></li><li>src\dom\els.js/<ul></ul></li><li>src\dom\helpers.js/<ul></ul></li><li>src\dom\main.js/<ul></ul></li><li>src\dom\manp.js/<ul></ul></li><li>src\dom\misc.js/<ul></ul></li><li>src\dom\sizzle.js/<ul></ul></li><li>src\end.js/<ul></ul></li><li>src\evt\helpers.js/<ul></ul></li><li>src\fx\simple.js/<ul></ul></li><li>src\test\comp.js/<ul></ul></li><li>src\test\main.js/<ul></ul></li></ul>
+    </div>
+</div>
+
+
+
+  </div>
+  <div class="main">
+    <div class="content"><h4>src\evt\helpers.js</h4>
+
+<pre class="code prettyprint linenums">
+
+  // --------------------------------------------------
+  // Events
+  // --------------------------------------------------
+
+  extend(Dom.prototype, {
+
+    /**
+     * Listen to an event and execute a function when that event happend
+     * 
+     * @for Dom
+     * @method on
+     * @param {String} evt Name of event
+     * @param {Function} fn Function to be executed when the event is fired
+     * @return {Dom}
+     * @example
+     * &lt;div class=&quot;code&quot;&gt;&lt;pre class=&quot;prettyprint&quot;&gt;
+     * $(&quot;#box&quot;).on(&quot;click&quot;, function (e) {
+     *   console.log(&quot;#box was clicked&quot;);
+     * });
+     * &lt;/pre&gt;&lt;/div&gt;
+     * @since 0.1.0
+     */
+    on: (function () {
+      if (document.addEventListener) {
+        return function (evt, fn) {
+          return this.each(function (el) {
+            el.addEventListener(evt, fn, false);
+          });
+        };
+      } else if (document.attachEvent)  {
+        return function (evt, fn) {
+          return this.each(function (el) {
+            el.attachEvent(&quot;on&quot; + evt, fn);
+          });
+        };
+      } else {
+        return function (evt, fn) {
+          return this.each(function (el) {
+            el[&quot;on&quot; + evt] = fn;
+          });
+        };
+      }
+    }()),
+
+    /**
+     * Stop listening to an event
+     * 
+     * @for Dom
+     * @method on
+     * @param {String} evt Name of event
+     * @param {Function} fn Function to stop listening to
+     * @return {Dom}
+     * @example
+     * &lt;div class=&quot;code&quot;&gt;&lt;pre class=&quot;prettyprint&quot;&gt;
+     * $(&quot;#box&quot;).off(&quot;click&quot;, fn);
+     * &lt;/pre&gt;&lt;/div&gt;
+     * @since 0.1.0
+     */
+    off: (function () {
+      if (document.removeEventListener) {
+        return function (evt, fn) {
+          return this.each(function (el) {
+            el.removeEventListener(evt, fn, false);
+          });
+        };
+      } else if (document.detachEvent)  {
+        return function (evt, fn) {
+          return this.each(function (el) {
+            el.detachEvent(&quot;on&quot; + evt, fn);
+          });
+        };
+      } else {
+        return function (evt) {
+          return this.each(function (el) {
+            el[&quot;on&quot; + evt] = null;
+          });
+        };
+      }
+    }()),
+
+    /**
+     * Trigger or fire an event
+     * 
+     * @for Dom
+     * @method fire
+     * @param {String} evt Name of event to fire
+     * @return {Dom}
+     * @example
+     * &lt;div class=&quot;code&quot;&gt;&lt;pre class=&quot;prettyprint&quot;&gt;
+     * $(&quot;#uploadForm&quot;).fire(&quot;overload&quot;);
+     * &lt;/pre&gt;&lt;/div&gt;
+     * @since 0.1.0
+     */
+    fire: (function () {
+      if (document.dispatchEvent) {
+        return function (event) {
+          var evt = document.createEvent(&quot;UIEvents&quot;);
+          evt.initUIEvent(event, true, true, window, 1);
+
+          return this.each(function (el) {
+            el.dispatchEvent(evt);
+          });
+        };
+      } else if (document.fireEvent) {
+        return function (event) {
+          var evt = document.createEventObject();
+          evt.button = 1;
+
+          return this.each(function(el) {
+            el.fireEvent(&quot;on&quot; + event, evt);
+          });
+        };
+      } else {
+        return function (event) {
+          return this.each(function (el) {
+            el[&quot;on&quot; + event].call();
+          });
+        };
+      }
+    }())
+  });
+</pre>
+
+</div>
+  </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>
