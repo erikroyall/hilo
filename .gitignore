@@ -1,5 +1,6 @@
 .grunt
-api_dcs
+api_docs
+doc
 node_modules
 _SpecRunner.html
 junit/*
