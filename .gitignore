@@ -1,5 +1,7 @@
 .grunt
+api_dcs
 node_modules
+_SpecRunner.html
 junit/*
 build/rls
 *.sublime-*
