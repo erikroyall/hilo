@@ -130,6 +130,4 @@
 
   };
 
-  extend(hilo, {
-    keys: key
-  });
+  hilo.keys = key;

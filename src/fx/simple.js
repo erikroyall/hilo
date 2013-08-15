@@ -23,6 +23,7 @@
 
       return this.each(function (el) {
         el.style.display = display;
+        el.setAttribute("aria-hidden", false);
       });
     },
 
@@ -41,6 +42,7 @@
     hide: function () {
       return this.each(function (el) {
         el.style.display = "none";
+        el.setAttribute("aria-hidden", true);
       });
     },
 
@@ -60,14 +62,16 @@
       return this.each(function (el) {
         if (el.style.display === "none") {
           el.style.display = display ? display : "";
+          el.setAttribute("aria-hidden", false);
         } else {
           el.style.display = "none";
+          el.setAttribute("aria-hidden", true);
         }
       });
     },
 
     /**
-     * Sets opacity to 1
+     * Sets visibility to "visible"
      * 
      * @for Dom
      * @method appear
@@ -80,12 +84,13 @@
      */
     appear: function () {
       return this.each(function (el) {
-        el.style.opacity = "1";
+        el.style.visibility = "visible";
+        el.setAttribute("aria-hidden", false);
       });
     },
 
     /**
-     * Sets opacity to 0
+     * Sets visiblity to "hidden"
      * 
      * @for Dom
      * @method disappear
@@ -98,8 +103,8 @@
      */
     disappear: function () {
       return this.each(function (el) {
-        el.style.opacity = "0";
-        el.style.cursor = "default";
+        el.style.visibility = "hidden";
+        el.setAttribute("aria-hidden", true);
       });
     },
 

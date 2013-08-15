@@ -46,3 +46,7 @@
   }
 
   Dom.prototype = Array.prototype;
+
+  extend(Dom.prototype, {
+    constructor: Dom
+  });

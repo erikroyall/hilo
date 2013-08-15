@@ -66,7 +66,7 @@
         <h2 class="no-toc">Files</h2>
     </div>
     <div class="bd">
-        <ul><li>src\ajax\main.js/<ul></ul></li><li>src\ajax\more.js/<ul></ul></li><li>src\anim\main.js/<ul></ul></li><li>src\core.js/<ul></ul></li><li>src\dom\class-id.js/<ul></ul></li><li>src\dom\css.js/<ul></ul></li><li>src\dom\els.js/<ul></ul></li><li>src\dom\helpers.js/<ul></ul></li><li>src\dom\main.js/<ul></ul></li><li>src\dom\manp.js/<ul></ul></li><li>src\dom\misc.js/<ul></ul></li><li>src\dom\sizzle.js/<ul></ul></li><li>src\end.js/<ul></ul></li><li>src\fx\simple.js/<ul></ul></li><li>src\test\comp.js/<ul></ul></li><li>src\test\main.js/<ul></ul></li></ul>
+        <ul><li>src\ajax\main.js/<ul></ul></li><li>src\ajax\more.js/<ul></ul></li><li>src\anim\main.js/<ul></ul></li><li>src\core.js/<ul></ul></li><li>src\dom\class-id.js/<ul></ul></li><li>src\dom\css.js/<ul></ul></li><li>src\dom\els.js/<ul></ul></li><li>src\dom\helpers.js/<ul></ul></li><li>src\dom\main.js/<ul></ul></li><li>src\dom\manp.js/<ul></ul></li><li>src\dom\misc.js/<ul></ul></li><li>src\dom\sizzle.js/<ul></ul></li><li>src\end.js/<ul></ul></li><li>src\evt\helpers.js/<ul></ul></li><li>src\fx\simple.js/<ul></ul></li><li>src\test\comp.js/<ul></ul></li><li>src\test\main.js/<ul></ul></li></ul>
     </div>
 </div>
 
@@ -102,6 +102,7 @@
 
       return this.each(function (el) {
         el.style.display = display;
+        el.setAttribute(&quot;aria-hidden&quot;, false);
       });
     },
 
@@ -120,6 +121,7 @@
     hide: function () {
       return this.each(function (el) {
         el.style.display = &quot;none&quot;;
+        el.setAttribute(&quot;aria-hidden&quot;, true);
       });
     },
 
@@ -139,14 +141,16 @@
       return this.each(function (el) {
         if (el.style.display === &quot;none&quot;) {
           el.style.display = display ? display : &quot;&quot;;
+          el.setAttribute(&quot;aria-hidden&quot;, false);
         } else {
           el.style.display = &quot;none&quot;;
+          el.setAttribute(&quot;aria-hidden&quot;, true);
         }
       });
     },
 
     /**
-     * Sets opacity to 1
+     * Sets visibility to &quot;visible&quot;
      * 
      * @for Dom
      * @method appear
@@ -159,12 +163,13 @@
      */
     appear: function () {
       return this.each(function (el) {
-        el.style.opacity = &quot;1&quot;;
+        el.style.visibility = &quot;visible&quot;;
+        el.setAttribute(&quot;aria-hidden&quot;, false);
       });
     },
 
     /**
-     * Sets opacity to 0
+     * Sets visiblity to &quot;hidden&quot;
      * 
      * @for Dom
      * @method disappear
@@ -177,8 +182,8 @@
      */
     disappear: function () {
       return this.each(function (el) {
-        el.style.opacity = &quot;0&quot;;
-        el.style.cursor = &quot;default&quot;;
+        el.style.visibility = &quot;hidden&quot;;
+        el.setAttribute(&quot;aria-hidden&quot;, true);
       });
     },
 

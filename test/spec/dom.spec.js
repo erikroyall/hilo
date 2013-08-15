@@ -35,17 +35,17 @@ describe("DOM fx", function () {
     el = document.getElementsByTagName('div')[0];
     expect(el.style.display).not.toEqual('none');
   });
-  it('.disappear() should set HTMLElement.style.opacity to "0"', function () {
+  it('.disappear() should set HTMLElement.style.visibility to "hidden"', function () {
     var el; 
     el = document.getElementsByTagName('div')[0];
     Hilo('div').disappear();
-    expect(el.style.opacity).toEqual('0');
+    expect(el.style.visibility).toEqual('hidden');
   });
-  it('.appear() should set HTMLElement.style.opacity to "1"', function () {
+  it('.appear() should set HTMLElement.style.visibility to "visible"', function () {
     var el; 
     Hilo('div').appear();
     el = document.getElementsByTagName('div')[0];
-    expect(el.style.opacity).toEqual('1');
+    expect(el.style.visibility).toEqual('visible');
   });
 });
 
@@ -71,6 +71,33 @@ describe("DOM Methods", function () {
       he = Hilo(el);
 
       return he.html() === innerContent;
+    });
+  });
+  describe('.append()', function() {
+    it('should append content', function () {
+      var el = document.createElement('div');
+
+      el.innerHTML = "Hello";
+
+      Hilo(el).append(" World");
+
+      expect(el.innerHTML).toEqual("Hello World");
+    });
+  });
+  describe('.attr()', function() {
+    it('should set an attribute', function() {
+      var el = document.createElement('div');
+
+      Hilo(el).attr("hidden", "yes");
+
+      expect(el.getAttribute("hidden")).toEqual("yes");
+    });
+    it('should get an attribute', function() {
+      var el = document.createElement('div');
+
+      el.setAttribute("shown", "yes");
+
+      expect(Hilo(el).attr("shown")).toEqual("yes");
     });
   });
   describe('.addClass()', function() {
@@ -144,12 +171,26 @@ describe("DOM Methods", function () {
     it('should set css of an element', function () {
       var el = document.createElement('div')
         , styl = el.style
-        , prop = 'backgroundColor'
+        , prop = 'background-color'
         , val = 'green';
 
       Hilo(el).css(prop, val);
 
-      expect(el.style[prop]).toEqual(val);
+      expect(el.style['backgroundColor']).toEqual(val);
+    });
+    it('should set multiple css props. at one', function () {
+      var el = document.createElement('div')
+        , props = {
+          'background-color': 'green',
+          'color': 'red',
+          'margin-top': 6
+        };
+
+      Hilo(el).css(props);
+
+      expect(el.style.backgroundColor).toEqual('green');
+      expect(el.style.color).toEqual('red');
+      expect(el.style.marginTop).toEqual('6px');
     });
     it('should get css val of prop. of an element', function () {
       var el = document.createElement('div')
@@ -160,6 +201,17 @@ describe("DOM Methods", function () {
       el.style[prop] = val;
 
       expect(Hilo(el).css(prop)).toEqual(val);
+    });
+  });
+  describe('.empty()', function() {
+    it('should set innerHTML to ""', function() {
+      var el = document.createElement("div");
+
+      el.innerHTML = "<p>Lorem ipsum dolor sit amet";
+
+      Hilo(el).empty();
+
+      expect(el.innerHTML).toEqual("");
     });
   });
 });

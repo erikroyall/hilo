@@ -104,6 +104,15 @@
             "fors": {},
             "namespaces": {}
         },
+        "src\\evt\\helpers.js": {
+            "name": "src\\evt\\helpers.js",
+            "modules": {},
+            "classes": {},
+            "fors": {
+                "Dom": 1
+            },
+            "namespaces": {}
+        },
         "src\\fx\\simple.js": {
             "name": "src\\fx\\simple.js",
             "modules": {},
@@ -553,7 +562,7 @@
         },
         {
             "file": "src\\dom\\css.js",
-            "line": 73,
+            "line": 70,
             "description": "Set or return css property",
             "itemtype": "method",
             "name": "css",
@@ -582,7 +591,7 @@
         },
         {
             "file": "src\\dom\\css.js",
-            "line": 156,
+            "line": 154,
             "description": "Get computed property",
             "itemtype": "method",
             "name": "computed",
@@ -630,7 +639,7 @@
             "line": 49,
             "description": "Return first element of the selected elements",
             "itemtype": "method",
-            "name": "first",
+            "name": "firstEl",
             "return": {
                 "description": "The first element",
                 "type": "Dom"
@@ -646,13 +655,13 @@
             "line": 65,
             "description": "Return last element of the selected elements",
             "itemtype": "method",
-            "name": "last",
+            "name": "lastEl",
             "return": {
                 "description": "The last element",
                 "type": "Dom"
             },
             "example": [
-                "\n<div class=\"code\"><pre class=\"prettyprint\">\n$(\"p.hidden\").last().show();\n</pre></div>"
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\n$(\"p.hidden\").lastEl().show();\n</pre></div>"
             ],
             "since": "0.1.0",
             "class": "Dom"
@@ -1189,6 +1198,85 @@
             "class": "Dom"
         },
         {
+            "file": "src\\evt\\helpers.js",
+            "line": 8,
+            "description": "Listen to an event and execute a function when that event happend",
+            "itemtype": "method",
+            "name": "on",
+            "params": [
+                {
+                    "name": "evt",
+                    "description": "Name of event",
+                    "type": "String"
+                },
+                {
+                    "name": "fn",
+                    "description": "Function to be executed when the event is fired",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Dom"
+            },
+            "example": [
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\n$(\"#box\").on(\"click\", function (e) {\n  console.log(\"#box was clicked\");\n});\n</pre></div>"
+            ],
+            "since": "0.1.0",
+            "class": "Dom"
+        },
+        {
+            "file": "src\\evt\\helpers.js",
+            "line": 46,
+            "description": "Stop listening to an event",
+            "itemtype": "method",
+            "name": "on",
+            "params": [
+                {
+                    "name": "evt",
+                    "description": "Name of event",
+                    "type": "String"
+                },
+                {
+                    "name": "fn",
+                    "description": "Function to stop listening to",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Dom"
+            },
+            "example": [
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\n$(\"#box\").off(\"click\", fn);\n</pre></div>"
+            ],
+            "since": "0.1.0",
+            "class": "Dom"
+        },
+        {
+            "file": "src\\evt\\helpers.js",
+            "line": 82,
+            "description": "Trigger or fire an event",
+            "itemtype": "method",
+            "name": "fire",
+            "params": [
+                {
+                    "name": "evt",
+                    "description": "Name of event to fire",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Dom"
+            },
+            "example": [
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\n$(\"#uploadForm\").fire(\"overload\");\n</pre></div>"
+            ],
+            "since": "0.1.0",
+            "class": "Dom"
+        },
+        {
             "file": "src\\fx\\simple.js",
             "line": 8,
             "description": "Sets the display property of sel.els. to \"\" or given value",
@@ -1213,7 +1301,7 @@
         },
         {
             "file": "src\\fx\\simple.js",
-            "line": 29,
+            "line": 30,
             "description": "Sets the display property of sel.els. to \"none\"",
             "itemtype": "method",
             "name": "hide",
@@ -1229,7 +1317,7 @@
         },
         {
             "file": "src\\fx\\simple.js",
-            "line": 47,
+            "line": 49,
             "description": "Shows hidden elements, hides shown elements",
             "itemtype": "method",
             "name": "toggle",
@@ -1245,8 +1333,8 @@
         },
         {
             "file": "src\\fx\\simple.js",
-            "line": 69,
-            "description": "Sets opacity to 1",
+            "line": 73,
+            "description": "Sets visibility to \"visible\"",
             "itemtype": "method",
             "name": "appear",
             "return": {
@@ -1261,8 +1349,8 @@
         },
         {
             "file": "src\\fx\\simple.js",
-            "line": 87,
-            "description": "Sets opacity to 0",
+            "line": 92,
+            "description": "Sets visiblity to \"hidden\"",
             "itemtype": "method",
             "name": "disappear",
             "return": {
@@ -1277,7 +1365,7 @@
         },
         {
             "file": "src\\fx\\simple.js",
-            "line": 106,
+            "line": 111,
             "description": "Appears a disappeared element, disappears and appeared element",
             "itemtype": "method",
             "name": "toggleVisibility",
@@ -1293,7 +1381,7 @@
         },
         {
             "file": "src\\fx\\simple.js",
-            "line": 129,
+            "line": 134,
             "description": "Animates opacity prop. from 0 to 1 or 1 to 0",
             "itemtype": "method",
             "name": "fade",
@@ -1321,7 +1409,7 @@
         },
         {
             "file": "src\\fx\\simple.js",
-            "line": 188,
+            "line": 193,
             "description": "Animates opacity prop. from 0 to 1",
             "itemtype": "method",
             "name": "fadeIn",
@@ -1344,7 +1432,7 @@
         },
         {
             "file": "src\\fx\\simple.js",
-            "line": 206,
+            "line": 211,
             "description": "Animates opacity prop. from 1 to 0",
             "itemtype": "method",
             "name": "fadeOut",

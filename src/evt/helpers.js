@@ -5,24 +5,22 @@
 
   extend(Dom.prototype, {
 
-    // -------------------------
-    // .on()
-    // -------------------------
-    // 
-    // Listen to an event and execute a function
-    // when that event happens
-    // 
-    // .on( evt, fn )
-    //   !evt (string) : The name of event
-    //   fn (function) : Function to be executed when the event is fired
-    //
-    // Examples:
-    // 
-    // $("p.hidden").on("click", function () {
-    //   $(this).show()
-    // })
-    //
-
+    /**
+     * Listen to an event and execute a function when that event happend
+     * 
+     * @for Dom
+     * @method on
+     * @param {String} evt Name of event
+     * @param {Function} fn Function to be executed when the event is fired
+     * @return {Dom}
+     * @example
+     * <div class="code"><pre class="prettyprint">
+     * $("#box").on("click", function (e) {
+     *   console.log("#box was clicked");
+     * });
+     * </pre></div>
+     * @since 0.1.0
+     */
     on: (function () {
       if (document.addEventListener) {
         return function (evt, fn) {
@@ -45,21 +43,20 @@
       }
     }()),
 
-    // -------------------------
-    // .off()
-    // -------------------------
-    // 
-    // Stop listening to an event
-    // 
-    // .off( evt, fn )
-    //   !evt (string) : The name of event
-    //   fn (function) : The Event handler function
-    //
-    // Examples:
-    // 
-    // $("p").off("click", fn)
-    //
-
+    /**
+     * Stop listening to an event
+     * 
+     * @for Dom
+     * @method on
+     * @param {String} evt Name of event
+     * @param {Function} fn Function to stop listening to
+     * @return {Dom}
+     * @example
+     * <div class="code"><pre class="prettyprint">
+     * $("#box").off("click", fn);
+     * </pre></div>
+     * @since 0.1.0
+     */
     off: (function () {
       if (document.removeEventListener) {
         return function (evt, fn) {
@@ -82,20 +79,19 @@
       }
     }()),
 
-    // -------------------------
-    // .fire()
-    // -------------------------
-    // 
-    // Trigger (or fire) an event
-    // 
-    // .fire( evt )
-    //   !evt (string) : The name of event
-    //
-    // Examples:
-    // 
-    // $("p.hidden").fire("click")
-    //
-
+    /**
+     * Trigger or fire an event
+     * 
+     * @for Dom
+     * @method fire
+     * @param {String} evt Name of event to fire
+     * @return {Dom}
+     * @example
+     * <div class="code"><pre class="prettyprint">
+     * $("#uploadForm").fire("overload");
+     * </pre></div>
+     * @since 0.1.0
+     */
     fire: (function () {
       if (document.dispatchEvent) {
         return function (event) {

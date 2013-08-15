@@ -396,7 +396,7 @@
         });
       } else {
         return this.first(function (el) {
-          return el[name];
+          return el.getAttribute(name);
         });
       }
     }

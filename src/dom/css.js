@@ -59,11 +59,8 @@
     }
 
     if (pixel[prop] === true) {
-      console.log("Changing " + unit + " to " + unit + "px");
       return unit + "px";
     }
-
-    console.log("Conversion not possible");
 
     return unit;
   }
@@ -91,32 +88,33 @@
      * @since 0.1.0
      */
     css: function (prop, value) {
-      var _i;
+      var unhyphed;
 
       if (typeof prop === "string") {
+        unhyphed = unhyph(prop);
+
         if (value) {
           return this.each(function (el) {
-            el.style[unhyph(prop)] = unitize(value, unhyph(prop));
+            el.style[unhyphed] = unitize(value, unhyphed);
           });
         } else {
           return this.first(function (el) {
-            return el.style[unhyph(prop)];
+            return el.style[unhyphed];
           });
         }
       } else if (typeof prop === "object") {
-        for (_i in prop) {
-          if (own(prop, _i)) {
-            return this.each(function (el) {
-              el.style[unhyph(_i)] = unitize(prop[_i], unhyph(_i));
-            });
-          }
-        }
+        forIn(prop, function (pr) {
+          unhyphed = unhyph(pr);
+
+          this.each(function (el) {
+            el.style[unhyphed] = unitize(prop[pr], unhyphed);
+          });
+        }, this);
       }
     }
   });
 
   (function () {
-
     var cssObj = {}
       , impCss;
 

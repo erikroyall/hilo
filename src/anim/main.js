@@ -26,22 +26,5 @@
       return;
     }
 
-    return this.each(function (el) {
-      var time;
-
-      switch(timing) {
-        case "slow":
-          time = 200;
-          break;
-        case "normal":
-          time = 120;
-          break;
-        case "fast":
-          time = 80;
-          break;
-        default:
-          time = time || 120;
-          break;
-      }
-    });
+    
   }

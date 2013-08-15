@@ -1,6 +1,6 @@
 /*! 
- * Hilo - 0.1.0-pre-dev-beta-9 - 2013-08-14
- * Project started before 1 month and 14 days
+ * Hilo - 0.1.0-pre-dev-beta-9 - 2013-08-15
+ * Project started before 1 month and 15 days
  * http://erikroyall.github.com/hilo/
  * Copyright (c) 2013 Erik Royall
  * Licensed under MIT (see LICENSE-MIT) 
@@ -2851,12 +2851,24 @@
     }
   }
 
-  function extend (obj, ext) {
+  function forIn (obj, fn, thisRef) {
     var _i;
 
-    if (!(typeof obj === "object" && typeof ext === "object")) {
+    if (!(obj && fn)) {
       return;
     }
+
+    thisRef = thisRef || obj;
+
+    for (_i in obj) {
+      if (own(obj, _i)) {
+        fn.call(thisRef, _i);
+      }
+    }
+  }
+
+  function extend (obj, ext) {
+    var _i;
 
     for (_i in ext) {
       if (ext.hasOwnProperty(_i)) {
@@ -3417,6 +3429,10 @@
   }
 
   Dom.prototype = Array.prototype;
+
+  extend(Dom.prototype, {
+    constructor: Dom
+  });
   
   // --------------------------------------------------
   // Helper Functions
@@ -3591,7 +3607,7 @@
      * Return first element of the selected elements
      *
      * @for Dom
-     * @method first
+     * @method firstEl
      * @return {Dom} The first element
      * @example
      * <div class="code"><pre class="prettyprint">
@@ -3607,11 +3623,11 @@
      * Return last element of the selected elements
      *
      * @for Dom
-     * @method last
+     * @method lastEl
      * @return {Dom} The last element
      * @example
      * <div class="code"><pre class="prettyprint">
-     * $("p.hidden").last().show();
+     * $("p.hidden").lastEl().show();
      * </pre></div>
      * @since 0.1.0
      */
@@ -4265,7 +4281,7 @@
         });
       } else {
         return this.first(function (el) {
-          return el[name];
+          return el.getAttribute(name);
         });
       }
     }
@@ -4331,11 +4347,8 @@
     }
 
     if (pixel[prop] === true) {
-      console.log("Changing " + unit + " to " + unit + "px");
       return unit + "px";
     }
-
-    console.log("Conversion not possible");
 
     return unit;
   }
@@ -4363,32 +4376,33 @@
      * @since 0.1.0
      */
     css: function (prop, value) {
-      var _i;
+      var unhyphed;
 
       if (typeof prop === "string") {
+        unhyphed = unhyph(prop);
+
         if (value) {
           return this.each(function (el) {
-            el.style[unhyph(prop)] = unitize(value, unhyph(prop));
+            el.style[unhyphed] = unitize(value, unhyphed);
           });
         } else {
           return this.first(function (el) {
-            return el.style[unhyph(prop)];
+            return el.style[unhyphed];
           });
         }
       } else if (typeof prop === "object") {
-        for (_i in prop) {
-          if (own(prop, _i)) {
-            return this.each(function (el) {
-              el.style[unhyph(_i)] = unitize(prop[_i], unhyph(_i));
-            });
-          }
-        }
+        forIn(prop, function (pr) {
+          unhyphed = unhyph(pr);
+
+          this.each(function (el) {
+            el.style[unhyphed] = unitize(prop[pr], unhyphed);
+          });
+        }, this);
       }
     }
   });
 
   (function () {
-
     var cssObj = {}
       , impCss;
 
@@ -4502,24 +4516,22 @@
 
   extend(Dom.prototype, {
 
-    // -------------------------
-    // .on()
-    // -------------------------
-    // 
-    // Listen to an event and execute a function
-    // when that event happens
-    // 
-    // .on( evt, fn )
-    //   !evt (string) : The name of event
-    //   fn (function) : Function to be executed when the event is fired
-    //
-    // Examples:
-    // 
-    // $("p.hidden").on("click", function () {
-    //   $(this).show()
-    // })
-    //
-
+    /**
+     * Listen to an event and execute a function when that event happend
+     * 
+     * @for Dom
+     * @method on
+     * @param {String} evt Name of event
+     * @param {Function} fn Function to be executed when the event is fired
+     * @return {Dom}
+     * @example
+     * <div class="code"><pre class="prettyprint">
+     * $("#box").on("click", function (e) {
+     *   console.log("#box was clicked");
+     * });
+     * </pre></div>
+     * @since 0.1.0
+     */
     on: (function () {
       if (document.addEventListener) {
         return function (evt, fn) {
@@ -4542,21 +4554,20 @@
       }
     }()),
 
-    // -------------------------
-    // .off()
-    // -------------------------
-    // 
-    // Stop listening to an event
-    // 
-    // .off( evt, fn )
-    //   !evt (string) : The name of event
-    //   fn (function) : The Event handler function
-    //
-    // Examples:
-    // 
-    // $("p").off("click", fn)
-    //
-
+    /**
+     * Stop listening to an event
+     * 
+     * @for Dom
+     * @method on
+     * @param {String} evt Name of event
+     * @param {Function} fn Function to stop listening to
+     * @return {Dom}
+     * @example
+     * <div class="code"><pre class="prettyprint">
+     * $("#box").off("click", fn);
+     * </pre></div>
+     * @since 0.1.0
+     */
     off: (function () {
       if (document.removeEventListener) {
         return function (evt, fn) {
@@ -4579,20 +4590,19 @@
       }
     }()),
 
-    // -------------------------
-    // .fire()
-    // -------------------------
-    // 
-    // Trigger (or fire) an event
-    // 
-    // .fire( evt )
-    //   !evt (string) : The name of event
-    //
-    // Examples:
-    // 
-    // $("p.hidden").fire("click")
-    //
-
+    /**
+     * Trigger or fire an event
+     * 
+     * @for Dom
+     * @method fire
+     * @param {String} evt Name of event to fire
+     * @return {Dom}
+     * @example
+     * <div class="code"><pre class="prettyprint">
+     * $("#uploadForm").fire("overload");
+     * </pre></div>
+     * @since 0.1.0
+     */
     fire: (function () {
       if (document.dispatchEvent) {
         return function (event) {
@@ -4706,6 +4716,7 @@
 
       return this.each(function (el) {
         el.style.display = display;
+        el.setAttribute("aria-hidden", false);
       });
     },
 
@@ -4724,6 +4735,7 @@
     hide: function () {
       return this.each(function (el) {
         el.style.display = "none";
+        el.setAttribute("aria-hidden", true);
       });
     },
 
@@ -4743,14 +4755,16 @@
       return this.each(function (el) {
         if (el.style.display === "none") {
           el.style.display = display ? display : "";
+          el.setAttribute("aria-hidden", false);
         } else {
           el.style.display = "none";
+          el.setAttribute("aria-hidden", true);
         }
       });
     },
 
     /**
-     * Sets opacity to 1
+     * Sets visibility to "visible"
      * 
      * @for Dom
      * @method appear
@@ -4763,12 +4777,13 @@
      */
     appear: function () {
       return this.each(function (el) {
-        el.style.opacity = "1";
+        el.style.visibility = "visible";
+        el.setAttribute("aria-hidden", false);
       });
     },
 
     /**
-     * Sets opacity to 0
+     * Sets visiblity to "hidden"
      * 
      * @for Dom
      * @method disappear
@@ -4781,8 +4796,8 @@
      */
     disappear: function () {
       return this.each(function (el) {
-        el.style.opacity = "0";
-        el.style.cursor = "default";
+        el.style.visibility = "hidden";
+        el.setAttribute("aria-hidden", true);
       });
     },
 
@@ -5193,9 +5208,7 @@
 
   };
 
-  extend(hilo, {
-    keys: key
-  });
+  hilo.keys = key;
   
   // --------------------------------------------------
   // Hilo Extension API

@@ -92,9 +92,11 @@
             
                 <li><a href="#methods_filter">filter</a></li>
             
-                <li><a href="#methods_first">first</a></li>
+                <li><a href="#methods_fire">fire</a></li>
             
                 <li><a href="#methods_first">first</a></li>
+            
+                <li><a href="#methods_firstEl">firstEl</a></li>
             
                 <li><a href="#methods_get">get</a></li>
             
@@ -106,11 +108,15 @@
             
                 <li><a href="#methods_id">id</a></li>
             
-                <li><a href="#methods_last">last</a></li>
+                <li><a href="#methods_lastEl">lastEl</a></li>
             
                 <li><a href="#methods_map">map</a></li>
             
                 <li><a href="#methods_next">next</a></li>
+            
+                <li><a href="#methods_on">on</a></li>
+            
+                <li><a href="#methods_on">on</a></li>
             
                 <li><a href="#methods_one">one</a></li>
             
@@ -153,7 +159,7 @@
         <h2 class="no-toc">Files</h2>
     </div>
     <div class="bd">
-        <ul><li>src\ajax\main.js/<ul></ul></li><li>src\ajax\more.js/<ul></ul></li><li>src\anim\main.js/<ul></ul></li><li>src\core.js/<ul></ul></li><li>src\dom\class-id.js/<ul></ul></li><li>src\dom\css.js/<ul></ul></li><li>src\dom\els.js/<ul></ul></li><li>src\dom\helpers.js/<ul></ul></li><li>src\dom\main.js/<ul></ul></li><li>src\dom\manp.js/<ul></ul></li><li>src\dom\misc.js/<ul></ul></li><li>src\dom\sizzle.js/<ul></ul></li><li>src\end.js/<ul></ul></li><li>src\fx\simple.js/<ul></ul></li><li>src\test\comp.js/<ul></ul></li><li>src\test\main.js/<ul></ul></li></ul>
+        <ul><li>src\ajax\main.js/<ul></ul></li><li>src\ajax\more.js/<ul></ul></li><li>src\anim\main.js/<ul></ul></li><li>src\core.js/<ul></ul></li><li>src\dom\class-id.js/<ul></ul></li><li>src\dom\css.js/<ul></ul></li><li>src\dom\els.js/<ul></ul></li><li>src\dom\helpers.js/<ul></ul></li><li>src\dom\main.js/<ul></ul></li><li>src\dom\manp.js/<ul></ul></li><li>src\dom\misc.js/<ul></ul></li><li>src\dom\sizzle.js/<ul></ul></li><li>src\end.js/<ul></ul></li><li>src\evt\helpers.js/<ul></ul></li><li>src\fx\simple.js/<ul></ul></li><li>src\test\comp.js/<ul></ul></li><li>src\test\main.js/<ul></ul></li></ul>
     </div>
 </div>
 
@@ -286,9 +292,9 @@ $("p").addClass("paragraph")
     
         
     
-        <a href="../../files/src_fx_simple.js.html#l69"><code>src\fx\simple.js:69</code></a>
+        <a href="../../files/src_fx_simple.js.html#l73"><code>src\fx\simple.js:73</code></a>
     </span><br>
-    <p>Sets opacity to 1</p>
+    <p>Sets visibility to "visible"</p>
     
     
     
@@ -493,7 +499,7 @@ $("div#editor").class("add", "no-js")
     
         
     
-        <a href="../../files/src_dom_css.js.html#l156"><code>src\dom\css.js:156</code></a>
+        <a href="../../files/src_dom_css.js.html#l154"><code>src\dom\css.js:154</code></a>
     </span><br>
     <p>Get computed property</p>
     
@@ -528,7 +534,7 @@ $("div#editor").class("add", "no-js")
     
         
     
-        <a href="../../files/src_dom_css.js.html#l73"><code>src\dom\css.js:73</code></a>
+        <a href="../../files/src_dom_css.js.html#l70"><code>src\dom\css.js:70</code></a>
     </span><br>
     <p>Set or return css property</p>
     
@@ -582,9 +588,9 @@ $("p.round").css({
     
         
     
-        <a href="../../files/src_fx_simple.js.html#l87"><code>src\fx\simple.js:87</code></a>
+        <a href="../../files/src_fx_simple.js.html#l92"><code>src\fx\simple.js:92</code></a>
     </span><br>
-    <p>Sets opacity to 0</p>
+    <p>Sets visiblity to "hidden"</p>
     
     
     
@@ -702,7 +708,7 @@ $("#todo-list").empty()
     
         
     
-        <a href="../../files/src_fx_simple.js.html#l129"><code>src\fx\simple.js:129</code></a>
+        <a href="../../files/src_fx_simple.js.html#l134"><code>src\fx\simple.js:134</code></a>
     </span><br>
     <p>Animates opacity prop. from 0 to 1 or 1 to 0</p>
     
@@ -754,7 +760,7 @@ $("p").fade("out", 100);
     
         
     
-        <a href="../../files/src_fx_simple.js.html#l188"><code>src\fx\simple.js:188</code></a>
+        <a href="../../files/src_fx_simple.js.html#l193"><code>src\fx\simple.js:193</code></a>
     </span><br>
     <p>Animates opacity prop. from 0 to 1</p>
     
@@ -795,7 +801,7 @@ $("p").fadeIn(140);
     
         
     
-        <a href="../../files/src_fx_simple.js.html#l206"><code>src\fx\simple.js:206</code></a>
+        <a href="../../files/src_fx_simple.js.html#l211"><code>src\fx\simple.js:211</code></a>
     </span><br>
     <p>Animates opacity prop. from 1 to 0</p>
     
@@ -871,27 +877,41 @@ $("div").filter(function (el) {
 </div>
 
             
-                <a name="methods_first"></a>
+                <a name="methods_fire"></a>
 <div class="method item">
-    <a href="..\classes\Dom.html" class="crosslink">Dom</a> <strong class="name"><code>first</code></strong>( <code>  </code> ) 
+    <a href="..\classes\Dom.html" class="crosslink">Dom</a> <strong class="name"><code>fire</code></strong>( <code>evt </code> ) 
     <br>
     <span class="foundat">
     
         
     
-        <a href="../../files/src_dom_els.js.html#l49"><code>src\dom\els.js:49</code></a>
+        <a href="../../files/src_evt_helpers.js.html#l82"><code>src\evt\helpers.js:82</code></a>
     </span><br>
-    <p>Return first element of the selected elements</p>
+    <p>Trigger or fire an event</p>
+    
+    <strong>Parameters:</strong>
+    <ul class="params">
+    
+        <li>
+        
+            <code>evt</code> <strong>&lt;String&gt;</strong>
+        
+        
+        <p>Name of event to fire</p>
+            
+        </li>
+    
+    </ul>
     
     
     
-    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="..\classes\Dom.html" class="crosslink">Dom</a>&gt; The first element</div>
+    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="..\classes\Dom.html" class="crosslink">Dom</a>&gt; </div>
     
     
     
         <h5>Example</h5>
         <div class="code"><pre class="prettyprint">
-$("p.hidden").firstEl().show();
+$("#uploadForm").fire("overload");
 </pre></div>
     
 </div>
@@ -934,6 +954,32 @@ $("p.hidden").firstEl().show();
 $("div").first(function (e) {
   console.log(e + " is the first div");
 });
+</pre></div>
+    
+</div>
+
+            
+                <a name="methods_firstEl"></a>
+<div class="method item">
+    <a href="..\classes\Dom.html" class="crosslink">Dom</a> <strong class="name"><code>firstEl</code></strong>( <code>  </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../../files/src_dom_els.js.html#l49"><code>src\dom\els.js:49</code></a>
+    </span><br>
+    <p>Return first element of the selected elements</p>
+    
+    
+    
+    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="..\classes\Dom.html" class="crosslink">Dom</a>&gt; The first element</div>
+    
+    
+    
+        <h5>Example</h5>
+        <div class="code"><pre class="prettyprint">
+$("p.hidden").firstEl().show();
 </pre></div>
     
 </div>
@@ -1015,7 +1061,7 @@ if(!$("audio:not([controls])").hasClass("hidden")) {
     
         
     
-        <a href="../../files/src_fx_simple.js.html#l29"><code>src\fx\simple.js:29</code></a>
+        <a href="../../files/src_fx_simple.js.html#l30"><code>src\fx\simple.js:30</code></a>
     </span><br>
     <p>Sets the display property of sel.els. to "none"</p>
     
@@ -1114,9 +1160,9 @@ $("p.rect").first().id("square")
 </div>
 
             
-                <a name="methods_last"></a>
+                <a name="methods_lastEl"></a>
 <div class="method item">
-    <a href="..\classes\Dom.html" class="crosslink">Dom</a> <strong class="name"><code>last</code></strong>( <code>  </code> ) 
+    <a href="..\classes\Dom.html" class="crosslink">Dom</a> <strong class="name"><code>lastEl</code></strong>( <code>  </code> ) 
     <br>
     <span class="foundat">
     
@@ -1134,7 +1180,7 @@ $("p.rect").first().id("square")
     
         <h5>Example</h5>
         <div class="code"><pre class="prettyprint">
-$("p.hidden").last().show();
+$("p.hidden").lastEl().show();
 </pre></div>
     
 </div>
@@ -1204,6 +1250,106 @@ $("div.need-cf").map(function (e) {
         <h5>Example</h5>
         <div class="code"><pre class="prettyprint">
 $("div.editor").next().class("next-to-editor")
+</pre></div>
+    
+</div>
+
+            
+                <a name="methods_on"></a>
+<div class="method item">
+    <a href="..\classes\Dom.html" class="crosslink">Dom</a> <strong class="name"><code>on</code></strong>( <code>evt, fn </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../../files/src_evt_helpers.js.html#l46"><code>src\evt\helpers.js:46</code></a>
+    </span><br>
+    <p>Stop listening to an event</p>
+    
+    <strong>Parameters:</strong>
+    <ul class="params">
+    
+        <li>
+        
+            <code>evt</code> <strong>&lt;String&gt;</strong>
+        
+        
+        <p>Name of event</p>
+            
+        </li>
+    
+        <li>
+        
+            <code>fn</code> <strong>&lt;Function&gt;</strong>
+        
+        
+        <p>Function to stop listening to</p>
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="..\classes\Dom.html" class="crosslink">Dom</a>&gt; </div>
+    
+    
+    
+        <h5>Example</h5>
+        <div class="code"><pre class="prettyprint">
+$("#box").off("click", fn);
+</pre></div>
+    
+</div>
+
+            
+                <a name="methods_on"></a>
+<div class="method item">
+    <a href="..\classes\Dom.html" class="crosslink">Dom</a> <strong class="name"><code>on</code></strong>( <code>evt, fn </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../../files/src_evt_helpers.js.html#l8"><code>src\evt\helpers.js:8</code></a>
+    </span><br>
+    <p>Listen to an event and execute a function when that event happend</p>
+    
+    <strong>Parameters:</strong>
+    <ul class="params">
+    
+        <li>
+        
+            <code>evt</code> <strong>&lt;String&gt;</strong>
+        
+        
+        <p>Name of event</p>
+            
+        </li>
+    
+        <li>
+        
+            <code>fn</code> <strong>&lt;Function&gt;</strong>
+        
+        
+        <p>Function to be executed when the event is fired</p>
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="..\classes\Dom.html" class="crosslink">Dom</a>&gt; </div>
+    
+    
+    
+        <h5>Example</h5>
+        <div class="code"><pre class="prettyprint">
+$("#box").on("click", function (e) {
+  console.log("#box was clicked");
+});
 </pre></div>
     
 </div>
@@ -1492,7 +1638,7 @@ $("p").show();
     
         
     
-        <a href="../../files/src_fx_simple.js.html#l47"><code>src\fx\simple.js:47</code></a>
+        <a href="../../files/src_fx_simple.js.html#l49"><code>src\fx\simple.js:49</code></a>
     </span><br>
     <p>Shows hidden elements, hides shown elements</p>
     
@@ -1560,7 +1706,7 @@ $(".someClass").on("click", function () {
     
         
     
-        <a href="../../files/src_fx_simple.js.html#l106"><code>src\fx\simple.js:106</code></a>
+        <a href="../../files/src_fx_simple.js.html#l111"><code>src\fx\simple.js:111</code></a>
     </span><br>
     <p>Appears a disappeared element, disappears and appeared element</p>
     

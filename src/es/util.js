@@ -17,12 +17,24 @@
     }
   }
 
-  function extend (obj, ext) {
+  function forIn (obj, fn, thisRef) {
     var _i;
 
-    if (!(typeof obj === "object" && typeof ext === "object")) {
+    if (!(obj && fn)) {
       return;
     }
+
+    thisRef = thisRef || obj;
+
+    for (_i in obj) {
+      if (own(obj, _i)) {
+        fn.call(thisRef, _i);
+      }
+    }
+  }
+
+  function extend (obj, ext) {
+    var _i;
 
     for (_i in ext) {
       if (ext.hasOwnProperty(_i)) {
