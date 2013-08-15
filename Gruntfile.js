@@ -66,6 +66,10 @@ module.exports = function(grunt) {
           "src/end.js"
           ],
         dest: "build/<%= pkg.name %>-dev.js"
+      },
+      release: {
+        src: "<%= concat.dist.src %>",
+        dest: "build/rls/<%= pkg.name %>-<%= pkg.version %>.js"
       }
     },
     uglify: {
@@ -112,11 +116,11 @@ module.exports = function(grunt) {
     watch: {
       gruntfile: {
         files: "<%= jshint.gruntfile.src %>",
-        tasks: ["jshint:gruntfile", "concat", "yuidoc", "uglify:hilo", "jshint:hilo", "jasmine:hilo"]
+        tasks: ["jshint:gruntfile", "concat:dist", "yuidoc", "uglify:hilo", "jshint:hilo", "jasmine:hilo"]
       },
       hilo: {
         files: "<%= concat.dist.src %>",
-        tasks: ["concat", "yuidoc", "uglify:hilo", "jshint:hilo", "jasmine:hilo"]
+        tasks: ["concat:dist", "yuidoc", "uglify:hilo", "jshint:hilo", "jasmine:hilo"]
       }
     },
     yuidoc: {
@@ -141,7 +145,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-contrib-jasmine");
 
   
-  grunt.registerTask("default", ["concat", "yuidoc", "uglify:hilo", "jasmine:hilo", "jshint", "watch"]);
+  grunt.registerTask("default", ["concat:dist", "yuidoc", "uglify:hilo", "jasmine:hilo", "jshint", "watch"]);
   grunt.registerTask("release", ["concat", "yuidoc"]);
 
 };
