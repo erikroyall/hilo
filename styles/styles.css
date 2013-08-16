@@ -140,12 +140,21 @@ a {
   }
 
   .site-logo {
-    font-size: 3.5em;
-    font-weight: bolder;
+    border: 5px solid #703e38;
+    background-color: #e7e4d5;
+    color: #c84648;
+
+    border-radius: 100px;
+    width: 200px;
+    height: 200px;
+    line-height: 200px;
+
+    font: 3em "Learning Curve Pro";
+    /*font-weight: bolder;*/
     text-transform: uppercase;
     word-wrap: break-word;
 
-    margin: 0.45em 0;
+    margin: 0.45em auto;
     padding: 0;
   }
 
@@ -153,32 +162,32 @@ a {
       -webkit-text-stroke: 1px #c84648;
     }
 
-    .chrome .site-logo::selection {
+    .site-logo::selection {
       background-color: transparent;
-      -webkit-text-stroke: 1px #e7e4d5;
+      font-family: "Learn Curve Dashed Pro";
     }
 
     @media all and (min-width: 240px) {
       .site-logo {
-        font-size: 5em;
+        font-size: 3.5em;
       }
     }
 
     @media all and (min-width: 350px) {
       .site-logo {
-        font-size: 6em;
+        font-size: 4em;
       }
     }
 
     @media all and (min-width: 500px) {
       .site-logo {
-        font-size: 8em;
+        font-size: 5em;
       }
     }
 
     @media all and (min-width: 800px) {
       .site-logo {
-        font-size: 9em;
+        font-size: 6em;
       }
     }
 
