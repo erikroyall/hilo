@@ -40,32 +40,38 @@ module.exports = function(grunt) {
       dist: {
         src: [
           "src/start.js",
-          "src/detect/browser.js",
-          "src/detect/feature.js",
-          "src/dom/sizzle.js",
-          "src/es/util.js",
+          "src/detect.js",
+          "src/util.js",
           "src/core.js",
-          "src/test/main.js",
-          "src/test/comp.js",
-          "src/shim/shims.js",
-          "src/ajax/main.js",
-          "src/ajax/more.js",
-          "src/dom/main.js",
-          "src/dom/helpers.js",
-          "src/dom/els.js",
-          "src/dom/manp.js",
-          "src/dom/class-id.js",
-          "src/dom/css.js",
-          "src/dom/misc.js",
-          "src/evt/helpers.js",
-          "src/evt/simple.js",
-          "src/fx/simple.js",
-          "src/detect/classify.js",
-          "src/evt/keymap.js",
-          "src/ext.js",
+          "src/test.js",
+          "src/polyfill.js",
+          "src/ajax.js",
+          "src/dom.js",
+          "src/evt.js",
+          "src/fx.js",
+          "src/misc.js",
           "src/end.js"
           ],
         dest: "build/<%= pkg.name %>-dev.js"
+      },
+      legacy: {
+        src: [
+          "src/start-legacy.js",
+          "src/detect.js",
+          "src/sizzle.js",
+          "src/util.js",
+          "src/legacy.js",
+          "src/core.js",
+          "src/test.js",
+          "src/polyfill.js",
+          "src/ajax.js",
+          "src/dom.js",
+          "src/evt.js",
+          "src/fx.js",
+          "src/misc.js",
+          "src/end.js"
+          ],
+        dest: "build/<%= pkg.name %>-legacy-dev.js"
       },
       release: {
         src: "<%= concat.dist.src %>",
@@ -75,7 +81,8 @@ module.exports = function(grunt) {
     uglify: {
       hilo: {
         files: {
-          "build/<%= pkg.name %>-dev.min.js" : ["build/<%= pkg.name %>-dev.js"]
+          "build/<%= pkg.name %>-dev.min.js" : ["build/<%= pkg.name %>-dev.js"],
+          "build/<%= pkg.name %>-legacy-dev.min.js" : ["build/<%= pkg.name %>-legacy-dev.js"]
         }
       }
     },
@@ -111,16 +118,19 @@ module.exports = function(grunt) {
       },
       hilo: {
         src: "build/<%= pkg.name %>-dev.js"
+      },
+      hiloLegacy: {
+        src: "build/<%= pkg.name %>-legacy-dev.js"
       }
     },
     watch: {
       gruntfile: {
         files: "<%= jshint.gruntfile.src %>",
-        tasks: ["jshint:gruntfile", "concat:dist", "yuidoc", "uglify:hilo", "jshint:hilo", "jasmine:hilo"]
+        tasks: ["jshint:gruntfile", "concat:dist", "concat:legacy", "yuidoc", "uglify:hilo", "jshint:hilo", "jasmine:hilo"]
       },
       hilo: {
         files: "<%= concat.dist.src %>",
-        tasks: ["concat:dist", "yuidoc", "uglify:hilo", "jshint:hilo", "jasmine:hilo"]
+        tasks: ["concat:dist", "concat:legacy", "yuidoc", "uglify:hilo", "jshint:hilo", "jasmine:hilo"]
       }
     },
     yuidoc: {
@@ -145,7 +155,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-contrib-jasmine");
 
   
-  grunt.registerTask("default", ["concat:dist", "yuidoc", "uglify:hilo", "jasmine:hilo", "jshint", "watch"]);
+  grunt.registerTask("default", ["concat:dist", "concat:legacy", "yuidoc", "uglify:hilo", "jasmine:hilo", "jshint", "watch"]);
   grunt.registerTask("release", ["concat", "yuidoc"]);
 
 };

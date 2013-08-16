@@ -32,6 +32,9 @@
     , win = window     // Reference to window
     , doc = document   // Reference to document
 
+    // Sizzle.js wrapper
+    , sizzle
+
     // Later stores detected features
     , detected
 

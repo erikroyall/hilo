@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>src\test\comp.js - hilo</title>
+    <title>src\test.js - hilo</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -12,9 +12,9 @@
 </head>
 <body>
 <div class="main-header">
-  <h1 class="site-logo"><a href="../index.html">hilo: src\test\comp.js</a></h1>
+  <h1 class="site-logo"><a href="../index.html">hilo: src\test.js</a></h1>
   
-  <p>API Docs for: 0.1.0-pre-dev-beta-9</p>
+  <p>API Docs for: 0.1.0-pre-dev-beta-10</p>
 </div>
 <div class="doc">
   <div class="sidebar">
@@ -66,7 +66,7 @@
         <h2 class="no-toc">Files</h2>
     </div>
     <div class="bd">
-        <ul><li>src\ajax\main.js/<ul></ul></li><li>src\ajax\more.js/<ul></ul></li><li>src\anim\main.js/<ul></ul></li><li>src\core.js/<ul></ul></li><li>src\dom\class-id.js/<ul></ul></li><li>src\dom\css.js/<ul></ul></li><li>src\dom\els.js/<ul></ul></li><li>src\dom\helpers.js/<ul></ul></li><li>src\dom\main.js/<ul></ul></li><li>src\dom\manp.js/<ul></ul></li><li>src\dom\misc.js/<ul></ul></li><li>src\dom\sizzle.js/<ul></ul></li><li>src\end.js/<ul></ul></li><li>src\evt\helpers.js/<ul></ul></li><li>src\fx\simple.js/<ul></ul></li><li>src\test\comp.js/<ul></ul></li><li>src\test\main.js/<ul></ul></li></ul>
+        <ul><li>src\ajax.js/<ul></ul></li><li>src\anim.js/<ul></ul></li><li>src\core.js/<ul></ul></li><li>src\dom.js/<ul></ul></li><li>src\end.js/<ul></ul></li><li>src\evt.js/<ul></ul></li><li>src\fx.js/<ul></ul></li><li>src\sizzle.js/<ul></ul></li><li>src\test.js/<ul></ul></li></ul>
     </div>
 </div>
 
@@ -74,10 +74,62 @@
 
   </div>
   <div class="main">
-    <div class="content"><h4>src\test\comp.js</h4>
+    <div class="content"><h4>src\test.js</h4>
 
 <pre class="code prettyprint linenums">
   
+  // --------------------------------------------------
+  // Testing
+  // --------------------------------------------------
+
+  extend(hilo, {
+
+    /**
+     * Public test function
+     *
+     * @for hilo
+     * @method test
+     * @param con
+     * @return {Test}
+     * @example
+     * &lt;div class=&quot;code&quot;&gt;&lt;pre class=&quot;prettyprint&quot;&gt;
+     * $.test(&quot;hello&quot;);
+     * $.test({
+     *   name: &quot;Erik Royall&quot;,
+     *   age: 14,
+     *   projects: [&quot;hilo&quot;, &quot;helio&quot;]
+     * });
+     * &lt;/pre&gt;&lt;/div&gt;
+     * @since 0.1.0
+     */
+    test: function (con) {
+      return new Test(con);
+    }
+  });
+
+  /**
+   * Main Test Class
+   *
+   * @constructor
+   * @class Test
+   * @param {Any} con To compare
+   * @param {boolean} neg Whether to inverse the result
+   * @return void
+   * @example
+   * &lt;div class=&quot;code&quot;&gt;&lt;pre class=&quot;prettyprint&quot;&gt;
+   * new Test({});
+   * new Test(&quot;Hilo&quot;, true);
+   * &lt;/pre&gt;&lt;/div&gt;
+   * @since 0.1.0
+   */
+  function Test (con, neg) {
+    this.con = con;
+    
+    if (neg) {
+      this.neg = true;
+    }
+  }
+    
   // --------------------------------------------------
   // Test Comparisions
   // --------------------------------------------------

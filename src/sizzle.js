@@ -2009,14 +2009,6 @@
       });
     }
 
-    // document.querySelectorAll = function querySelectorAll (selector) {
-    //   return Sizzle(selector, this);
-    // };
-
-    // document.querySelector = function querySelector (selector) {
-    //   return (document.querySelectorAll.call(this, selector)[0] || null);
-    // };
-
     return Sizzle;
 
   }());

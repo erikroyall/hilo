@@ -1,29 +1,11 @@
   
   // Core Library
 
-  // --------------------------------------------------
-  // select()
-  // --------------------------------------------------
-  // 
-  // Select elements
-  // 
-  // This function can be used throughout the code
-  // to select elements
-  // 
-  // Usage:
-  //
-  // select(selector, root)
-  //   selector - Selector {String}
-  //   root - Root element {String|HTMLElement}
-  //
-
-  select = feature.qsa3 ? function (selector, root) {
+  select = select || function (selector, root) {
     // Set root to given root or document
     root = root || doc;
 
     return root.querySelectorAll(selector);
-  } : function (selector, root) {
-    return sizzle(selector, root);
   };
 
   /**
@@ -79,3 +61,7 @@
   // ES Utils
   hilo.each = each;
   hilo.extend = extend;
+
+  // Legacy
+
+  hilo.legacy = typeof sizzle === "function";

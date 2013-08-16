@@ -13,7 +13,13 @@
   <script type="text/javascript" src="jasmine/jasmine-html.js"></script>
 
   <!-- include source files here... -->
-  <script type="text/javascript" src="../build/hilo-dev.js"></script>
+  
+  <!--[if lt IE 9]>
+    <script type="text/javascript" src="../build/hilo-legacy-dev.js"></script>
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+    <script type="text/javascript" src="../build/hilo-dev.js"></script>
+  <!--<![endif]-->
 
   <!-- include spec files here... -->
   <script type="text/javascript" src="spec/dom.spec.js"></script>
