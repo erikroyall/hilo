@@ -1,7 +1,7 @@
 
   // querySelector pollyfill using Sizzle
 
-  sizzle = (function(){
+  var sizzle = (function(){
 
     if (feature.qsa3 === true) {
       return;

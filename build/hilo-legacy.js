@@ -1,32 +1,35 @@
-/*! 
- * Hilo - 0.1.0-pre-dev-beta-10 - 2013-08-16
- * Project started before 1 month and 16 days
- * http://erikroyall.github.com/hilo/
- * Copyright (c) 2013 Erik Royall
- * Licensed under MIT (see LICENSE-MIT) 
- */
+// ========================= 
+// Hilo - 0.1.0-pre-dev-beta-10
+// ========================= 
+// 2013-08-18
+// Project started before 1 month and 18 days
+// http://erikroyall.github.com/hilo/
+// Copyright (c) 2013 Erik Royall
+// Licensed under MIT (see LICENSE-MIT) 
 
 (function (A, M, D) {
 
   // Asynchronous Module Definition, if available
 
-  var module = module || false
-    , define = define || false;
+  /*globals YUI: false, module: false, define: false*/
 
   if (typeof module !== "undefined" && module.exports) {
     module.exports = D;
   } else if (typeof define === "function" && define.amd) {
     define(D);
+  } else if (typeof YUI === "function") {
+    YUI.add(A, D);
   } else {
     M[A] = D();
   }
 }("Hilo", this, function () {
-  /*jshint -W083, -W064, -W030, -W098*/
+  /*jshint -W083, -W064, -W061, -W030*/
 
   // JSHint escapes:
-  //  W083 - Don't make function within a loop (Evts)
-  //  W064 - Missing new prefix when invoking constructor (Sizzle)
-  //  W030 - Allow expressions
+  // - W083 - Don't make function within a loop (Evts)
+  // - W064 - Eval can be harmful (JSON)
+  // - W064 - Missing new prefix when invoking constructor (Sizzle)
+  // - W030 - Saw an expression (Sizzle, Me)
 
   "use strict";
   
@@ -39,9 +42,6 @@
     // References
     , win = window     // Reference to window
     , doc = document   // Reference to document
-
-    // Sizzle.js wrapper
-    , sizzle
 
     // Later stores detected features
     , detected
@@ -810,9 +810,344 @@
     };
   }());
 
+  // --------------------------------------------------
+  // JSON
+  // --------------------------------------------------
+
+  /*!
+   * JSON Parser (Public Domain)
+   * by Douglas Crockford
+   * http://javascript.crockford.com/
+   */
+
+  // Create a json object only if one does not already exist. We create the
+  // methods in a closure to avoid creating global variables.
+
+  var json = {};
+
+  (function () {
+
+    function f (n) {
+      // Format integers to have at least two digits.
+      return n < 10 ? '0' + n : n;
+    }
+
+    if (typeof Date.prototype.tojson !== 'function') {
+
+      Date.prototype.tojson = function () {
+
+        return isFinite(this.valueOf()) ?
+            this.getUTCFullYear()     + '-' +
+            f(this.getUTCMonth() + 1) + '-' +
+            f(this.getUTCDate())      + 'T' +
+            f(this.getUTCHours())     + ':' +
+            f(this.getUTCMinutes())   + ':' +
+            f(this.getUTCSeconds())   + 'Z'
+          : null;
+      };
+
+      String.prototype.tojson =
+        Number.prototype.tojson  =
+        Boolean.prototype.tojson = function () {
+          return this.valueOf();
+        };
+    }
+
+    var cx = /[\u0000\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g,
+      escapable = /[\\\"\x00-\x1f\x7f-\x9f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g,
+      gap,
+      indent,
+      meta = {    // table of character substitutions
+        '\b': '\\b',
+        '\t': '\\t',
+        '\n': '\\n',
+        '\f': '\\f',
+        '\r': '\\r',
+        '"' : '\\"',
+        '\\': '\\\\'
+      },
+      rep;
+
+
+    function quote(string) {
+
+      // If the string contains no control characters, no quote characters, and no
+      // backslash characters, then we can safely slap some quotes around it.
+      // Otherwise we must also replace the offending characters with safe escape
+      // sequences.
+
+      escapable.lastIndex = 0;
+      return escapable.test(string) ? '"' + string.replace(escapable, function (a) {
+        var c = meta[a];
+        return typeof c === 'string' ? c
+          : '\\u' + ('0000' + a.charCodeAt(0).toString(16)).slice(-4);
+      }) + '"' : '"' + string + '"';
+    }
+
+
+    function str(key, holder) {
+
+      // Produce a string from holder[key].
+
+      var i,          // The loop counter.
+        k,          // The member key.
+        v,          // The member value.
+        length,
+        mind = gap,
+        partial,
+        value = holder[key];
+
+      // If the value has a tojson method, call it to obtain a replacement value.
+
+      if (value && typeof value === 'object' &&
+          typeof value.tojson === 'function') {
+        value = value.tojson(key);
+      }
+
+      // If we were called with a replacer function, then call the replacer to
+      // obtain a replacement value.
+
+      if (typeof rep === 'function') {
+        value = rep.call(holder, key, value);
+      }
+
+      // What happens next depends on the value's type.
+
+      switch (typeof value) {
+      case 'string':
+        return quote(value);
+
+      case 'number':
+
+        // json numbers must be finite. Encode non-finite numbers as null.
+
+        return isFinite(value) ? String(value) : 'null';
+
+      case 'boolean':
+      case 'null':
+
+        // If the value is a boolean or null, convert it to a string. Note:
+        // typeof null does not produce 'null'. The case is included here in
+        // the remote chance that this gets fixed someday.
+
+        return String(value);
+
+      // If the type is 'object', we might be dealing with an object or an array or
+      // null.
+
+      case 'object':
+
+        // Due to a specification blunder in ECMAScript, typeof null is 'object',
+        // so watch out for that case.
+
+        if (!value) {
+          return 'null';
+        }
+
+        // Make an array to hold the partial results of stringifying this object value.
+
+        gap += indent;
+        partial = [];
+
+        // Is the value an array?
+
+        if (Object.prototype.toString.apply(value) === '[object Array]') {
+
+          // The value is an array. Stringify every element. Use null as a placeholder
+          // for non-json values.
+
+          length = value.length;
+          
+          for (i = 0; i < length; i += 1) {
+            partial[i] = str(i, value) || 'null';
+          }
+
+          // Join all of the elements together, separated with commas, and wrap them in
+          // brackets.
+
+          v = partial.length === 0 ? '[]'
+            : gap ? '[\n' + gap + partial.join(',\n' + gap) + '\n' + mind + ']'
+            : '[' + partial.join(',') + ']';
+
+          gap = mind;
+
+          return v;
+        }
+
+        // If the replacer is an array, use it to select the members to be stringified.
+
+        if (rep && typeof rep === 'object') {
+          length = rep.length;
+          for (i = 0; i < length; i += 1) {
+            if (typeof rep[i] === 'string') {
+              k = rep[i];
+              v = str(k, value);
+              if (v) {
+                partial.push(quote(k) + (gap ? ': ' : ':') + v);
+              }
+            }
+          }
+        } else {
+
+          // Otherwise, iterate through all of the keys in the object.
+
+          for (k in value) {
+            if (Object.prototype.hasOwnProperty.call(value, k)) {
+              v = str(k, value);
+              if (v) {
+                partial.push(quote(k) + (gap ? ': ' : ':') + v);
+              }
+            }
+          }
+        }
+
+        // Join all of the member texts together, separated with commas,
+        // and wrap them in braces.
+
+        v = partial.length === 0 ? '{}'
+          : gap ? '{\n' + gap + partial.join(',\n' + gap) + '\n' + mind + '}'
+          : '{' + partial.join(',') + '}';
+
+        gap = mind;
+
+        return v;
+      }
+    }
+
+    // If the json object does not yet have a stringify method, give it one.
+
+    if (typeof json.stringify !== 'function') {
+      json.stringify = function (value, replacer, space) {
+
+        // The stringify method takes a value and an optional replacer, and an optional
+        // space parameter, and returns a json text. The replacer can be a function
+        // that can replace values, or an array of strings that will select the keys.
+        // A default replacer method can be provided. Use of the space parameter can
+        // produce text that is more easily readable.
+
+        var i;
+        gap = '';
+        indent = '';
+
+        // If the space parameter is a number, make an indent string containing that
+        // many spaces.
+
+        if (typeof space === 'number') {
+          for (i = 0; i < space; i += 1) {
+            indent += ' ';
+          }
+
+        // If the space parameter is a string, it will be used as the indent string.
+
+        } else if (typeof space === 'string') {
+          indent = space;
+        }
+
+        // If there is a replacer, it must be a function or an array.
+        // Otherwise, throw an error.
+
+        rep = replacer;
+        if (replacer && typeof replacer !== 'function' &&
+            (typeof replacer !== 'object' ||
+            typeof replacer.length !== 'number')) {
+          throw new Error('json.stringify');
+        }
+
+        // Make a fake root object containing our value under the key of ''.
+        // Return the result of stringifying the value.
+
+        return str('', {'': value});
+      };
+    }
+
+
+    // If the json object does not yet have a parse method, give it one.
+
+    if (typeof json.parse !== 'function') {
+      json.parse = function (text, reviver) {
+
+        // The parse method takes a text and an optional reviver function, and returns
+        // a JavaScript value if the text is a valid json text.
+
+        var j;
+
+        function walk(holder, key) {
+
+          // The walk method is used to recursively walk the resulting structure so
+          // that modifications can be made.
+
+          var k, v, value = holder[key];
+          if (value && typeof value === 'object') {
+            for (k in value) {
+              if (Object.prototype.hasOwnProperty.call(value, k)) {
+                v = walk(value, k);
+                if (v !== undefined) {
+                  value[k] = v;
+                } else {
+                  delete value[k];
+                }
+              }
+            }
+          }
+          return reviver.call(holder, key, value);
+        }
+
+
+        // Parsing happens in four stages. In the first stage, we replace certain
+        // Unicode characters with escape sequences. JavaScript handles many characters
+        // incorrectly, either silently deleting them, or treating them as line endings.
+
+        text = String(text);
+        cx.lastIndex = 0;
+        if (cx.test(text)) {
+          text = text.replace(cx, function (a) {
+            return '\\u' +
+              ('0000' + a.charCodeAt(0).toString(16)).slice(-4);
+          });
+        }
+
+        // In the second stage, we run the text against regular expressions that look
+        // for non-json patterns. We are especially concerned with '()' and 'new'
+        // because they can cause invocation, and '=' because it can cause mutation.
+        // But just to be safe, we want to reject all unexpected forms.
+
+        // We split the second stage into 4 regexp operations in order to work around
+        // crippling inefficiencies in IE's and Safari's regexp engines. First we
+        // replace the json backslash pairs with '@' (a non-json character). Second, we
+        // replace all simple value tokens with ']' characters. Third, we delete all
+        // open brackets that follow a colon or comma or that begin the text. Finally,
+        // we look to see that the remaining characters are only whitespace or ']' or
+        // ',' or ':' or '{' or '}'. If that is so, then the text is safe for eval.
+
+        if (/^[\],:{}\s]*$/
+            .test(text.replace(/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g, '@')
+              .replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']')
+              .replace(/(?:^|:|,)(?:\s*\[)+/g, ''))) {
+
+          // In the third stage we use the eval function to compile the text into a
+          // JavaScript structure. The '{' operator is subject to a syntactic ambiguity
+          // in JavaScript: it can begin a block or an object literal. We wrap the text
+          // in parens to eliminate the ambiguity.
+
+          j = eval('(' + text + ')');
+
+          // In the optional fourth stage, we recursively walk the new structure, passing
+          // each name/value pair to a reviver function for possible transformation.
+
+          return typeof reviver === 'function' ? walk({'': j}, '') : j;
+        }
+
+        // If the text is not json parseable, then a SyntaxError is thrown.
+
+        throw new SyntaxError('json.parse');
+      };
+    }
+  }());
+
+
   // querySelector pollyfill using Sizzle
 
-  sizzle = (function(){
+  var sizzle = (function(){
 
     if (feature.qsa3 === true) {
       return;
@@ -2824,31 +3159,132 @@
 
   }());
   
-  function each (arr, fn, thisRef) {
-    var _i, _l;
+  // --------------------------------------------------
+  // Utilities
+  // --------------------------------------------------
 
-    if (!(arr && fn)) {
-      return;
+  var boxedString = Object("a")
+    , splitString = boxedString[0] !== "a" || !(0 in boxedString);
+
+  var toObject = function toObject (o) {
+    if (typeof o === "undefined") { // this matches both null and undefined
+      throw new TypeError("can't convert "+o+" to object");
     }
 
-    thisRef = thisRef || arr;
+    return Object(o);
+  };
 
+  var toInteger = function toInteger (value) {
+    var number = +value;
+
+    if (Number.isNaN(number)) {
+      return 0;
+    }
+
+    if (number === 0 || !isFinite(number)) {
+      return number;
+    }
+
+    return sign(number) * Math.floor(Math.abs(number));
+  };
+
+  var isPrimitive = function isPrimitive(input) {
+    var type = typeof input;
+    
+    return (
+      input === null ||
+      type === "undefined" ||
+      type === "boolean" ||
+      type === "number" ||
+      type === "string"
+    );
+  };
+
+  var toPrimitive = function toPrimitive (input) {
+    var val, valueOf, toString;
+
+    if (isPrimitive(input)) {
+      return input;
+    }
+
+    valueOf = input.valueOf;
+
+    if (typeof valueOf === "function") {
+      val = valueOf.call(input);
+
+      if (isPrimitive(val)) {
+        return val;
+      }
+    }
+    toString = input.toString;
+    
+    if (typeof toString === "function") {
+      val = toString.call(input);
+
+      if (isPrimitive(val)) {
+        return val;
+      }
+    }
+
+    throw new TypeError();
+  };
+
+  var sign = function sign(value) {
+    var number = +value;
+
+    if (number === 0) {
+      return number;
+    }
+
+    if (Number.isNaN(number)) {
+      return number;
+    }
+
+    return number < 0 ? -1 : 1;
+  };
+
+  // --------------------------------------------------
+  // Array Utilities
+  // --------------------------------------------------
+
+  // Executes a function on each of the element
+  // in the array
+  var each = function each (arr, fn, thisRef) {
+    var _i, _l;
+
+    // Use Array.prototype.forEach if available
     if (Array.prototype.forEach) {
       return Array.prototype.forEach.call(arr, fn);
     }
 
+    // Throw an error if array and function are not provided
+    if (!(arr && fn)) {
+      throw new Error (
+        "Not enough arguments provided for each()"
+      );
+    }
+
+    // Make the this variable the array itself if not provided
+    thisRef = thisRef || arr;
+
     for (_i = 0, _l = arr.length; _i < _l; _i += 1) {
       fn.call(thisRef, arr[_i]);
     }
-  }
+  };
 
-  function forIn (obj, fn, thisRef) {
+  // Iterate over an object and execute a function on each 'value'
+  // of it
+  var forIn = function forIn (obj, fn, thisRef) {
     var _i;
 
+    // Throw an error if object and function are not provided
     if (!(obj && fn)) {
-      return;
+      throw new Error (
+        "Not enough arguments provided for forIn()"
+      );
     }
 
+    // Make the given object as the `this` value if one is not provided
     thisRef = thisRef || obj;
 
     for (_i in obj) {
@@ -2856,19 +3292,109 @@
         fn.call(thisRef, _i);
       }
     }
-  }
+  };
 
-  function extend (obj, ext) {
+  // Append all the properties of the second object to the first
+  var extend = function extend (obj, ext) {
     var _i;
 
+    // Throw an error if object and extension are not provided
+    if (!(obj && ext)) {
+      throw new Error (
+        "Not enough arguments provided for extend()"
+      );
+    }
+
     for (_i in ext) {
-      if (ext.hasOwnProperty(_i)) {
+      if (own(ext, _i)) {
         obj[_i] = ext[_i];
       }
     }
 
     return obj;
-  }
+  };
+
+  // Check if every element in the object passes the test
+  var every = function every (o, fun) {
+    var t, len, thisp, _i;
+
+    if (o === null) {
+      throw new TypeError();
+    }
+
+    t = Object(o);
+    len = t.length >>> 0;
+
+    if (typeof fun !== "function") {
+      throw new TypeError();
+    }
+
+    thisp = arguments[1];
+
+    for (_i = 0; _i < len; _i++) {
+      if (_i in t && !fun.call(thisp, t[_i], _i, t)) {
+        return false;
+      }
+    }
+
+    return true;
+  };
+
+  // --------------------------------------------------
+  // String Utilities
+  // --------------------------------------------------
+
+  // Remove whitespace at the start and end of a string
+  var trim = function trim (str) {
+    var ws = "\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003" + 
+             "\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028" + 
+             "\u2029\uFEFF";
+
+    ws = "[" + ws + "]";
+
+    var trimBeginRegexp = new RegExp("^" + ws + ws + "*"),
+      trimEndRegexp = new RegExp(ws + ws + "*$");
+
+    if (str === void 0 || str === null) {
+      throw new TypeError("can't convert "+ str +" to object");
+    }
+
+    return String(str).replace(trimBeginRegexp, "").replace(trimEndRegexp, "");
+  };
+
+  // Check if a string contains another string in it
+  var contains = function contains (haystack, needle) {
+    var position = arguments[1];
+
+    return haystack.indexOf(needle, position) !== -1;
+  };
+
+  var indexOf = function indexOf(arr, sought /*, fromIndex */ ) {
+    var self = splitString && arr.toString() === "[object String]" ?
+            this.split("") :
+            toObject(this)
+      , length = self.length >>> 0;
+
+    if (!length) {
+        return -1;
+    }
+
+    var i = 0;
+
+    if (arguments.length > 1) {
+        i = toInteger(arguments[1]);
+    }
+
+    // handle negative indices
+    i = i >= 0 ? i : Math.max(0, length + i);
+
+    for (; i < length; i++) {
+        if (i in self && self[i] === sought) {
+            return i;
+        }
+    }
+    return -1;
+  };
 
   select = feature.qsa3 ? function (selector, root) {
     // Set root to given root or document
@@ -2879,9 +3405,12 @@
     return sizzle(selector, root);
   };
   
+  // --------------------------------------------------
   // Core Library
+  // --------------------------------------------------
 
   select = select || function (selector, root) {
+
     // Set root to given root or document
     root = root || doc;
 
@@ -2900,8 +3429,10 @@
     if (typeof input === "undefined") {
       // It's better than not returning anything
       return win.Hilo;
+    } else if (typeof input === "number") {
+      return new NumberObject(input);
     } else if (typeof input === "string") {
-      if (input.trim() === "") {
+      if (trim(input) === "") {
         // Can't pass empty string to querySelectorAll()
         return new Dom({length:0});
       }
@@ -2941,6 +3472,32 @@
   // ES Utils
   hilo.each = each;
   hilo.extend = extend;
+  hilo.every = every;
+  hilo.trim = trim;
+  hilo.contains = contains;
+  hilo.indexOf = indexOf;
+  hilo.isPrimitive = isPrimitive;
+  hilo.toObject = toObject;
+  hilo.toInteger = toInteger;
+
+  extend(hilo, {
+    each: each,
+    extend: extend,
+    every: every,
+    trim: trim,
+    contains: contains,
+    indexOf: indexOf,
+    isPrimitive: isPrimitive,
+    toObject: toObject,
+    toInteger: toInteger,
+    toPrimitive: toPrimitive
+  });
+
+  // JSON
+  hilo.json = {
+    parse: json.parse,
+    stringify: json.stringify
+  };
 
   // Legacy
 
@@ -3060,61 +3617,6 @@
       return new Test(this, true);
     }
   });
-  
-  // --------------------------------------------------
-  // String Shims
-  // --------------------------------------------------
-
-  // http://es5.github.com/#x15.5.4.20
-
-  (function () {
-    var ws = "\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003" +
-      "\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028" +
-      "\u2029\uFEFF";
-
-    if(!String.prototype.trim) {
-      String.prototype.trim = function trim() {
-        ws = "[" + ws + "]";
-
-        var trimBeginRegexp = new RegExp("^" + ws + ws + "*"),
-          trimEndRegexp = new RegExp(ws + ws + "*$");
-
-        if (this === void 0 || this === null) {
-          throw new TypeError("can't convert "+this+" to object");
-        }
-        return String(this).replace(trimBeginRegexp, "")
-          .replace(trimEndRegexp, "");
-      };
-    }
-  }());
-
-  // Array Shims
-
-  if (!Array.prototype.every) {
-    Array.prototype.every = function(fun /*, thisp */) {
-      var t, len, thisp, _i;
-
-      if (this === null) {
-        throw new TypeError();
-      }
-
-      t = Object(this);
-      len = t.length >>> 0;
-      if (typeof fun !== "function") {
-        throw new TypeError();
-      }
-
-      thisp = arguments[1];
-
-      for (_i = 0; _i < len; _i++) {
-        if (_i in t && !fun.call(thisp, t[_i], _i, t)) {
-          return false;
-        }
-      }
-
-      return true;
-    };
-  }
 
   // --------------------------------------------------
   // Hilo AJAX
@@ -3401,42 +3903,43 @@
   function Dom (els, sel) {
     var _i, _l;
 
-    // Note that `this` is an object and"
-    // NOT an Array
+    // Note that `this` is an object and NOT an Array
 
-    // Loop thorugh the NodeList and set
-    // this[index] for els[index]
-
+    // Loop thorugh the NodeList and set `this[index]` for `els[index]`
     for (_i = 0, _l = els.length; _i < _l; _i += 1) {
       this[_i] = els[_i];
     }
 
-    // Useful for looping through as ours
-    // is an object and not an array
-
+    // Useful for looping through as ours is an object and not an array
     this.length = els.length;
 
-    // Know what selector is used to select
-    // the elements
-
+    // Know what selector is used to select the elements
     this.sel = sel;
   }
 
+  // Make it _look_ like an array
   Dom.prototype = Array.prototype;
 
   extend(Dom.prototype, {
+    // Set the constructor to Dom. It defaults to Array. We don't that
     constructor: Dom
   });
 
-  // Hilo CSS Helper Methodss
+  // ### Hilo CSS Helper Methods
 
+  // Return a string repacing all `-`'s with `""` and making the letter
+  // next to every `-` uppercase
   function unhyph (prop) {
-    return prop.replace(/-(.)/g, function (m, m1) {
+    return prop.toLowerCase().replace(/-(.)/g, function (m, m1) {
       return m1.toUpperCase();
     });
   }
 
+  // Add necessary suffix to the number for certain CSS properties
+  // _This will later be used by .css() and a number of other methods_
   function unitize (unit, prop) {
+
+    // All the CSS props. that are to be defaulted to px values
     var pixel = {
       "width": true,
       "maxWidth": true,
@@ -3481,16 +3984,21 @@
       "right": true
     };
 
+    // String values are not be unitized no matter what
     if (typeof unit === "string") {
       return unit;
     }
 
+    // If the property is present in the previously mentioned
+    // object, the unit is suffixed with "px"
     if (pixel[prop] === true) {
       return unit + "px";
     }
 
     return unit;
   }
+
+  // Create an element
 
   /**
    * Create an element
@@ -3513,16 +4021,19 @@
     var el = new Dom([document.createElement(tagName)]), key;
 
     if (attrs) {
+      // Add Class if the `className` is sset
       if (attrs.className) {
         el.addClass(attrs.className);
         delete attrs.className;
       }
 
+      // Set html to if `text` content is given
       if (attrs.text) {
-        el.text(attrs.text);
+        el.html(attrs.text);
         delete attrs.text;
       }
 
+      // Set other attributes
       for (key in attrs) {
         if(attrs.hasOwnProperty(key)) {
           el.attr(key, attrs["key"]);
@@ -3538,6 +4049,8 @@
     // --------------------------------------------------
     // Helper Functions
     // --------------------------------------------------
+    
+    // Execute a function on selected elements
 
     /**
      * Execute a function on selected elements
@@ -3559,6 +4072,9 @@
       return this; // return the current Dom instance
     },
 
+    // Return the results of executing a function 
+    // on all the selected elements
+
     /**
      * Return the results of executing a function 
      * on all the selected elements
@@ -3576,12 +4092,19 @@
      * @since 0.1.0
      */
     map: function (fn) {
-      var results = [], _i, _l;
+      var results = []
+        , _i
+        , _l;
+
       for (_i = 0, _l = this.length; _i < _l; _i += 1) {
         results.push(fn.call(this, this[_i], _i));
       }
+
       return results;
     },
+
+    // Map on selected elements and return them based 
+    // on the number of selected elements
 
     /**
      * Map on selected elements and return them based 
@@ -3597,6 +4120,8 @@
       var m = this.map(fn);
       return m.length > 1 ? m : m[0];
     },
+
+    // Execute a function on the first selected element
 
     /**
      * Execute a function on the first selected element
@@ -3616,6 +4141,9 @@
     first: function (fn) {
       return fn(this[0]);
     },
+
+    // Filters the selected elements and returns the 
+    // elements that pass the test (or return true)
 
     /**
      * Filters the selected elements and returns the 
@@ -3640,11 +4168,10 @@
         , res = []
         , val;
 
-      for (_i = 0; _i < len; _i++)
-      {
-        if (_i in t)
-        {
+      for (_i = 0; _i < len; _i++) {
+        if (_i in t) {
           val = t[_i];
+
           if (fn.call(this, val, _i, t)) {
             res.push(val);
           }
@@ -3658,8 +4185,10 @@
     // Element Selections, etc.
     // --------------------------------------------------
 
+    // Get a JavaScript Array containing selected elements
+
     /**
-     * Get a NodeList of selected elements
+     * Get a JavaScript Array containing selected elements
      * 
      * @for Dom
      * @method get
@@ -3680,6 +4209,8 @@
       return els;
     },
 
+    // Return first element of the selected elements
+
     /**
      * Return first element of the selected elements
      *
@@ -3695,6 +4226,8 @@
     firstEl: function () {
       return new Dom([this[0]]);
     },
+
+    // Return last element of the selected elements
 
     /**
      * Return last element of the selected elements
@@ -3712,6 +4245,8 @@
       return new Dom([this[this.length - 1]]);
     },
 
+    // Return nth element of the selected elements
+
     /**
      * Return nth element of the selected elements
      *
@@ -3728,6 +4263,8 @@
     el: function (place) {
       return new Dom([this[place - 1]]);
     },
+
+    // Return the children of selected elements
 
     /**
      * Return the children of selected elements
@@ -3757,6 +4294,8 @@
       return children;
     },
 
+    // Returns the parents of selected elements
+
     /**
      * Returns the parents of selected elements
      *
@@ -3779,6 +4318,8 @@
       return new Dom(pars);
     },
 
+    // Return parent of first selected element
+
     /**
      * Return parent of first selected element
      *
@@ -3796,6 +4337,9 @@
         return new Dom([el.parentElement]);
       });
     },
+
+    // Return relative of selected elements based 
+    // on the relation given
 
     /**
      * Return relative of selected elements based 
@@ -3821,6 +4365,8 @@
       return els;
     },
 
+    // Return next sibling elements of selected elements
+
     /**
      * Return next sibling elements of selected elements
      *
@@ -3835,6 +4381,8 @@
     next: function () {
       return this.rel("nextElementSibling");
     },
+
+    // Return previous sibling elements of selected elements
 
     /**
      * Return previous sibling elements of selected elements
@@ -3854,6 +4402,8 @@
     // --------------------------------------------------
     // DOM HTML
     // --------------------------------------------------
+
+    // Set or return innerHTML of selected elements
 
     /**
      * Set or return innerHTML of selected elements
@@ -3881,6 +4431,8 @@
       }
     },
 
+    // Empty the selected elements
+
     /**
      * Empty the selected elements
      * 
@@ -3896,6 +4448,8 @@
     empty: function () {
       return this.html("");
     },
+
+    // Append html to selected elements
 
     /**
      * Append html to selected elements
@@ -3916,6 +4470,8 @@
       });
     },
 
+    // Prepend html to selected elements
+
     /**
      * Prepend html to selected elements
      * 
@@ -3934,6 +4490,8 @@
         el.innerHTML = html + el.innerHTML;
       });
     },
+
+    // Get or set the value attribute of selected element
 
     /**
      * Get or set the value attribute of selected element
@@ -3964,6 +4522,8 @@
     // Classes and IDs
     // --------------------------------------------------
 
+    // Set or return ID of first element
+
     /**
      * Set or return ID of first element
      *  
@@ -3992,6 +4552,8 @@
         });
       }
     },
+
+    // Add, remove or check class(es)
 
     /**
      * Add, remove or check class(es)
@@ -4260,6 +4822,8 @@
       });
     },
 
+    // Adds class(es) to selected elements
+
     /**
      * Adds class(es) to selected elements
      * 
@@ -4277,6 +4841,8 @@
       return this["class"]("add", className);
     },
 
+    // Remove class(es) from selected elements
+
     /**
      * Remove class(es) from selected elements
      * 
@@ -4293,6 +4859,8 @@
     removeClass: function (className) {
       return this["class"]("remove", className);
     },
+
+    // Check for class(es) in selected elements
 
     /**
      * Check for class(es) in selected elements
@@ -4313,6 +4881,8 @@
       return this["class"]("has", className);
     },
 
+    // Add class(es) if not already, remove if added
+
     /**
      * Add class(es) if not already, remove if added
      * 
@@ -4331,6 +4901,8 @@
     toggleClass: function (className) {
       return this["class"]("toggle", className);
     },
+
+    // Set or return attributes
     
     /**
      * Set or return attributes
@@ -4363,6 +4935,8 @@
     // --------------------------------------------------
     // Hilo CSS
     // --------------------------------------------------
+
+    // Set or return css property
 
     /**
      * Set or return css property
@@ -4410,6 +4984,8 @@
       }
     },
 
+    // Get computed property
+
     /**
      * Get computed property
      * 
@@ -4421,10 +4997,12 @@
      * @since 0.1.0
      */
     computed: function (prop) {
-      return this.one(function (el) {
+      return this.first(function (el) {
         return win.getComputedStyle(el)[prop];
       });
     },
+
+    // Get outer width
 
     outerWidth: function () {
       return parseFloat(this.computed("width")) + 
@@ -4434,11 +5012,15 @@
       parseFloat(this.computed("borderRight")) + "px";
     },
 
+    // Get inner width
+
     innerWidth: function () {
       return parseFloat(this.computed("width")) + 
       parseFloat(this.computed("paddingLeft")) + 
       parseFloat(this.computed("paddingRight")) + "px";
     },
+
+    // Get outer height
 
     outerHeight: function () {
       return parseFloat(this.computed("height")) + 
@@ -4447,6 +5029,8 @@
       parseFloat(this.computed("borderTop")) + 
       parseFloat(this.computed("borderBottom")) + "px";
     },
+
+    // Get inner height
 
     innerHeight: function () {
       return parseFloat(this.computed("height")) + 
@@ -4460,6 +5044,8 @@
   // --------------------------------------------------
 
   extend(Dom.prototype, {
+
+    // Listen to an event and execute a function when that event happend
 
     /**
      * Listen to an event and execute a function when that event happend
@@ -4478,18 +5064,26 @@
      * @since 0.1.0
      */
     on: (function () {
+
+      // Check if `document.addEventListener` method
+      // is available and use it if it is
       if (document.addEventListener) {
         return function (evt, fn) {
           return this.each(function (el) {
             el.addEventListener(evt, fn, false);
           });
         };
+
+      // Otherwise check if `document.attachEvent` 
+      // legacy method is available and use it if it is
       } else if (document.attachEvent)  {
         return function (evt, fn) {
           return this.each(function (el) {
             el.attachEvent("on" + evt, fn);
           });
         };
+
+      // Add event the DOM Level 0 Style
       } else {
         return function (evt, fn) {
           return this.each(function (el) {
@@ -4498,6 +5092,8 @@
         };
       }
     }()),
+
+    // Stop listening to an event
 
     /**
      * Stop listening to an event
@@ -4551,7 +5147,14 @@
     fire: (function () {
       if (document.dispatchEvent) {
         return function (event) {
-          var evt = document.createEvent("UIEvents");
+          var evt;
+          
+          try {
+            evt = document.createEvent("Events");
+          } catch (e) {
+            evt = document.createEvent("UIEvents");
+          }
+
           evt.initUIEvent(event, true, true, window, 1);
 
           return this.each(function (el) {
@@ -5154,19 +5757,89 @@
 
     return classes;
   };
+
+  // --------------------------------------------------
+  // More Functionality
+  // --------------------------------------------------
+
+  /**
+   * NumberObject Class
+   * 
+   * @constructor
+   * @class NumberObject
+   * @param {Number} num Number
+   * @example
+   * <div class="code"><pre class="prettyprint">
+   * new NumberObject(2);
+   * new NumberObject(Math.PI);
+   * </pre></div>
+   * @since 0.1.0
+   */
+  function NumberObject (num) {
+    this.num = num;
+  }
+
+  extend(NumberObject.prototype, {
+    MAX_INTEGER: 9007199254740991,
+    EPSILON: 2.220446049250313e-16,
+
+    parseInt: function () {
+      parseInt.call(this, this.num);
+    },
+
+    parseFloat: function () {
+      parseFloat.call(this, this.num);
+    },
+
+    isFinite: function() {
+      return typeof this.num === 'number' && isFinite(this.num);
+    },
+
+    isInteger: function() {
+      return typeof this.num === 'number' &&
+        !isNaN(this.num) &&
+        isFinite(this.num) &&
+        parseInt(this.num, 10) === this.num;
+    },
+
+    isNaN: function() {
+      // NaN !== NaN, but they are identical.
+      // NaNs are the only non-reflexive value, i.e., if x !== x,
+      // then x is NaN.
+      // isNaN is broken: it converts its argument to number, so
+      // isNaN('foo') => true
+      return this.num !== this.num;
+    },
+
+    toInteger: function() {
+      var number = +this.num;
+      if (isNaN(number)) {
+        return 0;
+      }
+
+      if (number === 0 || !isFinite(number)) {
+        return number;
+      }
+      
+      return Math.sign(number) * Math.floor(Math.abs(number));
+    },
+
+    sign: function (value) {
+      sign.call(this, this.num, value);
+    }
+  });
   
   // --------------------------------------------------
   // Hilo Extension API
   // --------------------------------------------------
-    
+  
+  // Provide Extension API
   extend(hilo, {
     Dom: Dom.prototype,
     Test: Test.prototype
   });
 
-  // --------------------------------------------------
   // Set event handler for triggering DOM Evenets
-  // --------------------------------------------------
   
   doc.onreadystatechange = function () {
     if (doc.readyState === "complete") {
@@ -5176,8 +5849,10 @@
     }
   };
 
-  win.$ = hilo; // Shorthand
+  // Provide shorthand `$`
+  win.$ = hilo;
 
+  // Get the total time took to execute the script
   elapsed = new Date().getTime() - start;
 
   /**
@@ -5190,5 +5865,6 @@
    */
   hilo.perf = elapsed;
 
+  // Finally return Hilo
   return hilo;
 }));

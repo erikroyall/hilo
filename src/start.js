@@ -2,23 +2,25 @@
 
   // Asynchronous Module Definition, if available
 
-  var module = module || false
-    , define = define || false;
+  /*globals YUI: false, module: false, define: false*/
 
   if (typeof module !== "undefined" && module.exports) {
     module.exports = D;
   } else if (typeof define === "function" && define.amd) {
     define(D);
+  } else if (typeof YUI === "function") {
+    YUI.add(A, D);
   } else {
     M[A] = D();
   }
 }("Hilo", this, function () {
-  /*jshint -W083, -W064, -W030, -W098*/
+  /*jshint -W083, -W064, -W061, -W030*/
 
   // JSHint escapes:
-  //  W083 - Don't make function within a loop (Evts)
-  //  W064 - Missing new prefix when invoking constructor (Sizzle)
-  //  W030 - Allow expressions
+  // - W083 - Don't make function within a loop (Evts)
+  // - W064 - Eval can be harmful (JSON)
+  // - W064 - Missing new prefix when invoking constructor (Sizzle)
+  // - W030 - Saw an expression (Sizzle, Me)
 
   "use strict";
   

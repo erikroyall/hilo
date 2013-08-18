@@ -1,7 +1,10 @@
   
+  // --------------------------------------------------
   // Core Library
+  // --------------------------------------------------
 
   select = select || function (selector, root) {
+
     // Set root to given root or document
     root = root || doc;
 
@@ -20,8 +23,10 @@
     if (typeof input === "undefined") {
       // It's better than not returning anything
       return win.Hilo;
+    } else if (typeof input === "number") {
+      return new NumberObject(input);
     } else if (typeof input === "string") {
-      if (input.trim() === "") {
+      if (trim(input) === "") {
         // Can't pass empty string to querySelectorAll()
         return new Dom({length:0});
       }
@@ -61,6 +66,32 @@
   // ES Utils
   hilo.each = each;
   hilo.extend = extend;
+  hilo.every = every;
+  hilo.trim = trim;
+  hilo.contains = contains;
+  hilo.indexOf = indexOf;
+  hilo.isPrimitive = isPrimitive;
+  hilo.toObject = toObject;
+  hilo.toInteger = toInteger;
+
+  extend(hilo, {
+    each: each,
+    extend: extend,
+    every: every,
+    trim: trim,
+    contains: contains,
+    indexOf: indexOf,
+    isPrimitive: isPrimitive,
+    toObject: toObject,
+    toInteger: toInteger,
+    toPrimitive: toPrimitive
+  });
+
+  // JSON
+  hilo.json = {
+    parse: json.parse,
+    stringify: json.stringify
+  };
 
   // Legacy
 

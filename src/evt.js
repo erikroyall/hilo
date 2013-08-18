@@ -5,6 +5,8 @@
 
   extend(Dom.prototype, {
 
+    // Listen to an event and execute a function when that event happend
+
     /**
      * Listen to an event and execute a function when that event happend
      * 
@@ -22,18 +24,26 @@
      * @since 0.1.0
      */
     on: (function () {
+
+      // Check if `document.addEventListener` method
+      // is available and use it if it is
       if (document.addEventListener) {
         return function (evt, fn) {
           return this.each(function (el) {
             el.addEventListener(evt, fn, false);
           });
         };
+
+      // Otherwise check if `document.attachEvent` 
+      // legacy method is available and use it if it is
       } else if (document.attachEvent)  {
         return function (evt, fn) {
           return this.each(function (el) {
             el.attachEvent("on" + evt, fn);
           });
         };
+
+      // Add event the DOM Level 0 Style
       } else {
         return function (evt, fn) {
           return this.each(function (el) {
@@ -42,6 +52,8 @@
         };
       }
     }()),
+
+    // Stop listening to an event
 
     /**
      * Stop listening to an event
@@ -95,7 +107,14 @@
     fire: (function () {
       if (document.dispatchEvent) {
         return function (event) {
-          var evt = document.createEvent("UIEvents");
+          var evt;
+          
+          try {
+            evt = document.createEvent("Events");
+          } catch (e) {
+            evt = document.createEvent("UIEvents");
+          }
+
           evt.initUIEvent(event, true, true, window, 1);
 
           return this.each(function (el) {

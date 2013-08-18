@@ -74,6 +74,15 @@
             },
             "namespaces": {}
         },
+        "src\\more.js": {
+            "name": "src\\more.js",
+            "modules": {},
+            "classes": {
+                "NumberObject": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
         "src\\sizzle.js": {
             "name": "src\\sizzle.js",
             "modules": {},
@@ -102,6 +111,7 @@
                 "hilo": 1,
                 "Animation": 1,
                 "Dom": 1,
+                "NumberObject": 1,
                 "Test": 1
             },
             "fors": {
@@ -129,7 +139,7 @@
             "extension_for": [],
             "module": "Hilo",
             "file": "src\\core.js",
-            "line": 11,
+            "line": 14,
             "description": "The main Hilo Object / function",
             "static": 1
         },
@@ -206,6 +216,32 @@
             },
             "example": [
                 "\n<div class=\"code\"><pre class=\"prettyprint\">\nnew Dom (document.querySelectorAll(p:first-child);\nnew Dom ([document.createElement(\"div\")]);\nnew Dom ([document.getElementByid(\"box\")]);\nnew Dom (document.getElementsByClassName(\"hidden\"));\nnew Dom (document.getElementsByTagName(\"mark\"));\n</pre></div>"
+            ],
+            "since": "0.1.0"
+        },
+        "NumberObject": {
+            "name": "NumberObject",
+            "shortname": "NumberObject",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Hilo",
+            "namespace": "",
+            "file": "src\\more.js",
+            "line": 6,
+            "description": "NumberObject Class",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "num",
+                    "description": "Number",
+                    "type": "Number"
+                }
+            ],
+            "example": [
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\nnew NumberObject(2);\nnew NumberObject(Math.PI);\n</pre></div>"
             ],
             "since": "0.1.0"
         },
@@ -325,7 +361,7 @@
         },
         {
             "file": "src\\dom.js",
-            "line": 118,
+            "line": 124,
             "description": "Create an element",
             "itemtype": "method",
             "name": "create",
@@ -350,7 +386,7 @@
         },
         {
             "file": "src\\dom.js",
-            "line": 165,
+            "line": 176,
             "description": "Execute a function on selected elements",
             "itemtype": "method",
             "name": "each",
@@ -374,7 +410,7 @@
         },
         {
             "file": "src\\dom.js",
-            "line": 185,
+            "line": 199,
             "description": "Return the results of executing a function \non all the selected elements",
             "itemtype": "method",
             "name": "map",
@@ -398,7 +434,7 @@
         },
         {
             "file": "src\\dom.js",
-            "line": 209,
+            "line": 230,
             "description": "Map on selected elements and return them based \non the number of selected elements",
             "itemtype": "method",
             "name": "one",
@@ -419,7 +455,7 @@
         },
         {
             "file": "src\\dom.js",
-            "line": 224,
+            "line": 247,
             "description": "Execute a function on the first selected element",
             "itemtype": "method",
             "name": "first",
@@ -443,7 +479,7 @@
         },
         {
             "file": "src\\dom.js",
-            "line": 243,
+            "line": 269,
             "description": "Filters the selected elements and returns the \nelements that pass the test (or return true)",
             "itemtype": "method",
             "name": "filter",
@@ -467,8 +503,8 @@
         },
         {
             "file": "src\\dom.js",
-            "line": 284,
-            "description": "Get a NodeList of selected elements",
+            "line": 311,
+            "description": "Get a JavaScript Array containing selected elements",
             "itemtype": "method",
             "name": "get",
             "return": {
@@ -484,7 +520,7 @@
         },
         {
             "file": "src\\dom.js",
-            "line": 306,
+            "line": 335,
             "description": "Return first element of the selected elements",
             "itemtype": "method",
             "name": "firstEl",
@@ -501,7 +537,7 @@
         },
         {
             "file": "src\\dom.js",
-            "line": 322,
+            "line": 353,
             "description": "Return last element of the selected elements",
             "itemtype": "method",
             "name": "lastEl",
@@ -518,7 +554,7 @@
         },
         {
             "file": "src\\dom.js",
-            "line": 338,
+            "line": 371,
             "description": "Return nth element of the selected elements",
             "itemtype": "method",
             "name": "el",
@@ -535,7 +571,7 @@
         },
         {
             "file": "src\\dom.js",
-            "line": 355,
+            "line": 390,
             "description": "Return the children of selected elements",
             "itemtype": "method",
             "name": "children",
@@ -559,7 +595,7 @@
         },
         {
             "file": "src\\dom.js",
-            "line": 383,
+            "line": 420,
             "description": "Returns the parents of selected elements",
             "itemtype": "method",
             "name": "parents",
@@ -576,7 +612,7 @@
         },
         {
             "file": "src\\dom.js",
-            "line": 405,
+            "line": 444,
             "description": "Return parent of first selected element",
             "itemtype": "method",
             "name": "parent",
@@ -593,7 +629,7 @@
         },
         {
             "file": "src\\dom.js",
-            "line": 423,
+            "line": 465,
             "description": "Return relative of selected elements based \non the relation given",
             "itemtype": "method",
             "name": "rel",
@@ -617,7 +653,7 @@
         },
         {
             "file": "src\\dom.js",
-            "line": 447,
+            "line": 491,
             "description": "Return next sibling elements of selected elements",
             "itemtype": "method",
             "name": "next",
@@ -633,7 +669,7 @@
         },
         {
             "file": "src\\dom.js",
-            "line": 462,
+            "line": 508,
             "description": "Return previous sibling elements of selected elements",
             "itemtype": "method",
             "name": "prev",
@@ -649,7 +685,7 @@
         },
         {
             "file": "src\\dom.js",
-            "line": 481,
+            "line": 529,
             "description": "Set or return innerHTML of selected elements",
             "itemtype": "method",
             "name": "html",
@@ -673,7 +709,7 @@
         },
         {
             "file": "src\\dom.js",
-            "line": 507,
+            "line": 557,
             "description": "Empty the selected elements",
             "itemtype": "method",
             "name": "empty",
@@ -690,7 +726,7 @@
         },
         {
             "file": "src\\dom.js",
-            "line": 523,
+            "line": 575,
             "description": "Append html to selected elements",
             "itemtype": "method",
             "name": "append",
@@ -714,7 +750,7 @@
         },
         {
             "file": "src\\dom.js",
-            "line": 542,
+            "line": 596,
             "description": "Prepend html to selected elements",
             "itemtype": "method",
             "name": "prepend",
@@ -738,7 +774,7 @@
         },
         {
             "file": "src\\dom.js",
-            "line": 561,
+            "line": 617,
             "description": "Get or set the value attribute of selected element",
             "itemtype": "method",
             "name": "value",
@@ -761,7 +797,7 @@
         },
         {
             "file": "src\\dom.js",
-            "line": 590,
+            "line": 648,
             "description": "Set or return ID of first element",
             "itemtype": "method",
             "name": "id",
@@ -785,7 +821,7 @@
         },
         {
             "file": "src\\dom.js",
-            "line": 619,
+            "line": 679,
             "description": "Add, remove or check class(es)",
             "itemtype": "method",
             "name": "class",
@@ -814,7 +850,7 @@
         },
         {
             "file": "src\\dom.js",
-            "line": 886,
+            "line": 948,
             "description": "Adds class(es) to selected elements",
             "itemtype": "method",
             "name": "addClass",
@@ -838,7 +874,7 @@
         },
         {
             "file": "src\\dom.js",
-            "line": 903,
+            "line": 967,
             "description": "Remove class(es) from selected elements",
             "itemtype": "method",
             "name": "removeClass",
@@ -862,7 +898,7 @@
         },
         {
             "file": "src\\dom.js",
-            "line": 920,
+            "line": 986,
             "description": "Check for class(es) in selected elements",
             "itemtype": "method",
             "name": "hasClass",
@@ -886,7 +922,7 @@
         },
         {
             "file": "src\\dom.js",
-            "line": 939,
+            "line": 1007,
             "description": "Add class(es) if not already, remove if added",
             "itemtype": "method",
             "name": "toggleClass",
@@ -910,7 +946,7 @@
         },
         {
             "file": "src\\dom.js",
-            "line": 958,
+            "line": 1028,
             "description": "Set or return attributes",
             "itemtype": "method",
             "name": "attr",
@@ -939,7 +975,7 @@
         },
         {
             "file": "src\\dom.js",
-            "line": 990,
+            "line": 1062,
             "description": "Set or return css property",
             "itemtype": "method",
             "name": "css",
@@ -969,7 +1005,7 @@
         },
         {
             "file": "src\\dom.js",
-            "line": 1036,
+            "line": 1110,
             "description": "Get computed property",
             "itemtype": "method",
             "name": "computed",
@@ -991,7 +1027,7 @@
         },
         {
             "file": "src\\end.js",
-            "line": 27,
+            "line": 28,
             "description": "Time taken to load (in ms)",
             "itemtype": "property",
             "name": "perf",
@@ -1002,7 +1038,7 @@
         },
         {
             "file": "src\\evt.js",
-            "line": 8,
+            "line": 10,
             "description": "Listen to an event and execute a function when that event happend",
             "itemtype": "method",
             "name": "on",
@@ -1031,7 +1067,7 @@
         },
         {
             "file": "src\\evt.js",
-            "line": 46,
+            "line": 58,
             "description": "Stop listening to an event",
             "itemtype": "method",
             "name": "on",
@@ -1060,7 +1096,7 @@
         },
         {
             "file": "src\\evt.js",
-            "line": 82,
+            "line": 94,
             "description": "Trigger or fire an event",
             "itemtype": "method",
             "name": "fire",
@@ -1548,7 +1584,7 @@
         },
         {
             "message": "unknown tag: attrs",
-            "line": " src\\dom.js:118"
+            "line": " src\\dom.js:124"
         },
         {
             "message": "replacing incorrect tag: returns with return",

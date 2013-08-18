@@ -46,6 +46,8 @@
             
                 <li><a href="../classes/hilo.html">hilo</a></li>
             
+                <li><a href="../classes/NumberObject.html">NumberObject</a></li>
+            
                 <li><a href="../classes/Test.html">Test</a></li>
             
         </ul>
@@ -66,7 +68,7 @@
         <h2 class="no-toc">Files</h2>
     </div>
     <div class="bd">
-        <ul><li>src\ajax.js/<ul></ul></li><li>src\anim.js/<ul></ul></li><li>src\core.js/<ul></ul></li><li>src\dom.js/<ul></ul></li><li>src\end.js/<ul></ul></li><li>src\evt.js/<ul></ul></li><li>src\fx.js/<ul></ul></li><li>src\sizzle.js/<ul></ul></li><li>src\test.js/<ul></ul></li></ul>
+        <ul><li>src\ajax.js/<ul></ul></li><li>src\anim.js/<ul></ul></li><li>src\core.js/<ul></ul></li><li>src\dom.js/<ul></ul></li><li>src\end.js/<ul></ul></li><li>src\evt.js/<ul></ul></li><li>src\fx.js/<ul></ul></li><li>src\more.js/<ul></ul></li><li>src\sizzle.js/<ul></ul></li><li>src\test.js/<ul></ul></li></ul>
     </div>
 </div>
 
@@ -78,9 +80,12 @@
 
 <pre class="code prettyprint linenums">
   
+  // --------------------------------------------------
   // Core Library
+  // --------------------------------------------------
 
   select = select || function (selector, root) {
+
     // Set root to given root or document
     root = root || doc;
 
@@ -99,8 +104,10 @@
     if (typeof input === &quot;undefined&quot;) {
       // It&#x27;s better than not returning anything
       return win.Hilo;
+    } else if (typeof input === &quot;number&quot;) {
+      return new NumberObject(input);
     } else if (typeof input === &quot;string&quot;) {
-      if (input.trim() === &quot;&quot;) {
+      if (trim(input) === &quot;&quot;) {
         // Can&#x27;t pass empty string to querySelectorAll()
         return new Dom({length:0});
       }
@@ -140,6 +147,32 @@
   // ES Utils
   hilo.each = each;
   hilo.extend = extend;
+  hilo.every = every;
+  hilo.trim = trim;
+  hilo.contains = contains;
+  hilo.indexOf = indexOf;
+  hilo.isPrimitive = isPrimitive;
+  hilo.toObject = toObject;
+  hilo.toInteger = toInteger;
+
+  extend(hilo, {
+    each: each,
+    extend: extend,
+    every: every,
+    trim: trim,
+    contains: contains,
+    indexOf: indexOf,
+    isPrimitive: isPrimitive,
+    toObject: toObject,
+    toInteger: toInteger,
+    toPrimitive: toPrimitive
+  });
+
+  // JSON
+  hilo.json = {
+    parse: json.parse,
+    stringify: json.stringify
+  };
 
   // Legacy
 

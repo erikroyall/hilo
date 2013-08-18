@@ -24,42 +24,43 @@
   function Dom (els, sel) {
     var _i, _l;
 
-    // Note that `this` is an object and"
-    // NOT an Array
+    // Note that `this` is an object and NOT an Array
 
-    // Loop thorugh the NodeList and set
-    // this[index] for els[index]
-
+    // Loop thorugh the NodeList and set `this[index]` for `els[index]`
     for (_i = 0, _l = els.length; _i < _l; _i += 1) {
       this[_i] = els[_i];
     }
 
-    // Useful for looping through as ours
-    // is an object and not an array
-
+    // Useful for looping through as ours is an object and not an array
     this.length = els.length;
 
-    // Know what selector is used to select
-    // the elements
-
+    // Know what selector is used to select the elements
     this.sel = sel;
   }
 
+  // Make it _look_ like an array
   Dom.prototype = Array.prototype;
 
   extend(Dom.prototype, {
+    // Set the constructor to Dom. It defaults to Array. We don't that
     constructor: Dom
   });
 
-  // Hilo CSS Helper Methodss
+  // ### Hilo CSS Helper Methods
 
+  // Return a string repacing all `-`'s with `""` and making the letter
+  // next to every `-` uppercase
   function unhyph (prop) {
-    return prop.replace(/-(.)/g, function (m, m1) {
+    return prop.toLowerCase().replace(/-(.)/g, function (m, m1) {
       return m1.toUpperCase();
     });
   }
 
+  // Add necessary suffix to the number for certain CSS properties
+  // _This will later be used by .css() and a number of other methods_
   function unitize (unit, prop) {
+
+    // All the CSS props. that are to be defaulted to px values
     var pixel = {
       "width": true,
       "maxWidth": true,
@@ -104,16 +105,21 @@
       "right": true
     };
 
+    // String values are not be unitized no matter what
     if (typeof unit === "string") {
       return unit;
     }
 
+    // If the property is present in the previously mentioned
+    // object, the unit is suffixed with "px"
     if (pixel[prop] === true) {
       return unit + "px";
     }
 
     return unit;
   }
+
+  // Create an element
 
   /**
    * Create an element
@@ -136,16 +142,19 @@
     var el = new Dom([document.createElement(tagName)]), key;
 
     if (attrs) {
+      // Add Class if the `className` is sset
       if (attrs.className) {
         el.addClass(attrs.className);
         delete attrs.className;
       }
 
+      // Set html to if `text` content is given
       if (attrs.text) {
-        el.text(attrs.text);
+        el.html(attrs.text);
         delete attrs.text;
       }
 
+      // Set other attributes
       for (key in attrs) {
         if(attrs.hasOwnProperty(key)) {
           el.attr(key, attrs["key"]);
@@ -161,6 +170,8 @@
     // --------------------------------------------------
     // Helper Functions
     // --------------------------------------------------
+    
+    // Execute a function on selected elements
 
     /**
      * Execute a function on selected elements
@@ -182,6 +193,9 @@
       return this; // return the current Dom instance
     },
 
+    // Return the results of executing a function 
+    // on all the selected elements
+
     /**
      * Return the results of executing a function 
      * on all the selected elements
@@ -199,12 +213,19 @@
      * @since 0.1.0
      */
     map: function (fn) {
-      var results = [], _i, _l;
+      var results = []
+        , _i
+        , _l;
+
       for (_i = 0, _l = this.length; _i < _l; _i += 1) {
         results.push(fn.call(this, this[_i], _i));
       }
+
       return results;
     },
+
+    // Map on selected elements and return them based 
+    // on the number of selected elements
 
     /**
      * Map on selected elements and return them based 
@@ -220,6 +241,8 @@
       var m = this.map(fn);
       return m.length > 1 ? m : m[0];
     },
+
+    // Execute a function on the first selected element
 
     /**
      * Execute a function on the first selected element
@@ -239,6 +262,9 @@
     first: function (fn) {
       return fn(this[0]);
     },
+
+    // Filters the selected elements and returns the 
+    // elements that pass the test (or return true)
 
     /**
      * Filters the selected elements and returns the 
@@ -263,11 +289,10 @@
         , res = []
         , val;
 
-      for (_i = 0; _i < len; _i++)
-      {
-        if (_i in t)
-        {
+      for (_i = 0; _i < len; _i++) {
+        if (_i in t) {
           val = t[_i];
+
           if (fn.call(this, val, _i, t)) {
             res.push(val);
           }
@@ -281,8 +306,10 @@
     // Element Selections, etc.
     // --------------------------------------------------
 
+    // Get a JavaScript Array containing selected elements
+
     /**
-     * Get a NodeList of selected elements
+     * Get a JavaScript Array containing selected elements
      * 
      * @for Dom
      * @method get
@@ -303,6 +330,8 @@
       return els;
     },
 
+    // Return first element of the selected elements
+
     /**
      * Return first element of the selected elements
      *
@@ -318,6 +347,8 @@
     firstEl: function () {
       return new Dom([this[0]]);
     },
+
+    // Return last element of the selected elements
 
     /**
      * Return last element of the selected elements
@@ -335,6 +366,8 @@
       return new Dom([this[this.length - 1]]);
     },
 
+    // Return nth element of the selected elements
+
     /**
      * Return nth element of the selected elements
      *
@@ -351,6 +384,8 @@
     el: function (place) {
       return new Dom([this[place - 1]]);
     },
+
+    // Return the children of selected elements
 
     /**
      * Return the children of selected elements
@@ -380,6 +415,8 @@
       return children;
     },
 
+    // Returns the parents of selected elements
+
     /**
      * Returns the parents of selected elements
      *
@@ -402,6 +439,8 @@
       return new Dom(pars);
     },
 
+    // Return parent of first selected element
+
     /**
      * Return parent of first selected element
      *
@@ -419,6 +458,9 @@
         return new Dom([el.parentElement]);
       });
     },
+
+    // Return relative of selected elements based 
+    // on the relation given
 
     /**
      * Return relative of selected elements based 
@@ -444,6 +486,8 @@
       return els;
     },
 
+    // Return next sibling elements of selected elements
+
     /**
      * Return next sibling elements of selected elements
      *
@@ -458,6 +502,8 @@
     next: function () {
       return this.rel("nextElementSibling");
     },
+
+    // Return previous sibling elements of selected elements
 
     /**
      * Return previous sibling elements of selected elements
@@ -477,6 +523,8 @@
     // --------------------------------------------------
     // DOM HTML
     // --------------------------------------------------
+
+    // Set or return innerHTML of selected elements
 
     /**
      * Set or return innerHTML of selected elements
@@ -504,6 +552,8 @@
       }
     },
 
+    // Empty the selected elements
+
     /**
      * Empty the selected elements
      * 
@@ -519,6 +569,8 @@
     empty: function () {
       return this.html("");
     },
+
+    // Append html to selected elements
 
     /**
      * Append html to selected elements
@@ -539,6 +591,8 @@
       });
     },
 
+    // Prepend html to selected elements
+
     /**
      * Prepend html to selected elements
      * 
@@ -557,6 +611,8 @@
         el.innerHTML = html + el.innerHTML;
       });
     },
+
+    // Get or set the value attribute of selected element
 
     /**
      * Get or set the value attribute of selected element
@@ -587,6 +643,8 @@
     // Classes and IDs
     // --------------------------------------------------
 
+    // Set or return ID of first element
+
     /**
      * Set or return ID of first element
      *  
@@ -615,6 +673,8 @@
         });
       }
     },
+
+    // Add, remove or check class(es)
 
     /**
      * Add, remove or check class(es)
@@ -883,6 +943,8 @@
       });
     },
 
+    // Adds class(es) to selected elements
+
     /**
      * Adds class(es) to selected elements
      * 
@@ -900,6 +962,8 @@
       return this["class"]("add", className);
     },
 
+    // Remove class(es) from selected elements
+
     /**
      * Remove class(es) from selected elements
      * 
@@ -916,6 +980,8 @@
     removeClass: function (className) {
       return this["class"]("remove", className);
     },
+
+    // Check for class(es) in selected elements
 
     /**
      * Check for class(es) in selected elements
@@ -936,6 +1002,8 @@
       return this["class"]("has", className);
     },
 
+    // Add class(es) if not already, remove if added
+
     /**
      * Add class(es) if not already, remove if added
      * 
@@ -954,6 +1022,8 @@
     toggleClass: function (className) {
       return this["class"]("toggle", className);
     },
+
+    // Set or return attributes
     
     /**
      * Set or return attributes
@@ -986,6 +1056,8 @@
     // --------------------------------------------------
     // Hilo CSS
     // --------------------------------------------------
+
+    // Set or return css property
 
     /**
      * Set or return css property
@@ -1033,6 +1105,8 @@
       }
     },
 
+    // Get computed property
+
     /**
      * Get computed property
      * 
@@ -1044,10 +1118,12 @@
      * @since 0.1.0
      */
     computed: function (prop) {
-      return this.one(function (el) {
+      return this.first(function (el) {
         return win.getComputedStyle(el)[prop];
       });
     },
+
+    // Get outer width
 
     outerWidth: function () {
       return parseFloat(this.computed("width")) + 
@@ -1057,11 +1133,15 @@
       parseFloat(this.computed("borderRight")) + "px";
     },
 
+    // Get inner width
+
     innerWidth: function () {
       return parseFloat(this.computed("width")) + 
       parseFloat(this.computed("paddingLeft")) + 
       parseFloat(this.computed("paddingRight")) + "px";
     },
+
+    // Get outer height
 
     outerHeight: function () {
       return parseFloat(this.computed("height")) + 
@@ -1070,6 +1150,8 @@
       parseFloat(this.computed("borderTop")) + 
       parseFloat(this.computed("borderBottom")) + "px";
     },
+
+    // Get inner height
 
     innerHeight: function () {
       return parseFloat(this.computed("height")) + 

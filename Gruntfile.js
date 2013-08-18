@@ -7,7 +7,7 @@ module.exports = function(grunt) {
   // Run: "grunt --no-color --force" without the quotes
   // and keep it clean
 
-  var itsbeen = " * "
+  var itsbeen = "// "
     , st = new Date(1375182296792)
     , ct = new Date()
     , diff = {
@@ -25,12 +25,14 @@ module.exports = function(grunt) {
   grunt.initConfig({
     
     pkg: grunt.file.readJSON("package.json"),
-    banner: "/*! \n * <%= pkg.title %> - <%= pkg.version %> - " +
-      "<%= grunt.template.today(\"yyyy-mm-dd\") %>\n" +
+    banner: "// ========================= \n" +
+      "// <%= pkg.title %> - <%= pkg.version %>\n" +
+      "// ========================= \n" + 
+      "// <%= grunt.template.today(\"yyyy-mm-dd\") %>\n" +
       itsbeen +
-      " * http://erikroyall.github.com/<%= pkg.name %>/\n" +
-      " * Copyright (c) 2013 Erik Royall\n" +
-      " * Licensed under <%= pkg.license %> (see LICENSE-MIT) \n */\n\n",
+      "// http://erikroyall.github.com/<%= pkg.name %>/\n" +
+      "// Copyright (c) 2013 Erik Royall\n" +
+      "// Licensed under <%= pkg.license %> (see LICENSE-MIT) \n\n",
     
     concat: {
       options: {
@@ -41,37 +43,39 @@ module.exports = function(grunt) {
         src: [
           "src/start.js",
           "src/detect.js",
+          "src/polyfill.js",
           "src/util.js",
           "src/core.js",
           "src/test.js",
-          "src/polyfill.js",
           "src/ajax.js",
           "src/dom.js",
           "src/evt.js",
           "src/fx.js",
           "src/misc.js",
+          "src/more.js",
           "src/end.js"
           ],
-        dest: "build/<%= pkg.name %>-dev.js"
+        dest: "build/<%= pkg.name %>.js"
       },
       legacy: {
         src: [
-          "src/start-legacy.js",
+          "src/start.js",
           "src/detect.js",
+          "src/polyfill.js",
           "src/sizzle.js",
           "src/util.js",
           "src/legacy.js",
           "src/core.js",
           "src/test.js",
-          "src/polyfill.js",
           "src/ajax.js",
           "src/dom.js",
           "src/evt.js",
           "src/fx.js",
           "src/misc.js",
+          "src/more.js",
           "src/end.js"
           ],
-        dest: "build/<%= pkg.name %>-legacy-dev.js"
+        dest: "build/<%= pkg.name %>-legacy.js"
       },
       release: {
         src: "<%= concat.dist.src %>",
@@ -81,14 +85,14 @@ module.exports = function(grunt) {
     uglify: {
       hilo: {
         files: {
-          "build/<%= pkg.name %>-dev.min.js" : ["build/<%= pkg.name %>-dev.js"],
-          "build/<%= pkg.name %>-legacy-dev.min.js" : ["build/<%= pkg.name %>-legacy-dev.js"]
+          "build/<%= pkg.name %>.min.js" : ["build/<%= pkg.name %>.js"],
+          "build/<%= pkg.name %>-legacy.min.js" : ["build/<%= pkg.name %>-legacy.js"]
         }
       }
     },
     jasmine: {
       options: {
-        helpers: "build/hilo-dev.js"
+        helpers: "build/hilo.js"
       },
       hilo: {
         src: "test/spec/**/*.spec.js"
@@ -117,20 +121,20 @@ module.exports = function(grunt) {
         src: "Gruntfile.js"
       },
       hilo: {
-        src: "build/<%= pkg.name %>-dev.js"
+        src: "build/<%= pkg.name %>.js"
       },
       hiloLegacy: {
-        src: "build/<%= pkg.name %>-legacy-dev.js"
+        src: "build/<%= pkg.name %>-legacy.js"
       }
     },
     watch: {
       gruntfile: {
         files: "<%= jshint.gruntfile.src %>",
-        tasks: ["jshint:gruntfile", "concat:dist", "concat:legacy", "yuidoc", "uglify:hilo", "jshint:hilo", "jasmine:hilo"]
+        tasks: ["jshint:gruntfile", "concat:dist", "concat:legacy", "yuidoc", "uglify:hilo", "jshint:hilo", "jshint:hiloLegacy", "jasmine:hilo"]
       },
       hilo: {
         files: "<%= concat.dist.src %>",
-        tasks: ["concat:dist", "concat:legacy", "yuidoc", "uglify:hilo", "jshint:hilo", "jasmine:hilo"]
+        tasks: ["concat:dist", "concat:legacy", "yuidoc", "uglify:hilo", "jshint:hilo", "jshint:hiloLegacy", "jasmine:hilo"]
       }
     },
     yuidoc: {
@@ -156,6 +160,6 @@ module.exports = function(grunt) {
 
   
   grunt.registerTask("default", ["concat:dist", "concat:legacy", "yuidoc", "uglify:hilo", "jasmine:hilo", "jshint", "watch"]);
-  grunt.registerTask("release", ["concat", "yuidoc"]);
+  grunt.registerTask("release", ["concat:release", "yuidoc"]);
 
 };
