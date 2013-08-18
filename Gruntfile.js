@@ -3,10 +3,7 @@
 module.exports = function(grunt) {
 
   "use strict";
-
-  // Run: "grunt --no-color --force" without the quotes
-  // and keep it clean
-
+  
   var itsbeen = "// "
     , st = new Date(1375182296792)
     , ct = new Date()
