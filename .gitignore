@@ -1,4 +1,8 @@
 .grunt
+api_docs
+doc
+docs
+logos
 node_modules
 _SpecRunner.html
 junit/*
