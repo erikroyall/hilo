@@ -246,9 +246,9 @@ div.code pre, span.code {
   .pln {
     color: #000;
   }
-@  media all {
-    .str {
-color: #0f8000;
+@media all {
+  .str {
+    color: #0f8000;
   }
 
   .kwd {
