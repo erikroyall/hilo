@@ -3,7 +3,7 @@
         "name": "hilo",
         "description": "A lightning fast client-side JavaScript Framework and library that makes developing awesome websites easy",
         "version": "0.1.0-pre-dev-beta-10",
-        "url": ""
+        "url": "http://erikroyall.github.com/hilo"
     },
     "files": {
         "src\\ajax.js": {
@@ -1306,7 +1306,7 @@
         },
         {
             "file": "src\\sizzle.js",
-            "line": 214,
+            "line": 221,
             "description": "Create key-value caches of limited size",
             "return": {
                 "description": "Returns the Object data after storing it on itself with\n property name the (space-suffixed) string and (if the cache is larger than Expr.cacheLength)\n deleting the oldest entry",
@@ -1317,7 +1317,7 @@
         },
         {
             "file": "src\\sizzle.js",
-            "line": 414,
+            "line": 421,
             "description": "Mark a function for special use by Sizzle",
             "params": [
                 {
@@ -1331,7 +1331,7 @@
         },
         {
             "file": "src\\sizzle.js",
-            "line": 423,
+            "line": 430,
             "description": "Support testing using an element",
             "params": [
                 {
@@ -1345,7 +1345,7 @@
         },
         {
             "file": "src\\sizzle.js",
-            "line": 444,
+            "line": 451,
             "description": "Adds the same handler for all of the specified attrs",
             "params": [
                 {
@@ -1364,7 +1364,7 @@
         },
         {
             "file": "src\\sizzle.js",
-            "line": 458,
+            "line": 465,
             "description": "Checks document order of two siblings",
             "params": [
                 {
@@ -1387,7 +1387,7 @@
         },
         {
             "file": "src\\sizzle.js",
-            "line": 487,
+            "line": 494,
             "description": "Returns a function to use in pseudos for input types",
             "params": [
                 {
@@ -1401,7 +1401,7 @@
         },
         {
             "file": "src\\sizzle.js",
-            "line": 498,
+            "line": 505,
             "description": "Returns a function to use in pseudos for buttons",
             "params": [
                 {
@@ -1415,7 +1415,7 @@
         },
         {
             "file": "src\\sizzle.js",
-            "line": 509,
+            "line": 516,
             "description": "Returns a function to use in pseudos for positionals",
             "params": [
                 {
@@ -1429,7 +1429,7 @@
         },
         {
             "file": "src\\sizzle.js",
-            "line": 531,
+            "line": 538,
             "description": "Detect xml",
             "params": [
                 {
@@ -1443,7 +1443,7 @@
         },
         {
             "file": "src\\sizzle.js",
-            "line": 545,
+            "line": 552,
             "description": "Sets document-related variables once based on the current document",
             "params": [
                 {
@@ -1462,7 +1462,7 @@
         },
         {
             "file": "src\\sizzle.js",
-            "line": 955,
+            "line": 962,
             "description": "Document sorting and removing duplicates",
             "params": [
                 {
@@ -1476,7 +1476,7 @@
         },
         {
             "file": "src\\sizzle.js",
-            "line": 984,
+            "line": 991,
             "description": "Utility function for retrieving the text value of an array of DOM nodes",
             "params": [
                 {
@@ -1588,63 +1588,63 @@
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src\\sizzle.js:214"
+            "line": " src\\sizzle.js:221"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src\\sizzle.js:458"
+            "line": " src\\sizzle.js:465"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src\\sizzle.js:545"
+            "line": " src\\sizzle.js:552"
         },
         {
             "message": "Missing item type\nCreate key-value caches of limited size",
-            "line": " src\\sizzle.js:214"
+            "line": " src\\sizzle.js:221"
         },
         {
             "message": "Missing item type\nMark a function for special use by Sizzle",
-            "line": " src\\sizzle.js:414"
+            "line": " src\\sizzle.js:421"
         },
         {
             "message": "Missing item type\nSupport testing using an element",
-            "line": " src\\sizzle.js:423"
+            "line": " src\\sizzle.js:430"
         },
         {
             "message": "Missing item type\nAdds the same handler for all of the specified attrs",
-            "line": " src\\sizzle.js:444"
+            "line": " src\\sizzle.js:451"
         },
         {
             "message": "Missing item type\nChecks document order of two siblings",
-            "line": " src\\sizzle.js:458"
+            "line": " src\\sizzle.js:465"
         },
         {
             "message": "Missing item type\nReturns a function to use in pseudos for input types",
-            "line": " src\\sizzle.js:487"
+            "line": " src\\sizzle.js:494"
         },
         {
             "message": "Missing item type\nReturns a function to use in pseudos for buttons",
-            "line": " src\\sizzle.js:498"
+            "line": " src\\sizzle.js:505"
         },
         {
             "message": "Missing item type\nReturns a function to use in pseudos for positionals",
-            "line": " src\\sizzle.js:509"
+            "line": " src\\sizzle.js:516"
         },
         {
             "message": "Missing item type\nDetect xml",
-            "line": " src\\sizzle.js:531"
+            "line": " src\\sizzle.js:538"
         },
         {
             "message": "Missing item type\nSets document-related variables once based on the current document",
-            "line": " src\\sizzle.js:545"
+            "line": " src\\sizzle.js:552"
         },
         {
             "message": "Missing item type\nDocument sorting and removing duplicates",
-            "line": " src\\sizzle.js:955"
+            "line": " src\\sizzle.js:962"
         },
         {
             "message": "Missing item type\nUtility function for retrieving the text value of an array of DOM nodes",
-            "line": " src\\sizzle.js:984"
+            "line": " src\\sizzle.js:991"
         }
     ]
 }

@@ -15,6 +15,9 @@
      * @example
      * <div class="code"><pre class="prettyprint">
      * $.test("hello");
+     * </pre></div>
+     * 
+     * <div class="code"><pre class="prettyprint">
      * $.test({
      *   name: "Erik Royall",
      *   age: 14,

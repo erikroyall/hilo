@@ -1,8 +1,8 @@
 // ========================= 
 // Hilo - 0.1.0-pre-dev-beta-10
 // ========================= 
-// 2013-08-18
-// Project started before 1 month and 18 days
+// 2013-08-21
+// Project started before 1 month and 21 days
 // http://erikroyall.github.com/hilo/
 // Copyright (c) 2013 Erik Royall
 // Licensed under MIT (see LICENSE-MIT) 
@@ -823,9 +823,15 @@
   // Create a json object only if one does not already exist. We create the
   // methods in a closure to avoid creating global variables.
 
-  var json = {};
+  var json =  {};
 
   (function () {
+
+    if (typeof window.JSON === "object" && typeof window.JSON.parse === "function") {
+      json = window.JSON;
+      
+      return;
+    }
 
     function f (n) {
       // Format integers to have at least two digits.

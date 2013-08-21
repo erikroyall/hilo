@@ -14,10 +14,20 @@
    * @example
    * <div class="code"><pre class="prettyprint">
    * new Dom (document.querySelectorAll(p:first-child);
+   * </pre></div>
+   * <div class="code"><pre class="prettyprint">
    * new Dom ([document.createElement("div")]);
+   * </pre></div>
+   * <div class="code"><pre class="prettyprint">
    * new Dom ([document.getElementByid("box")]);
+   * </pre></div>
+   * <div class="code"><pre class="prettyprint">
    * new Dom (document.getElementsByClassName("hidden"));
+   * </pre></div>
+   * <div class="code"><pre class="prettyprint">
    * new Dom (document.getElementsByTagName("mark"));
+   * </pre></div>
+   * <div class="code"><pre class="prettyprint">
    * </pre></div>
    * @since 0.1.0
    */

@@ -16,6 +16,8 @@
    * @example
    * <div class="code"><pre class="prettyprint">
    * new Animation ({opacity:0});
+   * </pre></div>
+   * <div class="code"><pre class="prettyprint">
    * new Animation ({width:100,height:100})
    * </pre></div>
    * @since 0.1.0
