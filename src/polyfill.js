@@ -12,9 +12,15 @@
   // Create a json object only if one does not already exist. We create the
   // methods in a closure to avoid creating global variables.
 
-  var json = {};
+  var json =  {};
 
   (function () {
+
+    if (typeof window.JSON === "object" && typeof window.JSON.parse === "function") {
+      json = window.JSON;
+      
+      return;
+    }
 
     function f (n) {
       // Format integers to have at least two digits.

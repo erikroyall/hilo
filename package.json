@@ -3,12 +3,28 @@
   "title": "Hilo",
   "description": "A lightning fast client-side JavaScript Framework and library that makes developing awesome websites easy",
   "version": "0.1.0-pre-dev-beta-10",
+  "homepage": "http://erikroyall.github.com/hilo",
+  "keywords": ["DOM", "Browser", "Utility"],
   "license": "MIT",
   "author": {
     "name": "Erik Royall",
     "email": "erikroyall@hotmail.com",
     "url": "erikroyall.github.com"
   },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/erikroyall/helio.git"
+  },
+  "bugs": {
+    "url": "https://github.com/erikroyall/helio/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/erikroyall/helio/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "dist/helio.js",
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-jshint": "~0.5.4",
