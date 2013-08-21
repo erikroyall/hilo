@@ -2,7 +2,7 @@
 <html lang="en" class="no-js">
   <head>
     <meta charset="utf-8"/>
-    <meta name="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <title>Hilo</title>
     <meta name="description" content="A lightning fast Open Source JavaScript Framework and library that makes developing awesome websites easy"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -23,13 +23,13 @@
   	<![endif]-->
 
     <nav class="site-nav">
-      <ul class="nav-ul">
-        <a href="#top" class="nav-item"><li>Home</li></a>
-        <a href="#features" class="nav-item"><li>Features</li></a>
-        <a href="#usage" class="nav-item"><li>Usage</li></a>
-        <a href="#about" class="nav-item"><li>About</li></a>
+      <div class="nav-ul">
+        <a href="#top" class="nav-item">Home</a>
+        <a href="#features" class="nav-item">Features</a>
+        <a href="#usage" class="nav-item">Usage</a>
+        <a href="#about" class="nav-item">About</a>
         <a href="http://github.com/erikroyall/hilo" target="_blank" class="nav-item"><li>Source Code</li></a>
-      </ul>
+      </div>
     </nav>
     <header class="main-header">
     	<h1 class="site-logo">Hilo</h1>
@@ -39,19 +39,19 @@
     <div role="main" class="main">
     	<section name="features" class="features">
         <h2 class="section-heading">Features</h2>
-    		<div class="f-dom" class="feature">
+    		<div id="f-dom" class="feature">
     			<h3>DOM</h3>
     			<p>Faster and better</p>
     		</div>
-    		<div class="f-ajax" class="feature">
+    		<div id="f-ajax" class="feature">
     			<h3>AJAX</h3>
     			<p>Easier and more efficient</p>
     		</div>
-    		<div class="f-fd" class="feature">
+    		<div id="f-fd" class="feature">
     			<h3>Detection</h3>
     			<p>Browser and Features</p>
     		</div>
-    		<div class="f-fx" class="feature">
+    		<div id="f-fx" class="feature">
     			<h3>Effects</h3>
     			<p>Progressive Enchancements</p>
     		</div>
@@ -93,8 +93,8 @@ Create another <span class="code">&lt;script&gt;</span> and write Hilo code ther
         <p>Hilo is developed by me, <a href="http://erikroyall.github.com" target="_blank">Erik Royall</a>, a 14 year old Web Developer.</p>
       </section>
     </div>
-    <footer class="main-footer" class="cf">
-    	<p class="copyright">&copy; <time datetime="2013">2013<time> by Erik Royall</p>
+    <footer class="main-footer cf">
+    	<p class="copyright">&copy; <time datetime="2013">2013</time> by Erik Royall</p>
     </footer>
 
     <!-- Load the JavaScript scripts after the page has finished rendering -->

@@ -108,7 +108,7 @@ a {
           outline: none;
         }
 
-        .nav-item li {
+        .nav-item {
           display: inline;
           height: 50px;
           margin: 0;
@@ -150,22 +150,12 @@ a {
     line-height: 200px;
 
     font: 3em "Learning Curve Pro";
-    /*font-weight: bolder;*/
     text-transform: uppercase;
     word-wrap: break-word;
 
     margin: 0.45em auto;
     padding: 0;
   }
-
-    .chrome .site-logo {
-      -webkit-text-stroke: 1px #c84648;
-    }
-
-    .site-logo::selection {
-      background-color: transparent;
-      font-family: "Learn Curve Dashed Pro";
-    }
 
     @media all and (min-width: 240px) {
       .site-logo {
@@ -185,16 +175,10 @@ a {
       }
     }
 
-    @media all and (min-width: 800px) {
-      .site-logo {
-        font-size: 6em;
-      }
-    }
-
     /* IE Legacy support */
 
     .lt-ie9 .site-logo {
-      font-size: 9em;
+      font-size: 6em;
     }
 
 .features {
