@@ -3830,6 +3830,15 @@
 
     sign: function (value) {
       sign.call(this, this.num, value);
+    },
+
+    times: function (fn, args) {
+      var _i = 0;
+
+      while (_i < this.num) {
+        fn.apply(this, args);
+        _i += 1;
+      }
     }
   });
   
