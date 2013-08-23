@@ -222,10 +222,25 @@
         <h5>Example</h5>
         <div class="code"><pre class="prettyprint">
 new Dom (document.querySelectorAll(p:first-child);
+</pre></div>
+
+<div class="code"><pre class="prettyprint">
 new Dom ([document.createElement("div")]);
+</pre></div>
+
+<div class="code"><pre class="prettyprint">
 new Dom ([document.getElementByid("box")]);
+</pre></div>
+
+<div class="code"><pre class="prettyprint">
 new Dom (document.getElementsByClassName("hidden"));
+</pre></div>
+
+<div class="code"><pre class="prettyprint">
 new Dom (document.getElementsByTagName("mark"));
+</pre></div>
+
+<div class="code"><pre class="prettyprint">
 </pre></div>
     
 </div>
@@ -254,7 +269,7 @@ new Dom (document.getElementsByTagName("mark"));
     
         
     
-        <a href="../../files/src_dom.js.html#l948"><code>src\dom.js:948</code></a>
+        <a href="../../files/src_dom.js.html#l958"><code>src\dom.js:958</code></a>
     </span><br>
     <p>Adds class(es) to selected elements</p>
     
@@ -294,7 +309,7 @@ $("p").addClass("paragraph")
     
         
     
-        <a href="../../files/src_fx.js.html#l73"><code>src\fx.js:73</code></a>
+        <a href="../../files/src_fx.js.html#l76"><code>src\fx.js:76</code></a>
     </span><br>
     <p>Sets visibility to "visible"</p>
     
@@ -320,7 +335,7 @@ $("p").appear();
     
         
     
-        <a href="../../files/src_dom.js.html#l575"><code>src\dom.js:575</code></a>
+        <a href="../../files/src_dom.js.html#l585"><code>src\dom.js:585</code></a>
     </span><br>
     <p>Append html to selected elements</p>
     
@@ -360,7 +375,7 @@ $("p:first-child").append(" - From the first p child")
     
         
     
-        <a href="../../files/src_dom.js.html#l1028"><code>src\dom.js:1028</code></a>
+        <a href="../../files/src_dom.js.html#l1038"><code>src\dom.js:1038</code></a>
     </span><br>
     <p>Set or return attributes</p>
     
@@ -411,7 +426,7 @@ $("body").attr("hilo", "0.1.0");
     
         
     
-        <a href="../../files/src_dom.js.html#l390"><code>src\dom.js:390</code></a>
+        <a href="../../files/src_dom.js.html#l400"><code>src\dom.js:400</code></a>
     </span><br>
     <p>Return the children of selected elements</p>
     
@@ -452,7 +467,7 @@ $("div.container").children(":not(.hidden)").addClass("me");
     
         
     
-        <a href="../../files/src_dom.js.html#l679"><code>src\dom.js:679</code></a>
+        <a href="../../files/src_dom.js.html#l689"><code>src\dom.js:689</code></a>
     </span><br>
     <p>Add, remove or check class(es)</p>
     
@@ -501,7 +516,7 @@ $("div#editor").class("add", "no-js")
     
         
     
-        <a href="../../files/src_dom.js.html#l1110"><code>src\dom.js:1110</code></a>
+        <a href="../../files/src_dom.js.html#l1120"><code>src\dom.js:1120</code></a>
     </span><br>
     <p>Get computed property</p>
     
@@ -536,7 +551,7 @@ $("div#editor").class("add", "no-js")
     
         
     
-        <a href="../../files/src_dom.js.html#l1062"><code>src\dom.js:1062</code></a>
+        <a href="../../files/src_dom.js.html#l1072"><code>src\dom.js:1072</code></a>
     </span><br>
     <p>Set or return css property</p>
     
@@ -590,7 +605,7 @@ $("p.round").css({
     
         
     
-        <a href="../../files/src_fx.js.html#l92"><code>src\fx.js:92</code></a>
+        <a href="../../files/src_fx.js.html#l96"><code>src\fx.js:96</code></a>
     </span><br>
     <p>Sets visiblity to "hidden"</p>
     
@@ -616,7 +631,7 @@ $("p").disappear();
     
         
     
-        <a href="../../files/src_dom.js.html#l176"><code>src\dom.js:176</code></a>
+        <a href="../../files/src_dom.js.html#l186"><code>src\dom.js:186</code></a>
     </span><br>
     <p>Execute a function on selected elements</p>
     
@@ -658,7 +673,7 @@ $("p").each(function (el) {
     
         
     
-        <a href="../../files/src_dom.js.html#l371"><code>src\dom.js:371</code></a>
+        <a href="../../files/src_dom.js.html#l381"><code>src\dom.js:381</code></a>
     </span><br>
     <p>Return nth element of the selected elements</p>
     
@@ -684,7 +699,7 @@ $("p.hidden").el(3).show();
     
         
     
-        <a href="../../files/src_dom.js.html#l557"><code>src\dom.js:557</code></a>
+        <a href="../../files/src_dom.js.html#l567"><code>src\dom.js:567</code></a>
     </span><br>
     <p>Empty the selected elements</p>
     
@@ -710,7 +725,7 @@ $("#todo-list").empty()
     
         
     
-        <a href="../../files/src_fx.js.html#l134"><code>src\fx.js:134</code></a>
+        <a href="../../files/src_fx.js.html#l142"><code>src\fx.js:142</code></a>
     </span><br>
     <p>Animates opacity prop. from 0 to 1 or 1 to 0</p>
     
@@ -762,7 +777,7 @@ $("p").fade("out", 100);
     
         
     
-        <a href="../../files/src_fx.js.html#l193"><code>src\fx.js:193</code></a>
+        <a href="../../files/src_fx.js.html#l201"><code>src\fx.js:201</code></a>
     </span><br>
     <p>Animates opacity prop. from 0 to 1</p>
     
@@ -803,7 +818,7 @@ $("p").fadeIn(140);
     
         
     
-        <a href="../../files/src_fx.js.html#l211"><code>src\fx.js:211</code></a>
+        <a href="../../files/src_fx.js.html#l219"><code>src\fx.js:219</code></a>
     </span><br>
     <p>Animates opacity prop. from 1 to 0</p>
     
@@ -844,7 +859,7 @@ $("p").fadeOut(140);
     
         
     
-        <a href="../../files/src_dom.js.html#l269"><code>src\dom.js:269</code></a>
+        <a href="../../files/src_dom.js.html#l279"><code>src\dom.js:279</code></a>
     </span><br>
     <p>Filters the selected elements and returns the 
 elements that pass the test (or return true)</p>
@@ -927,7 +942,7 @@ $("#uploadForm").fire("overload");
     
         
     
-        <a href="../../files/src_dom.js.html#l247"><code>src\dom.js:247</code></a>
+        <a href="../../files/src_dom.js.html#l257"><code>src\dom.js:257</code></a>
     </span><br>
     <p>Execute a function on the first selected element</p>
     
@@ -969,7 +984,7 @@ $("div").first(function (e) {
     
         
     
-        <a href="../../files/src_dom.js.html#l335"><code>src\dom.js:335</code></a>
+        <a href="../../files/src_dom.js.html#l345"><code>src\dom.js:345</code></a>
     </span><br>
     <p>Return first element of the selected elements</p>
     
@@ -995,7 +1010,7 @@ $("p.hidden").firstEl().show();
     
         
     
-        <a href="../../files/src_dom.js.html#l311"><code>src\dom.js:311</code></a>
+        <a href="../../files/src_dom.js.html#l321"><code>src\dom.js:321</code></a>
     </span><br>
     <p>Get a JavaScript Array containing selected elements</p>
     
@@ -1021,7 +1036,7 @@ $("script").get();
     
         
     
-        <a href="../../files/src_dom.js.html#l986"><code>src\dom.js:986</code></a>
+        <a href="../../files/src_dom.js.html#l996"><code>src\dom.js:996</code></a>
     </span><br>
     <p>Check for class(es) in selected elements</p>
     
@@ -1089,7 +1104,7 @@ $("p").hide();
     
         
     
-        <a href="../../files/src_dom.js.html#l529"><code>src\dom.js:529</code></a>
+        <a href="../../files/src_dom.js.html#l539"><code>src\dom.js:539</code></a>
     </span><br>
     <p>Set or return innerHTML of selected elements</p>
     
@@ -1130,7 +1145,7 @@ var html = $("span").html()
     
         
     
-        <a href="../../files/src_dom.js.html#l648"><code>src\dom.js:648</code></a>
+        <a href="../../files/src_dom.js.html#l658"><code>src\dom.js:658</code></a>
     </span><br>
     <p>Set or return ID of first element</p>
     
@@ -1170,7 +1185,7 @@ $("p.rect").first().id("square")
     
         
     
-        <a href="../../files/src_dom.js.html#l353"><code>src\dom.js:353</code></a>
+        <a href="../../files/src_dom.js.html#l363"><code>src\dom.js:363</code></a>
     </span><br>
     <p>Return last element of the selected elements</p>
     
@@ -1196,7 +1211,7 @@ $("p.hidden").lastEl().show();
     
         
     
-        <a href="../../files/src_dom.js.html#l199"><code>src\dom.js:199</code></a>
+        <a href="../../files/src_dom.js.html#l209"><code>src\dom.js:209</code></a>
     </span><br>
     <p>Return the results of executing a function 
 on all the selected elements</p>
@@ -1239,7 +1254,7 @@ $("div.need-cf").map(function (e) {
     
         
     
-        <a href="../../files/src_dom.js.html#l491"><code>src\dom.js:491</code></a>
+        <a href="../../files/src_dom.js.html#l501"><code>src\dom.js:501</code></a>
     </span><br>
     <p>Return next sibling elements of selected elements</p>
     
@@ -1365,7 +1380,7 @@ $("#box").on("click", function (e) {
     
         
     
-        <a href="../../files/src_dom.js.html#l230"><code>src\dom.js:230</code></a>
+        <a href="../../files/src_dom.js.html#l240"><code>src\dom.js:240</code></a>
     </span><br>
     <p>Map on selected elements and return them based 
 on the number of selected elements</p>
@@ -1401,7 +1416,7 @@ on the number of selected elements</p>
     
         
     
-        <a href="../../files/src_dom.js.html#l444"><code>src\dom.js:444</code></a>
+        <a href="../../files/src_dom.js.html#l454"><code>src\dom.js:454</code></a>
     </span><br>
     <p>Return parent of first selected element</p>
     
@@ -1427,7 +1442,7 @@ $("div.editor").parent().hide();
     
         
     
-        <a href="../../files/src_dom.js.html#l420"><code>src\dom.js:420</code></a>
+        <a href="../../files/src_dom.js.html#l430"><code>src\dom.js:430</code></a>
     </span><br>
     <p>Returns the parents of selected elements</p>
     
@@ -1453,7 +1468,7 @@ $("div#editor").parent().hide()
     
         
     
-        <a href="../../files/src_dom.js.html#l596"><code>src\dom.js:596</code></a>
+        <a href="../../files/src_dom.js.html#l606"><code>src\dom.js:606</code></a>
     </span><br>
     <p>Prepend html to selected elements</p>
     
@@ -1493,7 +1508,7 @@ $("p.subject").prepend("Subject: ")
     
         
     
-        <a href="../../files/src_dom.js.html#l508"><code>src\dom.js:508</code></a>
+        <a href="../../files/src_dom.js.html#l518"><code>src\dom.js:518</code></a>
     </span><br>
     <p>Return previous sibling elements of selected elements</p>
     
@@ -1519,7 +1534,7 @@ $("div.editor").prev().class("prev-to-editor")
     
         
     
-        <a href="../../files/src_dom.js.html#l465"><code>src\dom.js:465</code></a>
+        <a href="../../files/src_dom.js.html#l475"><code>src\dom.js:475</code></a>
     </span><br>
     <p>Return relative of selected elements based 
 on the relation given</p>
@@ -1560,7 +1575,7 @@ $("div#editor").rel("nextSibling").addClass("next-to-editor")
     
         
     
-        <a href="../../files/src_dom.js.html#l967"><code>src\dom.js:967</code></a>
+        <a href="../../files/src_dom.js.html#l977"><code>src\dom.js:977</code></a>
     </span><br>
     <p>Remove class(es) from selected elements</p>
     
@@ -1640,7 +1655,7 @@ $("p").show();
     
         
     
-        <a href="../../files/src_fx.js.html#l49"><code>src\fx.js:49</code></a>
+        <a href="../../files/src_fx.js.html#l50"><code>src\fx.js:50</code></a>
     </span><br>
     <p>Shows hidden elements, hides shown elements</p>
     
@@ -1666,7 +1681,7 @@ $("p").toggle();
     
         
     
-        <a href="../../files/src_dom.js.html#l1007"><code>src\dom.js:1007</code></a>
+        <a href="../../files/src_dom.js.html#l1017"><code>src\dom.js:1017</code></a>
     </span><br>
     <p>Add class(es) if not already, remove if added</p>
     
@@ -1708,7 +1723,7 @@ $(".someClass").on("click", function () {
     
         
     
-        <a href="../../files/src_fx.js.html#l111"><code>src\fx.js:111</code></a>
+        <a href="../../files/src_fx.js.html#l116"><code>src\fx.js:116</code></a>
     </span><br>
     <p>Appears a disappeared element, disappears and appeared element</p>
     
@@ -1734,7 +1749,7 @@ $("p").toggleVisibility();
     
         
     
-        <a href="../../files/src_dom.js.html#l617"><code>src\dom.js:617</code></a>
+        <a href="../../files/src_dom.js.html#l627"><code>src\dom.js:627</code></a>
     </span><br>
     <p>Get or set the value attribute of selected element</p>
     

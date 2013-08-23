@@ -1,8 +1,8 @@
 // ========================= 
 // Hilo - 0.1.0-pre-dev-beta-10
 // ========================= 
-// 2013-08-21
-// Project started before 1 month and 21 days
+// 2013-08-24
+// Project started before 1 month and 24 days
 // http://erikroyall.github.com/hilo/
 // Copyright (c) 2013 Erik Royall
 // Licensed under MIT (see LICENSE-MIT) 
@@ -1150,7 +1150,7 @@
     }
   }());
 
-  
+
   // --------------------------------------------------
   // Utilities
   // --------------------------------------------------
@@ -1502,6 +1502,9 @@
      * @example
      * <div class="code"><pre class="prettyprint">
      * $.test("hello");
+     * </pre></div>
+     * 
+     * <div class="code"><pre class="prettyprint">
      * $.test({
      *   name: "Erik Royall",
      *   age: 14,
@@ -1876,10 +1879,20 @@
    * @example
    * <div class="code"><pre class="prettyprint">
    * new Dom (document.querySelectorAll(p:first-child);
+   * </pre></div>
+   * <div class="code"><pre class="prettyprint">
    * new Dom ([document.createElement("div")]);
+   * </pre></div>
+   * <div class="code"><pre class="prettyprint">
    * new Dom ([document.getElementByid("box")]);
+   * </pre></div>
+   * <div class="code"><pre class="prettyprint">
    * new Dom (document.getElementsByClassName("hidden"));
+   * </pre></div>
+   * <div class="code"><pre class="prettyprint">
    * new Dom (document.getElementsByTagName("mark"));
+   * </pre></div>
+   * <div class="code"><pre class="prettyprint">
    * </pre></div>
    * @since 0.1.0
    */
@@ -3399,6 +3412,7 @@
     hide: function () {
       return this.each(function (el) {
         el.style.display = "none";
+        // ARIA
         el.setAttribute("aria-hidden", true);
       });
     },
@@ -3419,9 +3433,11 @@
       return this.each(function (el) {
         if (el.style.display === "none") {
           el.style.display = display ? display : "";
+          // ARIA
           el.setAttribute("aria-hidden", false);
         } else {
           el.style.display = "none";
+          // ARIA
           el.setAttribute("aria-hidden", true);
         }
       });
@@ -3442,6 +3458,7 @@
     appear: function () {
       return this.each(function (el) {
         el.style.visibility = "visible";
+        // ARIA
         el.setAttribute("aria-hidden", false);
       });
     },
@@ -3461,6 +3478,7 @@
     disappear: function () {
       return this.each(function (el) {
         el.style.visibility = "hidden";
+        // ARIA
         el.setAttribute("aria-hidden", true);
       });
     },
@@ -3480,10 +3498,13 @@
     toggleVisibility: function () {
       return this.each(function (el) {
         if (el.style.opacity === "0") {
-          el.style.opacity = "1";
+          el.style.visibility = "visible";
+          // ARIA
+          el.setAttribute("aria-hidden", true);
         } else {
-          el.style.opacity = "0";
-          el.style.cursor = "default";
+          el.style.visibility = "hidden";
+          // ARIA
+          el.setAttribute("aria-hidden", true);
         }
       });
     },

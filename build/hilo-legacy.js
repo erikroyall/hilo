@@ -1,8 +1,8 @@
 // ========================= 
 // Hilo - 0.1.0-pre-dev-beta-10
 // ========================= 
-// 2013-08-21
-// Project started before 1 month and 21 days
+// 2013-08-24
+// Project started before 1 month and 24 days
 // http://erikroyall.github.com/hilo/
 // Copyright (c) 2013 Erik Royall
 // Licensed under MIT (see LICENSE-MIT) 
@@ -1349,7 +1349,7 @@
      );
       // Support: Android<4.0
       // Detect silently failing push.apply
-      arr[ preferredDoc.childNodes.length ].nodeType;
+      arr[preferredDoc.childNodes.length].nodeType;
     } catch (e) {
       push = { apply: arr.length ?
 
@@ -1389,7 +1389,7 @@
           tokens = match[0] = match[0].slice(0);
           if (tokens.length > 2 && (token = tokens[0]).type === "ID" &&
               support.getById && context.nodeType === 9 && documentIsHTML &&
-              Expr.relative[ tokens[1].type ]) {
+              Expr.relative[tokens[1].type]) {
 
             context = (Expr.find["ID"](token.matches[0].replace(runescape, 
               funescape), context) || [])[0];
@@ -1405,10 +1405,10 @@
             token = tokens[i];
 
             // Abort if we hit a combinator
-            if (Expr.relative[ (type = token.type) ]) {
+            if (Expr.relative[(type = token.type)]) {
               break;
             }
-            if ((find = Expr.find[ type ])) {
+            if ((find = Expr.find[type])) {
               // Search, expanding context for leading sibling combinators
               if ((seed = find(
                 token.matches[0].replace(runescape, funescape),
@@ -1558,9 +1558,9 @@
         // Use (key + " ") to avoid collision with native prototype properties (see Issue #157)
         if (keys.push(key += " ") > Expr.cacheLength) {
           // Only keep the most recent entries
-          delete cache[ keys.shift() ];
+          delete cache[keys.shift()];
         }
-        return (cache[ key ] = value);
+        return (cache[key] = value);
       }
       return cache;
     }
@@ -1575,7 +1575,7 @@
      * @param {Function} fn The function to mark
      */
     function markFunction(fn) {
-      fn[ expando ] = true;
+      fn[expando] = true;
       return fn;
     }
 
@@ -1610,7 +1610,7 @@
         i = attrs.length;
 
       while (i--) {
-        Expr.attrHandle[ arr[i] ] = handler;
+        Expr.attrHandle[arr[i]] = handler;
       }
     }
 
@@ -1679,7 +1679,7 @@
 
           // Match elements found at the specified indexes
           while (i--) {
-            if (seed[ (j = matchIndexes[i]) ]) {
+            if (seed[(j = matchIndexes[i])]) {
               seed[j] = !(matches[j] = seed[j]);
             }
           }
@@ -1994,8 +1994,8 @@
           i = 0,
           aup = a.parentNode,
           bup = b.parentNode,
-          ap = [ a ],
-          bp = [ b ];
+          ap = [a],
+          bp = [b];
 
         // Exit early if the nodes are identical
         if (a === b) {
@@ -2092,7 +2092,7 @@
         setDocument(elem);
       }
 
-      var fn = Expr.attrHandle[ name.toLowerCase() ],
+      var fn = Expr.attrHandle[name.toLowerCase()],
         // Don't get fooled by Object.prototype properties (jQuery #13807)
         val = fn && hasOwn.call(Expr.attrHandle, name.toLowerCase()) ?
           fn(elem, name, !documentIsHTML) :
@@ -2128,12 +2128,12 @@
 
       if (hasDuplicate) {
         while ((elem = results[i++])) {
-          if (elem === results[ i ]) {
+          if (elem === results[i]) {
             j = duplicates.push(i);
           }
         }
         while (j--) {
-          results.splice(duplicates[ j ], 1);
+          results.splice(duplicates[j], 1);
         }
       }
 
@@ -2282,7 +2282,7 @@
         },
 
         "CLASS": function(className) {
-          var pattern = classCache[ className + " " ];
+          var pattern = classCache[className + " "];
 
           return pattern ||
             (pattern = new RegExp("(^|" + whitespace + ")" + className + "(" + whitespace + "|$)")) &&
@@ -2340,7 +2340,7 @@
                 if (simple) {
                   while (dir) {
                     node = elem;
-                    while ((node = node[ dir ])) {
+                    while ((node = node[dir])) {
                       if (ofType ? node.nodeName.toLowerCase() === name : node.nodeType === 1) {
                         return false;
                       }
@@ -2351,43 +2351,43 @@
                   return true;
                 }
 
-                start = [ forward ? parent.firstChild : parent.lastChild ];
+                start = [forward ? parent.firstChild : parent.lastChild];
 
                 // non-xml :nth-child(...) stores cache data on `parent`
                 if (forward && useCache) {
                   // Seek `elem` from a previously-cached index
-                  outerCache = parent[ expando ] || (parent[ expando ] = {});
-                  cache = outerCache[ type ] || [];
+                  outerCache = parent[expando] || (parent[expando] = {});
+                  cache = outerCache[type] || [];
                   nodeIndex = cache[0] === dirruns && cache[1];
                   diff = cache[0] === dirruns && cache[2];
-                  node = nodeIndex && parent.childNodes[ nodeIndex ];
+                  node = nodeIndex && parent.childNodes[nodeIndex];
 
-                  while ((node = ++nodeIndex && node && node[ dir ] ||
+                  while ((node = ++nodeIndex && node && node[dir] ||
 
                     // Fallback to seeking `elem` from the start
                     (diff = nodeIndex = 0) || start.pop())) {
 
                     // When found, cache indexes on `parent` and break
                     if (node.nodeType === 1 && ++diff && node === elem) {
-                      outerCache[ type ] = [ dirruns, nodeIndex, diff ];
+                      outerCache[type] = [dirruns, nodeIndex, diff];
                       break;
                     }
                   }
 
                 // Use previously-cached element index if available
-                } else if (useCache && (cache = (elem[ expando ] || (elem[ expando ] = {}))[ type ]) && cache[0] === dirruns) {
+                } else if (useCache && (cache = (elem[expando] || (elem[expando] = {}))[type]) && cache[0] === dirruns) {
                   diff = cache[1];
 
                 // xml :nth-child(...) or :nth-last-child(...) or :nth(-last)?-of-type(...)
                 } else {
                   // Use the same loop as above to seek `elem` from the start
-                  while ((node = ++nodeIndex && node && node[ dir ] ||
+                  while ((node = ++nodeIndex && node && node[dir] ||
                     (diff = nodeIndex = 0) || start.pop())) {
 
                     if ((ofType ? node.nodeName.toLowerCase() === name : node.nodeType === 1) && ++diff) {
                       // Cache the index of each encountered element
                       if (useCache) {
-                        (node[ expando ] || (node[ expando ] = {}))[ type ] = [ dirruns, diff ];
+                        (node[expando] || (node[expando] = {}))[type] = [dirruns, diff];
                       }
 
                       if (node === elem) {
@@ -2410,19 +2410,19 @@
           // Prioritize by case sensitivity in case custom pseudos are added with uppercase letters
           // Remember that SetFilters inherits from pseudos
           var args,
-            fn = Expr.pseudos[ pseudo ] || Expr.SetFilters[ pseudo.toLowerCase() ] ||
+            fn = Expr.pseudos[pseudo] || Expr.SetFilters[pseudo.toLowerCase()] ||
               Sizzle.error("unsupported pseudo: " + pseudo);
 
           // The user may use createPseudo to indicate that
           // arguments are needed to create the filter function
           // just as Sizzle does
-          if (fn[ expando ]) {
+          if (fn[expando]) {
             return fn(argument);
           }
 
           // But maintain support for old signatures
           if (fn.length > 1) {
-            args = [ pseudo, pseudo, "", argument ];
+            args = [pseudo, pseudo, "", argument];
             return Expr.SetFilters.hasOwnProperty(pseudo.toLowerCase()) ?
               markFunction(function(seed, matches) {
                 var idx,
@@ -2430,7 +2430,7 @@
                   i = matched.length;
                 while (i--) {
                   idx = indexOf.call(seed, matched[i]);
-                  seed[ idx ] = !(matches[ idx ] = matched[i]);
+                  seed[idx] = !(matches[idx] = matched[i]);
                 }
               }) :
               function(elem) {
@@ -2452,7 +2452,7 @@
             results = [],
             matcher = compile(selector.replace(rtrim, "$1"));
 
-          return matcher[ expando ] ?
+          return matcher[expando] ?
             markFunction(function(seed, matches, context, xml) {
               var elem,
                 unmatched = matcher(seed, null, xml, []),
@@ -2596,15 +2596,15 @@
 
         // Position-in-collection
         "first": createPositionalPseudo(function() {
-          return [ 0 ];
+          return [0];
         }),
 
         "last": createPositionalPseudo(function(matchIndexes, length) {
-          return [ length - 1 ];
+          return [length - 1];
         }),
 
         "eq": createPositionalPseudo(function(matchIndexes, length, argument) {
-          return [ argument < 0 ? argument + length : argument ];
+          return [argument < 0 ? argument + length : argument];
         }),
 
         "even": createPositionalPseudo(function(matchIndexes, length) {
@@ -2645,10 +2645,10 @@
 
     // Add button/input type pseudos
     for (i in { radio: true, checkbox: true, file: true, password: true, image: true }) {
-      Expr.pseudos[ i ] = createInputPseudo(i);
+      Expr.pseudos[i] = createInputPseudo(i);
     }
     for (i in { submit: true, reset: true }) {
-      Expr.pseudos[ i ] = createButtonPseudo(i);
+      Expr.pseudos[i] = createButtonPseudo(i);
     }
 
     // Easy API for creating new SetFilters
@@ -2659,7 +2659,7 @@
     function tokenize(selector, parseOnly) {
       var matched, match, tokens, type,
         soFar, groups, preFilters,
-        cached = tokenCache[ selector + " " ];
+        cached = tokenCache[selector + " "];
 
       if (cached) {
         return parseOnly ? 0 : cached.slice(0);
@@ -2695,8 +2695,8 @@
 
         // Filters
         for (type in Expr.filter) {
-          if ((match = matchExpr[ type ].exec(soFar)) && (!preFilters[ type ] ||
-            (match = preFilters[ type ](match)))) {
+          if ((match = matchExpr[type].exec(soFar)) && (!preFilters[type] ||
+            (match = preFilters[type](match)))) {
             matched = match.shift();
             tokens.push({
               value: matched,
@@ -2741,7 +2741,7 @@
       return combinator.first ?
         // Check against closest ancestor/preceding element
         function(elem, context, xml) {
-          while ((elem = elem[ dir ])) {
+          while ((elem = elem[dir])) {
             if (elem.nodeType === 1 || checkNonElements) {
               return matcher(elem, context, xml);
             }
@@ -2755,7 +2755,7 @@
 
           // We can't set arbitrary data on XML nodes, so they don't benefit from dir caching
           if (xml) {
-            while ((elem = elem[ dir ])) {
+            while ((elem = elem[dir])) {
               if (elem.nodeType === 1 || checkNonElements) {
                 if (matcher(elem, context, xml)) {
                   return true;
@@ -2763,15 +2763,15 @@
               }
             }
           } else {
-            while ((elem = elem[ dir ])) {
+            while ((elem = elem[dir])) {
               if (elem.nodeType === 1 || checkNonElements) {
-                outerCache = elem[ expando ] || (elem[ expando ] = {});
-                if ((cache = outerCache[ dir ]) && cache[0] === dirkey) {
+                outerCache = elem[expando] || (elem[expando] = {});
+                if ((cache = outerCache[dir]) && cache[0] === dirkey) {
                   if ((data = cache[1]) === true || data === cachedruns) {
                     return data === true;
                   }
                 } else {
-                  cache = outerCache[ dir ] = [ dirkey ];
+                  cache = outerCache[dir] = [dirkey];
                   cache[1] = matcher(elem, context, xml) || cachedruns;
                   if (cache[1] === true) {
                     return true;
@@ -2819,10 +2819,10 @@
     }
 
     function setMatcher(preFilter, selector, matcher, postFilter, postFinder, postSelector) {
-      if (postFilter && !postFilter[ expando ]) {
+      if (postFilter && !postFilter[expando]) {
         postFilter = setMatcher(postFilter);
       }
-      if (postFinder && !postFinder[ expando ]) {
+      if (postFinder && !postFinder[expando]) {
         postFinder = setMatcher(postFinder, postSelector);
       }
       return markFunction(function(seed, results, context, xml) {
@@ -2832,7 +2832,7 @@
           preexisting = results.length,
 
           // Get initial elements from seed or context
-          elems = seed || multipleContexts(selector || "*", context.nodeType ? [ context ] : context, []),
+          elems = seed || multipleContexts(selector || "*", context.nodeType ? [context] : context, []),
 
           // Prefilter to get matcher input, preserving a map for seed-results synchronization
           matcherIn = preFilter && (seed || !selector) ?
@@ -2864,7 +2864,7 @@
           i = temp.length;
           while (i--) {
             if ((elem = temp[i])) {
-              matcherOut[ postMap[i] ] = !(matcherIn[ postMap[i] ] = elem);
+              matcherOut[postMap[i]] = !(matcherIn[postMap[i]] = elem);
             }
           }
         }
@@ -2914,7 +2914,7 @@
     function matcherFromTokens(tokens) {
       var checkContext, matcher, j,
         len = tokens.length,
-        leadingRelative = Expr.relative[ tokens[0].type ],
+        leadingRelative = Expr.relative[tokens[0].type],
         implicitRelative = leadingRelative || Expr.relative[" "],
         i = leadingRelative ? 1 : 0,
 
@@ -2925,25 +2925,25 @@
         matchAnyContext = addCombinator(function(elem) {
           return indexOf.call(checkContext, elem) > -1;
         }, implicitRelative, true),
-        matchers = [ function(elem, context, xml) {
+        matchers = [function(elem, context, xml) {
           return (!leadingRelative && (xml || context !== outermostContext)) || (
             (checkContext = context).nodeType ?
               matchContext(elem, context, xml) :
               matchAnyContext(elem, context, xml));
-        } ];
+        }];
 
       for (; i < len; i++) {
-        if ((matcher = Expr.relative[ tokens[i].type ])) {
-          matchers = [ addCombinator(elementMatcher(matchers), matcher) ];
+        if ((matcher = Expr.relative[tokens[i].type])) {
+          matchers = [addCombinator(elementMatcher(matchers), matcher)];
         } else {
-          matcher = Expr.filter[ tokens[i].type ].apply(null, tokens[i].matches);
+          matcher = Expr.filter[tokens[i].type].apply(null, tokens[i].matches);
 
           // Return special upon seeing a positional matcher
-          if (matcher[ expando ]) {
+          if (matcher[expando]) {
             // Find the next relative operator (if any) for proper handling
             j = ++i;
             for (; j < len; j++) {
-              if (Expr.relative[ tokens[j].type ]) {
+              if (Expr.relative[tokens[j].type]) {
                 break;
               }
             }
@@ -2951,7 +2951,7 @@
               i > 1 && elementMatcher(matchers),
               i > 1 && toSelector(
                 // If the preceding token was a descendant combinator, insert an implicit any-element `*`
-                tokens.slice(0, i - 1).concat({ value: tokens[ i - 2 ].type === " " ? "*" : "" })
+                tokens.slice(0, i - 1).concat({ value: tokens[i - 2].type === " " ? "*" : "" })
              ).replace(rtrim, "$1"),
               matcher,
               i < j && matcherFromTokens(tokens.slice(i, j)),
@@ -3074,7 +3074,7 @@
       var i,
         setMatchers = [],
         elementMatchers = [],
-        cached = compilerCache[ selector + " " ];
+        cached = compilerCache[selector + " "];
 
       if (!cached) {
         // Generate a function of recursive functions that can be used to check each element
@@ -3084,7 +3084,7 @@
         i = group.length;
         while (i--) {
           cached = matcherFromTokens(group[i]);
-          if (cached[ expando ]) {
+          if (cached[expando]) {
             setMatchers.push(cached);
           } else {
             elementMatchers.push(cached);
@@ -3163,7 +3163,7 @@
         if (!isXML) {
           return (val = elem.getAttributeNode(name)) && val.specified ?
             val.value :
-            elem[ name ] === true ? name.toLowerCase() : null;
+            elem[name] === true ? name.toLowerCase() : null;
         }
       });
     }
@@ -3171,7 +3171,7 @@
     return Sizzle;
 
   }());
-  
+
   // --------------------------------------------------
   // Utilities
   // --------------------------------------------------
@@ -3532,6 +3532,9 @@
      * @example
      * <div class="code"><pre class="prettyprint">
      * $.test("hello");
+     * </pre></div>
+     * 
+     * <div class="code"><pre class="prettyprint">
      * $.test({
      *   name: "Erik Royall",
      *   age: 14,
@@ -3906,10 +3909,20 @@
    * @example
    * <div class="code"><pre class="prettyprint">
    * new Dom (document.querySelectorAll(p:first-child);
+   * </pre></div>
+   * <div class="code"><pre class="prettyprint">
    * new Dom ([document.createElement("div")]);
+   * </pre></div>
+   * <div class="code"><pre class="prettyprint">
    * new Dom ([document.getElementByid("box")]);
+   * </pre></div>
+   * <div class="code"><pre class="prettyprint">
    * new Dom (document.getElementsByClassName("hidden"));
+   * </pre></div>
+   * <div class="code"><pre class="prettyprint">
    * new Dom (document.getElementsByTagName("mark"));
+   * </pre></div>
+   * <div class="code"><pre class="prettyprint">
    * </pre></div>
    * @since 0.1.0
    */
@@ -5429,6 +5442,7 @@
     hide: function () {
       return this.each(function (el) {
         el.style.display = "none";
+        // ARIA
         el.setAttribute("aria-hidden", true);
       });
     },
@@ -5449,9 +5463,11 @@
       return this.each(function (el) {
         if (el.style.display === "none") {
           el.style.display = display ? display : "";
+          // ARIA
           el.setAttribute("aria-hidden", false);
         } else {
           el.style.display = "none";
+          // ARIA
           el.setAttribute("aria-hidden", true);
         }
       });
@@ -5472,6 +5488,7 @@
     appear: function () {
       return this.each(function (el) {
         el.style.visibility = "visible";
+        // ARIA
         el.setAttribute("aria-hidden", false);
       });
     },
@@ -5491,6 +5508,7 @@
     disappear: function () {
       return this.each(function (el) {
         el.style.visibility = "hidden";
+        // ARIA
         el.setAttribute("aria-hidden", true);
       });
     },
@@ -5510,10 +5528,13 @@
     toggleVisibility: function () {
       return this.each(function (el) {
         if (el.style.opacity === "0") {
-          el.style.opacity = "1";
+          el.style.visibility = "visible";
+          // ARIA
+          el.setAttribute("aria-hidden", true);
         } else {
-          el.style.opacity = "0";
-          el.style.cursor = "default";
+          el.style.visibility = "hidden";
+          // ARIA
+          el.setAttribute("aria-hidden", true);
         }
       });
     },
