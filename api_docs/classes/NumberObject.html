@@ -55,6 +55,31 @@
 </div>
 
 
+<div id="methods-on-page" class="sidebox on-page">
+    <div class="hd">
+        <h2 class="no-toc">Methods On Page</h2>
+    </div>
+    <div class="bd">
+        <ul>
+            
+                <li><a href="#methods_isFinite">isFinite</a></li>
+            
+                <li><a href="#methods_isInteger">isInteger</a></li>
+            
+                <li><a href="#methods_isNan">isNan</a></li>
+            
+                <li><a href="#methods_parseFloat">parseFloat</a></li>
+            
+                <li><a href="#methods_parseInt">parseInt</a></li>
+            
+                <li><a href="#methods_times">times</a></li>
+            
+                <li><a href="#methods_toInteger">toInteger</a></li>
+            
+        </ul>
+    </div>
+</div>
+
 
 
 
@@ -116,6 +141,9 @@
         <h5>Example</h5>
         <div class="code"><pre class="prettyprint">
 new NumberObject(2);
+</pre></div>
+
+<div class="code"><pre class="prettyprint">
 new NumberObject(Math.PI);
 </pre></div>
     
@@ -127,12 +155,261 @@ new NumberObject(Math.PI);
 <div id="classdocs">
     <ul>
         
+        <li><a href="#methods">Methods</a></li>
+        
+        
+        <li><a href="#props">Properties</a></li>
         
         
         
     </ul>
     <div>
         
+            <div id="methods">
+            
+                <a name="methods_isFinite"></a>
+<div class="method item">
+    Bolean <strong class="name"><code>isFinite</code></strong>( <code>  </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../../files/src_more.js.html#l80"><code>src\more.js:80</code></a>
+    </span><br>
+    <p>Returns true if a number is a finite value</p>
+    
+    
+    
+    <br><div class="returns"><strong>Returns:</strong> &lt;Bolean&gt; Whether the number is finite</div>
+    
+    
+    
+        <h5>Example</h5>
+        <div class="code"><pre class="prettyprint">
+new NumberObject(NaN).isFinite() // false
+new NumberObject(3).isFinite() // true
+</pre></div>
+    
+</div>
+
+            
+                <a name="methods_isInteger"></a>
+<div class="method item">
+    Number <strong class="name"><code>isInteger</code></strong>( <code>  </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../../files/src_more.js.html#l97"><code>src\more.js:97</code></a>
+    </span><br>
+    <p>If the number is an integer</p>
+    
+    
+    
+    <br><div class="returns"><strong>Returns:</strong> &lt;Number&gt; Whether the number is an integer</div>
+    
+    
+    
+        <h5>Example</h5>
+        <div class="code"><pre class="prettyprint">
+new NumberObject(5.3).isInteger() // false
+new NumberObject(4).isInteger() // true
+</pre></div>
+    
+</div>
+
+            
+                <a name="methods_isNan"></a>
+<div class="method item">
+    Number <strong class="name"><code>isNan</code></strong>( <code>  </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../../files/src_more.js.html#l117"><code>src\more.js:117</code></a>
+    </span><br>
+    <p>Returns if the number is NaN (Not a number)</p>
+    
+    
+    
+    <br><div class="returns"><strong>Returns:</strong> &lt;Number&gt; Whether the number is not a number (NaN)</div>
+    
+    
+    
+        <h5>Example</h5>
+        <div class="code"><pre class="prettyprint">
+new NumberObject(5).isNan() // false
+new NumberObject(NaN).isNan() // true
+</pre></div>
+    
+</div>
+
+            
+                <a name="methods_parseFloat"></a>
+<div class="method item">
+    Number <strong class="name"><code>parseFloat</code></strong>( <code>  </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../../files/src_more.js.html#l64"><code>src\more.js:64</code></a>
+    </span><br>
+    <p>Parses float point number value from a string or number</p>
+    
+    
+    
+    <br><div class="returns"><strong>Returns:</strong> &lt;Number&gt; </div>
+    
+    
+    
+        <h5>Example</h5>
+        <div class="code"><pre class="prettyprint">
+new NumberObject("5.3").parseFloat() // 5.3
+</pre></div>
+    
+</div>
+
+            
+                <a name="methods_parseInt"></a>
+<div class="method item">
+    Number <strong class="name"><code>parseInt</code></strong>( <code>  </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../../files/src_more.js.html#l48"><code>src\more.js:48</code></a>
+    </span><br>
+    <p>Parses integer value from a string or number</p>
+    
+    
+    
+    <br><div class="returns"><strong>Returns:</strong> &lt;Number&gt; </div>
+    
+    
+    
+        <h5>Example</h5>
+        <div class="code"><pre class="prettyprint">
+new NumberObject(3.5).parseInt() // 3
+</pre></div>
+    
+</div>
+
+            
+                <a name="methods_times"></a>
+<div class="method item">
+    Number <strong class="name"><code>times</code></strong>( <code>fn, args </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../../files/src_more.js.html#l169"><code>src\more.js:169</code></a>
+    </span><br>
+    <p>Call a function n times</p>
+    
+    <strong>Parameters:</strong>
+    <ul class="params">
+    
+        <li>
+        
+            <code>fn</code> <strong>&lt;Function&gt;</strong>
+        
+        
+        <p>The function to be called</p>
+            
+        </li>
+    
+        <li>
+        
+            <code>args</code> <strong>&lt;Array&gt;</strong>
+        
+        
+        <p>The arguments to be passed</p>
+            
+        </li>
+    
+    </ul>
+    
+    
+    
+    <br><div class="returns"><strong>Returns:</strong> &lt;Number&gt; The converted integer</div>
+    
+    
+    
+        <h5>Example</h5>
+        <div class="code"><pre class="prettyprint">
+var i = 0;
+new NumberObject(100).times(function () {
+  console.log(i++);
+});
+</pre></div>
+
+<div class="code"><pre class="prettyprint">
+new NumberObject(100).times(function () {
+  consolee.log
+});
+</pre></div>
+    
+</div>
+
+            
+                <a name="methods_toInteger"></a>
+<div class="method item">
+    Number <strong class="name"><code>toInteger</code></strong>( <code>  </code> ) 
+    <br>
+    <span class="foundat">
+    
+        
+    
+        <a href="../../files/src_more.js.html#l139"><code>src\more.js:139</code></a>
+    </span><br>
+    <p>Converts ant value to an integer</p>
+    
+    
+    
+    <br><div class="returns"><strong>Returns:</strong> &lt;Number&gt; The converted integer</div>
+    
+    
+    
+        <h5>Example</h5>
+        <div class="code"><pre class="prettyprint">
+new NumberObject(5).toInteger() // 5
+new NumberObject(NaN).toInteger() // 0
+</pre></div>
+    
+</div>
+
+            
+            </div>
+        
+        
+            <div id="props">
+            
+                <a name="props_EPSILON"></a>
+<div class="props item">
+    <code>EPSILON</code> &lt;<strong>Number</strong>&gt;<br>
+    <span class="foundat"><a href="../../files/src_more.js.html#l38"><code>src\more.js:38</code></a></span>
+    <p>Epsilon</p>
+    
+</div>
+
+            
+                <a name="props_MAX_INTEGER"></a>
+<div class="props item">
+    <code>MAX_INTEGER</code> &lt;<strong>Number</strong>&gt;<br>
+    <span class="foundat"><a href="../../files/src_more.js.html#l27"><code>src\more.js:27</code></a></span>
+    <p>NumberObject.MAX_INTEGER = 9007199254740991
+The maximum value of a JavaScript integer</p>
+    
+</div>
+
+            
+            </div>
         
         
         

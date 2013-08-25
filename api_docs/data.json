@@ -80,7 +80,9 @@
             "classes": {
                 "NumberObject": 1
             },
-            "fors": {},
+            "fors": {
+                "NumberObject": 1
+            },
             "namespaces": {}
         },
         "src\\sizzle.js": {
@@ -117,6 +119,7 @@
             "fors": {
                 "hilo": 1,
                 "Dom": 1,
+                "NumberObject": 1,
                 "Test": 1
             },
             "namespaces": {},
@@ -241,7 +244,7 @@
                 }
             ],
             "example": [
-                "\n<div class=\"code\"><pre class=\"prettyprint\">\nnew NumberObject(2);\nnew NumberObject(Math.PI);\n</pre></div>"
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\nnew NumberObject(2);\n</pre></div>\n<div class=\"code\"><pre class=\"prettyprint\">\nnew NumberObject(Math.PI);\n</pre></div>"
             ],
             "since": "0.1.0"
         },
@@ -1302,6 +1305,159 @@
             ],
             "since": "0.1.0",
             "class": "Dom",
+            "module": "Hilo"
+        },
+        {
+            "file": "src\\more.js",
+            "line": 27,
+            "description": "NumberObject.MAX_INTEGER = 9007199254740991\nThe maximum value of a JavaScript integer",
+            "itemtype": "property",
+            "name": "MAX_INTEGER",
+            "type": "Number",
+            "since": "0.1.0",
+            "class": "NumberObject",
+            "module": "Hilo"
+        },
+        {
+            "file": "src\\more.js",
+            "line": 38,
+            "description": "Epsilon",
+            "itemtype": "property",
+            "name": "EPSILON",
+            "type": "Number",
+            "since": "0.1.0",
+            "class": "NumberObject",
+            "module": "Hilo"
+        },
+        {
+            "file": "src\\more.js",
+            "line": 48,
+            "description": "Parses integer value from a string or number",
+            "itemtype": "method",
+            "name": "parseInt",
+            "return": {
+                "description": "",
+                "type": "Number"
+            },
+            "example": [
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\nnew NumberObject(3.5).parseInt() // 3\n</pre></div>"
+            ],
+            "since": "0.1.0",
+            "class": "NumberObject",
+            "module": "Hilo"
+        },
+        {
+            "file": "src\\more.js",
+            "line": 64,
+            "description": "Parses float point number value from a string or number",
+            "itemtype": "method",
+            "name": "parseFloat",
+            "return": {
+                "description": "",
+                "type": "Number"
+            },
+            "example": [
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\nnew NumberObject(\"5.3\").parseFloat() // 5.3\n</pre></div>"
+            ],
+            "since": "0.1.0",
+            "class": "NumberObject",
+            "module": "Hilo"
+        },
+        {
+            "file": "src\\more.js",
+            "line": 80,
+            "description": "Returns true if a number is a finite value",
+            "itemtype": "method",
+            "name": "isFinite",
+            "return": {
+                "description": "Whether the number is finite",
+                "type": "Bolean"
+            },
+            "example": [
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\nnew NumberObject(NaN).isFinite() // false\nnew NumberObject(3).isFinite() // true\n</pre></div>"
+            ],
+            "since": "0.1.0",
+            "class": "NumberObject",
+            "module": "Hilo"
+        },
+        {
+            "file": "src\\more.js",
+            "line": 97,
+            "description": "If the number is an integer",
+            "itemtype": "method",
+            "name": "isInteger",
+            "return": {
+                "description": "Whether the number is an integer",
+                "type": "Number"
+            },
+            "example": [
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\nnew NumberObject(5.3).isInteger() // false\nnew NumberObject(4).isInteger() // true\n</pre></div>"
+            ],
+            "since": "0.1.0",
+            "class": "NumberObject",
+            "module": "Hilo"
+        },
+        {
+            "file": "src\\more.js",
+            "line": 117,
+            "description": "Returns if the number is NaN (Not a number)",
+            "itemtype": "method",
+            "name": "isNan",
+            "return": {
+                "description": "Whether the number is not a number (NaN)",
+                "type": "Number"
+            },
+            "example": [
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\nnew NumberObject(5).isNan() // false\nnew NumberObject(NaN).isNan() // true\n</pre></div>"
+            ],
+            "since": "0.1.0",
+            "class": "NumberObject",
+            "module": "Hilo"
+        },
+        {
+            "file": "src\\more.js",
+            "line": 139,
+            "description": "Converts ant value to an integer",
+            "itemtype": "method",
+            "name": "toInteger",
+            "return": {
+                "description": "The converted integer",
+                "type": "Number"
+            },
+            "example": [
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\nnew NumberObject(5).toInteger() // 5\nnew NumberObject(NaN).toInteger() // 0\n</pre></div>"
+            ],
+            "since": "0.1.0",
+            "class": "NumberObject",
+            "module": "Hilo"
+        },
+        {
+            "file": "src\\more.js",
+            "line": 169,
+            "description": "Call a function n times",
+            "itemtype": "method",
+            "name": "times",
+            "params": [
+                {
+                    "name": "fn",
+                    "description": "The function to be called",
+                    "type": "Function"
+                },
+                {
+                    "name": "args",
+                    "description": "The arguments to be passed",
+                    "type": "Array"
+                }
+            ],
+            "return": {
+                "description": "The converted integer",
+                "type": "Number"
+            },
+            "example": [
+                "\n<div class=\"code\"><pre class=\"prettyprint\">\nvar i = 0;\nnew NumberObject(100).times(function () {\n  console.log(i++);\n});\n</pre></div>\n<div class=\"code\"><pre class=\"prettyprint\">\nnew NumberObject(100).times(function () {\n  consolee.log\n});\n</pre></div>"
+            ],
+            "since": "0.1.0",
+            "class": "NumberObject",
             "module": "Hilo"
         },
         {
