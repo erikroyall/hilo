@@ -122,7 +122,6 @@ a {
   border-radius: 100px;
   width: 200px;
   height: 200px;
-  line-height: 200px;
   font: 3em "Learning Curve Pro";
   text-transform: uppercase;
   overflow-wrap: break-word;
@@ -138,18 +137,23 @@ a {
 
 @media all and (min-width:350px) {
   .site-logo {
-    font-size: 4em;
+    font-size: 5em;
   }
 }
 
 @media all and (min-width:500px) {
   .site-logo {
-    font-size: 5em;
+    font-size: 5.5em;
   }
 }
 
 .lt-ie9 .site-logo {
   font-size: 6em;
+}
+
+.site-logo {
+  padding-right: 1%;
+  line-height: 200px;
 }
 
 .features {
