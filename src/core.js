@@ -94,5 +94,4 @@
   };
 
   // Legacy
-
   hilo.legacy = typeof sizzle === "function";
