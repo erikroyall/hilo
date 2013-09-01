@@ -447,7 +447,14 @@
       // Web Audio API (NOT the <audio> tag)
 
       webAudio: (function () {
-        return !!(win.webkitAudioContext || win.AudioContext);
+        // return !!(win.webkitAudioContext || win.AudioContext);
+        if (win.AudioContext) {
+          return true;
+        } else if (win.webkitAudioContext) {
+          return "webkit";
+        }
+
+        return false;
       }()),
 
       // WebSockets
