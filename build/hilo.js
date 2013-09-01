@@ -1,8 +1,8 @@
 // ========================= 
 // Hilo - 0.1.0-pre-dev-beta-10
 // ========================= 
-// 2013-08-25
-// Project started before 1 month and 25 days
+// 2013-08-28
+// Project started before 1 month and 28 days
 // http://erikroyall.github.com/hilo/
 // Copyright (c) 2013 Erik Royall
 // Licensed under MIT (see LICENSE-MIT) 
@@ -519,7 +519,14 @@
       // Web Audio API (NOT the <audio> tag)
 
       webAudio: (function () {
-        return !!(win.webkitAudioContext || win.AudioContext);
+        // return !!(win.webkitAudioContext || win.AudioContext);
+        if (win.AudioContext) {
+          return true;
+        } else if (win.webkitAudioContext) {
+          return "webkit";
+        }
+
+        return false;
       }()),
 
       // WebSockets
@@ -1385,6 +1392,7 @@
             return i;
         }
     }
+    
     return -1;
   };
   
@@ -1483,7 +1491,6 @@
   };
 
   // Legacy
-
   hilo.legacy = typeof sizzle === "function";
   
   // --------------------------------------------------
