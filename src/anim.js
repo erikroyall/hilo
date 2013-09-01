@@ -23,10 +23,23 @@
    * @since 0.1.0
    */
 
-  function Animation (css, timing, onanimationstart, onanimationend) {
+  function Animation (el, css, timing, onanimationstart, onanimationend) {
     if (typeof css !== "object") {
       return;
     }
 
-    
+
+  }
+
+  function animateCss (el, prop, timing, from, to) {
+    if (!(el && prop && timing && from)) {
+      return;
+    }
+
+    // If `to` is not provided, treat `from` as `to`
+    to = to || form;
+
+    if (from === to) {
+      var diff = to - el.style[prop];
+    }
   }
