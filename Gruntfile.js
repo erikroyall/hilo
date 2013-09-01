@@ -17,8 +17,8 @@ module.exports = function(grunt) {
         src: [
           "scripts/prettify.js",
           "scripts/run_prettify.js",
-          "scripts/hilo-dev.js",
-          "scripts/app.js"
+          // "scripts/hilo-dev.js",
+          // "scripts/app.js"
           ],
         dest: "scripts/script.js"
       }
