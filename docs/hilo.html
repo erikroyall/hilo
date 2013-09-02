@@ -29,13 +29,11 @@
               </div>
               <p>========================= </p>
 <h1>Hilo - 0.1.0-pre-dev-beta-10</h1>
-<ul>
-<li>2013-08-16
-Project started before 1 month and 16 days</li>
-<li><a href="http://erikroyall.github.com/hilo/">http://erikroyall.github.com/hilo/</a></li>
-<li>Copyright (c) 2013 Erik Royall</li>
-<li>Licensed under MIT (see LICENSE-MIT) </li>
-</ul>
+<p>2013-09-03
+Project started before 2 months and 3 days
+<a href="http://erikroyall.github.com/hilo/">http://erikroyall.github.com/hilo/</a>
+Copyright (c) 2013 Erik Royall
+Licensed under MIT (see LICENSE-MIT) </p>
 
             </div>
             
@@ -263,6 +261,15 @@ Project started before 1 month and 16 days</li>
             </div>
             
             <div class="content"><div class='highlight'><pre>
+  <span class="comment">/**
+   * Detected Features
+   * 
+   * @static
+   * @class feature
+   * @for hilo
+   * @since 0.1.0
+   */</span>
+
   feature = (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
     <span class="keyword">var</span> c = <span class="function"><span class="keyword">function</span> <span class="params">(tagName)</span> {</span>
         <span class="keyword">return</span> doc.createElement(tagName);
@@ -295,6 +302,15 @@ Project started before 1 month and 16 days</li>
             </div>
             
             <div class="content"><div class='highlight'><pre>
+      <span class="comment">/**
+       * addEventListener
+       * 
+       * @for feature
+       * @property addEventListener
+       * @type {boolean}
+       * @since 0.1.0
+       */</span>
+
       addEventListener: (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
         <span class="keyword">return</span> <span class="keyword">typeof</span> win.addEventListener === <span class="string">"function"</span>;
       }()),</pre></div></div>
@@ -312,7 +328,16 @@ Project started before 1 month and 16 days</li>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>      
+            <div class="content"><div class='highlight'><pre>
+      <span class="comment">/**
+       * Application Cache
+       * 
+       * @for feature
+       * @property applicationCache
+       * @type {boolean}
+       * @since 0.1.0
+       */</span>
+      
       applicationCache: (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
         <span class="keyword">return</span> !!win.applicationCache;
       }()),</pre></div></div>
@@ -330,7 +355,16 @@ Project started before 1 month and 16 days</li>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>      
+            <div class="content"><div class='highlight'><pre>
+      <span class="comment">/**
+       * Audio (tag)
+       * 
+       * @for feature
+       * @property audio
+       * @type {boolean}
+       * @since 0.1.0
+       */</span>
+      
       audio: (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
         <span class="keyword">return</span> !!a.canPlayType;
       }()),</pre></div></div>
@@ -348,7 +382,16 @@ Project started before 1 month and 16 days</li>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>      
+            <div class="content"><div class='highlight'><pre>
+      <span class="comment">/**
+       * Preload audio (hmm.. background music)
+       * 
+       * @for feature
+       * @property audioPreload
+       * @type {boolean}
+       * @since 0.1.0
+       */</span>
+      
       audioPreload: (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
         <span class="keyword">return</span> <span class="string">"preload"</span> <span class="keyword">in</span> a;
       }()),</pre></div></div>
@@ -366,7 +409,16 @@ Project started before 1 month and 16 days</li>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>      
+            <div class="content"><div class='highlight'><pre>
+      <span class="comment">/**
+       * Audio Types
+       * 
+       * @for feature
+       * @static
+       * @class audioType
+       * @since 0.1.0
+       */</span>
+      
       audioType: {</pre></div></div>
             
         </li>
@@ -455,7 +507,16 @@ Project started before 1 month and 16 days</li>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>      
+            <div class="content"><div class='highlight'><pre>
+      <span class="comment">/**
+       * Canvas API
+       * 
+       * @for feature
+       * @property canvas
+       * @type {boolean}
+       * @since 0.1.0
+       */</span>
+      
       canvas: (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
         <span class="keyword">return</span> !!cn.getContext;
       }()),</pre></div></div>
@@ -473,7 +534,16 @@ Project started before 1 month and 16 days</li>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>      
+            <div class="content"><div class='highlight'><pre>
+      <span class="comment">/**
+       * Canvas Text
+       * 
+       * @for feature
+       * @property canvasText
+       * @type {boolean}
+       * @since 0.1.0
+       */</span>
+      
       canvasText: (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
         <span class="keyword">return</span> !!cn.getContext &amp;&amp; <span class="keyword">typeof</span> cn.getContext(<span class="string">"2d"</span>).fillText === <span class="string">"function"</span>;
       }()),</pre></div></div>
@@ -491,7 +561,16 @@ Project started before 1 month and 16 days</li>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>      
+            <div class="content"><div class='highlight'><pre>
+      <span class="comment">/**
+       * HTMLElement.classList
+       * 
+       * @for feature
+       * @property classList
+       * @type {boolean}
+       * @since 0.1.0
+       */</span>
+      
       classList: (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
         <span class="keyword">return</span> <span class="string">"classList"</span> <span class="keyword">in</span> s;
       }()),</pre></div></div>
@@ -509,7 +588,16 @@ Project started before 1 month and 16 days</li>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>      
+            <div class="content"><div class='highlight'><pre>
+      <span class="comment">/**
+       * &lt;command&gt;
+       * 
+       * @for feature
+       * @property commans
+       * @type {boolean}
+       * @since 0.1.0
+       */</span>
+      
       command: (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
         <span class="keyword">return</span> <span class="string">"type"</span> <span class="keyword">in</span> c(<span class="string">"command"</span>);
       }()),</pre></div></div>
@@ -527,7 +615,16 @@ Project started before 1 month and 16 days</li>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>      
+            <div class="content"><div class='highlight'><pre>
+      <span class="comment">/**
+       * Form Constraint Validation
+       * 
+       * @for feature
+       * @property consval
+       * @type {boolean}
+       * @since 0.1.0
+       */</span>
+      
       consval: (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
         <span class="keyword">return</span> <span class="string">"noValidate"</span> <span class="keyword">in</span> c(<span class="string">"form"</span>);
       }()),</pre></div></div>
@@ -541,11 +638,20 @@ Project started before 1 month and 16 days</li>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-29">&#182;</a>
               </div>
-              <p>contentEditable</p>
+              <p>contentEditable attribute</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>      
+            <div class="content"><div class='highlight'><pre>
+      <span class="comment">/**
+       * contentEditable attribute
+       * 
+       * @for feature
+       * @property contentEditable
+       * @type {boolean}
+       * @since 0.1.0
+       */</span>
+      
       contentEditable: (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
         <span class="keyword">return</span> <span class="string">"isContentEditable"</span> <span class="keyword">in</span> s;
       }()),</pre></div></div>
@@ -563,7 +669,16 @@ Project started before 1 month and 16 days</li>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>      
+            <div class="content"><div class='highlight'><pre>
+      <span class="comment">/**
+       * HTMLElement.datalist
+       * 
+       * @for feature
+       * @property datalist
+       * @type {boolean}
+       * @since 0.1.0
+       */</span>
+      
       datalist: (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
         <span class="keyword">return</span> <span class="string">"options"</span> <span class="keyword">in</span> c(<span class="string">"datalist"</span>);
       }()),</pre></div></div>
@@ -581,7 +696,16 @@ Project started before 1 month and 16 days</li>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>      
+            <div class="content"><div class='highlight'><pre>
+      <span class="comment">/**
+       * &lt;details&gt;
+       * 
+       * @for feature
+       * @property details
+       * @type {boolean}
+       * @since 0.1.0
+       */</span>
+      
       details: (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
         <span class="keyword">return</span> <span class="string">"open"</span> <span class="keyword">in</span> c(<span class="string">"details"</span>);
       }()),</pre></div></div>
@@ -599,7 +723,16 @@ Project started before 1 month and 16 days</li>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>      
+            <div class="content"><div class='highlight'><pre>
+      <span class="comment">/**
+       * Drag &amp; Drop
+       * 
+       * @for feature
+       * @property dragdrop
+       * @type {boolean}
+       * @since 0.1.0
+       */</span>
+      
       dragdrop: (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
         <span class="keyword">return</span> <span class="string">"draggable"</span> <span class="keyword">in</span> s;
       }()),</pre></div></div>
@@ -617,7 +750,16 @@ Project started before 1 month and 16 days</li>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>      
+            <div class="content"><div class='highlight'><pre>
+      <span class="comment">/**
+       * ECMAScript 6
+       * 
+       * @for feature
+       * @property es6
+       * @type {boolean}
+       * @since 0.1.0
+       */</span>
+      
       es6: (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
         <span class="keyword">return</span> <span class="keyword">typeof</span> String.prototype.contains === <span class="string">"function"</span>;
       }()),</pre></div></div>
@@ -635,7 +777,16 @@ Project started before 1 month and 16 days</li>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>      
+            <div class="content"><div class='highlight'><pre>
+      <span class="comment">/**
+       * File System API
+       * 
+       * @for feature
+       * @property fileapi
+       * @type {boolean}
+       * @since 0.1.0
+       */</span>
+      
       fileapi: (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
         <span class="keyword">return</span> <span class="keyword">typeof</span> FileReader !== <span class="string">"undefined"</span>;
       }()),</pre></div></div>
@@ -649,11 +800,20 @@ Project started before 1 month and 16 days</li>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-35">&#182;</a>
               </div>
-              <p>gen5</p>
+              <p>5th Generation Rendering Engine</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>      
+            <div class="content"><div class='highlight'><pre>
+      <span class="comment">/**
+       * 5th Generation Rendering Engine
+       * 
+       * @for feature
+       * @property gen5
+       * @type {boolean}
+       * @since 0.1.0
+       */</span>
+      
       gen5: (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
         <span class="keyword">return</span> parseInt(win.navigator.appVersion, <span class="number">10</span>) === <span class="number">5</span>;
       }()),</pre></div></div>
@@ -671,7 +831,16 @@ Project started before 1 month and 16 days</li>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>      
+            <div class="content"><div class='highlight'><pre>
+      <span class="comment">/**
+       * Geolocation
+       * 
+       * @for feature
+       * @property geolocation
+       * @type {boolean}
+       * @since 0.1.0
+       */</span>
+      
       geolocation: (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
         <span class="keyword">return</span> <span class="string">"geolocation"</span> <span class="keyword">in</span> win.navigator;
       }()),</pre></div></div>
@@ -690,6 +859,15 @@ Project started before 1 month and 16 days</li>
             </div>
             
             <div class="content"><div class='highlight'><pre>
+      <span class="comment">/**
+       * window.getSelection() method
+       * 
+       * @for feature
+       * @property getSelection
+       * @type {boolean}
+       * @since 0.1.0
+       */</span>
+
       getSelection: (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
         <span class="keyword">return</span> <span class="keyword">typeof</span> win.getSelection === <span class="string">"function"</span>;
       }()),</pre></div></div>
@@ -707,7 +885,16 @@ Project started before 1 month and 16 days</li>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>      
+            <div class="content"><div class='highlight'><pre>
+      <span class="comment">/**
+       * History API
+       * 
+       * @for feature
+       * @property history
+       * @type {boolean}
+       * @since 0.1.0
+       */</span>
+      
       history: (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
         <span class="keyword">return</span> !!(win.history &amp;&amp; history.pushState);
       }()),</pre></div></div>
@@ -725,7 +912,16 @@ Project started before 1 month and 16 days</li>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>      
+            <div class="content"><div class='highlight'><pre>
+      <span class="comment">/**
+       * addEventListener
+       * 
+       * @for feature
+       * @static
+       * @class iframe
+       * @since 0.1.0
+       */</span>
+      
       iframe: {
         sandbox: (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
           <span class="keyword">return</span> <span class="string">"sandbox"</span> <span class="keyword">in</span> fr;
@@ -748,7 +944,16 @@ Project started before 1 month and 16 days</li>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>      
+            <div class="content"><div class='highlight'><pre>
+      <span class="comment">/**
+       * IndexedDB (use this instead of WebSQL)
+       * 
+       * @for feature
+       * @property indexeddb
+       * @type {boolean}
+       * @since 0.1.0
+       */</span>
+      
       indexeddb: (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
         <span class="keyword">return</span> !!(win.indexedDB &amp;&amp; win.IDBKeyRange &amp;&amp; win.IDBTransaction);
       }()),</pre></div></div>
@@ -896,7 +1101,16 @@ Project started before 1 month and 16 days</li>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>      
+            <div class="content"><div class='highlight'><pre>
+      <span class="comment">/**
+       * Local Storage
+       * 
+       * @for feature
+       * @property localStorage
+       * @type {boolean}
+       * @since 0.1.0
+       */</span>
+      
       localStorage: (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
         <span class="keyword">try</span> {
           <span class="keyword">return</span> <span class="string">"localStorage"</span> <span class="keyword">in</span> win &amp;&amp; win[<span class="string">"localStorage"</span>] !== <span class="literal">null</span> &amp;&amp; !!win.localStorage.setItem;
@@ -918,7 +1132,16 @@ Project started before 1 month and 16 days</li>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>      
+            <div class="content"><div class='highlight'><pre>
+      <span class="comment">/**
+       * &lt;meter&gt;
+       * 
+       * @for feature
+       * @property meter
+       * @type {boolean}
+       * @since 0.1.0
+       */</span>
+      
       meter: (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
         <span class="keyword">return</span> <span class="string">"value"</span> <span class="keyword">in</span> c(<span class="string">"meter"</span>);
       }()),</pre></div></div>
@@ -936,7 +1159,16 @@ Project started before 1 month and 16 days</li>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>      
+            <div class="content"><div class='highlight'><pre>
+      <span class="comment">/**
+       * Microdata
+       * 
+       * @for feature
+       * @property microdata
+       * @type {boolean}
+       * @since 0.1.0
+       */</span>
+      
       microdata: (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
         <span class="keyword">return</span> <span class="string">"getItems"</span> <span class="keyword">in</span> doc;
       }()),</pre></div></div>
@@ -954,7 +1186,16 @@ Project started before 1 month and 16 days</li>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>      
+            <div class="content"><div class='highlight'><pre>
+      <span class="comment">/**
+       * Offline (App Cache)
+       * 
+       * @for feature
+       * @property offline
+       * @type {boolean}
+       * @since 0.1.0
+       */</span>
+      
       offline: (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
         <span class="keyword">return</span> !!win.applicationCache;
       }()),</pre></div></div>
@@ -972,7 +1213,16 @@ Project started before 1 month and 16 days</li>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>      
+            <div class="content"><div class='highlight'><pre>
+      <span class="comment">/**
+       * &lt;output&gt;
+       * 
+       * @for feature
+       * @property output
+       * @type {boolean}
+       * @since 0.1.0
+       */</span>
+      
       output: (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
         <span class="keyword">return</span> <span class="string">"value"</span> <span class="keyword">in</span> c(<span class="string">"output"</span>);
       }()),</pre></div></div>
@@ -991,6 +1241,15 @@ Project started before 1 month and 16 days</li>
             </div>
             
             <div class="content"><div class='highlight'><pre>
+      <span class="comment">/**
+       * &lt;progress&gt;
+       * 
+       * @for feature
+       * @property progress
+       * @type {boolean}
+       * @since 0.1.0
+       */</span>
+
       progress: (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
         <span class="keyword">return</span> <span class="string">"value"</span> <span class="keyword">in</span> c(<span class="string">"progress"</span>);
       }()),</pre></div></div>
@@ -1009,6 +1268,15 @@ Project started before 1 month and 16 days</li>
             </div>
             
             <div class="content"><div class='highlight'><pre>
+      <span class="comment">/**
+       * querySelector &amp; querySelectorAll
+       * 
+       * @for feature
+       * @property qsa
+       * @type {boolean}
+       * @since 0.1.0
+       */</span>
+
       qsa: (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
         <span class="keyword">return</span> <span class="string">"querySelector"</span> <span class="keyword">in</span> doc &amp;&amp; <span class="string">"querySelectorAll"</span> <span class="keyword">in</span> doc;
       }()),</pre></div></div>
@@ -1027,6 +1295,15 @@ Project started before 1 month and 16 days</li>
             </div>
             
             <div class="content"><div class='highlight'><pre>
+      <span class="comment">/**
+       * CSS3 Selectors in querySelectorAll
+       * 
+       * @for feature
+       * @property qsa3
+       * @type {boolean}
+       * @since 0.1.0
+       */</span>
+
       qsa3: (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
         <span class="keyword">try</span> {
           <span class="keyword">return</span> doc.querySelectorAll(<span class="string">":root"</span>).length &gt; <span class="number">0</span>;
@@ -1049,6 +1326,15 @@ Project started before 1 month and 16 days</li>
             </div>
             
             <div class="content"><div class='highlight'><pre>
+      <span class="comment">/**
+       * requestAnimationFrame
+       * 
+       * @for feature
+       * @property requestAnimationFrame
+       * @type {String|Boolean}
+       * @since 0.1.0
+       */</span>
+
       requestAnimationFrame: (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
         <span class="keyword">if</span> (<span class="keyword">typeof</span> requestAnimationFrame === <span class="string">"function"</span>) {
           <span class="keyword">return</span> <span class="literal">true</span>;
@@ -1077,6 +1363,15 @@ Project started before 1 month and 16 days</li>
             </div>
             
             <div class="content"><div class='highlight'><pre>
+      <span class="comment">/**
+       * Server-sent Events
+       * 
+       * @for feature
+       * @property serverEvt
+       * @type {boolean}
+       * @since 0.1.0
+       */</span>
+
       serverEvt: (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
         <span class="keyword">return</span> <span class="keyword">typeof</span> EventSource !== <span class="string">"undefined"</span>;
       }()),</pre></div></div>
@@ -1095,6 +1390,15 @@ Project started before 1 month and 16 days</li>
             </div>
             
             <div class="content"><div class='highlight'><pre>
+      <span class="comment">/**
+       * Session Storage
+       * 
+       * @for feature
+       * @property sessionStorage
+       * @type {boolean}
+       * @since 0.1.0
+       */</span>
+
       sessionStorage: (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
         <span class="keyword">try</span> {
           <span class="keyword">return</span> <span class="string">"sessionStorage"</span> <span class="keyword">in</span> win &amp;&amp; win[<span class="string">"sessionStorage"</span>] !== <span class="literal">null</span>;
@@ -1117,6 +1421,15 @@ Project started before 1 month and 16 days</li>
             </div>
             
             <div class="content"><div class='highlight'><pre>
+      <span class="comment">/**
+       * Modal Dialog (showModalDialog)
+       * 
+       * @for feature
+       * @property showModalDialog
+       * @type {boolean}
+       * @since 0.1.0
+       */</span>
+
       showModalDialog: (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
         <span class="keyword">return</span> <span class="keyword">typeof</span> win.showModalDialog === <span class="string">"function"</span>;
       }()),</pre></div></div>
@@ -1134,7 +1447,17 @@ Project started before 1 month and 16 days</li>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>      svg: (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+            <div class="content"><div class='highlight'><pre>
+      <span class="comment">/**
+       * SVG (Scalable Vector Graphics)
+       * 
+       * @for feature
+       * @property svg
+       * @type {boolean}
+       * @since 0.1.0
+       */</span>
+
+      svg: (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
         <span class="keyword">return</span> !!(doc.createElementNS &amp;&amp; doc.createElementNS(<span class="string">"http://www.w3.org/2000/svg"</span>, <span class="string">"svg"</span>).createSVGRect);
       }()),</pre></div></div>
             
@@ -1152,6 +1475,15 @@ Project started before 1 month and 16 days</li>
             </div>
             
             <div class="content"><div class='highlight'><pre>
+      <span class="comment">/**
+       * SVG in text/html
+       * 
+       * @for feature
+       * @property svginhtml
+       * @type {boolean}
+       * @since 0.1.0
+       */</span>
+
       svginhtml:(<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
         d.innerHTML = <span class="string">"&lt;svg&gt;&lt;/svg&gt;"</span>;
         <span class="keyword">return</span> !!(win.SVGSVGElement &amp;&amp; d.firstChild <span class="keyword">instanceof</span> win.SVGSVGElement);
@@ -1171,6 +1503,15 @@ Project started before 1 month and 16 days</li>
             </div>
             
             <div class="content"><div class='highlight'><pre>
+      <span class="comment">/**
+       * &lt;template&gt;
+       * 
+       * @for feature
+       * @property template
+       * @type {boolean}
+       * @since 0.1.0
+       */</span>
+
       template: (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
         <span class="keyword">return</span> <span class="string">"content"</span> <span class="keyword">in</span> c(<span class="string">"template"</span>);
       }()),</pre></div></div>
@@ -1189,6 +1530,15 @@ Project started before 1 month and 16 days</li>
             </div>
             
             <div class="content"><div class='highlight'><pre>
+      <span class="comment">/**
+       * &lt;time&gt;
+       * 
+       * @for feature
+       * @property time
+       * @type {boolean}
+       * @since 0.1.0
+       */</span>
+
       time: (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
         <span class="keyword">return</span> <span class="string">"datetime"</span> <span class="keyword">in</span> c(<span class="string">"time"</span>);
       }()),</pre></div></div>
@@ -1207,6 +1557,15 @@ Project started before 1 month and 16 days</li>
             </div>
             
             <div class="content"><div class='highlight'><pre>
+      <span class="comment">/**
+       * Undo (not just Ctrl + Z)
+       * 
+       * @for feature
+       * @property undo
+       * @type {boolean}
+       * @since 0.1.0
+       */</span>
+
       undo: (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
         <span class="keyword">return</span> <span class="keyword">typeof</span> UndoManager !== <span class="string">"undefined"</span>;
       }()),</pre></div></div>
@@ -1225,6 +1584,15 @@ Project started before 1 month and 16 days</li>
             </div>
             
             <div class="content"><div class='highlight'><pre>
+      <span class="comment">/**
+       * Video
+       * 
+       * @for feature
+       * @property video
+       * @type {boolean}
+       * @since 0.1.0
+       */</span>
+
       video: (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
         <span class="keyword">try</span> {
           <span class="keyword">return</span> !!v.canPlayType;
@@ -1247,6 +1615,15 @@ Project started before 1 month and 16 days</li>
             </div>
             
             <div class="content"><div class='highlight'><pre>
+      <span class="comment">/**
+       * Video Captions
+       * 
+       * @for feature
+       * @property videoCaptions
+       * @type {boolean}
+       * @since 0.1.0
+       */</span>
+
       videoCaptions: (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
         <span class="keyword">return</span> <span class="string">"src"</span> <span class="keyword">in</span> c(<span class="string">"track"</span>);
       }()),</pre></div></div>
@@ -1343,11 +1720,20 @@ Project started before 1 month and 16 days</li>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-68">&#182;</a>
               </div>
-              <p>Video posters</p>
+              <p>Video Poster</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
+      <span class="comment">/**
+       * Video Poster
+       * 
+       * @for feature
+       * @property videoPoster
+       * @type {boolean}
+       * @since 0.1.0
+       */</span>
+
       videoPoster: (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
         <span class="keyword">return</span> <span class="string">"poster"</span> <span class="keyword">in</span> c(<span class="string">"video"</span>);
       }()),</pre></div></div>
@@ -1366,9 +1752,16 @@ Project started before 1 month and 16 days</li>
             </div>
             
             <div class="content"><div class='highlight'><pre>
-      webAudio: (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
-        <span class="keyword">return</span> !!(win.webkitAudioContext || win.AudioContext);
-      }()),</pre></div></div>
+      <span class="comment">/**
+       * Web Audio API (NOT the &lt;audio&gt; tag)
+       * 
+       * @for feature
+       * @property webAudio
+       * @type {String|Boolean}
+       * @since 0.1.0
+       */</span>
+
+      webAudio: (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span></pre></div></div>
             
         </li>
         
@@ -1379,13 +1772,17 @@ Project started before 1 month and 16 days</li>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-70">&#182;</a>
               </div>
-              <p>WebSockets</p>
+              <p>return !!(win.webkitAudioContext || win.AudioContext);</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>
-      webSockets: (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
-        <span class="keyword">return</span> !!win.webSocket;
+            <div class="content"><div class='highlight'><pre>        <span class="keyword">if</span> (win.AudioContext) {
+          <span class="keyword">return</span> <span class="literal">true</span>;
+        } <span class="keyword">else</span> <span class="keyword">if</span> (win.webkitAudioContext) {
+          <span class="keyword">return</span> <span class="string">"webkit"</span>;
+        }
+
+        <span class="keyword">return</span> <span class="literal">false</span>;
       }()),</pre></div></div>
             
         </li>
@@ -1397,13 +1794,22 @@ Project started before 1 month and 16 days</li>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-71">&#182;</a>
               </div>
-              <p>WebSQL (a deprecated specification; use IndexedDB instead)</p>
+              <p>WebSockets</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-      websql: (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
-        <span class="keyword">return</span> !!win.openDatabase;
+      <span class="comment">/**
+       * WebSockets
+       * 
+       * @for feature
+       * @property webSockets
+       * @type {boolean}
+       * @since 0.1.0
+       */</span>
+
+      webSockets: (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+        <span class="keyword">return</span> !!win.webSocket;
       }()),</pre></div></div>
             
         </li>
@@ -1415,13 +1821,22 @@ Project started before 1 month and 16 days</li>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-72">&#182;</a>
               </div>
-              <p>Web Workers</p>
+              <p>WebSQL (a deprecated specification; use IndexedDB instead)</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-      webWorkers: (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
-        <span class="keyword">return</span> !!win.Worker;
+      <span class="comment">/**
+       * WebSQL (a deprecated specification; use IndexedDB instead)
+       * 
+       * @for feature
+       * @property websql
+       * @type {boolean}
+       * @since 0.1.0
+       */</span>
+
+      websql: (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+        <span class="keyword">return</span> !!win.openDatabase;
       }()),</pre></div></div>
             
         </li>
@@ -1433,13 +1848,22 @@ Project started before 1 month and 16 days</li>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-73">&#182;</a>
               </div>
-              <p>Widgets</p>
+              <p>Web Workers</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-      widgets: (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
-        <span class="keyword">return</span> <span class="keyword">typeof</span> widget !== <span class="string">"undefined"</span>;
+      <span class="comment">/**
+       * Web Workers
+       * 
+       * @for feature
+       * @property webWorkers
+       * @type {boolean}
+       * @since 0.1.0
+       */</span>
+
+      webWorkers: (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+        <span class="keyword">return</span> !!win.Worker;
       }()),</pre></div></div>
             
         </li>
@@ -1451,13 +1875,22 @@ Project started before 1 month and 16 days</li>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-74">&#182;</a>
               </div>
-              <p>Cross-document messaging</p>
+              <p>Widgets</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-      xdocmsg: (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
-        <span class="keyword">return</span> !!win.postMessage;
+      <span class="comment">/**
+       * Widgets
+       * 
+       * @for feature
+       * @property widgets
+       * @type {boolean}
+       * @since 0.1.0
+       */</span>
+
+      widgets: (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+        <span class="keyword">return</span> <span class="keyword">typeof</span> widget !== <span class="string">"undefined"</span>;
       }()),</pre></div></div>
             
         </li>
@@ -1469,6 +1902,33 @@ Project started before 1 month and 16 days</li>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-75">&#182;</a>
               </div>
+              <p>Cross-document messaging</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+      <span class="comment">/**
+       * Cross-document messages
+       * 
+       * @for feature
+       * @property xdocmsg
+       * @type {boolean}
+       * @since 0.1.0
+       */</span>
+
+      xdocmsg: (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+        <span class="keyword">return</span> !!win.postMessage;
+      }()),</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-76">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-76">&#182;</a>
+              </div>
               <p>XML HTTP Request</p>
 
             </div>
@@ -1479,11 +1939,11 @@ Project started before 1 month and 16 days</li>
         </li>
         
         
-        <li id="section-76">
+        <li id="section-77">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-76">&#182;</a>
+                <a class="pilcrow" href="#section-77">&#182;</a>
               </div>
               <p>Cross-domain requests</p>
 
@@ -1497,11 +1957,11 @@ Project started before 1 month and 16 days</li>
         </li>
         
         
-        <li id="section-77">
+        <li id="section-78">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-77">&#182;</a>
+                <a class="pilcrow" href="#section-78">&#182;</a>
               </div>
               <p>Send as form data</p>
 
@@ -1515,11 +1975,11 @@ Project started before 1 month and 16 days</li>
         </li>
         
         
-        <li id="section-78">
+        <li id="section-79">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-78">&#182;</a>
+                <a class="pilcrow" href="#section-79">&#182;</a>
               </div>
               <p>Upload progress events</p>
 
@@ -1536,11 +1996,11 @@ Project started before 1 month and 16 days</li>
         </li>
         
         
-        <li id="section-79">
+        <li id="section-80">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-79">&#182;</a>
+                <a class="pilcrow" href="#section-80">&#182;</a>
               </div>
               <hr>
 <h2>Browser, Engine, Platform Detection</h2>
@@ -1567,11 +2027,11 @@ Project started before 1 month and 16 days</li>
         </li>
         
         
-        <li id="section-80">
+        <li id="section-81">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-80">&#182;</a>
+                <a class="pilcrow" href="#section-81">&#182;</a>
               </div>
               <p>Specific Version</p>
 
@@ -1588,11 +2048,11 @@ Project started before 1 month and 16 days</li>
         </li>
         
         
-        <li id="section-81">
+        <li id="section-82">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-81">&#182;</a>
+                <a class="pilcrow" href="#section-82">&#182;</a>
               </div>
               <p>Mobile Devices</p>
 
@@ -1609,11 +2069,11 @@ Project started before 1 month and 16 days</li>
         </li>
         
         
-        <li id="section-82">
+        <li id="section-83">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-82">&#182;</a>
+                <a class="pilcrow" href="#section-83">&#182;</a>
               </div>
               <p>Game Systems</p>
 
@@ -1633,11 +2093,11 @@ Project started before 1 month and 16 days</li>
         </li>
         
         
-        <li id="section-83">
+        <li id="section-84">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-83">&#182;</a>
+                <a class="pilcrow" href="#section-84">&#182;</a>
               </div>
               <p>Complete version</p>
 
@@ -1656,11 +2116,11 @@ Project started before 1 month and 16 days</li>
         </li>
         
         
-        <li id="section-84">
+        <li id="section-85">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-84">&#182;</a>
+                <a class="pilcrow" href="#section-85">&#182;</a>
               </div>
               <p>Figures out if chrome or Safari</p>
 
@@ -1678,11 +2138,11 @@ Project started before 1 month and 16 days</li>
         </li>
         
         
-        <li id="section-85">
+        <li id="section-86">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-85">&#182;</a>
+                <a class="pilcrow" href="#section-86">&#182;</a>
               </div>
               <p>Approximate version</p>
 
@@ -1713,11 +2173,11 @@ Project started before 1 month and 16 days</li>
         </li>
         
         
-        <li id="section-86">
+        <li id="section-87">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-86">&#182;</a>
+                <a class="pilcrow" href="#section-87">&#182;</a>
               </div>
               <p>Determine if it&#39;s firefox</p>
 
@@ -1736,11 +2196,11 @@ Project started before 1 month and 16 days</li>
         </li>
         
         
-        <li id="section-87">
+        <li id="section-88">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-87">&#182;</a>
+                <a class="pilcrow" href="#section-88">&#182;</a>
               </div>
               <p>Detect browsers</p>
 
@@ -1753,11 +2213,11 @@ Project started before 1 month and 16 days</li>
         </li>
         
         
-        <li id="section-88">
+        <li id="section-89">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-88">&#182;</a>
+                <a class="pilcrow" href="#section-89">&#182;</a>
               </div>
               <p>Detect platform</p>
 
@@ -1773,11 +2233,11 @@ Project started before 1 month and 16 days</li>
         </li>
         
         
-        <li id="section-89">
+        <li id="section-90">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-89">&#182;</a>
+                <a class="pilcrow" href="#section-90">&#182;</a>
               </div>
               <p>Detecting Windows OSs</p>
 
@@ -1819,11 +2279,11 @@ Project started before 1 month and 16 days</li>
         </li>
         
         
-        <li id="section-90">
+        <li id="section-91">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-90">&#182;</a>
+                <a class="pilcrow" href="#section-91">&#182;</a>
               </div>
               <p>Mobile Devices</p>
 
@@ -1838,11 +2298,11 @@ Project started before 1 month and 16 days</li>
         </li>
         
         
-        <li id="section-91">
+        <li id="section-92">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-91">&#182;</a>
+                <a class="pilcrow" href="#section-92">&#182;</a>
               </div>
               <p>Windows Mobile</p>
 
@@ -1861,11 +2321,11 @@ Project started before 1 month and 16 days</li>
         </li>
         
         
-        <li id="section-92">
+        <li id="section-93">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-92">&#182;</a>
+                <a class="pilcrow" href="#section-93">&#182;</a>
               </div>
               <p>Determine iOS Version</p>
 
@@ -1883,11 +2343,11 @@ Project started before 1 month and 16 days</li>
         </li>
         
         
-        <li id="section-93">
+        <li id="section-94">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-93">&#182;</a>
+                <a class="pilcrow" href="#section-94">&#182;</a>
               </div>
               <p>Determine Android Version</p>
 
@@ -1901,11 +2361,11 @@ Project started before 1 month and 16 days</li>
         </li>
         
         
-        <li id="section-94">
+        <li id="section-95">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-94">&#182;</a>
+                <a class="pilcrow" href="#section-95">&#182;</a>
               </div>
               <p>Gaming Systems</p>
 
@@ -1918,11 +2378,11 @@ Project started before 1 month and 16 days</li>
         </li>
         
         
-        <li id="section-95">
+        <li id="section-96">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-95">&#182;</a>
+                <a class="pilcrow" href="#section-96">&#182;</a>
               </div>
               <p>Name and Version</p>
 
@@ -1943,11 +2403,11 @@ Project started before 1 month and 16 days</li>
         </li>
         
         
-        <li id="section-96">
+        <li id="section-97">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-96">&#182;</a>
+                <a class="pilcrow" href="#section-97">&#182;</a>
               </div>
               <p>Engines</p>
 
@@ -1977,11 +2437,11 @@ Project started before 1 month and 16 days</li>
         </li>
         
         
-        <li id="section-97">
+        <li id="section-98">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-97">&#182;</a>
+                <a class="pilcrow" href="#section-98">&#182;</a>
               </div>
               <p>return them</p>
 
@@ -1998,78 +2458,23 @@ Project started before 1 month and 16 days</li>
         </li>
         
         
-        <li id="section-98">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-98">&#182;</a>
-              </div>
-              <p>Create a json object only if one does not already exist. We create the
-methods in a closure to avoid creating global variables.</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>
-<span class="keyword">var</span> json = {};
-
-(<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
-
-  <span class="function"><span class="keyword">function</span> <span class="title">f</span> <span class="params">(n)</span> {</span></pre></div></div>
-            
-        </li>
-        
-        
         <li id="section-99">
             <div class="annotation">
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-99">&#182;</a>
               </div>
-              <p>Format integers to have at least two digits.</p>
+              <hr>
+<h2>JSON</h2>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="keyword">return</span> n &lt; <span class="number">10</span> ? <span class="string">'0'</span> + n : n;
-  }
-
-  <span class="keyword">if</span> (<span class="keyword">typeof</span> Date.prototype.tojson !== <span class="string">'function'</span>) {
-
-    Date.prototype.tojson = <span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
-
-      <span class="keyword">return</span> isFinite(<span class="keyword">this</span>.valueOf()) ?
-          <span class="keyword">this</span>.getUTCFullYear()     + <span class="string">'-'</span> +
-          f(<span class="keyword">this</span>.getUTCMonth() + <span class="number">1</span>) + <span class="string">'-'</span> +
-          f(<span class="keyword">this</span>.getUTCDate())      + <span class="string">'T'</span> +
-          f(<span class="keyword">this</span>.getUTCHours())     + <span class="string">':'</span> +
-          f(<span class="keyword">this</span>.getUTCMinutes())   + <span class="string">':'</span> +
-          f(<span class="keyword">this</span>.getUTCSeconds())   + <span class="string">'Z'</span>
-        : <span class="literal">null</span>;
-    };
-
-    String.prototype.tojson =
-      Number.prototype.tojson  =
-      Boolean.prototype.tojson = <span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
-        <span class="keyword">return</span> <span class="keyword">this</span>.valueOf();
-      };
-  }
-
-  <span class="keyword">var</span> cx = <span class="regexp">/[\u0000\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g</span>,
-    escapable = <span class="regexp">/[\\\"\x00-\x1f\x7f-\x9f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g</span>,
-    gap,
-    indent,
-    meta = {    <span class="comment">// table of character substitutions</span>
-      <span class="string">'\b'</span>: <span class="string">'\\b'</span>,
-      <span class="string">'\t'</span>: <span class="string">'\\t'</span>,
-      <span class="string">'\n'</span>: <span class="string">'\\n'</span>,
-      <span class="string">'\f'</span>: <span class="string">'\\f'</span>,
-      <span class="string">'\r'</span>: <span class="string">'\\r'</span>,
-      <span class="string">'"'</span> : <span class="string">'\\"'</span>,
-      <span class="string">'\\'</span>: <span class="string">'\\\\'</span>
-    },
-    rep;
-
-
-  <span class="function"><span class="keyword">function</span> <span class="title">quote</span><span class="params">(string)</span> {</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>
+  <span class="comment">/*!
+   * JSON Parser (Public Domain)
+   * by Douglas Crockford
+   * http://javascript.crockford.com/
+   */</span></pre></div></div>
             
         </li>
         
@@ -2080,24 +2485,23 @@ methods in a closure to avoid creating global variables.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-100">&#182;</a>
               </div>
-              <p>If the string contains no control characters, no quote characters, and no
-backslash characters, then we can safely slap some quotes around it.
-Otherwise we must also replace the offending characters with safe escape
-sequences.</p>
+              <p>Create a json object only if one does not already exist. We create the
+methods in a closure to avoid creating global variables.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-    escapable.lastIndex = <span class="number">0</span>;
-    <span class="keyword">return</span> escapable.test(string) ? <span class="string">'"'</span> + string.replace(escapable, <span class="function"><span class="keyword">function</span> <span class="params">(a)</span> {</span>
-      <span class="keyword">var</span> c = meta[a];
-      <span class="keyword">return</span> <span class="keyword">typeof</span> c === <span class="string">'string'</span> ? c
-        : <span class="string">'\\u'</span> + (<span class="string">'0000'</span> + a.charCodeAt(<span class="number">0</span>).toString(<span class="number">16</span>)).slice(-<span class="number">4</span>);
-    }) + <span class="string">'"'</span> : <span class="string">'"'</span> + string + <span class="string">'"'</span>;
-  }
+  <span class="keyword">var</span> json =  {};
 
+  (<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
 
-  <span class="function"><span class="keyword">function</span> <span class="title">str</span><span class="params">(key, holder)</span> {</span></pre></div></div>
+    <span class="keyword">if</span> (<span class="keyword">typeof</span> window.JSON === <span class="string">"object"</span> &amp;&amp; <span class="keyword">typeof</span> window.JSON.parse === <span class="string">"function"</span>) {
+      json = window.JSON;
+      
+      <span class="keyword">return</span>;
+    }
+
+    <span class="function"><span class="keyword">function</span> <span class="title">f</span> <span class="params">(n)</span> {</span></pre></div></div>
             
         </li>
         
@@ -2108,18 +2512,51 @@ sequences.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-101">&#182;</a>
               </div>
-              <p>Produce a string from holder[key].</p>
+              <p>Format integers to have at least two digits.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>
-    <span class="keyword">var</span> i,          <span class="comment">// The loop counter.</span>
-      k,          <span class="comment">// The member key.</span>
-      v,          <span class="comment">// The member value.</span>
-      length,
-      mind = gap,
-      partial,
-      value = holder[key];</pre></div></div>
+            <div class="content"><div class='highlight'><pre>      <span class="keyword">return</span> n &lt; <span class="number">10</span> ? <span class="string">'0'</span> + n : n;
+    }
+
+    <span class="keyword">if</span> (<span class="keyword">typeof</span> Date.prototype.tojson !== <span class="string">'function'</span>) {
+
+      Date.prototype.tojson = <span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+
+        <span class="keyword">return</span> isFinite(<span class="keyword">this</span>.valueOf()) ?
+            <span class="keyword">this</span>.getUTCFullYear()     + <span class="string">'-'</span> +
+            f(<span class="keyword">this</span>.getUTCMonth() + <span class="number">1</span>) + <span class="string">'-'</span> +
+            f(<span class="keyword">this</span>.getUTCDate())      + <span class="string">'T'</span> +
+            f(<span class="keyword">this</span>.getUTCHours())     + <span class="string">':'</span> +
+            f(<span class="keyword">this</span>.getUTCMinutes())   + <span class="string">':'</span> +
+            f(<span class="keyword">this</span>.getUTCSeconds())   + <span class="string">'Z'</span>
+          : <span class="literal">null</span>;
+      };
+
+      String.prototype.tojson =
+        Number.prototype.tojson  =
+        Boolean.prototype.tojson = <span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+          <span class="keyword">return</span> <span class="keyword">this</span>.valueOf();
+        };
+    }
+
+    <span class="keyword">var</span> cx = <span class="regexp">/[\u0000\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g</span>,
+      escapable = <span class="regexp">/[\\\"\x00-\x1f\x7f-\x9f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g</span>,
+      gap,
+      indent,
+      meta = {    <span class="comment">// table of character substitutions</span>
+        <span class="string">'\b'</span>: <span class="string">'\\b'</span>,
+        <span class="string">'\t'</span>: <span class="string">'\\t'</span>,
+        <span class="string">'\n'</span>: <span class="string">'\\n'</span>,
+        <span class="string">'\f'</span>: <span class="string">'\\f'</span>,
+        <span class="string">'\r'</span>: <span class="string">'\\r'</span>,
+        <span class="string">'"'</span> : <span class="string">'\\"'</span>,
+        <span class="string">'\\'</span>: <span class="string">'\\\\'</span>
+      },
+      rep;
+
+
+    <span class="function"><span class="keyword">function</span> <span class="title">quote</span><span class="params">(string)</span> {</span></pre></div></div>
             
         </li>
         
@@ -2130,15 +2567,24 @@ sequences.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-102">&#182;</a>
               </div>
-              <p>If the value has a tojson method, call it to obtain a replacement value.</p>
+              <p>If the string contains no control characters, no quote characters, and no
+backslash characters, then we can safely slap some quotes around it.
+Otherwise we must also replace the offending characters with safe escape
+sequences.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-    <span class="keyword">if</span> (value &amp;&amp; <span class="keyword">typeof</span> value === <span class="string">'object'</span> &amp;&amp;
-        <span class="keyword">typeof</span> value.tojson === <span class="string">'function'</span>) {
-      value = value.tojson(key);
-    }</pre></div></div>
+      escapable.lastIndex = <span class="number">0</span>;
+      <span class="keyword">return</span> escapable.test(string) ? <span class="string">'"'</span> + string.replace(escapable, <span class="function"><span class="keyword">function</span> <span class="params">(a)</span> {</span>
+        <span class="keyword">var</span> c = meta[a];
+        <span class="keyword">return</span> <span class="keyword">typeof</span> c === <span class="string">'string'</span> ? c
+          : <span class="string">'\\u'</span> + (<span class="string">'0000'</span> + a.charCodeAt(<span class="number">0</span>).toString(<span class="number">16</span>)).slice(-<span class="number">4</span>);
+      }) + <span class="string">'"'</span> : <span class="string">'"'</span> + string + <span class="string">'"'</span>;
+    }
+
+
+    <span class="function"><span class="keyword">function</span> <span class="title">str</span><span class="params">(key, holder)</span> {</span></pre></div></div>
             
         </li>
         
@@ -2149,15 +2595,18 @@ sequences.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-103">&#182;</a>
               </div>
-              <p>If we were called with a replacer function, then call the replacer to
-obtain a replacement value.</p>
+              <p>Produce a string from holder[key].</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-    <span class="keyword">if</span> (<span class="keyword">typeof</span> rep === <span class="string">'function'</span>) {
-      value = rep.call(holder, key, value);
-    }</pre></div></div>
+      <span class="keyword">var</span> i,          <span class="comment">// The loop counter.</span>
+        k,          <span class="comment">// The member key.</span>
+        v,          <span class="comment">// The member value.</span>
+        length,
+        mind = gap,
+        partial,
+        value = holder[key];</pre></div></div>
             
         </li>
         
@@ -2168,16 +2617,15 @@ obtain a replacement value.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-104">&#182;</a>
               </div>
-              <p>What happens next depends on the value&#39;s type.</p>
+              <p>If the value has a tojson method, call it to obtain a replacement value.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-    <span class="keyword">switch</span> (<span class="keyword">typeof</span> value) {
-    <span class="keyword">case</span> <span class="string">'string'</span>:
-      <span class="keyword">return</span> quote(value);
-
-    <span class="keyword">case</span> <span class="string">'number'</span>:</pre></div></div>
+      <span class="keyword">if</span> (value &amp;&amp; <span class="keyword">typeof</span> value === <span class="string">'object'</span> &amp;&amp;
+          <span class="keyword">typeof</span> value.tojson === <span class="string">'function'</span>) {
+        value = value.tojson(key);
+      }</pre></div></div>
             
         </li>
         
@@ -2188,15 +2636,15 @@ obtain a replacement value.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-105">&#182;</a>
               </div>
-              <p>json numbers must be finite. Encode non-finite numbers as null.</p>
+              <p>If we were called with a replacer function, then call the replacer to
+obtain a replacement value.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-      <span class="keyword">return</span> isFinite(value) ? String(value) : <span class="string">'null'</span>;
-
-    <span class="keyword">case</span> <span class="string">'boolean'</span>:
-    <span class="keyword">case</span> <span class="string">'null'</span>:</pre></div></div>
+      <span class="keyword">if</span> (<span class="keyword">typeof</span> rep === <span class="string">'function'</span>) {
+        value = rep.call(holder, key, value);
+      }</pre></div></div>
             
         </li>
         
@@ -2207,14 +2655,16 @@ obtain a replacement value.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-106">&#182;</a>
               </div>
-              <p>If the value is a boolean or null, convert it to a string. Note:
-typeof null does not produce &#39;null&#39;. The case is included here in
-the remote chance that this gets fixed someday.</p>
+              <p>What happens next depends on the value&#39;s type.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-      <span class="keyword">return</span> String(value);</pre></div></div>
+      <span class="keyword">switch</span> (<span class="keyword">typeof</span> value) {
+      <span class="keyword">case</span> <span class="string">'string'</span>:
+        <span class="keyword">return</span> quote(value);
+
+      <span class="keyword">case</span> <span class="string">'number'</span>:</pre></div></div>
             
         </li>
         
@@ -2225,13 +2675,15 @@ the remote chance that this gets fixed someday.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-107">&#182;</a>
               </div>
-              <p>If the type is &#39;object&#39;, we might be dealing with an object or an array or
-null.</p>
+              <p>json numbers must be finite. Encode non-finite numbers as null.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-    <span class="keyword">case</span> <span class="string">'object'</span>:</pre></div></div>
+        <span class="keyword">return</span> isFinite(value) ? String(value) : <span class="string">'null'</span>;
+
+      <span class="keyword">case</span> <span class="string">'boolean'</span>:
+      <span class="keyword">case</span> <span class="string">'null'</span>:</pre></div></div>
             
         </li>
         
@@ -2242,15 +2694,14 @@ null.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-108">&#182;</a>
               </div>
-              <p>Due to a specification blunder in ECMAScript, typeof null is &#39;object&#39;,
-so watch out for that case.</p>
+              <p>If the value is a boolean or null, convert it to a string. Note:
+typeof null does not produce &#39;null&#39;. The case is included here in
+the remote chance that this gets fixed someday.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-      <span class="keyword">if</span> (!value) {
-        <span class="keyword">return</span> <span class="string">'null'</span>;
-      }</pre></div></div>
+        <span class="keyword">return</span> String(value);</pre></div></div>
             
         </li>
         
@@ -2261,13 +2712,13 @@ so watch out for that case.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-109">&#182;</a>
               </div>
-              <p>Make an array to hold the partial results of stringifying this object value.</p>
+              <p>If the type is &#39;object&#39;, we might be dealing with an object or an array or
+null.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-      gap += indent;
-      partial = [];</pre></div></div>
+      <span class="keyword">case</span> <span class="string">'object'</span>:</pre></div></div>
             
         </li>
         
@@ -2278,12 +2729,15 @@ so watch out for that case.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-110">&#182;</a>
               </div>
-              <p>Is the value an array?</p>
+              <p>Due to a specification blunder in ECMAScript, typeof null is &#39;object&#39;,
+so watch out for that case.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-      <span class="keyword">if</span> (Object.prototype.toString.apply(value) === <span class="string">'[object Array]'</span>) {</pre></div></div>
+        <span class="keyword">if</span> (!value) {
+          <span class="keyword">return</span> <span class="string">'null'</span>;
+        }</pre></div></div>
             
         </li>
         
@@ -2294,17 +2748,13 @@ so watch out for that case.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-111">&#182;</a>
               </div>
-              <p>The value is an array. Stringify every element. Use null as a placeholder
-for non-json values.</p>
+              <p>Make an array to hold the partial results of stringifying this object value.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-        length = value.length;
-        
-        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; length; i += <span class="number">1</span>) {
-          partial[i] = str(i, value) || <span class="string">'null'</span>;
-        }</pre></div></div>
+        gap += indent;
+        partial = [];</pre></div></div>
             
         </li>
         
@@ -2315,20 +2765,12 @@ for non-json values.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-112">&#182;</a>
               </div>
-              <p>Join all of the elements together, separated with commas, and wrap them in
-brackets.</p>
+              <p>Is the value an array?</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-        v = partial.length === <span class="number">0</span> ? <span class="string">'[]'</span>
-          : gap ? <span class="string">'[\n'</span> + gap + partial.join(<span class="string">',\n'</span> + gap) + <span class="string">'\n'</span> + mind + <span class="string">']'</span>
-          : <span class="string">'['</span> + partial.join(<span class="string">','</span>) + <span class="string">']'</span>;
-
-        gap = mind;
-
-        <span class="keyword">return</span> v;
-      }</pre></div></div>
+        <span class="keyword">if</span> (Object.prototype.toString.apply(value) === <span class="string">'[object Array]'</span>) {</pre></div></div>
             
         </li>
         
@@ -2339,23 +2781,17 @@ brackets.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-113">&#182;</a>
               </div>
-              <p>If the replacer is an array, use it to select the members to be stringified.</p>
+              <p>The value is an array. Stringify every element. Use null as a placeholder
+for non-json values.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-      <span class="keyword">if</span> (rep &amp;&amp; <span class="keyword">typeof</span> rep === <span class="string">'object'</span>) {
-        length = rep.length;
-        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; length; i += <span class="number">1</span>) {
-          <span class="keyword">if</span> (<span class="keyword">typeof</span> rep[i] === <span class="string">'string'</span>) {
-            k = rep[i];
-            v = str(k, value);
-            <span class="keyword">if</span> (v) {
-              partial.push(quote(k) + (gap ? <span class="string">': '</span> : <span class="string">':'</span>) + v);
-            }
-          }
-        }
-      } <span class="keyword">else</span> {</pre></div></div>
+          length = value.length;
+          
+          <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; length; i += <span class="number">1</span>) {
+            partial[i] = str(i, value) || <span class="string">'null'</span>;
+          }</pre></div></div>
             
         </li>
         
@@ -2366,20 +2802,20 @@ brackets.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-114">&#182;</a>
               </div>
-              <p>Otherwise, iterate through all of the keys in the object.</p>
+              <p>Join all of the elements together, separated with commas, and wrap them in
+brackets.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-        <span class="keyword">for</span> (k <span class="keyword">in</span> value) {
-          <span class="keyword">if</span> (Object.prototype.hasOwnProperty.call(value, k)) {
-            v = str(k, value);
-            <span class="keyword">if</span> (v) {
-              partial.push(quote(k) + (gap ? <span class="string">': '</span> : <span class="string">':'</span>) + v);
-            }
-          }
-        }
-      }</pre></div></div>
+          v = partial.length === <span class="number">0</span> ? <span class="string">'[]'</span>
+            : gap ? <span class="string">'[\n'</span> + gap + partial.join(<span class="string">',\n'</span> + gap) + <span class="string">'\n'</span> + mind + <span class="string">']'</span>
+            : <span class="string">'['</span> + partial.join(<span class="string">','</span>) + <span class="string">']'</span>;
+
+          gap = mind;
+
+          <span class="keyword">return</span> v;
+        }</pre></div></div>
             
         </li>
         
@@ -2390,21 +2826,23 @@ brackets.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-115">&#182;</a>
               </div>
-              <p>Join all of the member texts together, separated with commas,
-and wrap them in braces.</p>
+              <p>If the replacer is an array, use it to select the members to be stringified.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-      v = partial.length === <span class="number">0</span> ? <span class="string">'{}'</span>
-        : gap ? <span class="string">'{\n'</span> + gap + partial.join(<span class="string">',\n'</span> + gap) + <span class="string">'\n'</span> + mind + <span class="string">'}'</span>
-        : <span class="string">'{'</span> + partial.join(<span class="string">','</span>) + <span class="string">'}'</span>;
-
-      gap = mind;
-
-      <span class="keyword">return</span> v;
-    }
-  }</pre></div></div>
+        <span class="keyword">if</span> (rep &amp;&amp; <span class="keyword">typeof</span> rep === <span class="string">'object'</span>) {
+          length = rep.length;
+          <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; length; i += <span class="number">1</span>) {
+            <span class="keyword">if</span> (<span class="keyword">typeof</span> rep[i] === <span class="string">'string'</span>) {
+              k = rep[i];
+              v = str(k, value);
+              <span class="keyword">if</span> (v) {
+                partial.push(quote(k) + (gap ? <span class="string">': '</span> : <span class="string">':'</span>) + v);
+              }
+            }
+          }
+        } <span class="keyword">else</span> {</pre></div></div>
             
         </li>
         
@@ -2415,13 +2853,20 @@ and wrap them in braces.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-116">&#182;</a>
               </div>
-              <p>If the json object does not yet have a stringify method, give it one.</p>
+              <p>Otherwise, iterate through all of the keys in the object.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-  <span class="keyword">if</span> (<span class="keyword">typeof</span> json.stringify !== <span class="string">'function'</span>) {
-    json.stringify = <span class="function"><span class="keyword">function</span> <span class="params">(value, replacer, space)</span> {</span></pre></div></div>
+          <span class="keyword">for</span> (k <span class="keyword">in</span> value) {
+            <span class="keyword">if</span> (Object.prototype.hasOwnProperty.call(value, k)) {
+              v = str(k, value);
+              <span class="keyword">if</span> (v) {
+                partial.push(quote(k) + (gap ? <span class="string">': '</span> : <span class="string">':'</span>) + v);
+              }
+            }
+          }
+        }</pre></div></div>
             
         </li>
         
@@ -2432,18 +2877,21 @@ and wrap them in braces.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-117">&#182;</a>
               </div>
-              <p>The stringify method takes a value and an optional replacer, and an optional
-space parameter, and returns a json text. The replacer can be a function
-that can replace values, or an array of strings that will select the keys.
-A default replacer method can be provided. Use of the space parameter can
-produce text that is more easily readable.</p>
+              <p>Join all of the member texts together, separated with commas,
+and wrap them in braces.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-      <span class="keyword">var</span> i;
-      gap = <span class="string">''</span>;
-      indent = <span class="string">''</span>;</pre></div></div>
+        v = partial.length === <span class="number">0</span> ? <span class="string">'{}'</span>
+          : gap ? <span class="string">'{\n'</span> + gap + partial.join(<span class="string">',\n'</span> + gap) + <span class="string">'\n'</span> + mind + <span class="string">'}'</span>
+          : <span class="string">'{'</span> + partial.join(<span class="string">','</span>) + <span class="string">'}'</span>;
+
+        gap = mind;
+
+        <span class="keyword">return</span> v;
+      }
+    }</pre></div></div>
             
         </li>
         
@@ -2454,16 +2902,13 @@ produce text that is more easily readable.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-118">&#182;</a>
               </div>
-              <p>If the space parameter is a number, make an indent string containing that
-many spaces.</p>
+              <p>If the json object does not yet have a stringify method, give it one.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-      <span class="keyword">if</span> (<span class="keyword">typeof</span> space === <span class="string">'number'</span>) {
-        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; space; i += <span class="number">1</span>) {
-          indent += <span class="string">' '</span>;
-        }</pre></div></div>
+    <span class="keyword">if</span> (<span class="keyword">typeof</span> json.stringify !== <span class="string">'function'</span>) {
+      json.stringify = <span class="function"><span class="keyword">function</span> <span class="params">(value, replacer, space)</span> {</span></pre></div></div>
             
         </li>
         
@@ -2474,14 +2919,18 @@ many spaces.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-119">&#182;</a>
               </div>
-              <p>If the space parameter is a string, it will be used as the indent string.</p>
+              <p>The stringify method takes a value and an optional replacer, and an optional
+space parameter, and returns a json text. The replacer can be a function
+that can replace values, or an array of strings that will select the keys.
+A default replacer method can be provided. Use of the space parameter can
+produce text that is more easily readable.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-      } <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> space === <span class="string">'string'</span>) {
-        indent = space;
-      }</pre></div></div>
+        <span class="keyword">var</span> i;
+        gap = <span class="string">''</span>;
+        indent = <span class="string">''</span>;</pre></div></div>
             
         </li>
         
@@ -2492,18 +2941,16 @@ many spaces.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-120">&#182;</a>
               </div>
-              <p>If there is a replacer, it must be a function or an array.
-Otherwise, throw an error.</p>
+              <p>If the space parameter is a number, make an indent string containing that
+many spaces.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-      rep = replacer;
-      <span class="keyword">if</span> (replacer &amp;&amp; <span class="keyword">typeof</span> replacer !== <span class="string">'function'</span> &amp;&amp;
-          (<span class="keyword">typeof</span> replacer !== <span class="string">'object'</span> ||
-          <span class="keyword">typeof</span> replacer.length !== <span class="string">'number'</span>)) {
-        <span class="keyword">throw</span> <span class="keyword">new</span> Error(<span class="string">'json.stringify'</span>);
-      }</pre></div></div>
+        <span class="keyword">if</span> (<span class="keyword">typeof</span> space === <span class="string">'number'</span>) {
+          <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; space; i += <span class="number">1</span>) {
+            indent += <span class="string">' '</span>;
+          }</pre></div></div>
             
         </li>
         
@@ -2514,15 +2961,14 @@ Otherwise, throw an error.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-121">&#182;</a>
               </div>
-              <p>Make a fake root object containing our value under the key of &#39;&#39;.
-Return the result of stringifying the value.</p>
+              <p>If the space parameter is a string, it will be used as the indent string.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-      <span class="keyword">return</span> str(<span class="string">''</span>, {<span class="string">''</span>: value});
-    };
-  }</pre></div></div>
+        } <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> space === <span class="string">'string'</span>) {
+          indent = space;
+        }</pre></div></div>
             
         </li>
         
@@ -2533,13 +2979,18 @@ Return the result of stringifying the value.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-122">&#182;</a>
               </div>
-              <p>If the json object does not yet have a parse method, give it one.</p>
+              <p>If there is a replacer, it must be a function or an array.
+Otherwise, throw an error.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-  <span class="keyword">if</span> (<span class="keyword">typeof</span> json.parse !== <span class="string">'function'</span>) {
-    json.parse = <span class="function"><span class="keyword">function</span> <span class="params">(text, reviver)</span> {</span></pre></div></div>
+        rep = replacer;
+        <span class="keyword">if</span> (replacer &amp;&amp; <span class="keyword">typeof</span> replacer !== <span class="string">'function'</span> &amp;&amp;
+            (<span class="keyword">typeof</span> replacer !== <span class="string">'object'</span> ||
+            <span class="keyword">typeof</span> replacer.length !== <span class="string">'number'</span>)) {
+          <span class="keyword">throw</span> <span class="keyword">new</span> Error(<span class="string">'json.stringify'</span>);
+        }</pre></div></div>
             
         </li>
         
@@ -2550,15 +3001,15 @@ Return the result of stringifying the value.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-123">&#182;</a>
               </div>
-              <p>The parse method takes a text and an optional reviver function, and returns
-a JavaScript value if the text is a valid json text.</p>
+              <p>Make a fake root object containing our value under the key of &#39;&#39;.
+Return the result of stringifying the value.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-      <span class="keyword">var</span> j;
-
-      <span class="function"><span class="keyword">function</span> <span class="title">walk</span><span class="params">(holder, key)</span> {</span></pre></div></div>
+        <span class="keyword">return</span> str(<span class="string">''</span>, {<span class="string">''</span>: value});
+      };
+    }</pre></div></div>
             
         </li>
         
@@ -2569,27 +3020,13 @@ a JavaScript value if the text is a valid json text.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-124">&#182;</a>
               </div>
-              <p>The walk method is used to recursively walk the resulting structure so
-that modifications can be made.</p>
+              <p>If the json object does not yet have a parse method, give it one.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-        <span class="keyword">var</span> k, v, value = holder[key];
-        <span class="keyword">if</span> (value &amp;&amp; <span class="keyword">typeof</span> value === <span class="string">'object'</span>) {
-          <span class="keyword">for</span> (k <span class="keyword">in</span> value) {
-            <span class="keyword">if</span> (Object.prototype.hasOwnProperty.call(value, k)) {
-              v = walk(value, k);
-              <span class="keyword">if</span> (v !== <span class="literal">undefined</span>) {
-                value[k] = v;
-              } <span class="keyword">else</span> {
-                <span class="keyword">delete</span> value[k];
-              }
-            }
-          }
-        }
-        <span class="keyword">return</span> reviver.call(holder, key, value);
-      }</pre></div></div>
+    <span class="keyword">if</span> (<span class="keyword">typeof</span> json.parse !== <span class="string">'function'</span>) {
+      json.parse = <span class="function"><span class="keyword">function</span> <span class="params">(text, reviver)</span> {</span></pre></div></div>
             
         </li>
         
@@ -2600,21 +3037,15 @@ that modifications can be made.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-125">&#182;</a>
               </div>
-              <p>Parsing happens in four stages. In the first stage, we replace certain
-Unicode characters with escape sequences. JavaScript handles many characters
-incorrectly, either silently deleting them, or treating them as line endings.</p>
+              <p>The parse method takes a text and an optional reviver function, and returns
+a JavaScript value if the text is a valid json text.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-      text = String(text);
-      cx.lastIndex = <span class="number">0</span>;
-      <span class="keyword">if</span> (cx.test(text)) {
-        text = text.replace(cx, <span class="function"><span class="keyword">function</span> <span class="params">(a)</span> {</span>
-          <span class="keyword">return</span> <span class="string">'\\u'</span> +
-            (<span class="string">'0000'</span> + a.charCodeAt(<span class="number">0</span>).toString(<span class="number">16</span>)).slice(-<span class="number">4</span>);
-        });
-      }</pre></div></div>
+        <span class="keyword">var</span> j;
+
+        <span class="function"><span class="keyword">function</span> <span class="title">walk</span><span class="params">(holder, key)</span> {</span></pre></div></div>
             
         </li>
         
@@ -2624,6 +3055,62 @@ incorrectly, either silently deleting them, or treating them as line endings.</p
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-126">&#182;</a>
+              </div>
+              <p>The walk method is used to recursively walk the resulting structure so
+that modifications can be made.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+          <span class="keyword">var</span> k, v, value = holder[key];
+          <span class="keyword">if</span> (value &amp;&amp; <span class="keyword">typeof</span> value === <span class="string">'object'</span>) {
+            <span class="keyword">for</span> (k <span class="keyword">in</span> value) {
+              <span class="keyword">if</span> (Object.prototype.hasOwnProperty.call(value, k)) {
+                v = walk(value, k);
+                <span class="keyword">if</span> (v !== <span class="literal">undefined</span>) {
+                  value[k] = v;
+                } <span class="keyword">else</span> {
+                  <span class="keyword">delete</span> value[k];
+                }
+              }
+            }
+          }
+          <span class="keyword">return</span> reviver.call(holder, key, value);
+        }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-127">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-127">&#182;</a>
+              </div>
+              <p>Parsing happens in four stages. In the first stage, we replace certain
+Unicode characters with escape sequences. JavaScript handles many characters
+incorrectly, either silently deleting them, or treating them as line endings.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        text = String(text);
+        cx.lastIndex = <span class="number">0</span>;
+        <span class="keyword">if</span> (cx.test(text)) {
+          text = text.replace(cx, <span class="function"><span class="keyword">function</span> <span class="params">(a)</span> {</span>
+            <span class="keyword">return</span> <span class="string">'\\u'</span> +
+              (<span class="string">'0000'</span> + a.charCodeAt(<span class="number">0</span>).toString(<span class="number">16</span>)).slice(-<span class="number">4</span>);
+          });
+        }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-128">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-128">&#182;</a>
               </div>
               <p>In the second stage, we run the text against regular expressions that look
 for non-json patterns. We are especially concerned with &#39;()&#39; and &#39;new&#39;
@@ -2635,11 +3122,11 @@ But just to be safe, we want to reject all unexpected forms.</p>
         </li>
         
         
-        <li id="section-127">
+        <li id="section-129">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-127">&#182;</a>
+                <a class="pilcrow" href="#section-129">&#182;</a>
               </div>
               <p>We split the second stage into 4 regexp operations in order to work around
 crippling inefficiencies in IE&#39;s and Safari&#39;s regexp engines. First we
@@ -2652,47 +3139,10 @@ we look to see that the remaining characters are only whitespace or &#39;]&#39; 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-      <span class="keyword">if</span> (<span class="regexp">/^[\],:{}\s]*$/</span>
-          .test(text.replace(<span class="regexp">/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g</span>, <span class="string">'@'</span>)
-            .replace(<span class="regexp">/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g</span>, <span class="string">']'</span>)
-            .replace(<span class="regexp">/(?:^|:|,)(?:\s*\[)+/g</span>, <span class="string">''</span>))) {</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-128">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-128">&#182;</a>
-              </div>
-              <p>In the third stage we use the eval function to compile the text into a
-JavaScript structure. The &#39;{&#39; operator is subject to a syntactic ambiguity
-in JavaScript: it can begin a block or an object literal. We wrap the text
-in parens to eliminate the ambiguity.</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>
-        j = eval(<span class="string">'('</span> + text + <span class="string">')'</span>);</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-129">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-129">&#182;</a>
-              </div>
-              <p>In the optional fourth stage, we recursively walk the new structure, passing
-each name/value pair to a reviver function for possible transformation.</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>
-        <span class="keyword">return</span> <span class="keyword">typeof</span> reviver === <span class="string">'function'</span> ? walk({<span class="string">''</span>: j}, <span class="string">''</span>) : j;
-      }</pre></div></div>
+        <span class="keyword">if</span> (<span class="regexp">/^[\],:{}\s]*$/</span>
+            .test(text.replace(<span class="regexp">/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g</span>, <span class="string">'@'</span>)
+              .replace(<span class="regexp">/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g</span>, <span class="string">']'</span>)
+              .replace(<span class="regexp">/(?:^|:|,)(?:\s*\[)+/g</span>, <span class="string">''</span>))) {</pre></div></div>
             
         </li>
         
@@ -2703,15 +3153,15 @@ each name/value pair to a reviver function for possible transformation.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-130">&#182;</a>
               </div>
-              <p>If the text is not json parseable, then a SyntaxError is thrown.</p>
+              <p>In the third stage we use the eval function to compile the text into a
+JavaScript structure. The &#39;{&#39; operator is subject to a syntactic ambiguity
+in JavaScript: it can begin a block or an object literal. We wrap the text
+in parens to eliminate the ambiguity.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-      <span class="keyword">throw</span> <span class="keyword">new</span> SyntaxError(<span class="string">'json.parse'</span>);
-    };
-  }
-}());</pre></div></div>
+          j = eval(<span class="string">'('</span> + text + <span class="string">')'</span>);</pre></div></div>
             
         </li>
         
@@ -2721,6 +3171,43 @@ each name/value pair to a reviver function for possible transformation.</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-131">&#182;</a>
+              </div>
+              <p>In the optional fourth stage, we recursively walk the new structure, passing
+each name/value pair to a reviver function for possible transformation.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+          <span class="keyword">return</span> <span class="keyword">typeof</span> reviver === <span class="string">'function'</span> ? walk({<span class="string">''</span>: j}, <span class="string">''</span>) : j;
+        }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-132">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-132">&#182;</a>
+              </div>
+              <p>If the text is not json parseable, then a SyntaxError is thrown.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        <span class="keyword">throw</span> <span class="keyword">new</span> SyntaxError(<span class="string">'json.parse'</span>);
+      };
+    }
+  }());</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-133">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-133">&#182;</a>
               </div>
               <hr>
 <h2>Utilities</h2>
@@ -2739,7 +3226,7 @@ each name/value pair to a reviver function for possible transformation.</p>
     <span class="keyword">return</span> Object(o);
   };
 
-  <span class="keyword">var</span> toInteger = <span class="function"><span class="keyword">function</span> <span class="title">toInteger</span><span class="params">(value)</span> {</span>
+  <span class="keyword">var</span> toInteger = <span class="function"><span class="keyword">function</span> <span class="title">toInteger</span> <span class="params">(value)</span> {</span>
     <span class="keyword">var</span> number = +value;
 
     <span class="keyword">if</span> (Number.isNaN(number)) {
@@ -2751,6 +3238,47 @@ each name/value pair to a reviver function for possible transformation.</p>
     }
 
     <span class="keyword">return</span> sign(number) * Math.floor(Math.abs(number));
+  };
+
+  <span class="keyword">var</span> isPrimitive = <span class="function"><span class="keyword">function</span> <span class="title">isPrimitive</span><span class="params">(input)</span> {</span>
+    <span class="keyword">var</span> type = <span class="keyword">typeof</span> input;
+    
+    <span class="keyword">return</span> (
+      input === <span class="literal">null</span> ||
+      type === <span class="string">"undefined"</span> ||
+      type === <span class="string">"boolean"</span> ||
+      type === <span class="string">"number"</span> ||
+      type === <span class="string">"string"</span>
+    );
+  };
+
+  <span class="keyword">var</span> toPrimitive = <span class="function"><span class="keyword">function</span> <span class="title">toPrimitive</span> <span class="params">(input)</span> {</span>
+    <span class="keyword">var</span> val, valueOf, toString;
+
+    <span class="keyword">if</span> (isPrimitive(input)) {
+      <span class="keyword">return</span> input;
+    }
+
+    valueOf = input.valueOf;
+
+    <span class="keyword">if</span> (<span class="keyword">typeof</span> valueOf === <span class="string">"function"</span>) {
+      val = valueOf.call(input);
+
+      <span class="keyword">if</span> (isPrimitive(val)) {
+        <span class="keyword">return</span> val;
+      }
+    }
+    toString = input.toString;
+    
+    <span class="keyword">if</span> (<span class="keyword">typeof</span> toString === <span class="string">"function"</span>) {
+      val = toString.call(input);
+
+      <span class="keyword">if</span> (isPrimitive(val)) {
+        <span class="keyword">return</span> val;
+      }
+    }
+
+    <span class="keyword">throw</span> <span class="keyword">new</span> TypeError();
   };
 
   <span class="keyword">var</span> sign = <span class="function"><span class="keyword">function</span> <span class="title">sign</span><span class="params">(value)</span> {</span>
@@ -2765,28 +3293,16 @@ each name/value pair to a reviver function for possible transformation.</p>
     }
 
     <span class="keyword">return</span> number &lt; <span class="number">0</span> ? -<span class="number">1</span> : <span class="number">1</span>;
-  };
-
-  <span class="keyword">var</span> isPrimitive = <span class="function"><span class="keyword">function</span> <span class="title">isPrimitive</span><span class="params">(input)</span> {</span>
-    <span class="keyword">var</span> type = <span class="keyword">typeof</span> input;
-    
-    <span class="keyword">return</span> (
-      input === <span class="literal">null</span> ||
-      type === <span class="string">"undefined"</span> ||
-      type === <span class="string">"boolean"</span> ||
-      type === <span class="string">"number"</span> ||
-      type === <span class="string">"string"</span>
-    );
   };</pre></div></div>
             
         </li>
         
         
-        <li id="section-132">
+        <li id="section-134">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-132">&#182;</a>
+                <a class="pilcrow" href="#section-134">&#182;</a>
               </div>
               <hr>
 <h2>Array Utilities</h2>
@@ -2796,11 +3312,11 @@ each name/value pair to a reviver function for possible transformation.</p>
         </li>
         
         
-        <li id="section-133">
+        <li id="section-135">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-133">&#182;</a>
+                <a class="pilcrow" href="#section-135">&#182;</a>
               </div>
               <p>Executes a function on each of the element
 in the array</p>
@@ -2813,11 +3329,11 @@ in the array</p>
         </li>
         
         
-        <li id="section-134">
+        <li id="section-136">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-134">&#182;</a>
+                <a class="pilcrow" href="#section-136">&#182;</a>
               </div>
               <p>Use Array.prototype.forEach if available</p>
 
@@ -2830,11 +3346,11 @@ in the array</p>
         </li>
         
         
-        <li id="section-135">
+        <li id="section-137">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-135">&#182;</a>
+                <a class="pilcrow" href="#section-137">&#182;</a>
               </div>
               <p>Throw an error if array and function are not provided</p>
 
@@ -2849,11 +3365,11 @@ in the array</p>
         </li>
         
         
-        <li id="section-136">
+        <li id="section-138">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-136">&#182;</a>
+                <a class="pilcrow" href="#section-138">&#182;</a>
               </div>
               <p>Make the this variable the array itself if not provided</p>
 
@@ -2869,11 +3385,11 @@ in the array</p>
         </li>
         
         
-        <li id="section-137">
+        <li id="section-139">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-137">&#182;</a>
+                <a class="pilcrow" href="#section-139">&#182;</a>
               </div>
               <p>Iterate over an object and execute a function on each &#39;value&#39;
 of it</p>
@@ -2886,11 +3402,11 @@ of it</p>
         </li>
         
         
-        <li id="section-138">
+        <li id="section-140">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-138">&#182;</a>
+                <a class="pilcrow" href="#section-140">&#182;</a>
               </div>
               <p>Throw an error if object and function are not provided</p>
 
@@ -2905,11 +3421,11 @@ of it</p>
         </li>
         
         
-        <li id="section-139">
+        <li id="section-141">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-139">&#182;</a>
+                <a class="pilcrow" href="#section-141">&#182;</a>
               </div>
               <p>Make the given object as the <code>this</code> value if one is not provided</p>
 
@@ -2927,11 +3443,11 @@ of it</p>
         </li>
         
         
-        <li id="section-140">
+        <li id="section-142">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-140">&#182;</a>
+                <a class="pilcrow" href="#section-142">&#182;</a>
               </div>
               <p>Append all the properties of the second object to the first</p>
 
@@ -2943,11 +3459,11 @@ of it</p>
         </li>
         
         
-        <li id="section-141">
+        <li id="section-143">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-141">&#182;</a>
+                <a class="pilcrow" href="#section-143">&#182;</a>
               </div>
               <p>Throw an error if object and extension are not provided</p>
 
@@ -2971,11 +3487,11 @@ of it</p>
         </li>
         
         
-        <li id="section-142">
+        <li id="section-144">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-142">&#182;</a>
+                <a class="pilcrow" href="#section-144">&#182;</a>
               </div>
               <p>Check if every element in the object passes the test</p>
 
@@ -3009,11 +3525,11 @@ of it</p>
         </li>
         
         
-        <li id="section-143">
+        <li id="section-145">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-143">&#182;</a>
+                <a class="pilcrow" href="#section-145">&#182;</a>
               </div>
               <hr>
 <h2>String Utilities</h2>
@@ -3023,11 +3539,11 @@ of it</p>
         </li>
         
         
-        <li id="section-144">
+        <li id="section-146">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-144">&#182;</a>
+                <a class="pilcrow" href="#section-146">&#182;</a>
               </div>
               <p>Remove whitespace at the start and end of a string</p>
 
@@ -3053,11 +3569,11 @@ of it</p>
         </li>
         
         
-        <li id="section-145">
+        <li id="section-147">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-145">&#182;</a>
+                <a class="pilcrow" href="#section-147">&#182;</a>
               </div>
               <p>Check if a string contains another string in it</p>
 
@@ -3088,11 +3604,11 @@ of it</p>
         </li>
         
         
-        <li id="section-146">
+        <li id="section-148">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-146">&#182;</a>
+                <a class="pilcrow" href="#section-148">&#182;</a>
               </div>
               <p>handle negative indices</p>
 
@@ -3105,19 +3621,21 @@ of it</p>
             <span class="keyword">return</span> i;
         }
     }
+    
     <span class="keyword">return</span> -<span class="number">1</span>;
   };</pre></div></div>
             
         </li>
         
         
-        <li id="section-147">
+        <li id="section-149">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-147">&#182;</a>
+                <a class="pilcrow" href="#section-149">&#182;</a>
               </div>
-              <p>Core Library</p>
+              <hr>
+<h2>Core Library</h2>
 
             </div>
             
@@ -3127,11 +3645,11 @@ of it</p>
         </li>
         
         
-        <li id="section-148">
+        <li id="section-150">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-148">&#182;</a>
+                <a class="pilcrow" href="#section-150">&#182;</a>
               </div>
               <p>Set root to given root or document</p>
 
@@ -3156,28 +3674,30 @@ of it</p>
         </li>
         
         
-        <li id="section-149">
+        <li id="section-151">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-149">&#182;</a>
+                <a class="pilcrow" href="#section-151">&#182;</a>
               </div>
               <p>It&#39;s better than not returning anything</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>      <span class="keyword">return</span> win.Hilo;
+    } <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> input === <span class="string">"number"</span>) {
+      <span class="keyword">return</span> <span class="keyword">new</span> NumberObject(input);
     } <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> input === <span class="string">"string"</span>) {
-      <span class="keyword">if</span> (input.trim() === <span class="string">""</span>) {</pre></div></div>
+      <span class="keyword">if</span> (trim(input) === <span class="string">""</span>) {</pre></div></div>
             
         </li>
         
         
-        <li id="section-150">
+        <li id="section-152">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-150">&#182;</a>
+                <a class="pilcrow" href="#section-152">&#182;</a>
               </div>
               <p>Can&#39;t pass empty string to querySelectorAll()</p>
 
@@ -3189,11 +3709,11 @@ of it</p>
         </li>
         
         
-        <li id="section-151">
+        <li id="section-153">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-151">&#182;</a>
+                <a class="pilcrow" href="#section-153">&#182;</a>
               </div>
               <p>Most common, return based on selector</p>
 
@@ -3210,11 +3730,11 @@ of it</p>
         </li>
         
         
-        <li id="section-152">
+        <li id="section-154">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-152">&#182;</a>
+                <a class="pilcrow" href="#section-154">&#182;</a>
               </div>
               <p>Allows to immediately start executing more code
 It&#39;s better than not returning anything!</p>
@@ -3233,11 +3753,11 @@ It&#39;s better than not returning anything!</p>
         </li>
         
         
-        <li id="section-153">
+        <li id="section-155">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-153">&#182;</a>
+                <a class="pilcrow" href="#section-155">&#182;</a>
               </div>
               <p>Enable Selector Caching</p>
 
@@ -3248,11 +3768,11 @@ It&#39;s better than not returning anything!</p>
         </li>
         
         
-        <li id="section-154">
+        <li id="section-156">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-154">&#182;</a>
+                <a class="pilcrow" href="#section-156">&#182;</a>
               </div>
               <p>Version info</p>
 
@@ -3263,11 +3783,11 @@ It&#39;s better than not returning anything!</p>
         </li>
         
         
-        <li id="section-155">
+        <li id="section-157">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-155">&#182;</a>
+                <a class="pilcrow" href="#section-157">&#182;</a>
               </div>
               <p>Detections</p>
 
@@ -3281,11 +3801,11 @@ It&#39;s better than not returning anything!</p>
         </li>
         
         
-        <li id="section-156">
+        <li id="section-158">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-156">&#182;</a>
+                <a class="pilcrow" href="#section-158">&#182;</a>
               </div>
               <p>ES Utils</p>
 
@@ -3299,16 +3819,29 @@ It&#39;s better than not returning anything!</p>
   hilo.indexOf = indexOf;
   hilo.isPrimitive = isPrimitive;
   hilo.toObject = toObject;
-  hilo.toInteger = toInteger;</pre></div></div>
+  hilo.toInteger = toInteger;
+
+  extend(hilo, {
+    each: each,
+    extend: extend,
+    every: every,
+    trim: trim,
+    contains: contains,
+    indexOf: indexOf,
+    isPrimitive: isPrimitive,
+    toObject: toObject,
+    toInteger: toInteger,
+    toPrimitive: toPrimitive
+  });</pre></div></div>
             
         </li>
         
         
-        <li id="section-157">
+        <li id="section-159">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-157">&#182;</a>
+                <a class="pilcrow" href="#section-159">&#182;</a>
               </div>
               <p>JSON</p>
 
@@ -3322,27 +3855,26 @@ It&#39;s better than not returning anything!</p>
         </li>
         
         
-        <li id="section-158">
+        <li id="section-160">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-158">&#182;</a>
+                <a class="pilcrow" href="#section-160">&#182;</a>
               </div>
               <p>Legacy</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>
-  hilo.legacy = <span class="keyword">typeof</span> sizzle === <span class="string">"function"</span>;</pre></div></div>
+            <div class="content"><div class='highlight'><pre>  hilo.legacy = <span class="keyword">typeof</span> sizzle === <span class="string">"function"</span>;</pre></div></div>
             
         </li>
         
         
-        <li id="section-159">
+        <li id="section-161">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-159">&#182;</a>
+                <a class="pilcrow" href="#section-161">&#182;</a>
               </div>
               <hr>
 <h2>Testing</h2>
@@ -3362,6 +3894,9 @@ It&#39;s better than not returning anything!</p>
      * @example
      * &lt;div class="code"&gt;&lt;pre class="prettyprint"&gt;
      * $.test("hello");
+     * &lt;/pre&gt;&lt;/div&gt;
+     * 
+     * &lt;div class="code"&gt;&lt;pre class="prettyprint"&gt;
      * $.test({
      *   name: "Erik Royall",
      *   age: 14,
@@ -3401,11 +3936,11 @@ It&#39;s better than not returning anything!</p>
         </li>
         
         
-        <li id="section-160">
+        <li id="section-162">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-160">&#182;</a>
+                <a class="pilcrow" href="#section-162">&#182;</a>
               </div>
               <hr>
 <h2>Test Comparisions</h2>
@@ -3475,11 +4010,11 @@ It&#39;s better than not returning anything!</p>
         </li>
         
         
-        <li id="section-161">
+        <li id="section-163">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-161">&#182;</a>
+                <a class="pilcrow" href="#section-163">&#182;</a>
               </div>
               <hr>
 <h2>Hilo AJAX</h2>
@@ -3546,11 +4081,11 @@ It&#39;s better than not returning anything!</p>
         </li>
         
         
-        <li id="section-162">
+        <li id="section-164">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-162">&#182;</a>
+                <a class="pilcrow" href="#section-164">&#182;</a>
               </div>
               <p>Set defaults</p>
 
@@ -3559,11 +4094,11 @@ It&#39;s better than not returning anything!</p>
         </li>
         
         
-        <li id="section-163">
+        <li id="section-165">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-163">&#182;</a>
+                <a class="pilcrow" href="#section-165">&#182;</a>
               </div>
               <p>Asynchronous requests are preferred</p>
 
@@ -3574,11 +4109,11 @@ It&#39;s better than not returning anything!</p>
         </li>
         
         
-        <li id="section-164">
+        <li id="section-166">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-164">&#182;</a>
+                <a class="pilcrow" href="#section-166">&#182;</a>
               </div>
               <p>Authentication params</p>
 
@@ -3590,11 +4125,11 @@ It&#39;s better than not returning anything!</p>
         </li>
         
         
-        <li id="section-165">
+        <li id="section-167">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-165">&#182;</a>
+                <a class="pilcrow" href="#section-167">&#182;</a>
               </div>
               <p>contentType application/x-www-form-urlencoded; charset=UTF-8 is preferred</p>
 
@@ -3677,11 +4212,11 @@ It&#39;s better than not returning anything!</p>
         </li>
         
         
-        <li id="section-166">
+        <li id="section-168">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-166">&#182;</a>
+                <a class="pilcrow" href="#section-168">&#182;</a>
               </div>
               <hr>
 <h2>AJAX Simplifiers</h2>
@@ -3694,11 +4229,11 @@ It&#39;s better than not returning anything!</p>
         </li>
         
         
-        <li id="section-167">
+        <li id="section-169">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-167">&#182;</a>
+                <a class="pilcrow" href="#section-169">&#182;</a>
               </div>
               <p>How does this function work?</p>
 <p>Let&#39;s forget about the method parameter</p>
@@ -3728,11 +4263,11 @@ as the first parameter.</li>
         </li>
         
         
-        <li id="section-168">
+        <li id="section-170">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-168">&#182;</a>
+                <a class="pilcrow" href="#section-170">&#182;</a>
               </div>
               <p>&#39;success&#39; and not &#39;callback&#39; because that&#39;s what everyone wants</p>
 
@@ -3824,11 +4359,11 @@ as the first parameter.</li>
         </li>
         
         
-        <li id="section-169">
+        <li id="section-171">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-169">&#182;</a>
+                <a class="pilcrow" href="#section-171">&#182;</a>
               </div>
               <hr>
 <h2>Hilo DOM</h2>
@@ -3847,10 +4382,20 @@ as the first parameter.</li>
    * @example
    * &lt;div class="code"&gt;&lt;pre class="prettyprint"&gt;
    * new Dom (document.querySelectorAll(p:first-child);
+   * &lt;/pre&gt;&lt;/div&gt;
+   * &lt;div class="code"&gt;&lt;pre class="prettyprint"&gt;
    * new Dom ([document.createElement("div")]);
+   * &lt;/pre&gt;&lt;/div&gt;
+   * &lt;div class="code"&gt;&lt;pre class="prettyprint"&gt;
    * new Dom ([document.getElementByid("box")]);
+   * &lt;/pre&gt;&lt;/div&gt;
+   * &lt;div class="code"&gt;&lt;pre class="prettyprint"&gt;
    * new Dom (document.getElementsByClassName("hidden"));
+   * &lt;/pre&gt;&lt;/div&gt;
+   * &lt;div class="code"&gt;&lt;pre class="prettyprint"&gt;
    * new Dom (document.getElementsByTagName("mark"));
+   * &lt;/pre&gt;&lt;/div&gt;
+   * &lt;div class="code"&gt;&lt;pre class="prettyprint"&gt;
    * &lt;/pre&gt;&lt;/div&gt;
    * @since 0.1.0
    */</span>
@@ -3860,11 +4405,11 @@ as the first parameter.</li>
         </li>
         
         
-        <li id="section-170">
+        <li id="section-172">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-170">&#182;</a>
+                <a class="pilcrow" href="#section-172">&#182;</a>
               </div>
               <p>Note that <code>this</code> is an object and NOT an Array</p>
 
@@ -3873,11 +4418,11 @@ as the first parameter.</li>
         </li>
         
         
-        <li id="section-171">
+        <li id="section-173">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-171">&#182;</a>
+                <a class="pilcrow" href="#section-173">&#182;</a>
               </div>
               <p>Loop thorugh the NodeList and set <code>this[index]</code> for <code>els[index]</code></p>
 
@@ -3890,11 +4435,11 @@ as the first parameter.</li>
         </li>
         
         
-        <li id="section-172">
+        <li id="section-174">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-172">&#182;</a>
+                <a class="pilcrow" href="#section-174">&#182;</a>
               </div>
               <p>Useful for looping through as ours is an object and not an array</p>
 
@@ -3905,11 +4450,11 @@ as the first parameter.</li>
         </li>
         
         
-        <li id="section-173">
+        <li id="section-175">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-173">&#182;</a>
+                <a class="pilcrow" href="#section-175">&#182;</a>
               </div>
               <p>Know what selector is used to select the elements</p>
 
@@ -3921,11 +4466,11 @@ as the first parameter.</li>
         </li>
         
         
-        <li id="section-174">
+        <li id="section-176">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-174">&#182;</a>
+                <a class="pilcrow" href="#section-176">&#182;</a>
               </div>
               <p>Make it <em>look</em> like an array</p>
 
@@ -3938,11 +4483,11 @@ as the first parameter.</li>
         </li>
         
         
-        <li id="section-175">
+        <li id="section-177">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-175">&#182;</a>
+                <a class="pilcrow" href="#section-177">&#182;</a>
               </div>
               <p>Set the constructor to Dom. It defaults to Array. We don&#39;t that</p>
 
@@ -3954,11 +4499,11 @@ as the first parameter.</li>
         </li>
         
         
-        <li id="section-176">
+        <li id="section-178">
             <div class="annotation">
               
               <div class="pilwrap for-h3">
-                <a class="pilcrow" href="#section-176">&#182;</a>
+                <a class="pilcrow" href="#section-178">&#182;</a>
               </div>
               <h3>Hilo CSS Helper Methods</h3>
 
@@ -3967,11 +4512,11 @@ as the first parameter.</li>
         </li>
         
         
-        <li id="section-177">
+        <li id="section-179">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-177">&#182;</a>
+                <a class="pilcrow" href="#section-179">&#182;</a>
               </div>
               <p>Return a string repacing all <code>-</code>&#39;s with <code>&quot;&quot;</code> and making the letter
 next to every <code>-</code> uppercase</p>
@@ -3987,11 +4532,11 @@ next to every <code>-</code> uppercase</p>
         </li>
         
         
-        <li id="section-178">
+        <li id="section-180">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-178">&#182;</a>
+                <a class="pilcrow" href="#section-180">&#182;</a>
               </div>
               <p>Add necessary suffix to the number for certain CSS properties
 <em>This will later be used by .css() and a number of other methods</em></p>
@@ -4003,11 +4548,11 @@ next to every <code>-</code> uppercase</p>
         </li>
         
         
-        <li id="section-179">
+        <li id="section-181">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-179">&#182;</a>
+                <a class="pilcrow" href="#section-181">&#182;</a>
               </div>
               <p>All the CSS props. that are to be defaulted to px values</p>
 
@@ -4060,11 +4605,11 @@ next to every <code>-</code> uppercase</p>
         </li>
         
         
-        <li id="section-180">
+        <li id="section-182">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-180">&#182;</a>
+                <a class="pilcrow" href="#section-182">&#182;</a>
               </div>
               <p>String values are not be unitized no matter what</p>
 
@@ -4077,11 +4622,11 @@ next to every <code>-</code> uppercase</p>
         </li>
         
         
-        <li id="section-181">
+        <li id="section-183">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-181">&#182;</a>
+                <a class="pilcrow" href="#section-183">&#182;</a>
               </div>
               <p>If the property is present in the previously mentioned
 object, the unit is suffixed with &quot;px&quot;</p>
@@ -4098,11 +4643,11 @@ object, the unit is suffixed with &quot;px&quot;</p>
         </li>
         
         
-        <li id="section-182">
+        <li id="section-184">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-182">&#182;</a>
+                <a class="pilcrow" href="#section-184">&#182;</a>
               </div>
               <p>Create an element</p>
 
@@ -4134,11 +4679,11 @@ object, the unit is suffixed with &quot;px&quot;</p>
         </li>
         
         
-        <li id="section-183">
+        <li id="section-185">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-183">&#182;</a>
+                <a class="pilcrow" href="#section-185">&#182;</a>
               </div>
               <p>Add Class if the <code>className</code> is sset</p>
 
@@ -4152,11 +4697,11 @@ object, the unit is suffixed with &quot;px&quot;</p>
         </li>
         
         
-        <li id="section-184">
+        <li id="section-186">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-184">&#182;</a>
+                <a class="pilcrow" href="#section-186">&#182;</a>
               </div>
               <p>Set html to if <code>text</code> content is given</p>
 
@@ -4170,11 +4715,11 @@ object, the unit is suffixed with &quot;px&quot;</p>
         </li>
         
         
-        <li id="section-185">
+        <li id="section-187">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-185">&#182;</a>
+                <a class="pilcrow" href="#section-187">&#182;</a>
               </div>
               <p>Set other attributes</p>
 
@@ -4195,11 +4740,11 @@ object, the unit is suffixed with &quot;px&quot;</p>
         </li>
         
         
-        <li id="section-186">
+        <li id="section-188">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-186">&#182;</a>
+                <a class="pilcrow" href="#section-188">&#182;</a>
               </div>
               <hr>
 <h2>Helper Functions</h2>
@@ -4209,11 +4754,11 @@ object, the unit is suffixed with &quot;px&quot;</p>
         </li>
         
         
-        <li id="section-187">
+        <li id="section-189">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-187">&#182;</a>
+                <a class="pilcrow" href="#section-189">&#182;</a>
               </div>
               <p>Execute a function on selected elements</p>
 
@@ -4243,11 +4788,11 @@ object, the unit is suffixed with &quot;px&quot;</p>
         </li>
         
         
-        <li id="section-188">
+        <li id="section-190">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-188">&#182;</a>
+                <a class="pilcrow" href="#section-190">&#182;</a>
               </div>
               <p>Return the results of executing a function 
 on all the selected elements</p>
@@ -4286,11 +4831,11 @@ on all the selected elements</p>
         </li>
         
         
-        <li id="section-189">
+        <li id="section-191">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-189">&#182;</a>
+                <a class="pilcrow" href="#section-191">&#182;</a>
               </div>
               <p>Map on selected elements and return them based 
 on the number of selected elements</p>
@@ -4316,11 +4861,11 @@ on the number of selected elements</p>
         </li>
         
         
-        <li id="section-190">
+        <li id="section-192">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-190">&#182;</a>
+                <a class="pilcrow" href="#section-192">&#182;</a>
               </div>
               <p>Execute a function on the first selected element</p>
 
@@ -4349,11 +4894,11 @@ on the number of selected elements</p>
         </li>
         
         
-        <li id="section-191">
+        <li id="section-193">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-191">&#182;</a>
+                <a class="pilcrow" href="#section-193">&#182;</a>
               </div>
               <p>Filters the selected elements and returns the 
 elements that pass the test (or return true)</p>
@@ -4400,11 +4945,11 @@ elements that pass the test (or return true)</p>
         </li>
         
         
-        <li id="section-192">
+        <li id="section-194">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-192">&#182;</a>
+                <a class="pilcrow" href="#section-194">&#182;</a>
               </div>
               <hr>
 <h2>Element Selections, etc.</h2>
@@ -4414,11 +4959,11 @@ elements that pass the test (or return true)</p>
         </li>
         
         
-        <li id="section-193">
+        <li id="section-195">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-193">&#182;</a>
+                <a class="pilcrow" href="#section-195">&#182;</a>
               </div>
               <p>Get a JavaScript Array containing selected elements</p>
 
@@ -4450,11 +4995,11 @@ elements that pass the test (or return true)</p>
         </li>
         
         
-        <li id="section-194">
+        <li id="section-196">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-194">&#182;</a>
+                <a class="pilcrow" href="#section-196">&#182;</a>
               </div>
               <p>Return first element of the selected elements</p>
 
@@ -4480,11 +5025,11 @@ elements that pass the test (or return true)</p>
         </li>
         
         
-        <li id="section-195">
+        <li id="section-197">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-195">&#182;</a>
+                <a class="pilcrow" href="#section-197">&#182;</a>
               </div>
               <p>Return last element of the selected elements</p>
 
@@ -4510,11 +5055,11 @@ elements that pass the test (or return true)</p>
         </li>
         
         
-        <li id="section-196">
+        <li id="section-198">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-196">&#182;</a>
+                <a class="pilcrow" href="#section-198">&#182;</a>
               </div>
               <p>Return nth element of the selected elements</p>
 
@@ -4541,11 +5086,11 @@ elements that pass the test (or return true)</p>
         </li>
         
         
-        <li id="section-197">
+        <li id="section-199">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-197">&#182;</a>
+                <a class="pilcrow" href="#section-199">&#182;</a>
               </div>
               <p>Return the children of selected elements</p>
 
@@ -4583,11 +5128,11 @@ elements that pass the test (or return true)</p>
         </li>
         
         
-        <li id="section-198">
+        <li id="section-200">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-198">&#182;</a>
+                <a class="pilcrow" href="#section-200">&#182;</a>
               </div>
               <p>Returns the parents of selected elements</p>
 
@@ -4619,11 +5164,11 @@ elements that pass the test (or return true)</p>
         </li>
         
         
-        <li id="section-199">
+        <li id="section-201">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-199">&#182;</a>
+                <a class="pilcrow" href="#section-201">&#182;</a>
               </div>
               <p>Return parent of first selected element</p>
 
@@ -4651,11 +5196,11 @@ elements that pass the test (or return true)</p>
         </li>
         
         
-        <li id="section-200">
+        <li id="section-202">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-200">&#182;</a>
+                <a class="pilcrow" href="#section-202">&#182;</a>
               </div>
               <p>Return relative of selected elements based 
 on the relation given</p>
@@ -4690,11 +5235,11 @@ on the relation given</p>
         </li>
         
         
-        <li id="section-201">
+        <li id="section-203">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-201">&#182;</a>
+                <a class="pilcrow" href="#section-203">&#182;</a>
               </div>
               <p>Return next sibling elements of selected elements</p>
 
@@ -4719,11 +5264,11 @@ on the relation given</p>
         </li>
         
         
-        <li id="section-202">
+        <li id="section-204">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-202">&#182;</a>
+                <a class="pilcrow" href="#section-204">&#182;</a>
               </div>
               <p>Return previous sibling elements of selected elements</p>
 
@@ -4748,11 +5293,11 @@ on the relation given</p>
         </li>
         
         
-        <li id="section-203">
+        <li id="section-205">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-203">&#182;</a>
+                <a class="pilcrow" href="#section-205">&#182;</a>
               </div>
               <hr>
 <h2>DOM HTML</h2>
@@ -4762,11 +5307,11 @@ on the relation given</p>
         </li>
         
         
-        <li id="section-204">
+        <li id="section-206">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-204">&#182;</a>
+                <a class="pilcrow" href="#section-206">&#182;</a>
               </div>
               <p>Set or return innerHTML of selected elements</p>
 
@@ -4802,11 +5347,11 @@ on the relation given</p>
         </li>
         
         
-        <li id="section-205">
+        <li id="section-207">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-205">&#182;</a>
+                <a class="pilcrow" href="#section-207">&#182;</a>
               </div>
               <p>Empty the selected elements</p>
 
@@ -4832,11 +5377,11 @@ on the relation given</p>
         </li>
         
         
-        <li id="section-206">
+        <li id="section-208">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-206">&#182;</a>
+                <a class="pilcrow" href="#section-208">&#182;</a>
               </div>
               <p>Append html to selected elements</p>
 
@@ -4865,11 +5410,11 @@ on the relation given</p>
         </li>
         
         
-        <li id="section-207">
+        <li id="section-209">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-207">&#182;</a>
+                <a class="pilcrow" href="#section-209">&#182;</a>
               </div>
               <p>Prepend html to selected elements</p>
 
@@ -4898,11 +5443,11 @@ on the relation given</p>
         </li>
         
         
-        <li id="section-208">
+        <li id="section-210">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-208">&#182;</a>
+                <a class="pilcrow" href="#section-210">&#182;</a>
               </div>
               <p>Get or set the value attribute of selected element</p>
 
@@ -4937,11 +5482,11 @@ on the relation given</p>
         </li>
         
         
-        <li id="section-209">
+        <li id="section-211">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-209">&#182;</a>
+                <a class="pilcrow" href="#section-211">&#182;</a>
               </div>
               <hr>
 <h2>Classes and IDs</h2>
@@ -4951,11 +5496,11 @@ on the relation given</p>
         </li>
         
         
-        <li id="section-210">
+        <li id="section-212">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-210">&#182;</a>
+                <a class="pilcrow" href="#section-212">&#182;</a>
               </div>
               <p>Set or return ID of first element</p>
 
@@ -4981,11 +5526,11 @@ on the relation given</p>
         </li>
         
         
-        <li id="section-211">
+        <li id="section-213">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-211">&#182;</a>
+                <a class="pilcrow" href="#section-213">&#182;</a>
               </div>
               <p>Setting id of only one element because
 id is intended to be an unique identifier</p>
@@ -5006,11 +5551,11 @@ id is intended to be an unique identifier</p>
         </li>
         
         
-        <li id="section-212">
+        <li id="section-214">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-212">&#182;</a>
+                <a class="pilcrow" href="#section-214">&#182;</a>
               </div>
               <p>Add, remove or check class(es)</p>
 
@@ -5287,11 +5832,11 @@ id is intended to be an unique identifier</p>
         </li>
         
         
-        <li id="section-213">
+        <li id="section-215">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-213">&#182;</a>
+                <a class="pilcrow" href="#section-215">&#182;</a>
               </div>
               <p>Adds class(es) to selected elements</p>
 
@@ -5318,11 +5863,11 @@ id is intended to be an unique identifier</p>
         </li>
         
         
-        <li id="section-214">
+        <li id="section-216">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-214">&#182;</a>
+                <a class="pilcrow" href="#section-216">&#182;</a>
               </div>
               <p>Remove class(es) from selected elements</p>
 
@@ -5349,11 +5894,11 @@ id is intended to be an unique identifier</p>
         </li>
         
         
-        <li id="section-215">
+        <li id="section-217">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-215">&#182;</a>
+                <a class="pilcrow" href="#section-217">&#182;</a>
               </div>
               <p>Check for class(es) in selected elements</p>
 
@@ -5382,11 +5927,11 @@ id is intended to be an unique identifier</p>
         </li>
         
         
-        <li id="section-216">
+        <li id="section-218">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-216">&#182;</a>
+                <a class="pilcrow" href="#section-218">&#182;</a>
               </div>
               <p>Add class(es) if not already, remove if added</p>
 
@@ -5415,11 +5960,11 @@ id is intended to be an unique identifier</p>
         </li>
         
         
-        <li id="section-217">
+        <li id="section-219">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-217">&#182;</a>
+                <a class="pilcrow" href="#section-219">&#182;</a>
               </div>
               <p>Set or return attributes</p>
 
@@ -5457,11 +6002,11 @@ id is intended to be an unique identifier</p>
         </li>
         
         
-        <li id="section-218">
+        <li id="section-220">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-218">&#182;</a>
+                <a class="pilcrow" href="#section-220">&#182;</a>
               </div>
               <hr>
 <h2>Hilo CSS</h2>
@@ -5471,11 +6016,11 @@ id is intended to be an unique identifier</p>
         </li>
         
         
-        <li id="section-219">
+        <li id="section-221">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-219">&#182;</a>
+                <a class="pilcrow" href="#section-221">&#182;</a>
               </div>
               <p>Set or return css property</p>
 
@@ -5531,11 +6076,11 @@ id is intended to be an unique identifier</p>
         </li>
         
         
-        <li id="section-220">
+        <li id="section-222">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-220">&#182;</a>
+                <a class="pilcrow" href="#section-222">&#182;</a>
               </div>
               <p>Get computed property</p>
 
@@ -5561,11 +6106,11 @@ id is intended to be an unique identifier</p>
         </li>
         
         
-        <li id="section-221">
+        <li id="section-223">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-221">&#182;</a>
+                <a class="pilcrow" href="#section-223">&#182;</a>
               </div>
               <p>Get outer width</p>
 
@@ -5583,11 +6128,11 @@ id is intended to be an unique identifier</p>
         </li>
         
         
-        <li id="section-222">
+        <li id="section-224">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-222">&#182;</a>
+                <a class="pilcrow" href="#section-224">&#182;</a>
               </div>
               <p>Get inner width</p>
 
@@ -5603,11 +6148,11 @@ id is intended to be an unique identifier</p>
         </li>
         
         
-        <li id="section-223">
+        <li id="section-225">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-223">&#182;</a>
+                <a class="pilcrow" href="#section-225">&#182;</a>
               </div>
               <p>Get outer height</p>
 
@@ -5625,11 +6170,11 @@ id is intended to be an unique identifier</p>
         </li>
         
         
-        <li id="section-224">
+        <li id="section-226">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-224">&#182;</a>
+                <a class="pilcrow" href="#section-226">&#182;</a>
               </div>
               <p>Get inner height</p>
 
@@ -5646,11 +6191,11 @@ id is intended to be an unique identifier</p>
         </li>
         
         
-        <li id="section-225">
+        <li id="section-227">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-225">&#182;</a>
+                <a class="pilcrow" href="#section-227">&#182;</a>
               </div>
               <hr>
 <h2>Events</h2>
@@ -5663,11 +6208,11 @@ id is intended to be an unique identifier</p>
         </li>
         
         
-        <li id="section-226">
+        <li id="section-228">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-226">&#182;</a>
+                <a class="pilcrow" href="#section-228">&#182;</a>
               </div>
               <p>Listen to an event and execute a function when that event happend</p>
 
@@ -5695,11 +6240,11 @@ id is intended to be an unique identifier</p>
         </li>
         
         
-        <li id="section-227">
+        <li id="section-229">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-227">&#182;</a>
+                <a class="pilcrow" href="#section-229">&#182;</a>
               </div>
               <p>Check if <code>document.addEventListener</code> method
 is available and use it if it is</p>
@@ -5716,11 +6261,11 @@ is available and use it if it is</p>
         </li>
         
         
-        <li id="section-228">
+        <li id="section-230">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-228">&#182;</a>
+                <a class="pilcrow" href="#section-230">&#182;</a>
               </div>
               <p>Otherwise check if <code>document.attachEvent</code> 
 legacy method is available and use it if it is</p>
@@ -5737,11 +6282,11 @@ legacy method is available and use it if it is</p>
         </li>
         
         
-        <li id="section-229">
+        <li id="section-231">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-229">&#182;</a>
+                <a class="pilcrow" href="#section-231">&#182;</a>
               </div>
               <p>Add event the DOM Level 0 Style</p>
 
@@ -5759,11 +6304,11 @@ legacy method is available and use it if it is</p>
         </li>
         
         
-        <li id="section-230">
+        <li id="section-232">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-230">&#182;</a>
+                <a class="pilcrow" href="#section-232">&#182;</a>
               </div>
               <p>Stop listening to an event</p>
 
@@ -5858,11 +6403,11 @@ legacy method is available and use it if it is</p>
         </li>
         
         
-        <li id="section-231">
+        <li id="section-233">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-231">&#182;</a>
+                <a class="pilcrow" href="#section-233">&#182;</a>
               </div>
               <hr>
 <h2>Events (imp.)</h2>
@@ -5929,11 +6474,11 @@ legacy method is available and use it if it is</p>
         </li>
         
         
-        <li id="section-232">
+        <li id="section-234">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-232">&#182;</a>
+                <a class="pilcrow" href="#section-234">&#182;</a>
               </div>
               <p>These keyborad key mappings will be later used
 to enable use of shortcut keys or the like</p>
@@ -5946,11 +6491,11 @@ to enable use of shortcut keys or the like</p>
         </li>
         
         
-        <li id="section-233">
+        <li id="section-235">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-233">&#182;</a>
+                <a class="pilcrow" href="#section-235">&#182;</a>
               </div>
               <p>Numbers</p>
 
@@ -5971,11 +6516,11 @@ to enable use of shortcut keys or the like</p>
         </li>
         
         
-        <li id="section-234">
+        <li id="section-236">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-234">&#182;</a>
+                <a class="pilcrow" href="#section-236">&#182;</a>
               </div>
               <p>Uppercase letters</p>
 
@@ -6012,11 +6557,11 @@ to enable use of shortcut keys or the like</p>
         </li>
         
         
-        <li id="section-235">
+        <li id="section-237">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-235">&#182;</a>
+                <a class="pilcrow" href="#section-237">&#182;</a>
               </div>
               <p>Lowecase letters</p>
 
@@ -6053,11 +6598,11 @@ to enable use of shortcut keys or the like</p>
         </li>
         
         
-        <li id="section-236">
+        <li id="section-238">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-236">&#182;</a>
+                <a class="pilcrow" href="#section-238">&#182;</a>
               </div>
               <p>Other Important Keys</p>
 
@@ -6077,11 +6622,11 @@ to enable use of shortcut keys or the like</p>
         </li>
         
         
-        <li id="section-237">
+        <li id="section-239">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-237">&#182;</a>
+                <a class="pilcrow" href="#section-239">&#182;</a>
               </div>
               <p>Arrows</p>
 
@@ -6096,11 +6641,11 @@ to enable use of shortcut keys or the like</p>
         </li>
         
         
-        <li id="section-238">
+        <li id="section-240">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-238">&#182;</a>
+                <a class="pilcrow" href="#section-240">&#182;</a>
               </div>
               <p>F-keys</p>
 
@@ -6123,11 +6668,11 @@ to enable use of shortcut keys or the like</p>
         </li>
         
         
-        <li id="section-239">
+        <li id="section-241">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-239">&#182;</a>
+                <a class="pilcrow" href="#section-241">&#182;</a>
               </div>
               <p>Less-used keys</p>
 
@@ -6141,11 +6686,11 @@ to enable use of shortcut keys or the like</p>
         </li>
         
         
-        <li id="section-240">
+        <li id="section-242">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-240">&#182;</a>
+                <a class="pilcrow" href="#section-242">&#182;</a>
               </div>
               <p>Symbols</p>
 
@@ -6170,11 +6715,11 @@ to enable use of shortcut keys or the like</p>
         </li>
         
         
-        <li id="section-241">
+        <li id="section-243">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-241">&#182;</a>
+                <a class="pilcrow" href="#section-243">&#182;</a>
               </div>
               <hr>
 <h2>Effects (fx)</h2>
@@ -6220,8 +6765,22 @@ to enable use of shortcut keys or the like</p>
      */</span>
     hide: <span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
       <span class="keyword">return</span> <span class="keyword">this</span>.each(<span class="function"><span class="keyword">function</span> <span class="params">(el)</span> {</span>
-        el.style.display = <span class="string">"none"</span>;
-        el.setAttribute(<span class="string">"aria-hidden"</span>, <span class="literal">true</span>);
+        el.style.display = <span class="string">"none"</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-244">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-244">&#182;</a>
+              </div>
+              <p>ARIA</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        el.setAttribute(<span class="string">"aria-hidden"</span>, <span class="literal">true</span>);
       });
     },
 
@@ -6240,11 +6799,39 @@ to enable use of shortcut keys or the like</p>
     toggle: <span class="function"><span class="keyword">function</span> <span class="params">(display)</span> {</span>
       <span class="keyword">return</span> <span class="keyword">this</span>.each(<span class="function"><span class="keyword">function</span> <span class="params">(el)</span> {</span>
         <span class="keyword">if</span> (el.style.display === <span class="string">"none"</span>) {
-          el.style.display = display ? display : <span class="string">""</span>;
-          el.setAttribute(<span class="string">"aria-hidden"</span>, <span class="literal">false</span>);
+          el.style.display = display ? display : <span class="string">""</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-245">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-245">&#182;</a>
+              </div>
+              <p>ARIA</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>          el.setAttribute(<span class="string">"aria-hidden"</span>, <span class="literal">false</span>);
         } <span class="keyword">else</span> {
-          el.style.display = <span class="string">"none"</span>;
-          el.setAttribute(<span class="string">"aria-hidden"</span>, <span class="literal">true</span>);
+          el.style.display = <span class="string">"none"</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-246">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-246">&#182;</a>
+              </div>
+              <p>ARIA</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>          el.setAttribute(<span class="string">"aria-hidden"</span>, <span class="literal">true</span>);
         }
       });
     },
@@ -6263,8 +6850,22 @@ to enable use of shortcut keys or the like</p>
      */</span>
     appear: <span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
       <span class="keyword">return</span> <span class="keyword">this</span>.each(<span class="function"><span class="keyword">function</span> <span class="params">(el)</span> {</span>
-        el.style.visibility = <span class="string">"visible"</span>;
-        el.setAttribute(<span class="string">"aria-hidden"</span>, <span class="literal">false</span>);
+        el.style.visibility = <span class="string">"visible"</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-247">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-247">&#182;</a>
+              </div>
+              <p>ARIA</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        el.setAttribute(<span class="string">"aria-hidden"</span>, <span class="literal">false</span>);
       });
     },
 
@@ -6282,8 +6883,22 @@ to enable use of shortcut keys or the like</p>
      */</span>
     disappear: <span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
       <span class="keyword">return</span> <span class="keyword">this</span>.each(<span class="function"><span class="keyword">function</span> <span class="params">(el)</span> {</span>
-        el.style.visibility = <span class="string">"hidden"</span>;
-        el.setAttribute(<span class="string">"aria-hidden"</span>, <span class="literal">true</span>);
+        el.style.visibility = <span class="string">"hidden"</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-248">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-248">&#182;</a>
+              </div>
+              <p>ARIA</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        el.setAttribute(<span class="string">"aria-hidden"</span>, <span class="literal">true</span>);
       });
     },
 
@@ -6302,10 +6917,39 @@ to enable use of shortcut keys or the like</p>
     toggleVisibility: <span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
       <span class="keyword">return</span> <span class="keyword">this</span>.each(<span class="function"><span class="keyword">function</span> <span class="params">(el)</span> {</span>
         <span class="keyword">if</span> (el.style.opacity === <span class="string">"0"</span>) {
-          el.style.opacity = <span class="string">"1"</span>;
+          el.style.visibility = <span class="string">"visible"</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-249">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-249">&#182;</a>
+              </div>
+              <p>ARIA</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>          el.setAttribute(<span class="string">"aria-hidden"</span>, <span class="literal">true</span>);
         } <span class="keyword">else</span> {
-          el.style.opacity = <span class="string">"0"</span>;
-          el.style.cursor = <span class="string">"default"</span>;
+          el.style.visibility = <span class="string">"hidden"</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-250">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-250">&#182;</a>
+              </div>
+              <p>ARIA</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>          el.setAttribute(<span class="string">"aria-hidden"</span>, <span class="literal">true</span>);
         }
       });
     },
@@ -6566,11 +7210,234 @@ to enable use of shortcut keys or the like</p>
         </li>
         
         
-        <li id="section-242">
+        <li id="section-251">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-242">&#182;</a>
+                <a class="pilcrow" href="#section-251">&#182;</a>
+              </div>
+              <hr>
+<h2>More Functionality</h2>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+  <span class="comment">/**
+   * NumberObject Class
+   * 
+   * @constructor
+   * @class NumberObject
+   * @param {Number} num Number
+   * @example
+   * &lt;div class="code"&gt;&lt;pre class="prettyprint"&gt;
+   * new NumberObject(2);
+   * &lt;/pre&gt;&lt;/div&gt;
+   * &lt;div class="code"&gt;&lt;pre class="prettyprint"&gt;
+   * new NumberObject(Math.PI);
+   * &lt;/pre&gt;&lt;/div&gt;
+   * @since 0.1.0
+   */</span>
+  <span class="function"><span class="keyword">function</span> <span class="title">NumberObject</span> <span class="params">(num)</span> {</span>
+    <span class="keyword">this</span>.num = num;
+  }
+
+  extend(NumberObject.prototype, {
+    
+    <span class="comment">/**
+     * NumberObject.MAX_INTEGER = 9007199254740991
+     * The maximum value of a JavaScript integer
+     * 
+     * @for NumberObject
+     * @property MAX_INTEGER
+     * @type Number
+     * @since 0.1.0
+     */</span>
+    MAX_INTEGER: <span class="number">9007199254740991</span>,
+
+    <span class="comment">/**
+     * Epsilon
+     * 
+     * @for NumberObject
+     * @property EPSILON
+     * @type Number
+     * @since 0.1.0
+     */</span>
+    EPSILON: <span class="number">2.220446049250313e-16</span>,
+
+    <span class="comment">/**
+     * Parses integer value from a string or number
+     * 
+     * @for NumberObject
+     * @method parseInt
+     * @return {Number}
+     * @example
+     * &lt;div class="code"&gt;&lt;pre class="prettyprint"&gt;
+     * new NumberObject(3.5).parseInt() // 3
+     * &lt;/pre&gt;&lt;/div&gt;
+     * @since 0.1.0
+     */</span>
+    parseInt: <span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+      parseInt.call(<span class="keyword">this</span>, <span class="keyword">this</span>.num);
+    },
+
+    <span class="comment">/**
+     * Parses float point number value from a string or number
+     * 
+     * @for NumberObject
+     * @method parseFloat
+     * @return {Number}
+     * @example
+     * &lt;div class="code"&gt;&lt;pre class="prettyprint"&gt;
+     * new NumberObject("5.3").parseFloat() // 5.3
+     * &lt;/pre&gt;&lt;/div&gt;
+     * @since 0.1.0
+     */</span>
+    parseFloat: <span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+      parseFloat.call(<span class="keyword">this</span>, <span class="keyword">this</span>.num);
+    },
+
+    <span class="comment">/**
+     * Returns true if a number is a finite value
+     * 
+     * @for NumberObject
+     * @method isFinite
+     * @return {Bolean} Whether the number is finite
+     * @example
+     * &lt;div class="code"&gt;&lt;pre class="prettyprint"&gt;
+     * new NumberObject(NaN).isFinite() // false
+     * new NumberObject(3).isFinite() // true
+     * &lt;/pre&gt;&lt;/div&gt;
+     * @since 0.1.0
+     */</span>
+    isFinite: <span class="keyword">function</span>() {
+      <span class="keyword">return</span> <span class="keyword">typeof</span> <span class="keyword">this</span>.num === <span class="string">'number'</span> &amp;&amp; isFinite(<span class="keyword">this</span>.num);
+    },
+
+    <span class="comment">/**
+     * If the number is an integer
+     * 
+     * @for NumberObject
+     * @method isInteger
+     * @return {Number} Whether the number is an integer
+     * @example
+     * &lt;div class="code"&gt;&lt;pre class="prettyprint"&gt;
+     * new NumberObject(5.3).isInteger() // false
+     * new NumberObject(4).isInteger() // true
+     * &lt;/pre&gt;&lt;/div&gt;
+     * @since 0.1.0
+     */</span>
+    isInteger: <span class="keyword">function</span>() {
+      <span class="keyword">return</span> <span class="keyword">typeof</span> <span class="keyword">this</span>.num === <span class="string">'number'</span> &amp;&amp;
+        !isNaN(<span class="keyword">this</span>.num) &amp;&amp;
+        isFinite(<span class="keyword">this</span>.num) &amp;&amp;
+        parseInt(<span class="keyword">this</span>.num, <span class="number">10</span>) === <span class="keyword">this</span>.num;
+    },
+
+    <span class="comment">/**
+     * Returns if the number is NaN (Not a number)
+     * 
+     * @for NumberObject
+     * @method isNan
+     * @return {Number} Whether the number is not a number (NaN)
+     * @example
+     * &lt;div class="code"&gt;&lt;pre class="prettyprint"&gt;
+     * new NumberObject(5).isNan() // false
+     * new NumberObject(NaN).isNan() // true
+     * &lt;/pre&gt;&lt;/div&gt;
+     * @since 0.1.0
+     */</span>
+    isNaN: <span class="keyword">function</span>() {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-252">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-252">&#182;</a>
+              </div>
+              <p>NaN !== NaN, but they are identical.
+NaNs are the only non-reflexive value, i.e., if x !== x,
+then x is NaN.
+isNaN is broken: it converts its argument to number, so
+isNaN(&#39;foo&#39;) =&gt; true</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      <span class="keyword">return</span> <span class="keyword">this</span>.num !== <span class="keyword">this</span>.num;
+    },
+
+    <span class="comment">/**
+     * Converts ant value to an integer
+     * 
+     * @for NumberObject
+     * @method toInteger
+     * @return {Number} The converted integer
+     * @example
+     * &lt;div class="code"&gt;&lt;pre class="prettyprint"&gt;
+     * new NumberObject(5).toInteger() // 5
+     * new NumberObject(NaN).toInteger() // 0
+     * &lt;/pre&gt;&lt;/div&gt;
+     * @since 0.1.0
+     */</span>
+    toInteger: <span class="keyword">function</span>() {
+      <span class="keyword">var</span> number = +<span class="keyword">this</span>.num;
+      <span class="keyword">if</span> (isNaN(number)) {
+        <span class="keyword">return</span> <span class="number">0</span>;
+      }
+
+      <span class="keyword">if</span> (number === <span class="number">0</span> || !isFinite(number)) {
+        <span class="keyword">return</span> number;
+      }
+      
+      <span class="keyword">return</span> sign.call(<span class="keyword">this</span>, number) * Math.floor(Math.abs(number));
+    },
+
+    sign: <span class="function"><span class="keyword">function</span> <span class="params">(value)</span> {</span>
+      sign.call(<span class="keyword">this</span>, <span class="keyword">this</span>.num, value);
+    },
+
+    <span class="comment">/**
+     * Call a function n times
+     * 
+     * @for NumberObject
+     * @method times
+     * @param {Function} fn The function to be called
+     * @param {Array} args The arguments to be passed
+     * @return {Number} The converted integer
+     * @example
+     * &lt;div class="code"&gt;&lt;pre class="prettyprint"&gt;
+     * var i = 0;
+     * new NumberObject(100).times(function () {
+     *   console.log(i++);
+     * });
+     * &lt;/pre&gt;&lt;/div&gt;
+     * &lt;div class="code"&gt;&lt;pre class="prettyprint"&gt;
+     * new NumberObject(100).times(function () {
+     *   consolee.log
+     * });
+     * &lt;/pre&gt;&lt;/div&gt;
+     * @since 0.1.0
+     */</span>
+    times: <span class="function"><span class="keyword">function</span> <span class="params">(fn, args)</span> {</span>
+      <span class="keyword">var</span> _i = <span class="number">0</span>;
+
+      <span class="keyword">while</span> (_i &lt; <span class="keyword">this</span>.num) {
+        fn.apply(<span class="keyword">this</span>, args);
+        _i += <span class="number">1</span>;
+      }
+    }
+  });</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-253">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-253">&#182;</a>
               </div>
               <hr>
 <h2>Hilo Extension API</h2>
@@ -6580,11 +7447,11 @@ to enable use of shortcut keys or the like</p>
         </li>
         
         
-        <li id="section-243">
+        <li id="section-254">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-243">&#182;</a>
+                <a class="pilcrow" href="#section-254">&#182;</a>
               </div>
               <p>Provide Extension API</p>
 
@@ -6598,11 +7465,11 @@ to enable use of shortcut keys or the like</p>
         </li>
         
         
-        <li id="section-244">
+        <li id="section-255">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-244">&#182;</a>
+                <a class="pilcrow" href="#section-255">&#182;</a>
               </div>
               <p>Set event handler for triggering DOM Evenets</p>
 
@@ -6620,11 +7487,11 @@ to enable use of shortcut keys or the like</p>
         </li>
         
         
-        <li id="section-245">
+        <li id="section-256">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-245">&#182;</a>
+                <a class="pilcrow" href="#section-256">&#182;</a>
               </div>
               <p>Provide shorthand <code>$</code></p>
 
@@ -6635,11 +7502,11 @@ to enable use of shortcut keys or the like</p>
         </li>
         
         
-        <li id="section-246">
+        <li id="section-257">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-246">&#182;</a>
+                <a class="pilcrow" href="#section-257">&#182;</a>
               </div>
               <p>Get the total time took to execute the script</p>
 
@@ -6660,11 +7527,11 @@ to enable use of shortcut keys or the like</p>
         </li>
         
         
-        <li id="section-247">
+        <li id="section-258">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-247">&#182;</a>
+                <a class="pilcrow" href="#section-258">&#182;</a>
               </div>
               <p>Finally return Hilo</p>
 

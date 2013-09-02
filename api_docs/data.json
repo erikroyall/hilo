@@ -2,6 +2,7 @@
     "project": {
         "name": "hilo",
         "description": "A lightning fast client-side JavaScript Framework and library that makes developing awesome websites easy",
+        "author": "Erik Royall",
         "version": "0.1.0-pre-dev-beta-10",
         "url": "http://erikroyall.github.com/hilo"
     },
@@ -33,6 +34,20 @@
                 "hilo": 1
             },
             "fors": {},
+            "namespaces": {}
+        },
+        "src\\detect.js": {
+            "name": "src\\detect.js",
+            "modules": {},
+            "classes": {
+                "feature": 1,
+                "audioType": 1,
+                "iframe": 1
+            },
+            "fors": {
+                "hilo": 1,
+                "feature": 1
+            },
             "namespaces": {}
         },
         "src\\dom.js": {
@@ -112,12 +127,16 @@
             "classes": {
                 "hilo": 1,
                 "Animation": 1,
+                "feature": 1,
+                "audioType": 1,
+                "iframe": 1,
                 "Dom": 1,
                 "NumberObject": 1,
                 "Test": 1
             },
             "fors": {
                 "hilo": 1,
+                "feature": 1,
                 "Dom": 1,
                 "NumberObject": 1,
                 "Test": 1
@@ -186,6 +205,54 @@
             "example": [
                 "\n<div class=\"code\"><pre class=\"prettyprint\">\nnew Animation ({opacity:0});\n</pre></div>\n<div class=\"code\"><pre class=\"prettyprint\">\nnew Animation ({width:100,height:100})\n</pre></div>"
             ],
+            "since": "0.1.0"
+        },
+        "feature": {
+            "name": "feature",
+            "shortname": "feature",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Hilo",
+            "namespace": "",
+            "file": "src\\detect.js",
+            "line": 6,
+            "description": "Detected Features",
+            "static": 1,
+            "since": "0.1.0"
+        },
+        "audioType": {
+            "name": "audioType",
+            "shortname": "audioType",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Hilo",
+            "namespace": "",
+            "file": "src\\detect.js",
+            "line": 95,
+            "description": "Audio Types",
+            "static": 1,
+            "since": "0.1.0"
+        },
+        "iframe": {
+            "name": "iframe",
+            "shortname": "iframe",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "Hilo",
+            "namespace": "",
+            "file": "src\\detect.js",
+            "line": 358,
+            "description": "addEventListener",
+            "static": 1,
             "since": "0.1.0"
         },
         "Dom": {
@@ -361,6 +428,512 @@
             ],
             "since": "0.1.0",
             "class": "hilo"
+        },
+        {
+            "file": "src\\detect.js",
+            "line": 35,
+            "description": "addEventListener",
+            "itemtype": "property",
+            "name": "addEventListener",
+            "type": "{boolean}",
+            "since": "0.1.0",
+            "class": "feature",
+            "module": "Hilo"
+        },
+        {
+            "file": "src\\detect.js",
+            "line": 50,
+            "description": "Application Cache",
+            "itemtype": "property",
+            "name": "applicationCache",
+            "type": "{boolean}",
+            "since": "0.1.0",
+            "class": "feature",
+            "module": "Hilo"
+        },
+        {
+            "file": "src\\detect.js",
+            "line": 65,
+            "description": "Audio (tag)",
+            "itemtype": "property",
+            "name": "audio",
+            "type": "{boolean}",
+            "since": "0.1.0",
+            "class": "feature",
+            "module": "Hilo"
+        },
+        {
+            "file": "src\\detect.js",
+            "line": 80,
+            "description": "Preload audio (hmm.. background music)",
+            "itemtype": "property",
+            "name": "audioPreload",
+            "type": "{boolean}",
+            "since": "0.1.0",
+            "class": "feature",
+            "module": "Hilo"
+        },
+        {
+            "file": "src\\detect.js",
+            "line": 133,
+            "description": "Canvas API",
+            "itemtype": "property",
+            "name": "canvas",
+            "type": "{boolean}",
+            "since": "0.1.0",
+            "class": "feature",
+            "module": "Hilo"
+        },
+        {
+            "file": "src\\detect.js",
+            "line": 148,
+            "description": "Canvas Text",
+            "itemtype": "property",
+            "name": "canvasText",
+            "type": "{boolean}",
+            "since": "0.1.0",
+            "class": "feature",
+            "module": "Hilo"
+        },
+        {
+            "file": "src\\detect.js",
+            "line": 163,
+            "description": "HTMLElement.classList",
+            "itemtype": "property",
+            "name": "classList",
+            "type": "{boolean}",
+            "since": "0.1.0",
+            "class": "feature",
+            "module": "Hilo"
+        },
+        {
+            "file": "src\\detect.js",
+            "line": 178,
+            "description": "<command>",
+            "itemtype": "property",
+            "name": "commans",
+            "type": "{boolean}",
+            "since": "0.1.0",
+            "class": "feature",
+            "module": "Hilo"
+        },
+        {
+            "file": "src\\detect.js",
+            "line": 193,
+            "description": "Form Constraint Validation",
+            "itemtype": "property",
+            "name": "consval",
+            "type": "{boolean}",
+            "since": "0.1.0",
+            "class": "feature",
+            "module": "Hilo"
+        },
+        {
+            "file": "src\\detect.js",
+            "line": 208,
+            "description": "contentEditable attribute",
+            "itemtype": "property",
+            "name": "contentEditable",
+            "type": "{boolean}",
+            "since": "0.1.0",
+            "class": "feature",
+            "module": "Hilo"
+        },
+        {
+            "file": "src\\detect.js",
+            "line": 223,
+            "description": "HTMLElement.datalist",
+            "itemtype": "property",
+            "name": "datalist",
+            "type": "{boolean}",
+            "since": "0.1.0",
+            "class": "feature",
+            "module": "Hilo"
+        },
+        {
+            "file": "src\\detect.js",
+            "line": 238,
+            "description": "<details>",
+            "itemtype": "property",
+            "name": "details",
+            "type": "{boolean}",
+            "since": "0.1.0",
+            "class": "feature",
+            "module": "Hilo"
+        },
+        {
+            "file": "src\\detect.js",
+            "line": 253,
+            "description": "Drag & Drop",
+            "itemtype": "property",
+            "name": "dragdrop",
+            "type": "{boolean}",
+            "since": "0.1.0",
+            "class": "feature",
+            "module": "Hilo"
+        },
+        {
+            "file": "src\\detect.js",
+            "line": 268,
+            "description": "ECMAScript 6",
+            "itemtype": "property",
+            "name": "es6",
+            "type": "{boolean}",
+            "since": "0.1.0",
+            "class": "feature",
+            "module": "Hilo"
+        },
+        {
+            "file": "src\\detect.js",
+            "line": 283,
+            "description": "File System API",
+            "itemtype": "property",
+            "name": "fileapi",
+            "type": "{boolean}",
+            "since": "0.1.0",
+            "class": "feature",
+            "module": "Hilo"
+        },
+        {
+            "file": "src\\detect.js",
+            "line": 298,
+            "description": "5th Generation Rendering Engine",
+            "itemtype": "property",
+            "name": "gen5",
+            "type": "{boolean}",
+            "since": "0.1.0",
+            "class": "feature",
+            "module": "Hilo"
+        },
+        {
+            "file": "src\\detect.js",
+            "line": 313,
+            "description": "Geolocation",
+            "itemtype": "property",
+            "name": "geolocation",
+            "type": "{boolean}",
+            "since": "0.1.0",
+            "class": "feature",
+            "module": "Hilo"
+        },
+        {
+            "file": "src\\detect.js",
+            "line": 328,
+            "description": "window.getSelection() method",
+            "itemtype": "property",
+            "name": "getSelection",
+            "type": "{boolean}",
+            "since": "0.1.0",
+            "class": "feature",
+            "module": "Hilo"
+        },
+        {
+            "file": "src\\detect.js",
+            "line": 343,
+            "description": "History API",
+            "itemtype": "property",
+            "name": "history",
+            "type": "{boolean}",
+            "since": "0.1.0",
+            "class": "feature",
+            "module": "Hilo"
+        },
+        {
+            "file": "src\\detect.js",
+            "line": 378,
+            "description": "IndexedDB (use this instead of WebSQL)",
+            "itemtype": "property",
+            "name": "indexeddb",
+            "type": "{boolean}",
+            "since": "0.1.0",
+            "class": "feature",
+            "module": "Hilo"
+        },
+        {
+            "file": "src\\detect.js",
+            "line": 475,
+            "description": "Local Storage",
+            "itemtype": "property",
+            "name": "localStorage",
+            "type": "{boolean}",
+            "since": "0.1.0",
+            "class": "feature",
+            "module": "Hilo"
+        },
+        {
+            "file": "src\\detect.js",
+            "line": 494,
+            "description": "<meter>",
+            "itemtype": "property",
+            "name": "meter",
+            "type": "{boolean}",
+            "since": "0.1.0",
+            "class": "feature",
+            "module": "Hilo"
+        },
+        {
+            "file": "src\\detect.js",
+            "line": 509,
+            "description": "Microdata",
+            "itemtype": "property",
+            "name": "microdata",
+            "type": "{boolean}",
+            "since": "0.1.0",
+            "class": "feature",
+            "module": "Hilo"
+        },
+        {
+            "file": "src\\detect.js",
+            "line": 524,
+            "description": "Offline (App Cache)",
+            "itemtype": "property",
+            "name": "offline",
+            "type": "{boolean}",
+            "since": "0.1.0",
+            "class": "feature",
+            "module": "Hilo"
+        },
+        {
+            "file": "src\\detect.js",
+            "line": 539,
+            "description": "<output>",
+            "itemtype": "property",
+            "name": "output",
+            "type": "{boolean}",
+            "since": "0.1.0",
+            "class": "feature",
+            "module": "Hilo"
+        },
+        {
+            "file": "src\\detect.js",
+            "line": 554,
+            "description": "<progress>",
+            "itemtype": "property",
+            "name": "progress",
+            "type": "{boolean}",
+            "since": "0.1.0",
+            "class": "feature",
+            "module": "Hilo"
+        },
+        {
+            "file": "src\\detect.js",
+            "line": 569,
+            "description": "querySelector & querySelectorAll",
+            "itemtype": "property",
+            "name": "qsa",
+            "type": "{boolean}",
+            "since": "0.1.0",
+            "class": "feature",
+            "module": "Hilo"
+        },
+        {
+            "file": "src\\detect.js",
+            "line": 584,
+            "description": "CSS3 Selectors in querySelectorAll",
+            "itemtype": "property",
+            "name": "qsa3",
+            "type": "{boolean}",
+            "since": "0.1.0",
+            "class": "feature",
+            "module": "Hilo"
+        },
+        {
+            "file": "src\\detect.js",
+            "line": 603,
+            "description": "requestAnimationFrame",
+            "itemtype": "property",
+            "name": "requestAnimationFrame",
+            "type": "{String|Boolean}",
+            "since": "0.1.0",
+            "class": "feature",
+            "module": "Hilo"
+        },
+        {
+            "file": "src\\detect.js",
+            "line": 628,
+            "description": "Server-sent Events",
+            "itemtype": "property",
+            "name": "serverEvt",
+            "type": "{boolean}",
+            "since": "0.1.0",
+            "class": "feature",
+            "module": "Hilo"
+        },
+        {
+            "file": "src\\detect.js",
+            "line": 643,
+            "description": "Session Storage",
+            "itemtype": "property",
+            "name": "sessionStorage",
+            "type": "{boolean}",
+            "since": "0.1.0",
+            "class": "feature",
+            "module": "Hilo"
+        },
+        {
+            "file": "src\\detect.js",
+            "line": 662,
+            "description": "Modal Dialog (showModalDialog)",
+            "itemtype": "property",
+            "name": "showModalDialog",
+            "type": "{boolean}",
+            "since": "0.1.0",
+            "class": "feature",
+            "module": "Hilo"
+        },
+        {
+            "file": "src\\detect.js",
+            "line": 677,
+            "description": "SVG (Scalable Vector Graphics)",
+            "itemtype": "property",
+            "name": "svg",
+            "type": "{boolean}",
+            "since": "0.1.0",
+            "class": "feature",
+            "module": "Hilo"
+        },
+        {
+            "file": "src\\detect.js",
+            "line": 692,
+            "description": "SVG in text/html",
+            "itemtype": "property",
+            "name": "svginhtml",
+            "type": "{boolean}",
+            "since": "0.1.0",
+            "class": "feature",
+            "module": "Hilo"
+        },
+        {
+            "file": "src\\detect.js",
+            "line": 708,
+            "description": "<template>",
+            "itemtype": "property",
+            "name": "template",
+            "type": "{boolean}",
+            "since": "0.1.0",
+            "class": "feature",
+            "module": "Hilo"
+        },
+        {
+            "file": "src\\detect.js",
+            "line": 723,
+            "description": "<time>",
+            "itemtype": "property",
+            "name": "time",
+            "type": "{boolean}",
+            "since": "0.1.0",
+            "class": "feature",
+            "module": "Hilo"
+        },
+        {
+            "file": "src\\detect.js",
+            "line": 738,
+            "description": "Undo (not just Ctrl + Z)",
+            "itemtype": "property",
+            "name": "undo",
+            "type": "{boolean}",
+            "since": "0.1.0",
+            "class": "feature",
+            "module": "Hilo"
+        },
+        {
+            "file": "src\\detect.js",
+            "line": 753,
+            "description": "Video",
+            "itemtype": "property",
+            "name": "video",
+            "type": "{boolean}",
+            "since": "0.1.0",
+            "class": "feature",
+            "module": "Hilo"
+        },
+        {
+            "file": "src\\detect.js",
+            "line": 772,
+            "description": "Video Captions",
+            "itemtype": "property",
+            "name": "videoCaptions",
+            "type": "{boolean}",
+            "since": "0.1.0",
+            "class": "feature",
+            "module": "Hilo"
+        },
+        {
+            "file": "src\\detect.js",
+            "line": 822,
+            "description": "Video Poster",
+            "itemtype": "property",
+            "name": "videoPoster",
+            "type": "{boolean}",
+            "since": "0.1.0",
+            "class": "feature",
+            "module": "Hilo"
+        },
+        {
+            "file": "src\\detect.js",
+            "line": 837,
+            "description": "Web Audio API (NOT the <audio> tag)",
+            "itemtype": "property",
+            "name": "webAudio",
+            "type": "{String|Boolean}",
+            "since": "0.1.0",
+            "class": "feature",
+            "module": "Hilo"
+        },
+        {
+            "file": "src\\detect.js",
+            "line": 859,
+            "description": "WebSockets",
+            "itemtype": "property",
+            "name": "webSockets",
+            "type": "{boolean}",
+            "since": "0.1.0",
+            "class": "feature",
+            "module": "Hilo"
+        },
+        {
+            "file": "src\\detect.js",
+            "line": 874,
+            "description": "WebSQL (a deprecated specification; use IndexedDB instead)",
+            "itemtype": "property",
+            "name": "websql",
+            "type": "{boolean}",
+            "since": "0.1.0",
+            "class": "feature",
+            "module": "Hilo"
+        },
+        {
+            "file": "src\\detect.js",
+            "line": 889,
+            "description": "Web Workers",
+            "itemtype": "property",
+            "name": "webWorkers",
+            "type": "{boolean}",
+            "since": "0.1.0",
+            "class": "feature",
+            "module": "Hilo"
+        },
+        {
+            "file": "src\\detect.js",
+            "line": 904,
+            "description": "Widgets",
+            "itemtype": "property",
+            "name": "widgets",
+            "type": "{boolean}",
+            "since": "0.1.0",
+            "class": "feature",
+            "module": "Hilo"
+        },
+        {
+            "file": "src\\detect.js",
+            "line": 919,
+            "description": "Cross-document messages",
+            "itemtype": "property",
+            "name": "xdocmsg",
+            "type": "{boolean}",
+            "since": "0.1.0",
+            "class": "feature",
+            "module": "Hilo"
         },
         {
             "file": "src\\dom.js",

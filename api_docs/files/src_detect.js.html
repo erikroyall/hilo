@@ -1,3 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>src\detect.js - hilo</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <script src=""></script>
+</head>
+<body>
+<div class="main-header">
+  <h1 class="site-logo"><a href="../index.html">hilo: src\detect.js</a></h1>
+  
+  <p>API Docs for: 0.1.0-pre-dev-beta-10. Authored by <a href="http://twitter.com/erikroyall">Erik Royall</a> and contributors.</p>
+</div>
+<div class="doc">
+  <div class="sidebar">
+    <div id="modules" class="sidebox">
+    <div class="hd">
+        <h2 class="no-toc">Modules</h2>
+    </div>
+    <div class="bd">
+        <ul>
+            
+                <li><a href="../modules/Hilo.html">Hilo</a>
+                
+                </li>
+            
+        </ul>
+    </div>
+</div>
+
+<div id="classes" class="sidebox">
+    <div class="hd">
+        <h2 class="no-toc">Classes</h2>
+    </div>
+    <div class="bd">
+        <ul>
+            
+                <li><a href="../classes/Animation.html">Animation</a></li>
+            
+                <li><a href="../classes/audioType.html">audioType</a></li>
+            
+                <li><a href="../classes/Dom.html">Dom</a></li>
+            
+                <li><a href="../classes/feature.html">feature</a></li>
+            
+                <li><a href="../classes/hilo.html">hilo</a></li>
+            
+                <li><a href="../classes/iframe.html">iframe</a></li>
+            
+                <li><a href="../classes/NumberObject.html">NumberObject</a></li>
+            
+                <li><a href="../classes/Test.html">Test</a></li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<div id="fileTree" class="sidebox">
+    <div class="hd">
+        <h2 class="no-toc">Files</h2>
+    </div>
+    <div class="bd">
+        <ul><li>src\ajax.js/<ul></ul></li><li>src\anim.js/<ul></ul></li><li>src\core.js/<ul></ul></li><li>src\detect.js/<ul></ul></li><li>src\dom.js/<ul></ul></li><li>src\end.js/<ul></ul></li><li>src\evt.js/<ul></ul></li><li>src\fx.js/<ul></ul></li><li>src\more.js/<ul></ul></li><li>src\sizzle.js/<ul></ul></li><li>src\test.js/<ul></ul></li></ul>
+    </div>
+</div>
+
+
+
+  </div>
+  <div class="main">
+    <div class="content"><h4>src\detect.js</h4>
+
+<pre class="code prettyprint linenums">
   
   // --------------------------------------------------
   // Feature Detection
@@ -16,16 +103,16 @@
     var c = function (tagName) {
         return doc.createElement(tagName);
       }
-      , i = c("input")
-      , d = c("div")
-      , cn = c("canvas")
-      , fr = c("iframe")
+      , i = c(&quot;input&quot;)
+      , d = c(&quot;div&quot;)
+      , cn = c(&quot;canvas&quot;)
+      , fr = c(&quot;iframe&quot;)
       , is = function (i, attr, val) {
         return !!(i.setAttribute (attr, val));
       }
-      , a = c("audio")
-      , s = c("span")
-      , v = c("video")
+      , a = c(&quot;audio&quot;)
+      , s = c(&quot;span&quot;)
+      , v = c(&quot;video&quot;)
       , xr = new XMLHttpRequest();
 
     return {
@@ -42,7 +129,7 @@
        */
 
       addEventListener: (function () {
-        return typeof win.addEventListener === "function";
+        return typeof win.addEventListener === &quot;function&quot;;
       }()),
 
       // Application Cache (or Offline Web Apps)
@@ -87,7 +174,7 @@
        */
       
       audioPreload: (function () {
-        return "preload" in a;
+        return &quot;preload&quot; in a;
       }()),
 
       // Audio Types
@@ -106,25 +193,25 @@
         // MP3 audio format
 
         mp3: (function () {
-          return !!(a.canPlayType && a.canPlayType("audio/mpeg;").replace(/no/, ""));
+          return !!(a.canPlayType &amp;&amp; a.canPlayType(&quot;audio/mpeg;&quot;).replace(/no/, &quot;&quot;));
         }()),
 
         // Vorbis audio format
         
         vorbis: (function () {
-          return !!(a.canPlayType && a.canPlayType("audio/ogg; codecs='vorbis'").replace(/no/, ""));
+          return !!(a.canPlayType &amp;&amp; a.canPlayType(&quot;audio/ogg; codecs=&#x27;vorbis&#x27;&quot;).replace(/no/, &quot;&quot;));
         }()),
 
         // MS WAV audio format
         
         wav: (function () {
-          return !!(a.canPlayType && a.canPlayType("audio/wav; codecs='1'").replace(/no/, ""));
+          return !!(a.canPlayType &amp;&amp; a.canPlayType(&quot;audio/wav; codecs=&#x27;1&#x27;&quot;).replace(/no/, &quot;&quot;));
         }()),
 
         // AAC audio format
         
         aac: (function () {
-          return !!(a.canPlayType && a.canPlayType("audio/mp4; codecs='mp4a.40.2'").replace(/no/, ""));
+          return !!(a.canPlayType &amp;&amp; a.canPlayType(&quot;audio/mp4; codecs=&#x27;mp4a.40.2&#x27;&quot;).replace(/no/, &quot;&quot;));
         }())
       },
 
@@ -155,7 +242,7 @@
        */
       
       canvasText: (function () {
-        return !!cn.getContext && typeof cn.getContext("2d").fillText === "function";
+        return !!cn.getContext &amp;&amp; typeof cn.getContext(&quot;2d&quot;).fillText === &quot;function&quot;;
       }()),
 
       // classList prop. in HTMLElement
@@ -170,13 +257,13 @@
        */
       
       classList: (function () {
-        return "classList" in s;
+        return &quot;classList&quot; in s;
       }()),
 
       // Command
 
       /**
-       * <command>
+       * &lt;command&gt;
        * 
        * @for feature
        * @property commans
@@ -185,7 +272,7 @@
        */
       
       command: (function () {
-        return "type" in c("command");
+        return &quot;type&quot; in c(&quot;command&quot;);
       }()),
 
       // Form Constraint Validation
@@ -200,7 +287,7 @@
        */
       
       consval: (function () {
-        return "noValidate" in c("form");
+        return &quot;noValidate&quot; in c(&quot;form&quot;);
       }()),
 
       // contentEditable attribute
@@ -215,7 +302,7 @@
        */
       
       contentEditable: (function () {
-        return "isContentEditable" in s;
+        return &quot;isContentEditable&quot; in s;
       }()),
 
       // Datalist (tag)
@@ -230,13 +317,13 @@
        */
       
       datalist: (function () {
-        return "options" in c("datalist");
+        return &quot;options&quot; in c(&quot;datalist&quot;);
       }()),
 
       // Details (tag)
 
       /**
-       * <details>
+       * &lt;details&gt;
        * 
        * @for feature
        * @property details
@@ -245,13 +332,13 @@
        */
       
       details: (function () {
-        return "open" in c("details");
+        return &quot;open&quot; in c(&quot;details&quot;);
       }()),
 
-      // Drag & Drop
+      // Drag &amp; Drop
 
       /**
-       * Drag & Drop
+       * Drag &amp; Drop
        * 
        * @for feature
        * @property dragdrop
@@ -260,7 +347,7 @@
        */
       
       dragdrop: (function () {
-        return "draggable" in s;
+        return &quot;draggable&quot; in s;
       }()),
 
       // ECMAScript 6
@@ -275,7 +362,7 @@
        */
       
       es6: (function () {
-        return typeof String.prototype.contains === "function";
+        return typeof String.prototype.contains === &quot;function&quot;;
       }()),
 
       // File system API
@@ -290,7 +377,7 @@
        */
       
       fileapi: (function () {
-        return typeof FileReader !== "undefined";
+        return typeof FileReader !== &quot;undefined&quot;;
       }()),
 
       // 5th Generation Rendering Engine
@@ -320,7 +407,7 @@
        */
       
       geolocation: (function () {
-        return "geolocation" in win.navigator;
+        return &quot;geolocation&quot; in win.navigator;
       }()),
 
       // window.getSelection() method
@@ -335,7 +422,7 @@
        */
 
       getSelection: (function () {
-        return typeof win.getSelection === "function";
+        return typeof win.getSelection === &quot;function&quot;;
       }()),
 
       // History API
@@ -350,7 +437,7 @@
        */
       
       history: (function () {
-        return !!(win.history && history.pushState);
+        return !!(win.history &amp;&amp; history.pushState);
       }()),
 
       // IFrame
@@ -366,10 +453,10 @@
       
       iframe: {
         sandbox: (function () {
-          return "sandbox" in fr;
+          return &quot;sandbox&quot; in fr;
         }()),
         srdoc: (function () {
-          return "srcdoc" in fr;
+          return &quot;srcdoc&quot; in fr;
         }())
       },
 
@@ -385,7 +472,7 @@
        */
       
       indexeddb: (function () {
-        return !!(win.indexedDB && win.IDBKeyRange && win.IDBTransaction);
+        return !!(win.indexedDB &amp;&amp; win.IDBKeyRange &amp;&amp; win.IDBTransaction);
       }()),
 
       // Input
@@ -395,13 +482,13 @@
         // Input Auto Focus
         
         autofocus: (function () {
-          return "autofocus" in i;
+          return &quot;autofocus&quot; in i;
         }()),
 
         // Placeholder
         
         placeholder: (function () {
-          return "placeholder" in i;
+          return &quot;placeholder&quot; in i;
         }()),
 
         // Input Types (they are pretty self-explanatory)
@@ -409,63 +496,63 @@
         type: {
           
           color: (function () {
-            is(i, "type", "color");
-            return i.type !== "text";
+            is(i, &quot;type&quot;, &quot;color&quot;);
+            return i.type !== &quot;text&quot;;
           }()),
 
           date: (function () {
-            is(i, "type", "date");
-            return i.type !== "text";
+            is(i, &quot;type&quot;, &quot;date&quot;);
+            return i.type !== &quot;text&quot;;
           }()),
 
           datetime: (function () {
-            is(i, "type", "datetime");
-            return i.type !== "text";
+            is(i, &quot;type&quot;, &quot;datetime&quot;);
+            return i.type !== &quot;text&quot;;
           }()),
 
           datetimeLocal: (function () {
-            is(i, "type", "datetime-local");
-            return i.type !== "text";
+            is(i, &quot;type&quot;, &quot;datetime-local&quot;);
+            return i.type !== &quot;text&quot;;
           }()),
 
           email: (function () {
-            is(i, "type", "email");
-            return i.type !== "text";
+            is(i, &quot;type&quot;, &quot;email&quot;);
+            return i.type !== &quot;text&quot;;
           }()),
 
           month: (function () {
-            is(i, "type", "month");
-            return i.type !== "text";
+            is(i, &quot;type&quot;, &quot;month&quot;);
+            return i.type !== &quot;text&quot;;
           }()),
 
           number: (function () {
-            is(i, "type", "number");
-            return i.type !== "text";
+            is(i, &quot;type&quot;, &quot;number&quot;);
+            return i.type !== &quot;text&quot;;
           }()),
 
           range: (function () {
-            is(i, "type", "range");
-            return i.type !== "text";
+            is(i, &quot;type&quot;, &quot;range&quot;);
+            return i.type !== &quot;text&quot;;
           }()),
 
           search: (function () {
-            is(i, "type", "search");
-            return i.type !== "text";
+            is(i, &quot;type&quot;, &quot;search&quot;);
+            return i.type !== &quot;text&quot;;
           }()),
 
           tel: (function () {
-            is(i, "type", "tel");
-            return i.type !== "text";
+            is(i, &quot;type&quot;, &quot;tel&quot;);
+            return i.type !== &quot;text&quot;;
           }()),
 
           time: (function () {
-            is(i, "type", "time");
-            return i.type !== "text";
+            is(i, &quot;type&quot;, &quot;time&quot;);
+            return i.type !== &quot;text&quot;;
           }()),
 
           week: (function () {
-            is(i, "type", "week");
-            return i.type !== "text";
+            is(i, &quot;type&quot;, &quot;week&quot;);
+            return i.type !== &quot;text&quot;;
           }())
         }
       },
@@ -483,7 +570,7 @@
       
       localStorage: (function () {
         try {
-          return "localStorage" in win && win["localStorage"] !== null && !!win.localStorage.setItem;
+          return &quot;localStorage&quot; in win &amp;&amp; win[&quot;localStorage&quot;] !== null &amp;&amp; !!win.localStorage.setItem;
         } catch(e){
           return false;
         }
@@ -492,7 +579,7 @@
       // Meter (tag)
 
       /**
-       * <meter>
+       * &lt;meter&gt;
        * 
        * @for feature
        * @property meter
@@ -501,7 +588,7 @@
        */
       
       meter: (function () {
-        return "value" in c("meter");
+        return &quot;value&quot; in c(&quot;meter&quot;);
       }()),
 
       // Microdata
@@ -516,7 +603,7 @@
        */
       
       microdata: (function () {
-        return "getItems" in doc;
+        return &quot;getItems&quot; in doc;
       }()),
 
       // Offline (App Cache)
@@ -537,7 +624,7 @@
       // Output (tag)
 
       /**
-       * <output>
+       * &lt;output&gt;
        * 
        * @for feature
        * @property output
@@ -546,13 +633,13 @@
        */
       
       output: (function () {
-        return "value" in c("output");
+        return &quot;value&quot; in c(&quot;output&quot;);
       }()),
 
       // Progress (tag)
 
       /**
-       * <progress>
+       * &lt;progress&gt;
        * 
        * @for feature
        * @property progress
@@ -561,13 +648,13 @@
        */
 
       progress: (function () {
-        return "value" in c("progress");
+        return &quot;value&quot; in c(&quot;progress&quot;);
       }()),
 
-      // querySelector & querySelectorAll
+      // querySelector &amp; querySelectorAll
 
       /**
-       * querySelector & querySelectorAll
+       * querySelector &amp; querySelectorAll
        * 
        * @for feature
        * @property qsa
@@ -576,7 +663,7 @@
        */
 
       qsa: (function () {
-        return "querySelector" in doc && "querySelectorAll" in doc;
+        return &quot;querySelector&quot; in doc &amp;&amp; &quot;querySelectorAll&quot; in doc;
       }()),
 
       // CSS3 Selectors in querySelectorAll
@@ -592,7 +679,7 @@
 
       qsa3: (function () {
         try {
-          return doc.querySelectorAll(":root").length > 0;
+          return doc.querySelectorAll(&quot;:root&quot;).length &gt; 0;
         } catch (e) {
           return false;
         }
@@ -610,14 +697,14 @@
        */
 
       requestAnimationFrame: (function () {
-        if (typeof requestAnimationFrame === "function") {
+        if (typeof requestAnimationFrame === &quot;function&quot;) {
           return true;
-        } else if (typeof msRequestAnimationFrame === "function") {
-          return "ms";
-        } else if (typeof webkitRequestAnimationFrame === "function") {
-          return "webkit";
-        } else if (typeof mozRequestAnimationFrame === "function") {
-          return "moz";
+        } else if (typeof msRequestAnimationFrame === &quot;function&quot;) {
+          return &quot;ms&quot;;
+        } else if (typeof webkitRequestAnimationFrame === &quot;function&quot;) {
+          return &quot;webkit&quot;;
+        } else if (typeof mozRequestAnimationFrame === &quot;function&quot;) {
+          return &quot;moz&quot;;
         } else {
           return false;
         }
@@ -635,7 +722,7 @@
        */
 
       serverEvt: (function () {
-        return typeof EventSource !== "undefined";
+        return typeof EventSource !== &quot;undefined&quot;;
       }()),
 
       // Session Storage
@@ -651,7 +738,7 @@
 
       sessionStorage: (function () {
         try {
-          return "sessionStorage" in win && win["sessionStorage"] !== null;
+          return &quot;sessionStorage&quot; in win &amp;&amp; win[&quot;sessionStorage&quot;] !== null;
         } catch(e) {
           return false;
         }
@@ -669,7 +756,7 @@
        */
 
       showModalDialog: (function () {
-        return typeof win.showModalDialog === "function";
+        return typeof win.showModalDialog === &quot;function&quot;;
       }()),
 
       // SVG (Scalable Vector Graphics)
@@ -684,7 +771,7 @@
        */
 
       svg: (function () {
-        return !!(doc.createElementNS && doc.createElementNS("http://www.w3.org/2000/svg", "svg").createSVGRect);
+        return !!(doc.createElementNS &amp;&amp; doc.createElementNS(&quot;http://www.w3.org/2000/svg&quot;, &quot;svg&quot;).createSVGRect);
       }()),
 
       // SVG in text/html
@@ -699,14 +786,14 @@
        */
 
       svginhtml:(function () {
-        d.innerHTML = "<svg></svg>";
-        return !!(win.SVGSVGElement && d.firstChild instanceof win.SVGSVGElement);
+        d.innerHTML = &quot;&lt;svg&gt;&lt;/svg&gt;&quot;;
+        return !!(win.SVGSVGElement &amp;&amp; d.firstChild instanceof win.SVGSVGElement);
       }()),
 
       // Template (tag)
 
       /**
-       * <template>
+       * &lt;template&gt;
        * 
        * @for feature
        * @property template
@@ -715,13 +802,13 @@
        */
 
       template: (function () {
-        return "content" in c("template");
+        return &quot;content&quot; in c(&quot;template&quot;);
       }()),
 
       // Time (tag)
 
       /**
-       * <time>
+       * &lt;time&gt;
        * 
        * @for feature
        * @property time
@@ -730,7 +817,7 @@
        */
 
       time: (function () {
-        return "datetime" in c("time");
+        return &quot;datetime&quot; in c(&quot;time&quot;);
       }()),
 
       // Undo (not just Ctrl + Z)
@@ -745,7 +832,7 @@
        */
 
       undo: (function () {
-        return typeof UndoManager !== "undefined";
+        return typeof UndoManager !== &quot;undefined&quot;;
       }()),
 
       // Video
@@ -779,7 +866,7 @@
        */
 
       videoCaptions: (function () {
-        return "src" in c("track");
+        return &quot;src&quot; in c(&quot;track&quot;);
       }()),
 
       // Video Formats
@@ -790,7 +877,7 @@
 
         h264: (function () {
           try {
-            return v.canPlayType("video/mp4; codecs='avc1.42E01E, mp4a.40.2'");
+            return v.canPlayType(&quot;video/mp4; codecs=&#x27;avc1.42E01E, mp4a.40.2&#x27;&quot;);
           } catch (e) {
             return false;
           }
@@ -800,7 +887,7 @@
 
         webm: (function () {
           try {
-            return v.canPlayType("video/webm; codecs='vp8, vorbis'");
+            return v.canPlayType(&quot;video/webm; codecs=&#x27;vp8, vorbis&#x27;&quot;);
           } catch (e) {
             return false;
           }
@@ -810,7 +897,7 @@
 
         ogg: (function () {
           try {
-            return v.canPlayType("video/ogg; codecs='theora, vorbis'");
+            return v.canPlayType(&quot;video/ogg; codecs=&#x27;theora, vorbis&#x27;&quot;);
           } catch (e) {
             return false;
           }
@@ -829,13 +916,13 @@
        */
 
       videoPoster: (function () {
-        return "poster" in c("video");
+        return &quot;poster&quot; in c(&quot;video&quot;);
       }()),
 
-      // Web Audio API (NOT the <audio> tag)
+      // Web Audio API (NOT the &lt;audio&gt; tag)
 
       /**
-       * Web Audio API (NOT the <audio> tag)
+       * Web Audio API (NOT the &lt;audio&gt; tag)
        * 
        * @for feature
        * @property webAudio
@@ -848,7 +935,7 @@
         if (win.AudioContext) {
           return true;
         } else if (win.webkitAudioContext) {
-          return "webkit";
+          return &quot;webkit&quot;;
         }
 
         return false;
@@ -911,7 +998,7 @@
        */
 
       widgets: (function () {
-        return typeof widget !== "undefined";
+        return typeof widget !== &quot;undefined&quot;;
       }()),
 
       // Cross-document messaging
@@ -936,7 +1023,7 @@
         // Cross-domain requests
 
         xdr: (function () {
-          return "withCredentials" in xr;
+          return &quot;withCredentials&quot; in xr;
         }()),
 
         // Send as form data
@@ -948,7 +1035,7 @@
         // Upload progress events
 
         upe: (function () {
-          return "upload" in xr;
+          return &quot;upload&quot; in xr;
         }())
       }
     };
@@ -1012,27 +1099,27 @@
       engine.ver = browser.ver = window.opera.version();
       engine.opera = browser.opera = parseFloat(engine.ver);
     } else if (/AppleWebKit\/(\S+)/.test(ua)) {
-      engine.ver = RegExp["$1"];
+      engine.ver = RegExp[&quot;$1&quot;];
       engine.webkit = parseFloat(engine.ver);
 
       // Figures out if chrome or Safari
 
       if (/Chrome\/(\S+)/.test(ua)) {
-        browser.ver = RegExp["$1"];
+        browser.ver = RegExp[&quot;$1&quot;];
         browser.chrome = parseFloat(browser.ver);
       } else if (/Version\/(\S+)/.test(ua)) {
-        browser.ver = RegExp["$1"];
+        browser.ver = RegExp[&quot;$1&quot;];
         browser.safari = parseFloat(browser.ver);
       } else {
         // Approximate version
 
         safariVersion = 1;
 
-        if (engine.webkit < 100) {
+        if (engine.webkit &lt; 100) {
           safariVersion = 1;
-        } else if (engine.webkit < 312) {
+        } else if (engine.webkit &lt; 312) {
           safariVersion = 1.2;
-        } else if (engine.webkit < 412) {
+        } else if (engine.webkit &lt; 412) {
           safariVersion = 1.3;
         } else {
           safariVersion = 2;
@@ -1041,20 +1128,20 @@
         browser.safari = browser.ver = safariVersion;
       }
     } else if (/KHTML\/(\S+)/.test(ua) || /Konqueror\/([^;]+)/.test(ua)) {
-      engine.ver = browser.ver = RegExp["$1"];
+      engine.ver = browser.ver = RegExp[&quot;$1&quot;];
       engine.khtml = browser.konq = parseFloat(engine.ver);
     } else if (/rv:([^\)]+)\) Gecko\/\d{8}/.test(ua)) {
-      engine.ver = RegExp["$1"];
+      engine.ver = RegExp[&quot;$1&quot;];
       engine.gecko = parseFloat(engine.ver);
 
-      // Determine if it's firefox
+      // Determine if it&#x27;s firefox
 
       if (/Firefox\/(\S+)/.test(ua)) {
-        browser.ver = RegExp["$1"];
+        browser.ver = RegExp[&quot;$1&quot;];
         browser.firefox = parseFloat(browser.ver);
       }
     } else if (/MSIE ([^;]+)/.test(ua)) {
-      engine.ver = browser.ver = RegExp["$1"];
+      engine.ver = browser.ver = RegExp[&quot;$1&quot;];
       engine.ie = browser.ie = parseFloat(engine.ver);
     }
 
@@ -1067,115 +1154,115 @@
 
     p = navigator.platform;
 
-    system.win = p.indexOf("Win") === 0;
-    system.mac = p.indexOf("Mac") === 0;
-    system.x11 = (p === "X11") || (p.indexOf("Linux") === 0);
+    system.win = p.indexOf(&quot;Win&quot;) === 0;
+    system.mac = p.indexOf(&quot;Mac&quot;) === 0;
+    system.x11 = (p === &quot;X11&quot;) || (p.indexOf(&quot;Linux&quot;) === 0);
 
     // Detecting Windows OSs
 
     if (system.win) {
       if (/Win(?:dows )?([^do]{2})\s?(\d+\.\d+)?/.test(ua)) {
-        if (RegExp["$1"] === "NT") {
-          switch(RegExp["$2"]) {
-            case "5.0":
-              system.win = "2000";
+        if (RegExp[&quot;$1&quot;] === &quot;NT&quot;) {
+          switch(RegExp[&quot;$2&quot;]) {
+            case &quot;5.0&quot;:
+              system.win = &quot;2000&quot;;
               break;
             
-            case "5.1":
-              system.win = "XP";
+            case &quot;5.1&quot;:
+              system.win = &quot;XP&quot;;
               break;
             
-            case "6.0":
-              system.win = "Vista";
+            case &quot;6.0&quot;:
+              system.win = &quot;Vista&quot;;
               break;
             
-            case "6.1":
-              system.win = "7";
+            case &quot;6.1&quot;:
+              system.win = &quot;7&quot;;
               break;
             
             default:
-              system.win = "NT";
+              system.win = &quot;NT&quot;;
               break;
           }
-        } else if (RegExp["$1"] === "9x") {
-          system.win = "ME";
+        } else if (RegExp[&quot;$1&quot;] === &quot;9x&quot;) {
+          system.win = &quot;ME&quot;;
         } else {
-          system.win = RegExp["$1"];
+          system.win = RegExp[&quot;$1&quot;];
         }
       }
     }
 
     // Mobile Devices
 
-    system.iphone = ua.indexOf("iPhone") > -1;
-    system.ipod = ua.indexOf("iPod") > -1;
-    system.ipad = ua.indexOf("iPad") > -1;
-    system.nokiaN = ua.indexOf("NokiaN") > -1;
+    system.iphone = ua.indexOf(&quot;iPhone&quot;) &gt; -1;
+    system.ipod = ua.indexOf(&quot;iPod&quot;) &gt; -1;
+    system.ipad = ua.indexOf(&quot;iPad&quot;) &gt; -1;
+    system.nokiaN = ua.indexOf(&quot;NokiaN&quot;) &gt; -1;
 
     // Windows Mobile
 
-    if (system.win === "CE") {
+    if (system.win === &quot;CE&quot;) {
       system.winMobile = system.win;
-    } else if (system.win === "Ph") {
+    } else if (system.win === &quot;Ph&quot;) {
       if (/Windows Phone OS(\d+.\d+)/.test(ua)) {
-        system.win = "Phone";
-        system.winMobile = parseFloat(RegExp["$1"]);
+        system.win = &quot;Phone&quot;;
+        system.winMobile = parseFloat(RegExp[&quot;$1&quot;]);
       }
     }
 
     // Determine iOS Version
 
-    if (system.mac && ua.indexOf("Mobile") > -1) {
+    if (system.mac &amp;&amp; ua.indexOf(&quot;Mobile&quot;) &gt; -1) {
       if (/CPU (?:iPhone )?OS (\d+_\d+)/.test(ua)) {
-        system.ios = parseFloat(RegExp["$1"].replace("_", "."));
+        system.ios = parseFloat(RegExp[&quot;$1&quot;].replace(&quot;_&quot;, &quot;.&quot;));
       } else {
-        system.ios = 2; // Can't really detect - so guess
+        system.ios = 2; // Can&#x27;t really detect - so guess
       }
     }
 
     // Determine Android Version
 
     if (/Android (\d+\.\d+)/.test(ua)) {
-      system.android = parseFloat(RegExp["$1"]);
+      system.android = parseFloat(RegExp[&quot;$1&quot;]);
     }
 
     // Gaming Systems
 
-    system.wii = ua.indexOf("Wii") > -1;
+    system.wii = ua.indexOf(&quot;Wii&quot;) &gt; -1;
     system.ps = /playstation/i.test(ua);
 
     // Name and Version
 
     if (system.win) {
-      system.name = "Windows";
+      system.name = &quot;Windows&quot;;
       system.version = system.win;
     } else if (system.mac) {
-      system.name = "Mac";
+      system.name = &quot;Mac&quot;;
     } else if (system.x11) {
-      system.name = "Linux";
+      system.name = &quot;Linux&quot;;
     } else {
-      system.name = "Some other";
+      system.name = &quot;Some other&quot;;
     }
 
     // Engines
 
     if (browser.ie) {
-      browser.name = "IE";
+      browser.name = &quot;IE&quot;;
       browser.version = browser.ie;
     } else if (browser.chrome) {
-      browser.name = "Chrome";
+      browser.name = &quot;Chrome&quot;;
       browser.version = browser.chrome;
     } else if (browser.safari) {
-      browser.name = "Safari";
+      browser.name = &quot;Safari&quot;;
       browser.version = browser.safari;
     } else if (browser.konq) {
-      browser.name = "Konqueror";
+      browser.name = &quot;Konqueror&quot;;
       browser.version = browser.konq;
     } else if (browser.opera) {
-      browser.name = "Opera";
+      browser.name = &quot;Opera&quot;;
       browser.version = browser.opera;
     } else if (browser.firefox) {
-      browser.name = "Firefox";
+      browser.name = &quot;Firefox&quot;;
       browser.version = browser.firefox;
     }
 
@@ -1187,3 +1274,12 @@
       system: system
     };
   }());
+</pre>
+
+</div>
+  </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+</body>
+</html>

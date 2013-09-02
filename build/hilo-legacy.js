@@ -1,8 +1,8 @@
 // ========================= 
 // Hilo - 0.1.0-pre-dev-beta-10
 // ========================= 
-// 2013-08-28
-// Project started before 1 month and 28 days
+// 2013-09-03
+// Project started before 2 months and 3 days
 // http://erikroyall.github.com/hilo/
 // Copyright (c) 2013 Erik Royall
 // Licensed under MIT (see LICENSE-MIT) 
@@ -75,6 +75,15 @@
   // Feature Detection
   // --------------------------------------------------
 
+  /**
+   * Detected Features
+   * 
+   * @static
+   * @class feature
+   * @for hilo
+   * @since 0.1.0
+   */
+
   feature = (function () {
     var c = function (tagName) {
         return doc.createElement(tagName);
@@ -95,29 +104,74 @@
 
       // addEventListener()
 
+      /**
+       * addEventListener
+       * 
+       * @for feature
+       * @property addEventListener
+       * @type {boolean}
+       * @since 0.1.0
+       */
+
       addEventListener: (function () {
         return typeof win.addEventListener === "function";
       }()),
 
       // Application Cache (or Offline Web Apps)
+
+      /**
+       * Application Cache
+       * 
+       * @for feature
+       * @property applicationCache
+       * @type {boolean}
+       * @since 0.1.0
+       */
       
       applicationCache: (function () {
         return !!win.applicationCache;
       }()),
 
       // Audio (tag)
+
+      /**
+       * Audio (tag)
+       * 
+       * @for feature
+       * @property audio
+       * @type {boolean}
+       * @since 0.1.0
+       */
       
       audio: (function () {
         return !!a.canPlayType;
       }()),
 
       // Preload audio (hmm.. background music?)
+
+      /**
+       * Preload audio (hmm.. background music)
+       * 
+       * @for feature
+       * @property audioPreload
+       * @type {boolean}
+       * @since 0.1.0
+       */
       
       audioPreload: (function () {
         return "preload" in a;
       }()),
 
       // Audio Types
+
+      /**
+       * Audio Types
+       * 
+       * @for feature
+       * @static
+       * @class audioType
+       * @since 0.1.0
+       */
       
       audioType: {
 
@@ -147,78 +201,195 @@
       },
 
       // Canvas API
+
+      /**
+       * Canvas API
+       * 
+       * @for feature
+       * @property canvas
+       * @type {boolean}
+       * @since 0.1.0
+       */
       
       canvas: (function () {
         return !!cn.getContext;
       }()),
 
       // Canvas Text
+
+      /**
+       * Canvas Text
+       * 
+       * @for feature
+       * @property canvasText
+       * @type {boolean}
+       * @since 0.1.0
+       */
       
       canvasText: (function () {
         return !!cn.getContext && typeof cn.getContext("2d").fillText === "function";
       }()),
 
       // classList prop. in HTMLElement
+
+      /**
+       * HTMLElement.classList
+       * 
+       * @for feature
+       * @property classList
+       * @type {boolean}
+       * @since 0.1.0
+       */
       
       classList: (function () {
         return "classList" in s;
       }()),
 
       // Command
+
+      /**
+       * <command>
+       * 
+       * @for feature
+       * @property commans
+       * @type {boolean}
+       * @since 0.1.0
+       */
       
       command: (function () {
         return "type" in c("command");
       }()),
 
       // Form Constraint Validation
+
+      /**
+       * Form Constraint Validation
+       * 
+       * @for feature
+       * @property consval
+       * @type {boolean}
+       * @since 0.1.0
+       */
       
       consval: (function () {
         return "noValidate" in c("form");
       }()),
 
-      // contentEditable
+      // contentEditable attribute
+
+      /**
+       * contentEditable attribute
+       * 
+       * @for feature
+       * @property contentEditable
+       * @type {boolean}
+       * @since 0.1.0
+       */
       
       contentEditable: (function () {
         return "isContentEditable" in s;
       }()),
 
       // Datalist (tag)
+
+      /**
+       * HTMLElement.datalist
+       * 
+       * @for feature
+       * @property datalist
+       * @type {boolean}
+       * @since 0.1.0
+       */
       
       datalist: (function () {
         return "options" in c("datalist");
       }()),
 
       // Details (tag)
+
+      /**
+       * <details>
+       * 
+       * @for feature
+       * @property details
+       * @type {boolean}
+       * @since 0.1.0
+       */
       
       details: (function () {
         return "open" in c("details");
       }()),
 
       // Drag & Drop
+
+      /**
+       * Drag & Drop
+       * 
+       * @for feature
+       * @property dragdrop
+       * @type {boolean}
+       * @since 0.1.0
+       */
       
       dragdrop: (function () {
         return "draggable" in s;
       }()),
 
       // ECMAScript 6
+
+      /**
+       * ECMAScript 6
+       * 
+       * @for feature
+       * @property es6
+       * @type {boolean}
+       * @since 0.1.0
+       */
       
       es6: (function () {
         return typeof String.prototype.contains === "function";
       }()),
 
       // File system API
+
+      /**
+       * File System API
+       * 
+       * @for feature
+       * @property fileapi
+       * @type {boolean}
+       * @since 0.1.0
+       */
       
       fileapi: (function () {
         return typeof FileReader !== "undefined";
       }()),
 
-      // gen5
+      // 5th Generation Rendering Engine
+
+      /**
+       * 5th Generation Rendering Engine
+       * 
+       * @for feature
+       * @property gen5
+       * @type {boolean}
+       * @since 0.1.0
+       */
       
       gen5: (function () {
         return parseInt(win.navigator.appVersion, 10) === 5;
       }()),
 
       // Geolocation
+
+      /**
+       * Geolocation
+       * 
+       * @for feature
+       * @property geolocation
+       * @type {boolean}
+       * @since 0.1.0
+       */
       
       geolocation: (function () {
         return "geolocation" in win.navigator;
@@ -226,17 +397,44 @@
 
       // window.getSelection() method
 
+      /**
+       * window.getSelection() method
+       * 
+       * @for feature
+       * @property getSelection
+       * @type {boolean}
+       * @since 0.1.0
+       */
+
       getSelection: (function () {
         return typeof win.getSelection === "function";
       }()),
 
       // History API
+
+      /**
+       * History API
+       * 
+       * @for feature
+       * @property history
+       * @type {boolean}
+       * @since 0.1.0
+       */
       
       history: (function () {
         return !!(win.history && history.pushState);
       }()),
 
       // IFrame
+
+      /**
+       * addEventListener
+       * 
+       * @for feature
+       * @static
+       * @class iframe
+       * @since 0.1.0
+       */
       
       iframe: {
         sandbox: (function () {
@@ -248,6 +446,15 @@
       },
 
       // IndexedDB (use this instead of WebSQL)
+
+      /**
+       * IndexedDB (use this instead of WebSQL)
+       * 
+       * @for feature
+       * @property indexeddb
+       * @type {boolean}
+       * @since 0.1.0
+       */
       
       indexeddb: (function () {
         return !!(win.indexedDB && win.IDBKeyRange && win.IDBTransaction);
@@ -336,6 +543,15 @@
       },
 
       // Local Storage
+
+      /**
+       * Local Storage
+       * 
+       * @for feature
+       * @property localStorage
+       * @type {boolean}
+       * @since 0.1.0
+       */
       
       localStorage: (function () {
         try {
@@ -346,24 +562,60 @@
       }()),
 
       // Meter (tag)
+
+      /**
+       * <meter>
+       * 
+       * @for feature
+       * @property meter
+       * @type {boolean}
+       * @since 0.1.0
+       */
       
       meter: (function () {
         return "value" in c("meter");
       }()),
 
       // Microdata
+
+      /**
+       * Microdata
+       * 
+       * @for feature
+       * @property microdata
+       * @type {boolean}
+       * @since 0.1.0
+       */
       
       microdata: (function () {
         return "getItems" in doc;
       }()),
 
       // Offline (App Cache)
+
+      /**
+       * Offline (App Cache)
+       * 
+       * @for feature
+       * @property offline
+       * @type {boolean}
+       * @since 0.1.0
+       */
       
       offline: (function () {
         return !!win.applicationCache;
       }()),
 
       // Output (tag)
+
+      /**
+       * <output>
+       * 
+       * @for feature
+       * @property output
+       * @type {boolean}
+       * @since 0.1.0
+       */
       
       output: (function () {
         return "value" in c("output");
@@ -371,17 +623,44 @@
 
       // Progress (tag)
 
+      /**
+       * <progress>
+       * 
+       * @for feature
+       * @property progress
+       * @type {boolean}
+       * @since 0.1.0
+       */
+
       progress: (function () {
         return "value" in c("progress");
       }()),
 
       // querySelector & querySelectorAll
 
+      /**
+       * querySelector & querySelectorAll
+       * 
+       * @for feature
+       * @property qsa
+       * @type {boolean}
+       * @since 0.1.0
+       */
+
       qsa: (function () {
         return "querySelector" in doc && "querySelectorAll" in doc;
       }()),
 
       // CSS3 Selectors in querySelectorAll
+
+      /**
+       * CSS3 Selectors in querySelectorAll
+       * 
+       * @for feature
+       * @property qsa3
+       * @type {boolean}
+       * @since 0.1.0
+       */
 
       qsa3: (function () {
         try {
@@ -392,6 +671,15 @@
       }()),
 
       // requestAnimationFrame
+
+      /**
+       * requestAnimationFrame
+       * 
+       * @for feature
+       * @property requestAnimationFrame
+       * @type {String|Boolean}
+       * @since 0.1.0
+       */
 
       requestAnimationFrame: (function () {
         if (typeof requestAnimationFrame === "function") {
@@ -409,11 +697,29 @@
 
       // Server-sent Events
 
+      /**
+       * Server-sent Events
+       * 
+       * @for feature
+       * @property serverEvt
+       * @type {boolean}
+       * @since 0.1.0
+       */
+
       serverEvt: (function () {
         return typeof EventSource !== "undefined";
       }()),
 
       // Session Storage
+
+      /**
+       * Session Storage
+       * 
+       * @for feature
+       * @property sessionStorage
+       * @type {boolean}
+       * @since 0.1.0
+       */
 
       sessionStorage: (function () {
         try {
@@ -425,16 +731,44 @@
 
       // Modal Dialog (showModalDialog)
 
+      /**
+       * Modal Dialog (showModalDialog)
+       * 
+       * @for feature
+       * @property showModalDialog
+       * @type {boolean}
+       * @since 0.1.0
+       */
+
       showModalDialog: (function () {
         return typeof win.showModalDialog === "function";
       }()),
 
       // SVG (Scalable Vector Graphics)
+
+      /**
+       * SVG (Scalable Vector Graphics)
+       * 
+       * @for feature
+       * @property svg
+       * @type {boolean}
+       * @since 0.1.0
+       */
+
       svg: (function () {
         return !!(doc.createElementNS && doc.createElementNS("http://www.w3.org/2000/svg", "svg").createSVGRect);
       }()),
 
       // SVG in text/html
+
+      /**
+       * SVG in text/html
+       * 
+       * @for feature
+       * @property svginhtml
+       * @type {boolean}
+       * @since 0.1.0
+       */
 
       svginhtml:(function () {
         d.innerHTML = "<svg></svg>";
@@ -443,11 +777,29 @@
 
       // Template (tag)
 
+      /**
+       * <template>
+       * 
+       * @for feature
+       * @property template
+       * @type {boolean}
+       * @since 0.1.0
+       */
+
       template: (function () {
         return "content" in c("template");
       }()),
 
       // Time (tag)
+
+      /**
+       * <time>
+       * 
+       * @for feature
+       * @property time
+       * @type {boolean}
+       * @since 0.1.0
+       */
 
       time: (function () {
         return "datetime" in c("time");
@@ -455,11 +807,29 @@
 
       // Undo (not just Ctrl + Z)
 
+      /**
+       * Undo (not just Ctrl + Z)
+       * 
+       * @for feature
+       * @property undo
+       * @type {boolean}
+       * @since 0.1.0
+       */
+
       undo: (function () {
         return typeof UndoManager !== "undefined";
       }()),
 
       // Video
+
+      /**
+       * Video
+       * 
+       * @for feature
+       * @property video
+       * @type {boolean}
+       * @since 0.1.0
+       */
 
       video: (function () {
         try {
@@ -470,6 +840,15 @@
       }()),
 
       // Video Captions
+
+      /**
+       * Video Captions
+       * 
+       * @for feature
+       * @property videoCaptions
+       * @type {boolean}
+       * @since 0.1.0
+       */
 
       videoCaptions: (function () {
         return "src" in c("track");
@@ -510,13 +889,31 @@
         }())
       },
 
-      // Video posters
+      // Video Poster
+
+      /**
+       * Video Poster
+       * 
+       * @for feature
+       * @property videoPoster
+       * @type {boolean}
+       * @since 0.1.0
+       */
 
       videoPoster: (function () {
         return "poster" in c("video");
       }()),
 
       // Web Audio API (NOT the <audio> tag)
+
+      /**
+       * Web Audio API (NOT the <audio> tag)
+       * 
+       * @for feature
+       * @property webAudio
+       * @type {String|Boolean}
+       * @since 0.1.0
+       */
 
       webAudio: (function () {
         // return !!(win.webkitAudioContext || win.AudioContext);
@@ -531,11 +928,29 @@
 
       // WebSockets
 
+      /**
+       * WebSockets
+       * 
+       * @for feature
+       * @property webSockets
+       * @type {boolean}
+       * @since 0.1.0
+       */
+
       webSockets: (function () {
         return !!win.webSocket;
       }()),
 
       // WebSQL (a deprecated specification; use IndexedDB instead)
+
+      /**
+       * WebSQL (a deprecated specification; use IndexedDB instead)
+       * 
+       * @for feature
+       * @property websql
+       * @type {boolean}
+       * @since 0.1.0
+       */
 
       websql: (function () {
         return !!win.openDatabase;
@@ -543,17 +958,44 @@
 
       // Web Workers
 
+      /**
+       * Web Workers
+       * 
+       * @for feature
+       * @property webWorkers
+       * @type {boolean}
+       * @since 0.1.0
+       */
+
       webWorkers: (function () {
         return !!win.Worker;
       }()),
 
       // Widgets
 
+      /**
+       * Widgets
+       * 
+       * @for feature
+       * @property widgets
+       * @type {boolean}
+       * @since 0.1.0
+       */
+
       widgets: (function () {
         return typeof widget !== "undefined";
       }()),
 
       // Cross-document messaging
+
+      /**
+       * Cross-document messages
+       * 
+       * @for feature
+       * @property xdocmsg
+       * @type {boolean}
+       * @since 0.1.0
+       */
 
       xdocmsg: (function () {
         return !!win.postMessage;
@@ -583,6 +1025,7 @@
       }
     };
   }());  
+  
   // --------------------------------------------------
   // Browser, Engine, Platform Detection
   // --------------------------------------------------
@@ -842,20 +1285,20 @@
 
     function f (n) {
       // Format integers to have at least two digits.
-      return n < 10 ? '0' + n : n;
+      return n < 10 ? "0" + n : n;
     }
 
-    if (typeof Date.prototype.tojson !== 'function') {
+    if (typeof Date.prototype.tojson !== "function") {
 
       Date.prototype.tojson = function () {
 
         return isFinite(this.valueOf()) ?
-            this.getUTCFullYear()     + '-' +
-            f(this.getUTCMonth() + 1) + '-' +
-            f(this.getUTCDate())      + 'T' +
-            f(this.getUTCHours())     + ':' +
-            f(this.getUTCMinutes())   + ':' +
-            f(this.getUTCSeconds())   + 'Z'
+            this.getUTCFullYear()     + "-" +
+            f(this.getUTCMonth() + 1) + "-" +
+            f(this.getUTCDate())      + "T" +
+            f(this.getUTCHours())     + ":" +
+            f(this.getUTCMinutes())   + ":" +
+            f(this.getUTCSeconds())   + "Z"
           : null;
       };
 
@@ -871,13 +1314,13 @@
       gap,
       indent,
       meta = {    // table of character substitutions
-        '\b': '\\b',
-        '\t': '\\t',
-        '\n': '\\n',
-        '\f': '\\f',
-        '\r': '\\r',
-        '"' : '\\"',
-        '\\': '\\\\'
+        "\b": "\\b",
+        "\t": "\\t",
+        "\n": "\\n",
+        "\f": "\\f",
+        "\r": "\\r",
+        "\"" : "\\\"",
+        "\\": "\\\\"
       },
       rep;
 
@@ -890,11 +1333,11 @@
       // sequences.
 
       escapable.lastIndex = 0;
-      return escapable.test(string) ? '"' + string.replace(escapable, function (a) {
+      return escapable.test(string) ? "\"" + string.replace(escapable, function (a) {
         var c = meta[a];
-        return typeof c === 'string' ? c
-          : '\\u' + ('0000' + a.charCodeAt(0).toString(16)).slice(-4);
-      }) + '"' : '"' + string + '"';
+        return typeof c === "string" ? c
+          : "\\u" + ("0000" + a.charCodeAt(0).toString(16)).slice(-4);
+      }) + "\"" : "\"" + string + "\"";
     }
 
 
@@ -912,49 +1355,49 @@
 
       // If the value has a tojson method, call it to obtain a replacement value.
 
-      if (value && typeof value === 'object' &&
-          typeof value.tojson === 'function') {
+      if (value && typeof value === "object" &&
+          typeof value.tojson === "function") {
         value = value.tojson(key);
       }
 
       // If we were called with a replacer function, then call the replacer to
       // obtain a replacement value.
 
-      if (typeof rep === 'function') {
+      if (typeof rep === "function") {
         value = rep.call(holder, key, value);
       }
 
-      // What happens next depends on the value's type.
+      // What happens next depends on the value"s type.
 
       switch (typeof value) {
-      case 'string':
+      case "string":
         return quote(value);
 
-      case 'number':
+      case "number":
 
         // json numbers must be finite. Encode non-finite numbers as null.
 
-        return isFinite(value) ? String(value) : 'null';
+        return isFinite(value) ? String(value) : "null";
 
-      case 'boolean':
-      case 'null':
+      case "boolean":
+      case "null":
 
         // If the value is a boolean or null, convert it to a string. Note:
-        // typeof null does not produce 'null'. The case is included here in
+        // typeof null does not produce "null". The case is included here in
         // the remote chance that this gets fixed someday.
 
         return String(value);
 
-      // If the type is 'object', we might be dealing with an object or an array or
+      // If the type is "object", we might be dealing with an object or an array or
       // null.
 
-      case 'object':
+      case "object":
 
-        // Due to a specification blunder in ECMAScript, typeof null is 'object',
+        // Due to a specification blunder in ECMAScript, typeof null is "object",
         // so watch out for that case.
 
         if (!value) {
-          return 'null';
+          return "null";
         }
 
         // Make an array to hold the partial results of stringifying this object value.
@@ -964,7 +1407,7 @@
 
         // Is the value an array?
 
-        if (Object.prototype.toString.apply(value) === '[object Array]') {
+        if (Object.prototype.toString.apply(value) === "[object Array]") {
 
           // The value is an array. Stringify every element. Use null as a placeholder
           // for non-json values.
@@ -972,15 +1415,15 @@
           length = value.length;
           
           for (i = 0; i < length; i += 1) {
-            partial[i] = str(i, value) || 'null';
+            partial[i] = str(i, value) || "null";
           }
 
           // Join all of the elements together, separated with commas, and wrap them in
           // brackets.
 
-          v = partial.length === 0 ? '[]'
-            : gap ? '[\n' + gap + partial.join(',\n' + gap) + '\n' + mind + ']'
-            : '[' + partial.join(',') + ']';
+          v = partial.length === 0 ? "[]"
+            : gap ? "[\n" + gap + partial.join(",\n" + gap) + "\n" + mind + "]"
+            : "[" + partial.join(",") + "]";
 
           gap = mind;
 
@@ -989,14 +1432,14 @@
 
         // If the replacer is an array, use it to select the members to be stringified.
 
-        if (rep && typeof rep === 'object') {
+        if (rep && typeof rep === "object") {
           length = rep.length;
           for (i = 0; i < length; i += 1) {
-            if (typeof rep[i] === 'string') {
+            if (typeof rep[i] === "string") {
               k = rep[i];
               v = str(k, value);
               if (v) {
-                partial.push(quote(k) + (gap ? ': ' : ':') + v);
+                partial.push(quote(k) + (gap ? ": " : ":") + v);
               }
             }
           }
@@ -1008,7 +1451,7 @@
             if (Object.prototype.hasOwnProperty.call(value, k)) {
               v = str(k, value);
               if (v) {
-                partial.push(quote(k) + (gap ? ': ' : ':') + v);
+                partial.push(quote(k) + (gap ? ": " : ":") + v);
               }
             }
           }
@@ -1017,9 +1460,9 @@
         // Join all of the member texts together, separated with commas,
         // and wrap them in braces.
 
-        v = partial.length === 0 ? '{}'
-          : gap ? '{\n' + gap + partial.join(',\n' + gap) + '\n' + mind + '}'
-          : '{' + partial.join(',') + '}';
+        v = partial.length === 0 ? "{}"
+          : gap ? "{\n" + gap + partial.join(",\n" + gap) + "\n" + mind + "}"
+          : "{" + partial.join(",") + "}";
 
         gap = mind;
 
@@ -1029,7 +1472,7 @@
 
     // If the json object does not yet have a stringify method, give it one.
 
-    if (typeof json.stringify !== 'function') {
+    if (typeof json.stringify !== "function") {
       json.stringify = function (value, replacer, space) {
 
         // The stringify method takes a value and an optional replacer, and an optional
@@ -1039,20 +1482,20 @@
         // produce text that is more easily readable.
 
         var i;
-        gap = '';
-        indent = '';
+        gap = "";
+        indent = "";
 
         // If the space parameter is a number, make an indent string containing that
         // many spaces.
 
-        if (typeof space === 'number') {
+        if (typeof space === "number") {
           for (i = 0; i < space; i += 1) {
-            indent += ' ';
+            indent += " ";
           }
 
         // If the space parameter is a string, it will be used as the indent string.
 
-        } else if (typeof space === 'string') {
+        } else if (typeof space === "string") {
           indent = space;
         }
 
@@ -1060,23 +1503,23 @@
         // Otherwise, throw an error.
 
         rep = replacer;
-        if (replacer && typeof replacer !== 'function' &&
-            (typeof replacer !== 'object' ||
-            typeof replacer.length !== 'number')) {
-          throw new Error('json.stringify');
+        if (replacer && typeof replacer !== "function" &&
+            (typeof replacer !== "object" ||
+            typeof replacer.length !== "number")) {
+          throw new Error("json.stringify");
         }
 
-        // Make a fake root object containing our value under the key of ''.
+        // Make a fake root object containing our value under the key of "".
         // Return the result of stringifying the value.
 
-        return str('', {'': value});
+        return str("", {"": value});
       };
     }
 
 
     // If the json object does not yet have a parse method, give it one.
 
-    if (typeof json.parse !== 'function') {
+    if (typeof json.parse !== "function") {
       json.parse = function (text, reviver) {
 
         // The parse method takes a text and an optional reviver function, and returns
@@ -1090,7 +1533,7 @@
           // that modifications can be made.
 
           var k, v, value = holder[key];
-          if (value && typeof value === 'object') {
+          if (value && typeof value === "object") {
             for (k in value) {
               if (Object.prototype.hasOwnProperty.call(value, k)) {
                 v = walk(value, k);
@@ -1114,45 +1557,45 @@
         cx.lastIndex = 0;
         if (cx.test(text)) {
           text = text.replace(cx, function (a) {
-            return '\\u' +
-              ('0000' + a.charCodeAt(0).toString(16)).slice(-4);
+            return "\\u" +
+              ("0000" + a.charCodeAt(0).toString(16)).slice(-4);
           });
         }
 
         // In the second stage, we run the text against regular expressions that look
-        // for non-json patterns. We are especially concerned with '()' and 'new'
-        // because they can cause invocation, and '=' because it can cause mutation.
+        // for non-json patterns. We are especially concerned with "()" and "new"
+        // because they can cause invocation, and "=" because it can cause mutation.
         // But just to be safe, we want to reject all unexpected forms.
 
         // We split the second stage into 4 regexp operations in order to work around
         // crippling inefficiencies in IE's and Safari's regexp engines. First we
-        // replace the json backslash pairs with '@' (a non-json character). Second, we
-        // replace all simple value tokens with ']' characters. Third, we delete all
+        // replace the json backslash pairs with "@" (a non-json character). Second, we
+        // replace all simple value tokens with "]" characters. Third, we delete all
         // open brackets that follow a colon or comma or that begin the text. Finally,
-        // we look to see that the remaining characters are only whitespace or ']' or
-        // ',' or ':' or '{' or '}'. If that is so, then the text is safe for eval.
+        // we look to see that the remaining characters are only whitespace or "]" or
+        // "," or ":" or "{" or "}". If that is so, then the text is safe for eval.
 
         if (/^[\],:{}\s]*$/
-            .test(text.replace(/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g, '@')
-              .replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']')
-              .replace(/(?:^|:|,)(?:\s*\[)+/g, ''))) {
+            .test(text.replace(/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g, "@")
+              .replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, "]")
+              .replace(/(?:^|:|,)(?:\s*\[)+/g, ""))) {
 
           // In the third stage we use the eval function to compile the text into a
-          // JavaScript structure. The '{' operator is subject to a syntactic ambiguity
+          // JavaScript structure. The "{" operator is subject to a syntactic ambiguity
           // in JavaScript: it can begin a block or an object literal. We wrap the text
           // in parens to eliminate the ambiguity.
 
-          j = eval('(' + text + ')');
+          j = eval("(" + text + ")");
 
           // In the optional fourth stage, we recursively walk the new structure, passing
           // each name/value pair to a reviver function for possible transformation.
 
-          return typeof reviver === 'function' ? walk({'': j}, '') : j;
+          return typeof reviver === "function" ? walk({"": j}, "") : j;
         }
 
         // If the text is not json parseable, then a SyntaxError is thrown.
 
-        throw new SyntaxError('json.parse');
+        throw new SyntaxError("json.parse");
       };
     }
   }());
@@ -3773,7 +4216,7 @@
     } else {
       xhr.open(
         config.method.trim().toUpperCase(),
-        config.url + (config.data ? "+" + config.data : ''),
+        config.url + (config.data ? "+" + config.data : ""),
         config.async,
         config.username,
         config.password
@@ -3817,7 +4260,7 @@
         method: method,
         url: strOpt,
 
-        // 'success' and not 'callback' because that's what everyone wants
+        // `success` and not `callback` because that's what everyone wants
         success: callback
       }, oOpt));
     } else {

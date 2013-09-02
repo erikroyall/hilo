@@ -5,7 +5,10 @@ YUI.add("yuidoc-meta", function(Y) {
         "Dom",
         "NumberObject",
         "Test",
-        "hilo"
+        "audioType",
+        "feature",
+        "hilo",
+        "iframe"
     ],
     "modules": [
         "Hilo"

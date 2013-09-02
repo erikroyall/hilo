@@ -131,7 +131,7 @@
     } else {
       xhr.open(
         config.method.trim().toUpperCase(),
-        config.url + (config.data ? "+" + config.data : ''),
+        config.url + (config.data ? "+" + config.data : ""),
         config.async,
         config.username,
         config.password
@@ -175,7 +175,7 @@
         method: method,
         url: strOpt,
 
-        // 'success' and not 'callback' because that's what everyone wants
+        // `success` and not `callback` because that's what everyone wants
         success: callback
       }, oOpt));
     } else {

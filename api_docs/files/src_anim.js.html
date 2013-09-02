@@ -14,7 +14,7 @@
 <div class="main-header">
   <h1 class="site-logo"><a href="../index.html">hilo: src\anim.js</a></h1>
   
-  <p>API Docs for: 0.1.0-pre-dev-beta-10</p>
+  <p>API Docs for: 0.1.0-pre-dev-beta-10. Authored by <a href="http://twitter.com/erikroyall">Erik Royall</a> and contributors.</p>
 </div>
 <div class="doc">
   <div class="sidebar">
@@ -42,9 +42,15 @@
             
                 <li><a href="../classes/Animation.html">Animation</a></li>
             
+                <li><a href="../classes/audioType.html">audioType</a></li>
+            
                 <li><a href="../classes/Dom.html">Dom</a></li>
             
+                <li><a href="../classes/feature.html">feature</a></li>
+            
                 <li><a href="../classes/hilo.html">hilo</a></li>
+            
+                <li><a href="../classes/iframe.html">iframe</a></li>
             
                 <li><a href="../classes/NumberObject.html">NumberObject</a></li>
             
@@ -68,7 +74,7 @@
         <h2 class="no-toc">Files</h2>
     </div>
     <div class="bd">
-        <ul><li>src\ajax.js/<ul></ul></li><li>src\anim.js/<ul></ul></li><li>src\core.js/<ul></ul></li><li>src\dom.js/<ul></ul></li><li>src\end.js/<ul></ul></li><li>src\evt.js/<ul></ul></li><li>src\fx.js/<ul></ul></li><li>src\more.js/<ul></ul></li><li>src\sizzle.js/<ul></ul></li><li>src\test.js/<ul></ul></li></ul>
+        <ul><li>src\ajax.js/<ul></ul></li><li>src\anim.js/<ul></ul></li><li>src\core.js/<ul></ul></li><li>src\detect.js/<ul></ul></li><li>src\dom.js/<ul></ul></li><li>src\end.js/<ul></ul></li><li>src\evt.js/<ul></ul></li><li>src\fx.js/<ul></ul></li><li>src\more.js/<ul></ul></li><li>src\sizzle.js/<ul></ul></li><li>src\test.js/<ul></ul></li></ul>
     </div>
 </div>
 
@@ -104,12 +110,25 @@
    * @since 0.1.0
    */
 
-  function Animation (css, timing, onanimationstart, onanimationend) {
+  function Animation (el, css, timing, onanimationstart, onanimationend) {
     if (typeof css !== &quot;object&quot;) {
       return;
     }
 
-    
+
+  }
+
+  function animateCss (el, prop, timing, from, to) {
+    if (!(el &amp;&amp; prop &amp;&amp; timing &amp;&amp; from)) {
+      return;
+    }
+
+    // If &#x60;to&#x60; is not provided, treat &#x60;from&#x60; as &#x60;to&#x60;
+    to = to || form;
+
+    if (from === to) {
+      var diff = to - el.style[prop];
+    }
   }
 </pre>
 

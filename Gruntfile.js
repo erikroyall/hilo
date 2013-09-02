@@ -138,6 +138,7 @@ module.exports = function(grunt) {
       compile: {
         name: "<%= pkg.name %>",
         description: "<%= pkg.description %>",
+        author: "<%= pkg.author.name %>",
         version: "<%= pkg.version %>",
         url: "<%= pkg.homepage %>",
         options: {
