@@ -63,7 +63,6 @@
       },
       rep;
 
-
     function quote(string) {
 
       // If the string contains no control characters, no quote characters, and no
