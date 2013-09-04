@@ -11,7 +11,6 @@
    * @for hilo
    * @since 0.1.0
    */
-
   feature = (function () {
     var c = function (tagName) {
         return doc.createElement(tagName);
@@ -40,7 +39,6 @@
        * @type {boolean}
        * @since 0.1.0
        */
-
       addEventListener: (function () {
         return typeof win.addEventListener === "function";
       }()),
@@ -54,8 +52,7 @@
        * @property applicationCache
        * @type {boolean}
        * @since 0.1.0
-       */
-      
+       */      
       applicationCache: (function () {
         return !!win.applicationCache;
       }()),
@@ -69,8 +66,7 @@
        * @property audio
        * @type {boolean}
        * @since 0.1.0
-       */
-      
+       */      
       audio: (function () {
         return !!a.canPlayType;
       }()),
@@ -84,8 +80,7 @@
        * @property audioPreload
        * @type {boolean}
        * @since 0.1.0
-       */
-      
+       */      
       audioPreload: (function () {
         return "preload" in a;
       }()),
@@ -99,8 +94,7 @@
        * @static
        * @class audioType
        * @since 0.1.0
-       */
-      
+       */      
       audioType: {
 
         // MP3 audio format
@@ -137,8 +131,7 @@
        * @property canvas
        * @type {boolean}
        * @since 0.1.0
-       */
-      
+       */      
       canvas: (function () {
         return !!cn.getContext;
       }()),
@@ -152,8 +145,7 @@
        * @property canvasText
        * @type {boolean}
        * @since 0.1.0
-       */
-      
+       */      
       canvasText: (function () {
         return !!cn.getContext && typeof cn.getContext("2d").fillText === "function";
       }()),
@@ -167,8 +159,7 @@
        * @property classList
        * @type {boolean}
        * @since 0.1.0
-       */
-      
+       */      
       classList: (function () {
         return "classList" in s;
       }()),
@@ -182,8 +173,7 @@
        * @property commans
        * @type {boolean}
        * @since 0.1.0
-       */
-      
+       */      
       command: (function () {
         return "type" in c("command");
       }()),
@@ -197,8 +187,7 @@
        * @property consval
        * @type {boolean}
        * @since 0.1.0
-       */
-      
+       */      
       consval: (function () {
         return "noValidate" in c("form");
       }()),
@@ -212,8 +201,7 @@
        * @property contentEditable
        * @type {boolean}
        * @since 0.1.0
-       */
-      
+       */      
       contentEditable: (function () {
         return "isContentEditable" in s;
       }()),
@@ -227,8 +215,7 @@
        * @property datalist
        * @type {boolean}
        * @since 0.1.0
-       */
-      
+       */      
       datalist: (function () {
         return "options" in c("datalist");
       }()),
@@ -242,8 +229,7 @@
        * @property details
        * @type {boolean}
        * @since 0.1.0
-       */
-      
+       */      
       details: (function () {
         return "open" in c("details");
       }()),
@@ -257,8 +243,7 @@
        * @property dragdrop
        * @type {boolean}
        * @since 0.1.0
-       */
-      
+       */      
       dragdrop: (function () {
         return "draggable" in s;
       }()),
@@ -272,8 +257,7 @@
        * @property es6
        * @type {boolean}
        * @since 0.1.0
-       */
-      
+       */      
       es6: (function () {
         return typeof String.prototype.contains === "function";
       }()),
@@ -287,8 +271,7 @@
        * @property fileapi
        * @type {boolean}
        * @since 0.1.0
-       */
-      
+       */      
       fileapi: (function () {
         return typeof FileReader !== "undefined";
       }()),
@@ -302,8 +285,7 @@
        * @property gen5
        * @type {boolean}
        * @since 0.1.0
-       */
-      
+       */      
       gen5: (function () {
         return parseInt(win.navigator.appVersion, 10) === 5;
       }()),
@@ -317,8 +299,7 @@
        * @property geolocation
        * @type {boolean}
        * @since 0.1.0
-       */
-      
+       */      
       geolocation: (function () {
         return "geolocation" in win.navigator;
       }()),
@@ -333,7 +314,6 @@
        * @type {boolean}
        * @since 0.1.0
        */
-
       getSelection: (function () {
         return typeof win.getSelection === "function";
       }()),
@@ -347,8 +327,7 @@
        * @property history
        * @type {boolean}
        * @since 0.1.0
-       */
-      
+       */      
       history: (function () {
         return !!(win.history && history.pushState);
       }()),
@@ -362,8 +341,7 @@
        * @static
        * @class iframe
        * @since 0.1.0
-       */
-      
+       */      
       iframe: {
         sandbox: (function () {
           return "sandbox" in fr;
@@ -382,8 +360,7 @@
        * @property indexeddb
        * @type {boolean}
        * @since 0.1.0
-       */
-      
+       */      
       indexeddb: (function () {
         return !!(win.indexedDB && win.IDBKeyRange && win.IDBTransaction);
       }()),
@@ -479,8 +456,7 @@
        * @property localStorage
        * @type {boolean}
        * @since 0.1.0
-       */
-      
+       */      
       localStorage: (function () {
         try {
           return "localStorage" in win && win["localStorage"] !== null && !!win.localStorage.setItem;
@@ -498,8 +474,7 @@
        * @property meter
        * @type {boolean}
        * @since 0.1.0
-       */
-      
+       */      
       meter: (function () {
         return "value" in c("meter");
       }()),
@@ -513,8 +488,7 @@
        * @property microdata
        * @type {boolean}
        * @since 0.1.0
-       */
-      
+       */      
       microdata: (function () {
         return "getItems" in doc;
       }()),
@@ -528,8 +502,7 @@
        * @property offline
        * @type {boolean}
        * @since 0.1.0
-       */
-      
+       */      
       offline: (function () {
         return !!win.applicationCache;
       }()),
@@ -543,8 +516,7 @@
        * @property output
        * @type {boolean}
        * @since 0.1.0
-       */
-      
+       */      
       output: (function () {
         return "value" in c("output");
       }()),
@@ -559,7 +531,6 @@
        * @type {boolean}
        * @since 0.1.0
        */
-
       progress: (function () {
         return "value" in c("progress");
       }()),
@@ -574,7 +545,6 @@
        * @type {boolean}
        * @since 0.1.0
        */
-
       qsa: (function () {
         return "querySelector" in doc && "querySelectorAll" in doc;
       }()),
@@ -589,7 +559,6 @@
        * @type {boolean}
        * @since 0.1.0
        */
-
       qsa3: (function () {
         try {
           return doc.querySelectorAll(":root").length > 0;
@@ -608,7 +577,6 @@
        * @type {String|Boolean}
        * @since 0.1.0
        */
-
       requestAnimationFrame: (function () {
         if (typeof requestAnimationFrame === "function") {
           return true;
@@ -633,7 +601,6 @@
        * @type {boolean}
        * @since 0.1.0
        */
-
       serverEvt: (function () {
         return typeof EventSource !== "undefined";
       }()),
@@ -648,7 +615,6 @@
        * @type {boolean}
        * @since 0.1.0
        */
-
       sessionStorage: (function () {
         try {
           return "sessionStorage" in win && win["sessionStorage"] !== null;
@@ -667,7 +633,6 @@
        * @type {boolean}
        * @since 0.1.0
        */
-
       showModalDialog: (function () {
         return typeof win.showModalDialog === "function";
       }()),
@@ -682,7 +647,6 @@
        * @type {boolean}
        * @since 0.1.0
        */
-
       svg: (function () {
         return !!(doc.createElementNS && doc.createElementNS("http://www.w3.org/2000/svg", "svg").createSVGRect);
       }()),
@@ -697,7 +661,6 @@
        * @type {boolean}
        * @since 0.1.0
        */
-
       svginhtml:(function () {
         d.innerHTML = "<svg></svg>";
         return !!(win.SVGSVGElement && d.firstChild instanceof win.SVGSVGElement);
@@ -713,7 +676,6 @@
        * @type {boolean}
        * @since 0.1.0
        */
-
       template: (function () {
         return "content" in c("template");
       }()),
@@ -728,7 +690,6 @@
        * @type {boolean}
        * @since 0.1.0
        */
-
       time: (function () {
         return "datetime" in c("time");
       }()),
@@ -743,7 +704,6 @@
        * @type {boolean}
        * @since 0.1.0
        */
-
       undo: (function () {
         return typeof UndoManager !== "undefined";
       }()),
@@ -758,7 +718,6 @@
        * @type {boolean}
        * @since 0.1.0
        */
-
       video: (function () {
         try {
           return !!v.canPlayType;
@@ -777,7 +736,6 @@
        * @type {boolean}
        * @since 0.1.0
        */
-
       videoCaptions: (function () {
         return "src" in c("track");
       }()),
@@ -827,7 +785,6 @@
        * @type {boolean}
        * @since 0.1.0
        */
-
       videoPoster: (function () {
         return "poster" in c("video");
       }()),
@@ -842,7 +799,6 @@
        * @type {String|Boolean}
        * @since 0.1.0
        */
-
       webAudio: (function () {
         // return !!(win.webkitAudioContext || win.AudioContext);
         if (win.AudioContext) {
@@ -864,7 +820,6 @@
        * @type {boolean}
        * @since 0.1.0
        */
-
       webSockets: (function () {
         return !!win.webSocket;
       }()),
@@ -879,7 +834,6 @@
        * @type {boolean}
        * @since 0.1.0
        */
-
       websql: (function () {
         return !!win.openDatabase;
       }()),
@@ -894,7 +848,6 @@
        * @type {boolean}
        * @since 0.1.0
        */
-
       webWorkers: (function () {
         return !!win.Worker;
       }()),
@@ -909,7 +862,6 @@
        * @type {boolean}
        * @since 0.1.0
        */
-
       widgets: (function () {
         return typeof widget !== "undefined";
       }()),
@@ -924,7 +876,6 @@
        * @type {boolean}
        * @since 0.1.0
        */
-
       xdocmsg: (function () {
         return !!win.postMessage;
       }()),
