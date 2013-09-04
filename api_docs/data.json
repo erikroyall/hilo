@@ -234,7 +234,7 @@
             "module": "Hilo",
             "namespace": "",
             "file": "src\\detect.js",
-            "line": 95,
+            "line": 90,
             "description": "Audio Types",
             "static": 1,
             "since": "0.1.0"
@@ -250,7 +250,7 @@
             "module": "Hilo",
             "namespace": "",
             "file": "src\\detect.js",
-            "line": 358,
+            "line": 337,
             "description": "addEventListener",
             "static": 1,
             "since": "0.1.0"
@@ -431,7 +431,7 @@
         },
         {
             "file": "src\\detect.js",
-            "line": 35,
+            "line": 34,
             "description": "addEventListener",
             "itemtype": "property",
             "name": "addEventListener",
@@ -442,7 +442,7 @@
         },
         {
             "file": "src\\detect.js",
-            "line": 50,
+            "line": 48,
             "description": "Application Cache",
             "itemtype": "property",
             "name": "applicationCache",
@@ -453,7 +453,7 @@
         },
         {
             "file": "src\\detect.js",
-            "line": 65,
+            "line": 62,
             "description": "Audio (tag)",
             "itemtype": "property",
             "name": "audio",
@@ -464,7 +464,7 @@
         },
         {
             "file": "src\\detect.js",
-            "line": 80,
+            "line": 76,
             "description": "Preload audio (hmm.. background music)",
             "itemtype": "property",
             "name": "audioPreload",
@@ -475,7 +475,7 @@
         },
         {
             "file": "src\\detect.js",
-            "line": 133,
+            "line": 127,
             "description": "Canvas API",
             "itemtype": "property",
             "name": "canvas",
@@ -486,7 +486,7 @@
         },
         {
             "file": "src\\detect.js",
-            "line": 148,
+            "line": 141,
             "description": "Canvas Text",
             "itemtype": "property",
             "name": "canvasText",
@@ -497,7 +497,7 @@
         },
         {
             "file": "src\\detect.js",
-            "line": 163,
+            "line": 155,
             "description": "HTMLElement.classList",
             "itemtype": "property",
             "name": "classList",
@@ -508,7 +508,7 @@
         },
         {
             "file": "src\\detect.js",
-            "line": 178,
+            "line": 169,
             "description": "<command>",
             "itemtype": "property",
             "name": "commans",
@@ -519,7 +519,7 @@
         },
         {
             "file": "src\\detect.js",
-            "line": 193,
+            "line": 183,
             "description": "Form Constraint Validation",
             "itemtype": "property",
             "name": "consval",
@@ -530,7 +530,7 @@
         },
         {
             "file": "src\\detect.js",
-            "line": 208,
+            "line": 197,
             "description": "contentEditable attribute",
             "itemtype": "property",
             "name": "contentEditable",
@@ -541,7 +541,7 @@
         },
         {
             "file": "src\\detect.js",
-            "line": 223,
+            "line": 211,
             "description": "HTMLElement.datalist",
             "itemtype": "property",
             "name": "datalist",
@@ -552,7 +552,7 @@
         },
         {
             "file": "src\\detect.js",
-            "line": 238,
+            "line": 225,
             "description": "<details>",
             "itemtype": "property",
             "name": "details",
@@ -563,7 +563,7 @@
         },
         {
             "file": "src\\detect.js",
-            "line": 253,
+            "line": 239,
             "description": "Drag & Drop",
             "itemtype": "property",
             "name": "dragdrop",
@@ -574,7 +574,7 @@
         },
         {
             "file": "src\\detect.js",
-            "line": 268,
+            "line": 253,
             "description": "ECMAScript 6",
             "itemtype": "property",
             "name": "es6",
@@ -585,7 +585,7 @@
         },
         {
             "file": "src\\detect.js",
-            "line": 283,
+            "line": 267,
             "description": "File System API",
             "itemtype": "property",
             "name": "fileapi",
@@ -596,7 +596,7 @@
         },
         {
             "file": "src\\detect.js",
-            "line": 298,
+            "line": 281,
             "description": "5th Generation Rendering Engine",
             "itemtype": "property",
             "name": "gen5",
@@ -607,7 +607,7 @@
         },
         {
             "file": "src\\detect.js",
-            "line": 313,
+            "line": 295,
             "description": "Geolocation",
             "itemtype": "property",
             "name": "geolocation",
@@ -618,7 +618,7 @@
         },
         {
             "file": "src\\detect.js",
-            "line": 328,
+            "line": 309,
             "description": "window.getSelection() method",
             "itemtype": "property",
             "name": "getSelection",
@@ -629,7 +629,7 @@
         },
         {
             "file": "src\\detect.js",
-            "line": 343,
+            "line": 323,
             "description": "History API",
             "itemtype": "property",
             "name": "history",
@@ -640,7 +640,7 @@
         },
         {
             "file": "src\\detect.js",
-            "line": 378,
+            "line": 356,
             "description": "IndexedDB (use this instead of WebSQL)",
             "itemtype": "property",
             "name": "indexeddb",
@@ -651,7 +651,7 @@
         },
         {
             "file": "src\\detect.js",
-            "line": 475,
+            "line": 452,
             "description": "Local Storage",
             "itemtype": "property",
             "name": "localStorage",
@@ -662,7 +662,7 @@
         },
         {
             "file": "src\\detect.js",
-            "line": 494,
+            "line": 470,
             "description": "<meter>",
             "itemtype": "property",
             "name": "meter",
@@ -673,7 +673,7 @@
         },
         {
             "file": "src\\detect.js",
-            "line": 509,
+            "line": 484,
             "description": "Microdata",
             "itemtype": "property",
             "name": "microdata",
@@ -684,7 +684,7 @@
         },
         {
             "file": "src\\detect.js",
-            "line": 524,
+            "line": 498,
             "description": "Offline (App Cache)",
             "itemtype": "property",
             "name": "offline",
@@ -695,7 +695,7 @@
         },
         {
             "file": "src\\detect.js",
-            "line": 539,
+            "line": 512,
             "description": "<output>",
             "itemtype": "property",
             "name": "output",
@@ -706,7 +706,7 @@
         },
         {
             "file": "src\\detect.js",
-            "line": 554,
+            "line": 526,
             "description": "<progress>",
             "itemtype": "property",
             "name": "progress",
@@ -717,7 +717,7 @@
         },
         {
             "file": "src\\detect.js",
-            "line": 569,
+            "line": 540,
             "description": "querySelector & querySelectorAll",
             "itemtype": "property",
             "name": "qsa",
@@ -728,7 +728,7 @@
         },
         {
             "file": "src\\detect.js",
-            "line": 584,
+            "line": 554,
             "description": "CSS3 Selectors in querySelectorAll",
             "itemtype": "property",
             "name": "qsa3",
@@ -739,7 +739,7 @@
         },
         {
             "file": "src\\detect.js",
-            "line": 603,
+            "line": 572,
             "description": "requestAnimationFrame",
             "itemtype": "property",
             "name": "requestAnimationFrame",
@@ -750,7 +750,7 @@
         },
         {
             "file": "src\\detect.js",
-            "line": 628,
+            "line": 596,
             "description": "Server-sent Events",
             "itemtype": "property",
             "name": "serverEvt",
@@ -761,7 +761,7 @@
         },
         {
             "file": "src\\detect.js",
-            "line": 643,
+            "line": 610,
             "description": "Session Storage",
             "itemtype": "property",
             "name": "sessionStorage",
@@ -772,7 +772,7 @@
         },
         {
             "file": "src\\detect.js",
-            "line": 662,
+            "line": 628,
             "description": "Modal Dialog (showModalDialog)",
             "itemtype": "property",
             "name": "showModalDialog",
@@ -783,7 +783,7 @@
         },
         {
             "file": "src\\detect.js",
-            "line": 677,
+            "line": 642,
             "description": "SVG (Scalable Vector Graphics)",
             "itemtype": "property",
             "name": "svg",
@@ -794,7 +794,7 @@
         },
         {
             "file": "src\\detect.js",
-            "line": 692,
+            "line": 656,
             "description": "SVG in text/html",
             "itemtype": "property",
             "name": "svginhtml",
@@ -805,7 +805,7 @@
         },
         {
             "file": "src\\detect.js",
-            "line": 708,
+            "line": 671,
             "description": "<template>",
             "itemtype": "property",
             "name": "template",
@@ -816,7 +816,7 @@
         },
         {
             "file": "src\\detect.js",
-            "line": 723,
+            "line": 685,
             "description": "<time>",
             "itemtype": "property",
             "name": "time",
@@ -827,7 +827,7 @@
         },
         {
             "file": "src\\detect.js",
-            "line": 738,
+            "line": 699,
             "description": "Undo (not just Ctrl + Z)",
             "itemtype": "property",
             "name": "undo",
@@ -838,7 +838,7 @@
         },
         {
             "file": "src\\detect.js",
-            "line": 753,
+            "line": 713,
             "description": "Video",
             "itemtype": "property",
             "name": "video",
@@ -849,7 +849,7 @@
         },
         {
             "file": "src\\detect.js",
-            "line": 772,
+            "line": 731,
             "description": "Video Captions",
             "itemtype": "property",
             "name": "videoCaptions",
@@ -860,7 +860,7 @@
         },
         {
             "file": "src\\detect.js",
-            "line": 822,
+            "line": 780,
             "description": "Video Poster",
             "itemtype": "property",
             "name": "videoPoster",
@@ -871,7 +871,7 @@
         },
         {
             "file": "src\\detect.js",
-            "line": 837,
+            "line": 794,
             "description": "Web Audio API (NOT the <audio> tag)",
             "itemtype": "property",
             "name": "webAudio",
@@ -882,7 +882,7 @@
         },
         {
             "file": "src\\detect.js",
-            "line": 859,
+            "line": 815,
             "description": "WebSockets",
             "itemtype": "property",
             "name": "webSockets",
@@ -893,7 +893,7 @@
         },
         {
             "file": "src\\detect.js",
-            "line": 874,
+            "line": 829,
             "description": "WebSQL (a deprecated specification; use IndexedDB instead)",
             "itemtype": "property",
             "name": "websql",
@@ -904,7 +904,7 @@
         },
         {
             "file": "src\\detect.js",
-            "line": 889,
+            "line": 843,
             "description": "Web Workers",
             "itemtype": "property",
             "name": "webWorkers",
@@ -915,7 +915,7 @@
         },
         {
             "file": "src\\detect.js",
-            "line": 904,
+            "line": 857,
             "description": "Widgets",
             "itemtype": "property",
             "name": "widgets",
@@ -926,7 +926,7 @@
         },
         {
             "file": "src\\detect.js",
-            "line": 919,
+            "line": 871,
             "description": "Cross-document messages",
             "itemtype": "property",
             "name": "xdocmsg",

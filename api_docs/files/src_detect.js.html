@@ -98,7 +98,6 @@
    * @for hilo
    * @since 0.1.0
    */
-
   feature = (function () {
     var c = function (tagName) {
         return doc.createElement(tagName);
@@ -127,7 +126,6 @@
        * @type {boolean}
        * @since 0.1.0
        */
-
       addEventListener: (function () {
         return typeof win.addEventListener === &quot;function&quot;;
       }()),
@@ -141,8 +139,7 @@
        * @property applicationCache
        * @type {boolean}
        * @since 0.1.0
-       */
-      
+       */      
       applicationCache: (function () {
         return !!win.applicationCache;
       }()),
@@ -156,8 +153,7 @@
        * @property audio
        * @type {boolean}
        * @since 0.1.0
-       */
-      
+       */      
       audio: (function () {
         return !!a.canPlayType;
       }()),
@@ -171,8 +167,7 @@
        * @property audioPreload
        * @type {boolean}
        * @since 0.1.0
-       */
-      
+       */      
       audioPreload: (function () {
         return &quot;preload&quot; in a;
       }()),
@@ -186,8 +181,7 @@
        * @static
        * @class audioType
        * @since 0.1.0
-       */
-      
+       */      
       audioType: {
 
         // MP3 audio format
@@ -224,8 +218,7 @@
        * @property canvas
        * @type {boolean}
        * @since 0.1.0
-       */
-      
+       */      
       canvas: (function () {
         return !!cn.getContext;
       }()),
@@ -239,8 +232,7 @@
        * @property canvasText
        * @type {boolean}
        * @since 0.1.0
-       */
-      
+       */      
       canvasText: (function () {
         return !!cn.getContext &amp;&amp; typeof cn.getContext(&quot;2d&quot;).fillText === &quot;function&quot;;
       }()),
@@ -254,8 +246,7 @@
        * @property classList
        * @type {boolean}
        * @since 0.1.0
-       */
-      
+       */      
       classList: (function () {
         return &quot;classList&quot; in s;
       }()),
@@ -269,8 +260,7 @@
        * @property commans
        * @type {boolean}
        * @since 0.1.0
-       */
-      
+       */      
       command: (function () {
         return &quot;type&quot; in c(&quot;command&quot;);
       }()),
@@ -284,8 +274,7 @@
        * @property consval
        * @type {boolean}
        * @since 0.1.0
-       */
-      
+       */      
       consval: (function () {
         return &quot;noValidate&quot; in c(&quot;form&quot;);
       }()),
@@ -299,8 +288,7 @@
        * @property contentEditable
        * @type {boolean}
        * @since 0.1.0
-       */
-      
+       */      
       contentEditable: (function () {
         return &quot;isContentEditable&quot; in s;
       }()),
@@ -314,8 +302,7 @@
        * @property datalist
        * @type {boolean}
        * @since 0.1.0
-       */
-      
+       */      
       datalist: (function () {
         return &quot;options&quot; in c(&quot;datalist&quot;);
       }()),
@@ -329,8 +316,7 @@
        * @property details
        * @type {boolean}
        * @since 0.1.0
-       */
-      
+       */      
       details: (function () {
         return &quot;open&quot; in c(&quot;details&quot;);
       }()),
@@ -344,8 +330,7 @@
        * @property dragdrop
        * @type {boolean}
        * @since 0.1.0
-       */
-      
+       */      
       dragdrop: (function () {
         return &quot;draggable&quot; in s;
       }()),
@@ -359,8 +344,7 @@
        * @property es6
        * @type {boolean}
        * @since 0.1.0
-       */
-      
+       */      
       es6: (function () {
         return typeof String.prototype.contains === &quot;function&quot;;
       }()),
@@ -374,8 +358,7 @@
        * @property fileapi
        * @type {boolean}
        * @since 0.1.0
-       */
-      
+       */      
       fileapi: (function () {
         return typeof FileReader !== &quot;undefined&quot;;
       }()),
@@ -389,8 +372,7 @@
        * @property gen5
        * @type {boolean}
        * @since 0.1.0
-       */
-      
+       */      
       gen5: (function () {
         return parseInt(win.navigator.appVersion, 10) === 5;
       }()),
@@ -404,8 +386,7 @@
        * @property geolocation
        * @type {boolean}
        * @since 0.1.0
-       */
-      
+       */      
       geolocation: (function () {
         return &quot;geolocation&quot; in win.navigator;
       }()),
@@ -420,7 +401,6 @@
        * @type {boolean}
        * @since 0.1.0
        */
-
       getSelection: (function () {
         return typeof win.getSelection === &quot;function&quot;;
       }()),
@@ -434,8 +414,7 @@
        * @property history
        * @type {boolean}
        * @since 0.1.0
-       */
-      
+       */      
       history: (function () {
         return !!(win.history &amp;&amp; history.pushState);
       }()),
@@ -449,8 +428,7 @@
        * @static
        * @class iframe
        * @since 0.1.0
-       */
-      
+       */      
       iframe: {
         sandbox: (function () {
           return &quot;sandbox&quot; in fr;
@@ -469,8 +447,7 @@
        * @property indexeddb
        * @type {boolean}
        * @since 0.1.0
-       */
-      
+       */      
       indexeddb: (function () {
         return !!(win.indexedDB &amp;&amp; win.IDBKeyRange &amp;&amp; win.IDBTransaction);
       }()),
@@ -566,8 +543,7 @@
        * @property localStorage
        * @type {boolean}
        * @since 0.1.0
-       */
-      
+       */      
       localStorage: (function () {
         try {
           return &quot;localStorage&quot; in win &amp;&amp; win[&quot;localStorage&quot;] !== null &amp;&amp; !!win.localStorage.setItem;
@@ -585,8 +561,7 @@
        * @property meter
        * @type {boolean}
        * @since 0.1.0
-       */
-      
+       */      
       meter: (function () {
         return &quot;value&quot; in c(&quot;meter&quot;);
       }()),
@@ -600,8 +575,7 @@
        * @property microdata
        * @type {boolean}
        * @since 0.1.0
-       */
-      
+       */      
       microdata: (function () {
         return &quot;getItems&quot; in doc;
       }()),
@@ -615,8 +589,7 @@
        * @property offline
        * @type {boolean}
        * @since 0.1.0
-       */
-      
+       */      
       offline: (function () {
         return !!win.applicationCache;
       }()),
@@ -630,8 +603,7 @@
        * @property output
        * @type {boolean}
        * @since 0.1.0
-       */
-      
+       */      
       output: (function () {
         return &quot;value&quot; in c(&quot;output&quot;);
       }()),
@@ -646,7 +618,6 @@
        * @type {boolean}
        * @since 0.1.0
        */
-
       progress: (function () {
         return &quot;value&quot; in c(&quot;progress&quot;);
       }()),
@@ -661,7 +632,6 @@
        * @type {boolean}
        * @since 0.1.0
        */
-
       qsa: (function () {
         return &quot;querySelector&quot; in doc &amp;&amp; &quot;querySelectorAll&quot; in doc;
       }()),
@@ -676,7 +646,6 @@
        * @type {boolean}
        * @since 0.1.0
        */
-
       qsa3: (function () {
         try {
           return doc.querySelectorAll(&quot;:root&quot;).length &gt; 0;
@@ -695,7 +664,6 @@
        * @type {String|Boolean}
        * @since 0.1.0
        */
-
       requestAnimationFrame: (function () {
         if (typeof requestAnimationFrame === &quot;function&quot;) {
           return true;
@@ -720,7 +688,6 @@
        * @type {boolean}
        * @since 0.1.0
        */
-
       serverEvt: (function () {
         return typeof EventSource !== &quot;undefined&quot;;
       }()),
@@ -735,7 +702,6 @@
        * @type {boolean}
        * @since 0.1.0
        */
-
       sessionStorage: (function () {
         try {
           return &quot;sessionStorage&quot; in win &amp;&amp; win[&quot;sessionStorage&quot;] !== null;
@@ -754,7 +720,6 @@
        * @type {boolean}
        * @since 0.1.0
        */
-
       showModalDialog: (function () {
         return typeof win.showModalDialog === &quot;function&quot;;
       }()),
@@ -769,7 +734,6 @@
        * @type {boolean}
        * @since 0.1.0
        */
-
       svg: (function () {
         return !!(doc.createElementNS &amp;&amp; doc.createElementNS(&quot;http://www.w3.org/2000/svg&quot;, &quot;svg&quot;).createSVGRect);
       }()),
@@ -784,7 +748,6 @@
        * @type {boolean}
        * @since 0.1.0
        */
-
       svginhtml:(function () {
         d.innerHTML = &quot;&lt;svg&gt;&lt;/svg&gt;&quot;;
         return !!(win.SVGSVGElement &amp;&amp; d.firstChild instanceof win.SVGSVGElement);
@@ -800,7 +763,6 @@
        * @type {boolean}
        * @since 0.1.0
        */
-
       template: (function () {
         return &quot;content&quot; in c(&quot;template&quot;);
       }()),
@@ -815,7 +777,6 @@
        * @type {boolean}
        * @since 0.1.0
        */
-
       time: (function () {
         return &quot;datetime&quot; in c(&quot;time&quot;);
       }()),
@@ -830,7 +791,6 @@
        * @type {boolean}
        * @since 0.1.0
        */
-
       undo: (function () {
         return typeof UndoManager !== &quot;undefined&quot;;
       }()),
@@ -845,7 +805,6 @@
        * @type {boolean}
        * @since 0.1.0
        */
-
       video: (function () {
         try {
           return !!v.canPlayType;
@@ -864,7 +823,6 @@
        * @type {boolean}
        * @since 0.1.0
        */
-
       videoCaptions: (function () {
         return &quot;src&quot; in c(&quot;track&quot;);
       }()),
@@ -914,7 +872,6 @@
        * @type {boolean}
        * @since 0.1.0
        */
-
       videoPoster: (function () {
         return &quot;poster&quot; in c(&quot;video&quot;);
       }()),
@@ -929,7 +886,6 @@
        * @type {String|Boolean}
        * @since 0.1.0
        */
-
       webAudio: (function () {
         // return !!(win.webkitAudioContext || win.AudioContext);
         if (win.AudioContext) {
@@ -951,7 +907,6 @@
        * @type {boolean}
        * @since 0.1.0
        */
-
       webSockets: (function () {
         return !!win.webSocket;
       }()),
@@ -966,7 +921,6 @@
        * @type {boolean}
        * @since 0.1.0
        */
-
       websql: (function () {
         return !!win.openDatabase;
       }()),
@@ -981,7 +935,6 @@
        * @type {boolean}
        * @since 0.1.0
        */
-
       webWorkers: (function () {
         return !!win.Worker;
       }()),
@@ -996,7 +949,6 @@
        * @type {boolean}
        * @since 0.1.0
        */
-
       widgets: (function () {
         return typeof widget !== &quot;undefined&quot;;
       }()),
@@ -1011,7 +963,6 @@
        * @type {boolean}
        * @since 0.1.0
        */
-
       xdocmsg: (function () {
         return !!win.postMessage;
       }()),
