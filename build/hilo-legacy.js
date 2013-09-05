@@ -1,8 +1,8 @@
 // ========================= 
 // Hilo - 0.1.0-pre-dev-beta-10
 // ========================= 
-// 2013-09-04
-// Project started before 2 months and 4 days
+// 2013-09-05
+// Project started before 2 months and 5 days
 // http://erikroyall.github.com/hilo/
 // Copyright (c) 2013 Erik Royall
 // Licensed under MIT (see LICENSE-MIT) 
@@ -3884,16 +3884,6 @@
   hilo.platform = detected.system;
 
   // ES Utils
-  hilo.each = each;
-  hilo.extend = extend;
-  hilo.every = every;
-  hilo.trim = trim;
-  hilo.contains = contains;
-  hilo.indexOf = indexOf;
-  hilo.isPrimitive = isPrimitive;
-  hilo.toObject = toObject;
-  hilo.toInteger = toInteger;
-
   extend(hilo, {
     each: each,
     extend: extend,
