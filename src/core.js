@@ -64,16 +64,6 @@
   hilo.platform = detected.system;
 
   // ES Utils
-  hilo.each = each;
-  hilo.extend = extend;
-  hilo.every = every;
-  hilo.trim = trim;
-  hilo.contains = contains;
-  hilo.indexOf = indexOf;
-  hilo.isPrimitive = isPrimitive;
-  hilo.toObject = toObject;
-  hilo.toInteger = toInteger;
-
   extend(hilo, {
     each: each,
     extend: extend,
