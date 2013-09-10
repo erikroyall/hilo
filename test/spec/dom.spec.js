@@ -93,6 +93,26 @@ describe("DOM Methods", function () {
       expect(el.innerHTML).toEqual("Hello World");
     });
   });
+  describe('.prepend()', function() {
+    it('should prepend content', function () {
+      var el = document.createElement('div');
+
+      el.innerHTML = "World";
+
+      Hilo(el).prepend("Hello ");
+
+      expect(el.innerHTML).toEqual("Hello World");
+    });
+    it('should handle empty parameter', function () {
+      var el = document.createElement('div');
+
+      el.innerHTML = "Hello World";
+
+      Hilo(el).prepend("");
+
+      expect(el.innerHTML).toEqual("Hello World");
+    });
+  });
   describe('.attr()', function() {
     it('should set an attribute', function() {
       var el = document.createElement('div');
