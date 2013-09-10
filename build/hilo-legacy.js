@@ -6026,11 +6026,12 @@
   });
 
   hilo.classify = function () {
-    var html = win.Hilo("html")
+    var body = win.Hilo("body")
       , classes = ["js"]
       , _i;
 
-    html.removeClass("no-js");
+    // Remove the 
+    body.removeClass("no-js");
 
     if (hilo.browser.chrome) {
       classes.push("chrome");
@@ -6177,7 +6178,7 @@
       }
     }
 
-    html.addClass(classes);
+    body.addClass(classes);
 
     return classes;
   };
