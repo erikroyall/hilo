@@ -83,6 +83,15 @@ describe("DOM Methods", function () {
 
       expect(el.innerHTML).toEqual("Hello World");
     });
+    it('should handle empty parameter', function () {
+      var el = document.createElement('div');
+
+      el.innerHTML = "Hello World";
+
+      Hilo(el).append("");
+
+      expect(el.innerHTML).toEqual("Hello World");
+    });
   });
   describe('.attr()', function() {
     it('should set an attribute', function() {
@@ -98,6 +107,13 @@ describe("DOM Methods", function () {
       el.setAttribute("shown", "yes");
 
       expect(Hilo(el).attr("shown")).toEqual("yes");
+    });
+    it('should return null in case of empty parameter', function() {
+      var el = document.createElement('div');
+
+      el.setAttribute("shown", "yes");
+
+      expect(Hilo(el).attr("")).toEqual(null);
     });
   });
   describe('.addClass()', function() {
@@ -212,6 +228,31 @@ describe("DOM Methods", function () {
       Hilo(el).empty();
 
       expect(el.innerHTML).toEqual("");
+    });
+  });
+  describe('.parent()', function () {
+    it('should get the parent element', function () {
+      var parent = document.createElement("div")
+        , child = document.createElement("span");
+
+      child.innerHTML = "Hello World!";
+
+      parent.appendChild(child);
+
+      expect(Hilo(child).parent()[0]).toEqual(parent);
+    });
+  });
+  describe('.parents()', function () {
+    it('should get the parent elements of all elements', function () {
+      var parent1 = document.createElement("div")
+        , child1 = document.createElement("span")
+        , parent2 = document.createElement("div")
+        , child2 = document.createElement("span");
+
+      parent1.appendChild(child1);
+      parent2.appendChild(child2);
+
+      expect(Hilo([child1, child2]).parents().get()).toEqual([parent1, parent2]);
     });
   });
 });
