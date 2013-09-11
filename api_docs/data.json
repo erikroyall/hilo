@@ -161,7 +161,7 @@
             "extension_for": [],
             "module": "Hilo",
             "file": "src\\core.js",
-            "line": 14,
+            "line": 17,
             "description": "The main Hilo Object / function",
             "static": 1
         },
