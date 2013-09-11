@@ -3,11 +3,14 @@
   // Core Library
   // --------------------------------------------------
 
+  // If there is a select function (sizzle), use it
+  // or use the native querySelectorAll()
   select = select || function (selector, root) {
 
     // Set root to given root or document
     root = root || doc;
 
+    // Use the native querySelectorAll
     return root.querySelectorAll(selector);
   };
 
