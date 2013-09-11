@@ -1,8 +1,8 @@
 // ========================= 
 // Hilo - 0.1.0-pre-dev-beta-10
 // ========================= 
-// 2013-09-10
-// Project started before 2 months and 10 days
+// 2013-09-11
+// Project started before 2 months and 11 days
 // http://erikroyall.github.com/hilo/
 // Copyright (c) 2013 Erik Royall
 // Licensed under MIT (see LICENSE-MIT) 
@@ -1793,11 +1793,14 @@
   // Core Library
   // --------------------------------------------------
 
+  // If there is a select function (sizzle), use it
+  // or use the native querySelectorAll()
   select = select || function (selector, root) {
 
     // Set root to given root or document
     root = root || doc;
 
+    // Use the native querySelectorAll
     return root.querySelectorAll(selector);
   };
 
@@ -4000,7 +4003,7 @@
       , classes = ["js"]
       , _i;
 
-    // Remove the 
+    // Remove the default no-js class
     body.removeClass("no-js");
 
     if (hilo.browser.chrome) {
