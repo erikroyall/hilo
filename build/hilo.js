@@ -3877,7 +3877,7 @@
     },
 
     /**
-     * Appears a disappeared element, disappears and appeared element
+     * Appears a disappeared element, disappears an appeared element
      * 
      * @for Dom
      * @method toggleVisibility
