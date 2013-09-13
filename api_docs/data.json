@@ -1789,7 +1789,7 @@
         {
             "file": "src\\fx.js",
             "line": 116,
-            "description": "Appears a disappeared element, disappears and appeared element",
+            "description": "Appears a disappeared element, disappears an appeared element",
             "itemtype": "method",
             "name": "toggleVisibility",
             "return": {
