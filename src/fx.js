@@ -114,7 +114,7 @@
     },
 
     /**
-     * Appears a disappeared element, disappears and appeared element
+     * Appears a disappeared element, disappears an appeared element
      * 
      * @for Dom
      * @method toggleVisibility
@@ -180,9 +180,11 @@
         }
 
         function animate () {
-          var val = 0.3, end = 1;
+          var val = 0.3
+            , end = 1;
 
           if (parseFloat(el.style.opacity) === (inOut === "in" ? 1 : 0)) {
+            // Stop the animation if the opacity is set to the final value
             clearInterval(win.Hilo.temp.anim);
           } else {
             if (inOut === "out") {
