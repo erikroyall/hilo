@@ -3,42 +3,43 @@
 <head>
     <meta charset="utf-8">
     <title>Dom - hilo</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
-    <script src=""></script>
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
 </head>
-<body>
-<div class="main-header">
-  <h1 class="site-logo"><a href="../index.html">hilo: Dom</a></h1>
-  
-  <p>API Docs for: 0.1.0-pre-dev-beta-10. Authored by <a href="http://twitter.com/erikroyall">Erik Royall</a> and contributors.</p>
-</div>
-<div class="doc">
-  <div class="sidebar">
-    <div id="modules" class="sidebox">
-    <div class="hd">
-        <h2 class="no-toc">Modules</h2>
-    </div>
-    <div class="bd">
-        <ul>
-            
-                <li><a href="../modules/Hilo.html">Hilo</a>
-                
-                </li>
-            
-        </ul>
-    </div>
-</div>
+<body class="yui3-skin-sam">
 
-<div id="classes" class="sidebox">
-    <div class="hd">
-        <h2 class="no-toc">Classes</h2>
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="../assets/css/logo.png" title="hilo"></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 0.1.0-pre-dev-beta-10</em>
+        </div>
     </div>
-    <div class="bd">
-        <ul>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
             
                 <li><a href="../classes/Animation.html">Animation</a></li>
             
@@ -56,1748 +57,5052 @@
             
                 <li><a href="../classes/Test.html">Test</a></li>
             
-        </ul>
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="../modules/Hilo.html">Hilo</a></li>
+            
+            </ul>
+        </div>
     </div>
 </div>
 
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
 
-<div id="methods-on-page" class="sidebox on-page">
-    <div class="hd">
-        <h2 class="no-toc">Methods On Page</h2>
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
     </div>
-    <div class="bd">
-        <ul>
-            
-                <li><a href="#methods_addClass">addClass</a></li>
-            
-                <li><a href="#methods_appear">appear</a></li>
-            
-                <li><a href="#methods_append">append</a></li>
-            
-                <li><a href="#methods_attr">attr</a></li>
-            
-                <li><a href="#methods_children">children</a></li>
-            
-                <li><a href="#methods_class">class</a></li>
-            
-                <li><a href="#methods_computed">computed</a></li>
-            
-                <li><a href="#methods_css">css</a></li>
-            
-                <li><a href="#methods_disappear">disappear</a></li>
-            
-                <li><a href="#methods_each">each</a></li>
-            
-                <li><a href="#methods_el">el</a></li>
-            
-                <li><a href="#methods_empty">empty</a></li>
-            
-                <li><a href="#methods_fade">fade</a></li>
-            
-                <li><a href="#methods_fadeIn">fadeIn</a></li>
-            
-                <li><a href="#methods_fadeOut">fadeOut</a></li>
-            
-                <li><a href="#methods_filter">filter</a></li>
-            
-                <li><a href="#methods_fire">fire</a></li>
-            
-                <li><a href="#methods_first">first</a></li>
-            
-                <li><a href="#methods_firstEl">firstEl</a></li>
-            
-                <li><a href="#methods_get">get</a></li>
-            
-                <li><a href="#methods_hasClass">hasClass</a></li>
-            
-                <li><a href="#methods_hide">hide</a></li>
-            
-                <li><a href="#methods_html">html</a></li>
-            
-                <li><a href="#methods_id">id</a></li>
-            
-                <li><a href="#methods_lastEl">lastEl</a></li>
-            
-                <li><a href="#methods_map">map</a></li>
-            
-                <li><a href="#methods_next">next</a></li>
-            
-                <li><a href="#methods_on">on</a></li>
-            
-                <li><a href="#methods_on">on</a></li>
-            
-                <li><a href="#methods_one">one</a></li>
-            
-                <li><a href="#methods_parent">parent</a></li>
-            
-                <li><a href="#methods_parents">parents</a></li>
-            
-                <li><a href="#methods_prepend">prepend</a></li>
-            
-                <li><a href="#methods_prev">prev</a></li>
-            
-                <li><a href="#methods_rel">rel</a></li>
-            
-                <li><a href="#methods_removeClass">removeClass</a></li>
-            
-                <li><a href="#methods_show">show</a></li>
-            
-                <li><a href="#methods_toggle">toggle</a></li>
-            
-                <li><a href="#methods_toggleClass">toggleClass</a></li>
-            
-                <li><a href="#methods_toggleVisibility">toggleVisibility</a></li>
-            
-                <li><a href="#methods_value">value</a></li>
-            
-        </ul>
-    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1>Dom Class</h1>
+<div class="box meta">
+    
+
+    
+
+    
+        <div class="foundat">
+            Defined in: <a href="../files/src_dom.js.html#l6"><code>src&#x2F;dom.js:6</code></a>
+        </div>
+    
+
+    
+        
+            Module: <a href="../modules/Hilo.html">Hilo</a>
+        
+    
+
+    
+        <p>Available since 0.1.0</p>
+    
 </div>
 
 
 
+<div class="box intro">
+    <p>Main DOM Class</p>
 
-
-
-
-
-
-<div id="fileTree" class="sidebox">
-    <div class="hd">
-        <h2 class="no-toc">Files</h2>
-    </div>
-    <div class="bd">
-        <ul><li>src\ajax.js/<ul></ul></li><li>src\anim.js/<ul></ul></li><li>src\core.js/<ul></ul></li><li>src\detect.js/<ul></ul></li><li>src\dom.js/<ul></ul></li><li>src\end.js/<ul></ul></li><li>src\evt.js/<ul></ul></li><li>src\fx.js/<ul></ul></li><li>src\more.js/<ul></ul></li><li>src\sizzle.js/<ul></ul></li><li>src\test.js/<ul></ul></li></ul>
-    </div>
 </div>
 
 
-
-  </div>
-  <div class="main">
-    <div class="content"><h4>Class Dom</h4>
-
-
-
-<span class="foundat">Class defined in: <a href="../../files/src_dom.js.html#l6"><code>src\dom.js:6</code></a></span>
-<div class="intro"><p>Main DOM Class</p></div>
-
+    <div class="constructor">
+        <h2>Constructor</h2>
+        <div id="method_Dom" class="method item">
+    <h3 class="name"><code>Dom</code></h3>
 
     
-    <a name="methods_Dom"></a>
-<div class="method item">
-    <strong class="name"><code>Dom</code></strong>( <code>els, sel </code> ) 
-    <br>
-    <span class="foundat">
-    
-        
-    
-        <a href="../../files/src_dom.js.html#l6"><code>src\dom.js:6</code></a>
-    </span><br>
-    
-    
-    <strong>Parameters:</strong>
-    <ul class="params">
-    
-        <li>
-        
-            <code>els</code> <strong>&lt;Array&gt;</strong>
-        
-        
-        <p>The elements to manipulate</p>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
             
-        </li>
-    
-        <li>
-        
-            <code>sel</code> <strong>&lt;String&gt;</strong>
-        
-        
-        <p>The selector used</p>
+                <li class="arg">
+                    
+                        <code>els</code>
+                    
+                </li>
             
-        </li>
+                <li class="arg">
+                    
+                        <code>sel</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
-    </ul>
+
     
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
     
+
     
-    <br><div class="returns"><strong>Returns:</strong> void</div>
+
     
+
     
+
     
-        <h5>Example</h5>
-        <div class="code"><pre class="prettyprint">
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_dom.js.html#l6"><code>src&#x2F;dom.js:6</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 0.1.0</p>
+        
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">els</code>
+                        <span class="type">Array</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The elements to manipulate</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">sel</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The selector used</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                    <p>void</p>
+
+                
+            </div>
+        </div>
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <div class="code"><pre class="prettyprint">
 new Dom (document.querySelectorAll(p:first-child);
 </pre></div>
-
 <div class="code"><pre class="prettyprint">
-new Dom ([document.createElement("div")]);
+new Dom ([document.createElement(&quot;div&quot;)]);
 </pre></div>
-
 <div class="code"><pre class="prettyprint">
-new Dom ([document.getElementByid("box")]);
+new Dom ([document.getElementByid(&quot;box&quot;)]);
 </pre></div>
-
 <div class="code"><pre class="prettyprint">
-new Dom (document.getElementsByClassName("hidden"));
+new Dom (document.getElementsByClassName(&quot;hidden&quot;));
 </pre></div>
-
 <div class="code"><pre class="prettyprint">
-new Dom (document.getElementsByTagName("mark"));
+new Dom (document.getElementsByTagName(&quot;mark&quot;));
 </pre></div>
-
 <div class="code"><pre class="prettyprint">
 </pre></div>
+            </div>
+        </div>
     
 </div>
 
-    
+    </div>
 
 
-<div id="classdocs">
-    <ul>
+<div id="classdocs" class="tabview">
+    <ul class="api-class-tabs">
+        <li class="api-class-tab index"><a href="#index">Index</a></li>
+
         
-        <li><a href="#methods">Methods</a></li>
+            <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
         
         
         
         
     </ul>
+
     <div>
-        
-            <div id="methods">
+        <div id="index" class="api-class-tabpanel index">
+            <h2 class="off-left">Item Index</h2>
+
             
-                <a name="methods_addClass"></a>
-<div class="method item">
-    <a href="..\classes\Dom.html" class="crosslink">Dom</a> <strong class="name"><code>addClass</code></strong>( <code>className </code> ) 
-    <br>
-    <span class="foundat">
-    
-        
-    
-        <a href="../../files/src_dom.js.html#l958"><code>src\dom.js:958</code></a>
-    </span><br>
-    <p>Adds class(es) to selected elements</p>
-    
-    <strong>Parameters:</strong>
-    <ul class="params">
-    
-        <li>
-        
-            <code>className</code> <strong>&lt;String | Array&gt;</strong>
-        
-        
-        <p>The class(es) to add</p>
+                <div class="index-section methods">
+                    <h3>Methods</h3>
+
+                    <ul class="index-list methods">
+                        
+                            <li class="index-item method">
+                                <a href="#method_addClass">addClass</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_appear">appear</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_append">append</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_attr">attr</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_children">children</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_class">class</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_computed">computed</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_css">css</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_disappear">disappear</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_each">each</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_el">el</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_empty">empty</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_fade">fade</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_fadeIn">fadeIn</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_fadeOut">fadeOut</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_filter">filter</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_fire">fire</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_first">first</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_firstEl">firstEl</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_get">get</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_hasClass">hasClass</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_hide">hide</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_html">html</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_id">id</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_lastEl">lastEl</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_map">map</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_next">next</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_on">on</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_on">on</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_one">one</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_parent">parent</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_parents">parents</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_prepend">prepend</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_prev">prev</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_rel">rel</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_removeClass">removeClass</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_show">show</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_toggle">toggle</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_toggleClass">toggleClass</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_toggleVisibility">toggleVisibility</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_value">value</a>
+
+                                
+                                
+                            </li>
+                        
+                    </ul>
+                </div>
             
-        </li>
+
+            
+
+            
+
+            
+        </div>
+
+        
+            <div id="methods" class="api-class-tabpanel">
+                <h2 class="off-left">Methods</h2>
+
+                
+                    <div id="method_addClass" class="method item">
+    <h3 class="name"><code>addClass</code></h3>
+
     
-    </ul>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>className</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
+
     
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>
+        </span>
     
-    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="..\classes\Dom.html" class="crosslink">Dom</a>&gt; </div>
+
     
+
     
+
     
-        <h5>Example</h5>
-        <div class="code"><pre class="prettyprint">
-$("p").addClass("paragraph")
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_dom.js.html#l958"><code>src&#x2F;dom.js:958</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 0.1.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Adds class(es) to selected elements</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">className</code>
+                        <span class="type">String | Array</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The class(es) to add</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>:
+                    
+                
+            </div>
+        </div>
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <div class="code"><pre class="prettyprint">
+$(&quot;p&quot;).addClass(&quot;paragraph&quot;)
 </pre></div>
+            </div>
+        </div>
     
 </div>
 
-            
-                <a name="methods_appear"></a>
-<div class="method item">
-    <a href="..\classes\Dom.html" class="crosslink">Dom</a> <strong class="name"><code>appear</code></strong>( <code>  </code> ) 
-    <br>
-    <span class="foundat">
+                
+                    <div id="method_appear" class="method item">
+    <h3 class="name"><code>appear</code></h3>
+
     
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
         
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_fx.js.html#l76"><code>src&#x2F;fx.js:76</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 0.1.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Sets visibility to &quot;visible&quot;</p>
+
+    </div>
+
     
-        <a href="../../files/src_fx.js.html#l76"><code>src\fx.js:76</code></a>
-    </span><br>
-    <p>Sets visibility to "visible"</p>
+
     
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>:
+                    
+                
+            </div>
+        </div>
     
+
     
-    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="..\classes\Dom.html" class="crosslink">Dom</a>&gt; </div>
-    
-    
-    
-        <h5>Example</h5>
-        <div class="code"><pre class="prettyprint">
-$("p").appear();
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <div class="code"><pre class="prettyprint">
+$(&quot;p&quot;).appear();
 </pre></div>
+            </div>
+        </div>
     
 </div>
 
+                
+                    <div id="method_append" class="method item">
+    <h3 class="name"><code>append</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
             
-                <a name="methods_append"></a>
-<div class="method item">
-    <a href="..\classes\Dom.html" class="crosslink">Dom</a> <strong class="name"><code>append</code></strong>( <code>html </code> ) 
-    <br>
-    <span class="foundat">
-    
-        
-    
-        <a href="../../files/src_dom.js.html#l585"><code>src\dom.js:585</code></a>
-    </span><br>
-    <p>Append html to selected elements</p>
-    
-    <strong>Parameters:</strong>
-    <ul class="params">
-    
-        <li>
-        
-            <code>html</code> <strong>&lt;String&gt;</strong>
-        
-        
-        <p>The HTML Code to be appended</p>
+                <li class="arg">
+                    
+                        <code>html</code>
+                    
+                </li>
             
-        </li>
+            </ul><span class="paren">)</span>
+        </div>
     
-    </ul>
+
     
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>
+        </span>
     
+
     
-    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="..\classes\Dom.html" class="crosslink">Dom</a>&gt; </div>
+
     
+
     
+
     
-        <h5>Example</h5>
-        <div class="code"><pre class="prettyprint">
-$("p:first-child").append(" - From the first p child")
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_dom.js.html#l585"><code>src&#x2F;dom.js:585</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 0.1.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Append html to selected elements</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">html</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The HTML Code to be appended</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>:
+                    
+                
+            </div>
+        </div>
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <div class="code"><pre class="prettyprint">
+$(&quot;p:first-child&quot;).append(&quot; - From the first p child&quot;)
 </pre></div>
+            </div>
+        </div>
     
 </div>
 
+                
+                    <div id="method_attr" class="method item">
+    <h3 class="name"><code>attr</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
             
-                <a name="methods_attr"></a>
-<div class="method item">
-    String | Void <strong class="name"><code>attr</code></strong>( <code>name, val </code> ) 
-    <br>
-    <span class="foundat">
-    
-        
-    
-        <a href="../../files/src_dom.js.html#l1038"><code>src\dom.js:1038</code></a>
-    </span><br>
-    <p>Set or return attributes</p>
-    
-    <strong>Parameters:</strong>
-    <ul class="params">
-    
-        <li>
-        
-            <code>name</code> <strong>&lt;String&gt;</strong>
-        
-        
-        <p>Name of attribute</p>
+                <li class="arg">
+                    
+                        <code>name</code>
+                    
+                </li>
             
-        </li>
-    
-        <li>
-        
-            <code>val</code> <strong>&lt;String&gt;</strong>
-        
-        
-        <p>Value of the attribute</p>
+                <li class="arg">
+                    
+                        <code>val</code>
+                    
+                </li>
             
-        </li>
+            </ul><span class="paren">)</span>
+        </div>
     
-    </ul>
+
     
+        <span class="returns-inline">
+            <span class="type">String | Void</span>
+        </span>
     
+
     
-    <br><div class="returns"><strong>Returns:</strong> &lt;String | Void&gt; </div>
+
     
+
     
+
     
-        <h5>Example</h5>
-        <div class="code"><pre class="prettyprint">
-$("p.hidden").attr("hidden"); 
-$("div.edit").attr("contentEditable", "true"); 
-$("body").attr("hilo", "0.1.0"); 
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_dom.js.html#l1038"><code>src&#x2F;dom.js:1038</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 0.1.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Set or return attributes</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">name</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Name of attribute</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">val</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Value of the attribute</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">String | Void</span>:
+                    
+                
+            </div>
+        </div>
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <div class="code"><pre class="prettyprint">
+$(&quot;p.hidden&quot;).attr(&quot;hidden&quot;); 
+$(&quot;div.edit&quot;).attr(&quot;contentEditable&quot;, &quot;true&quot;); 
+$(&quot;body&quot;).attr(&quot;hilo&quot;, &quot;0.1.0&quot;); 
 </pre></div>
+            </div>
+        </div>
     
 </div>
 
+                
+                    <div id="method_children" class="method item">
+    <h3 class="name"><code>children</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
             
-                <a name="methods_children"></a>
-<div class="method item">
-    <a href="..\classes\Dom.html" class="crosslink">Dom</a> <strong class="name"><code>children</code></strong>( <code>sel </code> ) 
-    <br>
-    <span class="foundat">
-    
-        
-    
-        <a href="../../files/src_dom.js.html#l400"><code>src\dom.js:400</code></a>
-    </span><br>
-    <p>Return the children of selected elements</p>
-    
-    <strong>Parameters:</strong>
-    <ul class="params">
-    
-        <li>
-        
-            <code>sel</code> <strong>&lt;String&gt;</strong>
-        
-        
-        <p>Optional filtering selector</p>
+                <li class="arg">
+                    
+                        <code>sel</code>
+                    
+                </li>
             
-        </li>
+            </ul><span class="paren">)</span>
+        </div>
     
-    </ul>
+
     
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>
+        </span>
     
+
     
-    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="..\classes\Dom.html" class="crosslink">Dom</a>&gt; </div>
+
     
+
     
+
     
-        <h5>Example</h5>
-        <div class="code"><pre class="prettyprint">
-var childrenOfContainer = $("div.container").children();
-$("div.container").children(":not(.hidden)").addClass("me");
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_dom.js.html#l400"><code>src&#x2F;dom.js:400</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 0.1.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Return the children of selected elements</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">sel</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Optional filtering selector</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>:
+                    
+                
+            </div>
+        </div>
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <div class="code"><pre class="prettyprint">
+var childrenOfContainer = $(&quot;div.container&quot;).children();
+$(&quot;div.container&quot;).children(&quot;:not(.hidden)&quot;).addClass(&quot;me&quot;);
 </pre></div>
+            </div>
+        </div>
     
 </div>
 
+                
+                    <div id="method_class" class="method item">
+    <h3 class="name"><code>class</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
             
-                <a name="methods_class"></a>
-<div class="method item">
-    Boolean | Void <strong class="name"><code>class</code></strong>( <code>action, className </code> ) 
-    <br>
-    <span class="foundat">
-    
-        
-    
-        <a href="../../files/src_dom.js.html#l689"><code>src\dom.js:689</code></a>
-    </span><br>
-    <p>Add, remove or check class(es)</p>
-    
-    <strong>Parameters:</strong>
-    <ul class="params">
-    
-        <li>
-        
-            <code>action</code> <strong>&lt;String&gt;</strong>
-        
-        
-        <p>Specifies the action to take</p>
+                <li class="arg">
+                    
+                        <code>action</code>
+                    
+                </li>
             
-        </li>
-    
-        <li>
-        
-            <code>className</code> <strong>&lt;String | Array&gt;</strong>
-        
-        
-        <p>Class(es) to be checked or manipulated</p>
+                <li class="arg">
+                    
+                        <code>className</code>
+                    
+                </li>
             
-        </li>
+            </ul><span class="paren">)</span>
+        </div>
     
-    </ul>
+
     
+        <span class="returns-inline">
+            <span class="type">Boolean | Void</span>
+        </span>
     
+
     
-    <br><div class="returns"><strong>Returns:</strong> &lt;Boolean | Void&gt; </div>
+
     
+
     
+
     
-        <h5>Example</h5>
-        <div class="code"><pre class="prettyprint">
-$("div#editor").class("add", "no-js")
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_dom.js.html#l689"><code>src&#x2F;dom.js:689</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 0.1.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Add, remove or check class(es)</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">action</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Specifies the action to take</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">className</code>
+                        <span class="type">String | Array</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Class(es) to be checked or manipulated</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">Boolean | Void</span>:
+                    
+                
+            </div>
+        </div>
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <div class="code"><pre class="prettyprint">
+$(&quot;div#editor&quot;).class(&quot;add&quot;, &quot;no-js&quot;)
 </pre></div>
+            </div>
+        </div>
     
 </div>
 
+                
+                    <div id="method_computed" class="method item">
+    <h3 class="name"><code>computed</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
             
-                <a name="methods_computed"></a>
-<div class="method item">
-    Number | Boolean | String <strong class="name"><code>computed</code></strong>( <code>prop </code> ) 
-    <br>
-    <span class="foundat">
-    
-        
-    
-        <a href="../../files/src_dom.js.html#l1120"><code>src\dom.js:1120</code></a>
-    </span><br>
-    <p>Get computed property</p>
-    
-    <strong>Parameters:</strong>
-    <ul class="params">
-    
-        <li>
-        
-            <code>prop</code> <strong>&lt;String&gt;</strong>
-        
-        
-        <p>Name of property</p>
+                <li class="arg">
+                    
+                        <code>prop</code>
+                    
+                </li>
             
-        </li>
+            </ul><span class="paren">)</span>
+        </div>
     
-    </ul>
+
     
+        <span class="returns-inline">
+            <span class="type">Number | Boolean | String</span>
+        </span>
     
+
     
-    <br><div class="returns"><strong>Returns:</strong> &lt;Number | Boolean | String&gt; </div>
+
     
+
     
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_dom.js.html#l1120"><code>src&#x2F;dom.js:1120</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 0.1.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Get computed property</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">prop</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Name of property</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">Number | Boolean | String</span>:
+                    
+                
+            </div>
+        </div>
+    
+
     
 </div>
 
-            
-                <a name="methods_css"></a>
-<div class="method item">
-    String | Void <strong class="name"><code>css</code></strong>( <code>prop, value </code> ) 
-    <br>
-    <span class="foundat">
-    
-        
-    
-        <a href="../../files/src_dom.js.html#l1072"><code>src\dom.js:1072</code></a>
-    </span><br>
-    <p>Set or return css property</p>
-    
-    <strong>Parameters:</strong>
-    <ul class="params">
-    
-        <li>
-        
-            <code>prop</code> <strong>&lt;String | Object&gt;</strong>
-        
-        
-        <p>Name of property | Properties</p>
-            
-        </li>
-    
-        <li>
-        
-            <code>value</code> <strong>&lt;String&gt;</strong>
-        
-        
-        <p>Value of property</p>
-            
-        </li>
-    
-    </ul>
-    
-    
-    
-    <br><div class="returns"><strong>Returns:</strong> &lt;String | Void&gt; </div>
-    
-    
-    
-        <h5>Example</h5>
-        <div class="code"><pre class="prettyprint">
-$("p").css("margin-left", "10em");
+                
+                    <div id="method_css" class="method item">
+    <h3 class="name"><code>css</code></h3>
 
-$("p.round").css({
-  "border-radius": 10,
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>prop</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>value</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">String | Void</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_dom.js.html#l1072"><code>src&#x2F;dom.js:1072</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 0.1.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Set or return css property</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">prop</code>
+                        <span class="type">String | Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Name of property | Properties</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">value</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Value of property</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">String | Void</span>:
+                    
+                
+            </div>
+        </div>
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <div class="code"><pre class="prettyprint">
+$(&quot;p&quot;).css(&quot;margin-left&quot;, &quot;10em&quot;);
+
+$(&quot;p.round&quot;).css({
+  &quot;border-radius&quot;: 10,
   width: 100
 });
 </pre></div>
+            </div>
+        </div>
     
 </div>
 
-            
-                <a name="methods_disappear"></a>
-<div class="method item">
-    <a href="..\classes\Dom.html" class="crosslink">Dom</a> <strong class="name"><code>disappear</code></strong>( <code>  </code> ) 
-    <br>
-    <span class="foundat">
+                
+                    <div id="method_disappear" class="method item">
+    <h3 class="name"><code>disappear</code></h3>
+
     
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
         
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_fx.js.html#l96"><code>src&#x2F;fx.js:96</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 0.1.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Sets visiblity to &quot;hidden&quot;</p>
+
+    </div>
+
     
-        <a href="../../files/src_fx.js.html#l96"><code>src\fx.js:96</code></a>
-    </span><br>
-    <p>Sets visiblity to "hidden"</p>
+
     
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>:
+                    
+                
+            </div>
+        </div>
     
+
     
-    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="..\classes\Dom.html" class="crosslink">Dom</a>&gt; </div>
-    
-    
-    
-        <h5>Example</h5>
-        <div class="code"><pre class="prettyprint">
-$("p").disappear();
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <div class="code"><pre class="prettyprint">
+$(&quot;p&quot;).disappear();
 </pre></div>
+            </div>
+        </div>
     
 </div>
 
+                
+                    <div id="method_each" class="method item">
+    <h3 class="name"><code>each</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
             
-                <a name="methods_each"></a>
-<div class="method item">
-    <a href="..\classes\Dom.html" class="crosslink">Dom</a> <strong class="name"><code>each</code></strong>( <code>fn </code> ) 
-    <br>
-    <span class="foundat">
-    
-        
-    
-        <a href="../../files/src_dom.js.html#l186"><code>src\dom.js:186</code></a>
-    </span><br>
-    <p>Execute a function on selected elements</p>
-    
-    <strong>Parameters:</strong>
-    <ul class="params">
-    
-        <li>
-        
-            <code>fn</code> <strong>&lt;Function&gt;</strong>
-        
-        
-        <p>The function to be called on</p>
+                <li class="arg">
+                    
+                        <code>fn</code>
+                    
+                </li>
             
-        </li>
+            </ul><span class="paren">)</span>
+        </div>
     
-    </ul>
+
     
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>
+        </span>
     
+
     
-    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="..\classes\Dom.html" class="crosslink">Dom</a>&gt; </div>
+
     
+
     
+
     
-        <h5>Example</h5>
-        <div class="code"><pre class="prettyprint">
-$("p").each(function (el) {
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_dom.js.html#l186"><code>src&#x2F;dom.js:186</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 0.1.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Execute a function on selected elements</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">fn</code>
+                        <span class="type">Function</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The function to be called on</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>:
+                    
+                
+            </div>
+        </div>
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <div class="code"><pre class="prettyprint">
+$(&quot;p&quot;).each(function (el) {
   doSomethingWith(e);
 });
 </pre></div>
+            </div>
+        </div>
     
 </div>
 
-            
-                <a name="methods_el"></a>
-<div class="method item">
-    <a href="..\classes\Dom.html" class="crosslink">Dom</a> <strong class="name"><code>el</code></strong>( <code>  </code> ) 
-    <br>
-    <span class="foundat">
+                
+                    <div id="method_el" class="method item">
+    <h3 class="name"><code>el</code></h3>
+
     
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
         
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_dom.js.html#l381"><code>src&#x2F;dom.js:381</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 0.1.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Return nth element of the selected elements</p>
+
+    </div>
+
     
-        <a href="../../files/src_dom.js.html#l381"><code>src\dom.js:381</code></a>
-    </span><br>
-    <p>Return nth element of the selected elements</p>
+
     
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>:
+                    
+                    <p>The nth element</p>
+
+                
+            </div>
+        </div>
     
+
     
-    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="..\classes\Dom.html" class="crosslink">Dom</a>&gt; The nth element</div>
-    
-    
-    
-        <h5>Example</h5>
-        <div class="code"><pre class="prettyprint">
-$("p.hidden").el(3).show();
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <div class="code"><pre class="prettyprint">
+$(&quot;p.hidden&quot;).el(3).show();
 </pre></div>
+            </div>
+        </div>
     
 </div>
 
-            
-                <a name="methods_empty"></a>
-<div class="method item">
-    <a href="..\classes\Dom.html" class="crosslink">Dom</a> <strong class="name"><code>empty</code></strong>( <code>  </code> ) 
-    <br>
-    <span class="foundat">
+                
+                    <div id="method_empty" class="method item">
+    <h3 class="name"><code>empty</code></h3>
+
     
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
         
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_dom.js.html#l567"><code>src&#x2F;dom.js:567</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 0.1.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Empty the selected elements</p>
+
+    </div>
+
     
-        <a href="../../files/src_dom.js.html#l567"><code>src\dom.js:567</code></a>
-    </span><br>
-    <p>Empty the selected elements</p>
+
     
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>:
+                    
+                
+            </div>
+        </div>
     
+
     
-    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="..\classes\Dom.html" class="crosslink">Dom</a>&gt; </div>
-    
-    
-    
-        <h5>Example</h5>
-        <div class="code"><pre class="prettyprint">
-$("#todo-list").empty()
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <div class="code"><pre class="prettyprint">
+$(&quot;#todo-list&quot;).empty()
 </pre></div>
+            </div>
+        </div>
     
 </div>
 
+                
+                    <div id="method_fade" class="method item">
+    <h3 class="name"><code>fade</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
             
-                <a name="methods_fade"></a>
-<div class="method item">
-    <a href="..\classes\Dom.html" class="crosslink">Dom</a> <strong class="name"><code>fade</code></strong>( <code>inOut, &amp;quot;fast&amp;quot;, </code> ) 
-    <br>
-    <span class="foundat">
-    
-        
-    
-        <a href="../../files/src_fx.js.html#l142"><code>src\fx.js:142</code></a>
-    </span><br>
-    <p>Animates opacity prop. from 0 to 1 or 1 to 0</p>
-    
-    <strong>Parameters:</strong>
-    <ul class="params">
-    
-        <li>
-        
-            <code>inOut</code> <strong>&lt;String&gt;</strong>
-        
-        
-        <p>Whether "in" or "out"</p>
+                <li class="arg">
+                    
+                        <code>inOut</code>
+                    
+                </li>
             
-        </li>
-    
-        <li>
-        
-            <code>&amp;quot;fast&amp;quot;,</code> <strong>&lt;Number | String&gt;</strong>
-        
-        
-        <p>"slow", "normal" or a number</p>
+                <li class="arg">
+                    
+                        <code>&quot;fast&quot;,</code>
+                    
+                </li>
             
-        </li>
+            </ul><span class="paren">)</span>
+        </div>
     
-    </ul>
+
     
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>
+        </span>
     
+
     
-    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="..\classes\Dom.html" class="crosslink">Dom</a>&gt; </div>
+
     
+
     
+
     
-        <h5>Example</h5>
-        <div class="code"><pre class="prettyprint">
-$("p").fade("in");
-$("p").fade("out");
-$("p").fade("in", 140);
-$("p").fade("out", 100);
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_fx.js.html#l142"><code>src&#x2F;fx.js:142</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 0.1.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Animates opacity prop. from 0 to 1 or 1 to 0</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">inOut</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Whether &quot;in&quot; or &quot;out&quot;</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">&quot;fast&quot;,</code>
+                        <span class="type">Number | String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>&quot;slow&quot;, &quot;normal&quot; or a number</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>:
+                    
+                
+            </div>
+        </div>
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <div class="code"><pre class="prettyprint">
+$(&quot;p&quot;).fade(&quot;in&quot;);
+$(&quot;p&quot;).fade(&quot;out&quot;);
+$(&quot;p&quot;).fade(&quot;in&quot;, 140);
+$(&quot;p&quot;).fade(&quot;out&quot;, 100);
 </pre></div>
+            </div>
+        </div>
     
 </div>
 
+                
+                    <div id="method_fadeIn" class="method item">
+    <h3 class="name"><code>fadeIn</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
             
-                <a name="methods_fadeIn"></a>
-<div class="method item">
-    <a href="..\classes\Dom.html" class="crosslink">Dom</a> <strong class="name"><code>fadeIn</code></strong>( <code>&amp;quot;fast&amp;quot;, </code> ) 
-    <br>
-    <span class="foundat">
-    
-        
-    
-        <a href="../../files/src_fx.js.html#l201"><code>src\fx.js:201</code></a>
-    </span><br>
-    <p>Animates opacity prop. from 0 to 1</p>
-    
-    <strong>Parameters:</strong>
-    <ul class="params">
-    
-        <li>
-        
-            <code>&amp;quot;fast&amp;quot;,</code> <strong>&lt;Number | String&gt;</strong>
-        
-        
-        <p>"slow", "normal" or a number</p>
+                <li class="arg">
+                    
+                        <code>&quot;fast&quot;,</code>
+                    
+                </li>
             
-        </li>
+            </ul><span class="paren">)</span>
+        </div>
     
-    </ul>
+
     
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>
+        </span>
     
+
     
-    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="..\classes\Dom.html" class="crosslink">Dom</a>&gt; </div>
+
     
+
     
+
     
-        <h5>Example</h5>
-        <div class="code"><pre class="prettyprint">
-$("p").fadeIn();
-$("p").fadeIn(140);
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_fx.js.html#l203"><code>src&#x2F;fx.js:203</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 0.1.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Animates opacity prop. from 0 to 1</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">&quot;fast&quot;,</code>
+                        <span class="type">Number | String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>&quot;slow&quot;, &quot;normal&quot; or a number</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>:
+                    
+                
+            </div>
+        </div>
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <div class="code"><pre class="prettyprint">
+$(&quot;p&quot;).fadeIn();
+$(&quot;p&quot;).fadeIn(140);
 </pre></div>
+            </div>
+        </div>
     
 </div>
 
+                
+                    <div id="method_fadeOut" class="method item">
+    <h3 class="name"><code>fadeOut</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
             
-                <a name="methods_fadeOut"></a>
-<div class="method item">
-    <a href="..\classes\Dom.html" class="crosslink">Dom</a> <strong class="name"><code>fadeOut</code></strong>( <code>&amp;quot;fast&amp;quot;, </code> ) 
-    <br>
-    <span class="foundat">
-    
-        
-    
-        <a href="../../files/src_fx.js.html#l219"><code>src\fx.js:219</code></a>
-    </span><br>
-    <p>Animates opacity prop. from 1 to 0</p>
-    
-    <strong>Parameters:</strong>
-    <ul class="params">
-    
-        <li>
-        
-            <code>&amp;quot;fast&amp;quot;,</code> <strong>&lt;Number | String&gt;</strong>
-        
-        
-        <p>"slow", "normal" or a number</p>
+                <li class="arg">
+                    
+                        <code>&quot;fast&quot;,</code>
+                    
+                </li>
             
-        </li>
+            </ul><span class="paren">)</span>
+        </div>
     
-    </ul>
+
     
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>
+        </span>
     
+
     
-    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="..\classes\Dom.html" class="crosslink">Dom</a>&gt; </div>
+
     
+
     
+
     
-        <h5>Example</h5>
-        <div class="code"><pre class="prettyprint">
-$("p").fadeOut();
-$("p").fadeOut(140);
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_fx.js.html#l221"><code>src&#x2F;fx.js:221</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 0.1.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Animates opacity prop. from 1 to 0</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">&quot;fast&quot;,</code>
+                        <span class="type">Number | String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>&quot;slow&quot;, &quot;normal&quot; or a number</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>:
+                    
+                
+            </div>
+        </div>
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <div class="code"><pre class="prettyprint">
+$(&quot;p&quot;).fadeOut();
+$(&quot;p&quot;).fadeOut(140);
 </pre></div>
+            </div>
+        </div>
     
 </div>
 
+                
+                    <div id="method_filter" class="method item">
+    <h3 class="name"><code>filter</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
             
-                <a name="methods_filter"></a>
-<div class="method item">
-    <a href="..\classes\Dom.html" class="crosslink">Dom</a> <strong class="name"><code>filter</code></strong>( <code>fn </code> ) 
-    <br>
-    <span class="foundat">
+                <li class="arg">
+                    
+                        <code>fn</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
         
-    
-        <a href="../../files/src_dom.js.html#l279"><code>src\dom.js:279</code></a>
-    </span><br>
-    <p>Filters the selected elements and returns the 
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_dom.js.html#l279"><code>src&#x2F;dom.js:279</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 0.1.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Filters the selected elements and returns the 
 elements that pass the test (or return true)</p>
+
+    </div>
+
     
-    <strong>Parameters:</strong>
-    <ul class="params">
-    
-        <li>
-        
-            <code>fn</code> <strong>&lt;Function&gt;</strong>
-        
-        
-        <p>The filter function</p>
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
             
-        </li>
+                <li class="param">
+                    
+                        <code class="param-name">fn</code>
+                        <span class="type">Function</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The filter function</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
     
-    </ul>
+
     
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>:
+                    
+                
+            </div>
+        </div>
     
+
     
-    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="..\classes\Dom.html" class="crosslink">Dom</a>&gt; </div>
-    
-    
-    
-        <h5>Example</h5>
-        <div class="code"><pre class="prettyprint">
-$("div").filter(function (el) {
-  return el.className.split("hidden").length > 1;
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <div class="code"><pre class="prettyprint">
+$(&quot;div&quot;).filter(function (el) {
+  return el.className.split(&quot;hidden&quot;).length &gt; 1;
 });
 </pre></div>
+            </div>
+        </div>
     
 </div>
 
+                
+                    <div id="method_fire" class="method item">
+    <h3 class="name"><code>fire</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
             
-                <a name="methods_fire"></a>
-<div class="method item">
-    <a href="..\classes\Dom.html" class="crosslink">Dom</a> <strong class="name"><code>fire</code></strong>( <code>evt </code> ) 
-    <br>
-    <span class="foundat">
-    
-        
-    
-        <a href="../../files/src_evt.js.html#l94"><code>src\evt.js:94</code></a>
-    </span><br>
-    <p>Trigger or fire an event</p>
-    
-    <strong>Parameters:</strong>
-    <ul class="params">
-    
-        <li>
-        
-            <code>evt</code> <strong>&lt;String&gt;</strong>
-        
-        
-        <p>Name of event to fire</p>
+                <li class="arg">
+                    
+                        <code>evt</code>
+                    
+                </li>
             
-        </li>
+            </ul><span class="paren">)</span>
+        </div>
     
-    </ul>
+
     
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>
+        </span>
     
+
     
-    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="..\classes\Dom.html" class="crosslink">Dom</a>&gt; </div>
+
     
+
     
+
     
-        <h5>Example</h5>
-        <div class="code"><pre class="prettyprint">
-$("#uploadForm").fire("overload");
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_evt.js.html#l94"><code>src&#x2F;evt.js:94</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 0.1.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Trigger or fire an event</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">evt</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Name of event to fire</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>:
+                    
+                
+            </div>
+        </div>
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <div class="code"><pre class="prettyprint">
+$(&quot;#uploadForm&quot;).fire(&quot;overload&quot;);
 </pre></div>
+            </div>
+        </div>
     
 </div>
 
+                
+                    <div id="method_first" class="method item">
+    <h3 class="name"><code>first</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
             
-                <a name="methods_first"></a>
-<div class="method item">
-    <a href="..\classes\Dom.html" class="crosslink">Dom</a> <strong class="name"><code>first</code></strong>( <code>fn </code> ) 
-    <br>
-    <span class="foundat">
-    
-        
-    
-        <a href="../../files/src_dom.js.html#l257"><code>src\dom.js:257</code></a>
-    </span><br>
-    <p>Execute a function on the first selected element</p>
-    
-    <strong>Parameters:</strong>
-    <ul class="params">
-    
-        <li>
-        
-            <code>fn</code> <strong>&lt;Function&gt;</strong>
-        
-        
-        <p>The function to be called</p>
+                <li class="arg">
+                    
+                        <code>fn</code>
+                    
+                </li>
             
-        </li>
+            </ul><span class="paren">)</span>
+        </div>
     
-    </ul>
+
     
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>
+        </span>
     
+
     
-    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="..\classes\Dom.html" class="crosslink">Dom</a>&gt; </div>
+
     
+
     
+
     
-        <h5>Example</h5>
-        <div class="code"><pre class="prettyprint">
-$("div").first(function (e) {
-  console.log(e + " is the first div");
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_dom.js.html#l257"><code>src&#x2F;dom.js:257</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 0.1.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Execute a function on the first selected element</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">fn</code>
+                        <span class="type">Function</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The function to be called</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>:
+                    
+                
+            </div>
+        </div>
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <div class="code"><pre class="prettyprint">
+$(&quot;div&quot;).first(function (e) {
+  console.log(e + &quot; is the first div&quot;);
 });
 </pre></div>
+            </div>
+        </div>
     
 </div>
 
-            
-                <a name="methods_firstEl"></a>
-<div class="method item">
-    <a href="..\classes\Dom.html" class="crosslink">Dom</a> <strong class="name"><code>firstEl</code></strong>( <code>  </code> ) 
-    <br>
-    <span class="foundat">
+                
+                    <div id="method_firstEl" class="method item">
+    <h3 class="name"><code>firstEl</code></h3>
+
     
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
         
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_dom.js.html#l345"><code>src&#x2F;dom.js:345</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 0.1.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Return first element of the selected elements</p>
+
+    </div>
+
     
-        <a href="../../files/src_dom.js.html#l345"><code>src\dom.js:345</code></a>
-    </span><br>
-    <p>Return first element of the selected elements</p>
+
     
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>:
+                    
+                    <p>The first element</p>
+
+                
+            </div>
+        </div>
     
+
     
-    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="..\classes\Dom.html" class="crosslink">Dom</a>&gt; The first element</div>
-    
-    
-    
-        <h5>Example</h5>
-        <div class="code"><pre class="prettyprint">
-$("p.hidden").firstEl().show();
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <div class="code"><pre class="prettyprint">
+$(&quot;p.hidden&quot;).firstEl().show();
 </pre></div>
+            </div>
+        </div>
     
 </div>
 
-            
-                <a name="methods_get"></a>
-<div class="method item">
-    <a href="..\classes\Dom.html" class="crosslink">Dom</a> <strong class="name"><code>get</code></strong>( <code>  </code> ) 
-    <br>
-    <span class="foundat">
+                
+                    <div id="method_get" class="method item">
+    <h3 class="name"><code>get</code></h3>
+
     
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
         
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_dom.js.html#l321"><code>src&#x2F;dom.js:321</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 0.1.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Get a JavaScript Array containing selected elements</p>
+
+    </div>
+
     
-        <a href="../../files/src_dom.js.html#l321"><code>src\dom.js:321</code></a>
-    </span><br>
-    <p>Get a JavaScript Array containing selected elements</p>
+
     
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>:
+                    
+                
+            </div>
+        </div>
     
+
     
-    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="..\classes\Dom.html" class="crosslink">Dom</a>&gt; </div>
-    
-    
-    
-        <h5>Example</h5>
-        <div class="code"><pre class="prettyprint">
-$("script").get();
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <div class="code"><pre class="prettyprint">
+$(&quot;script&quot;).get();
 </pre></div>
+            </div>
+        </div>
     
 </div>
 
+                
+                    <div id="method_hasClass" class="method item">
+    <h3 class="name"><code>hasClass</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
             
-                <a name="methods_hasClass"></a>
-<div class="method item">
-    Boolean <strong class="name"><code>hasClass</code></strong>( <code>className </code> ) 
-    <br>
-    <span class="foundat">
-    
-        
-    
-        <a href="../../files/src_dom.js.html#l996"><code>src\dom.js:996</code></a>
-    </span><br>
-    <p>Check for class(es) in selected elements</p>
-    
-    <strong>Parameters:</strong>
-    <ul class="params">
-    
-        <li>
-        
-            <code>className</code> <strong>&lt;String | Array&gt;</strong>
-        
-        
-        <p>The class(es) to be checked for existence</p>
+                <li class="arg">
+                    
+                        <code>className</code>
+                    
+                </li>
             
-        </li>
+            </ul><span class="paren">)</span>
+        </div>
     
-    </ul>
+
     
+        <span class="returns-inline">
+            <span class="type">Boolean</span>
+        </span>
     
+
     
-    <br><div class="returns"><strong>Returns:</strong> &lt;Boolean&gt; </div>
+
     
+
     
+
     
-        <h5>Example</h5>
-        <div class="code"><pre class="prettyprint">
-if(!$("audio:not([controls])").hasClass("hidden")) {
-  $("audio:not([controls])").addClass("hidden");
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_dom.js.html#l996"><code>src&#x2F;dom.js:996</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 0.1.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Check for class(es) in selected elements</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">className</code>
+                        <span class="type">String | Array</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The class(es) to be checked for existence</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">Boolean</span>:
+                    
+                
+            </div>
+        </div>
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <div class="code"><pre class="prettyprint">
+if(!$(&quot;audio:not([controls])&quot;).hasClass(&quot;hidden&quot;)) {
+  $(&quot;audio:not([controls])&quot;).addClass(&quot;hidden&quot;);
 }
 </pre></div>
+            </div>
+        </div>
     
 </div>
 
-            
-                <a name="methods_hide"></a>
-<div class="method item">
-    <a href="..\classes\Dom.html" class="crosslink">Dom</a> <strong class="name"><code>hide</code></strong>( <code>  </code> ) 
-    <br>
-    <span class="foundat">
+                
+                    <div id="method_hide" class="method item">
+    <h3 class="name"><code>hide</code></h3>
+
     
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
         
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_fx.js.html#l30"><code>src&#x2F;fx.js:30</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 0.1.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Sets the display property of sel.els. to &quot;none&quot;</p>
+
+    </div>
+
     
-        <a href="../../files/src_fx.js.html#l30"><code>src\fx.js:30</code></a>
-    </span><br>
-    <p>Sets the display property of sel.els. to "none"</p>
+
     
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>:
+                    
+                
+            </div>
+        </div>
     
+
     
-    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="..\classes\Dom.html" class="crosslink">Dom</a>&gt; </div>
-    
-    
-    
-        <h5>Example</h5>
-        <div class="code"><pre class="prettyprint">
-$("p").hide();
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <div class="code"><pre class="prettyprint">
+$(&quot;p&quot;).hide();
 </pre></div>
+            </div>
+        </div>
     
 </div>
 
+                
+                    <div id="method_html" class="method item">
+    <h3 class="name"><code>html</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
             
-                <a name="methods_html"></a>
-<div class="method item">
-    String | Void <strong class="name"><code>html</code></strong>( <code>html </code> ) 
-    <br>
-    <span class="foundat">
-    
-        
-    
-        <a href="../../files/src_dom.js.html#l539"><code>src\dom.js:539</code></a>
-    </span><br>
-    <p>Set or return innerHTML of selected elements</p>
-    
-    <strong>Parameters:</strong>
-    <ul class="params">
-    
-        <li>
-        
-            <code>html</code> <strong>&lt;String&gt;</strong>
-        
-        
-        <p>HTML Code to be inserted</p>
+                <li class="arg">
+                    
+                        <code>html</code>
+                    
+                </li>
             
-        </li>
+            </ul><span class="paren">)</span>
+        </div>
     
-    </ul>
+
     
+        <span class="returns-inline">
+            <span class="type">String | Void</span>
+        </span>
     
+
     
-    <br><div class="returns"><strong>Returns:</strong> &lt;String | Void&gt; </div>
+
     
+
     
+
     
-        <h5>Example</h5>
-        <div class="code"><pre class="prettyprint">
-$("p:first-child").html("first-p")
-var html = $("span").html()
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_dom.js.html#l539"><code>src&#x2F;dom.js:539</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 0.1.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Set or return innerHTML of selected elements</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">html</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>HTML Code to be inserted</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">String | Void</span>:
+                    
+                
+            </div>
+        </div>
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <div class="code"><pre class="prettyprint">
+$(&quot;p:first-child&quot;).html(&quot;first-p&quot;)
+var html = $(&quot;span&quot;).html()
 </pre></div>
+            </div>
+        </div>
     
 </div>
 
+                
+                    <div id="method_id" class="method item">
+    <h3 class="name"><code>id</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
             
-                <a name="methods_id"></a>
-<div class="method item">
-    String | Void <strong class="name"><code>id</code></strong>( <code>id </code> ) 
-    <br>
-    <span class="foundat">
-    
-        
-    
-        <a href="../../files/src_dom.js.html#l658"><code>src\dom.js:658</code></a>
-    </span><br>
-    <p>Set or return ID of first element</p>
-    
-    <strong>Parameters:</strong>
-    <ul class="params">
-    
-        <li>
-        
-            <code>id</code> <strong>&lt;String&gt;</strong>
-        
-        
-        <p>The id to set</p>
+                <li class="arg">
+                    
+                        <code>id</code>
+                    
+                </li>
             
-        </li>
+            </ul><span class="paren">)</span>
+        </div>
     
-    </ul>
+
     
+        <span class="returns-inline">
+            <span class="type">String | Void</span>
+        </span>
     
+
     
-    <br><div class="returns"><strong>Returns:</strong> &lt;String | Void&gt; </div>
+
     
+
     
+
     
-        <h5>Example</h5>
-        <div class="code"><pre class="prettyprint">
-$("p.rect").first().id("square")
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_dom.js.html#l658"><code>src&#x2F;dom.js:658</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 0.1.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Set or return ID of first element</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">id</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The id to set</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">String | Void</span>:
+                    
+                
+            </div>
+        </div>
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <div class="code"><pre class="prettyprint">
+$(&quot;p.rect&quot;).first().id(&quot;square&quot;)
 </pre></div>
+            </div>
+        </div>
     
 </div>
 
-            
-                <a name="methods_lastEl"></a>
-<div class="method item">
-    <a href="..\classes\Dom.html" class="crosslink">Dom</a> <strong class="name"><code>lastEl</code></strong>( <code>  </code> ) 
-    <br>
-    <span class="foundat">
+                
+                    <div id="method_lastEl" class="method item">
+    <h3 class="name"><code>lastEl</code></h3>
+
     
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
         
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_dom.js.html#l363"><code>src&#x2F;dom.js:363</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 0.1.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Return last element of the selected elements</p>
+
+    </div>
+
     
-        <a href="../../files/src_dom.js.html#l363"><code>src\dom.js:363</code></a>
-    </span><br>
-    <p>Return last element of the selected elements</p>
+
     
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>:
+                    
+                    <p>The last element</p>
+
+                
+            </div>
+        </div>
     
+
     
-    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="..\classes\Dom.html" class="crosslink">Dom</a>&gt; The last element</div>
-    
-    
-    
-        <h5>Example</h5>
-        <div class="code"><pre class="prettyprint">
-$("p.hidden").lastEl().show();
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <div class="code"><pre class="prettyprint">
+$(&quot;p.hidden&quot;).lastEl().show();
 </pre></div>
+            </div>
+        </div>
     
 </div>
 
+                
+                    <div id="method_map" class="method item">
+    <h3 class="name"><code>map</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
             
-                <a name="methods_map"></a>
-<div class="method item">
-    Array <strong class="name"><code>map</code></strong>( <code>fn </code> ) 
-    <br>
-    <span class="foundat">
+                <li class="arg">
+                    
+                        <code>fn</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
+
+    
+        <span class="returns-inline">
+            <span class="type">Array</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
         
-    
-        <a href="../../files/src_dom.js.html#l209"><code>src\dom.js:209</code></a>
-    </span><br>
-    <p>Return the results of executing a function 
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_dom.js.html#l209"><code>src&#x2F;dom.js:209</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 0.1.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Return the results of executing a function 
 on all the selected elements</p>
+
+    </div>
+
     
-    <strong>Parameters:</strong>
-    <ul class="params">
-    
-        <li>
-        
-            <code>fn</code> <strong>&lt;Function&gt;</strong>
-        
-        
-        <p>The function to be called on</p>
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
             
-        </li>
+                <li class="param">
+                    
+                        <code class="param-name">fn</code>
+                        <span class="type">Function</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The function to be called on</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
     
-    </ul>
+
     
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">Array</span>:
+                    
+                    <p>The results of execution</p>
+
+                
+            </div>
+        </div>
     
+
     
-    <br><div class="returns"><strong>Returns:</strong> &lt;Array&gt; The results of execution</div>
-    
-    
-    
-        <h5>Example</h5>
-        <div class="code"><pre class="prettyprint">
-$("div.need-cf").map(function (e) {
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <div class="code"><pre class="prettyprint">
+$(&quot;div.need-cf&quot;).map(function (e) {
   doSomethingWith(e);
 });
 </pre></div>
+            </div>
+        </div>
     
 </div>
 
-            
-                <a name="methods_next"></a>
-<div class="method item">
-    <a href="..\classes\Dom.html" class="crosslink">Dom</a> <strong class="name"><code>next</code></strong>( <code>  </code> ) 
-    <br>
-    <span class="foundat">
+                
+                    <div id="method_next" class="method item">
+    <h3 class="name"><code>next</code></h3>
+
     
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
         
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_dom.js.html#l501"><code>src&#x2F;dom.js:501</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Return next sibling elements of selected elements</p>
+
+    </div>
+
     
-        <a href="../../files/src_dom.js.html#l501"><code>src\dom.js:501</code></a>
-    </span><br>
-    <p>Return next sibling elements of selected elements</p>
+
     
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>:
+                    
+                
+            </div>
+        </div>
     
+
     
-    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="..\classes\Dom.html" class="crosslink">Dom</a>&gt; </div>
-    
-    
-    
-        <h5>Example</h5>
-        <div class="code"><pre class="prettyprint">
-$("div.editor").next().class("next-to-editor")
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <div class="code"><pre class="prettyprint">
+$(&quot;div.editor&quot;).next().class(&quot;next-to-editor&quot;)
 </pre></div>
+            </div>
+        </div>
     
 </div>
 
+                
+                    <div id="method_on" class="method item">
+    <h3 class="name"><code>on</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
             
-                <a name="methods_on"></a>
-<div class="method item">
-    <a href="..\classes\Dom.html" class="crosslink">Dom</a> <strong class="name"><code>on</code></strong>( <code>evt, fn </code> ) 
-    <br>
-    <span class="foundat">
-    
-        
-    
-        <a href="../../files/src_evt.js.html#l58"><code>src\evt.js:58</code></a>
-    </span><br>
-    <p>Stop listening to an event</p>
-    
-    <strong>Parameters:</strong>
-    <ul class="params">
-    
-        <li>
-        
-            <code>evt</code> <strong>&lt;String&gt;</strong>
-        
-        
-        <p>Name of event</p>
+                <li class="arg">
+                    
+                        <code>evt</code>
+                    
+                </li>
             
-        </li>
-    
-        <li>
-        
-            <code>fn</code> <strong>&lt;Function&gt;</strong>
-        
-        
-        <p>Function to stop listening to</p>
+                <li class="arg">
+                    
+                        <code>fn</code>
+                    
+                </li>
             
-        </li>
+            </ul><span class="paren">)</span>
+        </div>
     
-    </ul>
+
     
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>
+        </span>
     
+
     
-    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="..\classes\Dom.html" class="crosslink">Dom</a>&gt; </div>
+
     
+
     
+
     
-        <h5>Example</h5>
-        <div class="code"><pre class="prettyprint">
-$("#box").off("click", fn);
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_evt.js.html#l58"><code>src&#x2F;evt.js:58</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 0.1.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Stop listening to an event</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">evt</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Name of event</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">fn</code>
+                        <span class="type">Function</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Function to stop listening to</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>:
+                    
+                
+            </div>
+        </div>
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <div class="code"><pre class="prettyprint">
+$(&quot;#box&quot;).off(&quot;click&quot;, fn);
 </pre></div>
+            </div>
+        </div>
     
 </div>
 
+                
+                    <div id="method_on" class="method item">
+    <h3 class="name"><code>on</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
             
-                <a name="methods_on"></a>
-<div class="method item">
-    <a href="..\classes\Dom.html" class="crosslink">Dom</a> <strong class="name"><code>on</code></strong>( <code>evt, fn </code> ) 
-    <br>
-    <span class="foundat">
-    
-        
-    
-        <a href="../../files/src_evt.js.html#l10"><code>src\evt.js:10</code></a>
-    </span><br>
-    <p>Listen to an event and execute a function when that event happend</p>
-    
-    <strong>Parameters:</strong>
-    <ul class="params">
-    
-        <li>
-        
-            <code>evt</code> <strong>&lt;String&gt;</strong>
-        
-        
-        <p>Name of event</p>
+                <li class="arg">
+                    
+                        <code>evt</code>
+                    
+                </li>
             
-        </li>
-    
-        <li>
-        
-            <code>fn</code> <strong>&lt;Function&gt;</strong>
-        
-        
-        <p>Function to be executed when the event is fired</p>
+                <li class="arg">
+                    
+                        <code>fn</code>
+                    
+                </li>
             
-        </li>
+            </ul><span class="paren">)</span>
+        </div>
     
-    </ul>
+
     
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>
+        </span>
     
+
     
-    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="..\classes\Dom.html" class="crosslink">Dom</a>&gt; </div>
+
     
+
     
+
     
-        <h5>Example</h5>
-        <div class="code"><pre class="prettyprint">
-$("#box").on("click", function (e) {
-  console.log("#box was clicked");
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_evt.js.html#l10"><code>src&#x2F;evt.js:10</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 0.1.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Listen to an event and execute a function when that event happend</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">evt</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Name of event</p>
+
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">fn</code>
+                        <span class="type">Function</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Function to be executed when the event is fired</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>:
+                    
+                
+            </div>
+        </div>
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <div class="code"><pre class="prettyprint">
+$(&quot;#box&quot;).on(&quot;click&quot;, function (e) {
+  console.log(&quot;#box was clicked&quot;);
 });
 </pre></div>
+            </div>
+        </div>
     
 </div>
 
+                
+                    <div id="method_one" class="method item">
+    <h3 class="name"><code>one</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
             
-                <a name="methods_one"></a>
-<div class="method item">
-    Any | Array <strong class="name"><code>one</code></strong>( <code>fn </code> ) 
-    <br>
-    <span class="foundat">
+                <li class="arg">
+                    
+                        <code>fn</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
+
+    
+        <span class="returns-inline">
+            <span class="type">Any | Array</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
         
-    
-        <a href="../../files/src_dom.js.html#l240"><code>src\dom.js:240</code></a>
-    </span><br>
-    <p>Map on selected elements and return them based 
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_dom.js.html#l240"><code>src&#x2F;dom.js:240</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 0.1.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Map on selected elements and return them based 
 on the number of selected elements</p>
+
+    </div>
+
     
-    <strong>Parameters:</strong>
-    <ul class="params">
-    
-        <li>
-        
-            <code>fn</code> <strong>&lt;Function&gt;</strong>
-        
-        
-        <p>Function to be called on</p>
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
             
-        </li>
+                <li class="param">
+                    
+                        <code class="param-name">fn</code>
+                        <span class="type">Function</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Function to be called on</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
     
-    </ul>
+
     
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">Any | Array</span>:
+                    
+                
+            </div>
+        </div>
     
-    
-    <br><div class="returns"><strong>Returns:</strong> &lt;Any | Array&gt; </div>
-    
-    
+
     
 </div>
 
-            
-                <a name="methods_parent"></a>
-<div class="method item">
-    <a href="..\classes\Dom.html" class="crosslink">Dom</a> <strong class="name"><code>parent</code></strong>( <code>  </code> ) 
-    <br>
-    <span class="foundat">
+                
+                    <div id="method_parent" class="method item">
+    <h3 class="name"><code>parent</code></h3>
+
     
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
         
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_dom.js.html#l454"><code>src&#x2F;dom.js:454</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 0.1.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Return parent of first selected element</p>
+
+    </div>
+
     
-        <a href="../../files/src_dom.js.html#l454"><code>src\dom.js:454</code></a>
-    </span><br>
-    <p>Return parent of first selected element</p>
+
     
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>:
+                    
+                
+            </div>
+        </div>
     
+
     
-    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="..\classes\Dom.html" class="crosslink">Dom</a>&gt; </div>
-    
-    
-    
-        <h5>Example</h5>
-        <div class="code"><pre class="prettyprint">
-$("div.editor").parent().hide();
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <div class="code"><pre class="prettyprint">
+$(&quot;div.editor&quot;).parent().hide();
 </pre></div>
+            </div>
+        </div>
     
 </div>
 
-            
-                <a name="methods_parents"></a>
-<div class="method item">
-    <a href="..\classes\Dom.html" class="crosslink">Dom</a> <strong class="name"><code>parents</code></strong>( <code>  </code> ) 
-    <br>
-    <span class="foundat">
+                
+                    <div id="method_parents" class="method item">
+    <h3 class="name"><code>parents</code></h3>
+
     
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
         
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_dom.js.html#l430"><code>src&#x2F;dom.js:430</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 0.1.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Returns the parents of selected elements</p>
+
+    </div>
+
     
-        <a href="../../files/src_dom.js.html#l430"><code>src\dom.js:430</code></a>
-    </span><br>
-    <p>Returns the parents of selected elements</p>
+
     
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>:
+                    
+                
+            </div>
+        </div>
     
+
     
-    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="..\classes\Dom.html" class="crosslink">Dom</a>&gt; </div>
-    
-    
-    
-        <h5>Example</h5>
-        <div class="code"><pre class="prettyprint">
-$("div#editor").parent().hide()
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <div class="code"><pre class="prettyprint">
+$(&quot;div#editor&quot;).parent().hide()
 </pre></div>
+            </div>
+        </div>
     
 </div>
 
+                
+                    <div id="method_prepend" class="method item">
+    <h3 class="name"><code>prepend</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
             
-                <a name="methods_prepend"></a>
-<div class="method item">
-    <a href="..\classes\Dom.html" class="crosslink">Dom</a> <strong class="name"><code>prepend</code></strong>( <code>html </code> ) 
-    <br>
-    <span class="foundat">
-    
-        
-    
-        <a href="../../files/src_dom.js.html#l606"><code>src\dom.js:606</code></a>
-    </span><br>
-    <p>Prepend html to selected elements</p>
-    
-    <strong>Parameters:</strong>
-    <ul class="params">
-    
-        <li>
-        
-            <code>html</code> <strong>&lt;String&gt;</strong>
-        
-        
-        <p>The HTML Code to be prepended</p>
+                <li class="arg">
+                    
+                        <code>html</code>
+                    
+                </li>
             
-        </li>
+            </ul><span class="paren">)</span>
+        </div>
     
-    </ul>
+
     
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>
+        </span>
     
+
     
-    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="..\classes\Dom.html" class="crosslink">Dom</a>&gt; </div>
+
     
+
     
+
     
-        <h5>Example</h5>
-        <div class="code"><pre class="prettyprint">
-$("p.subject").prepend("Subject: ")
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_dom.js.html#l606"><code>src&#x2F;dom.js:606</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 0.1.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Prepend html to selected elements</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">html</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The HTML Code to be prepended</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>:
+                    
+                
+            </div>
+        </div>
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <div class="code"><pre class="prettyprint">
+$(&quot;p.subject&quot;).prepend(&quot;Subject: &quot;)
 </pre></div>
+            </div>
+        </div>
     
 </div>
 
-            
-                <a name="methods_prev"></a>
-<div class="method item">
-    <a href="..\classes\Dom.html" class="crosslink">Dom</a> <strong class="name"><code>prev</code></strong>( <code>  </code> ) 
-    <br>
-    <span class="foundat">
+                
+                    <div id="method_prev" class="method item">
+    <h3 class="name"><code>prev</code></h3>
+
     
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
         
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_dom.js.html#l518"><code>src&#x2F;dom.js:518</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Return previous sibling elements of selected elements</p>
+
+    </div>
+
     
-        <a href="../../files/src_dom.js.html#l518"><code>src\dom.js:518</code></a>
-    </span><br>
-    <p>Return previous sibling elements of selected elements</p>
+
     
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>:
+                    
+                
+            </div>
+        </div>
     
+
     
-    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="..\classes\Dom.html" class="crosslink">Dom</a>&gt; </div>
-    
-    
-    
-        <h5>Example</h5>
-        <div class="code"><pre class="prettyprint">
-$("div.editor").prev().class("prev-to-editor")
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <div class="code"><pre class="prettyprint">
+$(&quot;div.editor&quot;).prev().class(&quot;prev-to-editor&quot;)
 </pre></div>
+            </div>
+        </div>
     
 </div>
 
+                
+                    <div id="method_rel" class="method item">
+    <h3 class="name"><code>rel</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
             
-                <a name="methods_rel"></a>
-<div class="method item">
-    <a href="..\classes\Dom.html" class="crosslink">Dom</a> <strong class="name"><code>rel</code></strong>( <code>relation </code> ) 
-    <br>
-    <span class="foundat">
+                <li class="arg">
+                    
+                        <code>relation</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
     
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
         
-    
-        <a href="../../files/src_dom.js.html#l475"><code>src\dom.js:475</code></a>
-    </span><br>
-    <p>Return relative of selected elements based 
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_dom.js.html#l475"><code>src&#x2F;dom.js:475</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 0.1.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Return relative of selected elements based 
 on the relation given</p>
+
+    </div>
+
     
-    <strong>Parameters:</strong>
-    <ul class="params">
-    
-        <li>
-        
-            <code>relation</code> <strong>&lt;String&gt;</strong>
-        
-        
-        <p>relation</p>
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
             
-        </li>
+                <li class="param">
+                    
+                        <code class="param-name">relation</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>relation</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
     
-    </ul>
+
     
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>:
+                    
+                
+            </div>
+        </div>
     
+
     
-    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="..\classes\Dom.html" class="crosslink">Dom</a>&gt; </div>
-    
-    
-    
-        <h5>Example</h5>
-        <div class="code"><pre class="prettyprint">
-$("div#editor").rel("nextSibling").addClass("next-to-editor")
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <div class="code"><pre class="prettyprint">
+$(&quot;div#editor&quot;).rel(&quot;nextSibling&quot;).addClass(&quot;next-to-editor&quot;)
 </pre></div>
+            </div>
+        </div>
     
 </div>
 
+                
+                    <div id="method_removeClass" class="method item">
+    <h3 class="name"><code>removeClass</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
             
-                <a name="methods_removeClass"></a>
-<div class="method item">
-    <a href="..\classes\Dom.html" class="crosslink">Dom</a> <strong class="name"><code>removeClass</code></strong>( <code>classes </code> ) 
-    <br>
-    <span class="foundat">
-    
-        
-    
-        <a href="../../files/src_dom.js.html#l977"><code>src\dom.js:977</code></a>
-    </span><br>
-    <p>Remove class(es) from selected elements</p>
-    
-    <strong>Parameters:</strong>
-    <ul class="params">
-    
-        <li>
-        
-            <code>classes</code> <strong>&lt;String | Array&gt;</strong>
-        
-        
-        <p>The class(es) to be removed</p>
+                <li class="arg">
+                    
+                        <code>classes</code>
+                    
+                </li>
             
-        </li>
+            </ul><span class="paren">)</span>
+        </div>
     
-    </ul>
+
     
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>
+        </span>
     
+
     
-    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="..\classes\Dom.html" class="crosslink">Dom</a>&gt; </div>
+
     
+
     
+
     
-        <h5>Example</h5>
-        <div class="code"><pre class="prettyprint">
-$("p.hidden").removeClass("hidden")
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_dom.js.html#l977"><code>src&#x2F;dom.js:977</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 0.1.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Remove class(es) from selected elements</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">classes</code>
+                        <span class="type">String | Array</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The class(es) to be removed</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>:
+                    
+                
+            </div>
+        </div>
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <div class="code"><pre class="prettyprint">
+$(&quot;p.hidden&quot;).removeClass(&quot;hidden&quot;)
 </pre></div>
+            </div>
+        </div>
     
 </div>
 
+                
+                    <div id="method_show" class="method item">
+    <h3 class="name"><code>show</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
             
-                <a name="methods_show"></a>
-<div class="method item">
-    <a href="..\classes\Dom.html" class="crosslink">Dom</a> <strong class="name"><code>show</code></strong>( <code>display </code> ) 
-    <br>
-    <span class="foundat">
-    
-        
-    
-        <a href="../../files/src_fx.js.html#l8"><code>src\fx.js:8</code></a>
-    </span><br>
-    <p>Sets the display property of sel.els. to "" or given value</p>
-    
-    <strong>Parameters:</strong>
-    <ul class="params">
-    
-        <li>
-        
-            <code>display</code> <strong>&lt;String&gt;</strong>
-        
-        
-        <p>Value of display prop.</p>
+                <li class="arg">
+                    
+                        <code>display</code>
+                    
+                </li>
             
-        </li>
+            </ul><span class="paren">)</span>
+        </div>
     
-    </ul>
+
     
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>
+        </span>
     
+
     
-    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="..\classes\Dom.html" class="crosslink">Dom</a>&gt; </div>
+
     
+
     
+
     
-        <h5>Example</h5>
-        <div class="code"><pre class="prettyprint">
-$("p").show();
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_fx.js.html#l8"><code>src&#x2F;fx.js:8</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 0.1.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Sets the display property of sel.els. to &quot;&quot; or given value</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">display</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>Value of display prop.</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>:
+                    
+                
+            </div>
+        </div>
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <div class="code"><pre class="prettyprint">
+$(&quot;p&quot;).show();
 </pre></div>
+            </div>
+        </div>
     
 </div>
 
-            
-                <a name="methods_toggle"></a>
-<div class="method item">
-    <a href="..\classes\Dom.html" class="crosslink">Dom</a> <strong class="name"><code>toggle</code></strong>( <code>  </code> ) 
-    <br>
-    <span class="foundat">
+                
+                    <div id="method_toggle" class="method item">
+    <h3 class="name"><code>toggle</code></h3>
+
     
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
         
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_fx.js.html#l50"><code>src&#x2F;fx.js:50</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 0.1.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Shows hidden elements, hides shown elements</p>
+
+    </div>
+
     
-        <a href="../../files/src_fx.js.html#l50"><code>src\fx.js:50</code></a>
-    </span><br>
-    <p>Shows hidden elements, hides shown elements</p>
+
     
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>:
+                    
+                
+            </div>
+        </div>
     
+
     
-    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="..\classes\Dom.html" class="crosslink">Dom</a>&gt; </div>
-    
-    
-    
-        <h5>Example</h5>
-        <div class="code"><pre class="prettyprint">
-$("p").toggle();
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <div class="code"><pre class="prettyprint">
+$(&quot;p&quot;).toggle();
 </pre></div>
+            </div>
+        </div>
     
 </div>
 
+                
+                    <div id="method_toggleClass" class="method item">
+    <h3 class="name"><code>toggleClass</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
             
-                <a name="methods_toggleClass"></a>
-<div class="method item">
-    <a href="..\classes\Dom.html" class="crosslink">Dom</a> <strong class="name"><code>toggleClass</code></strong>( <code>className </code> ) 
-    <br>
-    <span class="foundat">
-    
-        
-    
-        <a href="../../files/src_dom.js.html#l1017"><code>src\dom.js:1017</code></a>
-    </span><br>
-    <p>Add class(es) if not already, remove if added</p>
-    
-    <strong>Parameters:</strong>
-    <ul class="params">
-    
-        <li>
-        
-            <code>className</code> <strong>&lt;String | Array&gt;</strong>
-        
-        
-        <p>The classes to be toggled</p>
+                <li class="arg">
+                    
+                        <code>className</code>
+                    
+                </li>
             
-        </li>
+            </ul><span class="paren">)</span>
+        </div>
     
-    </ul>
+
     
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>
+        </span>
     
+
     
-    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="..\classes\Dom.html" class="crosslink">Dom</a>&gt; </div>
+
     
+
     
+
     
-        <h5>Example</h5>
-        <div class="code"><pre class="prettyprint">
-$(".someClass").on("click", function () {
-  $(this).toggleClass("opaque");
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_dom.js.html#l1017"><code>src&#x2F;dom.js:1017</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 0.1.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Add class(es) if not already, remove if added</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">className</code>
+                        <span class="type">String | Array</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The classes to be toggled</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>:
+                    
+                
+            </div>
+        </div>
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <div class="code"><pre class="prettyprint">
+$(&quot;.someClass&quot;).on(&quot;click&quot;, function () {
+  $(this).toggleClass(&quot;opaque&quot;);
 });
 </pre></div>
+            </div>
+        </div>
     
 </div>
 
-            
-                <a name="methods_toggleVisibility"></a>
-<div class="method item">
-    <a href="..\classes\Dom.html" class="crosslink">Dom</a> <strong class="name"><code>toggleVisibility</code></strong>( <code>  </code> ) 
-    <br>
-    <span class="foundat">
+                
+                    <div id="method_toggleVisibility" class="method item">
+    <h3 class="name"><code>toggleVisibility</code></h3>
+
     
+        <span class="paren">()</span>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
         
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_fx.js.html#l116"><code>src&#x2F;fx.js:116</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 0.1.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Appears a disappeared element, disappears an appeared element</p>
+
+    </div>
+
     
-        <a href="../../files/src_fx.js.html#l116"><code>src\fx.js:116</code></a>
-    </span><br>
-    <p>Appears a disappeared element, disappears an appeared element</p>
+
     
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type"><a href="../classes/Dom.html" class="crosslink">Dom</a></span>:
+                    
+                
+            </div>
+        </div>
     
+
     
-    <br><div class="returns"><strong>Returns:</strong> &lt;<a href="..\classes\Dom.html" class="crosslink">Dom</a>&gt; </div>
-    
-    
-    
-        <h5>Example</h5>
-        <div class="code"><pre class="prettyprint">
-$("p").toggleVisibility();
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <div class="code"><pre class="prettyprint">
+$(&quot;p&quot;).toggleVisibility();
 </pre></div>
+            </div>
+        </div>
     
 </div>
 
+                
+                    <div id="method_value" class="method item">
+    <h3 class="name"><code>value</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
             
-                <a name="methods_value"></a>
-<div class="method item">
-    String | Void <strong class="name"><code>value</code></strong>( <code>val </code> ) 
-    <br>
-    <span class="foundat">
-    
-        
-    
-        <a href="../../files/src_dom.js.html#l627"><code>src\dom.js:627</code></a>
-    </span><br>
-    <p>Get or set the value attribute of selected element</p>
-    
-    <strong>Parameters:</strong>
-    <ul class="params">
-    
-        <li>
-        
-            <code>val</code> <strong>&lt;Object&gt;</strong>
-        
-        
-        <p>The value to set to</p>
+                <li class="arg">
+                    
+                        <code>val</code>
+                    
+                </li>
             
-        </li>
+            </ul><span class="paren">)</span>
+        </div>
     
-    </ul>
+
     
+        <span class="returns-inline">
+            <span class="type">String | Void</span>
+        </span>
     
+
     
-    <br><div class="returns"><strong>Returns:</strong> &lt;String | Void&gt; </div>
+
     
+
     
+
     
-        <h5>Example</h5>
-        <div class="code"><pre class="prettyprint">
-$("#my-form").children("input#name").value();
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/src_dom.js.html#l627"><code>src&#x2F;dom.js:627</code></a>
+        
+        </p>
+
+
+        
+
+        
+            <p>Available since 0.1.0</p>
+        
+    </div>
+
+    <div class="description">
+        <p>Get or set the value attribute of selected element</p>
+
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">val</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>The value to set to</p>
+
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">String | Void</span>:
+                    
+                
+            </div>
+        </div>
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <div class="code"><pre class="prettyprint">
+$(&quot;#my-form&quot;).children(&quot;input#name&quot;).value();
 </pre></div>
+            </div>
+        </div>
     
 </div>
 
-            
+                
             </div>
         
+
         
+
         
+
         
     </div>
 </div>
-</div>
-  </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <script src="../assets/vendor/prettify/prettify-min.js"></script>
 <script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
 </body>
 </html>

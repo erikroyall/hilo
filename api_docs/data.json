@@ -7,8 +7,8 @@
         "url": "http://erikroyall.github.com/hilo"
     },
     "files": {
-        "src\\ajax.js": {
-            "name": "src\\ajax.js",
+        "src/ajax.js": {
+            "name": "src/ajax.js",
             "modules": {},
             "classes": {},
             "fors": {
@@ -16,8 +16,8 @@
             },
             "namespaces": {}
         },
-        "src\\anim.js": {
-            "name": "src\\anim.js",
+        "src/anim.js": {
+            "name": "src/anim.js",
             "modules": {},
             "classes": {
                 "Animation": 1
@@ -25,8 +25,8 @@
             "fors": {},
             "namespaces": {}
         },
-        "src\\core.js": {
-            "name": "src\\core.js",
+        "src/core.js": {
+            "name": "src/core.js",
             "modules": {
                 "Hilo": 1
             },
@@ -36,8 +36,8 @@
             "fors": {},
             "namespaces": {}
         },
-        "src\\detect.js": {
-            "name": "src\\detect.js",
+        "src/detect.js": {
+            "name": "src/detect.js",
             "modules": {},
             "classes": {
                 "feature": 1,
@@ -50,8 +50,8 @@
             },
             "namespaces": {}
         },
-        "src\\dom.js": {
-            "name": "src\\dom.js",
+        "src/dom.js": {
+            "name": "src/dom.js",
             "modules": {},
             "classes": {
                 "Dom": 1
@@ -62,8 +62,8 @@
             },
             "namespaces": {}
         },
-        "src\\end.js": {
-            "name": "src\\end.js",
+        "src/end.js": {
+            "name": "src/end.js",
             "modules": {},
             "classes": {},
             "fors": {
@@ -71,8 +71,8 @@
             },
             "namespaces": {}
         },
-        "src\\evt.js": {
-            "name": "src\\evt.js",
+        "src/evt.js": {
+            "name": "src/evt.js",
             "modules": {},
             "classes": {},
             "fors": {
@@ -80,8 +80,8 @@
             },
             "namespaces": {}
         },
-        "src\\fx.js": {
-            "name": "src\\fx.js",
+        "src/fx.js": {
+            "name": "src/fx.js",
             "modules": {},
             "classes": {},
             "fors": {
@@ -89,8 +89,17 @@
             },
             "namespaces": {}
         },
-        "src\\more.js": {
-            "name": "src\\more.js",
+        "src/misc.js": {
+            "name": "src/misc.js",
+            "modules": {},
+            "classes": {},
+            "fors": {
+                "hilo": 1
+            },
+            "namespaces": {}
+        },
+        "src/more.js": {
+            "name": "src/more.js",
             "modules": {},
             "classes": {
                 "NumberObject": 1
@@ -100,15 +109,15 @@
             },
             "namespaces": {}
         },
-        "src\\sizzle.js": {
-            "name": "src\\sizzle.js",
+        "src/sizzle.js": {
+            "name": "src/sizzle.js",
             "modules": {},
             "classes": {},
             "fors": {},
             "namespaces": {}
         },
-        "src\\test.js": {
-            "name": "src\\test.js",
+        "src/test.js": {
+            "name": "src/test.js",
             "modules": {},
             "classes": {
                 "Test": 1
@@ -143,7 +152,7 @@
             },
             "namespaces": {},
             "tag": "module",
-            "file": "src\\test.js",
+            "file": "src/test.js",
             "line": 34,
             "description": "The main Hilo Object / function",
             "static": 1,
@@ -160,7 +169,7 @@
             "plugin_for": [],
             "extension_for": [],
             "module": "Hilo",
-            "file": "src\\core.js",
+            "file": "src/core.js",
             "line": 17,
             "description": "The main Hilo Object / function",
             "static": 1
@@ -174,7 +183,7 @@
             "plugin_for": [],
             "extension_for": [],
             "module": "Hilo",
-            "file": "src\\anim.js",
+            "file": "src/anim.js",
             "line": 6,
             "description": "Animate a set of CSS properties given",
             "is_constructor": 1,
@@ -217,7 +226,7 @@
             "extension_for": [],
             "module": "Hilo",
             "namespace": "",
-            "file": "src\\detect.js",
+            "file": "src/detect.js",
             "line": 6,
             "description": "Detected Features",
             "static": 1,
@@ -233,7 +242,7 @@
             "extension_for": [],
             "module": "Hilo",
             "namespace": "",
-            "file": "src\\detect.js",
+            "file": "src/detect.js",
             "line": 90,
             "description": "Audio Types",
             "static": 1,
@@ -249,7 +258,7 @@
             "extension_for": [],
             "module": "Hilo",
             "namespace": "",
-            "file": "src\\detect.js",
+            "file": "src/detect.js",
             "line": 337,
             "description": "addEventListener",
             "static": 1,
@@ -265,7 +274,7 @@
             "extension_for": [],
             "module": "Hilo",
             "namespace": "",
-            "file": "src\\dom.js",
+            "file": "src/dom.js",
             "line": 6,
             "description": "Main DOM Class",
             "is_constructor": 1,
@@ -298,8 +307,7 @@
             "plugin_for": [],
             "extension_for": [],
             "module": "Hilo",
-            "namespace": "",
-            "file": "src\\more.js",
+            "file": "src/more.js",
             "line": 6,
             "description": "NumberObject Class",
             "is_constructor": 1,
@@ -324,7 +332,7 @@
             "plugin_for": [],
             "extension_for": [],
             "module": "Hilo",
-            "file": "src\\test.js",
+            "file": "src/test.js",
             "line": 34,
             "description": "Main Test Class",
             "is_constructor": 1,
@@ -351,7 +359,7 @@
     },
     "classitems": [
         {
-            "file": "src\\ajax.js",
+            "file": "src/ajax.js",
             "line": 6,
             "description": "Makes an AJAX request",
             "itemtype": "method",
@@ -372,7 +380,7 @@
             "class": "hilo"
         },
         {
-            "file": "src\\ajax.js",
+            "file": "src/ajax.js",
             "line": 188,
             "description": "Send an AJAX GET Request",
             "itemtype": "method",
@@ -401,7 +409,7 @@
             "class": "hilo"
         },
         {
-            "file": "src\\ajax.js",
+            "file": "src/ajax.js",
             "line": 227,
             "description": "Send an AJAX POST Request",
             "itemtype": "method",
@@ -430,7 +438,7 @@
             "class": "hilo"
         },
         {
-            "file": "src\\detect.js",
+            "file": "src/detect.js",
             "line": 34,
             "description": "addEventListener",
             "itemtype": "property",
@@ -441,7 +449,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\detect.js",
+            "file": "src/detect.js",
             "line": 48,
             "description": "Application Cache",
             "itemtype": "property",
@@ -452,7 +460,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\detect.js",
+            "file": "src/detect.js",
             "line": 62,
             "description": "Audio (tag)",
             "itemtype": "property",
@@ -463,7 +471,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\detect.js",
+            "file": "src/detect.js",
             "line": 76,
             "description": "Preload audio (hmm.. background music)",
             "itemtype": "property",
@@ -474,7 +482,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\detect.js",
+            "file": "src/detect.js",
             "line": 127,
             "description": "Canvas API",
             "itemtype": "property",
@@ -485,7 +493,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\detect.js",
+            "file": "src/detect.js",
             "line": 141,
             "description": "Canvas Text",
             "itemtype": "property",
@@ -496,7 +504,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\detect.js",
+            "file": "src/detect.js",
             "line": 155,
             "description": "HTMLElement.classList",
             "itemtype": "property",
@@ -507,7 +515,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\detect.js",
+            "file": "src/detect.js",
             "line": 169,
             "description": "<command>",
             "itemtype": "property",
@@ -518,7 +526,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\detect.js",
+            "file": "src/detect.js",
             "line": 183,
             "description": "Form Constraint Validation",
             "itemtype": "property",
@@ -529,7 +537,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\detect.js",
+            "file": "src/detect.js",
             "line": 197,
             "description": "contentEditable attribute",
             "itemtype": "property",
@@ -540,7 +548,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\detect.js",
+            "file": "src/detect.js",
             "line": 211,
             "description": "HTMLElement.datalist",
             "itemtype": "property",
@@ -551,7 +559,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\detect.js",
+            "file": "src/detect.js",
             "line": 225,
             "description": "<details>",
             "itemtype": "property",
@@ -562,7 +570,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\detect.js",
+            "file": "src/detect.js",
             "line": 239,
             "description": "Drag & Drop",
             "itemtype": "property",
@@ -573,7 +581,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\detect.js",
+            "file": "src/detect.js",
             "line": 253,
             "description": "ECMAScript 6",
             "itemtype": "property",
@@ -584,7 +592,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\detect.js",
+            "file": "src/detect.js",
             "line": 267,
             "description": "File System API",
             "itemtype": "property",
@@ -595,7 +603,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\detect.js",
+            "file": "src/detect.js",
             "line": 281,
             "description": "5th Generation Rendering Engine",
             "itemtype": "property",
@@ -606,7 +614,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\detect.js",
+            "file": "src/detect.js",
             "line": 295,
             "description": "Geolocation",
             "itemtype": "property",
@@ -617,7 +625,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\detect.js",
+            "file": "src/detect.js",
             "line": 309,
             "description": "window.getSelection() method",
             "itemtype": "property",
@@ -628,7 +636,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\detect.js",
+            "file": "src/detect.js",
             "line": 323,
             "description": "History API",
             "itemtype": "property",
@@ -639,7 +647,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\detect.js",
+            "file": "src/detect.js",
             "line": 356,
             "description": "IndexedDB (use this instead of WebSQL)",
             "itemtype": "property",
@@ -650,7 +658,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\detect.js",
+            "file": "src/detect.js",
             "line": 452,
             "description": "Local Storage",
             "itemtype": "property",
@@ -661,7 +669,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\detect.js",
+            "file": "src/detect.js",
             "line": 470,
             "description": "<meter>",
             "itemtype": "property",
@@ -672,7 +680,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\detect.js",
+            "file": "src/detect.js",
             "line": 484,
             "description": "Microdata",
             "itemtype": "property",
@@ -683,7 +691,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\detect.js",
+            "file": "src/detect.js",
             "line": 498,
             "description": "Offline (App Cache)",
             "itemtype": "property",
@@ -694,7 +702,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\detect.js",
+            "file": "src/detect.js",
             "line": 512,
             "description": "<output>",
             "itemtype": "property",
@@ -705,7 +713,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\detect.js",
+            "file": "src/detect.js",
             "line": 526,
             "description": "<progress>",
             "itemtype": "property",
@@ -716,7 +724,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\detect.js",
+            "file": "src/detect.js",
             "line": 540,
             "description": "querySelector & querySelectorAll",
             "itemtype": "property",
@@ -727,7 +735,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\detect.js",
+            "file": "src/detect.js",
             "line": 554,
             "description": "CSS3 Selectors in querySelectorAll",
             "itemtype": "property",
@@ -738,7 +746,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\detect.js",
+            "file": "src/detect.js",
             "line": 572,
             "description": "requestAnimationFrame",
             "itemtype": "property",
@@ -749,7 +757,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\detect.js",
+            "file": "src/detect.js",
             "line": 596,
             "description": "Server-sent Events",
             "itemtype": "property",
@@ -760,7 +768,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\detect.js",
+            "file": "src/detect.js",
             "line": 610,
             "description": "Session Storage",
             "itemtype": "property",
@@ -771,7 +779,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\detect.js",
+            "file": "src/detect.js",
             "line": 628,
             "description": "Modal Dialog (showModalDialog)",
             "itemtype": "property",
@@ -782,7 +790,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\detect.js",
+            "file": "src/detect.js",
             "line": 642,
             "description": "SVG (Scalable Vector Graphics)",
             "itemtype": "property",
@@ -793,7 +801,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\detect.js",
+            "file": "src/detect.js",
             "line": 656,
             "description": "SVG in text/html",
             "itemtype": "property",
@@ -804,7 +812,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\detect.js",
+            "file": "src/detect.js",
             "line": 671,
             "description": "<template>",
             "itemtype": "property",
@@ -815,7 +823,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\detect.js",
+            "file": "src/detect.js",
             "line": 685,
             "description": "<time>",
             "itemtype": "property",
@@ -826,7 +834,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\detect.js",
+            "file": "src/detect.js",
             "line": 699,
             "description": "Undo (not just Ctrl + Z)",
             "itemtype": "property",
@@ -837,7 +845,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\detect.js",
+            "file": "src/detect.js",
             "line": 713,
             "description": "Video",
             "itemtype": "property",
@@ -848,7 +856,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\detect.js",
+            "file": "src/detect.js",
             "line": 731,
             "description": "Video Captions",
             "itemtype": "property",
@@ -859,7 +867,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\detect.js",
+            "file": "src/detect.js",
             "line": 780,
             "description": "Video Poster",
             "itemtype": "property",
@@ -870,7 +878,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\detect.js",
+            "file": "src/detect.js",
             "line": 794,
             "description": "Web Audio API (NOT the <audio> tag)",
             "itemtype": "property",
@@ -881,7 +889,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\detect.js",
+            "file": "src/detect.js",
             "line": 815,
             "description": "WebSockets",
             "itemtype": "property",
@@ -892,7 +900,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\detect.js",
+            "file": "src/detect.js",
             "line": 829,
             "description": "WebSQL (a deprecated specification; use IndexedDB instead)",
             "itemtype": "property",
@@ -903,7 +911,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\detect.js",
+            "file": "src/detect.js",
             "line": 843,
             "description": "Web Workers",
             "itemtype": "property",
@@ -914,7 +922,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\detect.js",
+            "file": "src/detect.js",
             "line": 857,
             "description": "Widgets",
             "itemtype": "property",
@@ -925,7 +933,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\detect.js",
+            "file": "src/detect.js",
             "line": 871,
             "description": "Cross-document messages",
             "itemtype": "property",
@@ -936,7 +944,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\dom.js",
+            "file": "src/dom.js",
             "line": 134,
             "description": "Create an element",
             "itemtype": "method",
@@ -961,7 +969,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\dom.js",
+            "file": "src/dom.js",
             "line": 186,
             "description": "Execute a function on selected elements",
             "itemtype": "method",
@@ -985,7 +993,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\dom.js",
+            "file": "src/dom.js",
             "line": 209,
             "description": "Return the results of executing a function \non all the selected elements",
             "itemtype": "method",
@@ -1009,7 +1017,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\dom.js",
+            "file": "src/dom.js",
             "line": 240,
             "description": "Map on selected elements and return them based \non the number of selected elements",
             "itemtype": "method",
@@ -1030,7 +1038,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\dom.js",
+            "file": "src/dom.js",
             "line": 257,
             "description": "Execute a function on the first selected element",
             "itemtype": "method",
@@ -1054,7 +1062,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\dom.js",
+            "file": "src/dom.js",
             "line": 279,
             "description": "Filters the selected elements and returns the \nelements that pass the test (or return true)",
             "itemtype": "method",
@@ -1078,7 +1086,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\dom.js",
+            "file": "src/dom.js",
             "line": 321,
             "description": "Get a JavaScript Array containing selected elements",
             "itemtype": "method",
@@ -1095,7 +1103,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\dom.js",
+            "file": "src/dom.js",
             "line": 345,
             "description": "Return first element of the selected elements",
             "itemtype": "method",
@@ -1112,7 +1120,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\dom.js",
+            "file": "src/dom.js",
             "line": 363,
             "description": "Return last element of the selected elements",
             "itemtype": "method",
@@ -1129,7 +1137,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\dom.js",
+            "file": "src/dom.js",
             "line": 381,
             "description": "Return nth element of the selected elements",
             "itemtype": "method",
@@ -1146,7 +1154,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\dom.js",
+            "file": "src/dom.js",
             "line": 400,
             "description": "Return the children of selected elements",
             "itemtype": "method",
@@ -1170,7 +1178,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\dom.js",
+            "file": "src/dom.js",
             "line": 430,
             "description": "Returns the parents of selected elements",
             "itemtype": "method",
@@ -1187,7 +1195,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\dom.js",
+            "file": "src/dom.js",
             "line": 454,
             "description": "Return parent of first selected element",
             "itemtype": "method",
@@ -1204,7 +1212,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\dom.js",
+            "file": "src/dom.js",
             "line": 475,
             "description": "Return relative of selected elements based \non the relation given",
             "itemtype": "method",
@@ -1228,7 +1236,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\dom.js",
+            "file": "src/dom.js",
             "line": 501,
             "description": "Return next sibling elements of selected elements",
             "itemtype": "method",
@@ -1244,7 +1252,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\dom.js",
+            "file": "src/dom.js",
             "line": 518,
             "description": "Return previous sibling elements of selected elements",
             "itemtype": "method",
@@ -1260,7 +1268,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\dom.js",
+            "file": "src/dom.js",
             "line": 539,
             "description": "Set or return innerHTML of selected elements",
             "itemtype": "method",
@@ -1284,7 +1292,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\dom.js",
+            "file": "src/dom.js",
             "line": 567,
             "description": "Empty the selected elements",
             "itemtype": "method",
@@ -1301,7 +1309,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\dom.js",
+            "file": "src/dom.js",
             "line": 585,
             "description": "Append html to selected elements",
             "itemtype": "method",
@@ -1325,7 +1333,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\dom.js",
+            "file": "src/dom.js",
             "line": 606,
             "description": "Prepend html to selected elements",
             "itemtype": "method",
@@ -1349,7 +1357,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\dom.js",
+            "file": "src/dom.js",
             "line": 627,
             "description": "Get or set the value attribute of selected element",
             "itemtype": "method",
@@ -1372,7 +1380,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\dom.js",
+            "file": "src/dom.js",
             "line": 658,
             "description": "Set or return ID of first element",
             "itemtype": "method",
@@ -1396,7 +1404,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\dom.js",
+            "file": "src/dom.js",
             "line": 689,
             "description": "Add, remove or check class(es)",
             "itemtype": "method",
@@ -1425,7 +1433,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\dom.js",
+            "file": "src/dom.js",
             "line": 958,
             "description": "Adds class(es) to selected elements",
             "itemtype": "method",
@@ -1449,7 +1457,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\dom.js",
+            "file": "src/dom.js",
             "line": 977,
             "description": "Remove class(es) from selected elements",
             "itemtype": "method",
@@ -1473,7 +1481,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\dom.js",
+            "file": "src/dom.js",
             "line": 996,
             "description": "Check for class(es) in selected elements",
             "itemtype": "method",
@@ -1497,7 +1505,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\dom.js",
+            "file": "src/dom.js",
             "line": 1017,
             "description": "Add class(es) if not already, remove if added",
             "itemtype": "method",
@@ -1521,7 +1529,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\dom.js",
+            "file": "src/dom.js",
             "line": 1038,
             "description": "Set or return attributes",
             "itemtype": "method",
@@ -1550,7 +1558,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\dom.js",
+            "file": "src/dom.js",
             "line": 1072,
             "description": "Set or return css property",
             "itemtype": "method",
@@ -1580,7 +1588,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\dom.js",
+            "file": "src/dom.js",
             "line": 1120,
             "description": "Get computed property",
             "itemtype": "method",
@@ -1602,7 +1610,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\end.js",
+            "file": "src/end.js",
             "line": 28,
             "description": "Time taken to load (in ms)",
             "itemtype": "property",
@@ -1613,7 +1621,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\evt.js",
+            "file": "src/evt.js",
             "line": 10,
             "description": "Listen to an event and execute a function when that event happend",
             "itemtype": "method",
@@ -1642,7 +1650,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\evt.js",
+            "file": "src/evt.js",
             "line": 58,
             "description": "Stop listening to an event",
             "itemtype": "method",
@@ -1671,7 +1679,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\evt.js",
+            "file": "src/evt.js",
             "line": 94,
             "description": "Trigger or fire an event",
             "itemtype": "method",
@@ -1695,7 +1703,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\fx.js",
+            "file": "src/fx.js",
             "line": 8,
             "description": "Sets the display property of sel.els. to \"\" or given value",
             "itemtype": "method",
@@ -1719,7 +1727,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\fx.js",
+            "file": "src/fx.js",
             "line": 30,
             "description": "Sets the display property of sel.els. to \"none\"",
             "itemtype": "method",
@@ -1736,7 +1744,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\fx.js",
+            "file": "src/fx.js",
             "line": 50,
             "description": "Shows hidden elements, hides shown elements",
             "itemtype": "method",
@@ -1753,7 +1761,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\fx.js",
+            "file": "src/fx.js",
             "line": 76,
             "description": "Sets visibility to \"visible\"",
             "itemtype": "method",
@@ -1770,7 +1778,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\fx.js",
+            "file": "src/fx.js",
             "line": 96,
             "description": "Sets visiblity to \"hidden\"",
             "itemtype": "method",
@@ -1787,7 +1795,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\fx.js",
+            "file": "src/fx.js",
             "line": 116,
             "description": "Appears a disappeared element, disappears an appeared element",
             "itemtype": "method",
@@ -1804,7 +1812,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\fx.js",
+            "file": "src/fx.js",
             "line": 142,
             "description": "Animates opacity prop. from 0 to 1 or 1 to 0",
             "itemtype": "method",
@@ -1833,8 +1841,8 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\fx.js",
-            "line": 201,
+            "file": "src/fx.js",
+            "line": 203,
             "description": "Animates opacity prop. from 0 to 1",
             "itemtype": "method",
             "name": "fadeIn",
@@ -1857,8 +1865,8 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\fx.js",
-            "line": 219,
+            "file": "src/fx.js",
+            "line": 221,
             "description": "Animates opacity prop. from 1 to 0",
             "itemtype": "method",
             "name": "fadeOut",
@@ -1881,7 +1889,22 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\more.js",
+            "file": "src/misc.js",
+            "line": 2,
+            "description": "Attaches classes to <body>",
+            "itemtype": "method",
+            "name": "classify",
+            "return": {
+                "description": "List of classes applied",
+                "type": "Array"
+            },
+            "examples": "<div class=\"code\"><pre class=\"prettyprint\">\nvar classes = Hilo.classify();\n</pre></div>",
+            "since": "0.1.0",
+            "class": "hilo",
+            "module": "Hilo"
+        },
+        {
+            "file": "src/more.js",
             "line": 27,
             "description": "NumberObject.MAX_INTEGER = 9007199254740991\nThe maximum value of a JavaScript integer",
             "itemtype": "property",
@@ -1892,7 +1915,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\more.js",
+            "file": "src/more.js",
             "line": 38,
             "description": "Epsilon",
             "itemtype": "property",
@@ -1903,7 +1926,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\more.js",
+            "file": "src/more.js",
             "line": 48,
             "description": "Parses integer value from a string or number",
             "itemtype": "method",
@@ -1920,7 +1943,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\more.js",
+            "file": "src/more.js",
             "line": 64,
             "description": "Parses float point number value from a string or number",
             "itemtype": "method",
@@ -1937,7 +1960,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\more.js",
+            "file": "src/more.js",
             "line": 80,
             "description": "Returns true if a number is a finite value",
             "itemtype": "method",
@@ -1954,7 +1977,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\more.js",
+            "file": "src/more.js",
             "line": 97,
             "description": "If the number is an integer",
             "itemtype": "method",
@@ -1971,7 +1994,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\more.js",
+            "file": "src/more.js",
             "line": 117,
             "description": "Returns if the number is NaN (Not a number)",
             "itemtype": "method",
@@ -1988,7 +2011,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\more.js",
+            "file": "src/more.js",
             "line": 139,
             "description": "Converts ant value to an integer",
             "itemtype": "method",
@@ -2005,7 +2028,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\more.js",
+            "file": "src/more.js",
             "line": 169,
             "description": "Call a function n times",
             "itemtype": "method",
@@ -2034,7 +2057,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\sizzle.js",
+            "file": "src/sizzle.js",
             "line": 221,
             "description": "Create key-value caches of limited size",
             "return": {
@@ -2045,7 +2068,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\sizzle.js",
+            "file": "src/sizzle.js",
             "line": 421,
             "description": "Mark a function for special use by Sizzle",
             "params": [
@@ -2059,7 +2082,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\sizzle.js",
+            "file": "src/sizzle.js",
             "line": 430,
             "description": "Support testing using an element",
             "params": [
@@ -2073,7 +2096,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\sizzle.js",
+            "file": "src/sizzle.js",
             "line": 451,
             "description": "Adds the same handler for all of the specified attrs",
             "params": [
@@ -2092,7 +2115,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\sizzle.js",
+            "file": "src/sizzle.js",
             "line": 465,
             "description": "Checks document order of two siblings",
             "params": [
@@ -2115,7 +2138,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\sizzle.js",
+            "file": "src/sizzle.js",
             "line": 494,
             "description": "Returns a function to use in pseudos for input types",
             "params": [
@@ -2129,7 +2152,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\sizzle.js",
+            "file": "src/sizzle.js",
             "line": 505,
             "description": "Returns a function to use in pseudos for buttons",
             "params": [
@@ -2143,7 +2166,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\sizzle.js",
+            "file": "src/sizzle.js",
             "line": 516,
             "description": "Returns a function to use in pseudos for positionals",
             "params": [
@@ -2157,7 +2180,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\sizzle.js",
+            "file": "src/sizzle.js",
             "line": 538,
             "description": "Detect xml",
             "params": [
@@ -2171,7 +2194,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\sizzle.js",
+            "file": "src/sizzle.js",
             "line": 552,
             "description": "Sets document-related variables once based on the current document",
             "params": [
@@ -2190,7 +2213,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\sizzle.js",
+            "file": "src/sizzle.js",
             "line": 962,
             "description": "Document sorting and removing duplicates",
             "params": [
@@ -2204,7 +2227,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\sizzle.js",
+            "file": "src/sizzle.js",
             "line": 991,
             "description": "Utility function for retrieving the text value of an array of DOM nodes",
             "params": [
@@ -2218,7 +2241,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\test.js",
+            "file": "src/test.js",
             "line": 8,
             "description": "Public test function",
             "itemtype": "method",
@@ -2241,7 +2264,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\test.js",
+            "file": "src/test.js",
             "line": 63,
             "description": "Test if equal",
             "itemtype": "method",
@@ -2265,7 +2288,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\test.js",
+            "file": "src/test.js",
             "line": 81,
             "description": "Test if contains",
             "itemtype": "method",
@@ -2289,7 +2312,7 @@
             "module": "Hilo"
         },
         {
-            "file": "src\\test.js",
+            "file": "src/test.js",
             "line": 103,
             "description": "Inverse a test",
             "itemtype": "method",
@@ -2309,71 +2332,75 @@
     "warnings": [
         {
             "message": "unknown tag: examples",
-            "line": " src\\ajax.js:6"
+            "line": " src/ajax.js:6"
         },
         {
             "message": "unknown tag: attrs",
-            "line": " src\\dom.js:134"
+            "line": " src/dom.js:134"
+        },
+        {
+            "message": "unknown tag: examples",
+            "line": " src/misc.js:2"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src\\sizzle.js:221"
+            "line": " src/sizzle.js:221"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src\\sizzle.js:465"
+            "line": " src/sizzle.js:465"
         },
         {
             "message": "replacing incorrect tag: returns with return",
-            "line": " src\\sizzle.js:552"
+            "line": " src/sizzle.js:552"
         },
         {
             "message": "Missing item type\nCreate key-value caches of limited size",
-            "line": " src\\sizzle.js:221"
+            "line": " src/sizzle.js:221"
         },
         {
             "message": "Missing item type\nMark a function for special use by Sizzle",
-            "line": " src\\sizzle.js:421"
+            "line": " src/sizzle.js:421"
         },
         {
             "message": "Missing item type\nSupport testing using an element",
-            "line": " src\\sizzle.js:430"
+            "line": " src/sizzle.js:430"
         },
         {
             "message": "Missing item type\nAdds the same handler for all of the specified attrs",
-            "line": " src\\sizzle.js:451"
+            "line": " src/sizzle.js:451"
         },
         {
             "message": "Missing item type\nChecks document order of two siblings",
-            "line": " src\\sizzle.js:465"
+            "line": " src/sizzle.js:465"
         },
         {
             "message": "Missing item type\nReturns a function to use in pseudos for input types",
-            "line": " src\\sizzle.js:494"
+            "line": " src/sizzle.js:494"
         },
         {
             "message": "Missing item type\nReturns a function to use in pseudos for buttons",
-            "line": " src\\sizzle.js:505"
+            "line": " src/sizzle.js:505"
         },
         {
             "message": "Missing item type\nReturns a function to use in pseudos for positionals",
-            "line": " src\\sizzle.js:516"
+            "line": " src/sizzle.js:516"
         },
         {
             "message": "Missing item type\nDetect xml",
-            "line": " src\\sizzle.js:538"
+            "line": " src/sizzle.js:538"
         },
         {
             "message": "Missing item type\nSets document-related variables once based on the current document",
-            "line": " src\\sizzle.js:552"
+            "line": " src/sizzle.js:552"
         },
         {
             "message": "Missing item type\nDocument sorting and removing duplicates",
-            "line": " src\\sizzle.js:962"
+            "line": " src/sizzle.js:962"
         },
         {
             "message": "Missing item type\nUtility function for retrieving the text value of an array of DOM nodes",
-            "line": " src\\sizzle.js:991"
+            "line": " src/sizzle.js:991"
         }
     ]
 }
