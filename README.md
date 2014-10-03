@@ -19,7 +19,7 @@ Hilo is a lightning fast Open Source JavaScript Framework and library that makes
 
 ## Usage
 
-**Note: Hilo is currently under development. Even a public beta version is not yet released. The current version is _0.1.0 pre dev beta_ .**
+**Note: Hilo is currently under development. Even a public beta version has not yet released. The current version is _0.1.0-pre-dev-beta-10_ .**
 
 Add Hilo in the `<head>` or `<body>` section of your page.
 
