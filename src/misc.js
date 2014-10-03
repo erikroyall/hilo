@@ -1,4 +1,16 @@
 
+  /**
+   * Attaches classes to <body>
+   * 
+   * @for hilo
+   * @method classify
+   * @return {Array} List of classes applied
+   * @examples
+   * <div class="code"><pre class="prettyprint">
+   * var classes = Hilo.classify();
+   * </pre></div>
+   * @since 0.1.0
+   */
   hilo.classify = function () {
     var body = win.Hilo("body")
       , classes = ["js"]
