@@ -1,8 +1,8 @@
 // ========================= 
 // Hilo - 0.1.0-pre-dev-beta-10
 // ========================= 
-// 2013-09-11
-// Project started before 2 months and 11 days
+// 2014-10-03
+// Project started before 1 year, 3 months and 3 days
 // http://erikroyall.github.com/hilo/
 // Copyright (c) 2013 Erik Royall
 // Licensed under MIT (see LICENSE-MIT) 
@@ -5973,9 +5973,11 @@
         }
 
         function animate () {
-          var val = 0.3, end = 1;
+          var val = 0.3
+            , end = 1;
 
           if (parseFloat(el.style.opacity) === (inOut === "in" ? 1 : 0)) {
+            // Stop the animation if the opacity is set to the final value
             clearInterval(win.Hilo.temp.anim);
           } else {
             if (inOut === "out") {
@@ -6027,8 +6029,7 @@
       this.fade("out", timing);
     }
   });
-
-  hilo.classify = function () {
+hilo.classify = function () {
     var body = win.Hilo("body")
       , classes = ["js"]
       , _i;
