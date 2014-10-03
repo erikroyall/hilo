@@ -1,7 +1,8 @@
 Hilo
 ====
 [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/erikroyall/hilo?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-_0.1.0 pre dev beta_ - **0.1.0-pre-dev-beta-9**
+[![Build Status](https://travis-ci.org/erikroyall/hilo.svg?branch=master)](https://travis-ci.org/erikroyall/hilo)
+_0.1.0 pre dev beta_ - **0.1.0-pre-dev-beta-10**
 
 Hilo is a lightning fast Open Source JavaScript Framework and library that makes developing awesome websites easy. With Hilo, you won't have to worry about speed or backwards compatibility. All these are provided to you. It all depends on how you make use of it.
 
