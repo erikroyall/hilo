@@ -375,7 +375,7 @@
                 "description": "",
                 "type": "Hilo"
             },
-            "examples": "<div class=\"code\"><pre class=\"prettyprint\">\n$.ajax({\n  url: \"requestHandler.php\",\n  success: function (data, xhr) {\n    console.log(data, xhr);\n  },\n  method: \"GET\"\n});\n</pre></div>",
+            "examples": "<div class=\"code\"><pre class=\"prettyprint\">\nHilo.ajax({\n  url: \"requestHandler.php\",\n  success: function (data, xhr) {\n    console.log(data, xhr);\n  },\n  method: \"GET\"\n});\n</pre></div>",
             "since": "0.1.0",
             "class": "hilo"
         },

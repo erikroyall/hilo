@@ -4040,7 +4040,7 @@
    * @return {Hilo}
    * @examples
    * <div class="code"><pre class="prettyprint">
-   * $.ajax({
+   * Hilo.ajax({
    *   url: "requestHandler.php",
    *   success: function (data, xhr) {
    *     console.log(data, xhr);
@@ -4066,9 +4066,9 @@
      *   - complete
      *   - error
      *   - timeout
-     *   - success
-     *   - notfound
-     *   - forbidden
+     *   - success: 200
+     *   - notfound: 404
+     *   - forbidden: 403 
      * - username
      * - password
      * - contentType
