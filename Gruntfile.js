@@ -158,6 +158,7 @@ module.exports = function(grunt) {
 
   
   grunt.registerTask("default", ["concat:dist", "concat:legacy", "yuidoc", "uglify:hilo", "jasmine:hilo", "jshint", "watch"]);
+  grunt.registerTask("travis", ["concat:dist", "concat:legacy", "jasmine:hilo", "jshint"]);
   grunt.registerTask("release", ["concat:release", "yuidoc"]);
 
 };

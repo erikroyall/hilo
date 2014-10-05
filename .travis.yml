@@ -6,4 +6,4 @@ before_install:
 
 script:
   - npm install grunt-cli
-  - grunt --verbose
+  - grunt travis --verbose
