@@ -28,7 +28,7 @@
      *
      * config:
      *  
-     * - method: HTTP Method "GET" or "POST" (default: "POST")
+     * - method: HTTP Method (default: "POST")
      * - url: The file to send request
      * - async: Whether to perform an asynchronous request (default: true)
      * - data: The data to be sent to the server
@@ -106,39 +106,15 @@
 
     xhr.timeout = config.timeout;
 
-    if (typeof config.method === "string") {
-      if (config.method.trim().toUpperCase() === "POST") {
-        xhr.open(
-          "POST",
-          config.url,
-          config.async,
-          config.username,
-          config.password
-        );
+    xhr.open(
+      config.method.trim().toUpperCase() || "POST".
+      config.url,
+      config.async,
+      config.username,
+      config.password
+    );
 
-        xhr.send(config.data);
-      } else if (config.method.trim().toUpperCase() === "GET") {
-        xhr.open(
-          "GET",
-          config.url + (config.data ? "+" + config.data : ""),
-          config.async,
-          config.username,
-          config.password
-        );
-
-        xhr.send(typeof config.data === "string" ? config.data : null);
-      }
-    } else {
-      xhr.open(
-        config.method.trim().toUpperCase(),
-        config.url + (config.data ? "+" + config.data : ""),
-        config.async,
-        config.username,
-        config.password
-      );
-
-      xhr.send(typeof config.data === "string" ? config.data : null);
-    }
+    xhr.send(typeof config.data === "string" ? config.data : null);
   };
 
   hilo.ajax = hiloAjax;  
