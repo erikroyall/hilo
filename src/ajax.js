@@ -1,74 +1,72 @@
 
-  // --------------------------------------------------
-  // Hilo AJAX
-  // --------------------------------------------------
-
-  /**
-   * Makes an AJAX request
-   * 
-   * @for hilo
-   * @method ajax
-   * @param {object} config AJAX configuration options
-   * @return {Hilo}
-   * @examples
-   * <div class="code"><pre class="prettyprint">
-   * Hilo.ajax({
-   *   url: "requestHandler.php",
-   *   success: function (data, xhr) {
-   *     console.log(data, xhr);
-   *   },
-   *   method: "GET"
-   * });
-   * </pre></div>
-   * @since 0.1.0
-   */
+  //
+  // ** `hiloAjax` **
+  //
+  // Makes an AJAX request
+  //
+  // Param:
+  // 
+  // `config // {Object} Configuration Options`
+  //
+  // For the list of all config opts, see below.
+  //
+  // Example:
+  //
+  // ```
+  // Hilo.ajax({
+  //   url: "requestHandler.php",
+  //   success: function (data, xhr) {
+  //     console.log(data, xhr);
+  //   },
+  //   method: "GET"
+  // });
+  // ```
+  //
   hiloAjax = function (config) {
-      
-    /*
-     *
-     * config:
-     *  
-     * - method: HTTP Method (default: "POST")
-     * - url: The file to send request
-     * - async: Whether to perform an asynchronous request (default: true)
-     * - data: The data to be sent to the server
-     * - response: Response type "text" or "XML"
-     * - Event functions
-     *   - callback: fn to be exec. on readystatechange
-     *   - complete
-     *   - error
-     *   - timeout
-     *   - success: 200
-     *   - notfound: 404
-     *   - forbidden: 403 
-     * - username
-     * - password
-     * - contentType
-     *
-     */
+    
+    // ```
+    // config.
+    //  method // HTTP Method (default: "POST")
+    //  url // The file to send request
+    //  async // Whether to perform an asynchronous request (default: true)
+    //  data // Data to be sent to the server
+    //  response // HTTP Response type
+    //  callback // function to be executed on readystatechange
+    //  complete // {Function} (xhr.readyState = 4) To be triggered when request is complete
+    //  error // {Function} To be triggered when request fails with an error
+    //  timeout // {Function} To be triggered when request time's out
+    //  success // {Function} (200) To be triggered when request is successfully made (Commonly registered event)
+    //  notfound // {Function} (404) To be triggered when there has been a 4oh4 NotFound exception
+    //  forbidden // {Function} (403) To be triggered when making the request is forbidden
+    //  username // {String} Username to be provided, if authentication is required
+    //  password // {String} Password to be provided, if...
+    //  contentType // HTTP Content-Type
+    // ```
     
     var xhr;
 
+    /* Use the `XMLHttpRequest` object if available
+       or use `ActiveXObject` */
     if (win.XMLHttpRequest) {
       xhr = new win.XMLHttpRequest();
     } else if (win.ActiveXObject) {
       xhr = new win.ActiveXObject("Microsoft.XMLHTTP");
     }
 
+    /* Throw an error if a URL hasn't been provided
+       Seriously, wth can this do without a target url? */
     if (!config.url) {
       throw new TypeError("url parameter not provided to hilo.ajax");
     }
 
-    // Set defaults
-
-    // Asynchronous requests are preferred
+    /* Perform an asynchronous request by default */
     config.async = config.async || true;
 
-    // Authentication params
+    /* Authentication params */
     config.username = config.username || null;
     config.password = config.password || null;
 
-    // contentType application/x-www-form-urlencoded; charset=UTF-8 is preferred
+    /* contentType.. "application/x-www-form-urlencoded; charset=UTF-8" is preferred */
     config.contentType = config.contentType || "application/x-www-form-urlencoded; charset=UTF-8";
 
     xhr.onreadystatechange = function () {
@@ -104,45 +102,41 @@
       }
     };
 
+    /* Run this function when the request has timed out :'( */
     xhr.timeout = config.timeout;
 
+    /* Open the request (Could've been more verbose) */
     xhr.open(
-      config.method.trim().toUpperCase() || "POST".
+      config.method.trim().toUpperCase() || "POST",
       config.url,
       config.async,
       config.username,
       config.password
     );
 
+    /* If config.data is an object, JSON.encode it */
+    if (typeof config.data === "object") {
+      config.data = JSON.encode(config.data);
+    }
+
+    /* Lauch the request */
     xhr.send(typeof config.data === "string" ? config.data : null);
   };
 
   hilo.ajax = hiloAjax;  
 
-  // --------------------------------------------------
-  // AJAX Simplifiers
-  // --------------------------------------------------
+  //
+  // `ajaxRequest` _Internal_
+  // 
+  // Param:
+  // 
+  // * `method`: {String} HTTP Method
+  // * `strOpt`: {String} URL, or options object (see above)
+  // * `callback`: {Function} To be executed on `success`
+  // * `oOpt`: {Object} For providing more options
+  // 
 
   function ajaxRequest (method, strOpt, callback, oOpt) {
-
-    //
-    // How does this function work?
-    //
-    // Let's forget about the method parameter
-    //
-    // 1. If "strOpt" is a string, and "callback" is a function,
-    //    a. If "oOpt" is an object, then all props. of "oOpt" and
-    //       {method:method,url:strOpt,success:callback} is passed
-    //       as the first parameter to the hiloAjax function.
-    //    b. If "oOpt" is not an object, hiloAjax is called with
-    //       {method:method,url:strOpt,success:callback} as the 
-    //       first parameter.
-    // 2. Else, hiloAjax is called with {method:method} and strOpt
-    //    as the first parameter.
-    //
-    // Note: "method" is the HTTP Req. method ("GET", "POST" or alike)
-    // 
-    //
 
     oOpt = (typeof oOpt === "object" ? oOpt : undefined);
     
@@ -150,8 +144,6 @@
       hiloAjax(extend({
         method: method,
         url: strOpt,
-
-        // `success` and not `callback` because that's what everyone wants
         success: callback
       }, oOpt));
     } else {
@@ -161,76 +153,67 @@
     }
   }
 
-  /**
-   * Send an AJAX GET Request
-   *
-   * @for hilo
-   * @method get
-   * @param {string|object} strOpt File path or Options
-   * @param {function|object} callback The function to execute
-   * @param {object} Options
-   * @example
-   * <div class="code"><pre class="prettyprint">
-   * $.get({
-   *   url: "path/to/file.js",
-   *   success: function (data) {
-   *     console.log(data);
-   *   }
-   * }); // Longer form, the below is preferred
-   * </pre></div>
-   *
-   * <div class="code"><pre class="prettyprint">
-   * $.get("path/to/file.js", function (data) {
-   *   console.log(data);
-   * }); // This does the exact same function as above
-   * </pre></div>
-   *
-   * <div class="code"><pre class="prettyprint">
-   * $.get("path/to/file.js", function (data) {
-   *   console.log(data);
-   * }, {
-   *   error: function (err) {
-   *     console.error(err);
-   *   }
-   * }); // Shortform, with more options
-   * </pre></div>
-   * @since 0.1.0
-   */
+  //
+  // ### Make an asynchronous GET Request
+  // 
+  // Params are similar to those of the internal `ajaxRequest` method (see above)
+  // 
+  // ```
+  // $.get({
+  //   url: "path/to/file.js",
+  //   success: function (data) {
+  //     console.log(data);
+  //   }
+  // }); // Long form
+  // ```
+  //
+  // ```
+  // $.get("path/to/file.js", function (data) {
+  //   console.log(data);
+  // }); // This does the exact same function as above
+  // ```
+  //
+  // ```
+  // $.get("path/to/file.js", function (data) {
+  //   console.log(data);
+  // }, {
+  //   error: function (err) {
+  //     console.error(err);
+  //   }
+  // }); // Short form, with more options
+  // ```
+  //
+
   hilo.get = function (strOpt, callback, oOpt) {
     ajaxRequest("GET", strOpt, callback, oOpt);
   };
 
-  /**
-   * Send an AJAX POST Request
-   *
-   * @for hilo
-   * @method post
-   * @param {string|object} strOpt File path or Options
-   * @param {function|object} callback The function to execute
-   * @param {object} Options
-   * @example
-   * <div class="code"><pre class="prettyprint">
-   * $.post({
-   *   url: "path/to/file.js",
-   *   success: function (data) {
-   *     console.log(data);
-   *   },
-   *   data: JSON.encode(obj)
-   * }); // Longer form, the below is preferred
-   * </pre></div>
-   *
-   * <div class="code"><pre class="prettyprint">
-   * $.post("path/to/file.js", function (data) {
-   *   console.log(data);
-   * }, {
-   *   data: JSON.encode(obj),
-   *   error: function (err) {
-   *     console.error(err);
-   *   }
-   * }); // Shortform, with more options
-   * </pre></div>
-   * @since 0.1.0
-   */
+  //
+  // ### Make an asynchronous POST Request
+  //
+  // Params are similar to those of the internal `ajaxRequest` method (see above)
+  // 
+  // ```
+  // $.post({
+  //   url: "path/to/file.js",
+  //   success: function (data) {
+  //     console.log(data);
+  //   },
+  //   data: JSON.encode(obj)
+  // }); // Long form
+  // ```
+  //
+  // ```
+  // $.post("path/to/file.js", function (data) {
+  //   console.log(data);
+  // }, {
+  //   data: JSON.encode(obj),
+  //   error: function (err) {
+  //     console.error(err);
+  //   }
+  // }); // Short form, with more options
+  // ```
+  //
   hilo.post = function (strOpt, callback, oOpt) {
     ajaxRequest("POST", strOpt, callback, oOpt);
   };
