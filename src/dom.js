@@ -185,7 +185,7 @@
       /* Set other attributes */
       for (key in attrs) {
         if(attrs.hasOwnProperty(key)) {
-          el.attr(key, attrs["key"]);
+          el.attr(key, attrs[key]);
         }
       }
     }
