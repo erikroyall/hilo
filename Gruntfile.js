@@ -17,18 +17,17 @@ module.exports = function(grunt) {
   itsbeen += (diff.y === 0) ? "" : diff.y === 1 ? 1 + " year, " : ((diff.y < 0 ? 30 - Math.abs(diff.y) : diff.y) + " years") + " and "; 
   itsbeen += (diff.m === 0) ? "" : diff.m === 1 ? 1 + " month and " : ((diff.m < 0 ? 30 - Math.abs(diff.m) : diff.m) + " months") + " and "; 
   itsbeen += (diff.d === 0) ? "" : diff.d === 1 ? 1 + " day " : ((diff.d < 0 ? 30 - Math.abs(diff.d) : diff.d) + " days"); 
-  itsbeen += "\n";
+  itsbeen += "<br/>\n";
   
   grunt.initConfig({
     
     pkg: grunt.file.readJSON("package.json"),
-    banner: "// ========================= \n" +
-      "// <%= pkg.title %> - <%= pkg.version %>\n" +
-      "// ========================= \n" + 
-      "// <%= grunt.template.today(\"yyyy-mm-dd\") %>\n" +
+    banner: "// # <%= pkg.title %>\n\n" +
+      "// `<%= pkg.version %>`<br/>\n\n" +
+      "// Built on: <%= grunt.template.today(\"yyyy-mm-dd\") %><br/>\n" +
       itsbeen +
-      "// http://erikroyall.github.com/<%= pkg.name %>/\n" +
-      "// Copyright (c) 2013 Erik Royall\n" +
+      "// http://erikroyall.github.com/<%= pkg.name %><br/>\n" +
+      "// Copyright (c) 2013 Erik Royall<br/>\n" +
       "// Licensed under <%= pkg.license %> (see LICENSE-MIT) \n\n",
     
     concat: {
@@ -133,32 +132,19 @@ module.exports = function(grunt) {
         files: "<%= concat.dist.src %>",
         tasks: ["concat:dist", "concat:legacy", "yuidoc", "uglify:hilo", "jshint:hilo", "jshint:hiloLegacy", "jasmine:hilo"]
       }
-    },
-    yuidoc: {
-      compile: {
-        name: "<%= pkg.name %>",
-        description: "<%= pkg.description %>",
-        author: "<%= pkg.author.name %>",
-        version: "<%= pkg.version %>",
-        url: "<%= pkg.homepage %>",
-        options: {
-          paths: 'src',
-          outdir: 'api_docs'
-        }
-      }
     }
   });
 
   grunt.loadNpmTasks("grunt-contrib-concat");
   grunt.loadNpmTasks("grunt-contrib-uglify");
-  grunt.loadNpmTasks("grunt-contrib-yuidoc");
   grunt.loadNpmTasks("grunt-contrib-jshint");
   grunt.loadNpmTasks("grunt-contrib-watch");
   grunt.loadNpmTasks("grunt-contrib-jasmine");
 
   
-  grunt.registerTask("default", ["concat:dist", "concat:legacy", "yuidoc", "uglify:hilo", "jasmine:hilo", "jshint", "watch"]);
+  grunt.registerTask("default", ["concat:dist", "concat:legacy", "uglify:hilo", "jasmine:hilo", "jshint", "watch"]);
   grunt.registerTask("travis", ["concat:dist", "concat:legacy", "jasmine:hilo", "jshint"]);
-  grunt.registerTask("release", ["concat:release", "yuidoc"]);
+  grunt.registerTask("release", ["concat:release"]);
 
 };
+
