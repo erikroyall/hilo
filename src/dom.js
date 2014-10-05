@@ -1,76 +1,96 @@
-  
-  // --------------------------------------------------
-  // Hilo DOM
-  // --------------------------------------------------
 
-  /**
-   * Main DOM Class
-   * 
-   * @class Dom
-   * @constructor
-   * @param {array} els The elements to manipulate
-   * @param {string} sel The selector used
-   * @return void
-   * @example
-   * <div class="code"><pre class="prettyprint">
-   * new Dom (document.querySelectorAll(p:first-child);
-   * </pre></div>
-   * <div class="code"><pre class="prettyprint">
-   * new Dom ([document.createElement("div")]);
-   * </pre></div>
-   * <div class="code"><pre class="prettyprint">
-   * new Dom ([document.getElementByid("box")]);
-   * </pre></div>
-   * <div class="code"><pre class="prettyprint">
-   * new Dom (document.getElementsByClassName("hidden"));
-   * </pre></div>
-   * <div class="code"><pre class="prettyprint">
-   * new Dom (document.getElementsByTagName("mark"));
-   * </pre></div>
-   * <div class="code"><pre class="prettyprint">
-   * </pre></div>
-   * @since 0.1.0
-   */
+  //
+  // ### Main DOM Class
+  //
+  // ** Params: **
+  // - `els` {Array} The elements to manipulate
+  // - `sel` {String} The selector used
+  //
+  // ** Examples **
+  //
+  // ```
+  // new Dom (document.querySelectorAll(p:first-child);
+  // ```
+  // ```
+  // new Dom ([document.createElement("div")]);
+  // ```
+  // ```
+  // new Dom ([document.getElementByid("box")]);
+  // ```
+  // ```
+  // new Dom (document.getElementsByClassName("hidden"));
+  // ```
+  // ```
+  // new Dom (document.getElementsByTagName("mark"));
+  // ```
+  // 
   function Dom (els, sel) {
     var _i, _l;
 
-    // Note that `this` is an object and NOT an Array
+    /* Note that `this` is an object and NOT an Array */
 
-    // Loop thorugh the NodeList and set `this[index]` for `els[index]`
+    /* Loop thorugh the NodeList and set `this[index]` for `els[index]` */
     for (_i = 0, _l = els.length; _i < _l; _i += 1) {
       this[_i] = els[_i];
     }
 
-    // Useful for looping through as ours is an object and not an array
+    /* Useful for looping through as ours is an object and not an array */
     this.length = els.length;
 
-    // Know what selector is used to select the elements
+    /* Know what selector is used to select the elements */
     this.sel = sel;
   }
 
-  // Make it _look_ like an array
+  /* Make it _look_ like an array */
   Dom.prototype = Array.prototype;
 
   extend(Dom.prototype, {
-    // Set the constructor to Dom. It defaults to Array. We don't that
+    /* Set the constructor to Dom. It defaults to Array. We don't that */
     constructor: Dom
   });
 
   // ### Hilo CSS Helper Methods
 
-  // Return a string repacing all `-`'s with `""` and making the letter
+  // 
+  // **_unhyph_** *Internal*
+  // 
+  // Return a string repacing all `-`s with `""` and making the letter
   // next to every `-` uppercase
+  // 
+  // **Param**:
+  // - `prop`: {String} CSS Property Name
+  // 
+  // **Examples**:
+  // ```
+  // unhyph("background-color"); // backgroundColor
+  // unhyph("color"); // color
+  // ```
+  // 
   function unhyph (prop) {
     return prop.toLowerCase().replace(/-(.)/g, function (m, m1) {
       return m1.toUpperCase();
     });
   }
 
+  // 
+  // **_unitize_** *Internal*
+  // 
   // Add necessary suffix to the number for certain CSS properties
   // _This will later be used by .css() and a number of other methods_
+  // 
+  // **Param**:
+  // - `unit`: {String|Number} Valid CSS Unit (`unitize()` Returns the same thing if {String})
+  // - `prop`: {String} CSS Property Name
+  // 
+  // **Examples**:
+  // ```
+  // unitize("background-color"); // backgroundColor
+  // unhyph("color"); // color
+  // ```
+  // 
   function unitize (unit, prop) {
 
-    // All the CSS props. that are to be defaulted to px values
+    /* All the CSS props. that are to be defaulted to px values */
     var pixel = {
       "width": true,
       "maxWidth": true,
@@ -115,13 +135,13 @@
       "right": true
     };
 
-    // String values are not be unitized no matter what
+    /* String values are not be unitized no matter what */
     if (typeof unit === "string") {
       return unit;
     }
 
-    // If the property is present in the previously mentioned
-    // object, the unit is suffixed with "px"
+    /* If the property is present in the previously mentioned
+       object, the unit is suffixed with "px" */
     if (pixel[prop] === true) {
       return unit + "px";
     }
@@ -129,42 +149,40 @@
     return unit;
   }
 
+  // 
+  // **_hilo.create_**
+  // 
   // Create an element
-
-  /**
-   * Create an element
-   *
-   * @for hilo
-   * @method create
-   * @param {string} tagName Tag Name or Node name of element
-   * @attrs {object} attrs An object containing the attributes and values
-   * @return {HTMLElement} The created element
-   * @example
-   * <div class="code"><pre class="prettyprint">
-   * $.create("div", {
-   *   class: "post",
-   *   "data-id": 2
-   * });
-   * </pre></div>
-   * @since 0.1.0
-   */
+  // 
+  // **Params**:
+  // - `tagName`: {String} Tag Name or Node name of element
+  // - `attrs`: {Object} An object containing the attributes and values
+  // 
+  // **Example**:
+  // ```
+  // $.create("div", {
+  //   class: "post",
+  //   "data-id": 2
+  // });
+  // ```
+  // 
   hilo.create = function (tagName, attrs) {
     var el = new Dom([document.createElement(tagName)]), key;
 
     if (attrs) {
-      // Add Class if the `className` is sset
+      /* Add Class if the `className` is set */
       if (attrs.className) {
         el.addClass(attrs.className);
         delete attrs.className;
       }
 
-      // Set html to if `text` content is given
+      /* Set html to if `text` content is given */
       if (attrs.text) {
         el.html(attrs.text);
         delete attrs.text;
       }
 
-      // Set other attributes
+      /* Set other attributes */
       for (key in attrs) {
         if(attrs.hasOwnProperty(key)) {
           el.attr(key, attrs["key"]);
@@ -177,51 +195,44 @@
 
   extend(Dom.prototype, {
 
-    // --------------------------------------------------
-    // Helper Functions
-    // --------------------------------------------------
-    
-    // Execute a function on selected elements
+    // ## Helper Functions
 
-    /**
-     * Execute a function on selected elements
-     * 
-     * @for Dom
-     * @method each
-     * @param {function} fn The function to be called on
-     * @return {Dom}
-     * @example
-     * <div class="code"><pre class="prettyprint">
-     * $("p").each(function (el) {
-     *   doSomethingWith(e);
-     * });
-     * </pre></div>
-     * @since 0.1.0
-     */
+    // 
+    // **_Hilo.Dom.prototype.each_**
+    // 
+    // Execute a function on selected elements
+    // 
+    // **Param**:
+    // - `fn`: {Function} The function to be called
+    // 
+    // **Example**:
+    // ```
+    // $("p").each(function (el) {
+    //   doSomethingWith(e);
+    // });
+    // ```
+    // 
     each: function (fn) {
       this.map(fn);
-      return this; // return the current Dom instance
+      return this; /* return the current Dom instance */
     },
 
-    // Return the results of executing a function 
+    // 
+    // **_Hilo.Dom.prototype.map_**
+    // 
+    // Return the results of executing a function
     // on all the selected elements
-
-    /**
-     * Return the results of executing a function 
-     * on all the selected elements
-     * 
-     * @for Dom
-     * @method map
-     * @param {function} fn The function to be called on
-     * @return {array} The results of execution
-     * @example
-     * <div class="code"><pre class="prettyprint">
-     * $("div.need-cf").map(function (e) {
-     *   doSomethingWith(e);
-     * });
-     * </pre></div>
-     * @since 0.1.0
-     */
+    // 
+    // **Param**:
+    // - `fn`: {Function} The function to be called
+    // 
+    // **Example**:
+    // ```
+    // $("div.need-cf").map(function (e) {
+    //   doSomethingWith(e);
+    // });
+    // ```
+    // 
     map: function (fn) {
       var results = []
         , _i
@@ -234,64 +245,55 @@
       return results;
     },
 
-    // Map on selected elements and return them based 
+    // 
+    // **_Hilo.Dom.prototype.one_**
+    // 
+    // Map on selected elements and return them based
     // on the number of selected elements
-
-    /**
-     * Map on selected elements and return them based 
-     * on the number of selected elements
-     * 
-     * @for Dom
-     * @method one
-     * @param {function} fn Function to be called on
-     * @return {Any|array}
-     * @since 0.1.0
-     */
+    // 
+    // **Param**:
+    // - `fn`: {Function} The function to be called
+    // 
     one: function (fn) {
       var m = this.map(fn);
       return m.length > 1 ? m : m[0];
     },
 
+    // 
+    // **_Hilo.Dom.prototype.first_**
+    // 
     // Execute a function on the first selected element
-
-    /**
-     * Execute a function on the first selected element
-     * 
-     * @for Dom
-     * @method first
-     * @param {function} fn The function to be called
-     * @return {Dom}
-     * @example
-     * <div class="code"><pre class="prettyprint">
-     * $("div").first(function (e) {
-     *   console.log(e + " is the first div");
-     * });
-     * </pre></div>
-     * @since 0.1.0
-     */
+    // 
+    // **Param**:
+    // - `fn`: {Function} The function to be called
+    // 
+    // **Example**:
+    // ```
+    // $("div").first(function (e) {
+    //   console.log(e + " is the first div");
+    // });
+    // ```
+    // 
     first: function (fn) {
       return fn(this[0]);
     },
 
-    // Filters the selected elements and returns the 
+    // 
+    // **_Hilo.Dom.prototype.filter_**
+    // 
+    // Filter the selected element and return the
     // elements that pass the test (or return true)
-
-    /**
-     * Filters the selected elements and returns the 
-     * elements that pass the test (or return true)
-     * 
-     * @for Dom
-     * @method filter
-     * @param {function} fn The filter function
-     * @return {Dom}
-     * @example
-     * <div class="code"><pre class="prettyprint">
-     * $("div").filter(function (el) {
-     *   return el.className.split("hidden").length > 1;
-     * });
-     * </pre></div>
-     * @since 0.1.0
-     */
+    // 
+    // **Param**:
+    // - `fn`: {Function} The function to be called
+    // 
+    // **Example**:
+    // ```
+    // $("div").filter(function (el) {
+    //   return el.className.split("hidden").length > 1;
+    // });
+    // ```
+    // 
     filter: function (fn) {
       var len = this.length >>> 0
         , _i
@@ -312,24 +314,18 @@
       return new Dom(res);
     },
 
-    // --------------------------------------------------
-    // Element Selections, etc.
-    // --------------------------------------------------
+    // ## Element Selections, etc.
 
+    // 
+    // **_Hilo.Dom.prototype.get_**
+    // 
     // Get a JavaScript Array containing selected elements
-
-    /**
-     * Get a JavaScript Array containing selected elements
-     * 
-     * @for Dom
-     * @method get
-     * @return {Dom}
-     * @example
-     * <div class="code"><pre class="prettyprint">
-     * $("script").get();
-     * </pre></div>
-     * @since 0.1.0
-     */
+    // 
+    // **Example**:
+    // ```
+    // $("script").get();
+    // ```
+    // 
     get: function () {
       var els = [];
 
@@ -340,77 +336,65 @@
       return els;
     },
 
+    // 
+    // **_Hilo.Dom.prototype.firstEl_**
+    // 
     // Return first element of the selected elements
-
-    /**
-     * Return first element of the selected elements
-     *
-     * @for Dom
-     * @method firstEl
-     * @return {Dom} The first element
-     * @example
-     * <div class="code"><pre class="prettyprint">
-     * $("p.hidden").firstEl().show();
-     * </pre></div>
-     * @since 0.1.0
-     */
+    // 
+    // **Example**:
+    // ```
+    // $("p.hidden").firstEl().show();
+    // ```
+    // 
     firstEl: function () {
       return new Dom([this[0]]);
     },
 
+    // 
+    // **_Hilo.Dom.prototype.lastEl_**
+    // 
     // Return last element of the selected elements
-
-    /**
-     * Return last element of the selected elements
-     *
-     * @for Dom
-     * @method lastEl
-     * @return {Dom} The last element
-     * @example
-     * <div class="code"><pre class="prettyprint">
-     * $("p.hidden").lastEl().show();
-     * </pre></div>
-     * @since 0.1.0
-     */
+    // 
+    // **Example**:
+    // ```
+    // $("p.hidden").lastEl().show();
+    // ```
+    // 
     lastEl: function () {
       return new Dom([this[this.length - 1]]);
     },
 
+    // 
+    // **_Hilo.Dom.prototype.el_**
+    // 
     // Return nth element of the selected elements
-
-    /**
-     * Return nth element of the selected elements
-     *
-     * @for Dom
-     * @method el
-     * @return {number} place The index of element (Index Starts from 1)
-     * @return {Dom} The nth element
-     * @example
-     * <div class="code"><pre class="prettyprint">
-     * $("p.hidden").el(3).show();
-     * </pre></div>
-     * @since 0.1.0
-     */
+    // 
+    // **Param**:
+    // - `place`: {Number} The index of the element (Starts from 1)
+    // 
+    // **Example**:
+    // ```
+    // $("p.hidden").el(3).show();
+    // ```
+    // 
     el: function (place) {
       return new Dom([this[place - 1]]);
     },
 
+    // 
+    // **_Hilo.Dom.prototype.children_**
+    // 
     // Return the children of selected elements
-
-    /**
-     * Return the children of selected elements
-     *
-     * @for Dom
-     * @method children
-     * @param {string} sel Optional filtering selector
-     * @return {Dom}
-     * @example
-     * <div class="code"><pre class="prettyprint">
-     * var childrenOfContainer = $("div.container").children();
-     * $("div.container").children(":not(.hidden)").addClass("me");
-     * </pre></div>
-     * @since 0.1.0
-     */
+    // 
+    // **Param**:
+    // - `sel`: {String} Optional filtering selector
+    // 
+    // **Example**:
+    // ```
+    // var childrenOfContainer = $("div.container").children();
+    // $("div.container").children(":not(.hidden)").addClass("me");
+    // ```
+    // 
     children: function (sel) {
       var children = [], _i, _l;
 
@@ -425,20 +409,16 @@
       return children;
     },
 
-    // Returns the parents of selected elements
-
-    /**
-     * Returns the parents of selected elements
-     *
-     * @for Dom
-     * @method parents
-     * @return {Dom}
-     * @example
-     * <div class="code"><pre class="prettyprint">
-     * $("div#editor").parent().hide()
-     * </pre></div>
-     * @since 0.1.0
-     */
+    // 
+    // **_Hilo.Dom.prototype.parents_**
+    // 
+    // Return the parents of selected elements
+    // 
+    // **Example**:
+    // ```
+    // $("div#editor").parent().hide()
+    // ```
+    // 
     parents: function () {
       var pars = [];
 
@@ -449,43 +429,36 @@
       return new Dom(pars);
     },
 
-    // Return parent of first selected element
-
-    /**
-     * Return parent of first selected element
-     *
-     * @for Dom
-     * @method parent
-     * @return {Dom}
-     * @example
-     * <div class="code"><pre class="prettyprint">
-     * $("div.editor").parent().hide();
-     * </pre></div>
-     * @since 0.1.0
-     */
+    // 
+    // **_Hilo.Dom.prototype.parent_**
+    // 
+    // Return the parent of the first selected element
+    // 
+    // **Example**:
+    // ```
+    // $("div#editor").parent().hide()
+    // ```
+    // 
     parent: function () {
       return this.first(function (el) {
         return new Dom([el.parentElement]);
       });
     },
 
-    // Return relative of selected elements based 
-    // on the relation given
-
-    /**
-     * Return relative of selected elements based 
-     * on the relation given
-     * 
-     * @for Dom
-     * @method rel
-     * @param {string} relation relation
-     * @return {Dom}
-     * @example
-     * <div class="code"><pre class="prettyprint">
-     * $("div#editor").rel("nextSibling").addClass("next-to-editor")
-     * </pre></div>
-     * @since 0.1.0
-     */
+    // 
+    // **_Hilo.Dom.prototype.rel_**
+    // 
+    // Return relatives of selected elements based
+    // on the given relation
+    // 
+    // **Param**:
+    // - `sul`: {String} Relation
+    // 
+    // **Example**:
+    // ```
+    // $("div#editor").rel("nextSibling").addClass("next-to-editor");
+    // ```
+    // 
     rel: function (sul) {
       var els = [];
 
@@ -496,60 +469,48 @@
       return els;
     },
 
+    // 
+    // **_Hilo.Dom.prototype.next_**
+    // 
     // Return next sibling elements of selected elements
-
-    /**
-     * Return next sibling elements of selected elements
-     *
-     * @for Dom
-     * @method next
-     * @return {Dom}
-     * @example
-     * <div class="code"><pre class="prettyprint">
-     * $("div.editor").next().class("next-to-editor")
-     * </pre></div>
-     */
+    // 
+    // **Example**:
+    // ```
+    // $("div#editor").next().addClass("next-to-editor");
+    // ```
+    // 
     next: function () {
       return this.rel("nextElementSibling");
     },
-
-    // Return previous sibling elements of selected elements
-
-    /**
-     * Return previous sibling elements of selected elements
-     *
-     * @for Dom
-     * @method prev
-     * @return {Dom}
-     * @example
-     * <div class="code"><pre class="prettyprint">
-     * $("div.editor").prev().class("prev-to-editor")
-     * </pre></div>
-     */
+    
+    // 
+    // **_Hilo.Dom.prototype.prev_**
+    // 
+    // Return next sibling elements of selected elements
+    // 
+    // **Example**:
+    // ```
+    // $("div#editor").prev().addClass("prev-to-editor");
+    // ```
+    // 
     prev: function () {
       return this.rel("previousElementSibling");
     },
 
-    // --------------------------------------------------
-    // DOM HTML
-    // --------------------------------------------------
-
+    // 
+    // **_Hilo.Dom.prototype.html_**
+    // 
     // Set or return innerHTML of selected elements
-
-    /**
-     * Set or return innerHTML of selected elements
-     * 
-     * @for Dom
-     * @method html
-     * @param {string} html HTML Code to be inserted
-     * @return {string|void}
-     * @example
-     * <div class="code"><pre class="prettyprint">
-     * $("p:first-child").html("first-p")
-     * var html = $("span").html()
-     * </pre></div>
-     * @since 0.1.0
-     */
+    // 
+    // **Param**:
+    // - `html`: {String} HTML Code to be inserted
+    // 
+    // **Example**:
+    // ```
+    // $("p:first-child").html("first-p");
+    // var html = $("span").html();
+    // ```
+    // 
     html: function (htmlCode) {
       if (typeof htmlCode !== "undefined") {
         return this.each(function(el) {
@@ -562,81 +523,71 @@
       }
     },
 
+    // 
+    // **_Hilo.Dom.prototype.empty_**
+    // 
     // Empty the selected elements
-
-    /**
-     * Empty the selected elements
-     * 
-     * @for Dom
-     * @method empty
-     * @return {Dom}
-     * @example
-     * <div class="code"><pre class="prettyprint">
-     * $("#todo-list").empty()
-     * </pre></div>
-     * @since 0.1.0
-     */
+    //
+    // **Example**:
+    // ```
+    // $("#todo-list").empty();
+    // ```
+    // 
     empty: function () {
       return this.html("");
     },
 
+    // 
+    // **_Hilo.Dom.prototype.append_**
+    // 
     // Append html to selected elements
-
-    /**
-     * Append html to selected elements
-     * 
-     * @for Dom
-     * @method append
-     * @param {string} html The HTML Code to be appended
-     * @return {Dom}
-     * @example
-     * <div class="code"><pre class="prettyprint">
-     * $("p:first-child").append(" - From the first p child")
-     * </pre></div>
-     * @since 0.1.0
-     */
+    // 
+    // **Param**:
+    // - `html`: {String} HTML Code to be appeneded
+    // 
+    // **Example**:
+    // ```
+    // $("p:first-child").append(" - From the first p child")
+    // ```
+    // 
     append: function (html) {
       return this.each(function (el) {
         el.innerHTML += html;
       });
     },
 
+    // 
+    // **_Hilo.Dom.prototype.prepend_**
+    // 
     // Prepend html to selected elements
-
-    /**
-     * Prepend html to selected elements
-     * 
-     * @for Dom
-     * @method prepend
-     * @param {string} html The HTML Code to be prepended
-     * @return {Dom}
-     * @example
-     * <div class="code"><pre class="prettyprint">
-     * $("p.subject").prepend("Subject: ")
-     * </pre></div>
-     * @since 0.1.0
-     */
+    // 
+    // **Param**:
+    // - `html`: {String} HTML Code to be appeneded
+    // 
+    // **Example**:
+    // ```
+    // $("p:first-child").append(" - From the first p child")
+    // ```
+    // 
     prepend: function (html) {
       return this.each(function (el) {
         el.innerHTML = html + el.innerHTML;
       });
     },
 
-    // Get or set the value attribute of selected element
-
-    /**
-     * Get or set the value attribute of selected element
-     * 
-     * @for Dom
-     * @method value
-     * @param val The value to set to
-     * @return {string|void}
-     * @example
-     * <div class="code"><pre class="prettyprint">
-     * $("#my-form").children("input#name").value();
-     * </pre></div>
-     * @since 0.1.0
-     */
+    // 
+    // **_Hilo.Dom.prototype.value_**
+    // 
+    // Get or set the value attribute of the selected element
+    // 
+    // **Param**:
+    // - `val`: {String} Value to set to
+    // 
+    // **Example**:
+    // ```
+    // $("#my-form").children("input#name").value();
+    // ```
+    // 
     value: function (val) {
       if (val) {
         return this.each(function (el) {
@@ -649,25 +600,19 @@
       }
     },
 
-    // --------------------------------------------------
-    // Classes and IDs
-    // --------------------------------------------------
-
-    // Set or return ID of first element
-
-    /**
-     * Set or return ID of first element
-     *  
-     * @for Dom
-     * @method id
-     * @param {string} id The id to set
-     * @return {string|void}
-     * @example
-     * <div class="code"><pre class="prettyprint">
-     * $("p.rect").first().id("square")
-     * </pre></div>
-     * @since 0.1.0
-     */
+    // 
+    // **_Hilo.Dom.prototype.id_**
+    // 
+    // Get or set the ID of first element
+    // 
+    // **Param**:
+    // - `id`: {String} ID to set
+    // 
+    // **Example**:
+    // ```
+    // $("p.rect").first().id("square");
+    // ```
+    // 
     id: function (id) {
       if (id) {
 
@@ -684,22 +629,28 @@
       }
     },
 
-    // Add, remove or check class(es)
+    // ### Classes and IDs
 
-    /**
-     * Add, remove or check class(es)
-     * 
-     * @for Dom
-     * @method class
-     * @param {string} action Specifies the action to take
-     * @param {string|array} className Class(es) to be checked or manipulated
-     * @return {boolean|void}
-     * @example
-     * <div class="code"><pre class="prettyprint">
-     * $("div#editor").class("add", "no-js")
-     * </pre></div>
-     * @since 0.1.0
-     */
+    // 
+    // **_Hilo.Dom.prototype.class_**
+    // 
+    // Add, remove, or check class(es)
+    // 
+    // **Param**:
+    // - `action`: {String} Action to take ("add", "remove", "has")
+    // - `className`: {String|Array} Class(es) to add or remove
+    // 
+    // **Examples**:
+    // ```
+    // $("div#editor").class("add", "no-js");
+    // ```
+    // ```
+    // $("div#editor").class("remove", "no-js");
+    // ```
+    // ```
+    // var isHidden = $("p").class("has", "hidden");
+    // ```
+    //
     "class": feature.classList === true ? function (action, className) {
       return this.each(function (el) {
         var _i, parts, contains, res = [];
@@ -953,82 +904,73 @@
       });
     },
 
+    // 
+    // **_Hilo.Dom.prototype.addClass_**
+    // 
     // Adds class(es) to selected elements
-
-    /**
-     * Adds class(es) to selected elements
-     * 
-     * @for Dom
-     * @method addClass
-     * @param {string|array} className The class(es) to add
-     * @return {Dom}
-     * @example
-     * <div class="code"><pre class="prettyprint">
-     * $("p").addClass("paragraph")
-     * </pre></div>
-     * @since 0.1.0
-     */
+    // 
+    // **Param**:
+    // - `className`: {String|Array} The class(es) to add
+    // 
+    // **Example**:
+    // ```
+    // $("p").addClass("paragraph");
+    // ```
+    // 
     addClass: function (className) {
       return this["class"]("add", className);
     },
 
+    // 
+    // **_Hilo.Dom.prototype.removeClass_**
+    // 
     // Remove class(es) from selected elements
-
-    /**
-     * Remove class(es) from selected elements
-     * 
-     * @for Dom
-     * @method removeClass
-     * @param classes {string|array} The class(es) to be removed
-     * @return {Dom}
-     * @example
-     * <div class="code"><pre class="prettyprint">
-     * $("p.hidden").removeClass("hidden")
-     * </pre></div>
-     * @since 0.1.0
-     */
+    // 
+    // **Param**:
+    // - `className`: {String|Array} The class(es) to remove
+    // 
+    // **Example**:
+    // ```
+    // $("p.hidden").removeClass("hidden");
+    // ```
+    // 
     removeClass: function (className) {
       return this["class"]("remove", className);
     },
 
-    // Check for class(es) in selected elements
-
-    /**
-     * Check for class(es) in selected elements
-     * 
-     * @for Dom
-     * @method hasClass
-     * @param {string|array} className The class(es) to be checked for existence
-     * @return {Boolean}
-     * @example
-     * <div class="code"><pre class="prettyprint">
-     * if(!$("audio:not([controls])").hasClass("hidden")) {
-     *   $("audio:not([controls])").addClass("hidden");
-     * }
-     * </pre></div>
-     * @since 0.1.0
-     */
+    // 
+    // **_Hilo.Dom.prototype.hasClass_**
+    // 
+    // Check if selected elements have the specified class(es)
+    // 
+    // **Param**:
+    // - `className`: {String|Array} The class(es) to check if exists
+    // 
+    // **Example**:
+    // ```
+    // $("pre").hasClass("prettyprint");
+    // ```
+    // 
     hasClass: function (className) {
       return this["class"]("has", className);
     },
 
-    // Add class(es) if not already, remove if added
-
-    /**
-     * Add class(es) if not already, remove if added
-     * 
-     * @for Dom
-     * @method toggleClass
-     * @param {string|array} className The classes to be toggled
-     * @return {Dom}
-     * @example
-     * <div class="code"><pre class="prettyprint">
-     * $(".someClass").on("click", function () {
-     *   $(this).toggleClass("opaque");
-     * });
-     * </pre></div>
-     * @since 0.1.0
-     */
+    // 
+    // **_Hilo.Dom.prototype.toggleClass_**
+    // 
+    // Add class(es) if it/they do(es) not exist(s),
+    // remove if exist(s)
+    // 
+    // **Param**:
+    // - `className`: {String|Array} The class(es) to toggle
+    // 
+    // **Example**:
+    // ```
+    // $(".someClass").on("click", function () {
+    //   $(this).toggleClass("opaque");
+    // });
+    // ```
+    // 
     toggleClass: function (className) {
       return this["class"]("toggle", className);
     },
@@ -1044,13 +986,30 @@
      * @param {string} val Value of the attribute
      * @return {string|void}
      * @example
-     * <div class="code"><pre class="prettyprint">
-     * $("p.hidden").attr("hidden"); 
-     * $("div.edit").attr("contentEditable", "true"); 
-     * $("body").attr("hilo", "0.1.0"); 
-     * </pre></div>
-     * @since 0.1.0
+     * ```
+    
+     * ```
      */
+    // 
+    // **_Hilo.Dom.prototype.attr_**
+    // 
+    // Set or return attribute values
+    // 
+    // **Param**:
+    // - `name`: {String} Name of attribute
+    // - `val`: {String} Value of attribute
+    // 
+    // **Example**:
+    // ```
+    // $("p.hidden").attr("hidden");
+    // ```
+    // ```
+    // $("div.edit").attr("contentEditable", "true");
+    // ```
+    // ```
+    // $("body").attr("hilo", "0.1.0"); 
+    // ```
+    // 
     attr: function (name, val) {
       if(val) {
         return this.each(function(el) {
@@ -1063,9 +1022,7 @@
       }
     },
 
-    // --------------------------------------------------
-    // Hilo CSS
-    // --------------------------------------------------
+    // ### Hilo CSS
 
     // Set or return css property
 
@@ -1079,15 +1036,14 @@
      * @return {string|void}
      * @beta
      * @example
-     * <div class="code"><pre class="prettyprint">
+     * ```
      * $("p").css("margin-left", "10em");
      * 
      * $("p.round").css({
      *   "border-radius": 10,
      *   width: 100
      * });
-     * </pre></div>
-     * @since 0.1.0
+     * ```
      */
     css: function (prop, value) {
       var unhyphed;
@@ -1125,7 +1081,6 @@
      * @param {string} prop Name of property
      * @return {number|boolean|string}
      * @beta
-     * @since 0.1.0
      */
     computed: function (prop) {
       return this.first(function (el) {
