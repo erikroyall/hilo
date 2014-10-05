@@ -28,7 +28,6 @@
 
     /* Used to measure performace (Hilo.perf) */
     , start
-    , elapsed
 
     /* References to browser objects */
     , win = window        // Reference to window
