@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>polyfill.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page">
+            
+              
+              <a class="source" href="ajax.html">
+                ajax.js
+              </a>
+            
+              
+              <a class="source" href="anim.html">
+                anim.js
+              </a>
+            
+              
+              <a class="source" href="core.html">
+                core.js
+              </a>
+            
+              
+              <a class="source" href="detect.html">
+                detect.js
+              </a>
+            
+              
+              <a class="source" href="dom.html">
+                dom.js
+              </a>
+            
+              
+              <a class="source" href="end.html">
+                end.js
+              </a>
+            
+              
+              <a class="source" href="evt.html">
+                evt.js
+              </a>
+            
+              
+              <a class="source" href="fx.html">
+                fx.js
+              </a>
+            
+              
+              <a class="source" href="legacy.html">
+                legacy.js
+              </a>
+            
+              
+              <a class="source" href="misc.html">
+                misc.js
+              </a>
+            
+              
+              <a class="source" href="more.html">
+                more.js
+              </a>
+            
+              
+              <a class="source" href="polyfill.html">
+                polyfill.js
+              </a>
+            
+              
+              <a class="source" href="sizzle.html">
+                sizzle.js
+              </a>
+            
+              
+              <a class="source" href="start.html">
+                start.js
+              </a>
+            
+              
+              <a class="source" href="test.html">
+                test.js
+              </a>
+            
+              
+              <a class="source" href="util.html">
+                util.js
+              </a>
+            
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>polyfill.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <hr>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <h2 id="json">JSON</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+  <span class="hljs-comment">/*!
+   * JSON Parser (Public Domain)
+   * by Douglas Crockford
+   * http://javascript.crockford.com/
+   */</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Create a json object only if one does not already exist. We create the
+methods in a closure to avoid creating global variables.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+  <span class="hljs-keyword">var</span> json = {};
+
+  (<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> <span class="hljs-built_in">window</span>.JSON === <span class="hljs-string">"object"</span> &amp;&amp; <span class="hljs-keyword">typeof</span> <span class="hljs-built_in">window</span>.JSON.parse === <span class="hljs-string">"function"</span>) {
+      json = <span class="hljs-built_in">window</span>.JSON;
+      
+      <span class="hljs-keyword">return</span>;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f</span> <span class="hljs-params">(n)</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>Format integers to have at least two digits.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">return</span> n &lt; <span class="hljs-number">10</span> ? <span class="hljs-string">"0"</span> + n : n;
+    }
+
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> <span class="hljs-built_in">Date</span>.prototype.tojson !== <span class="hljs-string">"function"</span>) {
+
+      <span class="hljs-built_in">Date</span>.prototype.tojson = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">isFinite</span>(<span class="hljs-keyword">this</span>.valueOf()) ?
+            <span class="hljs-keyword">this</span>.getUTCFullYear()     + <span class="hljs-string">"-"</span> +
+            f(<span class="hljs-keyword">this</span>.getUTCMonth() + <span class="hljs-number">1</span>) + <span class="hljs-string">"-"</span> +
+            f(<span class="hljs-keyword">this</span>.getUTCDate())      + <span class="hljs-string">"T"</span> +
+            f(<span class="hljs-keyword">this</span>.getUTCHours())     + <span class="hljs-string">":"</span> +
+            f(<span class="hljs-keyword">this</span>.getUTCMinutes())   + <span class="hljs-string">":"</span> +
+            f(<span class="hljs-keyword">this</span>.getUTCSeconds())   + <span class="hljs-string">"Z"</span>
+          : <span class="hljs-literal">null</span>;
+      };
+
+      <span class="hljs-built_in">String</span>.prototype.tojson =
+        <span class="hljs-built_in">Number</span>.prototype.tojson  =
+        <span class="hljs-built_in">Boolean</span>.prototype.tojson = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+          <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.valueOf();
+        };
+    }
+
+    <span class="hljs-keyword">var</span> cx = <span class="hljs-regexp">/[\u0000\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g</span>,
+      escapable = <span class="hljs-regexp">/[\\\"\x00-\x1f\x7f-\x9f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g</span>,
+      gap,
+      indent,
+      meta = {    <span class="hljs-comment">// table of character substitutions</span>
+        <span class="hljs-string">"\b"</span>: <span class="hljs-string">"\\b"</span>,
+        <span class="hljs-string">"\t"</span>: <span class="hljs-string">"\\t"</span>,
+        <span class="hljs-string">"\n"</span>: <span class="hljs-string">"\\n"</span>,
+        <span class="hljs-string">"\f"</span>: <span class="hljs-string">"\\f"</span>,
+        <span class="hljs-string">"\r"</span>: <span class="hljs-string">"\\r"</span>,
+        <span class="hljs-string">"\""</span> : <span class="hljs-string">"\\\""</span>,
+        <span class="hljs-string">"\\"</span>: <span class="hljs-string">"\\\\"</span>
+      },
+      rep;
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">quote</span><span class="hljs-params">(string)</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>If the string contains no control characters, no quote characters, and no
+backslash characters, then we can safely slap some quotes around it.
+Otherwise we must also replace the offending characters with safe escape
+sequences.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+      escapable.lastIndex = <span class="hljs-number">0</span>;
+      <span class="hljs-keyword">return</span> escapable.test(string) ? <span class="hljs-string">"\""</span> + string.replace(escapable, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(a)</span> </span>{
+        <span class="hljs-keyword">var</span> c = meta[a];
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">typeof</span> c === <span class="hljs-string">"string"</span> ? c
+          : <span class="hljs-string">"\\u"</span> + (<span class="hljs-string">"0000"</span> + a.charCodeAt(<span class="hljs-number">0</span>).toString(<span class="hljs-number">16</span>)).slice(-<span class="hljs-number">4</span>);
+      }) + <span class="hljs-string">"\""</span> : <span class="hljs-string">"\""</span> + string + <span class="hljs-string">"\""</span>;
+    }
+
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">str</span><span class="hljs-params">(key, holder)</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>Produce a string from holder[key].</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+      <span class="hljs-keyword">var</span> i,          <span class="hljs-comment">// The loop counter.</span>
+        k,          <span class="hljs-comment">// The member key.</span>
+        v,          <span class="hljs-comment">// The member value.</span>
+        length,
+        mind = gap,
+        partial,
+        value = holder[key];</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>If the value has a tojson method, call it to obtain a replacement value.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+      <span class="hljs-keyword">if</span> (value &amp;&amp; <span class="hljs-keyword">typeof</span> value === <span class="hljs-string">"object"</span> &amp;&amp;
+          <span class="hljs-keyword">typeof</span> value.tojson === <span class="hljs-string">"function"</span>) {
+        value = value.tojson(key);
+      }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>If we were called with a replacer function, then call the replacer to
+obtain a replacement value.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> rep === <span class="hljs-string">"function"</span>) {
+        value = rep.call(holder, key, value);
+      }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <p>What happens next depends on the value”s type.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+      <span class="hljs-keyword">switch</span> (<span class="hljs-keyword">typeof</span> value) {
+      <span class="hljs-keyword">case</span> <span class="hljs-string">"string"</span>:
+        <span class="hljs-keyword">return</span> quote(value);
+
+      <span class="hljs-keyword">case</span> <span class="hljs-string">"number"</span>:</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <p>json numbers must be finite. Encode non-finite numbers as null.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">isFinite</span>(value) ? <span class="hljs-built_in">String</span>(value) : <span class="hljs-string">"null"</span>;
+
+      <span class="hljs-keyword">case</span> <span class="hljs-string">"boolean"</span>:
+      <span class="hljs-keyword">case</span> <span class="hljs-string">"null"</span>:</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <p>If the value is a boolean or null, convert it to a string. Note:
+typeof null does not produce “null”. The case is included here in
+the remote chance that this gets fixed someday.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">String</span>(value);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              <p>If the type is “object”, we might be dealing with an object or an array or
+null.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+      <span class="hljs-keyword">case</span> <span class="hljs-string">"object"</span>:</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-15">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-15">&#182;</a>
+              </div>
+              <p>Due to a specification blunder in ECMAScript, typeof null is “object”,
+so watch out for that case.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        <span class="hljs-keyword">if</span> (!value) {
+          <span class="hljs-keyword">return</span> <span class="hljs-string">"null"</span>;
+        }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-16">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-16">&#182;</a>
+              </div>
+              <p>Make an array to hold the partial results of stringifying this object value.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        gap += indent;
+        partial = [];</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-17">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-17">&#182;</a>
+              </div>
+              <p>Is the value an array?</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Object</span>.prototype.toString.apply(value) === <span class="hljs-string">"[object Array]"</span>) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-18">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-18">&#182;</a>
+              </div>
+              <p>The value is an array. Stringify every element. Use null as a placeholder
+for non-json values.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+          length = value.length;
+          
+          <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; length; i += <span class="hljs-number">1</span>) {
+            partial[i] = str(i, value) || <span class="hljs-string">"null"</span>;
+          }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-19">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-19">&#182;</a>
+              </div>
+              <p>Join all of the elements together, separated with commas, and wrap them in
+brackets.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+          v = partial.length === <span class="hljs-number">0</span> ? <span class="hljs-string">"[]"</span>
+            : gap ? <span class="hljs-string">"[\n"</span> + gap + partial.join(<span class="hljs-string">",\n"</span> + gap) + <span class="hljs-string">"\n"</span> + mind + <span class="hljs-string">"]"</span>
+            : <span class="hljs-string">"["</span> + partial.join(<span class="hljs-string">","</span>) + <span class="hljs-string">"]"</span>;
+
+          gap = mind;
+
+          <span class="hljs-keyword">return</span> v;
+        }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-20">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-20">&#182;</a>
+              </div>
+              <p>If the replacer is an array, use it to select the members to be stringified.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        <span class="hljs-keyword">if</span> (rep &amp;&amp; <span class="hljs-keyword">typeof</span> rep === <span class="hljs-string">"object"</span>) {
+          length = rep.length;
+          <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; length; i += <span class="hljs-number">1</span>) {
+            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> rep[i] === <span class="hljs-string">"string"</span>) {
+              k = rep[i];
+              v = str(k, value);
+              <span class="hljs-keyword">if</span> (v) {
+                partial.push(quote(k) + (gap ? <span class="hljs-string">": "</span> : <span class="hljs-string">":"</span>) + v);
+              }
+            }
+          }
+        } <span class="hljs-keyword">else</span> {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-21">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-21">&#182;</a>
+              </div>
+              <p>Otherwise, iterate through all of the keys in the object.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+          <span class="hljs-keyword">for</span> (k <span class="hljs-keyword">in</span> value) {
+            <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Object</span>.prototype.hasOwnProperty.call(value, k)) {
+              v = str(k, value);
+              <span class="hljs-keyword">if</span> (v) {
+                partial.push(quote(k) + (gap ? <span class="hljs-string">": "</span> : <span class="hljs-string">":"</span>) + v);
+              }
+            }
+          }
+        }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-22">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-22">&#182;</a>
+              </div>
+              <p>Join all of the member texts together, separated with commas,
+and wrap them in braces.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        v = partial.length === <span class="hljs-number">0</span> ? <span class="hljs-string">"{}"</span>
+          : gap ? <span class="hljs-string">"{\n"</span> + gap + partial.join(<span class="hljs-string">",\n"</span> + gap) + <span class="hljs-string">"\n"</span> + mind + <span class="hljs-string">"}"</span>
+          : <span class="hljs-string">"{"</span> + partial.join(<span class="hljs-string">","</span>) + <span class="hljs-string">"}"</span>;
+
+        gap = mind;
+
+        <span class="hljs-keyword">return</span> v;
+      }
+    }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-23">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-23">&#182;</a>
+              </div>
+              <p>If the json object does not yet have a stringify method, give it one.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> json.stringify !== <span class="hljs-string">"function"</span>) {
+      json.stringify = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(value, replacer, space)</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-24">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-24">&#182;</a>
+              </div>
+              <p>The stringify method takes a value and an optional replacer, and an optional
+space parameter, and returns a json text. The replacer can be a function
+that can replace values, or an array of strings that will select the keys.
+A default replacer method can be provided. Use of the space parameter can
+produce text that is more easily readable.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        <span class="hljs-keyword">var</span> i;
+        gap = <span class="hljs-string">""</span>;
+        indent = <span class="hljs-string">""</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-25">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-25">&#182;</a>
+              </div>
+              <p>If the space parameter is a number, make an indent string containing that
+many spaces.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> space === <span class="hljs-string">"number"</span>) {
+          <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; space; i += <span class="hljs-number">1</span>) {
+            indent += <span class="hljs-string">" "</span>;
+          }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-26">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-26">&#182;</a>
+              </div>
+              <p>If the space parameter is a string, it will be used as the indent string.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> space === <span class="hljs-string">"string"</span>) {
+          indent = space;
+        }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-27">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-27">&#182;</a>
+              </div>
+              <p>If there is a replacer, it must be a function or an array.
+Otherwise, throw an error.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        rep = replacer;
+        <span class="hljs-keyword">if</span> (replacer &amp;&amp; <span class="hljs-keyword">typeof</span> replacer !== <span class="hljs-string">"function"</span> &amp;&amp;
+            (<span class="hljs-keyword">typeof</span> replacer !== <span class="hljs-string">"object"</span> ||
+            <span class="hljs-keyword">typeof</span> replacer.length !== <span class="hljs-string">"number"</span>)) {
+          <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">"json.stringify"</span>);
+        }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-28">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-28">&#182;</a>
+              </div>
+              <p>Make a fake root object containing our value under the key of “”.
+Return the result of stringifying the value.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        <span class="hljs-keyword">return</span> str(<span class="hljs-string">""</span>, {<span class="hljs-string">""</span>: value});
+      };
+    }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-29">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-29">&#182;</a>
+              </div>
+              <p>If the json object does not yet have a parse method, give it one.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> json.parse !== <span class="hljs-string">"function"</span>) {
+      json.parse = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(text, reviver)</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-30">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-30">&#182;</a>
+              </div>
+              <p>The parse method takes a text and an optional reviver function, and returns
+a JavaScript value if the text is a valid json text.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        <span class="hljs-keyword">var</span> j;
+
+        <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">walk</span><span class="hljs-params">(holder, key)</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-31">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-31">&#182;</a>
+              </div>
+              <p>The walk method is used to recursively walk the resulting structure so
+that modifications can be made.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+          <span class="hljs-keyword">var</span> k, v, value = holder[key];
+          <span class="hljs-keyword">if</span> (value &amp;&amp; <span class="hljs-keyword">typeof</span> value === <span class="hljs-string">"object"</span>) {
+            <span class="hljs-keyword">for</span> (k <span class="hljs-keyword">in</span> value) {
+              <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Object</span>.prototype.hasOwnProperty.call(value, k)) {
+                v = walk(value, k);
+                <span class="hljs-keyword">if</span> (v !== <span class="hljs-literal">undefined</span>) {
+                  value[k] = v;
+                } <span class="hljs-keyword">else</span> {
+                  <span class="hljs-keyword">delete</span> value[k];
+                }
+              }
+            }
+          }
+          <span class="hljs-keyword">return</span> reviver.call(holder, key, value);
+        }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-32">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-32">&#182;</a>
+              </div>
+              <p>Parsing happens in four stages. In the first stage, we replace certain
+Unicode characters with escape sequences. JavaScript handles many characters
+incorrectly, either silently deleting them, or treating them as line endings.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        text = <span class="hljs-built_in">String</span>(text);
+        cx.lastIndex = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">if</span> (cx.test(text)) {
+          text = text.replace(cx, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(a)</span> </span>{
+            <span class="hljs-keyword">return</span> <span class="hljs-string">"\\u"</span> +
+              (<span class="hljs-string">"0000"</span> + a.charCodeAt(<span class="hljs-number">0</span>).toString(<span class="hljs-number">16</span>)).slice(-<span class="hljs-number">4</span>);
+          });
+        }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-33">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-33">&#182;</a>
+              </div>
+              <p>In the second stage, we run the text against regular expressions that look
+for non-json patterns. We are especially concerned with “()” and “new”
+because they can cause invocation, and “=” because it can cause mutation.
+But just to be safe, we want to reject all unexpected forms.</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-34">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-34">&#182;</a>
+              </div>
+              <p>We split the second stage into 4 regexp operations in order to work around
+crippling inefficiencies in IE’s and Safari’s regexp engines. First we
+replace the json backslash pairs with “@” (a non-json character). Second, we
+replace all simple value tokens with “]” characters. Third, we delete all
+open brackets that follow a colon or comma or that begin the text. Finally,
+we look to see that the remaining characters are only whitespace or “]” or
+“,” or “:” or “{“ or “}”. If that is so, then the text is safe for eval.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        <span class="hljs-keyword">if</span> (<span class="hljs-regexp">/^[\],:{}\s]*$/</span>
+            .test(text.replace(<span class="hljs-regexp">/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g</span>, <span class="hljs-string">"@"</span>)
+              .replace(<span class="hljs-regexp">/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g</span>, <span class="hljs-string">"]"</span>)
+              .replace(<span class="hljs-regexp">/(?:^|:|,)(?:\s*\[)+/g</span>, <span class="hljs-string">""</span>))) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-35">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-35">&#182;</a>
+              </div>
+              <p>In the third stage we use the eval function to compile the text into a
+JavaScript structure. The “{“ operator is subject to a syntactic ambiguity
+in JavaScript: it can begin a block or an object literal. We wrap the text
+in parens to eliminate the ambiguity.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+          j = <span class="hljs-built_in">eval</span>(<span class="hljs-string">"("</span> + text + <span class="hljs-string">")"</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-36">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-36">&#182;</a>
+              </div>
+              <p>In the optional fourth stage, we recursively walk the new structure, passing
+each name/value pair to a reviver function for possible transformation.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+          <span class="hljs-keyword">return</span> <span class="hljs-keyword">typeof</span> reviver === <span class="hljs-string">"function"</span> ? walk({<span class="hljs-string">""</span>: j}, <span class="hljs-string">""</span>) : j;
+        }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-37">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-37">&#182;</a>
+              </div>
+              <p>If the text is not json parseable, then a SyntaxError is thrown.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">SyntaxError</span>(<span class="hljs-string">"json.parse"</span>);
+      };
+    }
+  }());</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

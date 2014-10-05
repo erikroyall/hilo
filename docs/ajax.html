@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>ajax.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page">
+            
+              
+              <a class="source" href="ajax.html">
+                ajax.js
+              </a>
+            
+              
+              <a class="source" href="anim.html">
+                anim.js
+              </a>
+            
+              
+              <a class="source" href="core.html">
+                core.js
+              </a>
+            
+              
+              <a class="source" href="detect.html">
+                detect.js
+              </a>
+            
+              
+              <a class="source" href="dom.html">
+                dom.js
+              </a>
+            
+              
+              <a class="source" href="end.html">
+                end.js
+              </a>
+            
+              
+              <a class="source" href="evt.html">
+                evt.js
+              </a>
+            
+              
+              <a class="source" href="fx.html">
+                fx.js
+              </a>
+            
+              
+              <a class="source" href="legacy.html">
+                legacy.js
+              </a>
+            
+              
+              <a class="source" href="misc.html">
+                misc.js
+              </a>
+            
+              
+              <a class="source" href="more.html">
+                more.js
+              </a>
+            
+              
+              <a class="source" href="polyfill.html">
+                polyfill.js
+              </a>
+            
+              
+              <a class="source" href="sizzle.html">
+                sizzle.js
+              </a>
+            
+              
+              <a class="source" href="start.html">
+                start.js
+              </a>
+            
+              
+              <a class="source" href="test.html">
+                test.js
+              </a>
+            
+              
+              <a class="source" href="util.html">
+                util.js
+              </a>
+            
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>ajax.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p><strong> <code>hiloAjax</code> </strong></p>
+<p>Makes an AJAX request</p>
+<p>Param:</p>
+<p><code>config // {Object} Configuration Options</code></p>
+<p>For the list of all config opts, see below.</p>
+<p>Example:</p>
+<pre><code>Hilo.ajax({
+  url: <span class="hljs-string">"requestHandler.php"</span>,
+  success: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(data, xhr)</span> </span>{
+    <span class="hljs-built_in">console</span>.log(data, xhr);
+  },
+  method: <span class="hljs-string">"GET"</span>
+});
+</code></pre>
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  hiloAjax = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(config)</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <pre><code>config.
+ method <span class="hljs-comment">// HTTP Method (default: "POST")</span>
+ url <span class="hljs-comment">// The file to send request</span>
+ async <span class="hljs-comment">// Whether to perform an asynchronous request (default: true)</span>
+ data <span class="hljs-comment">// Data to be sent to the server</span>
+ response <span class="hljs-comment">// HTTP Response type</span>
+ callback <span class="hljs-comment">// function to be executed on readystatechange</span>
+ complete <span class="hljs-comment">// {Function} (xhr.readyState = 4) To be triggered when request is complete</span>
+ error <span class="hljs-comment">// {Function} To be triggered when request fails with an error</span>
+ timeout <span class="hljs-comment">// {Function} To be triggered when request time's out</span>
+ success <span class="hljs-comment">// {Function} (200) To be triggered when request is successfully made (Commonly registered event)</span>
+ notfound <span class="hljs-comment">// {Function} (404) To be triggered when there has been a 4oh4 NotFound exception</span>
+ forbidden <span class="hljs-comment">// {Function} (403) To be triggered when making the request is forbidden</span>
+ username <span class="hljs-comment">// {String} Username to be provided, if authentication is required</span>
+ password <span class="hljs-comment">// {String} Password to be provided, if...</span>
+ contentType <span class="hljs-comment">// HTTP Content-Type</span>
+</code></pre>
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    
+    <span class="hljs-keyword">var</span> xhr;
+
+    <span class="hljs-comment">/* Use the `XMLHttpRequest` object if available
+       or use `ActiveXObject` */</span>
+    <span class="hljs-keyword">if</span> (win.XMLHttpRequest) {
+      xhr = <span class="hljs-keyword">new</span> win.XMLHttpRequest();
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (win.ActiveXObject) {
+      xhr = <span class="hljs-keyword">new</span> win.ActiveXObject(<span class="hljs-string">"Microsoft.XMLHTTP"</span>);
+    }
+
+    <span class="hljs-comment">/* Throw an error if a URL hasn't been provided
+       Seriously, wth can this do without a target url? */</span>
+    <span class="hljs-keyword">if</span> (!config.url) {
+      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>(<span class="hljs-string">"url parameter not provided to hilo.ajax"</span>);
+    }
+
+    <span class="hljs-comment">/* Perform an asynchronous request by default */</span>
+    config.async = config.async || <span class="hljs-literal">true</span>;
+
+    <span class="hljs-comment">/* Authentication params */</span>
+    config.username = config.username || <span class="hljs-literal">null</span>;
+    config.password = config.password || <span class="hljs-literal">null</span>;
+
+    <span class="hljs-comment">/* contentType.. "application/x-www-form-urlencoded; charset=UTF-8" is preferred */</span>
+    config.contentType = config.contentType || <span class="hljs-string">"application/x-www-form-urlencoded; charset=UTF-8"</span>;
+
+    xhr.onreadystatechange = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+      <span class="hljs-keyword">if</span> (config.callback) {
+        config.callback(xhr);
+      }
+
+      <span class="hljs-keyword">if</span> (xhr.readyState === <span class="hljs-number">4</span>) { <span class="hljs-comment">// Request is completed</span>
+        <span class="hljs-keyword">typeof</span> config.complete ? config.complete.call(<span class="hljs-keyword">this</span>, xhr) : <span class="hljs-literal">null</span>;
+        
+        <span class="hljs-keyword">switch</span> (xhr.status) {
+          <span class="hljs-keyword">case</span> <span class="hljs-number">200</span>: <span class="hljs-comment">// Success</span>
+            <span class="hljs-keyword">typeof</span> config.success ? config.success.call(<span class="hljs-keyword">this</span>, xhr) : <span class="hljs-literal">null</span>;
+            <span class="hljs-keyword">typeof</span> config.error ? config.error.call(<span class="hljs-keyword">this</span>, xhr) : <span class="hljs-literal">null</span>;
+            <span class="hljs-keyword">break</span>;
+
+          <span class="hljs-keyword">case</span> <span class="hljs-number">404</span>: <span class="hljs-comment">// Not Found</span>
+            <span class="hljs-keyword">typeof</span> config.notfound ? config.notfound.call(<span class="hljs-keyword">this</span>, xhr) : <span class="hljs-literal">null</span>;
+            <span class="hljs-keyword">typeof</span> config.error ? config.error.call(<span class="hljs-keyword">this</span>, xhr) : <span class="hljs-literal">null</span>;
+            <span class="hljs-keyword">break</span>;
+
+          <span class="hljs-keyword">case</span> <span class="hljs-number">403</span>: <span class="hljs-comment">// Forbidden</span>
+            <span class="hljs-keyword">typeof</span> config.forbidden ? config.forbidden.call(<span class="hljs-keyword">this</span>, xhr) : <span class="hljs-literal">null</span>;
+            <span class="hljs-keyword">typeof</span> config.error ? config.error.call(<span class="hljs-keyword">this</span>, xhr) : <span class="hljs-literal">null</span>;
+            <span class="hljs-keyword">break</span>;
+
+          <span class="hljs-keyword">default</span>: <span class="hljs-comment">// Some Error</span>
+            <span class="hljs-keyword">typeof</span> config.error ? config.error.call(<span class="hljs-keyword">this</span>, xhr) : <span class="hljs-literal">null</span>;
+            <span class="hljs-keyword">break</span>;
+        }
+      } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (xhr.readyState === <span class="hljs-number">3</span>) {
+        <span class="hljs-keyword">typeof</span> config.sent ? config.sent.call(<span class="hljs-keyword">this</span>, xhr) : <span class="hljs-literal">null</span>;
+      }
+    };
+
+    <span class="hljs-comment">/* Run this function when the request has timed out :'( */</span>
+    xhr.timeout = config.timeout;
+
+    <span class="hljs-comment">/* Open the request (Could've been more verbose) */</span>
+    xhr.open(
+      config.method.trim().toUpperCase() || <span class="hljs-string">"POST"</span>,
+      config.url,
+      config.async,
+      config.username,
+      config.password
+    );
+
+    <span class="hljs-comment">/* If config.data is an object, JSON.encode it */</span>
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> config.data === <span class="hljs-string">"object"</span>) {
+      config.data = <span class="hljs-built_in">JSON</span>.encode(config.data);
+    }
+
+    <span class="hljs-comment">/* Lauch the request */</span>
+    xhr.send(<span class="hljs-keyword">typeof</span> config.data === <span class="hljs-string">"string"</span> ? config.data : <span class="hljs-literal">null</span>);
+  };
+
+  hilo.ajax = hiloAjax;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p><code>ajaxRequest</code> <em>Internal</em></p>
+<p>Param:</p>
+<ul>
+<li><code>method</code>: {String} HTTP Method</li>
+<li><code>strOpt</code>: {String} URL, or options object (see above)</li>
+<li><code>callback</code>: {Function} To be executed on <code>success</code></li>
+<li><code>oOpt</code>: {Object} For providing more options</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ajaxRequest</span> <span class="hljs-params">(method, strOpt, callback, oOpt)</span> </span>{
+
+    oOpt = (<span class="hljs-keyword">typeof</span> oOpt === <span class="hljs-string">"object"</span> ? oOpt : <span class="hljs-literal">undefined</span>);
+    
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> strOpt === <span class="hljs-string">"string"</span> &amp;&amp; <span class="hljs-keyword">typeof</span> callback === <span class="hljs-string">"function"</span>) {
+      hiloAjax(extend({
+        method: method,
+        url: strOpt,
+        success: callback
+      }, oOpt));
+    } <span class="hljs-keyword">else</span> {
+      hiloAjax(extend({
+        method: method
+      }, strOpt));
+    }
+  }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <h3 id="make-an-asynchronous-get-request">Make an asynchronous GET Request</h3>
+<p>Params are similar to those of the internal <code>ajaxRequest</code> method (see above)</p>
+<pre><code>$.get({
+  url: <span class="hljs-string">"path/to/file.js"</span>,
+  success: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(data)</span> </span>{
+    <span class="hljs-built_in">console</span>.log(data);
+  }
+}); <span class="hljs-comment">// Long form</span>
+</code></pre><pre><code>$.get(<span class="hljs-string">"path/to/file.js"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(data)</span> </span>{
+  <span class="hljs-built_in">console</span>.log(data);
+}); <span class="hljs-comment">// This does the exact same function as above</span>
+</code></pre><pre><code>$.get(<span class="hljs-string">"path/to/file.js"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(data)</span> </span>{
+  <span class="hljs-built_in">console</span>.log(data);
+}, {
+  error: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(err)</span> </span>{
+    <span class="hljs-built_in">console</span>.error(err);
+  }
+}); <span class="hljs-comment">// Short form, with more options</span>
+</code></pre>
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+  hilo.get = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(strOpt, callback, oOpt)</span> </span>{
+    ajaxRequest(<span class="hljs-string">"GET"</span>, strOpt, callback, oOpt);
+  };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <h3 id="make-an-asynchronous-post-request">Make an asynchronous POST Request</h3>
+<p>Params are similar to those of the internal <code>ajaxRequest</code> method (see above)</p>
+<pre><code>$.post({
+  url: <span class="hljs-string">"path/to/file.js"</span>,
+  success: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(data)</span> </span>{
+    <span class="hljs-built_in">console</span>.log(data);
+  },
+  data: <span class="hljs-built_in">JSON</span>.encode(obj)
+}); <span class="hljs-comment">// Long form</span>
+</code></pre><pre><code>$.post(<span class="hljs-string">"path/to/file.js"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(data)</span> </span>{
+  <span class="hljs-built_in">console</span>.log(data);
+}, {
+  data: <span class="hljs-built_in">JSON</span>.encode(obj),
+  error: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(err)</span> </span>{
+    <span class="hljs-built_in">console</span>.error(err);
+  }
+}); <span class="hljs-comment">// Short form, with more options</span>
+</code></pre>
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  hilo.post = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(strOpt, callback, oOpt)</span> </span>{
+    ajaxRequest(<span class="hljs-string">"POST"</span>, strOpt, callback, oOpt);
+  };</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

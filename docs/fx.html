@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>fx.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page">
+            
+              
+              <a class="source" href="ajax.html">
+                ajax.js
+              </a>
+            
+              
+              <a class="source" href="anim.html">
+                anim.js
+              </a>
+            
+              
+              <a class="source" href="core.html">
+                core.js
+              </a>
+            
+              
+              <a class="source" href="detect.html">
+                detect.js
+              </a>
+            
+              
+              <a class="source" href="dom.html">
+                dom.js
+              </a>
+            
+              
+              <a class="source" href="end.html">
+                end.js
+              </a>
+            
+              
+              <a class="source" href="evt.html">
+                evt.js
+              </a>
+            
+              
+              <a class="source" href="fx.html">
+                fx.js
+              </a>
+            
+              
+              <a class="source" href="legacy.html">
+                legacy.js
+              </a>
+            
+              
+              <a class="source" href="misc.html">
+                misc.js
+              </a>
+            
+              
+              <a class="source" href="more.html">
+                more.js
+              </a>
+            
+              
+              <a class="source" href="polyfill.html">
+                polyfill.js
+              </a>
+            
+              
+              <a class="source" href="sizzle.html">
+                sizzle.js
+              </a>
+            
+              
+              <a class="source" href="start.html">
+                start.js
+              </a>
+            
+              
+              <a class="source" href="test.html">
+                test.js
+              </a>
+            
+              
+              <a class="source" href="util.html">
+                util.js
+              </a>
+            
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>fx.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <hr>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <h2 id="effects-fx-">Effects (fx)</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+  extend(Dom.prototype, {
+
+    <span class="hljs-comment">/**
+     * Sets the display property of sel.els. to "" or given value
+     * 
+     * @for Dom
+     * @method show
+     * @param {string} display Value of display prop.
+     * @return {Dom}
+     * @example
+     * &lt;div class="code"&gt;&lt;pre class="prettyprint"&gt;
+     * $("p").show();
+     * &lt;/pre&gt;&lt;/div&gt;
+     * @since 0.1.0
+     */</span>
+    show: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(display)</span> </span>{
+      display = display || <span class="hljs-string">""</span>;
+
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.each(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(el)</span> </span>{
+        el.style.display = display;
+        el.setAttribute(<span class="hljs-string">"aria-hidden"</span>, <span class="hljs-literal">false</span>);
+      });
+    },
+
+    <span class="hljs-comment">/**
+     * Sets the display property of sel.els. to "none"
+     * 
+     * @for Dom
+     * @method hide
+     * @return {Dom}
+     * @example
+     * &lt;div class="code"&gt;&lt;pre class="prettyprint"&gt;
+     * $("p").hide();
+     * &lt;/pre&gt;&lt;/div&gt;
+     * @since 0.1.0
+     */</span>
+    hide: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.each(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(el)</span> </span>{
+        el.style.display = <span class="hljs-string">"none"</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>ARIA</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        el.setAttribute(<span class="hljs-string">"aria-hidden"</span>, <span class="hljs-literal">true</span>);
+      });
+    },
+
+    <span class="hljs-comment">/**
+     * Shows hidden elements, hides shown elements
+     * 
+     * @for Dom
+     * @method toggle
+     * @return {Dom}
+     * @example
+     * &lt;div class="code"&gt;&lt;pre class="prettyprint"&gt;
+     * $("p").toggle();
+     * &lt;/pre&gt;&lt;/div&gt;
+     * @since 0.1.0
+     */</span>
+    toggle: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(display)</span> </span>{
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.each(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(el)</span> </span>{
+        <span class="hljs-keyword">if</span> (el.style.display === <span class="hljs-string">"none"</span>) {
+          el.style.display = display ? display : <span class="hljs-string">""</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>ARIA</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>          el.setAttribute(<span class="hljs-string">"aria-hidden"</span>, <span class="hljs-literal">false</span>);
+        } <span class="hljs-keyword">else</span> {
+          el.style.display = <span class="hljs-string">"none"</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>ARIA</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>          el.setAttribute(<span class="hljs-string">"aria-hidden"</span>, <span class="hljs-literal">true</span>);
+        }
+      });
+    },
+
+    <span class="hljs-comment">/**
+     * Sets visibility to "visible"
+     * 
+     * @for Dom
+     * @method appear
+     * @return {Dom}
+     * @example
+     * &lt;div class="code"&gt;&lt;pre class="prettyprint"&gt;
+     * $("p").appear();
+     * &lt;/pre&gt;&lt;/div&gt;
+     * @since 0.1.0
+     */</span>
+    appear: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.each(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(el)</span> </span>{
+        el.style.visibility = <span class="hljs-string">"visible"</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>ARIA</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        el.setAttribute(<span class="hljs-string">"aria-hidden"</span>, <span class="hljs-literal">false</span>);
+      });
+    },
+
+    <span class="hljs-comment">/**
+     * Sets visiblity to "hidden"
+     * 
+     * @for Dom
+     * @method disappear
+     * @return {Dom}
+     * @example
+     * &lt;div class="code"&gt;&lt;pre class="prettyprint"&gt;
+     * $("p").disappear();
+     * &lt;/pre&gt;&lt;/div&gt;
+     * @since 0.1.0
+     */</span>
+    disappear: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.each(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(el)</span> </span>{
+        el.style.visibility = <span class="hljs-string">"hidden"</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>ARIA</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        el.setAttribute(<span class="hljs-string">"aria-hidden"</span>, <span class="hljs-literal">true</span>);
+      });
+    },
+
+    <span class="hljs-comment">/**
+     * Appears a disappeared element, disappears an appeared element
+     * 
+     * @for Dom
+     * @method toggleVisibility
+     * @return {Dom}
+     * @example
+     * &lt;div class="code"&gt;&lt;pre class="prettyprint"&gt;
+     * $("p").toggleVisibility();
+     * &lt;/pre&gt;&lt;/div&gt;
+     * @since 0.1.0
+     */</span>
+    toggleVisibility: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.each(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(el)</span> </span>{
+        <span class="hljs-keyword">if</span> (el.style.opacity === <span class="hljs-string">"0"</span>) {
+          el.style.visibility = <span class="hljs-string">"visible"</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>ARIA</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>          el.setAttribute(<span class="hljs-string">"aria-hidden"</span>, <span class="hljs-literal">true</span>);
+        } <span class="hljs-keyword">else</span> {
+          el.style.visibility = <span class="hljs-string">"hidden"</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <p>ARIA</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>          el.setAttribute(<span class="hljs-string">"aria-hidden"</span>, <span class="hljs-literal">true</span>);
+        }
+      });
+    },
+
+    <span class="hljs-comment">/**
+     * Animates opacity prop. from 0 to 1 or 1 to 0
+     * 
+     * @for Dom
+     * @method fade
+     * @param {string} inOut Whether "in" or "out"
+     * @param {number|string} "fast", "slow", "normal" or a number 
+     * @return {Dom}
+     * @example
+     * &lt;div class="code"&gt;&lt;pre class="prettyprint"&gt;
+     * $("p").fade("in");
+     * $("p").fade("out");
+     * $("p").fade("in", 140);
+     * $("p").fade("out", 100);
+     * &lt;/pre&gt;&lt;/div&gt;
+     * @since 0.1.0
+     */</span>
+    fade: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(inOut, timing)</span> </span>{
+      <span class="hljs-keyword">if</span> (inOut === <span class="hljs-string">"in"</span>) {
+        <span class="hljs-keyword">this</span>.show();
+      }
+
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.each(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(el)</span> </span>{
+        <span class="hljs-keyword">var</span> time;
+
+        <span class="hljs-keyword">switch</span>(timing) {
+          <span class="hljs-keyword">case</span> <span class="hljs-string">"slow"</span>:
+            time = <span class="hljs-number">200</span>;
+            <span class="hljs-keyword">break</span>;
+          <span class="hljs-keyword">case</span> <span class="hljs-string">"normal"</span>:
+            time = <span class="hljs-number">120</span>;
+            <span class="hljs-keyword">break</span>;
+          <span class="hljs-keyword">case</span> <span class="hljs-string">"fast"</span>:
+            time = <span class="hljs-number">80</span>;
+            <span class="hljs-keyword">break</span>;
+          <span class="hljs-keyword">default</span>:
+            time = time || <span class="hljs-number">120</span>;
+            <span class="hljs-keyword">break</span>;
+        }
+
+        <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">animate</span> <span class="hljs-params">()</span> </span>{
+          <span class="hljs-keyword">var</span> val = <span class="hljs-number">0.3</span>
+            , end = <span class="hljs-number">1</span>;
+
+          <span class="hljs-keyword">if</span> (<span class="hljs-built_in">parseFloat</span>(el.style.opacity) === (inOut === <span class="hljs-string">"in"</span> ? <span class="hljs-number">1</span> : <span class="hljs-number">0</span>)) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <p>Stop the animation if the opacity is set to the final value</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            clearInterval(win.Hilo.temp.anim);
+          } <span class="hljs-keyword">else</span> {
+            <span class="hljs-keyword">if</span> (inOut === <span class="hljs-string">"out"</span>) {
+              val = -val;
+              end = <span class="hljs-number">0</span>;
+            }
+
+            el.style.opacity = <span class="hljs-built_in">parseFloat</span>(el.style.opacity || end) + val; 
+          }
+        }
+
+        win.Hilo.temp.anim = setInterval(animate, timing);
+      });
+    },
+
+    <span class="hljs-comment">/**
+     * Animates opacity prop. from 0 to 1
+     * 
+     * @for Dom
+     * @method fadeIn
+     * @param {number|string} "fast", "slow", "normal" or a number 
+     * @return {Dom}
+     * @example
+     * &lt;div class="code"&gt;&lt;pre class="prettyprint"&gt;
+     * $("p").fadeIn();
+     * $("p").fadeIn(140);
+     * &lt;/pre&gt;&lt;/div&gt;
+     * @since 0.1.0
+     */</span>
+    fadeIn: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(timing)</span> </span>{
+      <span class="hljs-keyword">this</span>.fade(<span class="hljs-string">"in"</span>, timing);
+    },
+
+    <span class="hljs-comment">/**
+     * Animates opacity prop. from 1 to 0
+     * 
+     * @for Dom
+     * @method fadeOut
+     * @param {number|string} "fast", "slow", "normal" or a number 
+     * @return {Dom}
+     * @example
+     * &lt;div class="code"&gt;&lt;pre class="prettyprint"&gt;
+     * $("p").fadeOut();
+     * $("p").fadeOut(140);
+     * &lt;/pre&gt;&lt;/div&gt;
+     * @since 0.1.0
+     */</span>
+    fadeOut: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(timing)</span> </span>{
+      <span class="hljs-keyword">this</span>.fade(<span class="hljs-string">"out"</span>, timing);
+    }
+  });</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

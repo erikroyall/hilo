@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>start.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page">
+            
+              
+              <a class="source" href="ajax.html">
+                ajax.js
+              </a>
+            
+              
+              <a class="source" href="anim.html">
+                anim.js
+              </a>
+            
+              
+              <a class="source" href="core.html">
+                core.js
+              </a>
+            
+              
+              <a class="source" href="detect.html">
+                detect.js
+              </a>
+            
+              
+              <a class="source" href="dom.html">
+                dom.js
+              </a>
+            
+              
+              <a class="source" href="end.html">
+                end.js
+              </a>
+            
+              
+              <a class="source" href="evt.html">
+                evt.js
+              </a>
+            
+              
+              <a class="source" href="fx.html">
+                fx.js
+              </a>
+            
+              
+              <a class="source" href="legacy.html">
+                legacy.js
+              </a>
+            
+              
+              <a class="source" href="misc.html">
+                misc.js
+              </a>
+            
+              
+              <a class="source" href="more.html">
+                more.js
+              </a>
+            
+              
+              <a class="source" href="polyfill.html">
+                polyfill.js
+              </a>
+            
+              
+              <a class="source" href="sizzle.html">
+                sizzle.js
+              </a>
+            
+              
+              <a class="source" href="start.html">
+                start.js
+              </a>
+            
+              
+              <a class="source" href="test.html">
+                test.js
+              </a>
+            
+              
+              <a class="source" href="util.html">
+                util.js
+              </a>
+            
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>start.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(A, M, D)</span> </span>{
+
+  <span class="hljs-comment">/* Register Hilo as an AMD module */</span>
+
+  <span class="hljs-comment">/*globals YUI: false, module: false, define: false*/</span>
+
+  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> <span class="hljs-built_in">module</span> !== <span class="hljs-string">"undefined"</span> &amp;&amp; <span class="hljs-built_in">module</span>.exports) {
+    <span class="hljs-built_in">module</span>.exports = D;
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> define === <span class="hljs-string">"function"</span> &amp;&amp; define.amd) {
+    define(D);
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> YUI === <span class="hljs-string">"function"</span>) {
+    YUI.add(A, D);
+  } <span class="hljs-keyword">else</span> {
+    M[A] = D();
+  }
+}(<span class="hljs-string">"Hilo"</span>, <span class="hljs-keyword">this</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+  <span class="hljs-comment">/*jshint -W083, -W064, -W061, -W030*/</span>
+
+  <span class="hljs-comment">/* JSHint escapes:
+     - W083 - Don't make function within a loop (Evts)
+     - W064 - Eval can be harmful (JSON)
+     - W064 - Missing new prefix when invoking constructor (Sizzle)
+     - W030 - Saw an expression (Sizzle, Me) */</span>
+<span class="hljs-pi">
+  "use strict"</span>;
+  
+  <span class="hljs-keyword">var</span> hilo             <span class="hljs-comment">/* Public API */</span>
+
+    <span class="hljs-comment">/* Used to measure performace (Hilo.perf) */</span>
+    , start
+    , elapsed
+
+    <span class="hljs-comment">/* References to browser objects */</span>
+    , win = <span class="hljs-built_in">window</span>        <span class="hljs-comment">// Reference to window</span>
+    , doc = win.document  <span class="hljs-comment">// Reference to document</span>
+
+    <span class="hljs-comment">/* Used for storing detected features */</span>
+    , detected
+
+    <span class="hljs-comment">/* Key mappings (Hilo.keys) */</span>
+    , key
+
+    <span class="hljs-comment">/*Array of callbacks to be exec.ed on DOMReady */</span>
+    , callbacks = []   <span class="hljs-comment">// Array of functions to be executed on DOMReady</span>
+
+    <span class="hljs-comment">/* Private Selector Function */</span>
+    , select
+
+    <span class="hljs-comment">/* Feature Detection (Hilo.feature) */</span>
+    , feature
+
+    <span class="hljs-comment">/* Main AJAX function (Hilo.ajax) */</span>
+    , hiloAjax
+
+    <span class="hljs-comment">/* hasOwnProperty helper */</span>
+    , own = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(obj, prop)</span> </span>{
+      <span class="hljs-keyword">return</span> obj.hasOwnProperty(prop);
+    }
+
+    <span class="hljs-comment">/* Loop Variable */</span>
+    , _i;
+  
+  <span class="hljs-comment">/* Start performace testing */</span>
+  start = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getTime();</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

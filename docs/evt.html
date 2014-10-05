@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>evt.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page">
+            
+              
+              <a class="source" href="ajax.html">
+                ajax.js
+              </a>
+            
+              
+              <a class="source" href="anim.html">
+                anim.js
+              </a>
+            
+              
+              <a class="source" href="core.html">
+                core.js
+              </a>
+            
+              
+              <a class="source" href="detect.html">
+                detect.js
+              </a>
+            
+              
+              <a class="source" href="dom.html">
+                dom.js
+              </a>
+            
+              
+              <a class="source" href="end.html">
+                end.js
+              </a>
+            
+              
+              <a class="source" href="evt.html">
+                evt.js
+              </a>
+            
+              
+              <a class="source" href="fx.html">
+                fx.js
+              </a>
+            
+              
+              <a class="source" href="legacy.html">
+                legacy.js
+              </a>
+            
+              
+              <a class="source" href="misc.html">
+                misc.js
+              </a>
+            
+              
+              <a class="source" href="more.html">
+                more.js
+              </a>
+            
+              
+              <a class="source" href="polyfill.html">
+                polyfill.js
+              </a>
+            
+              
+              <a class="source" href="sizzle.html">
+                sizzle.js
+              </a>
+            
+              
+              <a class="source" href="start.html">
+                start.js
+              </a>
+            
+              
+              <a class="source" href="test.html">
+                test.js
+              </a>
+            
+              
+              <a class="source" href="util.html">
+                util.js
+              </a>
+            
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>evt.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <hr>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <h2 id="events">Events</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+  extend(Dom.prototype, {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Listen to an event and execute a function when that event happend</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+    <span class="hljs-comment">/**
+     * Listen to an event and execute a function when that event happend
+     * 
+     * @for Dom
+     * @method on
+     * @param {String} evt Name of event
+     * @param {Function} fn Function to be executed when the event is fired
+     * @return {Dom}
+     * @example
+     * &lt;div class="code"&gt;&lt;pre class="prettyprint"&gt;
+     * $("#box").on("click", function (e) {
+     *   console.log("#box was clicked");
+     * });
+     * &lt;/pre&gt;&lt;/div&gt;
+     * @since 0.1.0
+     */</span>
+    on: (<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>Check if <code>document.addEventListener</code> method
+is available and use it if it is</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-keyword">if</span> (<span class="hljs-built_in">document</span>.addEventListener) {
+        <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(evt, fn)</span> </span>{
+          <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.each(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(el)</span> </span>{
+            el.addEventListener(evt, fn, <span class="hljs-literal">false</span>);
+          });
+        };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>Otherwise check if <code>document.attachEvent</code> 
+legacy method is available and use it if it is</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-built_in">document</span>.attachEvent)  {
+        <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(evt, fn)</span> </span>{
+          <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.each(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(el)</span> </span>{
+            el.attachEvent(<span class="hljs-string">"on"</span> + evt, fn);
+          });
+        };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>Add event the DOM Level 0 Style</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(evt, fn)</span> </span>{
+          <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.each(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(el)</span> </span>{
+            el[<span class="hljs-string">"on"</span> + evt] = fn;
+          });
+        };
+      }
+    }()),</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>Stop listening to an event</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+    <span class="hljs-comment">/**
+     * Stop listening to an event
+     * 
+     * @for Dom
+     * @method on
+     * @param {String} evt Name of event
+     * @param {Function} fn Function to stop listening to
+     * @return {Dom}
+     * @example
+     * &lt;div class="code"&gt;&lt;pre class="prettyprint"&gt;
+     * $("#box").off("click", fn);
+     * &lt;/pre&gt;&lt;/div&gt;
+     * @since 0.1.0
+     */</span>
+    off: (<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+      <span class="hljs-keyword">if</span> (<span class="hljs-built_in">document</span>.removeEventListener) {
+        <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(evt, fn)</span> </span>{
+          <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.each(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(el)</span> </span>{
+            el.removeEventListener(evt, fn, <span class="hljs-literal">false</span>);
+          });
+        };
+      } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-built_in">document</span>.detachEvent)  {
+        <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(evt, fn)</span> </span>{
+          <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.each(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(el)</span> </span>{
+            el.detachEvent(<span class="hljs-string">"on"</span> + evt, fn);
+          });
+        };
+      } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(evt)</span> </span>{
+          <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.each(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(el)</span> </span>{
+            el[<span class="hljs-string">"on"</span> + evt] = <span class="hljs-literal">null</span>;
+          });
+        };
+      }
+    }()),
+
+    <span class="hljs-comment">/**
+     * Trigger or fire an event
+     * 
+     * @for Dom
+     * @method fire
+     * @param {String} evt Name of event to fire
+     * @return {Dom}
+     * @example
+     * &lt;div class="code"&gt;&lt;pre class="prettyprint"&gt;
+     * $("#uploadForm").fire("overload");
+     * &lt;/pre&gt;&lt;/div&gt;
+     * @since 0.1.0
+     */</span>
+    fire: (<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+      <span class="hljs-keyword">if</span> (<span class="hljs-built_in">document</span>.dispatchEvent) {
+        <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(event)</span> </span>{
+          <span class="hljs-keyword">var</span> evt;
+          
+          <span class="hljs-keyword">try</span> {
+            evt = <span class="hljs-built_in">document</span>.createEvent(<span class="hljs-string">"Events"</span>);
+          } <span class="hljs-keyword">catch</span> (e) {
+            evt = <span class="hljs-built_in">document</span>.createEvent(<span class="hljs-string">"UIEvents"</span>);
+          }
+
+          evt.initUIEvent(event, <span class="hljs-literal">true</span>, <span class="hljs-literal">true</span>, <span class="hljs-built_in">window</span>, <span class="hljs-number">1</span>);
+
+          <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.each(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(el)</span> </span>{
+            el.dispatchEvent(evt);
+          });
+        };
+      } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-built_in">document</span>.fireEvent) {
+        <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(event)</span> </span>{
+          <span class="hljs-keyword">var</span> evt = <span class="hljs-built_in">document</span>.createEventObject();
+          evt.button = <span class="hljs-number">1</span>;
+
+          <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.each(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(el)</span> </span>{
+            el.fireEvent(<span class="hljs-string">"on"</span> + event, evt);
+          });
+        };
+      } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(event)</span> </span>{
+          <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.each(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(el)</span> </span>{
+            el[<span class="hljs-string">"on"</span> + event].call();
+          });
+        };
+      }
+    }())
+  });</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <hr>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <h2 id="events-imp-">Events (imp.)</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+  extend(Dom.prototype, {
+    ready: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(fn)</span> </span>{
+      <span class="hljs-keyword">this</span>.each(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(el)</span> </span>{
+        el.onreadystatechange = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+          <span class="hljs-keyword">if</span> (el.readyState = <span class="hljs-string">"complete"</span>) {
+            fn();
+          }
+        };
+      });
+    }
+  });
+
+  (<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">var</span> evtObj = {}
+      , impEvts;
+
+    impEvts = [
+      <span class="hljs-string">"blur"</span>,
+      <span class="hljs-string">"click"</span>,
+      <span class="hljs-string">"change"</span>,
+      <span class="hljs-string">"dblclick"</span>,
+      <span class="hljs-string">"drag"</span>,
+      <span class="hljs-string">"dragstart"</span>,
+      <span class="hljs-string">"dragend"</span>,
+      <span class="hljs-string">"dragenter"</span>,
+      <span class="hljs-string">"dragleave"</span>,
+      <span class="hljs-string">"dragover"</span>,
+      <span class="hljs-string">"drop"</span>,
+      <span class="hljs-string">"error"</span>,
+      <span class="hljs-string">"focus"</span>,
+      <span class="hljs-string">"keyup"</span>,
+      <span class="hljs-string">"keydown"</span>,
+      <span class="hljs-string">"keypress"</span>,
+      <span class="hljs-string">"load"</span>,
+      <span class="hljs-string">"mousedown"</span>,
+      <span class="hljs-string">"mouseleave"</span>,
+      <span class="hljs-string">"mouseenter"</span>,
+      <span class="hljs-string">"mouseover"</span>,
+      <span class="hljs-string">"mousemove"</span>,
+      <span class="hljs-string">"mouseout"</span>,
+      <span class="hljs-string">"submit"</span>
+    ];
+
+    <span class="hljs-keyword">for</span> (_i = <span class="hljs-number">0</span>; _i &lt; impEvts.length; _i += <span class="hljs-number">1</span>) {
+      evtObj[impEvts[_i]] = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(fn)</span> </span>{
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> fn === <span class="hljs-string">"function"</span>) {
+          <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.on(impEvts[_i], fn);
+        }
+
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.fire(impEvts[_i]);
+      };
+    }
+
+    extend(Dom.prototype, evtObj);
+  }());</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <p>These keyborad key mappings will be later used
+to enable use of shortcut keys or the like</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+  key = {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              <p>Numbers</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+    <span class="hljs-string">"0"</span>: <span class="hljs-number">48</span>,
+    <span class="hljs-string">"1"</span>: <span class="hljs-number">49</span>,
+    <span class="hljs-string">"2"</span>: <span class="hljs-number">50</span>,
+    <span class="hljs-string">"3"</span>: <span class="hljs-number">51</span>,
+    <span class="hljs-string">"4"</span>: <span class="hljs-number">52</span>,
+    <span class="hljs-string">"5"</span>: <span class="hljs-number">53</span>,
+    <span class="hljs-string">"6"</span>: <span class="hljs-number">54</span>,
+    <span class="hljs-string">"7"</span>: <span class="hljs-number">55</span>,
+    <span class="hljs-string">"8"</span>: <span class="hljs-number">56</span>,
+    <span class="hljs-string">"9"</span>: <span class="hljs-number">57</span>,</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-15">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-15">&#182;</a>
+              </div>
+              <p>Uppercase letters</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+    A: <span class="hljs-number">65</span>,
+    B: <span class="hljs-number">66</span>,
+    C: <span class="hljs-number">67</span>,
+    D: <span class="hljs-number">68</span>,
+    E: <span class="hljs-number">69</span>,
+    F: <span class="hljs-number">70</span>,
+    G: <span class="hljs-number">71</span>,
+    H: <span class="hljs-number">72</span>,
+    I: <span class="hljs-number">73</span>,
+    J: <span class="hljs-number">74</span>,
+    K: <span class="hljs-number">75</span>,
+    L: <span class="hljs-number">76</span>,
+    M: <span class="hljs-number">77</span>,
+    N: <span class="hljs-number">78</span>,
+    O: <span class="hljs-number">79</span>,
+    P: <span class="hljs-number">80</span>,
+    Q: <span class="hljs-number">81</span>,
+    R: <span class="hljs-number">82</span>,
+    S: <span class="hljs-number">83</span>,
+    T: <span class="hljs-number">84</span>,
+    U: <span class="hljs-number">85</span>,
+    V: <span class="hljs-number">86</span>,
+    W: <span class="hljs-number">87</span>,
+    X: <span class="hljs-number">88</span>,
+    Y: <span class="hljs-number">89</span>,
+    Z: <span class="hljs-number">90</span>,</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-16">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-16">&#182;</a>
+              </div>
+              <p>Lowecase letters</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+    a: <span class="hljs-number">97</span>,
+    b: <span class="hljs-number">98</span>,
+    c: <span class="hljs-number">99</span>,
+    d: <span class="hljs-number">100</span>,
+    e: <span class="hljs-number">101</span>,
+    f: <span class="hljs-number">102</span>,
+    g: <span class="hljs-number">103</span>,
+    h: <span class="hljs-number">104</span>,
+    i: <span class="hljs-number">105</span>,
+    j: <span class="hljs-number">106</span>,
+    k: <span class="hljs-number">107</span>,
+    l: <span class="hljs-number">108</span>,
+    m: <span class="hljs-number">109</span>,
+    n: <span class="hljs-number">110</span>,
+    o: <span class="hljs-number">111</span>,
+    p: <span class="hljs-number">112</span>,
+    q: <span class="hljs-number">113</span>,
+    r: <span class="hljs-number">114</span>,
+    s: <span class="hljs-number">115</span>,
+    t: <span class="hljs-number">116</span>,
+    u: <span class="hljs-number">117</span>,
+    v: <span class="hljs-number">118</span>,
+    w: <span class="hljs-number">119</span>,
+    x: <span class="hljs-number">120</span>,
+    y: <span class="hljs-number">121</span>,
+    z: <span class="hljs-number">122</span>,</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-17">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-17">&#182;</a>
+              </div>
+              <p>Other Important Keys</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+    alt: <span class="hljs-number">18</span>,
+    caps: <span class="hljs-number">20</span>,
+    ctrl: <span class="hljs-number">17</span>,
+    cmd: <span class="hljs-number">17</span>,
+    enter: <span class="hljs-number">13</span>,
+    esc: <span class="hljs-number">27</span>,
+    del: <span class="hljs-number">46</span>,
+    end: <span class="hljs-number">35</span>,
+    back: <span class="hljs-number">8</span>,</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-18">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-18">&#182;</a>
+              </div>
+              <p>Arrows</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+    left: <span class="hljs-number">37</span>,
+    up: <span class="hljs-number">38</span>,
+    right: <span class="hljs-number">39</span>,
+    down: <span class="hljs-number">40</span>,</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-19">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-19">&#182;</a>
+              </div>
+              <p>F-keys</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+    f1: <span class="hljs-number">112</span>,
+    f2: <span class="hljs-number">113</span>,
+    f3: <span class="hljs-number">114</span>,
+    f4: <span class="hljs-number">115</span>,
+    f5: <span class="hljs-number">116</span>,
+    f6: <span class="hljs-number">117</span>,
+    f7: <span class="hljs-number">118</span>,
+    f8: <span class="hljs-number">119</span>,
+    f9: <span class="hljs-number">120</span>,
+    f10: <span class="hljs-number">121</span>,
+    f11: <span class="hljs-number">122</span>,
+    f12: <span class="hljs-number">123</span>,</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-20">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-20">&#182;</a>
+              </div>
+              <p>Less-used keys</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+    home: <span class="hljs-number">36</span>,
+    insert: <span class="hljs-number">45</span>,
+    numlock: <span class="hljs-number">144</span>,</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-21">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-21">&#182;</a>
+              </div>
+              <p>Symbols</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+    <span class="hljs-string">"`"</span>: <span class="hljs-number">222</span>,
+    <span class="hljs-string">"-"</span>: <span class="hljs-number">189</span>,
+    <span class="hljs-string">","</span>: <span class="hljs-number">188</span>,
+    <span class="hljs-string">"."</span>: <span class="hljs-number">190</span>,
+    <span class="hljs-string">"/"</span>: <span class="hljs-number">191</span>,
+    <span class="hljs-string">";"</span>: <span class="hljs-number">186</span>,
+    <span class="hljs-string">"["</span>: <span class="hljs-number">219</span>,
+    <span class="hljs-string">"\\"</span>: <span class="hljs-number">220</span>,
+    <span class="hljs-string">"]"</span>: <span class="hljs-number">221</span>,
+    <span class="hljs-string">"="</span>: <span class="hljs-number">187</span>
+
+  };
+
+  hilo.keys = key;</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>
