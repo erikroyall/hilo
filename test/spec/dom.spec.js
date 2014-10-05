@@ -53,7 +53,7 @@ describe("DOM Methods", function () {
   describe('.html()', function () {
     it("should set the innerHTML of an element", function () {
       var el = document.createElement('div')
-        , he = $.create('div')
+        , he = Hilo.create('div')
         , innerContent = 'Hello World';
 
       el.innerHTML = innerContent;
