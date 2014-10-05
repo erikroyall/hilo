@@ -1,15 +1,16 @@
-// ========================= 
-// Hilo - 0.1.0-pre-dev-beta-10
-// ========================= 
-// 2014-10-03
-// Project started before 1 year, 3 months and 3 days
-// http://erikroyall.github.com/hilo/
-// Copyright (c) 2013 Erik Royall
+// # Hilo
+
+// `0.1.0-pre-dev-beta-10`<br/>
+
+// Built on: 2014-10-06<br/>
+// Project started before 1 year, 3 months and 6 days<br/>
+// http://erikroyall.github.com/hilo<br/>
+// Copyright (c) 2013 Erik Royall<br/>
 // Licensed under MIT (see LICENSE-MIT) 
 
 (function (A, M, D) {
 
-  // Asynchronous Module Definition, if available
+  /* Register Hilo as an AMD module */
 
   /*globals YUI: false, module: false, define: false*/
 
@@ -25,64 +26,54 @@
 }("Hilo", this, function () {
   /*jshint -W083, -W064, -W061, -W030*/
 
-  // JSHint escapes:
-  // - W083 - Don't make function within a loop (Evts)
-  // - W064 - Eval can be harmful (JSON)
-  // - W064 - Missing new prefix when invoking constructor (Sizzle)
-  // - W030 - Saw an expression (Sizzle, Me)
+  /* JSHint escapes:
+     - W083 - Don't make function within a loop (Evts)
+     - W064 - Eval can be harmful (JSON)
+     - W064 - Missing new prefix when invoking constructor (Sizzle)
+     - W030 - Saw an expression (Sizzle, Me) */
 
   "use strict";
   
-  var hilo             // Public API
+  var hilo             /* Public API */
 
-    // Later used to measure performace (Hilo.perf)
+    /* Used to measure performace (Hilo.perf) */
     , start
     , elapsed
 
-    // References
-    , win = window     // Reference to window
-    , doc = document   // Reference to document
+    /* References to browser objects */
+    , win = window        // Reference to window
+    , doc = win.document  // Reference to document
 
-    // Later stores detected features
+    /* Used for storing detected features */
     , detected
 
-    // Key mappings (Hilo.keys)
+    /* Key mappings (Hilo.keys) */
     , key
 
-    // Array of callbacks to be exec.ed on DOMReady
+    /*Array of callbacks to be exec.ed on DOMReady */
     , callbacks = []   // Array of functions to be executed on DOMReady
 
-    // Private Selector Function
+    /* Private Selector Function */
     , select
 
-    // Feature Detection (Hilo.feature)
-    , feature          // Feature Detection
+    /* Feature Detection (Hilo.feature) */
+    , feature
 
-    // Main AJAX function (Hilo.ajax)
+    /* Main AJAX function (Hilo.ajax) */
     , hiloAjax
 
+    /* hasOwnProperty helper */
     , own = function (obj, prop) {
       return obj.hasOwnProperty(prop);
     }
 
-    // Loop Variable
+    /* Loop Variable */
     , _i;
   
-  // Start performace testing
+  /* Start performace testing */
   start = new Date().getTime();
   
-  // --------------------------------------------------
-  // Feature Detection
-  // --------------------------------------------------
-
-  /**
-   * Detected Features
-   * 
-   * @static
-   * @class feature
-   * @for hilo
-   * @since 0.1.0
-   */
+  // ## Feature Detection
   feature = (function () {
     var c = function (tagName) {
         return doc.createElement(tagName);
@@ -102,318 +93,125 @@
     return {
 
       // addEventListener()
-
-      /**
-       * addEventListener
-       * 
-       * @for feature
-       * @property addEventListener
-       * @type {boolean}
-       * @since 0.1.0
-       */
       addEventListener: (function () {
         return typeof win.addEventListener === "function";
       }()),
 
       // Application Cache (or Offline Web Apps)
-
-      /**
-       * Application Cache
-       * 
-       * @for feature
-       * @property applicationCache
-       * @type {boolean}
-       * @since 0.1.0
-       */      
       applicationCache: (function () {
         return !!win.applicationCache;
       }()),
 
       // Audio (tag)
-
-      /**
-       * Audio (tag)
-       * 
-       * @for feature
-       * @property audio
-       * @type {boolean}
-       * @since 0.1.0
-       */      
       audio: (function () {
         return !!a.canPlayType;
       }()),
 
       // Preload audio (hmm.. background music?)
-
-      /**
-       * Preload audio (hmm.. background music)
-       * 
-       * @for feature
-       * @property audioPreload
-       * @type {boolean}
-       * @since 0.1.0
-       */      
       audioPreload: (function () {
         return "preload" in a;
       }()),
 
       // Audio Types
-
-      /**
-       * Audio Types
-       * 
-       * @for feature
-       * @static
-       * @class audioType
-       * @since 0.1.0
-       */      
       audioType: {
 
         // MP3 audio format
-
         mp3: (function () {
           return !!(a.canPlayType && a.canPlayType("audio/mpeg;").replace(/no/, ""));
         }()),
 
         // Vorbis audio format
-        
         vorbis: (function () {
           return !!(a.canPlayType && a.canPlayType("audio/ogg; codecs='vorbis'").replace(/no/, ""));
         }()),
 
         // MS WAV audio format
-        
         wav: (function () {
           return !!(a.canPlayType && a.canPlayType("audio/wav; codecs='1'").replace(/no/, ""));
         }()),
 
         // AAC audio format
-        
         aac: (function () {
           return !!(a.canPlayType && a.canPlayType("audio/mp4; codecs='mp4a.40.2'").replace(/no/, ""));
         }())
       },
 
-      // Canvas API
-
-      /**
-       * Canvas API
-       * 
-       * @for feature
-       * @property canvas
-       * @type {boolean}
-       * @since 0.1.0
-       */      
+      // Canvas API  
       canvas: (function () {
         return !!cn.getContext;
       }()),
 
       // Canvas Text
-
-      /**
-       * Canvas Text
-       * 
-       * @for feature
-       * @property canvasText
-       * @type {boolean}
-       * @since 0.1.0
-       */      
       canvasText: (function () {
         return !!cn.getContext && typeof cn.getContext("2d").fillText === "function";
       }()),
 
-      // classList prop. in HTMLElement
-
-      /**
-       * HTMLElement.classList
-       * 
-       * @for feature
-       * @property classList
-       * @type {boolean}
-       * @since 0.1.0
-       */      
+      // classList prop. in HTMLElement  
       classList: (function () {
         return "classList" in s;
       }()),
 
-      // Command
-
-      /**
-       * <command>
-       * 
-       * @for feature
-       * @property commans
-       * @type {boolean}
-       * @since 0.1.0
-       */      
+      // Command  
       command: (function () {
         return "type" in c("command");
       }()),
 
       // Form Constraint Validation
-
-      /**
-       * Form Constraint Validation
-       * 
-       * @for feature
-       * @property consval
-       * @type {boolean}
-       * @since 0.1.0
-       */      
       consval: (function () {
         return "noValidate" in c("form");
       }()),
 
       // contentEditable attribute
-
-      /**
-       * contentEditable attribute
-       * 
-       * @for feature
-       * @property contentEditable
-       * @type {boolean}
-       * @since 0.1.0
-       */      
       contentEditable: (function () {
         return "isContentEditable" in s;
       }()),
 
-      // Datalist (tag)
-
-      /**
-       * HTMLElement.datalist
-       * 
-       * @for feature
-       * @property datalist
-       * @type {boolean}
-       * @since 0.1.0
-       */      
+      // Datalist (tag)   
       datalist: (function () {
         return "options" in c("datalist");
       }()),
 
       // Details (tag)
-
-      /**
-       * <details>
-       * 
-       * @for feature
-       * @property details
-       * @type {boolean}
-       * @since 0.1.0
-       */      
       details: (function () {
         return "open" in c("details");
       }()),
 
-      // Drag & Drop
-
-      /**
-       * Drag & Drop
-       * 
-       * @for feature
-       * @property dragdrop
-       * @type {boolean}
-       * @since 0.1.0
-       */      
+      // Drag & Drop   
       dragdrop: (function () {
         return "draggable" in s;
       }()),
 
-      // ECMAScript 6
-
-      /**
-       * ECMAScript 6
-       * 
-       * @for feature
-       * @property es6
-       * @type {boolean}
-       * @since 0.1.0
-       */      
+      // ECMAScript 6   
       es6: (function () {
         return typeof String.prototype.contains === "function";
       }()),
 
-      // File system API
-
-      /**
-       * File System API
-       * 
-       * @for feature
-       * @property fileapi
-       * @type {boolean}
-       * @since 0.1.0
-       */      
+      // File system API  
       fileapi: (function () {
         return typeof FileReader !== "undefined";
       }()),
 
-      // 5th Generation Rendering Engine
-
-      /**
-       * 5th Generation Rendering Engine
-       * 
-       * @for feature
-       * @property gen5
-       * @type {boolean}
-       * @since 0.1.0
-       */      
+      // 5th Generation Rendering Engine 
       gen5: (function () {
         return parseInt(win.navigator.appVersion, 10) === 5;
       }()),
 
       // Geolocation
-
-      /**
-       * Geolocation
-       * 
-       * @for feature
-       * @property geolocation
-       * @type {boolean}
-       * @since 0.1.0
-       */      
       geolocation: (function () {
         return "geolocation" in win.navigator;
       }()),
 
       // window.getSelection() method
-
-      /**
-       * window.getSelection() method
-       * 
-       * @for feature
-       * @property getSelection
-       * @type {boolean}
-       * @since 0.1.0
-       */
       getSelection: (function () {
         return typeof win.getSelection === "function";
       }()),
 
       // History API
-
-      /**
-       * History API
-       * 
-       * @for feature
-       * @property history
-       * @type {boolean}
-       * @since 0.1.0
-       */      
       history: (function () {
         return !!(win.history && history.pushState);
       }()),
 
       // IFrame
-
-      /**
-       * addEventListener
-       * 
-       * @for feature
-       * @static
-       * @class iframe
-       * @since 0.1.0
-       */      
       iframe: {
         sandbox: (function () {
           return "sandbox" in fr;
@@ -423,16 +221,7 @@
         }())
       },
 
-      // IndexedDB (use this instead of WebSQL)
-
-      /**
-       * IndexedDB (use this instead of WebSQL)
-       * 
-       * @for feature
-       * @property indexeddb
-       * @type {boolean}
-       * @since 0.1.0
-       */      
+      // IndexedDB (use this instead of WebSQL)  
       indexeddb: (function () {
         return !!(win.indexedDB && win.IDBKeyRange && win.IDBTransaction);
       }()),
@@ -442,76 +231,61 @@
       input: {
 
         // Input Auto Focus
-        
         autofocus: (function () {
           return "autofocus" in i;
         }()),
 
         // Placeholder
-        
         placeholder: (function () {
           return "placeholder" in i;
         }()),
 
         // Input Types (they are pretty self-explanatory)
-        
         type: {
-          
           color: (function () {
             is(i, "type", "color");
             return i.type !== "text";
           }()),
-
           date: (function () {
             is(i, "type", "date");
             return i.type !== "text";
           }()),
-
           datetime: (function () {
             is(i, "type", "datetime");
             return i.type !== "text";
           }()),
-
           datetimeLocal: (function () {
             is(i, "type", "datetime-local");
             return i.type !== "text";
           }()),
-
           email: (function () {
             is(i, "type", "email");
             return i.type !== "text";
           }()),
-
           month: (function () {
             is(i, "type", "month");
             return i.type !== "text";
           }()),
-
           number: (function () {
             is(i, "type", "number");
             return i.type !== "text";
           }()),
-
           range: (function () {
             is(i, "type", "range");
             return i.type !== "text";
           }()),
-
           search: (function () {
             is(i, "type", "search");
             return i.type !== "text";
           }()),
-
           tel: (function () {
             is(i, "type", "tel");
             return i.type !== "text";
           }()),
-
           time: (function () {
             is(i, "type", "time");
             return i.type !== "text";
           }()),
-
           week: (function () {
             is(i, "type", "week");
             return i.type !== "text";
@@ -519,16 +293,7 @@
         }
       },
 
-      // Local Storage
-
-      /**
-       * Local Storage
-       * 
-       * @for feature
-       * @property localStorage
-       * @type {boolean}
-       * @since 0.1.0
-       */      
+      // Local Storage 
       localStorage: (function () {
         try {
           return "localStorage" in win && win["localStorage"] !== null && !!win.localStorage.setItem;
@@ -537,100 +302,37 @@
         }
       }()),
 
-      // Meter (tag)
-
-      /**
-       * <meter>
-       * 
-       * @for feature
-       * @property meter
-       * @type {boolean}
-       * @since 0.1.0
-       */      
+      // Meter (tag)  
       meter: (function () {
         return "value" in c("meter");
       }()),
 
-      // Microdata
-
-      /**
-       * Microdata
-       * 
-       * @for feature
-       * @property microdata
-       * @type {boolean}
-       * @since 0.1.0
-       */      
+      // Microdata 
       microdata: (function () {
         return "getItems" in doc;
       }()),
 
-      // Offline (App Cache)
-
-      /**
-       * Offline (App Cache)
-       * 
-       * @for feature
-       * @property offline
-       * @type {boolean}
-       * @since 0.1.0
-       */      
+      // Offline (App Cache)    
       offline: (function () {
         return !!win.applicationCache;
       }()),
 
-      // Output (tag)
-
-      /**
-       * <output>
-       * 
-       * @for feature
-       * @property output
-       * @type {boolean}
-       * @since 0.1.0
-       */      
+      // Output (tag) 
       output: (function () {
         return "value" in c("output");
       }()),
 
       // Progress (tag)
-
-      /**
-       * <progress>
-       * 
-       * @for feature
-       * @property progress
-       * @type {boolean}
-       * @since 0.1.0
-       */
       progress: (function () {
         return "value" in c("progress");
       }()),
 
       // querySelector & querySelectorAll
-
-      /**
-       * querySelector & querySelectorAll
-       * 
-       * @for feature
-       * @property qsa
-       * @type {boolean}
-       * @since 0.1.0
-       */
       qsa: (function () {
         return "querySelector" in doc && "querySelectorAll" in doc;
       }()),
 
       // CSS3 Selectors in querySelectorAll
-
-      /**
-       * CSS3 Selectors in querySelectorAll
-       * 
-       * @for feature
-       * @property qsa3
-       * @type {boolean}
-       * @since 0.1.0
-       */
       qsa3: (function () {
         try {
           return doc.querySelectorAll(":root").length > 0;
@@ -640,15 +342,6 @@
       }()),
 
       // requestAnimationFrame
-
-      /**
-       * requestAnimationFrame
-       * 
-       * @for feature
-       * @property requestAnimationFrame
-       * @type {String|Boolean}
-       * @since 0.1.0
-       */
       requestAnimationFrame: (function () {
         if (typeof requestAnimationFrame === "function") {
           return true;
@@ -664,29 +357,11 @@
       }()),
 
       // Server-sent Events
-
-      /**
-       * Server-sent Events
-       * 
-       * @for feature
-       * @property serverEvt
-       * @type {boolean}
-       * @since 0.1.0
-       */
       serverEvt: (function () {
         return typeof EventSource !== "undefined";
       }()),
 
       // Session Storage
-
-      /**
-       * Session Storage
-       * 
-       * @for feature
-       * @property sessionStorage
-       * @type {boolean}
-       * @since 0.1.0
-       */
       sessionStorage: (function () {
         try {
           return "sessionStorage" in win && win["sessionStorage"] !== null;
@@ -696,100 +371,37 @@
       }()),
 
       // Modal Dialog (showModalDialog)
-
-      /**
-       * Modal Dialog (showModalDialog)
-       * 
-       * @for feature
-       * @property showModalDialog
-       * @type {boolean}
-       * @since 0.1.0
-       */
       showModalDialog: (function () {
         return typeof win.showModalDialog === "function";
       }()),
 
       // SVG (Scalable Vector Graphics)
-
-      /**
-       * SVG (Scalable Vector Graphics)
-       * 
-       * @for feature
-       * @property svg
-       * @type {boolean}
-       * @since 0.1.0
-       */
       svg: (function () {
         return !!(doc.createElementNS && doc.createElementNS("http://www.w3.org/2000/svg", "svg").createSVGRect);
       }()),
 
       // SVG in text/html
-
-      /**
-       * SVG in text/html
-       * 
-       * @for feature
-       * @property svginhtml
-       * @type {boolean}
-       * @since 0.1.0
-       */
       svginhtml:(function () {
         d.innerHTML = "<svg></svg>";
         return !!(win.SVGSVGElement && d.firstChild instanceof win.SVGSVGElement);
       }()),
 
       // Template (tag)
-
-      /**
-       * <template>
-       * 
-       * @for feature
-       * @property template
-       * @type {boolean}
-       * @since 0.1.0
-       */
       template: (function () {
         return "content" in c("template");
       }()),
 
       // Time (tag)
-
-      /**
-       * <time>
-       * 
-       * @for feature
-       * @property time
-       * @type {boolean}
-       * @since 0.1.0
-       */
       time: (function () {
         return "datetime" in c("time");
       }()),
 
       // Undo (not just Ctrl + Z)
-
-      /**
-       * Undo (not just Ctrl + Z)
-       * 
-       * @for feature
-       * @property undo
-       * @type {boolean}
-       * @since 0.1.0
-       */
       undo: (function () {
         return typeof UndoManager !== "undefined";
       }()),
 
       // Video
-
-      /**
-       * Video
-       * 
-       * @for feature
-       * @property video
-       * @type {boolean}
-       * @since 0.1.0
-       */
       video: (function () {
         try {
           return !!v.canPlayType;
@@ -799,25 +411,14 @@
       }()),
 
       // Video Captions
-
-      /**
-       * Video Captions
-       * 
-       * @for feature
-       * @property videoCaptions
-       * @type {boolean}
-       * @since 0.1.0
-       */
       videoCaptions: (function () {
         return "src" in c("track");
       }()),
 
       // Video Formats
-
       videoFormats: {
 
         // H264 Video Format (MP4)
-
         h264: (function () {
           try {
             return v.canPlayType("video/mp4; codecs='avc1.42E01E, mp4a.40.2'");
@@ -827,7 +428,6 @@
         }()),
 
         // WebM Video Format
-
         webm: (function () {
           try {
             return v.canPlayType("video/webm; codecs='vp8, vorbis'");
@@ -837,7 +437,6 @@
         }()),
 
         // OGG Theora Video Format
-
         ogg: (function () {
           try {
             return v.canPlayType("video/ogg; codecs='theora, vorbis'");
@@ -848,29 +447,11 @@
       },
 
       // Video Poster
-
-      /**
-       * Video Poster
-       * 
-       * @for feature
-       * @property videoPoster
-       * @type {boolean}
-       * @since 0.1.0
-       */
       videoPoster: (function () {
         return "poster" in c("video");
       }()),
 
       // Web Audio API (NOT the <audio> tag)
-
-      /**
-       * Web Audio API (NOT the <audio> tag)
-       * 
-       * @for feature
-       * @property webAudio
-       * @type {String|Boolean}
-       * @since 0.1.0
-       */
       webAudio: (function () {
         // return !!(win.webkitAudioContext || win.AudioContext);
         if (win.AudioContext) {
@@ -883,93 +464,44 @@
       }()),
 
       // WebSockets
-
-      /**
-       * WebSockets
-       * 
-       * @for feature
-       * @property webSockets
-       * @type {boolean}
-       * @since 0.1.0
-       */
       webSockets: (function () {
         return !!win.webSocket;
       }()),
 
       // WebSQL (a deprecated specification; use IndexedDB instead)
-
-      /**
-       * WebSQL (a deprecated specification; use IndexedDB instead)
-       * 
-       * @for feature
-       * @property websql
-       * @type {boolean}
-       * @since 0.1.0
-       */
       websql: (function () {
         return !!win.openDatabase;
       }()),
 
       // Web Workers
-
-      /**
-       * Web Workers
-       * 
-       * @for feature
-       * @property webWorkers
-       * @type {boolean}
-       * @since 0.1.0
-       */
       webWorkers: (function () {
         return !!win.Worker;
       }()),
 
       // Widgets
-
-      /**
-       * Widgets
-       * 
-       * @for feature
-       * @property widgets
-       * @type {boolean}
-       * @since 0.1.0
-       */
       widgets: (function () {
         return typeof widget !== "undefined";
       }()),
 
       // Cross-document messaging
-
-      /**
-       * Cross-document messages
-       * 
-       * @for feature
-       * @property xdocmsg
-       * @type {boolean}
-       * @since 0.1.0
-       */
       xdocmsg: (function () {
         return !!win.postMessage;
       }()),
 
       // XML HTTP Request
-
       xhr: {
 
         // Cross-domain requests
-
         xdr: (function () {
           return "withCredentials" in xr;
         }()),
 
         // Send as form data
-
         formdata: (function () {
           return !!win.FormData;
         }()),
 
         // Upload progress events
-
         upe: (function () {
           return "upload" in xr;
         }())
@@ -977,9 +509,7 @@
     };
   }());  
   
-  // --------------------------------------------------
-  // Browser, Engine, Platform Detection
-  // --------------------------------------------------
+  // ## Browser, Engine, Platform Detection
 
   detected = (function () {
     var engine
@@ -989,6 +519,7 @@
       , safariVersion
       , p;
 
+    // Browser
     browser = {
       ie: 0,
       firefox: 0,
@@ -1001,12 +532,13 @@
       ver: null
     };
 
+    // System
     system = {
       win: false,
       mac: false,
       x11: false,
 
-      // Mobile Devices
+      /* Mobile Devices */
       iphone: false,
       ipod: false,
       ipad: false,
@@ -1015,11 +547,12 @@
       nokiaN: false,
       winMobile: false,
 
-      // Game Systems
+      /* Game Consoles */
       wii: false,
       ps: false
     };
 
+    // Redering engine
     engine = {
       ie: 0,
       gecko: 0,
@@ -1027,7 +560,7 @@
       khtml: 0,
       opera: 0,
 
-      // Complete version
+      /* Complete version*/
       ver: null
     };
 
@@ -1038,7 +571,7 @@
       engine.ver = RegExp["$1"];
       engine.webkit = parseFloat(engine.ver);
 
-      // Figures out if chrome or Safari
+      /* Figures out if chrome or Safari */
 
       if (/Chrome\/(\S+)/.test(ua)) {
         browser.ver = RegExp["$1"];
@@ -1047,8 +580,8 @@
         browser.ver = RegExp["$1"];
         browser.safari = parseFloat(browser.ver);
       } else {
-        // Approximate version
-
+        
+        /* Approximate version */
         safariVersion = 1;
 
         if (engine.webkit < 100) {
@@ -1070,8 +603,7 @@
       engine.ver = RegExp["$1"];
       engine.gecko = parseFloat(engine.ver);
 
-      // Determine if it's firefox
-
+      /* Determine if it's firefox */
       if (/Firefox\/(\S+)/.test(ua)) {
         browser.ver = RegExp["$1"];
         browser.firefox = parseFloat(browser.ver);
@@ -1081,21 +613,18 @@
       engine.ie = browser.ie = parseFloat(engine.ver);
     }
 
-    // Detect browsers
-
+    /* Detect browsers */
     browser.ie = engine.ie;
     browser.opera = engine.opera;
 
-    // Detect platform
-
+    /* Detect platform */
     p = navigator.platform;
 
     system.win = p.indexOf("Win") === 0;
     system.mac = p.indexOf("Mac") === 0;
     system.x11 = (p === "X11") || (p.indexOf("Linux") === 0);
 
-    // Detecting Windows OSs
-
+    /* Detecting Windows OSs */
     if (system.win) {
       if (/Win(?:dows )?([^do]{2})\s?(\d+\.\d+)?/.test(ua)) {
         if (RegExp["$1"] === "NT") {
@@ -1128,15 +657,13 @@
       }
     }
 
-    // Mobile Devices
-
+    /* Mobile Devices */
     system.iphone = ua.indexOf("iPhone") > -1;
     system.ipod = ua.indexOf("iPod") > -1;
     system.ipad = ua.indexOf("iPad") > -1;
     system.nokiaN = ua.indexOf("NokiaN") > -1;
 
-    // Windows Mobile
-
+    /* Windows Mobile */
     if (system.win === "CE") {
       system.winMobile = system.win;
     } else if (system.win === "Ph") {
@@ -1146,8 +673,7 @@
       }
     }
 
-    // Determine iOS Version
-
+    /* Determine iOS Version */
     if (system.mac && ua.indexOf("Mobile") > -1) {
       if (/CPU (?:iPhone )?OS (\d+_\d+)/.test(ua)) {
         system.ios = parseFloat(RegExp["$1"].replace("_", "."));
@@ -1156,19 +682,16 @@
       }
     }
 
-    // Determine Android Version
-
+    /* Determine Android Version */
     if (/Android (\d+\.\d+)/.test(ua)) {
       system.android = parseFloat(RegExp["$1"]);
     }
 
-    // Gaming Systems
-
+    /* Gaming Consoles */
     system.wii = ua.indexOf("Wii") > -1;
     system.ps = /playstation/i.test(ua);
 
-    // Name and Version
-
+    /* Name and Version */
     if (system.win) {
       system.name = "Windows";
       system.version = system.win;
@@ -1180,8 +703,7 @@
       system.name = "Some other";
     }
 
-    // Engines
-
+    /* Engines */
     if (browser.ie) {
       browser.name = "IE";
       browser.version = browser.ie;
@@ -1202,8 +724,7 @@
       browser.version = browser.firefox;
     }
 
-    // return them
-
+    /* return them */
     return {
       engine: engine,
       browser: browser,
@@ -1997,76 +1518,74 @@
     }
   });
 
-  // --------------------------------------------------
-  // Hilo AJAX
-  // --------------------------------------------------
-
-  /**
-   * Makes an AJAX request
-   * 
-   * @for hilo
-   * @method ajax
-   * @param {object} config AJAX configuration options
-   * @return {Hilo}
-   * @examples
-   * <div class="code"><pre class="prettyprint">
-   * Hilo.ajax({
-   *   url: "requestHandler.php",
-   *   success: function (data, xhr) {
-   *     console.log(data, xhr);
-   *   },
-   *   method: "GET"
-   * });
-   * </pre></div>
-   * @since 0.1.0
-   */
+  //
+  // ** `hiloAjax` **
+  //
+  // Makes an AJAX request
+  //
+  // Param:
+  // 
+  // `config // {Object} Configuration Options`
+  //
+  // For the list of all config opts, see below.
+  //
+  // Example:
+  //
+  // ```
+  // Hilo.ajax({
+  //   url: "requestHandler.php",
+  //   success: function (data, xhr) {
+  //     console.log(data, xhr);
+  //   },
+  //   method: "GET"
+  // });
+  // ```
+  //
   hiloAjax = function (config) {
-      
-    /*
-     *
-     * config:
-     *  
-     * - method: HTTP Method "GET" or "POST" (default: "POST")
-     * - url: The file to send request
-     * - async: Whether to perform an asynchronous request (default: true)
-     * - data: The data to be sent to the server
-     * - response: Response type "text" or "XML"
-     * - Event functions
-     *   - callback: fn to be exec. on readystatechange
-     *   - complete
-     *   - error
-     *   - timeout
-     *   - success: 200
-     *   - notfound: 404
-     *   - forbidden: 403 
-     * - username
-     * - password
-     * - contentType
-     *
-     */
+    
+    // ```
+    // config.
+    //  method // HTTP Method (default: "POST")
+    //  url // The file to send request
+    //  async // Whether to perform an asynchronous request (default: true)
+    //  data // Data to be sent to the server
+    //  response // HTTP Response type
+    //  callback // function to be executed on readystatechange
+    //  complete // {Function} (xhr.readyState = 4) To be triggered when request is complete
+    //  error // {Function} To be triggered when request fails with an error
+    //  timeout // {Function} To be triggered when request time's out
+    //  success // {Function} (200) To be triggered when request is successfully made (Commonly registered event)
+    //  notfound // {Function} (404) To be triggered when there has been a 4oh4 NotFound exception
+    //  forbidden // {Function} (403) To be triggered when making the request is forbidden
+    //  username // {String} Username to be provided, if authentication is required
+    //  password // {String} Password to be provided, if...
+    //  contentType // HTTP Content-Type
+    // ```
     
     var xhr;
 
+    /* Use the `XMLHttpRequest` object if available
+       or use `ActiveXObject` */
     if (win.XMLHttpRequest) {
       xhr = new win.XMLHttpRequest();
     } else if (win.ActiveXObject) {
       xhr = new win.ActiveXObject("Microsoft.XMLHTTP");
     }
 
+    /* Throw an error if a URL hasn't been provided
+       Seriously, wth can this do without a target url? */
     if (!config.url) {
       throw new TypeError("url parameter not provided to hilo.ajax");
     }
 
-    // Set defaults
-
-    // Asynchronous requests are preferred
+    /* Perform an asynchronous request by default */
     config.async = config.async || true;
 
-    // Authentication params
+    /* Authentication params */
     config.username = config.username || null;
     config.password = config.password || null;
 
-    // contentType application/x-www-form-urlencoded; charset=UTF-8 is preferred
+    /* contentType.. "application/x-www-form-urlencoded; charset=UTF-8" is preferred */
     config.contentType = config.contentType || "application/x-www-form-urlencoded; charset=UTF-8";
 
     xhr.onreadystatechange = function () {
@@ -2102,69 +1621,41 @@
       }
     };
 
+    /* Run this function when the request has timed out :'( */
     xhr.timeout = config.timeout;
 
-    if (typeof config.method === "string") {
-      if (config.method.trim().toUpperCase() === "POST") {
-        xhr.open(
-          "POST",
-          config.url,
-          config.async,
-          config.username,
-          config.password
-        );
+    /* Open the request (Could've been more verbose) */
+    xhr.open(
+      config.method.trim().toUpperCase() || "POST",
+      config.url,
+      config.async,
+      config.username,
+      config.password
+    );
 
-        xhr.send(config.data);
-      } else if (config.method.trim().toUpperCase() === "GET") {
-        xhr.open(
-          "GET",
-          config.url + (config.data ? "+" + config.data : ""),
-          config.async,
-          config.username,
-          config.password
-        );
-
-        xhr.send(typeof config.data === "string" ? config.data : null);
-      }
-    } else {
-      xhr.open(
-        config.method.trim().toUpperCase(),
-        config.url + (config.data ? "+" + config.data : ""),
-        config.async,
-        config.username,
-        config.password
-      );
-
-      xhr.send(typeof config.data === "string" ? config.data : null);
+    /* If config.data is an object, JSON.encode it */
+    if (typeof config.data === "object") {
+      config.data = JSON.encode(config.data);
     }
+
+    /* Lauch the request */
+    xhr.send(typeof config.data === "string" ? config.data : null);
   };
 
   hilo.ajax = hiloAjax;  
 
-  // --------------------------------------------------
-  // AJAX Simplifiers
-  // --------------------------------------------------
+  //
+  // `ajaxRequest` _Internal_
+  // 
+  // Param:
+  // 
+  // * `method`: {String} HTTP Method
+  // * `strOpt`: {String} URL, or options object (see above)
+  // * `callback`: {Function} To be executed on `success`
+  // * `oOpt`: {Object} For providing more options
+  // 
 
   function ajaxRequest (method, strOpt, callback, oOpt) {
-
-    //
-    // How does this function work?
-    //
-    // Let's forget about the method parameter
-    //
-    // 1. If "strOpt" is a string, and "callback" is a function,
-    //    a. If "oOpt" is an object, then all props. of "oOpt" and
-    //       {method:method,url:strOpt,success:callback} is passed
-    //       as the first parameter to the hiloAjax function.
-    //    b. If "oOpt" is not an object, hiloAjax is called with
-    //       {method:method,url:strOpt,success:callback} as the 
-    //       first parameter.
-    // 2. Else, hiloAjax is called with {method:method} and strOpt
-    //    as the first parameter.
-    //
-    // Note: "method" is the HTTP Req. method ("GET", "POST" or alike)
-    // 
-    //
 
     oOpt = (typeof oOpt === "object" ? oOpt : undefined);
     
@@ -2172,8 +1663,6 @@
       hiloAjax(extend({
         method: method,
         url: strOpt,
-
-        // `success` and not `callback` because that's what everyone wants
         success: callback
       }, oOpt));
     } else {
@@ -2183,152 +1672,163 @@
     }
   }
 
-  /**
-   * Send an AJAX GET Request
-   *
-   * @for hilo
-   * @method get
-   * @param {string|object} strOpt File path or Options
-   * @param {function|object} callback The function to execute
-   * @param {object} Options
-   * @example
-   * <div class="code"><pre class="prettyprint">
-   * $.get({
-   *   url: "path/to/file.js",
-   *   success: function (data) {
-   *     console.log(data);
-   *   }
-   * }); // Longer form, the below is preferred
-   * </pre></div>
-   *
-   * <div class="code"><pre class="prettyprint">
-   * $.get("path/to/file.js", function (data) {
-   *   console.log(data);
-   * }); // This does the exact same function as above
-   * </pre></div>
-   *
-   * <div class="code"><pre class="prettyprint">
-   * $.get("path/to/file.js", function (data) {
-   *   console.log(data);
-   * }, {
-   *   error: function (err) {
-   *     console.error(err);
-   *   }
-   * }); // Shortform, with more options
-   * </pre></div>
-   * @since 0.1.0
-   */
+  //
+  // ### Make an asynchronous GET Request
+  // 
+  // Params are similar to those of the internal `ajaxRequest` method (see above)
+  // 
+  // ```
+  // $.get({
+  //   url: "path/to/file.js",
+  //   success: function (data) {
+  //     console.log(data);
+  //   }
+  // }); // Long form
+  // ```
+  //
+  // ```
+  // $.get("path/to/file.js", function (data) {
+  //   console.log(data);
+  // }); // This does the exact same function as above
+  // ```
+  //
+  // ```
+  // $.get("path/to/file.js", function (data) {
+  //   console.log(data);
+  // }, {
+  //   error: function (err) {
+  //     console.error(err);
+  //   }
+  // }); // Short form, with more options
+  // ```
+  //
+
   hilo.get = function (strOpt, callback, oOpt) {
     ajaxRequest("GET", strOpt, callback, oOpt);
   };
 
-  /**
-   * Send an AJAX POST Request
-   *
-   * @for hilo
-   * @method post
-   * @param {string|object} strOpt File path or Options
-   * @param {function|object} callback The function to execute
-   * @param {object} Options
-   * @example
-   * <div class="code"><pre class="prettyprint">
-   * $.post({
-   *   url: "path/to/file.js",
-   *   success: function (data) {
-   *     console.log(data);
-   *   },
-   *   data: JSON.encode(obj)
-   * }); // Longer form, the below is preferred
-   * </pre></div>
-   *
-   * <div class="code"><pre class="prettyprint">
-   * $.post("path/to/file.js", function (data) {
-   *   console.log(data);
-   * }, {
-   *   data: JSON.encode(obj),
-   *   error: function (err) {
-   *     console.error(err);
-   *   }
-   * }); // Shortform, with more options
-   * </pre></div>
-   * @since 0.1.0
-   */
+  //
+  // ### Make an asynchronous POST Request
+  //
+  // Params are similar to those of the internal `ajaxRequest` method (see above)
+  // 
+  // ```
+  // $.post({
+  //   url: "path/to/file.js",
+  //   success: function (data) {
+  //     console.log(data);
+  //   },
+  //   data: JSON.encode(obj)
+  // }); // Long form
+  // ```
+  //
+  // ```
+  // $.post("path/to/file.js", function (data) {
+  //   console.log(data);
+  // }, {
+  //   data: JSON.encode(obj),
+  //   error: function (err) {
+  //     console.error(err);
+  //   }
+  // }); // Short form, with more options
+  // ```
+  //
   hilo.post = function (strOpt, callback, oOpt) {
     ajaxRequest("POST", strOpt, callback, oOpt);
   };
-  
-  // --------------------------------------------------
-  // Hilo DOM
-  // --------------------------------------------------
 
-  /**
-   * Main DOM Class
-   * 
-   * @class Dom
-   * @constructor
-   * @param {array} els The elements to manipulate
-   * @param {string} sel The selector used
-   * @return void
-   * @example
-   * <div class="code"><pre class="prettyprint">
-   * new Dom (document.querySelectorAll(p:first-child);
-   * </pre></div>
-   * <div class="code"><pre class="prettyprint">
-   * new Dom ([document.createElement("div")]);
-   * </pre></div>
-   * <div class="code"><pre class="prettyprint">
-   * new Dom ([document.getElementByid("box")]);
-   * </pre></div>
-   * <div class="code"><pre class="prettyprint">
-   * new Dom (document.getElementsByClassName("hidden"));
-   * </pre></div>
-   * <div class="code"><pre class="prettyprint">
-   * new Dom (document.getElementsByTagName("mark"));
-   * </pre></div>
-   * <div class="code"><pre class="prettyprint">
-   * </pre></div>
-   * @since 0.1.0
-   */
+  //
+  // ### Main DOM Class
+  //
+  // ** Params: **
+  // - `els` {Array} The elements to manipulate
+  // - `sel` {String} The selector used
+  //
+  // ** Examples **
+  //
+  // ```
+  // new Dom (document.querySelectorAll(p:first-child);
+  // ```
+  // ```
+  // new Dom ([document.createElement("div")]);
+  // ```
+  // ```
+  // new Dom ([document.getElementByid("box")]);
+  // ```
+  // ```
+  // new Dom (document.getElementsByClassName("hidden"));
+  // ```
+  // ```
+  // new Dom (document.getElementsByTagName("mark"));
+  // ```
+  // 
   function Dom (els, sel) {
     var _i, _l;
 
-    // Note that `this` is an object and NOT an Array
+    /* Note that `this` is an object and NOT an Array */
 
-    // Loop thorugh the NodeList and set `this[index]` for `els[index]`
+    /* Loop thorugh the NodeList and set `this[index]` for `els[index]` */
     for (_i = 0, _l = els.length; _i < _l; _i += 1) {
       this[_i] = els[_i];
     }
 
-    // Useful for looping through as ours is an object and not an array
+    /* Useful for looping through as ours is an object and not an array */
     this.length = els.length;
 
-    // Know what selector is used to select the elements
+    /* Know what selector is used to select the elements */
     this.sel = sel;
   }
 
-  // Make it _look_ like an array
+  /* Make it _look_ like an array */
   Dom.prototype = Array.prototype;
 
   extend(Dom.prototype, {
-    // Set the constructor to Dom. It defaults to Array. We don't that
+    /* Set the constructor to Dom. It defaults to Array. We don't that */
     constructor: Dom
   });
 
   // ### Hilo CSS Helper Methods
 
-  // Return a string repacing all `-`'s with `""` and making the letter
+  // 
+  // **_unhyph_** *Internal*
+  // 
+  // Return a string repacing all `-`s with `""` and making the letter
   // next to every `-` uppercase
+  // 
+  // **Param**:
+  // - `prop`: {String} CSS Property Name
+  // 
+  // **Examples**:
+  // ```
+  // unhyph("background-color"); // backgroundColor
+  // unhyph("color"); // color
+  // ```
+  // 
   function unhyph (prop) {
     return prop.toLowerCase().replace(/-(.)/g, function (m, m1) {
       return m1.toUpperCase();
     });
   }
 
+  // 
+  // **_unitize_** *Internal*
+  // 
   // Add necessary suffix to the number for certain CSS properties
   // _This will later be used by .css() and a number of other methods_
+  // 
+  // **Param**:
+  // - `unit`: {String|Number} Valid CSS Unit (`unitize()` Returns the same thing if {String})
+  // - `prop`: {String} CSS Property Name
+  // 
+  // **Examples**:
+  // ```
+  // unitize("background-color"); // backgroundColor
+  // unhyph("color"); // color
+  // ```
+  // 
   function unitize (unit, prop) {
 
-    // All the CSS props. that are to be defaulted to px values
+    /* All the CSS props. that are to be defaulted to px values */
     var pixel = {
       "width": true,
       "maxWidth": true,
@@ -2373,13 +1873,13 @@
       "right": true
     };
 
-    // String values are not be unitized no matter what
+    /* String values are not be unitized no matter what */
     if (typeof unit === "string") {
       return unit;
     }
 
-    // If the property is present in the previously mentioned
-    // object, the unit is suffixed with "px"
+    /* If the property is present in the previously mentioned
+       object, the unit is suffixed with "px" */
     if (pixel[prop] === true) {
       return unit + "px";
     }
@@ -2387,42 +1887,40 @@
     return unit;
   }
 
+  // 
+  // **_hilo.create_**
+  // 
   // Create an element
-
-  /**
-   * Create an element
-   *
-   * @for hilo
-   * @method create
-   * @param {string} tagName Tag Name or Node name of element
-   * @attrs {object} attrs An object containing the attributes and values
-   * @return {HTMLElement} The created element
-   * @example
-   * <div class="code"><pre class="prettyprint">
-   * $.create("div", {
-   *   class: "post",
-   *   "data-id": 2
-   * });
-   * </pre></div>
-   * @since 0.1.0
-   */
+  // 
+  // **Params**:
+  // - `tagName`: {String} Tag Name or Node name of element
+  // - `attrs`: {Object} An object containing the attributes and values
+  // 
+  // **Example**:
+  // ```
+  // $.create("div", {
+  //   class: "post",
+  //   "data-id": 2
+  // });
+  // ```
+  // 
   hilo.create = function (tagName, attrs) {
     var el = new Dom([document.createElement(tagName)]), key;
 
     if (attrs) {
-      // Add Class if the `className` is sset
+      /* Add Class if the `className` is set */
       if (attrs.className) {
         el.addClass(attrs.className);
         delete attrs.className;
       }
 
-      // Set html to if `text` content is given
+      /* Set html to if `text` content is given */
       if (attrs.text) {
         el.html(attrs.text);
         delete attrs.text;
       }
 
-      // Set other attributes
+      /* Set other attributes */
       for (key in attrs) {
         if(attrs.hasOwnProperty(key)) {
           el.attr(key, attrs["key"]);
@@ -2435,51 +1933,44 @@
 
   extend(Dom.prototype, {
 
-    // --------------------------------------------------
-    // Helper Functions
-    // --------------------------------------------------
-    
-    // Execute a function on selected elements
+    // ## Helper Functions
 
-    /**
-     * Execute a function on selected elements
-     * 
-     * @for Dom
-     * @method each
-     * @param {function} fn The function to be called on
-     * @return {Dom}
-     * @example
-     * <div class="code"><pre class="prettyprint">
-     * $("p").each(function (el) {
-     *   doSomethingWith(e);
-     * });
-     * </pre></div>
-     * @since 0.1.0
-     */
+    // 
+    // **_Hilo.Dom.prototype.each_**
+    // 
+    // Execute a function on selected elements
+    // 
+    // **Param**:
+    // - `fn`: {Function} The function to be called
+    // 
+    // **Example**:
+    // ```
+    // $("p").each(function (el) {
+    //   doSomethingWith(e);
+    // });
+    // ```
+    // 
     each: function (fn) {
       this.map(fn);
-      return this; // return the current Dom instance
+      return this; /* return the current Dom instance */
     },
 
-    // Return the results of executing a function 
+    // 
+    // **_Hilo.Dom.prototype.map_**
+    // 
+    // Return the results of executing a function
     // on all the selected elements
-
-    /**
-     * Return the results of executing a function 
-     * on all the selected elements
-     * 
-     * @for Dom
-     * @method map
-     * @param {function} fn The function to be called on
-     * @return {array} The results of execution
-     * @example
-     * <div class="code"><pre class="prettyprint">
-     * $("div.need-cf").map(function (e) {
-     *   doSomethingWith(e);
-     * });
-     * </pre></div>
-     * @since 0.1.0
-     */
+    // 
+    // **Param**:
+    // - `fn`: {Function} The function to be called
+    // 
+    // **Example**:
+    // ```
+    // $("div.need-cf").map(function (e) {
+    //   doSomethingWith(e);
+    // });
+    // ```
+    // 
     map: function (fn) {
       var results = []
         , _i
@@ -2492,64 +1983,55 @@
       return results;
     },
 
-    // Map on selected elements and return them based 
+    // 
+    // **_Hilo.Dom.prototype.one_**
+    // 
+    // Map on selected elements and return them based
     // on the number of selected elements
-
-    /**
-     * Map on selected elements and return them based 
-     * on the number of selected elements
-     * 
-     * @for Dom
-     * @method one
-     * @param {function} fn Function to be called on
-     * @return {Any|array}
-     * @since 0.1.0
-     */
+    // 
+    // **Param**:
+    // - `fn`: {Function} The function to be called
+    // 
     one: function (fn) {
       var m = this.map(fn);
       return m.length > 1 ? m : m[0];
     },
 
+    // 
+    // **_Hilo.Dom.prototype.first_**
+    // 
     // Execute a function on the first selected element
-
-    /**
-     * Execute a function on the first selected element
-     * 
-     * @for Dom
-     * @method first
-     * @param {function} fn The function to be called
-     * @return {Dom}
-     * @example
-     * <div class="code"><pre class="prettyprint">
-     * $("div").first(function (e) {
-     *   console.log(e + " is the first div");
-     * });
-     * </pre></div>
-     * @since 0.1.0
-     */
+    // 
+    // **Param**:
+    // - `fn`: {Function} The function to be called
+    // 
+    // **Example**:
+    // ```
+    // $("div").first(function (e) {
+    //   console.log(e + " is the first div");
+    // });
+    // ```
+    // 
     first: function (fn) {
       return fn(this[0]);
     },
 
-    // Filters the selected elements and returns the 
+    // 
+    // **_Hilo.Dom.prototype.filter_**
+    // 
+    // Filter the selected element and return the
     // elements that pass the test (or return true)
-
-    /**
-     * Filters the selected elements and returns the 
-     * elements that pass the test (or return true)
-     * 
-     * @for Dom
-     * @method filter
-     * @param {function} fn The filter function
-     * @return {Dom}
-     * @example
-     * <div class="code"><pre class="prettyprint">
-     * $("div").filter(function (el) {
-     *   return el.className.split("hidden").length > 1;
-     * });
-     * </pre></div>
-     * @since 0.1.0
-     */
+    // 
+    // **Param**:
+    // - `fn`: {Function} The function to be called
+    // 
+    // **Example**:
+    // ```
+    // $("div").filter(function (el) {
+    //   return el.className.split("hidden").length > 1;
+    // });
+    // ```
+    // 
     filter: function (fn) {
       var len = this.length >>> 0
         , _i
@@ -2570,24 +2052,18 @@
       return new Dom(res);
     },
 
-    // --------------------------------------------------
-    // Element Selections, etc.
-    // --------------------------------------------------
+    // ## Element Selections, etc.
 
+    // 
+    // **_Hilo.Dom.prototype.get_**
+    // 
     // Get a JavaScript Array containing selected elements
-
-    /**
-     * Get a JavaScript Array containing selected elements
-     * 
-     * @for Dom
-     * @method get
-     * @return {Dom}
-     * @example
-     * <div class="code"><pre class="prettyprint">
-     * $("script").get();
-     * </pre></div>
-     * @since 0.1.0
-     */
+    // 
+    // **Example**:
+    // ```
+    // $("script").get();
+    // ```
+    // 
     get: function () {
       var els = [];
 
@@ -2598,77 +2074,65 @@
       return els;
     },
 
+    // 
+    // **_Hilo.Dom.prototype.firstEl_**
+    // 
     // Return first element of the selected elements
-
-    /**
-     * Return first element of the selected elements
-     *
-     * @for Dom
-     * @method firstEl
-     * @return {Dom} The first element
-     * @example
-     * <div class="code"><pre class="prettyprint">
-     * $("p.hidden").firstEl().show();
-     * </pre></div>
-     * @since 0.1.0
-     */
+    // 
+    // **Example**:
+    // ```
+    // $("p.hidden").firstEl().show();
+    // ```
+    // 
     firstEl: function () {
       return new Dom([this[0]]);
     },
 
+    // 
+    // **_Hilo.Dom.prototype.lastEl_**
+    // 
     // Return last element of the selected elements
-
-    /**
-     * Return last element of the selected elements
-     *
-     * @for Dom
-     * @method lastEl
-     * @return {Dom} The last element
-     * @example
-     * <div class="code"><pre class="prettyprint">
-     * $("p.hidden").lastEl().show();
-     * </pre></div>
-     * @since 0.1.0
-     */
+    // 
+    // **Example**:
+    // ```
+    // $("p.hidden").lastEl().show();
+    // ```
+    // 
     lastEl: function () {
       return new Dom([this[this.length - 1]]);
     },
 
+    // 
+    // **_Hilo.Dom.prototype.el_**
+    // 
     // Return nth element of the selected elements
-
-    /**
-     * Return nth element of the selected elements
-     *
-     * @for Dom
-     * @method el
-     * @return {number} place The index of element (Index Starts from 1)
-     * @return {Dom} The nth element
-     * @example
-     * <div class="code"><pre class="prettyprint">
-     * $("p.hidden").el(3).show();
-     * </pre></div>
-     * @since 0.1.0
-     */
+    // 
+    // **Param**:
+    // - `place`: {Number} The index of the element (Starts from 1)
+    // 
+    // **Example**:
+    // ```
+    // $("p.hidden").el(3).show();
+    // ```
+    // 
     el: function (place) {
       return new Dom([this[place - 1]]);
     },
 
+    // 
+    // **_Hilo.Dom.prototype.children_**
+    // 
     // Return the children of selected elements
-
-    /**
-     * Return the children of selected elements
-     *
-     * @for Dom
-     * @method children
-     * @param {string} sel Optional filtering selector
-     * @return {Dom}
-     * @example
-     * <div class="code"><pre class="prettyprint">
-     * var childrenOfContainer = $("div.container").children();
-     * $("div.container").children(":not(.hidden)").addClass("me");
-     * </pre></div>
-     * @since 0.1.0
-     */
+    // 
+    // **Param**:
+    // - `sel`: {String} Optional filtering selector
+    // 
+    // **Example**:
+    // ```
+    // var childrenOfContainer = $("div.container").children();
+    // $("div.container").children(":not(.hidden)").addClass("me");
+    // ```
+    // 
     children: function (sel) {
       var children = [], _i, _l;
 
@@ -2683,20 +2147,16 @@
       return children;
     },
 
-    // Returns the parents of selected elements
-
-    /**
-     * Returns the parents of selected elements
-     *
-     * @for Dom
-     * @method parents
-     * @return {Dom}
-     * @example
-     * <div class="code"><pre class="prettyprint">
-     * $("div#editor").parent().hide()
-     * </pre></div>
-     * @since 0.1.0
-     */
+    // 
+    // **_Hilo.Dom.prototype.parents_**
+    // 
+    // Return the parents of selected elements
+    // 
+    // **Example**:
+    // ```
+    // $("div#editor").parent().hide()
+    // ```
+    // 
     parents: function () {
       var pars = [];
 
@@ -2707,43 +2167,36 @@
       return new Dom(pars);
     },
 
-    // Return parent of first selected element
-
-    /**
-     * Return parent of first selected element
-     *
-     * @for Dom
-     * @method parent
-     * @return {Dom}
-     * @example
-     * <div class="code"><pre class="prettyprint">
-     * $("div.editor").parent().hide();
-     * </pre></div>
-     * @since 0.1.0
-     */
+    // 
+    // **_Hilo.Dom.prototype.parent_**
+    // 
+    // Return the parent of the first selected element
+    // 
+    // **Example**:
+    // ```
+    // $("div#editor").parent().hide()
+    // ```
+    // 
     parent: function () {
       return this.first(function (el) {
         return new Dom([el.parentElement]);
       });
     },
 
-    // Return relative of selected elements based 
-    // on the relation given
-
-    /**
-     * Return relative of selected elements based 
-     * on the relation given
-     * 
-     * @for Dom
-     * @method rel
-     * @param {string} relation relation
-     * @return {Dom}
-     * @example
-     * <div class="code"><pre class="prettyprint">
-     * $("div#editor").rel("nextSibling").addClass("next-to-editor")
-     * </pre></div>
-     * @since 0.1.0
-     */
+    // 
+    // **_Hilo.Dom.prototype.rel_**
+    // 
+    // Return relatives of selected elements based
+    // on the given relation
+    // 
+    // **Param**:
+    // - `sul`: {String} Relation
+    // 
+    // **Example**:
+    // ```
+    // $("div#editor").rel("nextSibling").addClass("next-to-editor");
+    // ```
+    // 
     rel: function (sul) {
       var els = [];
 
@@ -2754,60 +2207,48 @@
       return els;
     },
 
+    // 
+    // **_Hilo.Dom.prototype.next_**
+    // 
     // Return next sibling elements of selected elements
-
-    /**
-     * Return next sibling elements of selected elements
-     *
-     * @for Dom
-     * @method next
-     * @return {Dom}
-     * @example
-     * <div class="code"><pre class="prettyprint">
-     * $("div.editor").next().class("next-to-editor")
-     * </pre></div>
-     */
+    // 
+    // **Example**:
+    // ```
+    // $("div#editor").next().addClass("next-to-editor");
+    // ```
+    // 
     next: function () {
       return this.rel("nextElementSibling");
     },
-
-    // Return previous sibling elements of selected elements
-
-    /**
-     * Return previous sibling elements of selected elements
-     *
-     * @for Dom
-     * @method prev
-     * @return {Dom}
-     * @example
-     * <div class="code"><pre class="prettyprint">
-     * $("div.editor").prev().class("prev-to-editor")
-     * </pre></div>
-     */
+    
+    // 
+    // **_Hilo.Dom.prototype.prev_**
+    // 
+    // Return next sibling elements of selected elements
+    // 
+    // **Example**:
+    // ```
+    // $("div#editor").prev().addClass("prev-to-editor");
+    // ```
+    // 
     prev: function () {
       return this.rel("previousElementSibling");
     },
 
-    // --------------------------------------------------
-    // DOM HTML
-    // --------------------------------------------------
-
+    // 
+    // **_Hilo.Dom.prototype.html_**
+    // 
     // Set or return innerHTML of selected elements
-
-    /**
-     * Set or return innerHTML of selected elements
-     * 
-     * @for Dom
-     * @method html
-     * @param {string} html HTML Code to be inserted
-     * @return {string|void}
-     * @example
-     * <div class="code"><pre class="prettyprint">
-     * $("p:first-child").html("first-p")
-     * var html = $("span").html()
-     * </pre></div>
-     * @since 0.1.0
-     */
+    // 
+    // **Param**:
+    // - `html`: {String} HTML Code to be inserted
+    // 
+    // **Example**:
+    // ```
+    // $("p:first-child").html("first-p");
+    // var html = $("span").html();
+    // ```
+    // 
     html: function (htmlCode) {
       if (typeof htmlCode !== "undefined") {
         return this.each(function(el) {
@@ -2820,81 +2261,71 @@
       }
     },
 
+    // 
+    // **_Hilo.Dom.prototype.empty_**
+    // 
     // Empty the selected elements
-
-    /**
-     * Empty the selected elements
-     * 
-     * @for Dom
-     * @method empty
-     * @return {Dom}
-     * @example
-     * <div class="code"><pre class="prettyprint">
-     * $("#todo-list").empty()
-     * </pre></div>
-     * @since 0.1.0
-     */
+    //
+    // **Example**:
+    // ```
+    // $("#todo-list").empty();
+    // ```
+    // 
     empty: function () {
       return this.html("");
     },
 
+    // 
+    // **_Hilo.Dom.prototype.append_**
+    // 
     // Append html to selected elements
-
-    /**
-     * Append html to selected elements
-     * 
-     * @for Dom
-     * @method append
-     * @param {string} html The HTML Code to be appended
-     * @return {Dom}
-     * @example
-     * <div class="code"><pre class="prettyprint">
-     * $("p:first-child").append(" - From the first p child")
-     * </pre></div>
-     * @since 0.1.0
-     */
+    // 
+    // **Param**:
+    // - `html`: {String} HTML Code to be appeneded
+    // 
+    // **Example**:
+    // ```
+    // $("p:first-child").append(" - From the first p child")
+    // ```
+    // 
     append: function (html) {
       return this.each(function (el) {
         el.innerHTML += html;
       });
     },
 
+    // 
+    // **_Hilo.Dom.prototype.prepend_**
+    // 
     // Prepend html to selected elements
-
-    /**
-     * Prepend html to selected elements
-     * 
-     * @for Dom
-     * @method prepend
-     * @param {string} html The HTML Code to be prepended
-     * @return {Dom}
-     * @example
-     * <div class="code"><pre class="prettyprint">
-     * $("p.subject").prepend("Subject: ")
-     * </pre></div>
-     * @since 0.1.0
-     */
+    // 
+    // **Param**:
+    // - `html`: {String} HTML Code to be appeneded
+    // 
+    // **Example**:
+    // ```
+    // $("p:first-child").append(" - From the first p child")
+    // ```
+    // 
     prepend: function (html) {
       return this.each(function (el) {
         el.innerHTML = html + el.innerHTML;
       });
     },
 
-    // Get or set the value attribute of selected element
-
-    /**
-     * Get or set the value attribute of selected element
-     * 
-     * @for Dom
-     * @method value
-     * @param val The value to set to
-     * @return {string|void}
-     * @example
-     * <div class="code"><pre class="prettyprint">
-     * $("#my-form").children("input#name").value();
-     * </pre></div>
-     * @since 0.1.0
-     */
+    // 
+    // **_Hilo.Dom.prototype.value_**
+    // 
+    // Get or set the value attribute of the selected element
+    // 
+    // **Param**:
+    // - `val`: {String} Value to set to
+    // 
+    // **Example**:
+    // ```
+    // $("#my-form").children("input#name").value();
+    // ```
+    // 
     value: function (val) {
       if (val) {
         return this.each(function (el) {
@@ -2907,25 +2338,19 @@
       }
     },
 
-    // --------------------------------------------------
-    // Classes and IDs
-    // --------------------------------------------------
-
-    // Set or return ID of first element
-
-    /**
-     * Set or return ID of first element
-     *  
-     * @for Dom
-     * @method id
-     * @param {string} id The id to set
-     * @return {string|void}
-     * @example
-     * <div class="code"><pre class="prettyprint">
-     * $("p.rect").first().id("square")
-     * </pre></div>
-     * @since 0.1.0
-     */
+    // 
+    // **_Hilo.Dom.prototype.id_**
+    // 
+    // Get or set the ID of first element
+    // 
+    // **Param**:
+    // - `id`: {String} ID to set
+    // 
+    // **Example**:
+    // ```
+    // $("p.rect").first().id("square");
+    // ```
+    // 
     id: function (id) {
       if (id) {
 
@@ -2942,22 +2367,28 @@
       }
     },
 
-    // Add, remove or check class(es)
+    // ### Classes and IDs
 
-    /**
-     * Add, remove or check class(es)
-     * 
-     * @for Dom
-     * @method class
-     * @param {string} action Specifies the action to take
-     * @param {string|array} className Class(es) to be checked or manipulated
-     * @return {boolean|void}
-     * @example
-     * <div class="code"><pre class="prettyprint">
-     * $("div#editor").class("add", "no-js")
-     * </pre></div>
-     * @since 0.1.0
-     */
+    // 
+    // **_Hilo.Dom.prototype.class_**
+    // 
+    // Add, remove, or check class(es)
+    // 
+    // **Param**:
+    // - `action`: {String} Action to take ("add", "remove", "has")
+    // - `className`: {String|Array} Class(es) to add or remove
+    // 
+    // **Examples**:
+    // ```
+    // $("div#editor").class("add", "no-js");
+    // ```
+    // ```
+    // $("div#editor").class("remove", "no-js");
+    // ```
+    // ```
+    // var isHidden = $("p").class("has", "hidden");
+    // ```
+    //
     "class": feature.classList === true ? function (action, className) {
       return this.each(function (el) {
         var _i, parts, contains, res = [];
@@ -3211,82 +2642,73 @@
       });
     },
 
+    // 
+    // **_Hilo.Dom.prototype.addClass_**
+    // 
     // Adds class(es) to selected elements
-
-    /**
-     * Adds class(es) to selected elements
-     * 
-     * @for Dom
-     * @method addClass
-     * @param {string|array} className The class(es) to add
-     * @return {Dom}
-     * @example
-     * <div class="code"><pre class="prettyprint">
-     * $("p").addClass("paragraph")
-     * </pre></div>
-     * @since 0.1.0
-     */
+    // 
+    // **Param**:
+    // - `className`: {String|Array} The class(es) to add
+    // 
+    // **Example**:
+    // ```
+    // $("p").addClass("paragraph");
+    // ```
+    // 
     addClass: function (className) {
       return this["class"]("add", className);
     },
 
+    // 
+    // **_Hilo.Dom.prototype.removeClass_**
+    // 
     // Remove class(es) from selected elements
-
-    /**
-     * Remove class(es) from selected elements
-     * 
-     * @for Dom
-     * @method removeClass
-     * @param classes {string|array} The class(es) to be removed
-     * @return {Dom}
-     * @example
-     * <div class="code"><pre class="prettyprint">
-     * $("p.hidden").removeClass("hidden")
-     * </pre></div>
-     * @since 0.1.0
-     */
+    // 
+    // **Param**:
+    // - `className`: {String|Array} The class(es) to remove
+    // 
+    // **Example**:
+    // ```
+    // $("p.hidden").removeClass("hidden");
+    // ```
+    // 
     removeClass: function (className) {
       return this["class"]("remove", className);
     },
 
-    // Check for class(es) in selected elements
-
-    /**
-     * Check for class(es) in selected elements
-     * 
-     * @for Dom
-     * @method hasClass
-     * @param {string|array} className The class(es) to be checked for existence
-     * @return {Boolean}
-     * @example
-     * <div class="code"><pre class="prettyprint">
-     * if(!$("audio:not([controls])").hasClass("hidden")) {
-     *   $("audio:not([controls])").addClass("hidden");
-     * }
-     * </pre></div>
-     * @since 0.1.0
-     */
+    // 
+    // **_Hilo.Dom.prototype.hasClass_**
+    // 
+    // Check if selected elements have the specified class(es)
+    // 
+    // **Param**:
+    // - `className`: {String|Array} The class(es) to check if exists
+    // 
+    // **Example**:
+    // ```
+    // $("pre").hasClass("prettyprint");
+    // ```
+    // 
     hasClass: function (className) {
       return this["class"]("has", className);
     },
 
-    // Add class(es) if not already, remove if added
-
-    /**
-     * Add class(es) if not already, remove if added
-     * 
-     * @for Dom
-     * @method toggleClass
-     * @param {string|array} className The classes to be toggled
-     * @return {Dom}
-     * @example
-     * <div class="code"><pre class="prettyprint">
-     * $(".someClass").on("click", function () {
-     *   $(this).toggleClass("opaque");
-     * });
-     * </pre></div>
-     * @since 0.1.0
-     */
+    // 
+    // **_Hilo.Dom.prototype.toggleClass_**
+    // 
+    // Add class(es) if it/they do(es) not exist(s),
+    // remove if exist(s)
+    // 
+    // **Param**:
+    // - `className`: {String|Array} The class(es) to toggle
+    // 
+    // **Example**:
+    // ```
+    // $(".someClass").on("click", function () {
+    //   $(this).toggleClass("opaque");
+    // });
+    // ```
+    // 
     toggleClass: function (className) {
       return this["class"]("toggle", className);
     },
@@ -3302,13 +2724,30 @@
      * @param {string} val Value of the attribute
      * @return {string|void}
      * @example
-     * <div class="code"><pre class="prettyprint">
-     * $("p.hidden").attr("hidden"); 
-     * $("div.edit").attr("contentEditable", "true"); 
-     * $("body").attr("hilo", "0.1.0"); 
-     * </pre></div>
-     * @since 0.1.0
+     * ```
+    
+     * ```
      */
+    // 
+    // **_Hilo.Dom.prototype.attr_**
+    // 
+    // Set or return attribute values
+    // 
+    // **Param**:
+    // - `name`: {String} Name of attribute
+    // - `val`: {String} Value of attribute
+    // 
+    // **Example**:
+    // ```
+    // $("p.hidden").attr("hidden");
+    // ```
+    // ```
+    // $("div.edit").attr("contentEditable", "true");
+    // ```
+    // ```
+    // $("body").attr("hilo", "0.1.0"); 
+    // ```
+    // 
     attr: function (name, val) {
       if(val) {
         return this.each(function(el) {
@@ -3321,9 +2760,7 @@
       }
     },
 
-    // --------------------------------------------------
-    // Hilo CSS
-    // --------------------------------------------------
+    // ### Hilo CSS
 
     // Set or return css property
 
@@ -3337,15 +2774,14 @@
      * @return {string|void}
      * @beta
      * @example
-     * <div class="code"><pre class="prettyprint">
+     * ```
      * $("p").css("margin-left", "10em");
      * 
      * $("p.round").css({
      *   "border-radius": 10,
      *   width: 100
      * });
-     * </pre></div>
-     * @since 0.1.0
+     * ```
      */
     css: function (prop, value) {
       var unhyphed;
@@ -3383,7 +2819,6 @@
      * @param {string} prop Name of property
      * @return {number|boolean|string}
      * @beta
-     * @since 0.1.0
      */
     computed: function (prop) {
       return this.first(function (el) {
@@ -4356,18 +3791,15 @@ hilo.classify = function () {
     }
   });
   
-  // --------------------------------------------------
-  // Hilo Extension API
-  // --------------------------------------------------
+  // ## Hilo Extension API
   
-  // Provide Extension API
+  /* Provide Extension API */
   extend(hilo, {
     Dom: Dom.prototype,
     Test: Test.prototype
   });
 
-  // Set event handler for triggering DOM Evenets
-  
+  /* Set event handler for triggering DOM Events */
   doc.onreadystatechange = function () {
     if (doc.readyState === "complete") {
       for (_i = 0; _i < callbacks.length; _i += 1) {
@@ -4376,21 +3808,8 @@ hilo.classify = function () {
     }
   };
 
-  // Provide shorthand `$`
-  win.$ = hilo;
-
-  // Get the total time took to execute the script
-  elapsed = new Date().getTime() - start;
-
-  /**
-   * Time taken to load (in ms)
-   * 
-   * @for hilo
-   * @property perf
-   * @type {number}
-   * @since 0.1.0
-   */
-  hilo.perf = elapsed;
+  /* Get the total time took to execute the script */
+  hilo.perf = new Date().getTime() - start;
 
   // Finally return Hilo
   return hilo;
