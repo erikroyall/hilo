@@ -5,4 +5,5 @@ before_install:
   - phantomjs --version
 
 script:
+  - npm install grunt-cli
   - grunt --verbose
