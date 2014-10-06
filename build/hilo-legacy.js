@@ -567,16 +567,16 @@
       engine.ver = browser.ver = window.opera.version();
       engine.opera = browser.opera = parseFloat(engine.ver);
     } else if (/AppleWebKit\/(\S+)/.test(ua)) {
-      engine.ver = RegExp["$1"];
+      engine.ver = RegExp.$1;
       engine.webkit = parseFloat(engine.ver);
 
       /* Figures out if chrome or Safari */
 
       if (/Chrome\/(\S+)/.test(ua)) {
-        browser.ver = RegExp["$1"];
+        browser.ver = RegExp.$1;
         browser.chrome = parseFloat(browser.ver);
       } else if (/Version\/(\S+)/.test(ua)) {
-        browser.ver = RegExp["$1"];
+        browser.ver = RegExp.$1;
         browser.safari = parseFloat(browser.ver);
       } else {
         
@@ -596,19 +596,19 @@
         browser.safari = browser.ver = safariVersion;
       }
     } else if (/KHTML\/(\S+)/.test(ua) || /Konqueror\/([^;]+)/.test(ua)) {
-      engine.ver = browser.ver = RegExp["$1"];
+      engine.ver = browser.ver = RegExp.$1;
       engine.khtml = browser.konq = parseFloat(engine.ver);
     } else if (/rv:([^\)]+)\) Gecko\/\d{8}/.test(ua)) {
-      engine.ver = RegExp["$1"];
+      engine.ver = RegExp.$1;
       engine.gecko = parseFloat(engine.ver);
 
       /* Determine if it's firefox */
       if (/Firefox\/(\S+)/.test(ua)) {
-        browser.ver = RegExp["$1"];
+        browser.ver = RegExp.$1;
         browser.firefox = parseFloat(browser.ver);
       }
     } else if (/MSIE ([^;]+)/.test(ua)) {
-      engine.ver = browser.ver = RegExp["$1"];
+      engine.ver = browser.ver = RegExp.$1;
       engine.ie = browser.ie = parseFloat(engine.ver);
     }
 
@@ -626,7 +626,7 @@
     /* Detecting Windows OSs */
     if (system.win) {
       if (/Win(?:dows )?([^do]{2})\s?(\d+\.\d+)?/.test(ua)) {
-        if (RegExp["$1"] === "NT") {
+        if (RegExp.$1 === "NT") {
           switch(RegExp["$2"]) {
             case "5.0":
               system.win = "2000";
@@ -648,10 +648,10 @@
               system.win = "NT";
               break;
           }
-        } else if (RegExp["$1"] === "9x") {
+        } else if (RegExp.$1 === "9x") {
           system.win = "ME";
         } else {
-          system.win = RegExp["$1"];
+          system.win = RegExp.$1;
         }
       }
     }
@@ -668,14 +668,14 @@
     } else if (system.win === "Ph") {
       if (/Windows Phone OS(\d+.\d+)/.test(ua)) {
         system.win = "Phone";
-        system.winMobile = parseFloat(RegExp["$1"]);
+        system.winMobile = parseFloat(RegExp.$1);
       }
     }
 
     /* Determine iOS Version */
     if (system.mac && ua.indexOf("Mobile") > -1) {
       if (/CPU (?:iPhone )?OS (\d+_\d+)/.test(ua)) {
-        system.ios = parseFloat(RegExp["$1"].replace("_", "."));
+        system.ios = parseFloat(RegExp.$1.replace("_", "."));
       } else {
         system.ios = 2; // Can't really detect - so guess
       }
@@ -683,7 +683,7 @@
 
     /* Determine Android Version */
     if (/Android (\d+\.\d+)/.test(ua)) {
-      system.android = parseFloat(RegExp["$1"]);
+      system.android = parseFloat(RegExp.$1);
     }
 
     /* Gaming Consoles */

@@ -1499,16 +1499,16 @@ Licensed under MIT (see LICENSE-MIT) </p>
       engine.ver = browser.ver = <span class="hljs-built_in">window</span>.opera.version();
       engine.opera = browser.opera = <span class="hljs-built_in">parseFloat</span>(engine.ver);
     } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-regexp">/AppleWebKit\/(\S+)/</span>.test(ua)) {
-      engine.ver = <span class="hljs-built_in">RegExp</span>[<span class="hljs-string">"$1"</span>];
+      engine.ver = <span class="hljs-built_in">RegExp</span>.$<span class="hljs-number">1</span>;
       engine.webkit = <span class="hljs-built_in">parseFloat</span>(engine.ver);
 
       <span class="hljs-comment">/* Figures out if chrome or Safari */</span>
 
       <span class="hljs-keyword">if</span> (<span class="hljs-regexp">/Chrome\/(\S+)/</span>.test(ua)) {
-        browser.ver = <span class="hljs-built_in">RegExp</span>[<span class="hljs-string">"$1"</span>];
+        browser.ver = <span class="hljs-built_in">RegExp</span>.$<span class="hljs-number">1</span>;
         browser.chrome = <span class="hljs-built_in">parseFloat</span>(browser.ver);
       } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-regexp">/Version\/(\S+)/</span>.test(ua)) {
-        browser.ver = <span class="hljs-built_in">RegExp</span>[<span class="hljs-string">"$1"</span>];
+        browser.ver = <span class="hljs-built_in">RegExp</span>.$<span class="hljs-number">1</span>;
         browser.safari = <span class="hljs-built_in">parseFloat</span>(browser.ver);
       } <span class="hljs-keyword">else</span> {
         
@@ -1528,19 +1528,19 @@ Licensed under MIT (see LICENSE-MIT) </p>
         browser.safari = browser.ver = safariVersion;
       }
     } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-regexp">/KHTML\/(\S+)/</span>.test(ua) || <span class="hljs-regexp">/Konqueror\/([^;]+)/</span>.test(ua)) {
-      engine.ver = browser.ver = <span class="hljs-built_in">RegExp</span>[<span class="hljs-string">"$1"</span>];
+      engine.ver = browser.ver = <span class="hljs-built_in">RegExp</span>.$<span class="hljs-number">1</span>;
       engine.khtml = browser.konq = <span class="hljs-built_in">parseFloat</span>(engine.ver);
     } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-regexp">/rv:([^\)]+)\) Gecko\/\d{8}/</span>.test(ua)) {
-      engine.ver = <span class="hljs-built_in">RegExp</span>[<span class="hljs-string">"$1"</span>];
+      engine.ver = <span class="hljs-built_in">RegExp</span>.$<span class="hljs-number">1</span>;
       engine.gecko = <span class="hljs-built_in">parseFloat</span>(engine.ver);
 
       <span class="hljs-comment">/* Determine if it's firefox */</span>
       <span class="hljs-keyword">if</span> (<span class="hljs-regexp">/Firefox\/(\S+)/</span>.test(ua)) {
-        browser.ver = <span class="hljs-built_in">RegExp</span>[<span class="hljs-string">"$1"</span>];
+        browser.ver = <span class="hljs-built_in">RegExp</span>.$<span class="hljs-number">1</span>;
         browser.firefox = <span class="hljs-built_in">parseFloat</span>(browser.ver);
       }
     } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-regexp">/MSIE ([^;]+)/</span>.test(ua)) {
-      engine.ver = browser.ver = <span class="hljs-built_in">RegExp</span>[<span class="hljs-string">"$1"</span>];
+      engine.ver = browser.ver = <span class="hljs-built_in">RegExp</span>.$<span class="hljs-number">1</span>;
       engine.ie = browser.ie = <span class="hljs-built_in">parseFloat</span>(engine.ver);
     }
 
@@ -1558,7 +1558,7 @@ Licensed under MIT (see LICENSE-MIT) </p>
     <span class="hljs-comment">/* Detecting Windows OSs */</span>
     <span class="hljs-keyword">if</span> (system.win) {
       <span class="hljs-keyword">if</span> (<span class="hljs-regexp">/Win(?:dows )?([^do]{2})\s?(\d+\.\d+)?/</span>.test(ua)) {
-        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">RegExp</span>[<span class="hljs-string">"$1"</span>] === <span class="hljs-string">"NT"</span>) {
+        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">RegExp</span>.$<span class="hljs-number">1</span> === <span class="hljs-string">"NT"</span>) {
           <span class="hljs-keyword">switch</span>(<span class="hljs-built_in">RegExp</span>[<span class="hljs-string">"$2"</span>]) {
             <span class="hljs-keyword">case</span> <span class="hljs-string">"5.0"</span>:
               system.win = <span class="hljs-string">"2000"</span>;
@@ -1580,10 +1580,10 @@ Licensed under MIT (see LICENSE-MIT) </p>
               system.win = <span class="hljs-string">"NT"</span>;
               <span class="hljs-keyword">break</span>;
           }
-        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-built_in">RegExp</span>[<span class="hljs-string">"$1"</span>] === <span class="hljs-string">"9x"</span>) {
+        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-built_in">RegExp</span>.$<span class="hljs-number">1</span> === <span class="hljs-string">"9x"</span>) {
           system.win = <span class="hljs-string">"ME"</span>;
         } <span class="hljs-keyword">else</span> {
-          system.win = <span class="hljs-built_in">RegExp</span>[<span class="hljs-string">"$1"</span>];
+          system.win = <span class="hljs-built_in">RegExp</span>.$<span class="hljs-number">1</span>;
         }
       }
     }
@@ -1600,14 +1600,14 @@ Licensed under MIT (see LICENSE-MIT) </p>
     } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (system.win === <span class="hljs-string">"Ph"</span>) {
       <span class="hljs-keyword">if</span> (<span class="hljs-regexp">/Windows Phone OS(\d+.\d+)/</span>.test(ua)) {
         system.win = <span class="hljs-string">"Phone"</span>;
-        system.winMobile = <span class="hljs-built_in">parseFloat</span>(<span class="hljs-built_in">RegExp</span>[<span class="hljs-string">"$1"</span>]);
+        system.winMobile = <span class="hljs-built_in">parseFloat</span>(<span class="hljs-built_in">RegExp</span>.$<span class="hljs-number">1</span>);
       }
     }
 
     <span class="hljs-comment">/* Determine iOS Version */</span>
     <span class="hljs-keyword">if</span> (system.mac &amp;&amp; ua.indexOf(<span class="hljs-string">"Mobile"</span>) &gt; -<span class="hljs-number">1</span>) {
       <span class="hljs-keyword">if</span> (<span class="hljs-regexp">/CPU (?:iPhone )?OS (\d+_\d+)/</span>.test(ua)) {
-        system.ios = <span class="hljs-built_in">parseFloat</span>(<span class="hljs-built_in">RegExp</span>[<span class="hljs-string">"$1"</span>].replace(<span class="hljs-string">"_"</span>, <span class="hljs-string">"."</span>));
+        system.ios = <span class="hljs-built_in">parseFloat</span>(<span class="hljs-built_in">RegExp</span>.$<span class="hljs-number">1.</span>replace(<span class="hljs-string">"_"</span>, <span class="hljs-string">"."</span>));
       } <span class="hljs-keyword">else</span> {
         system.ios = <span class="hljs-number">2</span>; <span class="hljs-comment">// Can't really detect - so guess</span>
       }
@@ -1615,7 +1615,7 @@ Licensed under MIT (see LICENSE-MIT) </p>
 
     <span class="hljs-comment">/* Determine Android Version */</span>
     <span class="hljs-keyword">if</span> (<span class="hljs-regexp">/Android (\d+\.\d+)/</span>.test(ua)) {
-      system.android = <span class="hljs-built_in">parseFloat</span>(<span class="hljs-built_in">RegExp</span>[<span class="hljs-string">"$1"</span>]);
+      system.android = <span class="hljs-built_in">parseFloat</span>(<span class="hljs-built_in">RegExp</span>.$<span class="hljs-number">1</span>);
     }
 
     <span class="hljs-comment">/* Gaming Consoles */</span>
@@ -10603,13 +10603,16 @@ hilo.classify = <span class="hljs-function"><span class="hljs-keyword">function<
       classes.push(<span class="hljs-string">"konqueror"</span>);
     }
 
-    <span class="hljs-keyword">if</span> (hilo.platform.win) {
-      classes.push(<span class="hljs-string">"windows"</span>);
-    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (hilo.platform.mac) {
-      classes.push(<span class="hljs-string">"mac"</span>);
-    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (hilo.platform.x11) {
-      classes.push(<span class="hljs-string">"linux"</span>);
-    }
+    classes.push((<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+      <span class="hljs-keyword">switch</span> (hilo.platform.name) {
+        <span class="hljs-keyword">case</span> <span class="hljs-string">"Windows"</span>:
+          <span class="hljs-keyword">return</span> <span class="hljs-string">"windows"</span>;
+        <span class="hljs-keyword">case</span> <span class="hljs-string">"Mac"</span>:
+          <span class="hljs-keyword">return</span> <span class="hljs-string">"mac"</span>;
+        <span class="hljs-keyword">case</span> <span class="hljs-string">"Linux"</span>:
+          <span class="hljs-keyword">return</span> <span class="hljs-string">"linux"</span>;
+      }
+    })());
 
     <span class="hljs-keyword">if</span> (hilo.engine.webkit) {
       classes.push(<span class="hljs-string">"webkit"</span>);

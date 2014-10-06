@@ -191,13 +191,16 @@
       classes.push(<span class="hljs-string">"konqueror"</span>);
     }
 
-    <span class="hljs-keyword">if</span> (hilo.platform.win) {
-      classes.push(<span class="hljs-string">"windows"</span>);
-    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (hilo.platform.mac) {
-      classes.push(<span class="hljs-string">"mac"</span>);
-    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (hilo.platform.x11) {
-      classes.push(<span class="hljs-string">"linux"</span>);
-    }
+    classes.push((<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+      <span class="hljs-keyword">switch</span> (hilo.platform.name) {
+        <span class="hljs-keyword">case</span> <span class="hljs-string">"Windows"</span>:
+          <span class="hljs-keyword">return</span> <span class="hljs-string">"windows"</span>;
+        <span class="hljs-keyword">case</span> <span class="hljs-string">"Mac"</span>:
+          <span class="hljs-keyword">return</span> <span class="hljs-string">"mac"</span>;
+        <span class="hljs-keyword">case</span> <span class="hljs-string">"Linux"</span>:
+          <span class="hljs-keyword">return</span> <span class="hljs-string">"linux"</span>;
+      }
+    })());
 
     <span class="hljs-keyword">if</span> (hilo.engine.webkit) {
       classes.push(<span class="hljs-string">"webkit"</span>);
