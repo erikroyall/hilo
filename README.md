@@ -35,9 +35,9 @@ Create another `<script>` and write Hilo code there.
 
 ```html
 <script>
-  $(function () {
-    $('div').click(function () {
-      $(this).toggle();
+  Hilo(function () {
+    Hilo('div').click(function () {
+      Hilo(this).toggle();
     });
   });
 </script>
