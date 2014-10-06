@@ -38,7 +38,6 @@
 
     /* Used to measure performace (Hilo.perf) */
     , start
-    , elapsed
 
     /* References to browser objects */
     , win = window        // Reference to window
@@ -1923,7 +1922,7 @@
       /* Set other attributes */
       for (key in attrs) {
         if(attrs.hasOwnProperty(key)) {
-          el.attr(key, attrs["key"]);
+          el.attr(key, attrs[key]);
         }
       }
     }
@@ -2713,21 +2712,6 @@
       return this["class"]("toggle", className);
     },
 
-    // Set or return attributes
-    
-    /**
-     * Set or return attributes
-     * 
-     * @for Dom
-     * @method attr
-     * @param {string} name Name of attribute
-     * @param {string} val Value of the attribute
-     * @return {string|void}
-     * @example
-     * ```
-    
-     * ```
-     */
     // 
     // **_Hilo.Dom.prototype.attr_**
     // 
@@ -2762,27 +2746,26 @@
 
     // ### Hilo CSS
 
-    // Set or return css property
-
-    /**
-     * Set or return css property
-     *
-     * @for Dom
-     * @method css
-     * @param {String|Object} prop Name of property | Properties
-     * @param {string} value Value of property
-     * @return {string|void}
-     * @beta
-     * @example
-     * ```
-     * $("p").css("margin-left", "10em");
-     * 
-     * $("p.round").css({
-     *   "border-radius": 10,
-     *   width: 100
-     * });
-     * ```
-     */
+    // 
+    // **_Hilo.Dom.prototype.css_**
+    // 
+    // Set or return css property values
+    // 
+    // **Param**:
+    // - `prop`: {String|Object} Name of the propety | Properties
+    // - `value`: {String} Value of property
+    // 
+    // **Example**:
+    // ```
+    // $("p").css("margin-left", "10em");
+    // ```
+    // ```
+    // $("p.round").css({
+    //   "border-radius": 10,
+    //   width: 100
+    // });
+    // ```
+    // 
     css: function (prop, value) {
       var unhyphed;
 
@@ -2809,17 +2792,19 @@
       }
     },
 
+    // 
+    // **_Hilo.Dom.prototype.computed_**
+    // 
     // Get computed property
-
-    /**
-     * Get computed property
-     * 
-     * @for Dom
-     * @method computed
-     * @param {string} prop Name of property
-     * @return {number|boolean|string}
-     * @beta
-     */
+    // 
+    // **Param**:
+    // - `prop`: {String|Object} Name of property
+    // 
+    // **Example**:
+    // ```
+    // $("#box").computed("width");
+    // ```
+    // 
     computed: function (prop) {
       return this.first(function (el) {
         return win.getComputedStyle(el)[prop];
@@ -3450,96 +3435,26 @@ hilo.classify = function () {
       classes.push("safari");
     } else if (hilo.browser.ie) {
 
-      if (hilo.browser.ie <= 6) {
-        classes.push("lte-ie6");
+      for (_i = 6; _i <= 11; _i++) {
+        if (hilo.browser.ie <= _i) {
+          classes.push("lte-ie" + _i);
 
-        if (hilo.browser.ie < 6) {
-          classes.push("lt-ie6");
+          if (hilo.browser.ie < _i) {
+            classes.push("lt-ie" + _i);
+          }
         }
-      }
 
-      if (hilo.browser.ie <= 7) {
-        classes.push("lte-ie7");
+        if (hilo.browser.ie >= _i) {
+          classes.push("gte-ie" + _i);
 
-        if (hilo.browser.ie < 7) {
-          classes.push("lt-ie7");
+          if (hilo.browser.ie > _i) {
+            classes.push("gt-ie" + _i);
+          }
         }
-      }
 
-      if (hilo.browser.ie <= 8) {
-        classes.push("lte-ie8");
-
-        if (hilo.browser.ie < 8) {
-          classes.push("lt-ie8");
+        if (hilo.browser.ie === _i) {
+          classes.push("ie" + _i);
         }
-      }
-
-      if (hilo.browser.ie <= 9) {
-        classes.push("lte-ie9");
-
-        if (hilo.browser.ie < 9) {
-          classes.push("lt-ie9");
-        }
-      }
-
-      if (hilo.browser.ie <= 10) {
-        classes.push("lte-ie10");
-
-        if (hilo.browser.ie < 10) {
-          classes.push("lt-ie10");
-        }
-      }
-
-      if (hilo.browser.ie >= 6) {
-        classes.push("gte-ie6");
-
-        if (hilo.browser.version > 6) {
-          classes.push("gt-ie6");
-        }
-      }
-
-      if (hilo.browser.ie >= 7) {
-        classes.push("gte-ie7");
-
-        if (hilo.browser.version > 7) {
-          classes.push("gt-ie7");
-        }
-      }
-
-      if (hilo.browser.ie >= 8) {
-        classes.push("gte-ie8");
-
-        if (hilo.browser.version > 8) {
-          classes.push("gt-ie8");
-        }
-      }
-
-      if (hilo.browser.ie >= 9) {
-        classes.push("gte-ie9");
-
-        if (hilo.browser.version > 9) {
-          classes.push("gt-ie9");
-        }
-      }
-
-      if (hilo.browser.ie >= 10) {
-        classes.push("gte-ie10");
-
-        if (hilo.browser.version > 10) {
-          classes.push("gt-ie10");
-        }
-      }
-
-      if (hilo.browser.ie === 6) {
-        classes.push("ie6");
-      } else if (hilo.browser.ie === 7) {
-        classes.push("ie7");
-      } else if (hilo.browser.ie === 8) {
-        classes.push("ie8");
-      } else if (hilo.browser.ie === 9) {
-        classes.push("ie9");
-      } else if (hilo.browser.ie === 10) {
-        classes.push("ie10");
       }
 
       classes.push("ie");
