@@ -4924,33 +4924,6 @@ remove if exist(s)</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-197">&#182;</a>
               </div>
-              <p>Set or return css property</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>
-    <span class="hljs-comment">/**
-     * Set or return css property
-     *
-     * @for Dom
-     * @method css
-     * @param {String|Object} prop Name of property | Properties
-     * @param {string} value Value of property
-     * @return {string|void}
-     * @beta
-     * @example
-    
-     */</span></pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-198">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-198">&#182;</a>
-              </div>
               <p><strong><em>Hilo.Dom.prototype.css</em></strong></p>
 <p>Set or return css property values</p>
 <p><strong>Param</strong>:</p>
@@ -4996,27 +4969,24 @@ remove if exist(s)</p>
         </li>
         
         
-        <li id="section-199">
+        <li id="section-198">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-199">&#182;</a>
+                <a class="pilcrow" href="#section-198">&#182;</a>
               </div>
-              <p>Get computed property</p>
-
+              <p><strong><em>Hilo.Dom.prototype.computed</em></strong></p>
+<p>Get computed property</p>
+<p><strong>Param</strong>:</p>
+<ul>
+<li><code>prop</code>: {String|Object} Name of property</li>
+</ul>
+<p><strong>Example</strong>:</p>
+<pre><code>$(<span class="hljs-string">"#box"</span>).computed(<span class="hljs-string">"width"</span>);
+</code></pre>
             </div>
             
-            <div class="content"><div class='highlight'><pre>
-    <span class="hljs-comment">/**
-     * Get computed property
-     * 
-     * @for Dom
-     * @method computed
-     * @param {string} prop Name of property
-     * @return {number|boolean|string}
-     * @beta
-     */</span>
-    computed: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(prop)</span> </span>{
+            <div class="content"><div class='highlight'><pre>    computed: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(prop)</span> </span>{
       <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.first(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(el)</span> </span>{
         <span class="hljs-keyword">return</span> win.getComputedStyle(el)[prop];
       });
@@ -5025,11 +4995,11 @@ remove if exist(s)</p>
         </li>
         
         
-        <li id="section-200">
+        <li id="section-199">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-200">&#182;</a>
+                <a class="pilcrow" href="#section-199">&#182;</a>
               </div>
               <p>Get outer width</p>
 
@@ -5047,11 +5017,11 @@ remove if exist(s)</p>
         </li>
         
         
-        <li id="section-201">
+        <li id="section-200">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-201">&#182;</a>
+                <a class="pilcrow" href="#section-200">&#182;</a>
               </div>
               <p>Get inner width</p>
 
@@ -5067,11 +5037,11 @@ remove if exist(s)</p>
         </li>
         
         
-        <li id="section-202">
+        <li id="section-201">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-202">&#182;</a>
+                <a class="pilcrow" href="#section-201">&#182;</a>
               </div>
               <p>Get outer height</p>
 
@@ -5089,11 +5059,11 @@ remove if exist(s)</p>
         </li>
         
         
-        <li id="section-203">
+        <li id="section-202">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-203">&#182;</a>
+                <a class="pilcrow" href="#section-202">&#182;</a>
               </div>
               <p>Get inner height</p>
 
@@ -5110,13 +5080,26 @@ remove if exist(s)</p>
         </li>
         
         
+        <li id="section-203">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-203">&#182;</a>
+              </div>
+              <hr>
+
+            </div>
+            
+        </li>
+        
+        
         <li id="section-204">
             <div class="annotation">
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-204">&#182;</a>
               </div>
-              <hr>
+              <h2 id="events">Events</h2>
 
             </div>
             
@@ -5129,19 +5112,6 @@ remove if exist(s)</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-205">&#182;</a>
               </div>
-              <h2 id="events">Events</h2>
-
-            </div>
-            
-        </li>
-        
-        
-        <li id="section-206">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-206">&#182;</a>
-              </div>
               
             </div>
             
@@ -5151,11 +5121,11 @@ remove if exist(s)</p>
         </li>
         
         
-        <li id="section-207">
+        <li id="section-206">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-207">&#182;</a>
+                <a class="pilcrow" href="#section-206">&#182;</a>
               </div>
               <p>Listen to an event and execute a function when that event happend</p>
 
@@ -5183,11 +5153,11 @@ remove if exist(s)</p>
         </li>
         
         
-        <li id="section-208">
+        <li id="section-207">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-208">&#182;</a>
+                <a class="pilcrow" href="#section-207">&#182;</a>
               </div>
               <p>Check if <code>document.addEventListener</code> method
 is available and use it if it is</p>
@@ -5204,11 +5174,11 @@ is available and use it if it is</p>
         </li>
         
         
-        <li id="section-209">
+        <li id="section-208">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-209">&#182;</a>
+                <a class="pilcrow" href="#section-208">&#182;</a>
               </div>
               <p>Otherwise check if <code>document.attachEvent</code> 
 legacy method is available and use it if it is</p>
@@ -5225,11 +5195,11 @@ legacy method is available and use it if it is</p>
         </li>
         
         
-        <li id="section-210">
+        <li id="section-209">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-210">&#182;</a>
+                <a class="pilcrow" href="#section-209">&#182;</a>
               </div>
               <p>Add event the DOM Level 0 Style</p>
 
@@ -5247,11 +5217,11 @@ legacy method is available and use it if it is</p>
         </li>
         
         
-        <li id="section-211">
+        <li id="section-210">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-211">&#182;</a>
+                <a class="pilcrow" href="#section-210">&#182;</a>
               </div>
               <p>Stop listening to an event</p>
 
@@ -5346,13 +5316,26 @@ legacy method is available and use it if it is</p>
         </li>
         
         
+        <li id="section-211">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-211">&#182;</a>
+              </div>
+              <hr>
+
+            </div>
+            
+        </li>
+        
+        
         <li id="section-212">
             <div class="annotation">
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-212">&#182;</a>
               </div>
-              <hr>
+              <h2 id="events-imp-">Events (imp.)</h2>
 
             </div>
             
@@ -5364,19 +5347,6 @@ legacy method is available and use it if it is</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-213">&#182;</a>
-              </div>
-              <h2 id="events-imp-">Events (imp.)</h2>
-
-            </div>
-            
-        </li>
-        
-        
-        <li id="section-214">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-214">&#182;</a>
               </div>
               
             </div>
@@ -5441,11 +5411,11 @@ legacy method is available and use it if it is</p>
         </li>
         
         
-        <li id="section-215">
+        <li id="section-214">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-215">&#182;</a>
+                <a class="pilcrow" href="#section-214">&#182;</a>
               </div>
               <p>These keyborad key mappings will be later used
 to enable use of shortcut keys or the like</p>
@@ -5458,11 +5428,11 @@ to enable use of shortcut keys or the like</p>
         </li>
         
         
-        <li id="section-216">
+        <li id="section-215">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-216">&#182;</a>
+                <a class="pilcrow" href="#section-215">&#182;</a>
               </div>
               <p>Numbers</p>
 
@@ -5483,11 +5453,11 @@ to enable use of shortcut keys or the like</p>
         </li>
         
         
-        <li id="section-217">
+        <li id="section-216">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-217">&#182;</a>
+                <a class="pilcrow" href="#section-216">&#182;</a>
               </div>
               <p>Uppercase letters</p>
 
@@ -5524,11 +5494,11 @@ to enable use of shortcut keys or the like</p>
         </li>
         
         
-        <li id="section-218">
+        <li id="section-217">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-218">&#182;</a>
+                <a class="pilcrow" href="#section-217">&#182;</a>
               </div>
               <p>Lowecase letters</p>
 
@@ -5565,11 +5535,11 @@ to enable use of shortcut keys or the like</p>
         </li>
         
         
-        <li id="section-219">
+        <li id="section-218">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-219">&#182;</a>
+                <a class="pilcrow" href="#section-218">&#182;</a>
               </div>
               <p>Other Important Keys</p>
 
@@ -5589,11 +5559,11 @@ to enable use of shortcut keys or the like</p>
         </li>
         
         
-        <li id="section-220">
+        <li id="section-219">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-220">&#182;</a>
+                <a class="pilcrow" href="#section-219">&#182;</a>
               </div>
               <p>Arrows</p>
 
@@ -5608,11 +5578,11 @@ to enable use of shortcut keys or the like</p>
         </li>
         
         
-        <li id="section-221">
+        <li id="section-220">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-221">&#182;</a>
+                <a class="pilcrow" href="#section-220">&#182;</a>
               </div>
               <p>F-keys</p>
 
@@ -5635,11 +5605,11 @@ to enable use of shortcut keys or the like</p>
         </li>
         
         
-        <li id="section-222">
+        <li id="section-221">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-222">&#182;</a>
+                <a class="pilcrow" href="#section-221">&#182;</a>
               </div>
               <p>Less-used keys</p>
 
@@ -5653,11 +5623,11 @@ to enable use of shortcut keys or the like</p>
         </li>
         
         
-        <li id="section-223">
+        <li id="section-222">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-223">&#182;</a>
+                <a class="pilcrow" href="#section-222">&#182;</a>
               </div>
               <p>Symbols</p>
 
@@ -5682,13 +5652,26 @@ to enable use of shortcut keys or the like</p>
         </li>
         
         
+        <li id="section-223">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-223">&#182;</a>
+              </div>
+              <hr>
+
+            </div>
+            
+        </li>
+        
+        
         <li id="section-224">
             <div class="annotation">
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-224">&#182;</a>
               </div>
-              <hr>
+              <h2 id="effects-fx-">Effects (fx)</h2>
 
             </div>
             
@@ -5700,19 +5683,6 @@ to enable use of shortcut keys or the like</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-225">&#182;</a>
-              </div>
-              <h2 id="effects-fx-">Effects (fx)</h2>
-
-            </div>
-            
-        </li>
-        
-        
-        <li id="section-226">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-226">&#182;</a>
               </div>
               
             </div>
@@ -5761,11 +5731,11 @@ to enable use of shortcut keys or the like</p>
         </li>
         
         
-        <li id="section-227">
+        <li id="section-226">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-227">&#182;</a>
+                <a class="pilcrow" href="#section-226">&#182;</a>
               </div>
               <p>ARIA</p>
 
@@ -5795,11 +5765,11 @@ to enable use of shortcut keys or the like</p>
         </li>
         
         
-        <li id="section-228">
+        <li id="section-227">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-228">&#182;</a>
+                <a class="pilcrow" href="#section-227">&#182;</a>
               </div>
               <p>ARIA</p>
 
@@ -5812,11 +5782,11 @@ to enable use of shortcut keys or the like</p>
         </li>
         
         
-        <li id="section-229">
+        <li id="section-228">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-229">&#182;</a>
+                <a class="pilcrow" href="#section-228">&#182;</a>
               </div>
               <p>ARIA</p>
 
@@ -5846,11 +5816,11 @@ to enable use of shortcut keys or the like</p>
         </li>
         
         
-        <li id="section-230">
+        <li id="section-229">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-230">&#182;</a>
+                <a class="pilcrow" href="#section-229">&#182;</a>
               </div>
               <p>ARIA</p>
 
@@ -5879,11 +5849,11 @@ to enable use of shortcut keys or the like</p>
         </li>
         
         
-        <li id="section-231">
+        <li id="section-230">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-231">&#182;</a>
+                <a class="pilcrow" href="#section-230">&#182;</a>
               </div>
               <p>ARIA</p>
 
@@ -5913,11 +5883,11 @@ to enable use of shortcut keys or the like</p>
         </li>
         
         
-        <li id="section-232">
+        <li id="section-231">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-232">&#182;</a>
+                <a class="pilcrow" href="#section-231">&#182;</a>
               </div>
               <p>ARIA</p>
 
@@ -5930,11 +5900,11 @@ to enable use of shortcut keys or the like</p>
         </li>
         
         
-        <li id="section-233">
+        <li id="section-232">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-233">&#182;</a>
+                <a class="pilcrow" href="#section-232">&#182;</a>
               </div>
               <p>ARIA</p>
 
@@ -5994,11 +5964,11 @@ to enable use of shortcut keys or the like</p>
         </li>
         
         
-        <li id="section-234">
+        <li id="section-233">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-234">&#182;</a>
+                <a class="pilcrow" href="#section-233">&#182;</a>
               </div>
               <p>Stop the animation if the opacity is set to the final value</p>
 
@@ -6063,11 +6033,11 @@ hilo.classify = <span class="hljs-function"><span class="hljs-keyword">function<
         </li>
         
         
-        <li id="section-235">
+        <li id="section-234">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-235">&#182;</a>
+                <a class="pilcrow" href="#section-234">&#182;</a>
               </div>
               <p>Remove the default no-js class</p>
 
@@ -6083,96 +6053,26 @@ hilo.classify = <span class="hljs-function"><span class="hljs-keyword">function<
       classes.push(<span class="hljs-string">"safari"</span>);
     } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (hilo.browser.ie) {
 
-      <span class="hljs-keyword">if</span> (hilo.browser.ie &lt;= <span class="hljs-number">6</span>) {
-        classes.push(<span class="hljs-string">"lte-ie6"</span>);
+      <span class="hljs-keyword">for</span> (_i = <span class="hljs-number">6</span>; _i &lt;= <span class="hljs-number">11</span>; _i++) {
+        <span class="hljs-keyword">if</span> (hilo.browser.ie &lt;= _i) {
+          classes.push(<span class="hljs-string">"lte-ie"</span> + _i);
 
-        <span class="hljs-keyword">if</span> (hilo.browser.ie &lt; <span class="hljs-number">6</span>) {
-          classes.push(<span class="hljs-string">"lt-ie6"</span>);
+          <span class="hljs-keyword">if</span> (hilo.browser.ie &lt; _i) {
+            classes.push(<span class="hljs-string">"lt-ie"</span> + _i);
+          }
         }
-      }
 
-      <span class="hljs-keyword">if</span> (hilo.browser.ie &lt;= <span class="hljs-number">7</span>) {
-        classes.push(<span class="hljs-string">"lte-ie7"</span>);
+        <span class="hljs-keyword">if</span> (hilo.browser.ie &gt;= _i) {
+          classes.push(<span class="hljs-string">"gte-ie"</span> + _i);
 
-        <span class="hljs-keyword">if</span> (hilo.browser.ie &lt; <span class="hljs-number">7</span>) {
-          classes.push(<span class="hljs-string">"lt-ie7"</span>);
+          <span class="hljs-keyword">if</span> (hilo.browser.ie &gt; _i) {
+            classes.push(<span class="hljs-string">"gt-ie"</span> + _i);
+          }
         }
-      }
 
-      <span class="hljs-keyword">if</span> (hilo.browser.ie &lt;= <span class="hljs-number">8</span>) {
-        classes.push(<span class="hljs-string">"lte-ie8"</span>);
-
-        <span class="hljs-keyword">if</span> (hilo.browser.ie &lt; <span class="hljs-number">8</span>) {
-          classes.push(<span class="hljs-string">"lt-ie8"</span>);
+        <span class="hljs-keyword">if</span> (hilo.browser.ie === _i) {
+          classes.push(<span class="hljs-string">"ie"</span> + _i);
         }
-      }
-
-      <span class="hljs-keyword">if</span> (hilo.browser.ie &lt;= <span class="hljs-number">9</span>) {
-        classes.push(<span class="hljs-string">"lte-ie9"</span>);
-
-        <span class="hljs-keyword">if</span> (hilo.browser.ie &lt; <span class="hljs-number">9</span>) {
-          classes.push(<span class="hljs-string">"lt-ie9"</span>);
-        }
-      }
-
-      <span class="hljs-keyword">if</span> (hilo.browser.ie &lt;= <span class="hljs-number">10</span>) {
-        classes.push(<span class="hljs-string">"lte-ie10"</span>);
-
-        <span class="hljs-keyword">if</span> (hilo.browser.ie &lt; <span class="hljs-number">10</span>) {
-          classes.push(<span class="hljs-string">"lt-ie10"</span>);
-        }
-      }
-
-      <span class="hljs-keyword">if</span> (hilo.browser.ie &gt;= <span class="hljs-number">6</span>) {
-        classes.push(<span class="hljs-string">"gte-ie6"</span>);
-
-        <span class="hljs-keyword">if</span> (hilo.browser.version &gt; <span class="hljs-number">6</span>) {
-          classes.push(<span class="hljs-string">"gt-ie6"</span>);
-        }
-      }
-
-      <span class="hljs-keyword">if</span> (hilo.browser.ie &gt;= <span class="hljs-number">7</span>) {
-        classes.push(<span class="hljs-string">"gte-ie7"</span>);
-
-        <span class="hljs-keyword">if</span> (hilo.browser.version &gt; <span class="hljs-number">7</span>) {
-          classes.push(<span class="hljs-string">"gt-ie7"</span>);
-        }
-      }
-
-      <span class="hljs-keyword">if</span> (hilo.browser.ie &gt;= <span class="hljs-number">8</span>) {
-        classes.push(<span class="hljs-string">"gte-ie8"</span>);
-
-        <span class="hljs-keyword">if</span> (hilo.browser.version &gt; <span class="hljs-number">8</span>) {
-          classes.push(<span class="hljs-string">"gt-ie8"</span>);
-        }
-      }
-
-      <span class="hljs-keyword">if</span> (hilo.browser.ie &gt;= <span class="hljs-number">9</span>) {
-        classes.push(<span class="hljs-string">"gte-ie9"</span>);
-
-        <span class="hljs-keyword">if</span> (hilo.browser.version &gt; <span class="hljs-number">9</span>) {
-          classes.push(<span class="hljs-string">"gt-ie9"</span>);
-        }
-      }
-
-      <span class="hljs-keyword">if</span> (hilo.browser.ie &gt;= <span class="hljs-number">10</span>) {
-        classes.push(<span class="hljs-string">"gte-ie10"</span>);
-
-        <span class="hljs-keyword">if</span> (hilo.browser.version &gt; <span class="hljs-number">10</span>) {
-          classes.push(<span class="hljs-string">"gt-ie10"</span>);
-        }
-      }
-
-      <span class="hljs-keyword">if</span> (hilo.browser.ie === <span class="hljs-number">6</span>) {
-        classes.push(<span class="hljs-string">"ie6"</span>);
-      } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (hilo.browser.ie === <span class="hljs-number">7</span>) {
-        classes.push(<span class="hljs-string">"ie7"</span>);
-      } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (hilo.browser.ie === <span class="hljs-number">8</span>) {
-        classes.push(<span class="hljs-string">"ie8"</span>);
-      } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (hilo.browser.ie === <span class="hljs-number">9</span>) {
-        classes.push(<span class="hljs-string">"ie9"</span>);
-      } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (hilo.browser.ie === <span class="hljs-number">10</span>) {
-        classes.push(<span class="hljs-string">"ie10"</span>);
       }
 
       classes.push(<span class="hljs-string">"ie"</span>);
@@ -6228,13 +6128,26 @@ hilo.classify = <span class="hljs-function"><span class="hljs-keyword">function<
         </li>
         
         
+        <li id="section-235">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-235">&#182;</a>
+              </div>
+              <hr>
+
+            </div>
+            
+        </li>
+        
+        
         <li id="section-236">
             <div class="annotation">
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-236">&#182;</a>
               </div>
-              <hr>
+              <h2 id="more-functionality">More Functionality</h2>
 
             </div>
             
@@ -6246,19 +6159,6 @@ hilo.classify = <span class="hljs-function"><span class="hljs-keyword">function<
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-237">&#182;</a>
-              </div>
-              <h2 id="more-functionality">More Functionality</h2>
-
-            </div>
-            
-        </li>
-        
-        
-        <li id="section-238">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-238">&#182;</a>
               </div>
               
             </div>
@@ -6393,11 +6293,11 @@ hilo.classify = <span class="hljs-function"><span class="hljs-keyword">function<
         </li>
         
         
-        <li id="section-239">
+        <li id="section-238">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-239">&#182;</a>
+                <a class="pilcrow" href="#section-238">&#182;</a>
               </div>
               <p>NaN !== NaN, but they are identical.
 NaNs are the only non-reflexive value, i.e., if x !== x,
@@ -6475,11 +6375,11 @@ isNaN(‘foo’) =&gt; true</p>
         </li>
         
         
-        <li id="section-240">
+        <li id="section-239">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-240">&#182;</a>
+                <a class="pilcrow" href="#section-239">&#182;</a>
               </div>
               <h2 id="hilo-extension-api">Hilo Extension API</h2>
 
@@ -6507,11 +6407,11 @@ isNaN(‘foo’) =&gt; true</p>
         </li>
         
         
-        <li id="section-241">
+        <li id="section-240">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-241">&#182;</a>
+                <a class="pilcrow" href="#section-240">&#182;</a>
               </div>
               <p>Finally return Hilo</p>
 

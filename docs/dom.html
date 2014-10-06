@@ -1403,33 +1403,6 @@ remove if exist(s)</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-39">&#182;</a>
               </div>
-              <p>Set or return css property</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>
-    <span class="hljs-comment">/**
-     * Set or return css property
-     *
-     * @for Dom
-     * @method css
-     * @param {String|Object} prop Name of property | Properties
-     * @param {string} value Value of property
-     * @return {string|void}
-     * @beta
-     * @example
-    
-     */</span></pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-40">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-40">&#182;</a>
-              </div>
               <p><strong><em>Hilo.Dom.prototype.css</em></strong></p>
 <p>Set or return css property values</p>
 <p><strong>Param</strong>:</p>
@@ -1475,27 +1448,24 @@ remove if exist(s)</p>
         </li>
         
         
-        <li id="section-41">
+        <li id="section-40">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-41">&#182;</a>
+                <a class="pilcrow" href="#section-40">&#182;</a>
               </div>
-              <p>Get computed property</p>
-
+              <p><strong><em>Hilo.Dom.prototype.computed</em></strong></p>
+<p>Get computed property</p>
+<p><strong>Param</strong>:</p>
+<ul>
+<li><code>prop</code>: {String|Object} Name of property</li>
+</ul>
+<p><strong>Example</strong>:</p>
+<pre><code>$(<span class="hljs-string">"#box"</span>).computed(<span class="hljs-string">"width"</span>);
+</code></pre>
             </div>
             
-            <div class="content"><div class='highlight'><pre>
-    <span class="hljs-comment">/**
-     * Get computed property
-     * 
-     * @for Dom
-     * @method computed
-     * @param {string} prop Name of property
-     * @return {number|boolean|string}
-     * @beta
-     */</span>
-    computed: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(prop)</span> </span>{
+            <div class="content"><div class='highlight'><pre>    computed: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(prop)</span> </span>{
       <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.first(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(el)</span> </span>{
         <span class="hljs-keyword">return</span> win.getComputedStyle(el)[prop];
       });
@@ -1504,11 +1474,11 @@ remove if exist(s)</p>
         </li>
         
         
-        <li id="section-42">
+        <li id="section-41">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-42">&#182;</a>
+                <a class="pilcrow" href="#section-41">&#182;</a>
               </div>
               <p>Get outer width</p>
 
@@ -1526,11 +1496,11 @@ remove if exist(s)</p>
         </li>
         
         
-        <li id="section-43">
+        <li id="section-42">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-43">&#182;</a>
+                <a class="pilcrow" href="#section-42">&#182;</a>
               </div>
               <p>Get inner width</p>
 
@@ -1546,11 +1516,11 @@ remove if exist(s)</p>
         </li>
         
         
-        <li id="section-44">
+        <li id="section-43">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-44">&#182;</a>
+                <a class="pilcrow" href="#section-43">&#182;</a>
               </div>
               <p>Get outer height</p>
 
@@ -1568,11 +1538,11 @@ remove if exist(s)</p>
         </li>
         
         
-        <li id="section-45">
+        <li id="section-44">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-45">&#182;</a>
+                <a class="pilcrow" href="#section-44">&#182;</a>
               </div>
               <p>Get inner height</p>
 

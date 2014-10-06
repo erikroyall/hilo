@@ -162,96 +162,26 @@
       classes.push(<span class="hljs-string">"safari"</span>);
     } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (hilo.browser.ie) {
 
-      <span class="hljs-keyword">if</span> (hilo.browser.ie &lt;= <span class="hljs-number">6</span>) {
-        classes.push(<span class="hljs-string">"lte-ie6"</span>);
+      <span class="hljs-keyword">for</span> (_i = <span class="hljs-number">6</span>; _i &lt;= <span class="hljs-number">11</span>; _i++) {
+        <span class="hljs-keyword">if</span> (hilo.browser.ie &lt;= _i) {
+          classes.push(<span class="hljs-string">"lte-ie"</span> + _i);
 
-        <span class="hljs-keyword">if</span> (hilo.browser.ie &lt; <span class="hljs-number">6</span>) {
-          classes.push(<span class="hljs-string">"lt-ie6"</span>);
+          <span class="hljs-keyword">if</span> (hilo.browser.ie &lt; _i) {
+            classes.push(<span class="hljs-string">"lt-ie"</span> + _i);
+          }
         }
-      }
 
-      <span class="hljs-keyword">if</span> (hilo.browser.ie &lt;= <span class="hljs-number">7</span>) {
-        classes.push(<span class="hljs-string">"lte-ie7"</span>);
+        <span class="hljs-keyword">if</span> (hilo.browser.ie &gt;= _i) {
+          classes.push(<span class="hljs-string">"gte-ie"</span> + _i);
 
-        <span class="hljs-keyword">if</span> (hilo.browser.ie &lt; <span class="hljs-number">7</span>) {
-          classes.push(<span class="hljs-string">"lt-ie7"</span>);
+          <span class="hljs-keyword">if</span> (hilo.browser.ie &gt; _i) {
+            classes.push(<span class="hljs-string">"gt-ie"</span> + _i);
+          }
         }
-      }
 
-      <span class="hljs-keyword">if</span> (hilo.browser.ie &lt;= <span class="hljs-number">8</span>) {
-        classes.push(<span class="hljs-string">"lte-ie8"</span>);
-
-        <span class="hljs-keyword">if</span> (hilo.browser.ie &lt; <span class="hljs-number">8</span>) {
-          classes.push(<span class="hljs-string">"lt-ie8"</span>);
+        <span class="hljs-keyword">if</span> (hilo.browser.ie === _i) {
+          classes.push(<span class="hljs-string">"ie"</span> + _i);
         }
-      }
-
-      <span class="hljs-keyword">if</span> (hilo.browser.ie &lt;= <span class="hljs-number">9</span>) {
-        classes.push(<span class="hljs-string">"lte-ie9"</span>);
-
-        <span class="hljs-keyword">if</span> (hilo.browser.ie &lt; <span class="hljs-number">9</span>) {
-          classes.push(<span class="hljs-string">"lt-ie9"</span>);
-        }
-      }
-
-      <span class="hljs-keyword">if</span> (hilo.browser.ie &lt;= <span class="hljs-number">10</span>) {
-        classes.push(<span class="hljs-string">"lte-ie10"</span>);
-
-        <span class="hljs-keyword">if</span> (hilo.browser.ie &lt; <span class="hljs-number">10</span>) {
-          classes.push(<span class="hljs-string">"lt-ie10"</span>);
-        }
-      }
-
-      <span class="hljs-keyword">if</span> (hilo.browser.ie &gt;= <span class="hljs-number">6</span>) {
-        classes.push(<span class="hljs-string">"gte-ie6"</span>);
-
-        <span class="hljs-keyword">if</span> (hilo.browser.version &gt; <span class="hljs-number">6</span>) {
-          classes.push(<span class="hljs-string">"gt-ie6"</span>);
-        }
-      }
-
-      <span class="hljs-keyword">if</span> (hilo.browser.ie &gt;= <span class="hljs-number">7</span>) {
-        classes.push(<span class="hljs-string">"gte-ie7"</span>);
-
-        <span class="hljs-keyword">if</span> (hilo.browser.version &gt; <span class="hljs-number">7</span>) {
-          classes.push(<span class="hljs-string">"gt-ie7"</span>);
-        }
-      }
-
-      <span class="hljs-keyword">if</span> (hilo.browser.ie &gt;= <span class="hljs-number">8</span>) {
-        classes.push(<span class="hljs-string">"gte-ie8"</span>);
-
-        <span class="hljs-keyword">if</span> (hilo.browser.version &gt; <span class="hljs-number">8</span>) {
-          classes.push(<span class="hljs-string">"gt-ie8"</span>);
-        }
-      }
-
-      <span class="hljs-keyword">if</span> (hilo.browser.ie &gt;= <span class="hljs-number">9</span>) {
-        classes.push(<span class="hljs-string">"gte-ie9"</span>);
-
-        <span class="hljs-keyword">if</span> (hilo.browser.version &gt; <span class="hljs-number">9</span>) {
-          classes.push(<span class="hljs-string">"gt-ie9"</span>);
-        }
-      }
-
-      <span class="hljs-keyword">if</span> (hilo.browser.ie &gt;= <span class="hljs-number">10</span>) {
-        classes.push(<span class="hljs-string">"gte-ie10"</span>);
-
-        <span class="hljs-keyword">if</span> (hilo.browser.version &gt; <span class="hljs-number">10</span>) {
-          classes.push(<span class="hljs-string">"gt-ie10"</span>);
-        }
-      }
-
-      <span class="hljs-keyword">if</span> (hilo.browser.ie === <span class="hljs-number">6</span>) {
-        classes.push(<span class="hljs-string">"ie6"</span>);
-      } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (hilo.browser.ie === <span class="hljs-number">7</span>) {
-        classes.push(<span class="hljs-string">"ie7"</span>);
-      } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (hilo.browser.ie === <span class="hljs-number">8</span>) {
-        classes.push(<span class="hljs-string">"ie8"</span>);
-      } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (hilo.browser.ie === <span class="hljs-number">9</span>) {
-        classes.push(<span class="hljs-string">"ie9"</span>);
-      } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (hilo.browser.ie === <span class="hljs-number">10</span>) {
-        classes.push(<span class="hljs-string">"ie10"</span>);
       }
 
       classes.push(<span class="hljs-string">"ie"</span>);
