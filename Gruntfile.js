@@ -126,11 +126,11 @@ module.exports = function(grunt) {
     watch: {
       gruntfile: {
         files: "<%= jshint.gruntfile.src %>",
-        tasks: ["jshint:gruntfile", "concat:dist", "concat:legacy", "yuidoc", "uglify:hilo", "jshint:hilo", "jshint:hiloLegacy", "jasmine:hilo"]
+        tasks: ["jshint:gruntfile", "concat:dist", "concat:legacy", "uglify:hilo", "jshint:hilo", "jshint:hiloLegacy", "jasmine:hilo"]
       },
       hilo: {
         files: "<%= concat.dist.src %>",
-        tasks: ["concat:dist", "concat:legacy", "yuidoc", "uglify:hilo", "jshint:hilo", "jshint:hiloLegacy", "jasmine:hilo"]
+        tasks: ["concat:dist", "concat:legacy", "uglify:hilo", "jshint:hilo", "jshint:hiloLegacy", "jasmine:hilo"]
       }
     }
   });
