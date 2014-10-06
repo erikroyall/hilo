@@ -5453,7 +5453,6 @@ hilo.classify = function () {
     var body = win.Hilo("body")
       , classes = ["js"]
       , _i;
-
     // Remove the default no-js class
     body.removeClass("no-js");
 
@@ -5494,13 +5493,16 @@ hilo.classify = function () {
       classes.push("konqueror");
     }
 
-    if (hilo.platform.win) {
-      classes.push("windows");
-    } else if (hilo.platform.mac) {
-      classes.push("mac");
-    } else if (hilo.platform.x11) {
-      classes.push("linux");
-    }
+    classes.push((function () {
+      switch (hilo.platform.name) {
+        case "Windows":
+          return "windows";
+        case "Mac":
+          return "mac";
+        case "Linux":
+          return "linux";
+      }
+    })());
 
     if (hilo.engine.webkit) {
       classes.push("webkit");
