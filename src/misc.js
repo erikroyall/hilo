@@ -27,96 +27,26 @@
       classes.push("safari");
     } else if (hilo.browser.ie) {
 
-      if (hilo.browser.ie <= 6) {
-        classes.push("lte-ie6");
+      for (_i = 6; _i <= 11; _i++) {
+        if (hilo.browser.ie <= _i) {
+          classes.push("lte-ie" + _i);
 
-        if (hilo.browser.ie < 6) {
-          classes.push("lt-ie6");
+          if (hilo.browser.ie < _i) {
+            classes.push("lt-ie" + _i);
+          }
         }
-      }
 
-      if (hilo.browser.ie <= 7) {
-        classes.push("lte-ie7");
+        if (hilo.browser.ie >= _i) {
+          classes.push("gte-ie" + _i);
 
-        if (hilo.browser.ie < 7) {
-          classes.push("lt-ie7");
+          if (hilo.browser.ie > _i) {
+            classes.push("gt-ie" + _i);
+          }
         }
-      }
 
-      if (hilo.browser.ie <= 8) {
-        classes.push("lte-ie8");
-
-        if (hilo.browser.ie < 8) {
-          classes.push("lt-ie8");
+        if (hilo.browser.ie === _i) {
+          classes.push("ie" + _i);
         }
-      }
-
-      if (hilo.browser.ie <= 9) {
-        classes.push("lte-ie9");
-
-        if (hilo.browser.ie < 9) {
-          classes.push("lt-ie9");
-        }
-      }
-
-      if (hilo.browser.ie <= 10) {
-        classes.push("lte-ie10");
-
-        if (hilo.browser.ie < 10) {
-          classes.push("lt-ie10");
-        }
-      }
-
-      if (hilo.browser.ie >= 6) {
-        classes.push("gte-ie6");
-
-        if (hilo.browser.version > 6) {
-          classes.push("gt-ie6");
-        }
-      }
-
-      if (hilo.browser.ie >= 7) {
-        classes.push("gte-ie7");
-
-        if (hilo.browser.version > 7) {
-          classes.push("gt-ie7");
-        }
-      }
-
-      if (hilo.browser.ie >= 8) {
-        classes.push("gte-ie8");
-
-        if (hilo.browser.version > 8) {
-          classes.push("gt-ie8");
-        }
-      }
-
-      if (hilo.browser.ie >= 9) {
-        classes.push("gte-ie9");
-
-        if (hilo.browser.version > 9) {
-          classes.push("gt-ie9");
-        }
-      }
-
-      if (hilo.browser.ie >= 10) {
-        classes.push("gte-ie10");
-
-        if (hilo.browser.version > 10) {
-          classes.push("gt-ie10");
-        }
-      }
-
-      if (hilo.browser.ie === 6) {
-        classes.push("ie6");
-      } else if (hilo.browser.ie === 7) {
-        classes.push("ie7");
-      } else if (hilo.browser.ie === 8) {
-        classes.push("ie8");
-      } else if (hilo.browser.ie === 9) {
-        classes.push("ie9");
-      } else if (hilo.browser.ie === 10) {
-        classes.push("ie10");
       }
 
       classes.push("ie");
