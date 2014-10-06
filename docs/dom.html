@@ -338,7 +338,7 @@ unhyph(<span class="hljs-string">"color"</span>); <span class="hljs-comment">// 
       <span class="hljs-comment">/* Set other attributes */</span>
       <span class="hljs-keyword">for</span> (key <span class="hljs-keyword">in</span> attrs) {
         <span class="hljs-keyword">if</span>(attrs.hasOwnProperty(key)) {
-          el.attr(key, attrs[<span class="hljs-string">"key"</span>]);
+          el.attr(key, attrs[key]);
         }
       }
     }
@@ -1355,34 +1355,6 @@ remove if exist(s)</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-37">&#182;</a>
               </div>
-              <p>Set or return attributes</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>    
-    <span class="hljs-comment">/**
-     * Set or return attributes
-     * 
-     * @for Dom
-     * @method attr
-     * @param {string} name Name of attribute
-     * @param {string} val Value of the attribute
-     * @return {string|void}
-     * @example
-     * ```
-    
-     * ```
-     */</span></pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-38">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-38">&#182;</a>
-              </div>
               <p><strong><em>Hilo.Dom.prototype.attr</em></strong></p>
 <p>Set or return attribute values</p>
 <p><strong>Param</strong>:</p>
@@ -1412,11 +1384,11 @@ remove if exist(s)</p>
         </li>
         
         
-        <li id="section-39">
+        <li id="section-38">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-39">&#182;</a>
+                <a class="pilcrow" href="#section-38">&#182;</a>
               </div>
               <h3 id="hilo-css">Hilo CSS</h3>
 
@@ -1425,11 +1397,11 @@ remove if exist(s)</p>
         </li>
         
         
-        <li id="section-40">
+        <li id="section-39">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-40">&#182;</a>
+                <a class="pilcrow" href="#section-39">&#182;</a>
               </div>
               <p>Set or return css property</p>
 
@@ -1446,16 +1418,35 @@ remove if exist(s)</p>
      * @return {string|void}
      * @beta
      * @example
-     * ```
-     * $("p").css("margin-left", "10em");
-     * 
-     * $("p.round").css({
-     *   "border-radius": 10,
-     *   width: 100
-     * });
-     * ```
-     */</span>
-    css: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(prop, value)</span> </span>{
+    
+     */</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-40">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-40">&#182;</a>
+              </div>
+              <p><strong><em>Hilo.Dom.prototype.css</em></strong></p>
+<p>Set or return css property values</p>
+<p><strong>Param</strong>:</p>
+<ul>
+<li><code>prop</code>: {String|Object} Name of the propety | Properties</li>
+<li><code>value</code>: {String} Value of property</li>
+</ul>
+<p><strong>Example</strong>:</p>
+<pre><code>$(<span class="hljs-string">"p"</span>).css(<span class="hljs-string">"margin-left"</span>, <span class="hljs-string">"10em"</span>);
+</code></pre><pre><code>$(<span class="hljs-string">"p.round"</span>).css({
+  <span class="hljs-string">"border-radius"</span>: <span class="hljs-number">10</span>,
+  width: <span class="hljs-number">100</span>
+});
+</code></pre>
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    css: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(prop, value)</span> </span>{
       <span class="hljs-keyword">var</span> unhyphed;
 
       <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> prop === <span class="hljs-string">"string"</span>) {
