@@ -975,21 +975,6 @@
       return this["class"]("toggle", className);
     },
 
-    // Set or return attributes
-    
-    /**
-     * Set or return attributes
-     * 
-     * @for Dom
-     * @method attr
-     * @param {string} name Name of attribute
-     * @param {string} val Value of the attribute
-     * @return {string|void}
-     * @example
-     * ```
-    
-     * ```
-     */
     // 
     // **_Hilo.Dom.prototype.attr_**
     // 
@@ -1024,27 +1009,26 @@
 
     // ### Hilo CSS
 
-    // Set or return css property
-
-    /**
-     * Set or return css property
-     *
-     * @for Dom
-     * @method css
-     * @param {String|Object} prop Name of property | Properties
-     * @param {string} value Value of property
-     * @return {string|void}
-     * @beta
-     * @example
-     * ```
-     * $("p").css("margin-left", "10em");
-     * 
-     * $("p.round").css({
-     *   "border-radius": 10,
-     *   width: 100
-     * });
-     * ```
-     */
+    // 
+    // **_Hilo.Dom.prototype.css_**
+    // 
+    // Set or return css property values
+    // 
+    // **Param**:
+    // - `prop`: {String|Object} Name of the propety | Properties
+    // - `value`: {String} Value of property
+    // 
+    // **Example**:
+    // ```
+    // $("p").css("margin-left", "10em");
+    // ```
+    // ```
+    // $("p.round").css({
+    //   "border-radius": 10,
+    //   width: 100
+    // });
+    // ```
+    // 
     css: function (prop, value) {
       var unhyphed;
 
@@ -1071,17 +1055,19 @@
       }
     },
 
+    // 
+    // **_Hilo.Dom.prototype.computed_**
+    // 
     // Get computed property
-
-    /**
-     * Get computed property
-     * 
-     * @for Dom
-     * @method computed
-     * @param {string} prop Name of property
-     * @return {number|boolean|string}
-     * @beta
-     */
+    // 
+    // **Param**:
+    // - `prop`: {String|Object} Name of property
+    // 
+    // **Example**:
+    // ```
+    // $("#box").computed("width");
+    // ```
+    // 
     computed: function (prop) {
       return this.first(function (el) {
         return win.getComputedStyle(el)[prop];
