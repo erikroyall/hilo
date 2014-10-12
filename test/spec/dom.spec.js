@@ -275,4 +275,18 @@ describe("DOM Methods", function () {
       expect(Hilo([child1, child2]).parents().get()).toEqual([parent1, parent2]);
     });
   });
+  describe('.attr()', function () {
+    it('should set the attribute of the element', function () {
+      var el = document.createElement("div");
+
+      Hilo(el).attr("foo", "bar");
+      expect(el.getAttribute("foo") === "bar");
+    });
+    it('should get the attribute of the element', function () {
+      var el = document.createElement("div");
+
+      el.setAttribute("foo", "bar");
+      expect(Hilo(el).attr("foo") === "bar");
+    });
+  });
 });
