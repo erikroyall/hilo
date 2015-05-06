@@ -2,8 +2,8 @@
 
 // `0.1.0-pre-dev-beta-10`<br/>
 
-// Built on: 2014-10-11<br/>
-// Project started before 1 year, 3 months and 11 days<br/>
+// Built on: 2015-05-06<br/>
+// Project started before 2 years and 28 months and 6 days<br/>
 // http://erikroyall.github.com/hilo<br/>
 // Copyright (c) 2013 Erik Royall<br/>
 // Licensed under MIT (see LICENSE-MIT) 
